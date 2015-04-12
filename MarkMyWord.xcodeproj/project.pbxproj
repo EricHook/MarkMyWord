@@ -1,0 +1,840 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B8B2CA581ADADB6000C9DEE7 /* 11 Bubble Gum.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA571ADADB6000C9DEE7 /* 11 Bubble Gum.mp3 */; };
+		B8B2CA6C1ADADB7000C9DEE7 /* 37 Bronk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA591ADADB7000C9DEE7 /* 37 Bronk.mp3 */; };
+		B8B2CA6D1ADADB7000C9DEE7 /* 70 Peeong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA5A1ADADB7000C9DEE7 /* 70 Peeong.mp3 */; };
+		B8B2CA6E1ADADB7000C9DEE7 /* 1000.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA5B1ADADB7000C9DEE7 /* 1000.WAV */; };
+		B8B2CA6F1ADADB7000C9DEE7 /* 1003.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA5C1ADADB7000C9DEE7 /* 1003.WAV */; };
+		B8B2CA701ADADB7000C9DEE7 /* 1006.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA5D1ADADB7000C9DEE7 /* 1006.WAV */; };
+		B8B2CA711ADADB7000C9DEE7 /* 1007.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA5E1ADADB7000C9DEE7 /* 1007.WAV */; };
+		B8B2CA721ADADB7000C9DEE7 /* 1008.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA5F1ADADB7000C9DEE7 /* 1008.WAV */; };
+		B8B2CA731ADADB7000C9DEE7 /* 1009.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA601ADADB7000C9DEE7 /* 1009.WAV */; };
+		B8B2CA741ADADB7000C9DEE7 /* 1014.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA611ADADB7000C9DEE7 /* 1014.WAV */; };
+		B8B2CA751ADADB7000C9DEE7 /* 1015.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA621ADADB7000C9DEE7 /* 1015.WAV */; };
+		B8B2CA761ADADB7000C9DEE7 /* 1016.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA631ADADB7000C9DEE7 /* 1016.WAV */; };
+		B8B2CA771ADADB7000C9DEE7 /* 1018.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA641ADADB7000C9DEE7 /* 1018.WAV */; };
+		B8B2CA781ADADB7000C9DEE7 /* 1019.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA651ADADB7000C9DEE7 /* 1019.WAV */; };
+		B8B2CA791ADADB7000C9DEE7 /* 1020.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA661ADADB7000C9DEE7 /* 1020.WAV */; };
+		B8B2CA7A1ADADB7000C9DEE7 /* 1021.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA671ADADB7000C9DEE7 /* 1021.WAV */; };
+		B8B2CA7B1ADADB7000C9DEE7 /* 1022.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA681ADADB7000C9DEE7 /* 1022.WAV */; };
+		B8B2CA7C1ADADB7000C9DEE7 /* 1023.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA691ADADB7000C9DEE7 /* 1023.WAV */; };
+		B8B2CA7D1ADADB7000C9DEE7 /* PLINK.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA6A1ADADB7000C9DEE7 /* PLINK.mp3 */; };
+		B8B2CA7E1ADADB7000C9DEE7 /* wizz 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA6B1ADADB7000C9DEE7 /* wizz 1.mp3 */; };
+		B8B2CAC51ADADD9100C9DEE7 /* 2-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA801ADADD9000C9DEE7 /* 2-LetterWords.txt */; };
+		B8B2CAC61ADADD9100C9DEE7 /* 2LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA811ADADD9000C9DEE7 /* 2LetterWords.txt */; };
+		B8B2CAC71ADADD9100C9DEE7 /* 3-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA821ADADD9000C9DEE7 /* 3-LetterWords.txt */; };
+		B8B2CAC81ADADD9100C9DEE7 /* 3LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA831ADADD9000C9DEE7 /* 3LetterWords.txt */; };
+		B8B2CAC91ADADD9100C9DEE7 /* 4-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA841ADADD9000C9DEE7 /* 4-LetterWords.txt */; };
+		B8B2CACA1ADADD9100C9DEE7 /* 4LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA851ADADD9000C9DEE7 /* 4LetterWords.txt */; };
+		B8B2CACB1ADADD9100C9DEE7 /* 5-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA861ADADD9000C9DEE7 /* 5-LetterWords.txt */; };
+		B8B2CACC1ADADD9100C9DEE7 /* 5LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA871ADADD9000C9DEE7 /* 5LetterWords.txt */; };
+		B8B2CACD1ADADD9100C9DEE7 /* 6_1LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA881ADADD9000C9DEE7 /* 6_1LetterWords.txt */; };
+		B8B2CACE1ADADD9100C9DEE7 /* 6_2LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA891ADADD9000C9DEE7 /* 6_2LetterWords.txt */; };
+		B8B2CACF1ADADD9100C9DEE7 /* 6.1-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA8A1ADADD9000C9DEE7 /* 6.1-LetterWords.txt */; };
+		B8B2CAD01ADADD9100C9DEE7 /* 6.2-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA8B1ADADD9000C9DEE7 /* 6.2-LetterWords.txt */; };
+		B8B2CAD11ADADD9100C9DEE7 /* 7_1LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA8C1ADADD9000C9DEE7 /* 7_1LetterWords.txt */; };
+		B8B2CAD21ADADD9100C9DEE7 /* 7_2LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA8D1ADADD9000C9DEE7 /* 7_2LetterWords.txt */; };
+		B8B2CAD31ADADD9100C9DEE7 /* 7_3LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA8E1ADADD9000C9DEE7 /* 7_3LetterWords.txt */; };
+		B8B2CAD41ADADD9100C9DEE7 /* 7.1-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA8F1ADADD9000C9DEE7 /* 7.1-LetterWords.txt */; };
+		B8B2CAD51ADADD9100C9DEE7 /* 7.2-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA901ADADD9000C9DEE7 /* 7.2-LetterWords.txt */; };
+		B8B2CAD61ADADD9100C9DEE7 /* 7.3-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA911ADADD9100C9DEE7 /* 7.3-LetterWords.txt */; };
+		B8B2CAD71ADADD9100C9DEE7 /* 8_1LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA921ADADD9100C9DEE7 /* 8_1LetterWords.txt */; };
+		B8B2CAD81ADADD9100C9DEE7 /* 8_2LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA931ADADD9100C9DEE7 /* 8_2LetterWords.txt */; };
+		B8B2CAD91ADADD9100C9DEE7 /* 8_3LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA941ADADD9100C9DEE7 /* 8_3LetterWords.txt */; };
+		B8B2CADA1ADADD9100C9DEE7 /* 8_4LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA951ADADD9100C9DEE7 /* 8_4LetterWords.txt */; };
+		B8B2CADB1ADADD9100C9DEE7 /* 8.1-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA961ADADD9100C9DEE7 /* 8.1-LetterWords.txt */; };
+		B8B2CADC1ADADD9100C9DEE7 /* 8.2-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA971ADADD9100C9DEE7 /* 8.2-LetterWords.txt */; };
+		B8B2CADD1ADADD9100C9DEE7 /* 8.3-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA981ADADD9100C9DEE7 /* 8.3-LetterWords.txt */; };
+		B8B2CADE1ADADD9100C9DEE7 /* 8.4-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA991ADADD9100C9DEE7 /* 8.4-LetterWords.txt */; };
+		B8B2CADF1ADADD9100C9DEE7 /* 9_1LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA9A1ADADD9100C9DEE7 /* 9_1LetterWords.txt */; };
+		B8B2CAE01ADADD9100C9DEE7 /* 9_2LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA9B1ADADD9100C9DEE7 /* 9_2LetterWords.txt */; };
+		B8B2CAE11ADADD9100C9DEE7 /* 9_3LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA9C1ADADD9100C9DEE7 /* 9_3LetterWords.txt */; };
+		B8B2CAE21ADADD9100C9DEE7 /* 9_4LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA9D1ADADD9100C9DEE7 /* 9_4LetterWords.txt */; };
+		B8B2CAE31ADADD9100C9DEE7 /* 9.1-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA9E1ADADD9100C9DEE7 /* 9.1-LetterWords.txt */; };
+		B8B2CAE41ADADD9100C9DEE7 /* 9.2-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA9F1ADADD9100C9DEE7 /* 9.2-LetterWords.txt */; };
+		B8B2CAE51ADADD9100C9DEE7 /* 9.3-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAA01ADADD9100C9DEE7 /* 9.3-LetterWords.txt */; };
+		B8B2CAE61ADADD9100C9DEE7 /* 9.4-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAA11ADADD9100C9DEE7 /* 9.4-LetterWords.txt */; };
+		B8B2CAE71ADADD9100C9DEE7 /* 10_1LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAA21ADADD9100C9DEE7 /* 10_1LetterWords.txt */; };
+		B8B2CAE81ADADD9100C9DEE7 /* 10_2LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAA31ADADD9100C9DEE7 /* 10_2LetterWords.txt */; };
+		B8B2CAE91ADADD9100C9DEE7 /* 10_3LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAA41ADADD9100C9DEE7 /* 10_3LetterWords.txt */; };
+		B8B2CAEA1ADADD9100C9DEE7 /* 10_4LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAA51ADADD9100C9DEE7 /* 10_4LetterWords.txt */; };
+		B8B2CAEB1ADADD9100C9DEE7 /* 10.1-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAA61ADADD9100C9DEE7 /* 10.1-LetterWords.txt */; };
+		B8B2CAEC1ADADD9100C9DEE7 /* 10.2-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAA71ADADD9100C9DEE7 /* 10.2-LetterWords.txt */; };
+		B8B2CAED1ADADD9100C9DEE7 /* 10.3-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAA81ADADD9100C9DEE7 /* 10.3-LetterWords.txt */; };
+		B8B2CAEE1ADADD9100C9DEE7 /* 10.4-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAA91ADADD9100C9DEE7 /* 10.4-LetterWords.txt */; };
+		B8B2CAEF1ADADD9100C9DEE7 /* 10.5-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAAA1ADADD9100C9DEE7 /* 10.5-LetterWords.txt */; };
+		B8B2CAF01ADADD9100C9DEE7 /* 11_1LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAAB1ADADD9100C9DEE7 /* 11_1LetterWords.txt */; };
+		B8B2CAF11ADADD9100C9DEE7 /* 11_2LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAAC1ADADD9100C9DEE7 /* 11_2LetterWords.txt */; };
+		B8B2CAF21ADADD9100C9DEE7 /* 11_3LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAAD1ADADD9100C9DEE7 /* 11_3LetterWords.txt */; };
+		B8B2CAF31ADADD9100C9DEE7 /* 11.1-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAAE1ADADD9100C9DEE7 /* 11.1-LetterWords.txt */; };
+		B8B2CAF41ADADD9100C9DEE7 /* 11.2-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAAF1ADADD9100C9DEE7 /* 11.2-LetterWords.txt */; };
+		B8B2CAF51ADADD9100C9DEE7 /* 11.3-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAB01ADADD9100C9DEE7 /* 11.3-LetterWords.txt */; };
+		B8B2CAF61ADADD9100C9DEE7 /* 12_1LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAB11ADADD9100C9DEE7 /* 12_1LetterWords.txt */; };
+		B8B2CAF71ADADD9100C9DEE7 /* 12_2LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAB21ADADD9100C9DEE7 /* 12_2LetterWords.txt */; };
+		B8B2CAF81ADADD9100C9DEE7 /* 12.1-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAB31ADADD9100C9DEE7 /* 12.1-LetterWords.txt */; };
+		B8B2CAF91ADADD9100C9DEE7 /* 12.2-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAB41ADADD9100C9DEE7 /* 12.2-LetterWords.txt */; };
+		B8B2CAFA1ADADD9100C9DEE7 /* 13_1LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAB51ADADD9100C9DEE7 /* 13_1LetterWords.txt */; };
+		B8B2CAFB1ADADD9100C9DEE7 /* 13_2LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAB61ADADD9100C9DEE7 /* 13_2LetterWords.txt */; };
+		B8B2CAFC1ADADD9100C9DEE7 /* 13.1-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAB71ADADD9100C9DEE7 /* 13.1-LetterWords.txt */; };
+		B8B2CAFD1ADADD9100C9DEE7 /* 13.2-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAB81ADADD9100C9DEE7 /* 13.2-LetterWords.txt */; };
+		B8B2CAFE1ADADD9100C9DEE7 /* 14-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAB91ADADD9100C9DEE7 /* 14-LetterWords.txt */; };
+		B8B2CAFF1ADADD9100C9DEE7 /* 15-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CABA1ADADD9100C9DEE7 /* 15-LetterWords.txt */; };
+		B8B2CB001ADADD9100C9DEE7 /* 16-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CABB1ADADD9100C9DEE7 /* 16-LetterWords.txt */; };
+		B8B2CB011ADADD9100C9DEE7 /* 17-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CABC1ADADD9100C9DEE7 /* 17-LetterWords.txt */; };
+		B8B2CB021ADADD9100C9DEE7 /* 18-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CABD1ADADD9100C9DEE7 /* 18-LetterWords.txt */; };
+		B8B2CB031ADADD9100C9DEE7 /* 19-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CABE1ADADD9100C9DEE7 /* 19-LetterWords.txt */; };
+		B8B2CB041ADADD9100C9DEE7 /* 20-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CABF1ADADD9100C9DEE7 /* 20-LetterWords.txt */; };
+		B8B2CB051ADADD9100C9DEE7 /* 21-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAC01ADADD9100C9DEE7 /* 21-LetterWords.txt */; };
+		B8B2CB061ADADD9100C9DEE7 /* 22-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAC11ADADD9100C9DEE7 /* 22-LetterWords.txt */; };
+		B8B2CB071ADADD9100C9DEE7 /* 23-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAC21ADADD9100C9DEE7 /* 23-LetterWords.txt */; };
+		B8B2CB081ADADD9100C9DEE7 /* 24-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAC31ADADD9100C9DEE7 /* 24-LetterWords.txt */; };
+		B8B2CB091ADADD9100C9DEE7 /* enable1WordList.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAC41ADADD9100C9DEE7 /* enable1WordList.txt */; };
+		B8CCE1A21AD8C13500882391 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CCE1A11AD8C13500882391 /* AppDelegate.swift */; };
+		B8CCE1A41AD8C13500882391 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B8CCE1A31AD8C13500882391 /* GameScene.sks */; };
+		B8CCE1A61AD8C13500882391 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CCE1A51AD8C13500882391 /* GameScene.swift */; };
+		B8CCE1A81AD8C13500882391 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CCE1A71AD8C13500882391 /* GameViewController.swift */; };
+		B8CCE1AB1AD8C13500882391 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8CCE1A91AD8C13500882391 /* Main.storyboard */; };
+		B8CCE1AD1AD8C13500882391 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8CCE1AC1AD8C13500882391 /* Images.xcassets */; };
+		B8CCE1B01AD8C13500882391 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8CCE1AE1AD8C13500882391 /* LaunchScreen.xib */; };
+		B8CCE1BC1AD8C13500882391 /* MarkMyWordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CCE1BB1AD8C13500882391 /* MarkMyWordTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B8CCE1B61AD8C13500882391 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B8CCE1941AD8C13500882391 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B8CCE19B1AD8C13500882391;
+			remoteInfo = MarkMyWord;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B8B2CA571ADADB6000C9DEE7 /* 11 Bubble Gum.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "11 Bubble Gum.mp3"; sourceTree = "<group>"; };
+		B8B2CA591ADADB7000C9DEE7 /* 37 Bronk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "37 Bronk.mp3"; sourceTree = "<group>"; };
+		B8B2CA5A1ADADB7000C9DEE7 /* 70 Peeong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "70 Peeong.mp3"; sourceTree = "<group>"; };
+		B8B2CA5B1ADADB7000C9DEE7 /* 1000.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1000.WAV; sourceTree = "<group>"; };
+		B8B2CA5C1ADADB7000C9DEE7 /* 1003.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1003.WAV; sourceTree = "<group>"; };
+		B8B2CA5D1ADADB7000C9DEE7 /* 1006.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1006.WAV; sourceTree = "<group>"; };
+		B8B2CA5E1ADADB7000C9DEE7 /* 1007.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1007.WAV; sourceTree = "<group>"; };
+		B8B2CA5F1ADADB7000C9DEE7 /* 1008.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1008.WAV; sourceTree = "<group>"; };
+		B8B2CA601ADADB7000C9DEE7 /* 1009.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1009.WAV; sourceTree = "<group>"; };
+		B8B2CA611ADADB7000C9DEE7 /* 1014.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1014.WAV; sourceTree = "<group>"; };
+		B8B2CA621ADADB7000C9DEE7 /* 1015.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1015.WAV; sourceTree = "<group>"; };
+		B8B2CA631ADADB7000C9DEE7 /* 1016.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1016.WAV; sourceTree = "<group>"; };
+		B8B2CA641ADADB7000C9DEE7 /* 1018.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1018.WAV; sourceTree = "<group>"; };
+		B8B2CA651ADADB7000C9DEE7 /* 1019.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1019.WAV; sourceTree = "<group>"; };
+		B8B2CA661ADADB7000C9DEE7 /* 1020.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1020.WAV; sourceTree = "<group>"; };
+		B8B2CA671ADADB7000C9DEE7 /* 1021.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1021.WAV; sourceTree = "<group>"; };
+		B8B2CA681ADADB7000C9DEE7 /* 1022.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1022.WAV; sourceTree = "<group>"; };
+		B8B2CA691ADADB7000C9DEE7 /* 1023.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1023.WAV; sourceTree = "<group>"; };
+		B8B2CA6A1ADADB7000C9DEE7 /* PLINK.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = PLINK.mp3; sourceTree = "<group>"; };
+		B8B2CA6B1ADADB7000C9DEE7 /* wizz 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "wizz 1.mp3"; sourceTree = "<group>"; };
+		B8B2CA801ADADD9000C9DEE7 /* 2-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CA811ADADD9000C9DEE7 /* 2LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 2LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CA821ADADD9000C9DEE7 /* 3-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CA831ADADD9000C9DEE7 /* 3LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 3LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CA841ADADD9000C9DEE7 /* 4-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "4-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CA851ADADD9000C9DEE7 /* 4LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 4LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CA861ADADD9000C9DEE7 /* 5-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "5-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CA871ADADD9000C9DEE7 /* 5LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CA881ADADD9000C9DEE7 /* 6_1LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 6_1LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CA891ADADD9000C9DEE7 /* 6_2LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 6_2LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CA8A1ADADD9000C9DEE7 /* 6.1-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "6.1-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CA8B1ADADD9000C9DEE7 /* 6.2-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "6.2-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CA8C1ADADD9000C9DEE7 /* 7_1LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 7_1LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CA8D1ADADD9000C9DEE7 /* 7_2LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 7_2LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CA8E1ADADD9000C9DEE7 /* 7_3LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 7_3LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CA8F1ADADD9000C9DEE7 /* 7.1-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "7.1-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CA901ADADD9000C9DEE7 /* 7.2-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "7.2-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CA911ADADD9100C9DEE7 /* 7.3-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "7.3-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CA921ADADD9100C9DEE7 /* 8_1LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 8_1LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CA931ADADD9100C9DEE7 /* 8_2LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 8_2LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CA941ADADD9100C9DEE7 /* 8_3LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 8_3LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CA951ADADD9100C9DEE7 /* 8_4LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 8_4LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CA961ADADD9100C9DEE7 /* 8.1-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "8.1-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CA971ADADD9100C9DEE7 /* 8.2-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "8.2-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CA981ADADD9100C9DEE7 /* 8.3-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "8.3-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CA991ADADD9100C9DEE7 /* 8.4-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "8.4-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CA9A1ADADD9100C9DEE7 /* 9_1LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 9_1LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CA9B1ADADD9100C9DEE7 /* 9_2LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 9_2LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CA9C1ADADD9100C9DEE7 /* 9_3LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 9_3LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CA9D1ADADD9100C9DEE7 /* 9_4LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 9_4LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CA9E1ADADD9100C9DEE7 /* 9.1-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "9.1-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CA9F1ADADD9100C9DEE7 /* 9.2-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "9.2-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CAA01ADADD9100C9DEE7 /* 9.3-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "9.3-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CAA11ADADD9100C9DEE7 /* 9.4-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "9.4-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CAA21ADADD9100C9DEE7 /* 10_1LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10_1LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CAA31ADADD9100C9DEE7 /* 10_2LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10_2LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CAA41ADADD9100C9DEE7 /* 10_3LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10_3LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CAA51ADADD9100C9DEE7 /* 10_4LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10_4LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CAA61ADADD9100C9DEE7 /* 10.1-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "10.1-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CAA71ADADD9100C9DEE7 /* 10.2-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "10.2-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CAA81ADADD9100C9DEE7 /* 10.3-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "10.3-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CAA91ADADD9100C9DEE7 /* 10.4-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "10.4-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CAAA1ADADD9100C9DEE7 /* 10.5-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "10.5-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CAAB1ADADD9100C9DEE7 /* 11_1LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 11_1LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CAAC1ADADD9100C9DEE7 /* 11_2LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 11_2LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CAAD1ADADD9100C9DEE7 /* 11_3LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 11_3LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CAAE1ADADD9100C9DEE7 /* 11.1-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "11.1-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CAAF1ADADD9100C9DEE7 /* 11.2-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "11.2-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CAB01ADADD9100C9DEE7 /* 11.3-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "11.3-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CAB11ADADD9100C9DEE7 /* 12_1LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 12_1LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CAB21ADADD9100C9DEE7 /* 12_2LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 12_2LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CAB31ADADD9100C9DEE7 /* 12.1-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "12.1-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CAB41ADADD9100C9DEE7 /* 12.2-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "12.2-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CAB51ADADD9100C9DEE7 /* 13_1LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 13_1LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CAB61ADADD9100C9DEE7 /* 13_2LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 13_2LetterWords.txt; sourceTree = "<group>"; };
+		B8B2CAB71ADADD9100C9DEE7 /* 13.1-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "13.1-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CAB81ADADD9100C9DEE7 /* 13.2-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "13.2-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CAB91ADADD9100C9DEE7 /* 14-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "14-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CABA1ADADD9100C9DEE7 /* 15-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "15-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CABB1ADADD9100C9DEE7 /* 16-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "16-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CABC1ADADD9100C9DEE7 /* 17-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "17-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CABD1ADADD9100C9DEE7 /* 18-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "18-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CABE1ADADD9100C9DEE7 /* 19-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "19-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CABF1ADADD9100C9DEE7 /* 20-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "20-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CAC01ADADD9100C9DEE7 /* 21-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "21-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CAC11ADADD9100C9DEE7 /* 22-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "22-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CAC21ADADD9100C9DEE7 /* 23-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "23-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CAC31ADADD9100C9DEE7 /* 24-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "24-LetterWords.txt"; sourceTree = "<group>"; };
+		B8B2CAC41ADADD9100C9DEE7 /* enable1WordList.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = enable1WordList.txt; sourceTree = "<group>"; };
+		B8CCE19C1AD8C13500882391 /* MarkMyWord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarkMyWord.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8CCE1A01AD8C13500882391 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8CCE1A11AD8C13500882391 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B8CCE1A31AD8C13500882391 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		B8CCE1A51AD8C13500882391 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		B8CCE1A71AD8C13500882391 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		B8CCE1AA1AD8C13500882391 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B8CCE1AC1AD8C13500882391 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B8CCE1AF1AD8C13500882391 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		B8CCE1B51AD8C13500882391 /* MarkMyWordTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarkMyWordTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8CCE1BA1AD8C13500882391 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8CCE1BB1AD8C13500882391 /* MarkMyWordTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkMyWordTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B8CCE1991AD8C13500882391 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8CCE1B21AD8C13500882391 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B8B2CA521ADADADC00C9DEE7 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				B8B2CA561ADADB4100C9DEE7 /* SoundEffects */,
+				B8B2CA551ADADB3700C9DEE7 /* Music */,
+				B8B2CA541ADADB2F00C9DEE7 /* Speech */,
+				B8B2CA531ADADAFF00C9DEE7 /* TEMP */,
+			);
+			name = Audio;
+			sourceTree = "<group>";
+		};
+		B8B2CA531ADADAFF00C9DEE7 /* TEMP */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = TEMP;
+			sourceTree = "<group>";
+		};
+		B8B2CA541ADADB2F00C9DEE7 /* Speech */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Speech;
+			sourceTree = "<group>";
+		};
+		B8B2CA551ADADB3700C9DEE7 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				B8B2CA571ADADB6000C9DEE7 /* 11 Bubble Gum.mp3 */,
+			);
+			name = Music;
+			sourceTree = "<group>";
+		};
+		B8B2CA561ADADB4100C9DEE7 /* SoundEffects */ = {
+			isa = PBXGroup;
+			children = (
+				B8B2CA591ADADB7000C9DEE7 /* 37 Bronk.mp3 */,
+				B8B2CA5A1ADADB7000C9DEE7 /* 70 Peeong.mp3 */,
+				B8B2CA5B1ADADB7000C9DEE7 /* 1000.WAV */,
+				B8B2CA5C1ADADB7000C9DEE7 /* 1003.WAV */,
+				B8B2CA5D1ADADB7000C9DEE7 /* 1006.WAV */,
+				B8B2CA5E1ADADB7000C9DEE7 /* 1007.WAV */,
+				B8B2CA5F1ADADB7000C9DEE7 /* 1008.WAV */,
+				B8B2CA601ADADB7000C9DEE7 /* 1009.WAV */,
+				B8B2CA611ADADB7000C9DEE7 /* 1014.WAV */,
+				B8B2CA621ADADB7000C9DEE7 /* 1015.WAV */,
+				B8B2CA631ADADB7000C9DEE7 /* 1016.WAV */,
+				B8B2CA641ADADB7000C9DEE7 /* 1018.WAV */,
+				B8B2CA651ADADB7000C9DEE7 /* 1019.WAV */,
+				B8B2CA661ADADB7000C9DEE7 /* 1020.WAV */,
+				B8B2CA671ADADB7000C9DEE7 /* 1021.WAV */,
+				B8B2CA681ADADB7000C9DEE7 /* 1022.WAV */,
+				B8B2CA691ADADB7000C9DEE7 /* 1023.WAV */,
+				B8B2CA6A1ADADB7000C9DEE7 /* PLINK.mp3 */,
+				B8B2CA6B1ADADB7000C9DEE7 /* wizz 1.mp3 */,
+			);
+			name = SoundEffects;
+			sourceTree = "<group>";
+		};
+		B8B2CA7F1ADADD5F00C9DEE7 /* WordLists */ = {
+			isa = PBXGroup;
+			children = (
+				B8B2CA801ADADD9000C9DEE7 /* 2-LetterWords.txt */,
+				B8B2CA811ADADD9000C9DEE7 /* 2LetterWords.txt */,
+				B8B2CA821ADADD9000C9DEE7 /* 3-LetterWords.txt */,
+				B8B2CA831ADADD9000C9DEE7 /* 3LetterWords.txt */,
+				B8B2CA841ADADD9000C9DEE7 /* 4-LetterWords.txt */,
+				B8B2CA851ADADD9000C9DEE7 /* 4LetterWords.txt */,
+				B8B2CA861ADADD9000C9DEE7 /* 5-LetterWords.txt */,
+				B8B2CA871ADADD9000C9DEE7 /* 5LetterWords.txt */,
+				B8B2CA881ADADD9000C9DEE7 /* 6_1LetterWords.txt */,
+				B8B2CA891ADADD9000C9DEE7 /* 6_2LetterWords.txt */,
+				B8B2CA8A1ADADD9000C9DEE7 /* 6.1-LetterWords.txt */,
+				B8B2CA8B1ADADD9000C9DEE7 /* 6.2-LetterWords.txt */,
+				B8B2CA8C1ADADD9000C9DEE7 /* 7_1LetterWords.txt */,
+				B8B2CA8D1ADADD9000C9DEE7 /* 7_2LetterWords.txt */,
+				B8B2CA8E1ADADD9000C9DEE7 /* 7_3LetterWords.txt */,
+				B8B2CA8F1ADADD9000C9DEE7 /* 7.1-LetterWords.txt */,
+				B8B2CA901ADADD9000C9DEE7 /* 7.2-LetterWords.txt */,
+				B8B2CA911ADADD9100C9DEE7 /* 7.3-LetterWords.txt */,
+				B8B2CA921ADADD9100C9DEE7 /* 8_1LetterWords.txt */,
+				B8B2CA931ADADD9100C9DEE7 /* 8_2LetterWords.txt */,
+				B8B2CA941ADADD9100C9DEE7 /* 8_3LetterWords.txt */,
+				B8B2CA951ADADD9100C9DEE7 /* 8_4LetterWords.txt */,
+				B8B2CA961ADADD9100C9DEE7 /* 8.1-LetterWords.txt */,
+				B8B2CA971ADADD9100C9DEE7 /* 8.2-LetterWords.txt */,
+				B8B2CA981ADADD9100C9DEE7 /* 8.3-LetterWords.txt */,
+				B8B2CA991ADADD9100C9DEE7 /* 8.4-LetterWords.txt */,
+				B8B2CA9A1ADADD9100C9DEE7 /* 9_1LetterWords.txt */,
+				B8B2CA9B1ADADD9100C9DEE7 /* 9_2LetterWords.txt */,
+				B8B2CA9C1ADADD9100C9DEE7 /* 9_3LetterWords.txt */,
+				B8B2CA9D1ADADD9100C9DEE7 /* 9_4LetterWords.txt */,
+				B8B2CA9E1ADADD9100C9DEE7 /* 9.1-LetterWords.txt */,
+				B8B2CA9F1ADADD9100C9DEE7 /* 9.2-LetterWords.txt */,
+				B8B2CAA01ADADD9100C9DEE7 /* 9.3-LetterWords.txt */,
+				B8B2CAA11ADADD9100C9DEE7 /* 9.4-LetterWords.txt */,
+				B8B2CAA21ADADD9100C9DEE7 /* 10_1LetterWords.txt */,
+				B8B2CAA31ADADD9100C9DEE7 /* 10_2LetterWords.txt */,
+				B8B2CAA41ADADD9100C9DEE7 /* 10_3LetterWords.txt */,
+				B8B2CAA51ADADD9100C9DEE7 /* 10_4LetterWords.txt */,
+				B8B2CAA61ADADD9100C9DEE7 /* 10.1-LetterWords.txt */,
+				B8B2CAA71ADADD9100C9DEE7 /* 10.2-LetterWords.txt */,
+				B8B2CAA81ADADD9100C9DEE7 /* 10.3-LetterWords.txt */,
+				B8B2CAA91ADADD9100C9DEE7 /* 10.4-LetterWords.txt */,
+				B8B2CAAA1ADADD9100C9DEE7 /* 10.5-LetterWords.txt */,
+				B8B2CAAB1ADADD9100C9DEE7 /* 11_1LetterWords.txt */,
+				B8B2CAAC1ADADD9100C9DEE7 /* 11_2LetterWords.txt */,
+				B8B2CAAD1ADADD9100C9DEE7 /* 11_3LetterWords.txt */,
+				B8B2CAAE1ADADD9100C9DEE7 /* 11.1-LetterWords.txt */,
+				B8B2CAAF1ADADD9100C9DEE7 /* 11.2-LetterWords.txt */,
+				B8B2CAB01ADADD9100C9DEE7 /* 11.3-LetterWords.txt */,
+				B8B2CAB11ADADD9100C9DEE7 /* 12_1LetterWords.txt */,
+				B8B2CAB21ADADD9100C9DEE7 /* 12_2LetterWords.txt */,
+				B8B2CAB31ADADD9100C9DEE7 /* 12.1-LetterWords.txt */,
+				B8B2CAB41ADADD9100C9DEE7 /* 12.2-LetterWords.txt */,
+				B8B2CAB51ADADD9100C9DEE7 /* 13_1LetterWords.txt */,
+				B8B2CAB61ADADD9100C9DEE7 /* 13_2LetterWords.txt */,
+				B8B2CAB71ADADD9100C9DEE7 /* 13.1-LetterWords.txt */,
+				B8B2CAB81ADADD9100C9DEE7 /* 13.2-LetterWords.txt */,
+				B8B2CAB91ADADD9100C9DEE7 /* 14-LetterWords.txt */,
+				B8B2CABA1ADADD9100C9DEE7 /* 15-LetterWords.txt */,
+				B8B2CABB1ADADD9100C9DEE7 /* 16-LetterWords.txt */,
+				B8B2CABC1ADADD9100C9DEE7 /* 17-LetterWords.txt */,
+				B8B2CABD1ADADD9100C9DEE7 /* 18-LetterWords.txt */,
+				B8B2CABE1ADADD9100C9DEE7 /* 19-LetterWords.txt */,
+				B8B2CABF1ADADD9100C9DEE7 /* 20-LetterWords.txt */,
+				B8B2CAC01ADADD9100C9DEE7 /* 21-LetterWords.txt */,
+				B8B2CAC11ADADD9100C9DEE7 /* 22-LetterWords.txt */,
+				B8B2CAC21ADADD9100C9DEE7 /* 23-LetterWords.txt */,
+				B8B2CAC31ADADD9100C9DEE7 /* 24-LetterWords.txt */,
+				B8B2CAC41ADADD9100C9DEE7 /* enable1WordList.txt */,
+			);
+			name = WordLists;
+			sourceTree = "<group>";
+		};
+		B8CCE1931AD8C13500882391 = {
+			isa = PBXGroup;
+			children = (
+				B8CCE19E1AD8C13500882391 /* MarkMyWord */,
+				B8CCE1B81AD8C13500882391 /* MarkMyWordTests */,
+				B8CCE19D1AD8C13500882391 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B8CCE19D1AD8C13500882391 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B8CCE19C1AD8C13500882391 /* MarkMyWord.app */,
+				B8CCE1B51AD8C13500882391 /* MarkMyWordTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B8CCE19E1AD8C13500882391 /* MarkMyWord */ = {
+			isa = PBXGroup;
+			children = (
+				B8B2CA7F1ADADD5F00C9DEE7 /* WordLists */,
+				B8B2CA521ADADADC00C9DEE7 /* Audio */,
+				B8CCE1A11AD8C13500882391 /* AppDelegate.swift */,
+				B8CCE1A31AD8C13500882391 /* GameScene.sks */,
+				B8CCE1A51AD8C13500882391 /* GameScene.swift */,
+				B8CCE1A71AD8C13500882391 /* GameViewController.swift */,
+				B8CCE1A91AD8C13500882391 /* Main.storyboard */,
+				B8CCE1AC1AD8C13500882391 /* Images.xcassets */,
+				B8CCE1AE1AD8C13500882391 /* LaunchScreen.xib */,
+				B8CCE19F1AD8C13500882391 /* Supporting Files */,
+			);
+			path = MarkMyWord;
+			sourceTree = "<group>";
+		};
+		B8CCE19F1AD8C13500882391 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B8CCE1A01AD8C13500882391 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B8CCE1B81AD8C13500882391 /* MarkMyWordTests */ = {
+			isa = PBXGroup;
+			children = (
+				B8CCE1BB1AD8C13500882391 /* MarkMyWordTests.swift */,
+				B8CCE1B91AD8C13500882391 /* Supporting Files */,
+			);
+			path = MarkMyWordTests;
+			sourceTree = "<group>";
+		};
+		B8CCE1B91AD8C13500882391 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B8CCE1BA1AD8C13500882391 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B8CCE19B1AD8C13500882391 /* MarkMyWord */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B8CCE1BF1AD8C13500882391 /* Build configuration list for PBXNativeTarget "MarkMyWord" */;
+			buildPhases = (
+				B8CCE1981AD8C13500882391 /* Sources */,
+				B8CCE1991AD8C13500882391 /* Frameworks */,
+				B8CCE19A1AD8C13500882391 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MarkMyWord;
+			productName = MarkMyWord;
+			productReference = B8CCE19C1AD8C13500882391 /* MarkMyWord.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B8CCE1B41AD8C13500882391 /* MarkMyWordTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B8CCE1C21AD8C13500882391 /* Build configuration list for PBXNativeTarget "MarkMyWordTests" */;
+			buildPhases = (
+				B8CCE1B11AD8C13500882391 /* Sources */,
+				B8CCE1B21AD8C13500882391 /* Frameworks */,
+				B8CCE1B31AD8C13500882391 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B8CCE1B71AD8C13500882391 /* PBXTargetDependency */,
+			);
+			name = MarkMyWordTests;
+			productName = MarkMyWordTests;
+			productReference = B8CCE1B51AD8C13500882391 /* MarkMyWordTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B8CCE1941AD8C13500882391 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Hook Studios";
+				TargetAttributes = {
+					B8CCE19B1AD8C13500882391 = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					B8CCE1B41AD8C13500882391 = {
+						CreatedOnToolsVersion = 6.3;
+						TestTargetID = B8CCE19B1AD8C13500882391;
+					};
+				};
+			};
+			buildConfigurationList = B8CCE1971AD8C13500882391 /* Build configuration list for PBXProject "MarkMyWord" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B8CCE1931AD8C13500882391;
+			productRefGroup = B8CCE19D1AD8C13500882391 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B8CCE19B1AD8C13500882391 /* MarkMyWord */,
+				B8CCE1B41AD8C13500882391 /* MarkMyWordTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B8CCE19A1AD8C13500882391 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8B2CAD71ADADD9100C9DEE7 /* 8_1LetterWords.txt in Resources */,
+				B8B2CA7B1ADADB7000C9DEE7 /* 1022.WAV in Resources */,
+				B8B2CAFA1ADADD9100C9DEE7 /* 13_1LetterWords.txt in Resources */,
+				B8B2CACA1ADADD9100C9DEE7 /* 4LetterWords.txt in Resources */,
+				B8B2CAEE1ADADD9100C9DEE7 /* 10.4-LetterWords.txt in Resources */,
+				B8B2CAE11ADADD9100C9DEE7 /* 9_3LetterWords.txt in Resources */,
+				B8B2CA6D1ADADB7000C9DEE7 /* 70 Peeong.mp3 in Resources */,
+				B8B2CB001ADADD9100C9DEE7 /* 16-LetterWords.txt in Resources */,
+				B8B2CAFF1ADADD9100C9DEE7 /* 15-LetterWords.txt in Resources */,
+				B8B2CAF11ADADD9100C9DEE7 /* 11_2LetterWords.txt in Resources */,
+				B8B2CAD61ADADD9100C9DEE7 /* 7.3-LetterWords.txt in Resources */,
+				B8CCE1B01AD8C13500882391 /* LaunchScreen.xib in Resources */,
+				B8B2CAD31ADADD9100C9DEE7 /* 7_3LetterWords.txt in Resources */,
+				B8B2CA741ADADB7000C9DEE7 /* 1014.WAV in Resources */,
+				B8B2CA781ADADB7000C9DEE7 /* 1019.WAV in Resources */,
+				B8B2CAEA1ADADD9100C9DEE7 /* 10_4LetterWords.txt in Resources */,
+				B8B2CA7E1ADADB7000C9DEE7 /* wizz 1.mp3 in Resources */,
+				B8B2CA751ADADB7000C9DEE7 /* 1015.WAV in Resources */,
+				B8B2CAF61ADADD9100C9DEE7 /* 12_1LetterWords.txt in Resources */,
+				B8B2CB091ADADD9100C9DEE7 /* enable1WordList.txt in Resources */,
+				B8B2CAFC1ADADD9100C9DEE7 /* 13.1-LetterWords.txt in Resources */,
+				B8CCE1AD1AD8C13500882391 /* Images.xcassets in Resources */,
+				B8B2CAF41ADADD9100C9DEE7 /* 11.2-LetterWords.txt in Resources */,
+				B8B2CADB1ADADD9100C9DEE7 /* 8.1-LetterWords.txt in Resources */,
+				B8B2CAEC1ADADD9100C9DEE7 /* 10.2-LetterWords.txt in Resources */,
+				B8B2CAD81ADADD9100C9DEE7 /* 8_2LetterWords.txt in Resources */,
+				B8B2CB051ADADD9100C9DEE7 /* 21-LetterWords.txt in Resources */,
+				B8B2CAFE1ADADD9100C9DEE7 /* 14-LetterWords.txt in Resources */,
+				B8B2CAE21ADADD9100C9DEE7 /* 9_4LetterWords.txt in Resources */,
+				B8B2CAE61ADADD9100C9DEE7 /* 9.4-LetterWords.txt in Resources */,
+				B8B2CAF71ADADD9100C9DEE7 /* 12_2LetterWords.txt in Resources */,
+				B8B2CA731ADADB7000C9DEE7 /* 1009.WAV in Resources */,
+				B8B2CAFD1ADADD9100C9DEE7 /* 13.2-LetterWords.txt in Resources */,
+				B8B2CA7D1ADADB7000C9DEE7 /* PLINK.mp3 in Resources */,
+				B8B2CAEB1ADADD9100C9DEE7 /* 10.1-LetterWords.txt in Resources */,
+				B8B2CB081ADADD9100C9DEE7 /* 24-LetterWords.txt in Resources */,
+				B8B2CA701ADADB7000C9DEE7 /* 1006.WAV in Resources */,
+				B8B2CACF1ADADD9100C9DEE7 /* 6.1-LetterWords.txt in Resources */,
+				B8B2CA7A1ADADB7000C9DEE7 /* 1021.WAV in Resources */,
+				B8B2CAD51ADADD9100C9DEE7 /* 7.2-LetterWords.txt in Resources */,
+				B8B2CAE41ADADD9100C9DEE7 /* 9.2-LetterWords.txt in Resources */,
+				B8B2CAF81ADADD9100C9DEE7 /* 12.1-LetterWords.txt in Resources */,
+				B8B2CAE31ADADD9100C9DEE7 /* 9.1-LetterWords.txt in Resources */,
+				B8B2CACB1ADADD9100C9DEE7 /* 5-LetterWords.txt in Resources */,
+				B8B2CACD1ADADD9100C9DEE7 /* 6_1LetterWords.txt in Resources */,
+				B8B2CA6F1ADADB7000C9DEE7 /* 1003.WAV in Resources */,
+				B8B2CADA1ADADD9100C9DEE7 /* 8_4LetterWords.txt in Resources */,
+				B8B2CAD11ADADD9100C9DEE7 /* 7_1LetterWords.txt in Resources */,
+				B8B2CB011ADADD9100C9DEE7 /* 17-LetterWords.txt in Resources */,
+				B8B2CA6C1ADADB7000C9DEE7 /* 37 Bronk.mp3 in Resources */,
+				B8B2CA7C1ADADB7000C9DEE7 /* 1023.WAV in Resources */,
+				B8B2CAF51ADADD9100C9DEE7 /* 11.3-LetterWords.txt in Resources */,
+				B8B2CAC91ADADD9100C9DEE7 /* 4-LetterWords.txt in Resources */,
+				B8B2CAE51ADADD9100C9DEE7 /* 9.3-LetterWords.txt in Resources */,
+				B8B2CAE81ADADD9100C9DEE7 /* 10_2LetterWords.txt in Resources */,
+				B8B2CACC1ADADD9100C9DEE7 /* 5LetterWords.txt in Resources */,
+				B8B2CA711ADADB7000C9DEE7 /* 1007.WAV in Resources */,
+				B8B2CB071ADADD9100C9DEE7 /* 23-LetterWords.txt in Resources */,
+				B8CCE1A41AD8C13500882391 /* GameScene.sks in Resources */,
+				B8B2CB021ADADD9100C9DEE7 /* 18-LetterWords.txt in Resources */,
+				B8B2CADE1ADADD9100C9DEE7 /* 8.4-LetterWords.txt in Resources */,
+				B8B2CAD01ADADD9100C9DEE7 /* 6.2-LetterWords.txt in Resources */,
+				B8B2CAFB1ADADD9100C9DEE7 /* 13_2LetterWords.txt in Resources */,
+				B8B2CA6E1ADADB7000C9DEE7 /* 1000.WAV in Resources */,
+				B8B2CAD41ADADD9100C9DEE7 /* 7.1-LetterWords.txt in Resources */,
+				B8B2CA771ADADB7000C9DEE7 /* 1018.WAV in Resources */,
+				B8B2CAE71ADADD9100C9DEE7 /* 10_1LetterWords.txt in Resources */,
+				B8B2CAE91ADADD9100C9DEE7 /* 10_3LetterWords.txt in Resources */,
+				B8B2CB031ADADD9100C9DEE7 /* 19-LetterWords.txt in Resources */,
+				B8B2CAED1ADADD9100C9DEE7 /* 10.3-LetterWords.txt in Resources */,
+				B8B2CAF01ADADD9100C9DEE7 /* 11_1LetterWords.txt in Resources */,
+				B8B2CAF91ADADD9100C9DEE7 /* 12.2-LetterWords.txt in Resources */,
+				B8B2CAF21ADADD9100C9DEE7 /* 11_3LetterWords.txt in Resources */,
+				B8B2CAC61ADADD9100C9DEE7 /* 2LetterWords.txt in Resources */,
+				B8B2CAE01ADADD9100C9DEE7 /* 9_2LetterWords.txt in Resources */,
+				B8B2CA761ADADB7000C9DEE7 /* 1016.WAV in Resources */,
+				B8B2CADC1ADADD9100C9DEE7 /* 8.2-LetterWords.txt in Resources */,
+				B8B2CAD21ADADD9100C9DEE7 /* 7_2LetterWords.txt in Resources */,
+				B8B2CAD91ADADD9100C9DEE7 /* 8_3LetterWords.txt in Resources */,
+				B8B2CADF1ADADD9100C9DEE7 /* 9_1LetterWords.txt in Resources */,
+				B8B2CAC71ADADD9100C9DEE7 /* 3-LetterWords.txt in Resources */,
+				B8B2CB061ADADD9100C9DEE7 /* 22-LetterWords.txt in Resources */,
+				B8B2CAC51ADADD9100C9DEE7 /* 2-LetterWords.txt in Resources */,
+				B8B2CB041ADADD9100C9DEE7 /* 20-LetterWords.txt in Resources */,
+				B8B2CACE1ADADD9100C9DEE7 /* 6_2LetterWords.txt in Resources */,
+				B8B2CAEF1ADADD9100C9DEE7 /* 10.5-LetterWords.txt in Resources */,
+				B8B2CA721ADADB7000C9DEE7 /* 1008.WAV in Resources */,
+				B8B2CAC81ADADD9100C9DEE7 /* 3LetterWords.txt in Resources */,
+				B8CCE1AB1AD8C13500882391 /* Main.storyboard in Resources */,
+				B8B2CA581ADADB6000C9DEE7 /* 11 Bubble Gum.mp3 in Resources */,
+				B8B2CADD1ADADD9100C9DEE7 /* 8.3-LetterWords.txt in Resources */,
+				B8B2CAF31ADADD9100C9DEE7 /* 11.1-LetterWords.txt in Resources */,
+				B8B2CA791ADADB7000C9DEE7 /* 1020.WAV in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8CCE1B31AD8C13500882391 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B8CCE1981AD8C13500882391 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8CCE1A61AD8C13500882391 /* GameScene.swift in Sources */,
+				B8CCE1A81AD8C13500882391 /* GameViewController.swift in Sources */,
+				B8CCE1A21AD8C13500882391 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8CCE1B11AD8C13500882391 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8CCE1BC1AD8C13500882391 /* MarkMyWordTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B8CCE1B71AD8C13500882391 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B8CCE19B1AD8C13500882391 /* MarkMyWord */;
+			targetProxy = B8CCE1B61AD8C13500882391 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B8CCE1A91AD8C13500882391 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B8CCE1AA1AD8C13500882391 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B8CCE1AE1AD8C13500882391 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B8CCE1AF1AD8C13500882391 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B8CCE1BD1AD8C13500882391 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B8CCE1BE1AD8C13500882391 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B8CCE1C01AD8C13500882391 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MarkMyWord/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B8CCE1C11AD8C13500882391 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MarkMyWord/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		B8CCE1C31AD8C13500882391 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MarkMyWordTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MarkMyWord.app/MarkMyWord";
+			};
+			name = Debug;
+		};
+		B8CCE1C41AD8C13500882391 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MarkMyWordTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MarkMyWord.app/MarkMyWord";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B8CCE1971AD8C13500882391 /* Build configuration list for PBXProject "MarkMyWord" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8CCE1BD1AD8C13500882391 /* Debug */,
+				B8CCE1BE1AD8C13500882391 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B8CCE1BF1AD8C13500882391 /* Build configuration list for PBXNativeTarget "MarkMyWord" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8CCE1C01AD8C13500882391 /* Debug */,
+				B8CCE1C11AD8C13500882391 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B8CCE1C21AD8C13500882391 /* Build configuration list for PBXNativeTarget "MarkMyWordTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8CCE1C31AD8C13500882391 /* Debug */,
+				B8CCE1C41AD8C13500882391 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B8CCE1941AD8C13500882391 /* Project object */;
+}
