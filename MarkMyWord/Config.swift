@@ -29,7 +29,7 @@ let FontHUD = UIFont(name:"HelveticaNeue-Bold", size: 18.0)!
 let FontHUDName = "HelveticaNeue-Bold"
 let FontHUDSize : CGFloat = 18.0
 
-let FontHUDWhite = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
+let FontHUDWhite = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 let FontHUDRed = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
 
 let FontHUDBig = UIFont(name:"HelveticaNeue-Bold", size:120.0)!

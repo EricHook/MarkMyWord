@@ -11,30 +11,33 @@ import Foundation
 import UIKit
 import SpriteKit
 
-class Tile {
+class Tile : SKSpriteNode {
 
     var tile : SKSpriteNode?
     var tile2 : SKSpriteNode?
 
-    var anchorPoint = CGPoint(x: 0.5, y: 0.0)
-    var position = CGPoint(x: 0.5, y: 0.0)
+    //var anchorPoint = CGPoint(x: 0.5, y: 0.0)
+    //var position = CGPoint(x: 0.5, y: 0.0)
     
     
     required init?(coder aDecoder: NSCoder) {
         
-        //super.init()
+//        //super.init()
+//        // add tile
+//        tile = SKSpriteNode(imageNamed: "OrangeLetterA.png")   // "MarkMyWordBG_iPadR")
+//        tile!.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+//        tile!.position =  CGPoint(x: 25, y: 25) //CGPoint(x: size.width/2.0 + 25, y: 0.0)
+//        //addChild(tile!)
+        fatalError("NSCoding not supported")
         
-        // add tile
-        tile = SKSpriteNode(imageNamed: "OrangeLetterA.png")   // "MarkMyWordBG_iPadR")
-        tile!.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-        tile!.position =  CGPoint(x: 25, y: 25) //CGPoint(x: size.width/2.0 + 25, y: 0.0)
-        //addChild(tile!)
     }
     
     init() {
         
-        tile2 = SKSpriteNode(imageNamed: "OrangeLetterA.png")
-        tile2!.anchorPoint = CGPoint(x: 0.0, y: 0.0)
+//        tile2 = SKSpriteNode(imageNamed: "OrangeLetterA.png")
+//        tile2!.anchorPoint = CGPoint(x: 0.0, y: 0.0)
+        let cardTexture = SKTexture(imageNamed: "OrangeLetterA.png")
+        super.init(texture: cardTexture, color: nil, size: cardTexture.size())
     }
     
     
