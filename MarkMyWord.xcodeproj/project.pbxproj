@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		B89939431ADAF8BC00587323 /* accelerometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89939421ADAF8BC00587323 /* accelerometer.swift */; };
-		B8B2CA581ADADB6000C9DEE7 /* 11 Bubble Gum.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA571ADADB6000C9DEE7 /* 11 Bubble Gum.mp3 */; };
-		B8B2CA6C1ADADB7000C9DEE7 /* 37 Bronk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA591ADADB7000C9DEE7 /* 37 Bronk.mp3 */; };
-		B8B2CA6D1ADADB7000C9DEE7 /* 70 Peeong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA5A1ADADB7000C9DEE7 /* 70 Peeong.mp3 */; };
+		B8B2947E1AF06146003F789F /* MarkMyWordBGiPadMod@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B2947D1AF06146003F789F /* MarkMyWordBGiPadMod@2x.jpg */; };
+		B8B2CA581ADADB6000C9DEE7 /* 11Bubble Gum.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA571ADADB6000C9DEE7 /* 11Bubble Gum.mp3 */; };
+		B8B2CA6C1ADADB7000C9DEE7 /* 37Bronk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA591ADADB7000C9DEE7 /* 37Bronk.mp3 */; };
+		B8B2CA6D1ADADB7000C9DEE7 /* 70Peeong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA5A1ADADB7000C9DEE7 /* 70Peeong.mp3 */; };
 		B8B2CA6E1ADADB7000C9DEE7 /* 1000.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA5B1ADADB7000C9DEE7 /* 1000.WAV */; };
 		B8B2CA6F1ADADB7000C9DEE7 /* 1003.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA5C1ADADB7000C9DEE7 /* 1003.WAV */; };
 		B8B2CA701ADADB7000C9DEE7 /* 1006.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA5D1ADADB7000C9DEE7 /* 1006.WAV */; };
@@ -27,7 +28,7 @@
 		B8B2CA7B1ADADB7000C9DEE7 /* 1022.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA681ADADB7000C9DEE7 /* 1022.WAV */; };
 		B8B2CA7C1ADADB7000C9DEE7 /* 1023.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA691ADADB7000C9DEE7 /* 1023.WAV */; };
 		B8B2CA7D1ADADB7000C9DEE7 /* PLINK.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA6A1ADADB7000C9DEE7 /* PLINK.mp3 */; };
-		B8B2CA7E1ADADB7000C9DEE7 /* wizz 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA6B1ADADB7000C9DEE7 /* wizz 1.mp3 */; };
+		B8B2CA7E1ADADB7000C9DEE7 /* wizz1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA6B1ADADB7000C9DEE7 /* wizz1.mp3 */; };
 		B8B2CAC51ADADD9100C9DEE7 /* 2-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA801ADADD9000C9DEE7 /* 2-LetterWords.txt */; };
 		B8B2CAC61ADADD9100C9DEE7 /* 2LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA811ADADD9000C9DEE7 /* 2LetterWords.txt */; };
 		B8B2CAC71ADADD9100C9DEE7 /* 3-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA821ADADD9000C9DEE7 /* 3-LetterWords.txt */; };
@@ -99,7 +100,7 @@
 		B8B2CB091ADADD9100C9DEE7 /* enable1WordList.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAC41ADADD9100C9DEE7 /* enable1WordList.txt */; };
 		B8CCE1A21AD8C13500882391 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CCE1A11AD8C13500882391 /* AppDelegate.swift */; };
 		B8CCE1A41AD8C13500882391 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B8CCE1A31AD8C13500882391 /* GameScene.sks */; };
-		B8CCE1A61AD8C13500882391 /* MMWGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CCE1A51AD8C13500882391 /* MMWGameScene.swift */; };
+		B8CCE1A61AD8C13500882391 /* MMWGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CCE1A51AD8C13500882391 /* MMWGameView.swift */; };
 		B8CCE1A81AD8C13500882391 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CCE1A71AD8C13500882391 /* GameViewController.swift */; };
 		B8CCE1AB1AD8C13500882391 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8CCE1A91AD8C13500882391 /* Main.storyboard */; };
 		B8CCE1AD1AD8C13500882391 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8CCE1AC1AD8C13500882391 /* Images.xcassets */; };
@@ -109,13 +110,19 @@
 		B8DA7ED31AE13784003FE2C6 /* DCBG_1024x768.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8DA7ECA1AE13784003FE2C6 /* DCBG_1024x768.jpg */; };
 		B8DA7ED41AE13784003FE2C6 /* HookAvatar80x80.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8DA7ECB1AE13784003FE2C6 /* HookAvatar80x80.jpg */; };
 		B8DA7ED51AE13784003FE2C6 /* LetterTest90x90.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DA7ECC1AE13784003FE2C6 /* LetterTest90x90.png */; };
-		B8DA7ED61AE13784003FE2C6 /* MarkMyWordBG_iPadR.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8DA7ECD1AE13784003FE2C6 /* MarkMyWordBG_iPadR.jpg */; };
+		B8DA7ED61AE13784003FE2C6 /* MarkMyWordBG_iPadR@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8DA7ECD1AE13784003FE2C6 /* MarkMyWordBG_iPadR@2x.jpg */; };
 		B8DA7ED71AE13784003FE2C6 /* MarkMyWordBG2048x1536.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8DA7ECE1AE13784003FE2C6 /* MarkMyWordBG2048x1536.jpg */; };
 		B8DA7ED81AE13784003FE2C6 /* MeyamaIconLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DA7ECF1AE13784003FE2C6 /* MeyamaIconLarge.png */; };
 		B8DA7ED91AE13784003FE2C6 /* MeyamaMathMenuScreenBG_1024x768.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DA7ED01AE13784003FE2C6 /* MeyamaMathMenuScreenBG_1024x768.png */; };
 		B8DA7EDA1AE13784003FE2C6 /* OrangeLetterA.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DA7ED11AE13784003FE2C6 /* OrangeLetterA.png */; };
 		B8E874E61AE17E0000763849 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E874E51AE17E0000763849 /* Tile.swift */; };
 		B8F264F61AE19EF50072B9D4 /* TetrisCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F264F51AE19EF50072B9D4 /* TetrisCell.swift */; };
+		B8F264FA1AE1EFED0072B9D4 /* MarkMyWordSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F264F91AE1EFED0072B9D4 /* MarkMyWordSettings.swift */; };
+		B8FA8FA21AE9DC93007CF07C /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FA8FA11AE9DC93007CF07C /* GameData.swift */; };
+		B8FA8FA41AE9DD40007CF07C /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FA8FA31AE9DD40007CF07C /* AudioController.swift */; };
+		B8FA8FA71AE9DD7F007CF07C /* particle.png in Resources */ = {isa = PBXBuildFile; fileRef = B8FA8FA61AE9DD7F007CF07C /* particle.png */; };
+		B8FA8FA91AE9DDB5007CF07C /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FA8FA81AE9DDB5007CF07C /* Config.swift */; };
+		B8FA8FAB1AE9DF6F007CF07C /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FA8FAA1AE9DF6F007CF07C /* TileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,9 +171,10 @@
 		B80AC0691ADB843A00417531 /* random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = random.cpp; sourceTree = "<group>"; };
 		B80AC06A1ADB843A00417531 /* random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = random.h; sourceTree = "<group>"; };
 		B89939421ADAF8BC00587323 /* accelerometer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = accelerometer.swift; sourceTree = "<group>"; };
-		B8B2CA571ADADB6000C9DEE7 /* 11 Bubble Gum.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "11 Bubble Gum.mp3"; sourceTree = "<group>"; };
-		B8B2CA591ADADB7000C9DEE7 /* 37 Bronk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "37 Bronk.mp3"; sourceTree = "<group>"; };
-		B8B2CA5A1ADADB7000C9DEE7 /* 70 Peeong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "70 Peeong.mp3"; sourceTree = "<group>"; };
+		B8B2947D1AF06146003F789F /* MarkMyWordBGiPadMod@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MarkMyWordBGiPadMod@2x.jpg"; sourceTree = "<group>"; };
+		B8B2CA571ADADB6000C9DEE7 /* 11Bubble Gum.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "11Bubble Gum.mp3"; sourceTree = "<group>"; };
+		B8B2CA591ADADB7000C9DEE7 /* 37Bronk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 37Bronk.mp3; sourceTree = "<group>"; };
+		B8B2CA5A1ADADB7000C9DEE7 /* 70Peeong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 70Peeong.mp3; sourceTree = "<group>"; };
 		B8B2CA5B1ADADB7000C9DEE7 /* 1000.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1000.WAV; sourceTree = "<group>"; };
 		B8B2CA5C1ADADB7000C9DEE7 /* 1003.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1003.WAV; sourceTree = "<group>"; };
 		B8B2CA5D1ADADB7000C9DEE7 /* 1006.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1006.WAV; sourceTree = "<group>"; };
@@ -183,7 +191,7 @@
 		B8B2CA681ADADB7000C9DEE7 /* 1022.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1022.WAV; sourceTree = "<group>"; };
 		B8B2CA691ADADB7000C9DEE7 /* 1023.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1023.WAV; sourceTree = "<group>"; };
 		B8B2CA6A1ADADB7000C9DEE7 /* PLINK.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = PLINK.mp3; sourceTree = "<group>"; };
-		B8B2CA6B1ADADB7000C9DEE7 /* wizz 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "wizz 1.mp3"; sourceTree = "<group>"; };
+		B8B2CA6B1ADADB7000C9DEE7 /* wizz1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wizz1.mp3; sourceTree = "<group>"; };
 		B8B2CA801ADADD9000C9DEE7 /* 2-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-LetterWords.txt"; sourceTree = "<group>"; };
 		B8B2CA811ADADD9000C9DEE7 /* 2LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 2LetterWords.txt; sourceTree = "<group>"; };
 		B8B2CA821ADADD9000C9DEE7 /* 3-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-LetterWords.txt"; sourceTree = "<group>"; };
@@ -257,7 +265,7 @@
 		B8CCE1A01AD8C13500882391 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8CCE1A11AD8C13500882391 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B8CCE1A31AD8C13500882391 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		B8CCE1A51AD8C13500882391 /* MMWGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMWGameScene.swift; sourceTree = "<group>"; };
+		B8CCE1A51AD8C13500882391 /* MMWGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMWGameView.swift; sourceTree = "<group>"; };
 		B8CCE1A71AD8C13500882391 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		B8CCE1AA1AD8C13500882391 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B8CCE1AC1AD8C13500882391 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -269,13 +277,20 @@
 		B8DA7ECA1AE13784003FE2C6 /* DCBG_1024x768.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DCBG_1024x768.jpg; sourceTree = "<group>"; };
 		B8DA7ECB1AE13784003FE2C6 /* HookAvatar80x80.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = HookAvatar80x80.jpg; sourceTree = "<group>"; };
 		B8DA7ECC1AE13784003FE2C6 /* LetterTest90x90.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LetterTest90x90.png; sourceTree = "<group>"; };
-		B8DA7ECD1AE13784003FE2C6 /* MarkMyWordBG_iPadR.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MarkMyWordBG_iPadR.jpg; sourceTree = "<group>"; };
+		B8DA7ECD1AE13784003FE2C6 /* MarkMyWordBG_iPadR@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MarkMyWordBG_iPadR@2x.jpg"; sourceTree = "<group>"; };
 		B8DA7ECE1AE13784003FE2C6 /* MarkMyWordBG2048x1536.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MarkMyWordBG2048x1536.jpg; sourceTree = "<group>"; };
 		B8DA7ECF1AE13784003FE2C6 /* MeyamaIconLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MeyamaIconLarge.png; sourceTree = "<group>"; };
 		B8DA7ED01AE13784003FE2C6 /* MeyamaMathMenuScreenBG_1024x768.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MeyamaMathMenuScreenBG_1024x768.png; sourceTree = "<group>"; };
 		B8DA7ED11AE13784003FE2C6 /* OrangeLetterA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OrangeLetterA.png; sourceTree = "<group>"; };
 		B8E874E51AE17E0000763849 /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		B8F264F51AE19EF50072B9D4 /* TetrisCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TetrisCell.swift; sourceTree = "<group>"; };
+		B8F264F91AE1EFED0072B9D4 /* MarkMyWordSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkMyWordSettings.swift; sourceTree = "<group>"; };
+		B8FA8FA11AE9DC93007CF07C /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
+		B8FA8FA31AE9DD40007CF07C /* AudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
+		B8FA8FA51AE9DD70007CF07C /* Comic_Andy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Comic_Andy.ttf; sourceTree = "<group>"; };
+		B8FA8FA61AE9DD7F007CF07C /* particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = particle.png; sourceTree = "<group>"; };
+		B8FA8FA81AE9DDB5007CF07C /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		B8FA8FAA1AE9DF6F007CF07C /* TileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -437,14 +452,13 @@
 				B8DA7EC41AE136CA003FE2C6 /* Assets */,
 				B8DA7EC01AE1369F003FE2C6 /* Classes */,
 				B80AC05E1ADB837F00417531 /* ReferenceX */,
-				B8B2CA7F1ADADD5F00C9DEE7 /* WordLists */,
 				B8CCE1A11AD8C13500882391 /* AppDelegate.swift */,
-				B8CCE1A31AD8C13500882391 /* GameScene.sks */,
 				B8CCE1A91AD8C13500882391 /* Main.storyboard */,
+				B8CCE1A71AD8C13500882391 /* GameViewController.swift */,
+				B8CCE1A31AD8C13500882391 /* GameScene.sks */,
 				B8CCE1AC1AD8C13500882391 /* Images.xcassets */,
 				B8CCE1AE1AD8C13500882391 /* LaunchScreen.xib */,
 				B8CCE19F1AD8C13500882391 /* Supporting Files */,
-				B89939421ADAF8BC00587323 /* accelerometer.swift */,
 			);
 			path = MarkMyWord;
 			sourceTree = "<group>";
@@ -477,9 +491,9 @@
 		B8DA7EC01AE1369F003FE2C6 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				B8DA7EC31AE136BC003FE2C6 /* Controllers */,
-				B8DA7EC21AE136B4003FE2C6 /* Views */,
 				B8DA7EC11AE136AC003FE2C6 /* Models */,
+				B8DA7EC21AE136B4003FE2C6 /* Views */,
+				B8DA7EC31AE136BC003FE2C6 /* Controllers */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -487,6 +501,8 @@
 		B8DA7EC11AE136AC003FE2C6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B8F264F91AE1EFED0072B9D4 /* MarkMyWordSettings.swift */,
+				B8FA8FA11AE9DC93007CF07C /* GameData.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -494,7 +510,8 @@
 		B8DA7EC21AE136B4003FE2C6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B8CCE1A51AD8C13500882391 /* MMWGameScene.swift */,
+				B8FA8FAA1AE9DF6F007CF07C /* TileView.swift */,
+				B8CCE1A51AD8C13500882391 /* MMWGameView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -502,7 +519,8 @@
 		B8DA7EC31AE136BC003FE2C6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B8CCE1A71AD8C13500882391 /* GameViewController.swift */,
+				B8FA8FA31AE9DD40007CF07C /* AudioController.swift */,
+				B89939421ADAF8BC00587323 /* accelerometer.swift */,
 				B8E874E51AE17E0000763849 /* Tile.swift */,
 				B8F264F51AE19EF50072B9D4 /* TetrisCell.swift */,
 			);
@@ -512,10 +530,14 @@
 		B8DA7EC41AE136CA003FE2C6 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				B8DA7EC81AE136F4003FE2C6 /* Fonts */,
-				B8DA7EC71AE136EC003FE2C6 /* Particles */,
+				B8FA8FA81AE9DDB5007CF07C /* Config.swift */,
+				B8F264F71AE1D5170072B9D4 /* Animations */,
 				B8DA7EC61AE136DC003FE2C6 /* Audio */,
+				B8DA7EC81AE136F4003FE2C6 /* Fonts */,
 				B8DA7EC51AE136D3003FE2C6 /* Images */,
+				B8DA7EC71AE136EC003FE2C6 /* Particles */,
+				B8F264F81AE1DEA20072B9D4 /* Strings */,
+				B8B2CA7F1ADADD5F00C9DEE7 /* WordLists */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -527,7 +549,8 @@
 				B8DA7ECA1AE13784003FE2C6 /* DCBG_1024x768.jpg */,
 				B8DA7ECB1AE13784003FE2C6 /* HookAvatar80x80.jpg */,
 				B8DA7ECC1AE13784003FE2C6 /* LetterTest90x90.png */,
-				B8DA7ECD1AE13784003FE2C6 /* MarkMyWordBG_iPadR.jpg */,
+				B8DA7ECD1AE13784003FE2C6 /* MarkMyWordBG_iPadR@2x.jpg */,
+				B8B2947D1AF06146003F789F /* MarkMyWordBGiPadMod@2x.jpg */,
 				B8DA7ECE1AE13784003FE2C6 /* MarkMyWordBG2048x1536.jpg */,
 				B8DA7ECF1AE13784003FE2C6 /* MeyamaIconLarge.png */,
 				B8DA7ED01AE13784003FE2C6 /* MeyamaMathMenuScreenBG_1024x768.png */,
@@ -550,6 +573,7 @@
 		B8DA7EC71AE136EC003FE2C6 /* Particles */ = {
 			isa = PBXGroup;
 			children = (
+				B8FA8FA61AE9DD7F007CF07C /* particle.png */,
 			);
 			name = Particles;
 			sourceTree = "<group>";
@@ -557,6 +581,7 @@
 		B8DA7EC81AE136F4003FE2C6 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				B8FA8FA51AE9DD70007CF07C /* Comic_Andy.ttf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -564,9 +589,9 @@
 		B8DA7EDB1AE13978003FE2C6 /* PLACEHOLDER */ = {
 			isa = PBXGroup;
 			children = (
-				B8B2CA571ADADB6000C9DEE7 /* 11 Bubble Gum.mp3 */,
-				B8B2CA591ADADB7000C9DEE7 /* 37 Bronk.mp3 */,
-				B8B2CA5A1ADADB7000C9DEE7 /* 70 Peeong.mp3 */,
+				B8B2CA571ADADB6000C9DEE7 /* 11Bubble Gum.mp3 */,
+				B8B2CA591ADADB7000C9DEE7 /* 37Bronk.mp3 */,
+				B8B2CA5A1ADADB7000C9DEE7 /* 70Peeong.mp3 */,
 				B8B2CA5B1ADADB7000C9DEE7 /* 1000.WAV */,
 				B8B2CA5C1ADADB7000C9DEE7 /* 1003.WAV */,
 				B8B2CA5D1ADADB7000C9DEE7 /* 1006.WAV */,
@@ -583,7 +608,7 @@
 				B8B2CA681ADADB7000C9DEE7 /* 1022.WAV */,
 				B8B2CA691ADADB7000C9DEE7 /* 1023.WAV */,
 				B8B2CA6A1ADADB7000C9DEE7 /* PLINK.mp3 */,
-				B8B2CA6B1ADADB7000C9DEE7 /* wizz 1.mp3 */,
+				B8B2CA6B1ADADB7000C9DEE7 /* wizz1.mp3 */,
 			);
 			name = PLACEHOLDER;
 			sourceTree = "<group>";
@@ -607,6 +632,20 @@
 			children = (
 			);
 			name = SoundEffects;
+			sourceTree = "<group>";
+		};
+		B8F264F71AE1D5170072B9D4 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Animations;
+			sourceTree = "<group>";
+		};
+		B8F264F81AE1DEA20072B9D4 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Strings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -696,7 +735,7 @@
 				B8B2CACA1ADADD9100C9DEE7 /* 4LetterWords.txt in Resources */,
 				B8B2CAEE1ADADD9100C9DEE7 /* 10.4-LetterWords.txt in Resources */,
 				B8B2CAE11ADADD9100C9DEE7 /* 9_3LetterWords.txt in Resources */,
-				B8B2CA6D1ADADB7000C9DEE7 /* 70 Peeong.mp3 in Resources */,
+				B8B2CA6D1ADADB7000C9DEE7 /* 70Peeong.mp3 in Resources */,
 				B8B2CB001ADADD9100C9DEE7 /* 16-LetterWords.txt in Resources */,
 				B8B2CAFF1ADADD9100C9DEE7 /* 15-LetterWords.txt in Resources */,
 				B8B2CAF11ADADD9100C9DEE7 /* 11_2LetterWords.txt in Resources */,
@@ -706,7 +745,7 @@
 				B8B2CA741ADADB7000C9DEE7 /* 1014.WAV in Resources */,
 				B8B2CA781ADADB7000C9DEE7 /* 1019.WAV in Resources */,
 				B8B2CAEA1ADADD9100C9DEE7 /* 10_4LetterWords.txt in Resources */,
-				B8B2CA7E1ADADB7000C9DEE7 /* wizz 1.mp3 in Resources */,
+				B8B2CA7E1ADADB7000C9DEE7 /* wizz1.mp3 in Resources */,
 				B8B2CA751ADADB7000C9DEE7 /* 1015.WAV in Resources */,
 				B8B2CAF61ADADD9100C9DEE7 /* 12_1LetterWords.txt in Resources */,
 				B8B2CB091ADADD9100C9DEE7 /* enable1WordList.txt in Resources */,
@@ -741,14 +780,14 @@
 				B8B2CADA1ADADD9100C9DEE7 /* 8_4LetterWords.txt in Resources */,
 				B8B2CAD11ADADD9100C9DEE7 /* 7_1LetterWords.txt in Resources */,
 				B8B2CB011ADADD9100C9DEE7 /* 17-LetterWords.txt in Resources */,
-				B8B2CA6C1ADADB7000C9DEE7 /* 37 Bronk.mp3 in Resources */,
+				B8B2CA6C1ADADB7000C9DEE7 /* 37Bronk.mp3 in Resources */,
 				B8B2CA7C1ADADB7000C9DEE7 /* 1023.WAV in Resources */,
 				B8B2CAF51ADADD9100C9DEE7 /* 11.3-LetterWords.txt in Resources */,
 				B8B2CAC91ADADD9100C9DEE7 /* 4-LetterWords.txt in Resources */,
 				B8B2CAE51ADADD9100C9DEE7 /* 9.3-LetterWords.txt in Resources */,
 				B8B2CAE81ADADD9100C9DEE7 /* 10_2LetterWords.txt in Resources */,
 				B8B2CACC1ADADD9100C9DEE7 /* 5LetterWords.txt in Resources */,
-				B8DA7ED61AE13784003FE2C6 /* MarkMyWordBG_iPadR.jpg in Resources */,
+				B8DA7ED61AE13784003FE2C6 /* MarkMyWordBG_iPadR@2x.jpg in Resources */,
 				B8B2CA711ADADB7000C9DEE7 /* 1007.WAV in Resources */,
 				B8DA7ED81AE13784003FE2C6 /* MeyamaIconLarge.png in Resources */,
 				B8B2CB071ADADD9100C9DEE7 /* 23-LetterWords.txt in Resources */,
@@ -770,6 +809,8 @@
 				B8B2CAC61ADADD9100C9DEE7 /* 2LetterWords.txt in Resources */,
 				B8B2CAE01ADADD9100C9DEE7 /* 9_2LetterWords.txt in Resources */,
 				B8B2CA761ADADB7000C9DEE7 /* 1016.WAV in Resources */,
+				B8FA8FA71AE9DD7F007CF07C /* particle.png in Resources */,
+				B8B2947E1AF06146003F789F /* MarkMyWordBGiPadMod@2x.jpg in Resources */,
 				B8DA7ED71AE13784003FE2C6 /* MarkMyWordBG2048x1536.jpg in Resources */,
 				B8B2CADC1ADADD9100C9DEE7 /* 8.2-LetterWords.txt in Resources */,
 				B8B2CAD21ADADD9100C9DEE7 /* 7_2LetterWords.txt in Resources */,
@@ -787,7 +828,7 @@
 				B8B2CAC81ADADD9100C9DEE7 /* 3LetterWords.txt in Resources */,
 				B8DA7ED41AE13784003FE2C6 /* HookAvatar80x80.jpg in Resources */,
 				B8CCE1AB1AD8C13500882391 /* Main.storyboard in Resources */,
-				B8B2CA581ADADB6000C9DEE7 /* 11 Bubble Gum.mp3 in Resources */,
+				B8B2CA581ADADB6000C9DEE7 /* 11Bubble Gum.mp3 in Resources */,
 				B8B2CADD1ADADD9100C9DEE7 /* 8.3-LetterWords.txt in Resources */,
 				B8B2CAF31ADADD9100C9DEE7 /* 11.1-LetterWords.txt in Resources */,
 				B8B2CA791ADADB7000C9DEE7 /* 1020.WAV in Resources */,
@@ -808,11 +849,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8CCE1A61AD8C13500882391 /* MMWGameScene.swift in Sources */,
+				B8FA8FAB1AE9DF6F007CF07C /* TileView.swift in Sources */,
+				B8CCE1A61AD8C13500882391 /* MMWGameView.swift in Sources */,
+				B8FA8FA41AE9DD40007CF07C /* AudioController.swift in Sources */,
 				B89939431ADAF8BC00587323 /* accelerometer.swift in Sources */,
 				B8E874E61AE17E0000763849 /* Tile.swift in Sources */,
 				B8CCE1A81AD8C13500882391 /* GameViewController.swift in Sources */,
 				B8F264F61AE19EF50072B9D4 /* TetrisCell.swift in Sources */,
+				B8FA8FA21AE9DC93007CF07C /* GameData.swift in Sources */,
+				B8FA8FA91AE9DDB5007CF07C /* Config.swift in Sources */,
+				B8F264FA1AE1EFED0072B9D4 /* MarkMyWordSettings.swift in Sources */,
 				B8CCE1A21AD8C13500882391 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -891,7 +937,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -930,7 +976,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -944,6 +990,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = MarkMyWord/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -956,6 +1003,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = MarkMyWord/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

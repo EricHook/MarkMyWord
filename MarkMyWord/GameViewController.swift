@@ -11,7 +11,7 @@ import SpriteKit
 
 class GameViewController: UIViewController {
     
-    var scene: GameScene!
+    var scene: MMWGameView!
     
     override func prefersStatusBarHidden() -> Bool {
         return true
@@ -22,17 +22,39 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         // 1. Configure the main view
-        let skView = view as! SKView
+        ///let skView = view as! SKView
+        let skView = self.view as! SKView
         skView.showsFPS = true
+        //skView.showsPhysics = true
+        skView.showsNodeCount = true
         
         // 2. Create and configure our game scene
-        scene = GameScene(size: skView.bounds.size)
+        scene = MMWGameView(size: skView.bounds.size)
         scene.scaleMode = .AspectFill
         
         // 3. Show the scene.
         skView.presentScene(scene)
+        
+         //??? Sprite Kit applies additional optimizations to improve rendering performance
+        skView.ignoresSiblingOrder = true
+//
+//        /* Set the scale mode to scale to fit the window */
+//        scene.scaleMode = .AspectFill
+//
+//        skView.presentScene(scene)
     }
+    
+    override func shouldAutorotate() -> Bool {
+        return true
+    }
+    
+    //    override func didReceiveMemoryWarning() {
+    //        super.didReceiveMemoryWarning()
+    //        // Release any cached data, images, etc that aren't in use.
+    //    }
 }
+
+
 
 //extension SKNode {
 //    class func unarchiveFromFile(file : String) -> SKNode? {
