@@ -26,11 +26,11 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     private var secondsLeft: Int = 0
     private var timer: NSTimer?
     
-    let coreMotionManager = CMMotionManager()
-    var xAxisAcceleration : CGFloat = 0.0
-    
-    let CollisionCategoryPlayer : UInt32 = 0x1 << 1
-    let CollisionCategoryPowerUp : UInt32 = 0x1 << 2
+//    let coreMotionManager = CMMotionManager()
+//    var xAxisAcceleration : CGFloat = 0.0
+//    
+//    let CollisionCategoryPlayer : UInt32 = 0x1 << 1
+//    let CollisionCategoryPowerUp : UInt32 = 0x1 << 2
     
     
     required init?(coder aDecoder: NSCoder) {
@@ -48,6 +48,7 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         backgroundNode!.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         backgroundNode!.position = CGPoint(x: size.width/2.0, y: 0.0)
         backgroundNode?.userInteractionEnabled = false
+        backgroundNode?.zPosition = -100
         addChild(backgroundNode!)
         
         foregroundNode = SKSpriteNode()
@@ -90,11 +91,11 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
 //        addOrbsToForeground()
         
         addChild(LetterTile(tileStyle: .basic, withChar: "P", withColor: SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), atPoint: CGPointMake(7, 448)) )
-        addChild(LetterTile(tileStyle: .basic, withChar: "P", withColor: SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), atPoint: CGPointMake(54.5, 542.5)) )
-        addChild(LetterTile(tileStyle: .basic, withChar: "P", withColor: SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), atPoint: CGPointMake(102, 495.5)) )
-        addChild(LetterTile(tileStyle: .basic, withChar: "P", withColor: SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), atPoint: CGPointMake(54.5, 543.5)) )
-        addChild(LetterTile(tileStyle: .basic, withChar: "P", withColor: SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), atPoint: CGPointMake(157, 21)) )
-        addChild(LetterTile(tileStyle: .basic, withChar: "P", withColor: SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), atPoint: CGPointMake(204.5, 68.5)) )
+        addChild(LetterTile(tileStyle: .basic, withChar: "M", withColor: SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), atPoint: CGPointMake(54.5, 542.5)) )
+        addChild(LetterTile(tileStyle: .basic, withChar: "O", withColor: SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), atPoint: CGPointMake(102, 495.5)) )
+        addChild(LetterTile(tileStyle: .basic, withChar: "Z", withColor: SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), atPoint: CGPointMake(157, 68.5)) )
+        addChild(LetterTile(tileStyle: .basic, withChar: "X", withColor: SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), atPoint: CGPointMake(157, 21)) )
+        addChild(LetterTile(tileStyle: .basic, withChar: "I", withColor: SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), atPoint: CGPointMake(204.5, 68.5)) )
  
     }
     
@@ -254,27 +255,27 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
 //    }
     
     
-    func addTile (atPoint: CGPoint, withChar : String, withColor : SKColor){   // add letter, name, colorize?,
-        self.userInteractionEnabled = true
-        var letter : String = withChar
-        var tileNode = SKSpriteNode(imageNamed: "LetterTest90x90")
-        tileNode.name = "tile"
-        tileNode.position = atPoint
-        tileNode.anchorPoint = CGPointMake(0, 0)
-        
-        tileNode.color = withColor
-        tileNode.colorBlendFactor = 1.0
-        
-        var letterLabel = SKLabelNode(fontNamed: FontHUDName)
-        letterLabel.text = letter
-        letterLabel.fontSize = 44 // FontHUDSize
-        //var colorDarkGreen : UIColor = UIColor(red: 0.1, green: 1.0, blue: 0.2, alpha: 0.80)
-        letterLabel.fontColor = FontHUDWhite
-        letterLabel.position = CGPointMake(22.5, 6)
-        letterLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
-        tileNode.addChild(letterLabel)
-        foregroundNode!.addChild(tileNode)
-    }
+//    func addTile (atPoint: CGPoint, withChar : String, withColor : SKColor){   // add letter, name, colorize?,
+//        self.userInteractionEnabled = true
+//        var letter : String = withChar
+//        var tileNode = SKSpriteNode(imageNamed: "LetterTest90x90")
+//        tileNode.name = "tile"
+//        tileNode.position = atPoint
+//        tileNode.anchorPoint = CGPointMake(0, 0)
+//        
+//        tileNode.color = withColor
+//        tileNode.colorBlendFactor = 1.0
+//        
+//        var letterLabel = SKLabelNode(fontNamed: FontHUDName)
+//        letterLabel.text = letter
+//        letterLabel.fontSize = 44 // FontHUDSize
+//        //var colorDarkGreen : UIColor = UIColor(red: 0.1, green: 1.0, blue: 0.2, alpha: 0.80)
+//        letterLabel.fontColor = FontHUDWhite
+//        letterLabel.position = CGPointMake(22.5, 6)
+//        letterLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
+//        tileNode.addChild(letterLabel)
+//        foregroundNode!.addChild(tileNode)
+//    }
     
     
     override func update(currentTime: NSTimeInterval) {
@@ -316,17 +317,17 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
 //    }
     
     override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
-        for touch in (touches as! Set<UITouch>) {
-            let location = touch.locationInNode(self)
-            let touchedNode = nodeAtPoint(location)
-            touchedNode.position = location
-        }
+//        for touch in (touches as! Set<UITouch>) {
+//            let location = touch.locationInNode(self)
+//            let touchedNode = nodeAtPoint(location)
+//            touchedNode.position = location
+//        }
     }
     
     
-    deinit {  // ??? for optimization of performance
-        self.coreMotionManager.stopAccelerometerUpdates()
-    }
+//    deinit {  // ??? for optimization of performance
+//        self.coreMotionManager.stopAccelerometerUpdates()
+//    }
     
     
     //    override func update(currentTime: CFTimeInterval) {

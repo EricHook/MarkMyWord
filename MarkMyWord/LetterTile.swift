@@ -99,18 +99,19 @@ class LetterTile : SKSpriteNode {
             
             var letterLabel = SKLabelNode(fontNamed: FontHUDName)
             letterLabel.text = withChar
-            letterLabel.fontSize = 44 // FontHUDSize
+            letterLabel.fontSize = 40 // FontHUDSize
             //var colorDarkGreen : UIColor = UIColor(red: 0.1, green: 1.0, blue: 0.2, alpha: 0.80)
             letterLabel.fontColor = FontHUDWhite
-            letterLabel.position = CGPointMake(22.5, 6)
+            letterLabel.position = CGPointMake(22.5, 11)
             letterLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
+            self.addChild(letterLabel)
         
             var letterValueLabel = SKLabelNode(fontNamed: FontHUDName)
             letterValueLabel.text = "10"
             letterValueLabel.fontSize = 10
             letterValueLabel.fontColor = FontHUDWhite
-            letterValueLabel.position = CGPointMake(5, 5)
-            letterValueLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 2)!
+            letterValueLabel.position = CGPointMake(1, 1)
+            letterValueLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 1)!
         
             self.addChild(letterValueLabel)
             //foregroundNode!.addChild(tileNode)
@@ -206,6 +207,7 @@ class LetterTile : SKSpriteNode {
         if enlarged {
             let slide = SKAction.moveTo(savedPosition, duration:0.3)
             let scaleDown = SKAction.scaleTo(1.0, duration:0.3)
+            texture = backTexture
             runAction(SKAction.group([slide, scaleDown])) {
                 self.enlarged = false
                 self.zPosition = 0
@@ -249,15 +251,11 @@ class LetterTile : SKSpriteNode {
             //            let location = touch.locationInNode(self)
             //            let touchedNode = nodeAtPoint(location)
             zPosition = 15
-            let liftUp = SKAction.scaleTo(1.2, duration: 0.2)
-            runAction(liftUp, withKey: "pickup")
-            //            let sprite = SKSpriteNode(imageNamed:"Spaceship")
-            //            sprite.xScale = 0.5
-            //            sprite.yScale = 0.5
-            //            sprite.position = location
-            //            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-            //            sprite.runAction(SKAction.repeatActionForever(action))
-            //            self.addChild(sprite)
+            let liftUp = SKAction.scaleTo(1.2, duration: 0.1)
+            let smallSlide = SKAction.moveByX(-6, y: -6, duration: 0.1)
+//            runAction(liftUp, withKey: "pickup")
+            runAction(SKAction.group([liftUp, smallSlide]))
+
         }
     }
     
@@ -278,8 +276,11 @@ class LetterTile : SKSpriteNode {
             //            let location = touch.locationInNode(self)
             //            let touchedNode = nodeAtPoint(location)
             zPosition = 0
-            let dropDown = SKAction.scaleTo(1.0, duration: 0.2)
-            runAction(dropDown, withKey: "drop")
+            let dropDown = SKAction.scaleTo(1.0, duration: 0.1)
+            let smallSlide = SKAction.moveByX(6, y: 6, duration: 0.1)
+//            runAction(dropDown, withKey: "drop")
+//            runAction(smallSlide, withKey: "slideBack")
+            runAction(SKAction.group([dropDown, smallSlide]))
         }
     }
     
