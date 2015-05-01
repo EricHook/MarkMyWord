@@ -232,6 +232,12 @@
 		B8C14EEF1AF2783000E640C0 /* LetterTileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C14EEE1AF2783000E640C0 /* LetterTileController.swift */; };
 		B8C14EF11AF27E5100E640C0 /* LetterTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C14EF01AF27E5100E640C0 /* LetterTile.swift */; };
 		B8C14EF31AF2811E00E640C0 /* TileBackTest90x90.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C14EF21AF2811E00E640C0 /* TileBackTest90x90.png */; };
+		B8C14EF51AF2DE1B00E640C0 /* default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8C14EF41AF2DE1B00E640C0 /* default.jpg */; };
+		B8C14EF71AF2DEEF00E640C0 /* OldBoard512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C14EF61AF2DEEF00E640C0 /* OldBoard512x512.png */; };
+		B8C14EF91AF32CF900E640C0 /* LaunchScreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8C14EF81AF32CF900E640C0 /* LaunchScreen.jpg */; };
+		B8C14EFB1AF32E3600E640C0 /* LaunchScreen@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8C14EFA1AF32E3600E640C0 /* LaunchScreen@2x.jpg */; };
+		B8C14EFE1AF32FE500E640C0 /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C14EFC1AF32FE500E640C0 /* LaunchScreen.png */; };
+		B8C14EFF1AF32FE500E640C0 /* LaunchScreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C14EFD1AF32FE500E640C0 /* LaunchScreen@2x.png */; };
 		B8CCE1A21AD8C13500882391 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CCE1A11AD8C13500882391 /* AppDelegate.swift */; };
 		B8CCE1A41AD8C13500882391 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B8CCE1A31AD8C13500882391 /* GameScene.sks */; };
 		B8CCE1A61AD8C13500882391 /* MMWGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CCE1A51AD8C13500882391 /* MMWGameScene.swift */; };
@@ -529,6 +535,12 @@
 		B8C14EEE1AF2783000E640C0 /* LetterTileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterTileController.swift; sourceTree = "<group>"; };
 		B8C14EF01AF27E5100E640C0 /* LetterTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterTile.swift; sourceTree = "<group>"; };
 		B8C14EF21AF2811E00E640C0 /* TileBackTest90x90.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileBackTest90x90.png; sourceTree = "<group>"; };
+		B8C14EF41AF2DE1B00E640C0 /* default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = default.jpg; sourceTree = "<group>"; };
+		B8C14EF61AF2DEEF00E640C0 /* OldBoard512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OldBoard512x512.png; sourceTree = "<group>"; };
+		B8C14EF81AF32CF900E640C0 /* LaunchScreen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = LaunchScreen.jpg; sourceTree = "<group>"; };
+		B8C14EFA1AF32E3600E640C0 /* LaunchScreen@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "LaunchScreen@2x.jpg"; sourceTree = "<group>"; };
+		B8C14EFC1AF32FE500E640C0 /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen.png; sourceTree = "<group>"; };
+		B8C14EFD1AF32FE500E640C0 /* LaunchScreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaunchScreen@2x.png"; sourceTree = "<group>"; };
 		B8CCE19C1AD8C13500882391 /* MarkMyWord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarkMyWord.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8CCE1A01AD8C13500882391 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8CCE1A11AD8C13500882391 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -956,6 +968,10 @@
 			children = (
 				B8DA7EC91AE13784003FE2C6 /* avatarpic-l.png */,
 				B8DA7ECA1AE13784003FE2C6 /* DCBG_1024x768.jpg */,
+				B8C14EFA1AF32E3600E640C0 /* LaunchScreen@2x.jpg */,
+				B8C14EF81AF32CF900E640C0 /* LaunchScreen.jpg */,
+				B8C14EFC1AF32FE500E640C0 /* LaunchScreen.png */,
+				B8C14EFD1AF32FE500E640C0 /* LaunchScreen@2x.png */,
 				B8DA7ECB1AE13784003FE2C6 /* HookAvatar80x80.jpg */,
 				B8DA7ECC1AE13784003FE2C6 /* LetterTest90x90.png */,
 				B8C14EF21AF2811E00E640C0 /* TileBackTest90x90.png */,
@@ -964,6 +980,8 @@
 				B8DA7ECE1AE13784003FE2C6 /* MarkMyWordBG2048x1536.jpg */,
 				B8DA7ECF1AE13784003FE2C6 /* MeyamaIconLarge.png */,
 				B8DA7ED01AE13784003FE2C6 /* MeyamaMathMenuScreenBG_1024x768.png */,
+				B8C14EF41AF2DE1B00E640C0 /* default.jpg */,
+				B8C14EF61AF2DEEF00E640C0 /* OldBoard512x512.png */,
 				B8DA7ED11AE13784003FE2C6 /* OrangeLetterA.png */,
 			);
 			name = Images;
@@ -1144,10 +1162,12 @@
 				B8A4559A1AF171B800C0D83B /* activateEnergy@2x.png in Resources */,
 				B8A455D11AF171B800C0D83B /* card_spell_sleep_sel@2x.png in Resources */,
 				B8A455D71AF171B800C0D83B /* card_spell_stoneskin_sel@2x.png in Resources */,
+				B8C14EF91AF32CF900E640C0 /* LaunchScreen.jpg in Resources */,
 				B8A456051AF171B800C0D83B /* player_two@2x.png in Resources */,
 				B8A455E81AF171B800C0D83B /* draw.png in Resources */,
 				B8A455F71AF171B800C0D83B /* MenuBackground@2x.png in Resources */,
 				B8B2CA7B1ADADB7000C9DEE7 /* 1022.WAV in Resources */,
+				B8C14EFE1AF32FE500E640C0 /* LaunchScreen.png in Resources */,
 				B8B2CAFA1ADADD9100C9DEE7 /* 13_1LetterWords.txt in Resources */,
 				B8B2CACA1ADADD9100C9DEE7 /* 4LetterWords.txt in Resources */,
 				B8B2CAEE1ADADD9100C9DEE7 /* 10.4-LetterWords.txt in Resources */,
@@ -1226,6 +1246,7 @@
 				B8A455F01AF171B800C0D83B /* icon_star_filled.png in Resources */,
 				B8A455F51AF171B800C0D83B /* LinkButton@2x.png in Resources */,
 				B8B2CA7D1ADADB7000C9DEE7 /* PLINK.mp3 in Resources */,
+				B8C14EFB1AF32E3600E640C0 /* LaunchScreen@2x.jpg in Resources */,
 				B8A456041AF171B800C0D83B /* player_two.png in Resources */,
 				B8A455A91AF171B800C0D83B /* card_creature_bear_large@2x.png in Resources */,
 				B8A455EF1AF171B800C0D83B /* icon_heart@2x.png in Resources */,
@@ -1266,6 +1287,7 @@
 				B8A455A61AF171B800C0D83B /* card_back.png in Resources */,
 				B8A455EE1AF171B800C0D83B /* icon_heart.png in Resources */,
 				B8A455ED1AF171B800C0D83B /* flip.wav in Resources */,
+				B8C14EFF1AF32FE500E640C0 /* LaunchScreen@2x.png in Resources */,
 				B8B2CB011ADADD9100C9DEE7 /* 17-LetterWords.txt in Resources */,
 				B8A455D51AF171B800C0D83B /* card_spell_stoneskin_large@2x.png in Resources */,
 				B8B2CA6C1ADADB7000C9DEE7 /* 37Bronk.mp3 in Resources */,
@@ -1285,6 +1307,7 @@
 				B8B2CAE51ADADD9100C9DEE7 /* 9.3-LetterWords.txt in Resources */,
 				B8A455981AF171B800C0D83B /* activate-energy.wav in Resources */,
 				B8B2CAE81ADADD9100C9DEE7 /* 10_2LetterWords.txt in Resources */,
+				B8C14EF71AF2DEEF00E640C0 /* OldBoard512x512.png in Resources */,
 				B8B2CACC1ADADD9100C9DEE7 /* 5LetterWords.txt in Resources */,
 				B8DA7ED61AE13784003FE2C6 /* MarkMyWordBG_iPadR@2x.jpg in Resources */,
 				B8A455D21AF171B800C0D83B /* card_spell_sleep.png in Resources */,
@@ -1334,6 +1357,7 @@
 				B8B2CAC61ADADD9100C9DEE7 /* 2LetterWords.txt in Resources */,
 				B8A455E51AF171B800C0D83B /* deadCreature.png in Resources */,
 				B8B2CAE01ADADD9100C9DEE7 /* 9_2LetterWords.txt in Resources */,
+				B8C14EF51AF2DE1B00E640C0 /* default.jpg in Resources */,
 				B8A455F21AF171B800C0D83B /* icon_star_transparent.png in Resources */,
 				B8A455C01AF171B800C0D83B /* card_energy.png in Resources */,
 				B8B2CA761ADADB7000C9DEE7 /* 1016.WAV in Resources */,
@@ -1532,6 +1556,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = MarkMyWord/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
@@ -1545,6 +1570,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = MarkMyWord/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;

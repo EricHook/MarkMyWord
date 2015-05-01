@@ -39,8 +39,8 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     
     override init(size: CGSize) {
         super.init(size: size)
-        physicsWorld.contactDelegate = self
-        physicsWorld.gravity = CGVectorMake(0.0, -4.0)
+//        physicsWorld.contactDelegate = self
+//        physicsWorld.gravity = CGVectorMake(0.0, -4.0)
         backgroundColor = SKColor(red: 0.5, green: 0.0, blue: 0.0, alpha: 1.0)
         userInteractionEnabled = true
         // add BG
@@ -90,9 +90,9 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         
 //        addOrbsToForeground()
         
-        addChild(LetterTile(tileStyle: .basic, withChar: "P", withColor: SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), atPoint: CGPointMake(7, 448)) )
-        addChild(LetterTile(tileStyle: .basic, withChar: "M", withColor: SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), atPoint: CGPointMake(54.5, 542.5)) )
-        addChild(LetterTile(tileStyle: .basic, withChar: "O", withColor: SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), atPoint: CGPointMake(102, 495.5)) )
+        addChild(LetterTile(tileStyle: .basic, withChar: "P", withColor: SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), atPoint: CGPointMake(7, 448.5)) )
+        addChild(LetterTile(tileStyle: .basic, withChar: "M", withColor: SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), atPoint: CGPointMake(54.5, 543)) )
+        addChild(LetterTile(tileStyle: .basic, withChar: "O", withColor: SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), atPoint: CGPointMake(102, 496)) )
         addChild(LetterTile(tileStyle: .basic, withChar: "Z", withColor: SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), atPoint: CGPointMake(157, 68.5)) )
         addChild(LetterTile(tileStyle: .basic, withChar: "X", withColor: SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), atPoint: CGPointMake(157, 21)) )
         addChild(LetterTile(tileStyle: .basic, withChar: "I", withColor: SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), atPoint: CGPointMake(204.5, 68.5)) )

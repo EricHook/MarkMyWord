@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreMotion
+import SpriteKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +18,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+//        // add BG
+//        UIImageView*imageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"default.png"]];
+//        [[firstViewController view] addSubview:imageView];
+//        [[firstViewController view] bringSubviewToFront:imageView];
+//        
+//        // as usual
+//        [self.window makeKeyAndVisible];
+//        
+//        //now fade out splash image
+//        [UIView transitionWithView:self.window duration:1.0f options:UIViewAnimationOptionTransitionNone animations:^(void){imageView.alpha=0.0f;} completion:^(BOOL finished){[imageView removeFromSuperview];}];
+        
         return true
     }
 
@@ -40,6 +54,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+//    func playMenuScene() {
+//        let transition = SKTransition.crossFadeWithDuration(2.0)
+//        let menuScene = MenuScene(size: size,
+//            gameResult: true,
+//            score: 123)
+//        view?.presentScene(menuScene, transition: transition)
+//    }
 
 
 }
