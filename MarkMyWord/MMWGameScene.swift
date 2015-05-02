@@ -44,7 +44,7 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         backgroundColor = SKColor(red: 0.5, green: 0.0, blue: 0.0, alpha: 1.0)
         userInteractionEnabled = true
         // add BG
-        backgroundNode = SKSpriteNode(imageNamed: "MarkMyWordBGiPadMod.jpg")
+        backgroundNode = SKSpriteNode(imageNamed: "MarkMyWordBGCleaniPad@2x.png")
         backgroundNode!.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         backgroundNode!.position = CGPoint(x: size.width/2.0, y: 0.0)
         backgroundNode?.userInteractionEnabled = false
@@ -67,9 +67,11 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
 //        //spriteTest!.physicsBody!.collisionBitMask = 1
 //        foregroundNode!.addChild(spriteTest!)
         
-        timerHUD(123)
-        partialWordHUD("ssdx", isWord: false)
+        timerHUD(90)
+        partialWordHUD("ABCDEFG", isWord: false)  // "ABCDEFGHIJKLMNO", isWord: false)
         tilesRemainingHUD(55)
+        //topDisplayHUD("Turn: Player 1, Special Letter Bonus In Effect, 2x Point Bonus")
+        topDisplayHUD("Player 1 plays \"CATATONIC\" for 14 points")
         
         
 //        addTile("Q", location: CGPointMake(14, 897) )
@@ -110,28 +112,46 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         }
         partialWordHUD.text = "\(letters) is \(isPartial) a partial word"
         partialWordHUD.fontSize = FontHUDSize
-        partialWordHUD.position = CGPointMake(size.width/2.0 - 357, 3)
-        partialWordHUD.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 1)!
+        partialWordHUD.position = CGPointMake(size.width/2.0, 3)
+        partialWordHUD.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
         addChild(partialWordHUD)
     }
     
     func timerHUD (timeAmount: Int) {
         var timeRemainingHUD = SKLabelNode(fontNamed: FontHUDName)
-        timeRemainingHUD.text = "Time Remaining: \(timeAmount)"
+        timeRemainingHUD.text = "Timer: \(timeAmount)"
         timeRemainingHUD.fontSize = FontHUDSize
         timeRemainingHUD.fontColor = FontHUDRed
-        timeRemainingHUD.position = CGPointMake(size.width/2.0 + 177, 3)
+        timeRemainingHUD.position = CGPointMake(size.width/2.0 + 255.0, 3)
         timeRemainingHUD.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 1)!
         addChild(timeRemainingHUD)
     }
     
     func tilesRemainingHUD (tilesLeft : Int){
         var tilesRemainingHUD = SKLabelNode(fontNamed: FontHUDName)
-        tilesRemainingHUD.text = "Tiles Remaining: \(tilesLeft)"
+        tilesRemainingHUD.text = "Tiles Left: \(tilesLeft)"
         tilesRemainingHUD.fontSize = FontHUDSize
-        tilesRemainingHUD.position = CGPointMake(size.width/2.0 - 23.0, 3.0)
+        tilesRemainingHUD.position = CGPointMake(size.width/2.0 - 332, 3.0)
         tilesRemainingHUD.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 1)!
         addChild(tilesRemainingHUD)
+    }
+    
+    func topDisplayHUD (message : String) {
+        var topDisplayHUD = SKLabelNode(fontNamed: FontHUDName)
+        topDisplayHUD.text = message
+        topDisplayHUD.fontSize = FontHUDSize
+        topDisplayHUD.position = CGPointMake(size.width/2.0, 744.0) // CGPointMake(size.width/2.0, 753.0) // 1 of 2 top lines
+        topDisplayHUD.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
+        addChild(topDisplayHUD)
+    }
+    
+    func topDisplayHUD2 (message : String) {
+        var topDisplayHUD = SKLabelNode(fontNamed: FontHUDName)
+        topDisplayHUD.text = message
+        topDisplayHUD.fontSize = FontHUDSize
+        topDisplayHUD.position = CGPointMake(size.width/2.0, 735.0) // 2 of 2 top lines
+        topDisplayHUD.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
+        addChild(topDisplayHUD)
     }
     
 //    func addTile (letterTile : Character, location : CGPoint){

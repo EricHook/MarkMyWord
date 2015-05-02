@@ -13,12 +13,16 @@ class LetterTile : SKSpriteNode {
     
     var isMovable : Bool = true
     var faceUp : Bool = true
+    var hasShadow : Bool = false
     
-    var frontTexture: SKTexture
-    var backTexture: SKTexture
-    var largeTexture: SKTexture?
-    var largeTextureFilename: String
+    var frontTexture : SKTexture
+    var backTexture : SKTexture = SKTexture(imageNamed: "TileBackTest90x90")
+    var largeTexture : SKTexture?
+    var largeTextureFilename : String
     var tileLocation : CGPoint = CGPointMake(0, 0)
+    var shadow : SKTexture = SKTexture(imageNamed: "TileShadow90x90")
+    var tileShadow : SKSpriteNode
+
     
     enum TileStyle : Int {
         case basic = 0,
@@ -32,157 +36,67 @@ class LetterTile : SKSpriteNode {
         fatalError("NSCoding not supported")
     }
     
-    init(imageNamed: String) {
-        // initialize properties
-        backTexture = SKTexture(imageNamed: "TileBackTest90x90")
-        frontTexture = SKTexture(imageNamed: "LetterTest90x90")
-        largeTextureFilename = "OrangeLetterA"
-        let cardTexture = SKTexture(imageNamed: imageNamed)
-        super.init(texture: cardTexture, color: nil, size: cardTexture.size())
-        self.userInteractionEnabled = true
-    }
-    
     init(tileStyle: TileStyle, withChar : String, withColor : SKColor, atPoint: CGPoint) {  //  // add letter, name, colorize?,
         
+        tileShadow = SKSpriteNode(texture: shadow, color: UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.00), size: CGSizeMake(50.0, 50.0))
         
-        backTexture = SKTexture(imageNamed: "TileBackTest90x90")
         switch tileStyle {
-        case .basic:
-            frontTexture = SKTexture(imageNamed: "LetterTest90x90")
-            largeTextureFilename = "OrangeLetterA"
-            
-        case .metal:
-            frontTexture = SKTexture(imageNamed: "LetterTest90x90")
-            largeTextureFilename = "OrangeLetterA"
-            
-        default:
-            frontTexture = SKTexture(imageNamed: "LetterTest90x90")
-            largeTextureFilename = "OrangeLetterA"
+            case .basic:
+                frontTexture = SKTexture(imageNamed: "tileBase45x45")
+                largeTextureFilename = "tileBase45x45"
+                
+            case .metal:
+                frontTexture = SKTexture(imageNamed: "tileBase45x45")
+                largeTextureFilename = "tileBase45x45"
+                
+            default:
+                frontTexture = SKTexture(imageNamed: "tileBase45x45")
+                largeTextureFilename = "tileBase45x45"
         }
         
         // call designated initializer on super
         super.init(texture: frontTexture, color: nil, size: frontTexture.size())
-
         
         // initialize properties
-
-        
-
-        
-        //var tileNode = SKSpriteNode(   (frontTexture)  //  (imageNamed: "LetterTest90x90")
-        
-        
-//        var frame = CGRect(x: 0, y: 0, width: frontTexture.size().width , height: frontTexture.size().height)
-//            //add a letter(s) on top
-//            //let letterLabel = SKLabelNode(     (frame: frame.bounds)
-//            letterLabel.textAlignment = NSTextAlignment.Center
-//            letterLabel.textColor = UIColor.whiteColor()
-//            letterLabel.center = CGPointMake(0, 0)
-//            // letterLabel.anchorPoint
-//            // letterLabel.backgroundColor = UIColor.clearColor() // original textured
-//            let colorDarkGreen : UIColor = UIColor(red: 0.1, green: 1.0, blue: 0.2, alpha: 0.80)
-//            letterLabel.backgroundColor =  colorDarkGreen
-//            //letterLabel.text = String(letter).uppercaseString
-//            letterLabel.font =  UIFont(name: "HelveticaNeue-Bold", size:  25.0)
-//            self.addSubview(letterLabel)
-        
-        
-        
-//        func addTile (atPoint: CGPoint, withChar : String, withColor : SKColor){   // add letter, name, colorize?,
-            //var letter : String = withChar
             self.name = "tile"
             self.position = atPoint
-            self.anchorPoint = CGPointMake(0, 0)
-            
+            self.anchorPoint = CGPointMake(0.5, 0.5)
             self.color = withColor
             self.colorBlendFactor = 1.0
-            
+        
+            backTexture = SKTexture(imageNamed: "TileBackTest90x90")
+        
+            tileShadow =  SKSpriteNode(texture: shadow, color: UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.00), size: CGSizeMake(50.0, 50.0))
+            tileShadow.alpha = 0.15
+            tileShadow.position = CGPointMake(-5, -5)
+            tileShadow.zPosition = self.zPosition - 1
+            tileShadow.hidden = true
+            self.addChild(tileShadow)
+        
             var letterLabel = SKLabelNode(fontNamed: FontHUDName)
             letterLabel.text = withChar
             letterLabel.fontSize = 40 // FontHUDSize
             //var colorDarkGreen : UIColor = UIColor(red: 0.1, green: 1.0, blue: 0.2, alpha: 0.80)
             letterLabel.fontColor = FontHUDWhite
-            letterLabel.position = CGPointMake(22.5, 11)
+            letterLabel.position = CGPointMake(0, -14)
             letterLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
             self.addChild(letterLabel)
+            centerTileToSquare(self)
         
-            var letterValueLabel = SKLabelNode(fontNamed: FontHUDName)
-            letterValueLabel.text = "10"
-            letterValueLabel.fontSize = 10
-            letterValueLabel.fontColor = FontHUDWhite
-            letterValueLabel.position = CGPointMake(1, 1)
-            letterValueLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 1)!
-        
-            self.addChild(letterValueLabel)
-            //foregroundNode!.addChild(tileNode)
+//            var letterValueLabel = SKLabelNode(fontNamed: FontHUDName)
+//            letterValueLabel.text = "10"
+//            letterValueLabel.fontSize = 10
+//            letterValueLabel.fontColor = FontHUDWhite
+//            letterValueLabel.position = CGPointMake(1, 1)
+//            letterValueLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 1)!
+//            self.addChild(letterValueLabel)
+//            foregroundNode!.addChild(tileNode)
 //        }
 
-        
-        
-
-        
-
-        
         // set properties defined in super
         userInteractionEnabled = true
     }
-    
-//    //5 create a new tile for a given letter
-//    init(letter:Character, sideLength:CGFloat) {
-//        self.letter = letter
-//        
-//        //the tile background
-//        let image = UIImage(named: "OrangeLetterA")!
-//        
-//        //superclass initializer
-//        //references to superview's "self" must take place after super.init
-//        super.init(image:image)
-//        
-//        //    let LetterAImage : UIImage = UIImage(named: "OrangeLetterA45x45")!
-//        //    var imageV : UIImageView = UIImageView(image: LetterAImage)
-//        //    imageV.frame = CGRectMake(0, 0, LetterAImage.size.width, LetterAImage.size.height)
-//        //    imageV.center = CGPointMake(-45, -45)
-//        //    self.addSubview(imageV)
-//        
-//        //6 resize the tile
-//        let scale = sideLength / image.size.width
-//        self.frame = CGRect(x: 0, y: 0, width: image.size.width * scale, height: image.size.height * scale)
-//        //add a letter(s) on top
-//        let letterLabel = UILabel(frame: self.bounds)
-//        letterLabel.textAlignment = NSTextAlignment.Center
-//        letterLabel.textColor = UIColor.whiteColor()
-//        letterLabel.center = CGPointMake(0, 0)
-//        // letterLabel.anchorPoint
-//        // letterLabel.backgroundColor = UIColor.clearColor() // original textured
-//        let colorDarkGreen : UIColor = UIColor(red: 0.1, green: 1.0, blue: 0.2, alpha: 0.80)
-//        letterLabel.backgroundColor =  colorDarkGreen
-//        letterLabel.text = String(letter).uppercaseString
-//        letterLabel.font =  UIFont(name: "HelveticaNeue-Bold", size:  75.0*scale)
-//        self.addSubview(letterLabel)
-//        
-//        //    ////////
-//        //    //add a letter value number on top
-//        //    let letterLabelNum = UILabel(frame: self.bounds)
-//        //    letterLabelNum.textAlignment = NSTextAlignment.Natural
-//        //    letterLabelNum.textColor = UIColor.whiteColor()
-//        //    letterLabelNum.text = "      222\n333"  // ???
-//        //    letterLabelNum.font = UIFont(name: "Verdana-Bold", size: 15.0*scale)
-//        //    self.addSubview(letterLabelNum)
-//        //    /////////
-//        
-//        self.userInteractionEnabled = true
-//        
-//        //create the tile shadow
-//        self.layer.shadowColor = UIColor.blackColor().CGColor
-//        self.layer.shadowOpacity = 0
-//        self.layer.shadowOffset = CGSizeMake(10.0, 10.0)
-//        self.layer.shadowRadius = 15.0
-//        self.layer.masksToBounds = false
-//        
-//        let path = UIBezierPath(rect: self.bounds)
-//        self.layer.shadowPath = path.CGPath
-//        
-//    }
+
     
     func flip() {
         if faceUp {
@@ -200,6 +114,17 @@ class LetterTile : SKSpriteNode {
         }
     }
     
+    func moveTileToCenterSquare (cornerPoint : CGPoint) -> CGPoint {
+        cornerPoint.x + 22.5
+        cornerPoint.y + 22.5
+        return cornerPoint
+    }
+    
+    func centerTileToSquare(tile : LetterTile) {
+        tile.position.x += 22.5
+        tile.position.y += 22.5
+    }
+    
     var enlarged = false
     var savedPosition = CGPointZero
     
@@ -211,11 +136,12 @@ class LetterTile : SKSpriteNode {
             runAction(SKAction.group([slide, scaleDown])) {
                 self.enlarged = false
                 self.zPosition = 0
+                self.tileShadow.hidden = true
             }
         } else {
             enlarged = true
             savedPosition = position
-            
+            self.tileShadow.hidden = false
             if largeTexture != nil {
                 texture = largeTexture
             } else {
@@ -250,12 +176,14 @@ class LetterTile : SKSpriteNode {
             if enlarged { return }
             //            let location = touch.locationInNode(self)
             //            let touchedNode = nodeAtPoint(location)
-            zPosition = 15
+            zPosition = 99
+            tileShadow.zPosition = -10
+            
             let liftUp = SKAction.scaleTo(1.2, duration: 0.1)
-            let smallSlide = SKAction.moveByX(-6, y: -6, duration: 0.1)
-//            runAction(liftUp, withKey: "pickup")
-            runAction(SKAction.group([liftUp, smallSlide]))
 
+            runAction(liftUp, withKey: "pickup")
+            
+            tileShadow.hidden = false
         }
     }
     
@@ -274,13 +202,17 @@ class LetterTile : SKSpriteNode {
         if enlarged { return }
         for touch in (touches as! Set<UITouch>) {
             //            let location = touch.locationInNode(self)
-            //            let touchedNode = nodeAtPoint(location)
-            zPosition = 0
+            //            let touchedNode = nodeA                                                                                                                                          Point(location)
+            zPosition = 1
             let dropDown = SKAction.scaleTo(1.0, duration: 0.1)
-            let smallSlide = SKAction.moveByX(6, y: 6, duration: 0.1)
-//            runAction(dropDown, withKey: "drop")
+            runAction(dropDown, withKey: "drop")
+            tileShadow.zPosition = -1
+            tileShadow.hidden = true
+
+            //self.anchorPoint = CGPointMake(0.0, 0.0)
+//            let smallSlide = SKAction.moveByX(6, y: 6, duration: 0.1)
 //            runAction(smallSlide, withKey: "slideBack")
-            runAction(SKAction.group([dropDown, smallSlide]))
+//            runAction(SKAction.group([dropDown, smallSlide]))
         }
     }
     

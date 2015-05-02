@@ -238,6 +238,9 @@
 		B8C14EFB1AF32E3600E640C0 /* LaunchScreen@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8C14EFA1AF32E3600E640C0 /* LaunchScreen@2x.jpg */; };
 		B8C14EFE1AF32FE500E640C0 /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C14EFC1AF32FE500E640C0 /* LaunchScreen.png */; };
 		B8C14EFF1AF32FE500E640C0 /* LaunchScreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C14EFD1AF32FE500E640C0 /* LaunchScreen@2x.png */; };
+		B8C14F011AF3DF6F00E640C0 /* MarkMyWordBGCleaniPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C14F001AF3DF6F00E640C0 /* MarkMyWordBGCleaniPad@2x.png */; };
+		B8C14F031AF3E4B500E640C0 /* tileBase45x45.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C14F021AF3E4B500E640C0 /* tileBase45x45.png */; };
+		B8C697E81AF446520070ECEE /* TileShadow90x90.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C697E71AF446520070ECEE /* TileShadow90x90.png */; };
 		B8CCE1A21AD8C13500882391 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CCE1A11AD8C13500882391 /* AppDelegate.swift */; };
 		B8CCE1A41AD8C13500882391 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B8CCE1A31AD8C13500882391 /* GameScene.sks */; };
 		B8CCE1A61AD8C13500882391 /* MMWGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CCE1A51AD8C13500882391 /* MMWGameScene.swift */; };
@@ -541,6 +544,9 @@
 		B8C14EFA1AF32E3600E640C0 /* LaunchScreen@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "LaunchScreen@2x.jpg"; sourceTree = "<group>"; };
 		B8C14EFC1AF32FE500E640C0 /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen.png; sourceTree = "<group>"; };
 		B8C14EFD1AF32FE500E640C0 /* LaunchScreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaunchScreen@2x.png"; sourceTree = "<group>"; };
+		B8C14F001AF3DF6F00E640C0 /* MarkMyWordBGCleaniPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MarkMyWordBGCleaniPad@2x.png"; sourceTree = "<group>"; };
+		B8C14F021AF3E4B500E640C0 /* tileBase45x45.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tileBase45x45.png; sourceTree = "<group>"; };
+		B8C697E71AF446520070ECEE /* TileShadow90x90.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileShadow90x90.png; sourceTree = "<group>"; };
 		B8CCE19C1AD8C13500882391 /* MarkMyWord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarkMyWord.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8CCE1A01AD8C13500882391 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8CCE1A11AD8C13500882391 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -967,6 +973,8 @@
 			isa = PBXGroup;
 			children = (
 				B8DA7EC91AE13784003FE2C6 /* avatarpic-l.png */,
+				B8C14F021AF3E4B500E640C0 /* tileBase45x45.png */,
+				B8C697E71AF446520070ECEE /* TileShadow90x90.png */,
 				B8DA7ECA1AE13784003FE2C6 /* DCBG_1024x768.jpg */,
 				B8C14EFA1AF32E3600E640C0 /* LaunchScreen@2x.jpg */,
 				B8C14EF81AF32CF900E640C0 /* LaunchScreen.jpg */,
@@ -978,6 +986,7 @@
 				B8DA7ECD1AE13784003FE2C6 /* MarkMyWordBG_iPadR@2x.jpg */,
 				B8B2947D1AF06146003F789F /* MarkMyWordBGiPadMod@2x.jpg */,
 				B8DA7ECE1AE13784003FE2C6 /* MarkMyWordBG2048x1536.jpg */,
+				B8C14F001AF3DF6F00E640C0 /* MarkMyWordBGCleaniPad@2x.png */,
 				B8DA7ECF1AE13784003FE2C6 /* MeyamaIconLarge.png */,
 				B8DA7ED01AE13784003FE2C6 /* MeyamaMathMenuScreenBG_1024x768.png */,
 				B8C14EF41AF2DE1B00E640C0 /* default.jpg */,
@@ -1251,6 +1260,7 @@
 				B8A455A91AF171B800C0D83B /* card_creature_bear_large@2x.png in Resources */,
 				B8A455EF1AF171B800C0D83B /* icon_heart@2x.png in Resources */,
 				B8B2CAEB1ADADD9100C9DEE7 /* 10.1-LetterWords.txt in Resources */,
+				B8C14F031AF3E4B500E640C0 /* tileBase45x45.png in Resources */,
 				B8B2CB081ADADD9100C9DEE7 /* 24-LetterWords.txt in Resources */,
 				B8A456141AF171B800C0D83B /* zoup.wav in Resources */,
 				B8B2CA701ADADB7000C9DEE7 /* 1006.WAV in Resources */,
@@ -1282,6 +1292,8 @@
 				B8A455B71AF171B800C0D83B /* card_creature_wolf_sel@2x.png in Resources */,
 				B8B2CADA1ADADD9100C9DEE7 /* 8_4LetterWords.txt in Resources */,
 				B8A455B91AF171B800C0D83B /* card_creature_wolf@2x.png in Resources */,
+				B8C14F011AF3DF6F00E640C0 /* MarkMyWordBGCleaniPad@2x.png in Resources */,
+				B8C697E81AF446520070ECEE /* TileShadow90x90.png in Resources */,
 				B8B2CAD11ADADD9100C9DEE7 /* 7_1LetterWords.txt in Resources */,
 				B8A455A21AF171B800C0D83B /* card_back_large.png in Resources */,
 				B8A455A61AF171B800C0D83B /* card_back.png in Resources */,
@@ -1556,7 +1568,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = MarkMyWord/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
@@ -1570,7 +1582,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = MarkMyWord/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
