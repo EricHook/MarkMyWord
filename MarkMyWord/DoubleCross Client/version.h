@@ -1,0 +1,2 @@
+#define HOYLE_SCI
+#define HOGS_DOUBLECROSS

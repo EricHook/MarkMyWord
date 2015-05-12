@@ -17,6 +17,17 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     var spriteTest : SKSpriteNode?
     var impulseCount = 4
     var diagnosticText : SKLabelNode?
+    var MMWBoardGrid: Grid = Grid(gridLowerLeftX: 157, gridLowerLeftY: 21, gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 15, gridNumSquaresY: 15)
+    var MMWPlayer1Grid: Grid = Grid(gridLowerLeftX: 7, gridLowerLeftY: 305, gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3)
+    var MMWPlayer2Grid: Grid = Grid(gridLowerLeftX: 877, gridLowerLeftY: 305, gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3)
+    let Player1NameLoc : CGPoint = CGPointMake(20, 768 - 325)
+    let Player1ScoreLoc : CGPoint = CGPointMake(20, 768 - 325)
+    let Player2NameLoc : CGPoint = CGPointMake(880, 768 - 325)
+    let Player2ScoreLoc : CGPoint = CGPointMake(880, 768 - 325)
+    let Player3NameLoc : CGPoint = CGPointMake(20, 768 - 550)
+    let Player3ScoreLoc : CGPoint = CGPointMake(20, 768 - 550)
+    let Player4NameLoc : CGPoint = CGPointMake(880, 768 - 550)
+    let Player4ScoreLoc : CGPoint = CGPointMake(880, 768 - 550)
     
 //    var gameView: UIView!
 //    var level: Level!
@@ -25,80 +36,81 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     //stopwatch variables
     private var secondsLeft: Int = 0
     private var timer: NSTimer?
-    
 //    let coreMotionManager = CMMotionManager()
 //    var xAxisAcceleration : CGFloat = 0.0
-//    
 //    let CollisionCategoryPlayer : UInt32 = 0x1 << 1
 //    let CollisionCategoryPowerUp : UInt32 = 0x1 << 2
     
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        //MMWBoardGrid = Grid(gridLowerLeftX: 157, gridLowerLeftY: 21, gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 15, gridNumSquaresY: 15)
     }
     
     override init(size: CGSize) {
         super.init(size: size)
-//        physicsWorld.contactDelegate = self
-//        physicsWorld.gravity = CGVectorMake(0.0, -4.0)
+        
+        println("scene in MMWGS is: \(self.description)")
+        //println("Game scene test num: \( GameScene.getTestNum(<#GameScene#>) )")
+
         backgroundColor = SKColor(red: 0.5, green: 0.0, blue: 0.0, alpha: 1.0)
+        //MMWBoardGrid = Grid(gridLowerLeftX: 157, gridLowerLeftY: 21, gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 15, gridNumSquaresY: 15)
         userInteractionEnabled = true
         // add BG
-        backgroundNode = SKSpriteNode(imageNamed: "MarkMyWordBGCleaniPad@2x.png")
+        backgroundNode = SKSpriteNode(imageNamed: "MarkMyWordBGCleaniPad")
         backgroundNode!.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         backgroundNode!.position = CGPoint(x: size.width/2.0, y: 0.0)
         backgroundNode?.userInteractionEnabled = false
         backgroundNode?.zPosition = -100
         addChild(backgroundNode!)
         
+//        ///////////////////////////
+        addPlayer("PlayerFred")
+//        //////////////////////////
+        
         foregroundNode = SKSpriteNode()
         addChild(foregroundNode!)
-        
-//        // add sprite
-//        spriteTest = SKSpriteNode (imageNamed: "LetterTest90x90")
-////        spriteTest!.physicsBody = SKPhysicsBody(circleOfRadius: spriteTest!.size.width / 2)
-////        spriteTest!.physicsBody!.dynamic = false
-//        spriteTest!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-//        spriteTest!.position = CGPoint(x: self.size.width/2.0, y: 180.0)
-////        spriteTest!.physicsBody!.linearDamping = 1.0
-////        spriteTest!.physicsBody!.allowsRotation = false
-////        spriteTest!.physicsBody!.categoryBitMask = CollisionCategoryPlayer
-////        spriteTest!.physicsBody!.contactTestBitMask = CollisionCategoryPowerUp
-//        //spriteTest!.physicsBody!.collisionBitMask = 1
-//        foregroundNode!.addChild(spriteTest!)
         
         timerHUD(90)
         partialWordHUD("ABCDEFG", isWord: false)  // "ABCDEFGHIJKLMNO", isWord: false)
         tilesRemainingHUD(55)
         //topDisplayHUD("Turn: Player 1, Special Letter Bonus In Effect, 2x Point Bonus")
         topDisplayHUD("Player 1 plays \"CATATONIC\" for 14 points")
+
+        addChild(LetterTile(tileStyle: .basic, withChar: "P", withColor: UIColorAppleRed, atPoint: CGPointMake(7, 448.5)) )
+        addChild(LetterTile(tileStyle: .basic, withChar: "M", withColor: UIColorAppleRed, atPoint: CGPointMake(54.5, 543)) )
+        addChild(LetterTile(tileStyle: .basic, withChar: "O", withColor: UIColorAppleRed, atPoint: CGPointMake(102, 496)) )
+        addChild(LetterTile(tileStyle: .basic, withChar: "H", withColor: UIColorAppleGreen, atPoint: CGPointMake(157, 68.5)) )
+        addChild(LetterTile(tileStyle: .basic, withChar: "J", withColor: UIColorAppleGreen, atPoint: CGPointMake(157, 21)) )
+        addChild(LetterTile(tileStyle: .basic, withChar: "K", withColor: UIColorAppleOrange, atPoint: CGPointMake(204.5, 68.5)) )
+        addChild(LetterTile(tileStyle: .basic, withChar: "P", withColor: UIColorApplePurple, atPoint: CGPointMake(877, 448.5)) )
+        addChild(LetterTile(tileStyle: .basic, withChar: "O", withColor: UIColorApplePurple, atPoint: CGPointMake(877, 496)) )
+        addChild(LetterTile(tileStyle: .basic, withChar: "M", withColor: UIColorApplePurple, atPoint: CGPointMake(877, 543)) )
+        addChild(LetterTile(tileStyle: .basic, withChar: "A", withColor: UIColorApplePurple, atPoint: CGPointMake(924.5, 448.5)) )
+        addChild(LetterTile(tileStyle: .basic, withChar: "B", withColor: UIColorApplePurple, atPoint: CGPointMake(924.5, 496)) )
+        addChild(LetterTile(tileStyle: .basic, withChar: "C", withColor: UIColorApplePurple, atPoint: CGPointMake(924.5, 543)) )
         
+        addChild(LetterTile(tileStyle: .basic, withChar: "1", withColor: UIColorApplePurple, atPoint: CGPointMake(7, 305)) )
+        addChild(LetterTile(tileStyle: .basic, withChar: "2", withColor: UIColorApplePurple, atPoint: CGPointMake(877, 305)) )
         
-//        addTile("Q", location: CGPointMake(14, 897) )
-//        addTile("B", location: CGPointMake(314, 42) )
-//        addTile(CGPointMake(7, 448), withChar : "W", withColor : SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.5) )
-//        addTile(CGPointMake(54.5, 542.5), withChar : "A", withColor : SKColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 0.5) )
-//        addTile(CGPointMake(102, 495.5), withChar : "H", withColor : SKColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.5) )
-//        addTile(CGPointMake(54.5, 543.5), withChar : "O", withColor : SKColor(red: 1.0, green: 0.0, blue: 1.0, alpha: 0.5) )
-//        addTile(CGPointMake(157, 21), withChar : "R", withColor : SKColor(red: 1.0, green: 1.0, blue: 0.0, alpha: 0.5) )
-//        addTile(CGPointMake(204.5, 68.5), withChar : "M", withColor : SKColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5) )
-//
-//        let tile = TileView(letter: "R", sideLength: 45.0)
-//        tile.center = CGPointMake(300, 300)
-//        tile.randomize()
-//        //tile.dragDelegate = self
-//        //4
-//        gameView.addSubview(tile)
+        // bottom left corner of game board
+        var xPosition : CGFloat = 157.0
+        var yPosition : CGFloat = 21.0
         
-//        addOrbsToForeground()
-        
-        addChild(LetterTile(tileStyle: .basic, withChar: "P", withColor: SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), atPoint: CGPointMake(7, 448.5)) )
-        addChild(LetterTile(tileStyle: .basic, withChar: "M", withColor: SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), atPoint: CGPointMake(54.5, 543)) )
-        addChild(LetterTile(tileStyle: .basic, withChar: "O", withColor: SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), atPoint: CGPointMake(102, 496)) )
-        addChild(LetterTile(tileStyle: .basic, withChar: "Z", withColor: SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), atPoint: CGPointMake(157, 68.5)) )
-        addChild(LetterTile(tileStyle: .basic, withChar: "X", withColor: SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), atPoint: CGPointMake(157, 21)) )
-        addChild(LetterTile(tileStyle: .basic, withChar: "I", withColor: SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), atPoint: CGPointMake(204.5, 68.5)) )
- 
+//        for indexY in 1...15 {
+//            for indexX in 1...15 {
+//                var tileAdded : LetterTile = LetterTile(tileStyle: .basic, withChar: "C", withColor: SKColor(red: 0.0, green: 0.6132, blue: 0.8593, alpha: 1.0), atPoint: CGPointMake(xPosition, yPosition))
+//                tileAdded.name = "X: \(xPosition), Y: \(yPosition), Letter: \(tileAdded.tileText)"
+//                addChild(tileAdded)
+//                xPosition += 47.5
+//                //zPosition = -100
+//            }
+//            xPosition = 157.0
+//            yPosition += 47.5
+//        }
+//        println("test grid below")
+//        var testGrid = Grid()
+//        testGrid.getGridSquare(25, locY: 15)
+//        //println("Grid count: \(testGrid.gridValueType.count)")
     }
     
     func partialWordHUD (letters : String, isWord : Bool) {
@@ -154,15 +166,53 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         addChild(topDisplayHUD)
     }
     
+    func addPlayer (name : String) {
+//        var playerL = PlayerView(_playerName: "Freddy", _playerColor: UIColorAppleOrange)
+//        playerL.position = CGPointMake(0, ( 768 - (1319/2) - 2 ) ) // PS coordinates is Y: 1390, convert and flip
+//        addChild(playerL)
+//        
+//        var playerR = PlayerView(_playerName: "Eric Von Hook", _playerColor: UIColorAppleGreen)
+//        playerR.position = CGPointMake(869.5,  ( 768 - (1319/2) - 2 ) ) // PS coordinates is Y: 1390, convert and flip
+//        addChild(playerR)
+//        
+//        var playerLTop = PlayerView(_playerName: "Sayyyyyppppyyy", _playerColor: UIColorAppleRed)
+//        playerLTop.position = CGPointMake(0,  ( 768 - ( (1319/2) - 330 ) ) )// PS coordinates is Y: 1390, convert and flip
+//        addChild(playerLTop)
+//        
+//        var playerRTop = PlayerView(_playerName: "Doyyypprrtt", _playerColor: UIColorApplePurple)
+//        playerRTop.position = CGPointMake(869.5,  ( 768 - ( (1319/2) - 330 ) ) )// PS coordinates is Y: 1390, convert and flip
+//        addChild(playerRTop)
+        
+        var playerLMid = PlayerView(_playerName: "Doyyypprrtt", _playerColor: UIColorAppleRed)
+        playerLMid.position = CGPointMake(0, ( 768 - ( (1319/2) - 187 ) ) )// PS coordinates is Y: 1390, convert and flip
+        addChild(playerLMid)
+        
+        var playerRMid = PlayerView(_playerName: "Doyyypprrtt", _playerColor: UIColorApplePurple)
+        playerRMid.position = CGPointMake(869.5, ( 768 - ( (1319/2) - 187 ) ) )// PS coordinates is Y: 1390, convert and flip
+        addChild(playerRMid)
+    }
+    
+//    buttonPlaceholder.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+//    buttonPlaceholder.position = CGPoint(x: size.width/2.0, y: 482.0)
+//    buttonPlaceholder.userInteractionEnabled = false
+//    //playerTileGrid.zPosition = -100
+//    buttonPlaceholder.colorBlendFactor = CGFloat(0.1)
+//    //playerTileGrid.
+//    addChild(buttonPlaceholder)
+    
+    
+    
+    func getBoardGrid () -> (Grid) {
+        return MMWBoardGrid
+    }
+    
 //    func addTile (letterTile : Character, location : CGPoint){
 //        var tile = SKSpriteNode(imageNamed: "LetterTest90x90")
 //        tile.position = location
 //        tile.anchorPoint = CGPointMake(0, 0)
 //        foregroundNode!.addChild(tile)
 //    }
-    
-    
-    
+
 //    func addOrbsToForeground () {
 //        var orbNodePosition = CGPoint(x: spriteTest!.position.x, y: spriteTest!.position.y + 100)
 //        var orbXShift : CGFloat = -1.0
@@ -190,47 +240,71 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
 //            node, stop in
 //            // do something with node or stop
 //            println("Found node \(node)");
-//
 //            //stop.memory = true // stop iterating over each node found
 //        })
 //    }
 
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        //spriteTest!.physicsBody!.applyImpulse(CGVectorMake(0.0, 40.0))
-//        if !spriteTest!.physicsBody!.dynamic {
-//            spriteTest!.physicsBody!.dynamic = true
-//            self.coreMotionManager.accelerometerUpdateInterval = 0.3
-//            self.coreMotionManager.startAccelerometerUpdatesToQueue(NSOperationQueue(), withHandler:  {
-//                (data: CMAccelerometerData!, error: NSError!) in
-//                if let constVar = error {
-//                    println("Error in accelerometer")
-//                }
-//                else{
-//                    self.xAxisAcceleration = CGFloat(data!.acceleration.x)
-//                }
-//            })
-//        }
-//        
-//        if impulseCount > 0 {
-//            spriteTest!.physicsBody!.applyImpulse(CGVectorMake(0.0, 40.0))
-//            impulseCount--
-//        }
+
+        //checkForTouches(touches, withEvent: event)
+        println("TOUCH began in MMWGameScene: \(event.description) ")
         
-        println("TOUCH: \(event.description) ")
+        
         for touch: AnyObject in touches {
             var location = (touch as! UITouch).locationInView(self.view)
-            //diagnosticText = SKLabelNode(text: "\(UITouch.locationInView(touch as! UITouch))")
-
-            let actionSound = SKAction.playSoundFileNamed("37Bronk.mp3", waitForCompletion: true)
-            runAction(actionSound)
-            //     .rotateByAngle(CGFloat(M_PI), duration:1)
-            //sprite.runAction(SKAction.    .repeatActionForever(actionSound))
-             
-            //if UITouchPhase.Stationary. { println("STATIONARY") }
-            //println("TOUCH! \(UITouch.locationInView(touch as! UITouch))")
-            //println("preTOUCH! \(UITouch.previousLocationInView(touch as! UITouch))")
+            
+            location.y = 768 - location.y
+            //////////////let location = touch.locationInNode(self)
+            let nodes = nodesAtPoint(location) as! [SKNode]
+            
+            if (location.x < 154.5) {
+                println("Player1 tile area selected")
+                var gridSquareX = MMWPlayer1Grid.getGridSquare(Float(location.x), locY: Float(location.y) ).GridSquareX
+                var gridSquareY = MMWPlayer1Grid.getGridSquare(Float(location.x), locY: Float(location.y) ).GridSquareY
+                var gridSquareXCorner = MMWPlayer1Grid.getGridSquare(Float(location.x), locY: Float(location.y) ).GridSquareLowerLeftCornerX
+                var gridSquareYCorner = MMWPlayer1Grid.getGridSquare(Float(location.x), locY: Float(location.y) ).GridSquareLowerLeftCornerY
+                println("MMWPlayer1Grid: gridX\(gridSquareX), gridY\(gridSquareY) \(gridSquareXCorner) \(gridSquareYCorner)")
+            }
+            
+            if (location.x > 869.5) {
+                println("Player2 tile area selected")
+            }
+            
+            var gridSquareX = MMWBoardGrid.getGridSquare(Float(location.x), locY: Float(location.y) ).GridSquareX
+            var gridSquareY = MMWBoardGrid.getGridSquare(Float(location.x), locY: Float(location.y) ).GridSquareY
+            var gridSquareXCorner = MMWBoardGrid.getGridSquare(Float(location.x), locY: Float(location.y) ).GridSquareLowerLeftCornerX
+            var gridSquareYCorner = MMWBoardGrid.getGridSquare(Float(location.x), locY: Float(location.y) ).GridSquareLowerLeftCornerY
+            println("MMWBoardGrid: gridX\(gridSquareX), gridY\(gridSquareY) \(gridSquareXCorner) \(gridSquareYCorner)")
+            println("nodes.count is: \(nodes.count) ")
+            var foundNode = false
+            for node in nodes {
+//                if !foundNode {
+//                    if (node.name?.rangeOfString("Letter: C") != nil) {
+//                        println("you selected \(node.description)")
+//                        node.touchesBegan(touches, withEvent: event)//as LetterTile.touchesBeganLetterTile(touch, withEvent: event)
+//                        foundNode = true
+//                    }
+//                }
+                if node.isKindOfClass(LetterTile){
+                    node.touchesBegan(touches, withEvent: event)
+                    node.touchesMoved(touches, withEvent: event)
+                }
+            }
         }
+    }
+        
+//        let touch = touches.anyObject() as! UITouch
+//        let location = touch.locationInNode(self)
+//        let nodes = nodesAtPoint(location) as! [SKNode]
+//        println("nodes.count is: \(nodes.count) ")
+//        
+//        for node in nodes {
+//            if (node.name?.rangeOfString("Letter: C") != nil) {
+//                println("you selected X: 157.0, Y: 686.0, Letter: C")
+//                node.touchesBegan(touches: NSSet, withEvent: event)//as LetterTile.touchesBeganLetterTile(touch, withEvent: event)
+//            }
+
         
 //        // add orangeTile
 //        var orangeTile : Tile
@@ -239,30 +313,7 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
 //        orangeTile.anchorPoint = CGPoint(x: 0.5, y: 0.0)
 //        orangeTile.position = CGPoint(x: size.width/2.0 + 25, y: 10.0)
 //        self.addChild(orangeTile)
-//        
-//        // add orangeTile
-//        var tetrisCell : TetrisCell
-//        //orangeTile = Tile.makeTile(Tile())()
-//        tetrisCell = TetrisCell(imageNamed: "HookAvatar80x80.jpg")
-//        //orangeTile!.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-//        tetrisCell.position = CGPoint(x: size.width/2.0 + 55, y: 20.0)
-//        addChild(tetrisCell)
-//        
-//        var tetrisCell2 : TetrisCell
-//        var tex = SKTexture(imageNamed: "HookAvatar80x80.jpg")
-//        var col = SKColor(red: 0.5, green: 0.1, blue: 0.2, alpha: 0.5)
-//        var siz = CGSize(width: 166, height: 44)
-//        tetrisCell2 = TetrisCell(texture: tex!, color: col, size: siz)
-//        tetrisCell2.name = "TetrisCell2"
-//        tetrisCell2.position = CGPoint(x: size.width/2.0, y: 25.0)
-//        tetrisCell2.userInteractionEnabled = true
-//        addChild(tetrisCell2)
-//        
-//        var tetrisCell3 : TetrisCell
-//        tetrisCell3 = TetrisCell()
-//        tetrisCell3.position = CGPoint(x: size.width/3.0, y: 45.0)
-//        addChild(tetrisCell3)
-    }
+ //   }
     
     
 //    func didBeginContact(contact: SKPhysicsContact) {
@@ -341,8 +392,41 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
 //            let location = touch.locationInNode(self)
 //            let touchedNode = nodeAtPoint(location)
 //            touchedNode.position = location
-//        }
+        //////checkForTouches(touches touches, withEvent event)
+        }
     }
+    
+//    func checkForTouches(touches: NSSet, withEvent event: UIEvent) {
+//        println("check for touches in MMWGameScene")
+//        
+//        let touch = touches.anyObject() as! UITouch
+//        let location = touch.locationInNode(self)
+//        
+//        let nodes = nodesAtPoint(location) as! [SKNode]
+//        println("nodes.count is: \(nodes.count) ")
+//
+//        for node in nodes {
+//            if (node.name?.rangeOfString("Letter: C") != nil) {
+//                println("you selected X: 157.0, Y: 686.0, Letter: C")
+//                //node.touchesBegan(touches: NSSet, withEvent: event)//as LetterTile.touchesBeganLetterTile(touch, withEvent: event)
+//            }
+//            
+////            println("Selected  MMW Node ... description? \(node.description)")
+////            println("nodename is \(node.name)")
+////            if node.isKindOfClass(SKSpriteNode.self) {
+////                println("node.isKindOfClass(SKSpriteNode.self)")
+////                let sprite = node as! SKSpriteNode
+////                //println("Selected SK SpriteNode ...  Fred? .. sprite.name? \(sprite.name) description? \(sprite.description)")
+////                let spriteParent = sprite.parent
+////                //println("Selected spriteParent ...  Fred? .. sprite.name? \(spriteParent?.name) description? \(spriteParent?.description)")
+////                if spriteParent!.name == "P" {
+////                    spriteParent!.name = "Pselected"
+////                    //spriteParent.colorBlendFactor = 0
+////                    println("Selected MMWGameScene spriteParent.name P")
+////                }
+////            }
+//        }
+
     
     
 //    deinit {  // ??? for optimization of performance
@@ -353,7 +437,7 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     //    override func update(currentTime: CFTimeInterval) {
     //        /* Called before each frame is rendered */
     //    }
-}
+//}
 
 
 //class GameScene: SKScene {

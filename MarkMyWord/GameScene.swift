@@ -8,7 +8,34 @@
 
 import SpriteKit
 
+
+
+//struct currentGameSceneStruct {
+//    static var currentGameScene : SKScene = GameViewController.
+//}
+
 class GameScene: SKScene {
+    
+//    func getCurrentGameScene () {
+//        return currentGameScene
+//    }
+//    
+//    func setCurrentGameScene (newGameScene : SKScene) {
+//        currentGameScene = newGameScene
+//    }
+    
+//    var currentScene : SKScene
+//    
+//    override init() {
+//        currentScene = self.scene
+//        super.init()
+//    }
+//
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+    
+    
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -28,7 +55,8 @@ class GameScene: SKScene {
         self.addChild(backgroundNode)
         
         let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Hello, World TEST!";
+        myLabel.text = "Mark My Word" // scene is: \(scene?.description)"
+        println("scene in GameScene is: \(scene?.description)")
         myLabel.fontSize = 65;
         myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
         self.addChild(myLabel)
@@ -129,8 +157,15 @@ class GameScene: SKScene {
     
     func playMMWScene() {
         let transition = SKTransition.crossFadeWithDuration(2.0)
-        let MMWScene = MMWGameScene(size: size)
+        var MMWScene = MMWGameScene(size: size)
+        MMWScene.name = "MMWScene instance name made in GameScene"
+        var currentScene = MMWScene
         view?.presentScene(MMWScene, transition: transition)
+    }
+    
+    func getTestNum () -> (Int) {
+        var num = 22
+        return num
     }
    
     override func update(currentTime: CFTimeInterval) {

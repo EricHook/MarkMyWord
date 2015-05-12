@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,49 +11,24 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2015 Hook Studios. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye">
-                    <rect key="frame" x="20" y="439" width="441" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Mark My Word " textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
-                    <rect key="frame" x="20" y="100" width="441" height="32"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="LaunchScreen.png" translatesAutoresizingMaskIntoConstraints="NO" id="0DZ-eV-lCR">
-                    <rect key="frame" x="20" y="140" width="441" height="243"/>
+                <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MeyamaSplashScreen_iPad.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="PuS-kH-X5M">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="kId-c2-rCX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="bottom" multiplier="1/3" constant="1" id="5cJ-9S-tgC"/>
-                <constraint firstItem="0DZ-eV-lCR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="51" id="6Jr-mu-cY5"/>
-                <constraint firstItem="kId-c2-rCX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="41" id="JIg-Xg-8Fe"/>
-                <constraint firstAttribute="centerX" secondItem="kId-c2-rCX" secondAttribute="centerX" id="Koa-jz-hwk"/>
-                <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="20" id="Kzo-t9-V3l"/>
-                <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="MfP-vx-nX0"/>
-                <constraint firstItem="0DZ-eV-lCR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="UE2-1P-2Fc"/>
-                <constraint firstAttribute="centerX" secondItem="8ie-xW-0ye" secondAttribute="centerX" id="ZEH-qu-HZ9"/>
-                <constraint firstItem="kId-c2-rCX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="fvb-Df-36g"/>
-                <constraint firstAttribute="bottom" secondItem="0DZ-eV-lCR" secondAttribute="bottom" constant="49" id="oi1-M2-1mU"/>
-                <constraint firstItem="0DZ-eV-lCR" firstAttribute="top" secondItem="kId-c2-rCX" secondAttribute="bottom" constant="8" id="rY9-Dj-nlJ"/>
-                <constraint firstAttribute="trailing" secondItem="0DZ-eV-lCR" secondAttribute="trailing" constant="19" id="xRN-1e-tYa"/>
+                <constraint firstAttribute="bottom" secondItem="PuS-kH-X5M" secondAttribute="bottom" id="7BL-EY-utI"/>
+                <constraint firstAttribute="trailing" secondItem="PuS-kH-X5M" secondAttribute="trailing" id="Udp-t5-05E"/>
+                <constraint firstItem="PuS-kH-X5M" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="gGd-I4-WjC"/>
+                <constraint firstItem="PuS-kH-X5M" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="w02-30-vzZ"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="JIg-Xg-8Fe"/>
-                    <exclude reference="6Jr-mu-cY5"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>
     <resources>
-        <image name="LaunchScreen.png" width="1024" height="768"/>
+        <image name="MeyamaSplashScreen_iPad.jpg" width="1024" height="768"/>
     </resources>
 </document>

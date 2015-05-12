@@ -241,6 +241,25 @@
 		B8C14F011AF3DF6F00E640C0 /* MarkMyWordBGCleaniPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C14F001AF3DF6F00E640C0 /* MarkMyWordBGCleaniPad@2x.png */; };
 		B8C14F031AF3E4B500E640C0 /* tileBase45x45.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C14F021AF3E4B500E640C0 /* tileBase45x45.png */; };
 		B8C697E81AF446520070ECEE /* TileShadow90x90.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C697E71AF446520070ECEE /* TileShadow90x90.png */; };
+		B8C900631B011F1C00C72745 /* appIcon120x120_MMW.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C9005B1B011F1C00C72745 /* appIcon120x120_MMW.png */; };
+		B8C900641B011F1C00C72745 /* appIcon58x58_MMW.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C9005C1B011F1C00C72745 /* appIcon58x58_MMW.png */; };
+		B8C900651B011F1C00C72745 /* appIcon80x80_MMW.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C9005D1B011F1C00C72745 /* appIcon80x80_MMW.png */; };
+		B8C900661B011F1C00C72745 /* appIcon180x180_MMW.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C9005E1B011F1C00C72745 /* appIcon180x180_MMW.png */; };
+		B8C9006D1B01240200C72745 /* appIcon76x76_MMW.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C900691B01240200C72745 /* appIcon76x76_MMW.png */; };
+		B8C9006E1B01240200C72745 /* appIcon76x76_MMW@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C9006A1B01240200C72745 /* appIcon76x76_MMW@2x.png */; };
+		B8C9006F1B01240200C72745 /* appIcon29x29_MMW.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C9006B1B01240200C72745 /* appIcon29x29_MMW.png */; };
+		B8C900701B01240200C72745 /* appIcon40x40_MMW.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C9006C1B01240200C72745 /* appIcon40x40_MMW.png */; };
+		B8C900721B0124C500C72745 /* appIcon60x60_MMW.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C900711B0124C500C72745 /* appIcon60x60_MMW.png */; };
+		B8C900741B0125D100C72745 /* appIcon87x87_MMW.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C900731B0125D100C72745 /* appIcon87x87_MMW.png */; };
+		B8C900761B013C3500C72745 /* PlayerBGTEST309x1320TestFull.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8C900751B013C3500C72745 /* PlayerBGTEST309x1320TestFull.jpg */; };
+		B8C900791B01405600C72745 /* MMWPlayerTilesGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C900781B01405600C72745 /* MMWPlayerTilesGrid.png */; };
+		B8C9007B1B014EB900C72745 /* MMWPlayerTilesPlaque.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C9007A1B014EB900C72745 /* MMWPlayerTilesPlaque.png */; };
+		B8C9007D1B0157CC00C72745 /* ButtonPlaceholderBottomLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C9007C1B0157CC00C72745 /* ButtonPlaceholderBottomLeft.png */; };
+		B8C9007F1B0159C900C72745 /* PlayerBGTest309x660.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C9007E1B0159C900C72745 /* PlayerBGTest309x660.png */; };
+		B8CB74291AF803BD00AE5F40 /* GridObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CB74281AF803BD00AE5F40 /* GridObject.swift */; };
+		B8CB742C1AF880A400AE5F40 /* DoubleCross Server in Resources */ = {isa = PBXBuildFile; fileRef = B8CB742A1AF880A400AE5F40 /* DoubleCross Server */; };
+		B8CB742D1AF880A400AE5F40 /* DoubleCross Client in Resources */ = {isa = PBXBuildFile; fileRef = B8CB742B1AF880A400AE5F40 /* DoubleCross Client */; };
+		B8CB742F1AF9260400AE5F40 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CB742E1AF9260400AE5F40 /* Grid.swift */; };
 		B8CCE1A21AD8C13500882391 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CCE1A11AD8C13500882391 /* AppDelegate.swift */; };
 		B8CCE1A41AD8C13500882391 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B8CCE1A31AD8C13500882391 /* GameScene.sks */; };
 		B8CCE1A61AD8C13500882391 /* MMWGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CCE1A51AD8C13500882391 /* MMWGameScene.swift */; };
@@ -249,6 +268,12 @@
 		B8CCE1AD1AD8C13500882391 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8CCE1AC1AD8C13500882391 /* Images.xcassets */; };
 		B8CCE1B01AD8C13500882391 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8CCE1AE1AD8C13500882391 /* LaunchScreen.xib */; };
 		B8CCE1BC1AD8C13500882391 /* MarkMyWordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CCE1BB1AD8C13500882391 /* MarkMyWordTests.swift */; };
+		B8D130E41AFD44A100865982 /* MeyamaSplashScreen_iPad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8D130E21AFD44A100865982 /* MeyamaSplashScreen_iPad.jpg */; };
+		B8D130E51AFD44A100865982 /* MeyamaSplashScreen_iPad@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8D130E31AFD44A100865982 /* MeyamaSplashScreen_iPad@2x.jpg */; };
+		B8D130E71AFD635500865982 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D130E61AFD635500865982 /* PlayerView.swift */; };
+		B8D130E91AFD668100865982 /* PlayerBG01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8D130E81AFD668100865982 /* PlayerBG01.jpg */; };
+		B8D130EB1AFD725B00865982 /* PlayerBG02Island.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8D130EA1AFD725B00865982 /* PlayerBG02Island.jpg */; };
+		B8D130ED1AFD7E2900865982 /* PlayerBGTEST309x1320.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8D130EC1AFD7E2900865982 /* PlayerBGTEST309x1320.jpg */; };
 		B8DA7ED21AE13784003FE2C6 /* avatarpic-l.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DA7EC91AE13784003FE2C6 /* avatarpic-l.png */; };
 		B8DA7ED31AE13784003FE2C6 /* DCBG_1024x768.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8DA7ECA1AE13784003FE2C6 /* DCBG_1024x768.jpg */; };
 		B8DA7ED41AE13784003FE2C6 /* HookAvatar80x80.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8DA7ECB1AE13784003FE2C6 /* HookAvatar80x80.jpg */; };
@@ -259,8 +284,9 @@
 		B8DA7ED91AE13784003FE2C6 /* MeyamaMathMenuScreenBG_1024x768.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DA7ED01AE13784003FE2C6 /* MeyamaMathMenuScreenBG_1024x768.png */; };
 		B8DA7EDA1AE13784003FE2C6 /* OrangeLetterA.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DA7ED11AE13784003FE2C6 /* OrangeLetterA.png */; };
 		B8E874E61AE17E0000763849 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E874E51AE17E0000763849 /* Tile.swift */; };
+		B8F2328B1AF56DB800B2324B /* Tile3D95x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8F2328A1AF56DB800B2324B /* Tile3D95x.png */; };
 		B8F264F61AE19EF50072B9D4 /* TetrisCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F264F51AE19EF50072B9D4 /* TetrisCell.swift */; };
-		B8F264FA1AE1EFED0072B9D4 /* MarkMyWordSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F264F91AE1EFED0072B9D4 /* MarkMyWordSettings.swift */; };
+		B8F264FA1AE1EFED0072B9D4 /* MarkMyWordGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F264F91AE1EFED0072B9D4 /* MarkMyWordGame.swift */; };
 		B8FA8FA21AE9DC93007CF07C /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FA8FA11AE9DC93007CF07C /* GameData.swift */; };
 		B8FA8FA41AE9DD40007CF07C /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FA8FA31AE9DD40007CF07C /* AudioController.swift */; };
 		B8FA8FA71AE9DD7F007CF07C /* particle.png in Resources */ = {isa = PBXBuildFile; fileRef = B8FA8FA61AE9DD7F007CF07C /* particle.png */; };
@@ -279,40 +305,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B8013FC51ADB8D7400257F4E /* DoubleCross Client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "DoubleCross Client.cpp"; sourceTree = "<group>"; };
-		B8013FC61ADB8D7400257F4E /* DoubleCross Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DoubleCross Client.h"; sourceTree = "<group>"; };
-		B8013FC71ADB8D7400257F4E /* DoubleCross Dialog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "DoubleCross Dialog.cpp"; sourceTree = "<group>"; };
-		B8013FC81ADB8D7400257F4E /* DoubleCrossClientTable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DoubleCrossClientTable.cpp; sourceTree = "<group>"; };
-		B8013FCC1ADB900F00257F4E /* DirtyWord.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DirtyWord.cpp; sourceTree = "<group>"; };
-		B8013FCD1ADB900F00257F4E /* DirtyWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirtyWord.h; sourceTree = "<group>"; };
-		B8013FCE1ADB900F00257F4E /* DoubleCross Client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "DoubleCross Client.cpp"; sourceTree = "<group>"; };
-		B8013FCF1ADB900F00257F4E /* DoubleCross Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DoubleCross Client.h"; sourceTree = "<group>"; };
-		B8013FD01ADB900F00257F4E /* DoubleCross Dialog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "DoubleCross Dialog.cpp"; sourceTree = "<group>"; };
-		B8013FD11ADB900F00257F4E /* DoubleCrossClientTable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DoubleCrossClientTable.cpp; sourceTree = "<group>"; };
-		B8013FD21ADB900F00257F4E /* DoubleCrossEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DoubleCrossEngine.cpp; sourceTree = "<group>"; };
-		B8013FD31ADB900F00257F4E /* DoubleCrossEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleCrossEngine.h; sourceTree = "<group>"; };
-		B8013FD41ADB900F00257F4E /* DoubleCrossServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DoubleCrossServer.cpp; sourceTree = "<group>"; };
-		B8013FD51ADB900F00257F4E /* DoubleCrossServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleCrossServer.h; sourceTree = "<group>"; };
-		B8013FD61ADB900F00257F4E /* DoubleCrossServerTable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DoubleCrossServerTable.cpp; sourceTree = "<group>"; };
-		B8013FD71ADB900F00257F4E /* game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = game.cpp; sourceTree = "<group>"; };
-		B8013FD81ADB900F00257F4E /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		B8013FD91ADB900F00257F4E /* random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = random.cpp; sourceTree = "<group>"; };
-		B8013FDA1ADB900F00257F4E /* random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = random.h; sourceTree = "<group>"; };
-		B8013FDB1ADB900F00257F4E /* Room Client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "Room Client.cpp"; sourceTree = "<group>"; };
-		B8013FDC1ADB900F00257F4E /* Room Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Room Client.h"; sourceTree = "<group>"; };
-		B8013FDD1ADB900F00257F4E /* Room Dialog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "Room Dialog.cpp"; sourceTree = "<group>"; };
-		B8013FDE1ADB900F00257F4E /* Room Display.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "Room Display.cpp"; sourceTree = "<group>"; };
-		B8013FDF1ADB900F00257F4E /* room0.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = room0.cpp; sourceTree = "<group>"; };
-		B8013FE01ADB900F00257F4E /* room0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = room0.h; sourceTree = "<group>"; };
-		B8013FE11ADB900F00257F4E /* rooms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rooms.h; sourceTree = "<group>"; };
-		B80AC05F1ADB839D00417531 /* DoubleCrossEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DoubleCrossEngine.cpp; sourceTree = "<group>"; };
-		B80AC0601ADB839D00417531 /* DoubleCrossEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleCrossEngine.h; sourceTree = "<group>"; };
-		B80AC0611ADB839D00417531 /* DoubleCrossServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DoubleCrossServer.cpp; sourceTree = "<group>"; };
-		B80AC0621ADB839D00417531 /* DoubleCrossServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleCrossServer.h; sourceTree = "<group>"; };
-		B80AC0631ADB839D00417531 /* DoubleCrossServerTable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DoubleCrossServerTable.cpp; sourceTree = "<group>"; };
-		B80AC0641ADB839D00417531 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		B80AC0691ADB843A00417531 /* random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = random.cpp; sourceTree = "<group>"; };
-		B80AC06A1ADB843A00417531 /* random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = random.h; sourceTree = "<group>"; };
 		B858A8E01AF0944D00184931 /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		B89939421ADAF8BC00587323 /* accelerometer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = accelerometer.swift; sourceTree = "<group>"; };
 		B8A455141AF15A1400C0D83B /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -547,6 +539,25 @@
 		B8C14F001AF3DF6F00E640C0 /* MarkMyWordBGCleaniPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MarkMyWordBGCleaniPad@2x.png"; sourceTree = "<group>"; };
 		B8C14F021AF3E4B500E640C0 /* tileBase45x45.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tileBase45x45.png; sourceTree = "<group>"; };
 		B8C697E71AF446520070ECEE /* TileShadow90x90.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileShadow90x90.png; sourceTree = "<group>"; };
+		B8C9005B1B011F1C00C72745 /* appIcon120x120_MMW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon120x120_MMW.png; sourceTree = "<group>"; };
+		B8C9005C1B011F1C00C72745 /* appIcon58x58_MMW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon58x58_MMW.png; sourceTree = "<group>"; };
+		B8C9005D1B011F1C00C72745 /* appIcon80x80_MMW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon80x80_MMW.png; sourceTree = "<group>"; };
+		B8C9005E1B011F1C00C72745 /* appIcon180x180_MMW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon180x180_MMW.png; sourceTree = "<group>"; };
+		B8C900691B01240200C72745 /* appIcon76x76_MMW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon76x76_MMW.png; sourceTree = "<group>"; };
+		B8C9006A1B01240200C72745 /* appIcon76x76_MMW@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appIcon76x76_MMW@2x.png"; sourceTree = "<group>"; };
+		B8C9006B1B01240200C72745 /* appIcon29x29_MMW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon29x29_MMW.png; sourceTree = "<group>"; };
+		B8C9006C1B01240200C72745 /* appIcon40x40_MMW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon40x40_MMW.png; sourceTree = "<group>"; };
+		B8C900711B0124C500C72745 /* appIcon60x60_MMW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon60x60_MMW.png; sourceTree = "<group>"; };
+		B8C900731B0125D100C72745 /* appIcon87x87_MMW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon87x87_MMW.png; sourceTree = "<group>"; };
+		B8C900751B013C3500C72745 /* PlayerBGTEST309x1320TestFull.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlayerBGTEST309x1320TestFull.jpg; sourceTree = "<group>"; };
+		B8C900781B01405600C72745 /* MMWPlayerTilesGrid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MMWPlayerTilesGrid.png; sourceTree = "<group>"; };
+		B8C9007A1B014EB900C72745 /* MMWPlayerTilesPlaque.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MMWPlayerTilesPlaque.png; sourceTree = "<group>"; };
+		B8C9007C1B0157CC00C72745 /* ButtonPlaceholderBottomLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonPlaceholderBottomLeft.png; sourceTree = "<group>"; };
+		B8C9007E1B0159C900C72745 /* PlayerBGTest309x660.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayerBGTest309x660.png; sourceTree = "<group>"; };
+		B8CB74281AF803BD00AE5F40 /* GridObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridObject.swift; sourceTree = "<group>"; };
+		B8CB742A1AF880A400AE5F40 /* DoubleCross Server */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "DoubleCross Server"; sourceTree = "<group>"; };
+		B8CB742B1AF880A400AE5F40 /* DoubleCross Client */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "DoubleCross Client"; sourceTree = "<group>"; };
+		B8CB742E1AF9260400AE5F40 /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		B8CCE19C1AD8C13500882391 /* MarkMyWord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarkMyWord.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8CCE1A01AD8C13500882391 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8CCE1A11AD8C13500882391 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -559,6 +570,12 @@
 		B8CCE1B51AD8C13500882391 /* MarkMyWordTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarkMyWordTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8CCE1BA1AD8C13500882391 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8CCE1BB1AD8C13500882391 /* MarkMyWordTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkMyWordTests.swift; sourceTree = "<group>"; };
+		B8D130E21AFD44A100865982 /* MeyamaSplashScreen_iPad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MeyamaSplashScreen_iPad.jpg; sourceTree = "<group>"; };
+		B8D130E31AFD44A100865982 /* MeyamaSplashScreen_iPad@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MeyamaSplashScreen_iPad@2x.jpg"; sourceTree = "<group>"; };
+		B8D130E61AFD635500865982 /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		B8D130E81AFD668100865982 /* PlayerBG01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlayerBG01.jpg; sourceTree = "<group>"; };
+		B8D130EA1AFD725B00865982 /* PlayerBG02Island.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlayerBG02Island.jpg; sourceTree = "<group>"; };
+		B8D130EC1AFD7E2900865982 /* PlayerBGTEST309x1320.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlayerBGTEST309x1320.jpg; sourceTree = "<group>"; };
 		B8DA7EC91AE13784003FE2C6 /* avatarpic-l.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatarpic-l.png"; sourceTree = "<group>"; };
 		B8DA7ECA1AE13784003FE2C6 /* DCBG_1024x768.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DCBG_1024x768.jpg; sourceTree = "<group>"; };
 		B8DA7ECB1AE13784003FE2C6 /* HookAvatar80x80.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = HookAvatar80x80.jpg; sourceTree = "<group>"; };
@@ -569,8 +586,9 @@
 		B8DA7ED01AE13784003FE2C6 /* MeyamaMathMenuScreenBG_1024x768.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MeyamaMathMenuScreenBG_1024x768.png; sourceTree = "<group>"; };
 		B8DA7ED11AE13784003FE2C6 /* OrangeLetterA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OrangeLetterA.png; sourceTree = "<group>"; };
 		B8E874E51AE17E0000763849 /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
+		B8F2328A1AF56DB800B2324B /* Tile3D95x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tile3D95x.png; sourceTree = "<group>"; };
 		B8F264F51AE19EF50072B9D4 /* TetrisCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TetrisCell.swift; sourceTree = "<group>"; };
-		B8F264F91AE1EFED0072B9D4 /* MarkMyWordSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkMyWordSettings.swift; sourceTree = "<group>"; };
+		B8F264F91AE1EFED0072B9D4 /* MarkMyWordGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkMyWordGame.swift; sourceTree = "<group>"; };
 		B8FA8FA11AE9DC93007CF07C /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
 		B8FA8FA31AE9DD40007CF07C /* AudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
 		B8FA8FA51AE9DD70007CF07C /* Comic_Andy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Comic_Andy.ttf; sourceTree = "<group>"; };
@@ -600,40 +618,8 @@
 		B80AC05E1ADB837F00417531 /* ReferenceX */ = {
 			isa = PBXGroup;
 			children = (
-				B8013FCC1ADB900F00257F4E /* DirtyWord.cpp */,
-				B8013FCD1ADB900F00257F4E /* DirtyWord.h */,
-				B8013FCE1ADB900F00257F4E /* DoubleCross Client.cpp */,
-				B8013FCF1ADB900F00257F4E /* DoubleCross Client.h */,
-				B8013FD01ADB900F00257F4E /* DoubleCross Dialog.cpp */,
-				B8013FD11ADB900F00257F4E /* DoubleCrossClientTable.cpp */,
-				B8013FD21ADB900F00257F4E /* DoubleCrossEngine.cpp */,
-				B8013FD31ADB900F00257F4E /* DoubleCrossEngine.h */,
-				B8013FD41ADB900F00257F4E /* DoubleCrossServer.cpp */,
-				B8013FD51ADB900F00257F4E /* DoubleCrossServer.h */,
-				B8013FD61ADB900F00257F4E /* DoubleCrossServerTable.cpp */,
-				B8013FD71ADB900F00257F4E /* game.cpp */,
-				B8013FD81ADB900F00257F4E /* main.cpp */,
-				B8013FD91ADB900F00257F4E /* random.cpp */,
-				B8013FDA1ADB900F00257F4E /* random.h */,
-				B8013FDB1ADB900F00257F4E /* Room Client.cpp */,
-				B8013FDC1ADB900F00257F4E /* Room Client.h */,
-				B8013FDD1ADB900F00257F4E /* Room Dialog.cpp */,
-				B8013FDE1ADB900F00257F4E /* Room Display.cpp */,
-				B8013FDF1ADB900F00257F4E /* room0.cpp */,
-				B8013FE01ADB900F00257F4E /* room0.h */,
-				B8013FE11ADB900F00257F4E /* rooms.h */,
-				B8013FC51ADB8D7400257F4E /* DoubleCross Client.cpp */,
-				B8013FC61ADB8D7400257F4E /* DoubleCross Client.h */,
-				B8013FC71ADB8D7400257F4E /* DoubleCross Dialog.cpp */,
-				B8013FC81ADB8D7400257F4E /* DoubleCrossClientTable.cpp */,
-				B80AC0691ADB843A00417531 /* random.cpp */,
-				B80AC06A1ADB843A00417531 /* random.h */,
-				B80AC05F1ADB839D00417531 /* DoubleCrossEngine.cpp */,
-				B80AC0601ADB839D00417531 /* DoubleCrossEngine.h */,
-				B80AC0611ADB839D00417531 /* DoubleCrossServer.cpp */,
-				B80AC0621ADB839D00417531 /* DoubleCrossServer.h */,
-				B80AC0631ADB839D00417531 /* DoubleCrossServerTable.cpp */,
-				B80AC0641ADB839D00417531 /* main.cpp */,
+				B8CB742A1AF880A400AE5F40 /* DoubleCross Server */,
+				B8CB742B1AF880A400AE5F40 /* DoubleCross Client */,
 			);
 			name = ReferenceX;
 			sourceTree = "<group>";
@@ -846,6 +832,61 @@
 			name = WordLists;
 			sourceTree = "<group>";
 		};
+		B8C900561B011DEE00C72745 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				B8C9006B1B01240200C72745 /* appIcon29x29_MMW.png */,
+				B8C9006C1B01240200C72745 /* appIcon40x40_MMW.png */,
+				B8C9005C1B011F1C00C72745 /* appIcon58x58_MMW.png */,
+				B8C900711B0124C500C72745 /* appIcon60x60_MMW.png */,
+				B8C900691B01240200C72745 /* appIcon76x76_MMW.png */,
+				B8C9006A1B01240200C72745 /* appIcon76x76_MMW@2x.png */,
+				B8C9005D1B011F1C00C72745 /* appIcon80x80_MMW.png */,
+				B8C900731B0125D100C72745 /* appIcon87x87_MMW.png */,
+				B8C9005B1B011F1C00C72745 /* appIcon120x120_MMW.png */,
+				B8C9005E1B011F1C00C72745 /* appIcon180x180_MMW.png */,
+			);
+			name = icons;
+			sourceTree = "<group>";
+		};
+		B8C900671B01201600C72745 /* launchScreens */ = {
+			isa = PBXGroup;
+			children = (
+				B8DA7ECA1AE13784003FE2C6 /* DCBG_1024x768.jpg */,
+				B8C14EFA1AF32E3600E640C0 /* LaunchScreen@2x.jpg */,
+				B8C14EF81AF32CF900E640C0 /* LaunchScreen.jpg */,
+				B8C14EFC1AF32FE500E640C0 /* LaunchScreen.png */,
+				B8C14EFD1AF32FE500E640C0 /* LaunchScreen@2x.png */,
+			);
+			name = launchScreens;
+			sourceTree = "<group>";
+		};
+		B8C900681B01203A00C72745 /* backgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				B8C9007C1B0157CC00C72745 /* ButtonPlaceholderBottomLeft.png */,
+				B8DA7ECD1AE13784003FE2C6 /* MarkMyWordBG_iPadR@2x.jpg */,
+				B8B2947D1AF06146003F789F /* MarkMyWordBGiPadMod@2x.jpg */,
+				B8DA7ECE1AE13784003FE2C6 /* MarkMyWordBG2048x1536.jpg */,
+				B8C14F001AF3DF6F00E640C0 /* MarkMyWordBGCleaniPad@2x.png */,
+			);
+			name = backgrounds;
+			sourceTree = "<group>";
+		};
+		B8C900771B01404500C72745 /* player */ = {
+			isa = PBXGroup;
+			children = (
+				B8C9007A1B014EB900C72745 /* MMWPlayerTilesPlaque.png */,
+				B8C900781B01405600C72745 /* MMWPlayerTilesGrid.png */,
+				B8D130E81AFD668100865982 /* PlayerBG01.jpg */,
+				B8D130EA1AFD725B00865982 /* PlayerBG02Island.jpg */,
+				B8C9007E1B0159C900C72745 /* PlayerBGTest309x660.png */,
+				B8D130EC1AFD7E2900865982 /* PlayerBGTEST309x1320.jpg */,
+				B8C900751B013C3500C72745 /* PlayerBGTEST309x1320TestFull.jpg */,
+			);
+			name = player;
+			sourceTree = "<group>";
+		};
 		B8CCE1931AD8C13500882391 = {
 			isa = PBXGroup;
 			children = (
@@ -921,8 +962,9 @@
 			isa = PBXGroup;
 			children = (
 				B858A8E01AF0944D00184931 /* Level.swift */,
-				B8F264F91AE1EFED0072B9D4 /* MarkMyWordSettings.swift */,
+				B8F264F91AE1EFED0072B9D4 /* MarkMyWordGame.swift */,
 				B8FA8FA11AE9DC93007CF07C /* GameData.swift */,
+				B8CB742E1AF9260400AE5F40 /* Grid.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -930,10 +972,11 @@
 		B8DA7EC21AE136B4003FE2C6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B8FA8FAA1AE9DF6F007CF07C /* TileViewOLD.swift */,
-				B8C14EF01AF27E5100E640C0 /* LetterTile.swift */,
-				B8CCE1A51AD8C13500882391 /* MMWGameScene.swift */,
 				B8B49DBA1AF1AF610086154C /* MenuScene.swift */,
+				B8CCE1A51AD8C13500882391 /* MMWGameScene.swift */,
+				B8C14EF01AF27E5100E640C0 /* LetterTile.swift */,
+				B8D130E61AFD635500865982 /* PlayerView.swift */,
+				B8FA8FAA1AE9DF6F007CF07C /* TileViewOLD.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -949,6 +992,7 @@
 				B8F264F51AE19EF50072B9D4 /* TetrisCell.swift */,
 				B8B2947F1AF064B7003F789F /* HUD.swift */,
 				B8C14EEE1AF2783000E640C0 /* LetterTileController.swift */,
+				B8CB74281AF803BD00AE5F40 /* GridObject.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -972,24 +1016,22 @@
 		B8DA7EC51AE136D3003FE2C6 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B8C900771B01404500C72745 /* player */,
+				B8C900681B01203A00C72745 /* backgrounds */,
+				B8C900671B01201600C72745 /* launchScreens */,
+				B8C900561B011DEE00C72745 /* icons */,
+				B8D130E21AFD44A100865982 /* MeyamaSplashScreen_iPad.jpg */,
+				B8D130E31AFD44A100865982 /* MeyamaSplashScreen_iPad@2x.jpg */,
 				B8DA7EC91AE13784003FE2C6 /* avatarpic-l.png */,
 				B8C14F021AF3E4B500E640C0 /* tileBase45x45.png */,
 				B8C697E71AF446520070ECEE /* TileShadow90x90.png */,
-				B8DA7ECA1AE13784003FE2C6 /* DCBG_1024x768.jpg */,
-				B8C14EFA1AF32E3600E640C0 /* LaunchScreen@2x.jpg */,
-				B8C14EF81AF32CF900E640C0 /* LaunchScreen.jpg */,
-				B8C14EFC1AF32FE500E640C0 /* LaunchScreen.png */,
-				B8C14EFD1AF32FE500E640C0 /* LaunchScreen@2x.png */,
 				B8DA7ECB1AE13784003FE2C6 /* HookAvatar80x80.jpg */,
 				B8DA7ECC1AE13784003FE2C6 /* LetterTest90x90.png */,
 				B8C14EF21AF2811E00E640C0 /* TileBackTest90x90.png */,
-				B8DA7ECD1AE13784003FE2C6 /* MarkMyWordBG_iPadR@2x.jpg */,
-				B8B2947D1AF06146003F789F /* MarkMyWordBGiPadMod@2x.jpg */,
-				B8DA7ECE1AE13784003FE2C6 /* MarkMyWordBG2048x1536.jpg */,
-				B8C14F001AF3DF6F00E640C0 /* MarkMyWordBGCleaniPad@2x.png */,
 				B8DA7ECF1AE13784003FE2C6 /* MeyamaIconLarge.png */,
 				B8DA7ED01AE13784003FE2C6 /* MeyamaMathMenuScreenBG_1024x768.png */,
 				B8C14EF41AF2DE1B00E640C0 /* default.jpg */,
+				B8F2328A1AF56DB800B2324B /* Tile3D95x.png */,
 				B8C14EF61AF2DEEF00E640C0 /* OldBoard512x512.png */,
 				B8DA7ED11AE13784003FE2C6 /* OrangeLetterA.png */,
 			);
@@ -1172,6 +1214,7 @@
 				B8A455D11AF171B800C0D83B /* card_spell_sleep_sel@2x.png in Resources */,
 				B8A455D71AF171B800C0D83B /* card_spell_stoneskin_sel@2x.png in Resources */,
 				B8C14EF91AF32CF900E640C0 /* LaunchScreen.jpg in Resources */,
+				B8C900631B011F1C00C72745 /* appIcon120x120_MMW.png in Resources */,
 				B8A456051AF171B800C0D83B /* player_two@2x.png in Resources */,
 				B8A455E81AF171B800C0D83B /* draw.png in Resources */,
 				B8A455F71AF171B800C0D83B /* MenuBackground@2x.png in Resources */,
@@ -1192,6 +1235,7 @@
 				B8A455B01AF171B800C0D83B /* card_creature_dragon_sel.png in Resources */,
 				B8B2CAF11ADADD9100C9DEE7 /* 11_2LetterWords.txt in Resources */,
 				B8B2CAD61ADADD9100C9DEE7 /* 7.3-LetterWords.txt in Resources */,
+				B8F2328B1AF56DB800B2324B /* Tile3D95x.png in Resources */,
 				B8CCE1B01AD8C13500882391 /* LaunchScreen.xib in Resources */,
 				B8A456111AF171B800C0D83B /* TutorialButton@2x.png in Resources */,
 				B8A455E01AF171B800C0D83B /* clear@2x.png in Resources */,
@@ -1212,6 +1256,8 @@
 				B8A455CD1AF171B800C0D83B /* card_spell_rabid@2x.png in Resources */,
 				B8A455DD1AF171B800C0D83B /* changePhase@2x.png in Resources */,
 				B8B2CAF61ADADD9100C9DEE7 /* 12_1LetterWords.txt in Resources */,
+				B8D130EB1AFD725B00865982 /* PlayerBG02Island.jpg in Resources */,
+				B8C9007B1B014EB900C72745 /* MMWPlayerTilesPlaque.png in Resources */,
 				B8B2CB091ADADD9100C9DEE7 /* enable1WordList.txt in Resources */,
 				B8B2CAFC1ADADD9100C9DEE7 /* 13.1-LetterWords.txt in Resources */,
 				B8A455C41AF171B800C0D83B /* card_spell_death_ray_sel.png in Resources */,
@@ -1254,13 +1300,17 @@
 				B8A455E41AF171B800C0D83B /* CreditsButton@2x.png in Resources */,
 				B8A455F01AF171B800C0D83B /* icon_star_filled.png in Resources */,
 				B8A455F51AF171B800C0D83B /* LinkButton@2x.png in Resources */,
+				B8CB742D1AF880A400AE5F40 /* DoubleCross Client in Resources */,
 				B8B2CA7D1ADADB7000C9DEE7 /* PLINK.mp3 in Resources */,
 				B8C14EFB1AF32E3600E640C0 /* LaunchScreen@2x.jpg in Resources */,
+				B8C900661B011F1C00C72745 /* appIcon180x180_MMW.png in Resources */,
 				B8A456041AF171B800C0D83B /* player_two.png in Resources */,
 				B8A455A91AF171B800C0D83B /* card_creature_bear_large@2x.png in Resources */,
 				B8A455EF1AF171B800C0D83B /* icon_heart@2x.png in Resources */,
+				B8C900701B01240200C72745 /* appIcon40x40_MMW.png in Resources */,
 				B8B2CAEB1ADADD9100C9DEE7 /* 10.1-LetterWords.txt in Resources */,
 				B8C14F031AF3E4B500E640C0 /* tileBase45x45.png in Resources */,
+				B8C900741B0125D100C72745 /* appIcon87x87_MMW.png in Resources */,
 				B8B2CB081ADADD9100C9DEE7 /* 24-LetterWords.txt in Resources */,
 				B8A456141AF171B800C0D83B /* zoup.wav in Resources */,
 				B8B2CA701ADADB7000C9DEE7 /* 1006.WAV in Resources */,
@@ -1273,6 +1323,7 @@
 				B8B2CAE41ADADD9100C9DEE7 /* 9.2-LetterWords.txt in Resources */,
 				B8A455BC1AF171B800C0D83B /* card_energy_used_large.png in Resources */,
 				B8B2CAF81ADADD9100C9DEE7 /* 12.1-LetterWords.txt in Resources */,
+				B8C9006F1B01240200C72745 /* appIcon29x29_MMW.png in Resources */,
 				B8A455C91AF171B800C0D83B /* card_spell_rabid_large@2x.png in Resources */,
 				B8A455BE1AF171B800C0D83B /* card_energy_used.png in Resources */,
 				B8A455A11AF171B800C0D83B /* Black Vortex.mp3 in Resources */,
@@ -1284,13 +1335,16 @@
 				B8A455D41AF171B800C0D83B /* card_spell_stoneskin_large.png in Resources */,
 				B8A455CB1AF171B800C0D83B /* card_spell_rabid_sel@2x.png in Resources */,
 				B8DA7EDA1AE13784003FE2C6 /* OrangeLetterA.png in Resources */,
+				B8C900651B011F1C00C72745 /* appIcon80x80_MMW.png in Resources */,
 				B8A455AD1AF171B800C0D83B /* card_creature_bear@2x.png in Resources */,
 				B8A455CC1AF171B800C0D83B /* card_spell_rabid.png in Resources */,
 				B8A455A81AF171B800C0D83B /* card_creature_bear_large.png in Resources */,
 				B8A455F61AF171B800C0D83B /* MenuBackground.png in Resources */,
 				B8B2CA6F1ADADB7000C9DEE7 /* 1003.WAV in Resources */,
 				B8A455B71AF171B800C0D83B /* card_creature_wolf_sel@2x.png in Resources */,
+				B8CB742C1AF880A400AE5F40 /* DoubleCross Server in Resources */,
 				B8B2CADA1ADADD9100C9DEE7 /* 8_4LetterWords.txt in Resources */,
+				B8D130E91AFD668100865982 /* PlayerBG01.jpg in Resources */,
 				B8A455B91AF171B800C0D83B /* card_creature_wolf@2x.png in Resources */,
 				B8C14F011AF3DF6F00E640C0 /* MarkMyWordBGCleaniPad@2x.png in Resources */,
 				B8C697E81AF446520070ECEE /* TileShadow90x90.png in Resources */,
@@ -1319,9 +1373,12 @@
 				B8B2CAE51ADADD9100C9DEE7 /* 9.3-LetterWords.txt in Resources */,
 				B8A455981AF171B800C0D83B /* activate-energy.wav in Resources */,
 				B8B2CAE81ADADD9100C9DEE7 /* 10_2LetterWords.txt in Resources */,
+				B8D130E51AFD44A100865982 /* MeyamaSplashScreen_iPad@2x.jpg in Resources */,
 				B8C14EF71AF2DEEF00E640C0 /* OldBoard512x512.png in Resources */,
 				B8B2CACC1ADADD9100C9DEE7 /* 5LetterWords.txt in Resources */,
 				B8DA7ED61AE13784003FE2C6 /* MarkMyWordBG_iPadR@2x.jpg in Resources */,
+				B8D130ED1AFD7E2900865982 /* PlayerBGTEST309x1320.jpg in Resources */,
+				B8C9006D1B01240200C72745 /* appIcon76x76_MMW.png in Resources */,
 				B8A455D21AF171B800C0D83B /* card_spell_sleep.png in Resources */,
 				B8A455C11AF171B800C0D83B /* card_energy@2x.png in Resources */,
 				B8B2CA711ADADB7000C9DEE7 /* 1007.WAV in Resources */,
@@ -1350,17 +1407,21 @@
 				B8A4560E1AF171B800C0D83B /* Take a Chance.mp3 in Resources */,
 				B8A455B41AF171B800C0D83B /* card_creature_wolf_large.png in Resources */,
 				B8A455FE1AF171B800C0D83B /* PlayButton.png in Resources */,
+				B8C900791B01405600C72745 /* MMWPlayerTilesGrid.png in Resources */,
 				B8A455FF1AF171B800C0D83B /* PlayButton@2x.png in Resources */,
 				B8A455FA1AF171B800C0D83B /* one-sword.wav in Resources */,
 				B8A455D81AF171B800C0D83B /* card_spell_stoneskin.png in Resources */,
 				B8B2CB031ADADD9100C9DEE7 /* 19-LetterWords.txt in Resources */,
 				B8A455F41AF171B800C0D83B /* LinkButton.png in Resources */,
+				B8C900761B013C3500C72745 /* PlayerBGTEST309x1320TestFull.jpg in Resources */,
 				B8A455BD1AF171B800C0D83B /* card_energy_used_large@2x.png in Resources */,
 				B8B2CAED1ADADD9100C9DEE7 /* 10.3-LetterWords.txt in Resources */,
+				B8D130E41AFD44A100865982 /* MeyamaSplashScreen_iPad.jpg in Resources */,
 				B8A4559B1AF171B800C0D83B /* attack.png in Resources */,
 				B8A4560F1AF171B800C0D83B /* thump.wav in Resources */,
 				B8B2CAF01ADADD9100C9DEE7 /* 11_1LetterWords.txt in Resources */,
 				B8A456031AF171B800C0D83B /* player_one@2x.png in Resources */,
+				B8C9006E1B01240200C72745 /* appIcon76x76_MMW@2x.png in Resources */,
 				B8A455BA1AF171B800C0D83B /* card_energy_large.png in Resources */,
 				B8B2CAF91ADADD9100C9DEE7 /* 12.2-LetterWords.txt in Resources */,
 				B8A455AC1AF171B800C0D83B /* card_creature_bear.png in Resources */,
@@ -1379,6 +1440,8 @@
 				B8DA7ED71AE13784003FE2C6 /* MarkMyWordBG2048x1536.jpg in Resources */,
 				B8B2CADC1ADADD9100C9DEE7 /* 8.2-LetterWords.txt in Resources */,
 				B8A4560B1AF171B800C0D83B /* player2_beastmaster_sel@2x.png in Resources */,
+				B8C900721B0124C500C72745 /* appIcon60x60_MMW.png in Resources */,
+				B8C9007D1B0157CC00C72745 /* ButtonPlaceholderBottomLeft.png in Resources */,
 				B8A455991AF171B800C0D83B /* activateEnergy.png in Resources */,
 				B8A455BB1AF171B800C0D83B /* card_energy_large@2x.png in Resources */,
 				B8B2CAD21ADADD9100C9DEE7 /* 7_2LetterWords.txt in Resources */,
@@ -1394,8 +1457,10 @@
 				B8B2CAEF1ADADD9100C9DEE7 /* 10.5-LetterWords.txt in Resources */,
 				B8B2CA721ADADB7000C9DEE7 /* 1008.WAV in Resources */,
 				B8A456091AF171B800C0D83B /* player1_druid@2x.png in Resources */,
+				B8C9007F1B0159C900C72745 /* PlayerBGTest309x660.png in Resources */,
 				B8A4560D1AF171B800C0D83B /* player2_beastmaster@2x.png in Resources */,
 				B8DA7ED91AE13784003FE2C6 /* MeyamaMathMenuScreenBG_1024x768.png in Resources */,
+				B8C900641B011F1C00C72745 /* appIcon58x58_MMW.png in Resources */,
 				B8B2CAC81ADADD9100C9DEE7 /* 3LetterWords.txt in Resources */,
 				B8DA7ED41AE13784003FE2C6 /* HookAvatar80x80.jpg in Resources */,
 				B8CCE1AB1AD8C13500882391 /* Main.storyboard in Resources */,
@@ -1424,7 +1489,9 @@
 				B8B49DBB1AF1AF610086154C /* MenuScene.swift in Sources */,
 				B858A8E11AF0944D00184931 /* Level.swift in Sources */,
 				B8FA8FAB1AE9DF6F007CF07C /* TileViewOLD.swift in Sources */,
+				B8D130E71AFD635500865982 /* PlayerView.swift in Sources */,
 				B8C14EEF1AF2783000E640C0 /* LetterTileController.swift in Sources */,
+				B8CB742F1AF9260400AE5F40 /* Grid.swift in Sources */,
 				B8CCE1A61AD8C13500882391 /* MMWGameScene.swift in Sources */,
 				B8FA8FA41AE9DD40007CF07C /* AudioController.swift in Sources */,
 				B89939431ADAF8BC00587323 /* accelerometer.swift in Sources */,
@@ -1432,11 +1499,12 @@
 				B8C14EF11AF27E5100E640C0 /* LetterTile.swift in Sources */,
 				B8CCE1A81AD8C13500882391 /* MMWGameSceneViewController.swift in Sources */,
 				B8F264F61AE19EF50072B9D4 /* TetrisCell.swift in Sources */,
+				B8CB74291AF803BD00AE5F40 /* GridObject.swift in Sources */,
 				B8FA8FA21AE9DC93007CF07C /* GameData.swift in Sources */,
 				B8FA8FA91AE9DDB5007CF07C /* Config.swift in Sources */,
 				B8A455171AF15A1400C0D83B /* GameViewController.swift in Sources */,
 				B8B294801AF064B7003F789F /* HUD.swift in Sources */,
-				B8F264FA1AE1EFED0072B9D4 /* MarkMyWordSettings.swift in Sources */,
+				B8F264FA1AE1EFED0072B9D4 /* MarkMyWordGame.swift in Sources */,
 				B8A455161AF15A1400C0D83B /* GameScene.swift in Sources */,
 				B8CCE1A21AD8C13500882391 /* AppDelegate.swift in Sources */,
 				B8A455191AF15A6D00C0D83B /* CardController.swift in Sources */,

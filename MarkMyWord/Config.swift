@@ -13,8 +13,6 @@ import UIKit
 let ScreenWidth = UIScreen.mainScreen().bounds.size.width
 let ScreenHeight = UIScreen.mainScreen().bounds.size.height
 
-
-
 //Random number generator
 func randomNumber(#minX:UInt32, #maxX:UInt32) -> Int {
   let result = (arc4random() % (maxX - minX + 1)) + minX
@@ -31,6 +29,13 @@ let FontHUDSize : CGFloat = 18.0
 
 let FontHUDWhite = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 let FontHUDRed = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
+let FontHUDBlack = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+let UIColorAppleBlue = UIColor(red: 0.0, green: 0.6133, blue: 0.8594, alpha: 1.0)
+let UIColorAppleGreen = UIColor(red: 0.3828, green: 0.7305, blue: 0.2773, alpha: 1.0)
+let UIColorAppleRed = UIColor(red: 0.875, green: 0.2266, blue: 0.2422, alpha: 1.0)
+let UIColorApplePurple = UIColor(red: 0.5859, green: 0.2383, blue: 0.5898, alpha: 1.0)
+let UIColorAppleOrange = UIColor(red: 0.9609, green: 0.5117, blue: 0.125, alpha: 1.0)
+
 
 let FontHUDBig = UIFont(name:"HelveticaNeue-Bold", size:120.0)!
 let FontHUDBigName = "HelveticaNeue-Bold"

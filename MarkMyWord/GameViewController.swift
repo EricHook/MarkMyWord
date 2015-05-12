@@ -16,6 +16,10 @@ extension SKNode {
             
             archiver.setClass(self.classForKeyedUnarchiver(), forClassName: "SKScene")
             let scene = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as! GameScene
+            
+            scene.name = "scene in GameViewController"
+            println("scene is: \(scene.description)")
+            
             archiver.finishDecoding()
             return scene
         } else {
