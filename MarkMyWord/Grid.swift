@@ -16,10 +16,6 @@ import Foundation
 //    let grid2DArray : [T]
 //}
 
-
-// 
-
-
 class Grid {
     
     var gridLowerLeftX : Double = 0.0
@@ -28,7 +24,8 @@ class Grid {
     var gridSquareSizeY : Double = 10.0
     var gridNumSquaresX : Int = 5
     var gridNumSquaresY : Int = 5
-    var gridArr : [[AnyObject]]
+    //var gridArr : [[AnyObject]]
+    var gridArr = Array<Array<AnyObject>>()
     
     init() { // default 10x10 grid at 0,0
         self.gridLowerLeftX = 4
@@ -58,6 +55,10 @@ class Grid {
         return (GridSquareX, GridSquareY, GridSquareLowerLeftCornerX, GridSquareLowerLeftCornerY )
     }
     
+    func addToGridArray (tileToAdd: Tile, xGrid: Int, yGrid: Int) {
+        //gridArr[xGrid].insert(tileToAdd, atIndex: [yGrid])  // (tileToAdd, atIndex: xGrid)
+    }
+    
 //    func getGridSquareLLCorner (grid: Grid, locX: Float, locY: Float) -> (GridSquareX:Int, GridSquareY:Int) {
 //        var GridSquareX : Int = 0
 //        var GridSquareY : Int = 0
@@ -67,14 +68,14 @@ class Grid {
 //        return (GridSquareX, GridSquareY)
 //    }
     
-    func gridArrayMakeTest () {
-        gridArr[0][0] = "Joe"
-        gridArr[0][1] = "Mo"
-        var doub : Double = 22.2
-        gridArr[0][2] = doub
-        var gridTest : Grid = Grid()
-        gridArr[0][3] = gridTest
-        println("gridArrayTEST count: \(gridArr[0][0]) ... \(gridArr.description)")
-        println("gridArrayTEST count: \(gridArr[0][3]) ... \(gridArr.description)")
-    }
+//    func gridArrayMakeTest () {
+//        gridArr[0][0] = "Joe"
+//        gridArr[0][1] = "Mo"
+//        var doub : Double = 22.2
+//        gridArr[0][2] = doub
+//        var gridTest : Grid = Grid()
+//        gridArr[0][3] = gridTest
+//        println("gridArrayTEST count: \(gridArr[0][0]) ... \(gridArr.description)")
+//        println("gridArrayTEST count: \(gridArr[0][3]) ... \(gridArr.description)")
+//    }
 }

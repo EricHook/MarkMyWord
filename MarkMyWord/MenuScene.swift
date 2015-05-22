@@ -22,7 +22,7 @@ class MenuScene: SKScene {
         
         let backgroundNode = SKSpriteNode(imageNamed: "bg_blank")
         backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-        backgroundNode.position = CGPoint(x: 160.0, y: 0.0)
+        backgroundNode.position = CGPointMake(size.width / 2.0, 0)
         addChild(backgroundNode)
         
         let gameResultTextNode = SKLabelNode(fontNamed: "Copperplate")
@@ -75,4 +75,29 @@ class MenuScene: SKScene {
 
         
     }
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        /* Called when a touch begins */
+        //        if userInteractionEnabled {
+        //            let actionSound = SKAction.playSoundFileNamed("37Bronk.mp3", waitForCompletion: true)
+        //            runAction(actionSound)
+        //
+        for touch in (touches as! Set<UITouch>) {
+            let location = touch.locationInNode(self)
+            let touchedNode = nodeAtPoint(location)
+            
+            playMMWScene()
+        }
+        //        }
+    }
+    
+    func playMMWScene() {
+        let transition = SKTransition.crossFadeWithDuration(2.0)
+        var MMWScene = MMWGameScene(size: size)
+        MMWScene.name = "MMWScene instance name made in MenuScene"
+        var currentScene = MMWScene
+        view?.presentScene(MMWScene, transition: transition)
+    }
+
+
 }

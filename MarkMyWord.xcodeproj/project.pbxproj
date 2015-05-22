@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B82786131B0556E000916E20 /* MMWSeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82786121B0556E000916E20 /* MMWSeat.swift */; };
+		B82786151B05585D00916E20 /* MMWPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82786141B05585D00916E20 /* MMWPlayer.swift */; };
 		B858A8E11AF0944D00184931 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = B858A8E01AF0944D00184931 /* Level.swift */; };
 		B89939431ADAF8BC00587323 /* accelerometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89939421ADAF8BC00587323 /* accelerometer.swift */; };
 		B8A455161AF15A1400C0D83B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A455141AF15A1400C0D83B /* GameScene.swift */; };
@@ -230,7 +232,7 @@
 		B8B2CB091ADADD9100C9DEE7 /* enable1WordList.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAC41ADADD9100C9DEE7 /* enable1WordList.txt */; };
 		B8B49DBB1AF1AF610086154C /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B49DBA1AF1AF610086154C /* MenuScene.swift */; };
 		B8C14EEF1AF2783000E640C0 /* LetterTileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C14EEE1AF2783000E640C0 /* LetterTileController.swift */; };
-		B8C14EF11AF27E5100E640C0 /* LetterTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C14EF01AF27E5100E640C0 /* LetterTile.swift */; };
+		B8C14EF11AF27E5100E640C0 /* LetterTileSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C14EF01AF27E5100E640C0 /* LetterTileSprite.swift */; };
 		B8C14EF31AF2811E00E640C0 /* TileBackTest90x90.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C14EF21AF2811E00E640C0 /* TileBackTest90x90.png */; };
 		B8C14EF51AF2DE1B00E640C0 /* default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8C14EF41AF2DE1B00E640C0 /* default.jpg */; };
 		B8C14EF71AF2DEEF00E640C0 /* OldBoard512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C14EF61AF2DEEF00E640C0 /* OldBoard512x512.png */; };
@@ -274,6 +276,7 @@
 		B8D130E91AFD668100865982 /* PlayerBG01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8D130E81AFD668100865982 /* PlayerBG01.jpg */; };
 		B8D130EB1AFD725B00865982 /* PlayerBG02Island.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8D130EA1AFD725B00865982 /* PlayerBG02Island.jpg */; };
 		B8D130ED1AFD7E2900865982 /* PlayerBGTEST309x1320.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8D130EC1AFD7E2900865982 /* PlayerBGTEST309x1320.jpg */; };
+		B8D789281B0C3A0300C3DC36 /* MMWGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D789271B0C3A0300C3DC36 /* MMWGame.swift */; };
 		B8DA7ED21AE13784003FE2C6 /* avatarpic-l.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DA7EC91AE13784003FE2C6 /* avatarpic-l.png */; };
 		B8DA7ED31AE13784003FE2C6 /* DCBG_1024x768.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8DA7ECA1AE13784003FE2C6 /* DCBG_1024x768.jpg */; };
 		B8DA7ED41AE13784003FE2C6 /* HookAvatar80x80.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8DA7ECB1AE13784003FE2C6 /* HookAvatar80x80.jpg */; };
@@ -283,6 +286,8 @@
 		B8DA7ED81AE13784003FE2C6 /* MeyamaIconLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DA7ECF1AE13784003FE2C6 /* MeyamaIconLarge.png */; };
 		B8DA7ED91AE13784003FE2C6 /* MeyamaMathMenuScreenBG_1024x768.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DA7ED01AE13784003FE2C6 /* MeyamaMathMenuScreenBG_1024x768.png */; };
 		B8DA7EDA1AE13784003FE2C6 /* OrangeLetterA.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DA7ED11AE13784003FE2C6 /* OrangeLetterA.png */; };
+		B8E37F891B0F9A9200F712E1 /* xMenuSceneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E37F881B0F9A9200F712E1 /* xMenuSceneController.swift */; };
+		B8E37F8B1B0FAA1000F712E1 /* MenuSceneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E37F8A1B0FAA1000F712E1 /* MenuSceneController.swift */; };
 		B8E874E61AE17E0000763849 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E874E51AE17E0000763849 /* Tile.swift */; };
 		B8F2328B1AF56DB800B2324B /* Tile3D95x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8F2328A1AF56DB800B2324B /* Tile3D95x.png */; };
 		B8F264F61AE19EF50072B9D4 /* TetrisCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F264F51AE19EF50072B9D4 /* TetrisCell.swift */; };
@@ -305,6 +310,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B82786121B0556E000916E20 /* MMWSeat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMWSeat.swift; sourceTree = "<group>"; };
+		B82786141B05585D00916E20 /* MMWPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMWPlayer.swift; sourceTree = "<group>"; };
 		B858A8E01AF0944D00184931 /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		B89939421ADAF8BC00587323 /* accelerometer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = accelerometer.swift; sourceTree = "<group>"; };
 		B8A455141AF15A1400C0D83B /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -528,7 +535,7 @@
 		B8B2CAC41ADADD9100C9DEE7 /* enable1WordList.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = enable1WordList.txt; sourceTree = "<group>"; };
 		B8B49DBA1AF1AF610086154C /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		B8C14EEE1AF2783000E640C0 /* LetterTileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterTileController.swift; sourceTree = "<group>"; };
-		B8C14EF01AF27E5100E640C0 /* LetterTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterTile.swift; sourceTree = "<group>"; };
+		B8C14EF01AF27E5100E640C0 /* LetterTileSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterTileSprite.swift; sourceTree = "<group>"; };
 		B8C14EF21AF2811E00E640C0 /* TileBackTest90x90.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileBackTest90x90.png; sourceTree = "<group>"; };
 		B8C14EF41AF2DE1B00E640C0 /* default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = default.jpg; sourceTree = "<group>"; };
 		B8C14EF61AF2DEEF00E640C0 /* OldBoard512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OldBoard512x512.png; sourceTree = "<group>"; };
@@ -576,6 +583,7 @@
 		B8D130E81AFD668100865982 /* PlayerBG01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlayerBG01.jpg; sourceTree = "<group>"; };
 		B8D130EA1AFD725B00865982 /* PlayerBG02Island.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlayerBG02Island.jpg; sourceTree = "<group>"; };
 		B8D130EC1AFD7E2900865982 /* PlayerBGTEST309x1320.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlayerBGTEST309x1320.jpg; sourceTree = "<group>"; };
+		B8D789271B0C3A0300C3DC36 /* MMWGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMWGame.swift; sourceTree = "<group>"; };
 		B8DA7EC91AE13784003FE2C6 /* avatarpic-l.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatarpic-l.png"; sourceTree = "<group>"; };
 		B8DA7ECA1AE13784003FE2C6 /* DCBG_1024x768.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DCBG_1024x768.jpg; sourceTree = "<group>"; };
 		B8DA7ECB1AE13784003FE2C6 /* HookAvatar80x80.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = HookAvatar80x80.jpg; sourceTree = "<group>"; };
@@ -585,6 +593,8 @@
 		B8DA7ECF1AE13784003FE2C6 /* MeyamaIconLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MeyamaIconLarge.png; sourceTree = "<group>"; };
 		B8DA7ED01AE13784003FE2C6 /* MeyamaMathMenuScreenBG_1024x768.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MeyamaMathMenuScreenBG_1024x768.png; sourceTree = "<group>"; };
 		B8DA7ED11AE13784003FE2C6 /* OrangeLetterA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OrangeLetterA.png; sourceTree = "<group>"; };
+		B8E37F881B0F9A9200F712E1 /* xMenuSceneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xMenuSceneController.swift; sourceTree = "<group>"; };
+		B8E37F8A1B0FAA1000F712E1 /* MenuSceneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuSceneController.swift; sourceTree = "<group>"; };
 		B8E874E51AE17E0000763849 /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		B8F2328A1AF56DB800B2324B /* Tile3D95x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tile3D95x.png; sourceTree = "<group>"; };
 		B8F264F51AE19EF50072B9D4 /* TetrisCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TetrisCell.swift; sourceTree = "<group>"; };
@@ -622,6 +632,18 @@
 				B8CB742B1AF880A400AE5F40 /* DoubleCross Client */,
 			);
 			name = ReferenceX;
+			sourceTree = "<group>";
+		};
+		B82786111B05493C00916E20 /* Archive */ = {
+			isa = PBXGroup;
+			children = (
+				B8F264F51AE19EF50072B9D4 /* TetrisCell.swift */,
+				B8A455181AF15A6D00C0D83B /* CardController.swift */,
+				B8CB74281AF803BD00AE5F40 /* GridObject.swift */,
+				B89939421ADAF8BC00587323 /* accelerometer.swift */,
+				B8B2947F1AF064B7003F789F /* HUD.swift */,
+			);
+			name = Archive;
 			sourceTree = "<group>";
 		};
 		B8A4551A1AF1702200C0D83B /* PLACEHOLDER */ = {
@@ -864,6 +886,8 @@
 		B8C900681B01203A00C72745 /* backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				B8D130E21AFD44A100865982 /* MeyamaSplashScreen_iPad.jpg */,
+				B8D130E31AFD44A100865982 /* MeyamaSplashScreen_iPad@2x.jpg */,
 				B8C9007C1B0157CC00C72745 /* ButtonPlaceholderBottomLeft.png */,
 				B8DA7ECD1AE13784003FE2C6 /* MarkMyWordBG_iPadR@2x.jpg */,
 				B8B2947D1AF06146003F789F /* MarkMyWordBGiPadMod@2x.jpg */,
@@ -915,6 +939,7 @@
 				B8CCE1A91AD8C13500882391 /* Main.storyboard */,
 				B8A455141AF15A1400C0D83B /* GameScene.swift */,
 				B8A455151AF15A1400C0D83B /* GameViewController.swift */,
+				B8D789271B0C3A0300C3DC36 /* MMWGame.swift */,
 				B8CCE1A31AD8C13500882391 /* GameScene.sks */,
 				B8CCE1AC1AD8C13500882391 /* Images.xcassets */,
 				B8CCE1AE1AD8C13500882391 /* LaunchScreen.xib */,
@@ -951,6 +976,7 @@
 		B8DA7EC01AE1369F003FE2C6 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B82786111B05493C00916E20 /* Archive */,
 				B8DA7EC11AE136AC003FE2C6 /* Models */,
 				B8DA7EC21AE136B4003FE2C6 /* Views */,
 				B8DA7EC31AE136BC003FE2C6 /* Controllers */,
@@ -961,10 +987,13 @@
 		B8DA7EC11AE136AC003FE2C6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B8E874E51AE17E0000763849 /* Tile.swift */,
 				B858A8E01AF0944D00184931 /* Level.swift */,
 				B8F264F91AE1EFED0072B9D4 /* MarkMyWordGame.swift */,
 				B8FA8FA11AE9DC93007CF07C /* GameData.swift */,
 				B8CB742E1AF9260400AE5F40 /* Grid.swift */,
+				B82786121B0556E000916E20 /* MMWSeat.swift */,
+				B82786141B05585D00916E20 /* MMWPlayer.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -974,7 +1003,7 @@
 			children = (
 				B8B49DBA1AF1AF610086154C /* MenuScene.swift */,
 				B8CCE1A51AD8C13500882391 /* MMWGameScene.swift */,
-				B8C14EF01AF27E5100E640C0 /* LetterTile.swift */,
+				B8C14EF01AF27E5100E640C0 /* LetterTileSprite.swift */,
 				B8D130E61AFD635500865982 /* PlayerView.swift */,
 				B8FA8FAA1AE9DF6F007CF07C /* TileViewOLD.swift */,
 			);
@@ -984,15 +1013,11 @@
 		B8DA7EC31AE136BC003FE2C6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B8A455181AF15A6D00C0D83B /* CardController.swift */,
 				B8CCE1A71AD8C13500882391 /* MMWGameSceneViewController.swift */,
 				B8FA8FA31AE9DD40007CF07C /* AudioController.swift */,
-				B89939421ADAF8BC00587323 /* accelerometer.swift */,
-				B8E874E51AE17E0000763849 /* Tile.swift */,
-				B8F264F51AE19EF50072B9D4 /* TetrisCell.swift */,
-				B8B2947F1AF064B7003F789F /* HUD.swift */,
 				B8C14EEE1AF2783000E640C0 /* LetterTileController.swift */,
-				B8CB74281AF803BD00AE5F40 /* GridObject.swift */,
+				B8E37F8A1B0FAA1000F712E1 /* MenuSceneController.swift */,
+				B8E37F881B0F9A9200F712E1 /* xMenuSceneController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1020,8 +1045,6 @@
 				B8C900681B01203A00C72745 /* backgrounds */,
 				B8C900671B01201600C72745 /* launchScreens */,
 				B8C900561B011DEE00C72745 /* icons */,
-				B8D130E21AFD44A100865982 /* MeyamaSplashScreen_iPad.jpg */,
-				B8D130E31AFD44A100865982 /* MeyamaSplashScreen_iPad@2x.jpg */,
 				B8DA7EC91AE13784003FE2C6 /* avatarpic-l.png */,
 				B8C14F021AF3E4B500E640C0 /* tileBase45x45.png */,
 				B8C697E71AF446520070ECEE /* TileShadow90x90.png */,
@@ -1489,15 +1512,19 @@
 				B8B49DBB1AF1AF610086154C /* MenuScene.swift in Sources */,
 				B858A8E11AF0944D00184931 /* Level.swift in Sources */,
 				B8FA8FAB1AE9DF6F007CF07C /* TileViewOLD.swift in Sources */,
+				B8E37F8B1B0FAA1000F712E1 /* MenuSceneController.swift in Sources */,
 				B8D130E71AFD635500865982 /* PlayerView.swift in Sources */,
 				B8C14EEF1AF2783000E640C0 /* LetterTileController.swift in Sources */,
 				B8CB742F1AF9260400AE5F40 /* Grid.swift in Sources */,
 				B8CCE1A61AD8C13500882391 /* MMWGameScene.swift in Sources */,
 				B8FA8FA41AE9DD40007CF07C /* AudioController.swift in Sources */,
+				B82786151B05585D00916E20 /* MMWPlayer.swift in Sources */,
 				B89939431ADAF8BC00587323 /* accelerometer.swift in Sources */,
 				B8E874E61AE17E0000763849 /* Tile.swift in Sources */,
-				B8C14EF11AF27E5100E640C0 /* LetterTile.swift in Sources */,
+				B82786131B0556E000916E20 /* MMWSeat.swift in Sources */,
+				B8C14EF11AF27E5100E640C0 /* LetterTileSprite.swift in Sources */,
 				B8CCE1A81AD8C13500882391 /* MMWGameSceneViewController.swift in Sources */,
+				B8D789281B0C3A0300C3DC36 /* MMWGame.swift in Sources */,
 				B8F264F61AE19EF50072B9D4 /* TetrisCell.swift in Sources */,
 				B8CB74291AF803BD00AE5F40 /* GridObject.swift in Sources */,
 				B8FA8FA21AE9DC93007CF07C /* GameData.swift in Sources */,
@@ -1506,6 +1533,7 @@
 				B8B294801AF064B7003F789F /* HUD.swift in Sources */,
 				B8F264FA1AE1EFED0072B9D4 /* MarkMyWordGame.swift in Sources */,
 				B8A455161AF15A1400C0D83B /* GameScene.swift in Sources */,
+				B8E37F891B0F9A9200F712E1 /* xMenuSceneController.swift in Sources */,
 				B8CCE1A21AD8C13500882391 /* AppDelegate.swift in Sources */,
 				B8A455191AF15A6D00C0D83B /* CardController.swift in Sources */,
 			);

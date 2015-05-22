@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class LetterTile : SKSpriteNode {
+class LetterTileSprite : SKSpriteNode {
     
     var isMovable : Bool = true
     var faceUp : Bool = true
@@ -150,7 +150,7 @@ class LetterTile : SKSpriteNode {
         return cornerPoint
     }
     
-    func centerTileToSquare(tile : LetterTile) {
+    func centerTileToSquare(tile : LetterTileSprite) {
         tile.position.x += 22.5
         tile.position.y += 22.5
     }
@@ -306,7 +306,7 @@ class LetterTile : SKSpriteNode {
         
         for touch in (touches as! Set<UITouch>) {
             //location = touch.locationInNode(self)
-            //            let location = touch.locationInNode(self)
+                        let location = touch.locationInNode(self)
             //            let touchedNode = nodeA                                                                                                                                          Point(location)
             zPosition = 1
             let dropDown = SKAction.scaleTo(1.0, duration: 0.1)
@@ -314,26 +314,26 @@ class LetterTile : SKSpriteNode {
             tileShadow.zPosition = -1
             tileShadow.hidden = true
             
-            var gameGrid : Grid = (scene as! MMWGameScene).getBoardGrid()
-            //var tileSnap : CGPoint = CGPointMake(165.0, 28.0)
             var tileSnapTouch = (touch as UITouch).locationInView(scene!.view)
             
+            //var getSnapGrid : Grid
+            var gameGrid = (scene as! MMWGameScene).getSnapGrid(tileSnapTouch) // .getBoardGrid()
             
             
+            //var tileSnap : CGPoint = CGPointMake(165.0, 28.0)
             
             
-            
-            
+
             
             // get snap location for point touch ended // -15.5 on y touch point adjusts for snapping too high to lower square
             //var tileSnapCalculate = gameGrid.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y))
             // get snap x, y values
-            var tileSnapCalculateX : CGFloat = CGFloat(gameGrid.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y)).GridSquareLowerLeftCornerX)
-            var tileSnapCalculateY : CGFloat = CGFloat(gameGrid.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y - 15.5)).GridSquareLowerLeftCornerY)
+            var tileSnapCalculateX : CGFloat = CGFloat(gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y)).GridSquareLowerLeftCornerX)
+            var tileSnapCalculateY : CGFloat = CGFloat(gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y - 15.5)).GridSquareLowerLeftCornerY)
             
             // get snap grid array [[]] positions // -15.5 on y touch point adjusts for snapping too high to lower square
-            var tileSnapXGrid : Int = (gameGrid.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y)).GridSquareX)
-            var tileSnapYGrid : Int = (gameGrid.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y - 15.5)).GridSquareY)
+            var tileSnapXGrid : Int = (gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y)).GridSquareX)
+            var tileSnapYGrid : Int = (gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y - 15.5)).GridSquareY)
             
             // move tile to snap point
             self.position.x = tileSnapCalculateX + 22.5  //adjusts 22.5 for tile center in middle of tile

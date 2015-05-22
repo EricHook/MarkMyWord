@@ -6,37 +6,84 @@
 //  Copyright (c) 2015 Hook Studios. All rights reserved.
 //
 
-import Foundation
 
-import UIKit
 import SpriteKit
 
-class Tile : SKSpriteNode {
-
-//    var tile : SKSpriteNode?
-//    var tile2 : SKSpriteNode?
-
-    //var anchorPoint = CGPoint(x: 0.5, y: 0.0)
-    //var position = CGPoint(x: 0.5, y: 0.0)
+enum TileType: Int {
+    case Unknown = 0, Letter, ColorBomb, DirectionBomb
     
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("NSCoding not supported")
+    var spriteName: String {
+        let spriteNames = [
+            "Mystery",
+            "Letter",
+            "ColorBomb",
+            "DirectionBomb"]
+        
+        return spriteNames[rawValue - 1]
     }
     
-    init() {
-//        tile2 = SKSpriteNode(imageNamed: "OrangeLetterA.png")
-//        tile2!.anchorPoint = CGPoint(x: 0.0, y: 0.0)
-        let cardTexture = SKTexture(imageNamed: "OrangeLetterA.png")
-        super.init(texture: cardTexture, color: nil, size: cardTexture.size())
+    var highlightedSpriteName: String {
+        return spriteName + "-Highlighted"
     }
     
-    func makeTile () -> SKSpriteNode {
-        var tile2 = SKSpriteNode(imageNamed: "OrangeLetterA.png")
-        tile2.anchorPoint = CGPoint(x: 0.0, y: 0.0)
-        return tile2
+    static func random() -> TileType {
+        return TileType(rawValue: Int(arc4random_uniform(4)) + 1)!
     }
 }
+
+class Tile {
+    //var grid : Grid
+    var column: Int
+    var row: Int
+    let tileType: TileType
+    //var sprite: SKSpriteNode?
+    
+    init(column: Int, row: Int, tileType: TileType) {
+        self.column = column
+        self.row = row
+        self.tileType = tileType
+    }
+}
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//import Foundation
+//
+//import UIKit
+//import SpriteKit
+//
+//class Tile : SKSpriteNode {
+//
+////    var tile : SKSpriteNode?
+////    var tile2 : SKSpriteNode?
+//
+//    //var anchorPoint = CGPoint(x: 0.5, y: 0.0)
+//    //var position = CGPoint(x: 0.5, y: 0.0)
+//    
+//    
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("NSCoding not supported")
+//    }
+//    
+//    init() {
+////        tile2 = SKSpriteNode(imageNamed: "OrangeLetterA.png")
+////        tile2!.anchorPoint = CGPoint(x: 0.0, y: 0.0)
+//        let cardTexture = SKTexture(imageNamed: "OrangeLetterA.png")
+//        super.init(texture: cardTexture, color: nil, size: cardTexture.size())
+//    }
+//    
+//    func makeTile () -> SKSpriteNode {
+//        var tile2 = SKSpriteNode(imageNamed: "OrangeLetterA.png")
+//        tile2.anchorPoint = CGPoint(x: 0.0, y: 0.0)
+//        return tile2
+//    }
+//}
+
+
+///////////////////////////////////////////////////////////////////////
+
 
 //class Tile : SKSpriteNode
 //{

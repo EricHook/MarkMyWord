@@ -16,6 +16,7 @@ import SpriteKit
 
 class GameScene: SKScene {
     
+    
 //    func getCurrentGameScene () {
 //        return currentGameScene
 //    }
@@ -40,10 +41,6 @@ class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
-//        let navScreenBG = SKNode(fileNamed: "MeyamaMathMenuScreenBG_1024x768")
-//        navScreenBG.position = CGPointMake(0, 0)
-//        addChild(navScreenBG)
-        
         // add BG
         let backgroundNode = SKSpriteNode(imageNamed: "MeyamaMathMenuScreenBG_1024x768.png")
         backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
@@ -60,46 +57,8 @@ class GameScene: SKScene {
         myLabel.fontSize = 65;
         myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
         self.addChild(myLabel)
-        
-//        let wolf = CardController(imageNamed: "LetterTest90x90")
-//        wolf.position = CGPointMake(500,200)
-//        self.addChild(wolf)
-        
-        let cardBear01 = CardController(cardNamed: .CreatureBear)
-        cardBear01.position = CGPointMake(400,200)
-        self.addChild(cardBear01)
-        
-        let cardWolf01 = CardController(cardNamed: .CreatureWolf)
-        cardWolf01.position = CGPointMake(600,200)
-        self.addChild(cardWolf01)
-        
-        cardWolf01.addChild(newDamageLabel())
-        cardBear01.addChild(newDamageLabel())
-        
-        var letterTest01 = LetterTile(tileStyle: .basic, withChar: "P", withColor: SKColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), atPoint: CGPointMake(22, 22))
-        addChild(letterTest01)
-        
-        let HUDNav = HUD(hudNamed: "testHUD01")
-        HUDNav.position = CGPointMake(712,600)
-        //HUDNav.hudLabel =
-        self.addChild(HUDNav)
-        //self.addChild(HUDNav.hudLabel)
-        
-//        let bear = LetterTile(imageNamed: "HookAvatar80x80")
-//        bear.position = CGPointMake(300, 200)
-//        self.addChild(bear)
     }
     
-    func newDamageLabel() -> SKLabelNode {
-        let damageLabel = SKLabelNode(fontNamed: "OpenSans-Bold")
-        damageLabel.name = "damageLabel"
-        damageLabel.fontSize = 12
-        damageLabel.fontColor = UIColor(red: 0.47, green: 0.0, blue: 0.0, alpha: 1.0)
-        damageLabel.text = "X0"
-        damageLabel.position = CGPointMake(25, 40)
-        
-        return damageLabel
-    }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         /* Called when a touch begins */
@@ -122,7 +81,14 @@ class GameScene: SKScene {
 //    //            sprite.runAction(SKAction.repeatActionForever(action))
 //    //            self.addChild(sprite)
                 
-                playMMWScene()
+
+                println("going to mmw scene")
+                presentMMWScene()
+//                println("going to mmw controller")
+//                var mmwGameController = MMWGameSceneViewController()
+//                mmwGameController.loadMMWGameView()
+//                println("going to menu scene")
+//                playMenuScene()
             }
 //        }
     }
@@ -134,9 +100,10 @@ class GameScene: SKScene {
 //                let touchedNode = nodeAtPoint(location)
 //                touchedNode.position = location
 //            }
+//        
 //        }
 //    }
-//    
+//
 //    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
 //        for touch in (touches as! Set<UITouch>) {
 //            let location = touch.locationInNode(self)
@@ -147,20 +114,25 @@ class GameScene: SKScene {
 //        }
 //    }
     
-    func playMenuScene() {
+    func presentMenuScene() {
         let transition = SKTransition.crossFadeWithDuration(2.0)
         let menuScene = MenuScene(size: size,
             gameResult: true,
             score: 123)
+        let skView = view
         view?.presentScene(menuScene, transition: transition)
     }
     
-    func playMMWScene() {
+    func presentMMWScene() {
         let transition = SKTransition.crossFadeWithDuration(2.0)
         var MMWScene = MMWGameScene(size: size)
         MMWScene.name = "MMWScene instance name made in GameScene"
         var currentScene = MMWScene
         view?.presentScene(MMWScene, transition: transition)
+        println("in mmw controller")
+        
+//        var MMWsceneController = MMWGameSceneViewController()
+//        MMWsceneController.loadMMWGameView()
     }
     
     func getTestNum () -> (Int) {
