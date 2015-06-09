@@ -20,13 +20,6 @@ class MMWSeat {
     var specialRack : [Int]
     
     init (_playerSeatNum : Int, _seatColorNumber : Int) {
-//        var color : Int = 0
-//        var rackSize : Int = 6
-//        var specialRackSize : Int = 3
-//        var score : Int = 0
-//        self.rack = initRack()
-//        self.specialRack = initSpecialRack()
-        //seatUIColor = gameColors[color]
         playerSeatNum = _playerSeatNum
         seatColorNumber = _seatColorNumber
         rack = Array(count: rackSize, repeatedValue: 0)

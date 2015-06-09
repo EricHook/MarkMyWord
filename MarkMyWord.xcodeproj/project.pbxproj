@@ -288,7 +288,7 @@
 		B8DA7EDA1AE13784003FE2C6 /* OrangeLetterA.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DA7ED11AE13784003FE2C6 /* OrangeLetterA.png */; };
 		B8E37F891B0F9A9200F712E1 /* xMenuSceneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E37F881B0F9A9200F712E1 /* xMenuSceneController.swift */; };
 		B8E37F8B1B0FAA1000F712E1 /* MenuSceneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E37F8A1B0FAA1000F712E1 /* MenuSceneController.swift */; };
-		B8E874E61AE17E0000763849 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E874E51AE17E0000763849 /* Tile.swift */; };
+		B8E874E61AE17E0000763849 /* MMWTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E874E51AE17E0000763849 /* MMWTile.swift */; };
 		B8F2328B1AF56DB800B2324B /* Tile3D95x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8F2328A1AF56DB800B2324B /* Tile3D95x.png */; };
 		B8F264F61AE19EF50072B9D4 /* TetrisCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F264F51AE19EF50072B9D4 /* TetrisCell.swift */; };
 		B8F264FA1AE1EFED0072B9D4 /* MarkMyWordGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F264F91AE1EFED0072B9D4 /* MarkMyWordGame.swift */; };
@@ -595,7 +595,7 @@
 		B8DA7ED11AE13784003FE2C6 /* OrangeLetterA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OrangeLetterA.png; sourceTree = "<group>"; };
 		B8E37F881B0F9A9200F712E1 /* xMenuSceneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xMenuSceneController.swift; sourceTree = "<group>"; };
 		B8E37F8A1B0FAA1000F712E1 /* MenuSceneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuSceneController.swift; sourceTree = "<group>"; };
-		B8E874E51AE17E0000763849 /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
+		B8E874E51AE17E0000763849 /* MMWTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMWTile.swift; sourceTree = "<group>"; };
 		B8F2328A1AF56DB800B2324B /* Tile3D95x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tile3D95x.png; sourceTree = "<group>"; };
 		B8F264F51AE19EF50072B9D4 /* TetrisCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TetrisCell.swift; sourceTree = "<group>"; };
 		B8F264F91AE1EFED0072B9D4 /* MarkMyWordGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkMyWordGame.swift; sourceTree = "<group>"; };
@@ -644,6 +644,16 @@
 				B8B2947F1AF064B7003F789F /* HUD.swift */,
 			);
 			name = Archive;
+			sourceTree = "<group>";
+		};
+		B85B16251B0FDE6C00E58214 /* MMW */ = {
+			isa = PBXGroup;
+			children = (
+				B8E874E51AE17E0000763849 /* MMWTile.swift */,
+				B82786121B0556E000916E20 /* MMWSeat.swift */,
+				B82786141B05585D00916E20 /* MMWPlayer.swift */,
+			);
+			name = MMW;
 			sourceTree = "<group>";
 		};
 		B8A4551A1AF1702200C0D83B /* PLACEHOLDER */ = {
@@ -987,13 +997,11 @@
 		B8DA7EC11AE136AC003FE2C6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B8E874E51AE17E0000763849 /* Tile.swift */,
+				B85B16251B0FDE6C00E58214 /* MMW */,
 				B858A8E01AF0944D00184931 /* Level.swift */,
 				B8F264F91AE1EFED0072B9D4 /* MarkMyWordGame.swift */,
 				B8FA8FA11AE9DC93007CF07C /* GameData.swift */,
 				B8CB742E1AF9260400AE5F40 /* Grid.swift */,
-				B82786121B0556E000916E20 /* MMWSeat.swift */,
-				B82786141B05585D00916E20 /* MMWPlayer.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1194,11 +1202,13 @@
 		B8CCE1941AD8C13500882391 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Hook Studios";
 				TargetAttributes = {
 					B8CCE19B1AD8C13500882391 = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = 2NN9JNUBV3;
 					};
 					B8CCE1B41AD8C13500882391 = {
 						CreatedOnToolsVersion = 6.3;
@@ -1520,7 +1530,7 @@
 				B8FA8FA41AE9DD40007CF07C /* AudioController.swift in Sources */,
 				B82786151B05585D00916E20 /* MMWPlayer.swift in Sources */,
 				B89939431ADAF8BC00587323 /* accelerometer.swift in Sources */,
-				B8E874E61AE17E0000763849 /* Tile.swift in Sources */,
+				B8E874E61AE17E0000763849 /* MMWTile.swift in Sources */,
 				B82786131B0556E000916E20 /* MMWSeat.swift in Sources */,
 				B8C14EF11AF27E5100E640C0 /* LetterTileSprite.swift in Sources */,
 				B8CCE1A81AD8C13500882391 /* MMWGameSceneViewController.swift in Sources */,
@@ -1598,6 +1608,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1664,12 +1675,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MarkMyWord/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hookstudios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -1678,12 +1693,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MarkMyWord/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hookstudios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -1701,6 +1720,7 @@
 				);
 				INFOPLIST_FILE = MarkMyWordTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hookstudios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MarkMyWord.app/MarkMyWord";
 			};
@@ -1716,6 +1736,7 @@
 				);
 				INFOPLIST_FILE = MarkMyWordTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hookstudios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MarkMyWord.app/MarkMyWord";
 			};

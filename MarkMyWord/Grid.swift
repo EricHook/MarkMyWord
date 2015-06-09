@@ -26,19 +26,21 @@ class Grid {
     var gridNumSquaresY : Int = 5
     //var gridArr : [[AnyObject]]
     var gridArr = Array<Array<AnyObject>>()
+    var gridName : String = ""
     
     init() { // default 10x10 grid at 0,0
         self.gridLowerLeftX = 4
         gridArr = [[AnyObject]](count: gridNumSquaresY, repeatedValue: [AnyObject](count: gridNumSquaresX, repeatedValue: 0))
     }
     
-    init(gridLowerLeftX: Double, gridLowerLeftY : Double, gridSquareSizeX : Double, gridSquareSizeY : Double, gridNumSquaresX : Int, gridNumSquaresY : Int){
+    init(gridLowerLeftX: Double, gridLowerLeftY : Double, gridSquareSizeX : Double, gridSquareSizeY : Double, gridNumSquaresX : Int, gridNumSquaresY : Int, gridName : String){
         self.gridLowerLeftX = gridLowerLeftX
         self.gridLowerLeftY = gridLowerLeftY
         self.gridSquareSizeX = gridSquareSizeX
         self.gridSquareSizeY = gridSquareSizeY
         self.gridNumSquaresX = gridNumSquaresX
         self.gridNumSquaresY = gridNumSquaresY
+        self.gridName = gridName
         gridArr = [[AnyObject]](count: gridNumSquaresY, repeatedValue: [AnyObject](count: gridNumSquaresX, repeatedValue: 0))
     }
     
@@ -51,31 +53,12 @@ class Grid {
         GridSquareY = Int(( Double(locY) - self.gridLowerLeftY ) / gridSquareSizeY ) // arrary [] y location -> 0 is top left corner
         GridSquareLowerLeftCornerX = self.gridLowerLeftX + (Double(GridSquareX) * gridSquareSizeX)
         GridSquareLowerLeftCornerY = self.gridLowerLeftY + (Double(GridSquareY) * gridSquareSizeY)
-        println("TEST Grid square[]: [\(GridSquareX)], [\(GridSquareY)] and LL corner: \(GridSquareLowerLeftCornerX), \(GridSquareLowerLeftCornerY), click: \(locX), y: \(locY)")
+        print("TEST Grid square[]: [\(GridSquareX)], [\(GridSquareY)] and LL corner: \(GridSquareLowerLeftCornerX), \(GridSquareLowerLeftCornerY), click: \(locX), y: \(locY)")
         return (GridSquareX, GridSquareY, GridSquareLowerLeftCornerX, GridSquareLowerLeftCornerY )
     }
     
     func addToGridArray (tileToAdd: Tile, xGrid: Int, yGrid: Int) {
         //gridArr[xGrid].insert(tileToAdd, atIndex: [yGrid])  // (tileToAdd, atIndex: xGrid)
     }
-    
-//    func getGridSquareLLCorner (grid: Grid, locX: Float, locY: Float) -> (GridSquareX:Int, GridSquareY:Int) {
-//        var GridSquareX : Int = 0
-//        var GridSquareY : Int = 0
-//        GridSquareX = Int(( locX - grid.gridLowerLeftX ) / gridSquareSizeX )
-//        GridSquareY = Int(( locY - grid.gridLowerLeftY ) / gridSquareSizeY )
-//        println("TEST Grid square: \(GridSquareX), \(GridSquareY)")
-//        return (GridSquareX, GridSquareY)
-//    }
-    
-//    func gridArrayMakeTest () {
-//        gridArr[0][0] = "Joe"
-//        gridArr[0][1] = "Mo"
-//        var doub : Double = 22.2
-//        gridArr[0][2] = doub
-//        var gridTest : Grid = Grid()
-//        gridArr[0][3] = gridTest
-//        println("gridArrayTEST count: \(gridArr[0][0]) ... \(gridArr.description)")
-//        println("gridArrayTEST count: \(gridArr[0][3]) ... \(gridArr.description)")
-//    }
+
 }

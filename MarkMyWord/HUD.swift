@@ -64,13 +64,13 @@ class HUD : SKSpriteNode
 //        addChild(partialWordHUD)
 //    }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        /* Called when a touch begins */
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {        /* Called when a touch begins */
         
         let actionSound = SKAction.playSoundFileNamed("37Bronk.mp3", waitForCompletion: true)
         runAction(actionSound)
         
-        for touch in (touches as! Set<UITouch>) {
+        //for touch in (touches as Set<UITouch>) {
 //                        let sprite = SKSpriteNode(imageNamed:"Spaceship")
 //                        sprite.xScale = 0.5
 //                        sprite.yScale = 0.5
@@ -79,7 +79,7 @@ class HUD : SKSpriteNode
 //                        sprite.runAction(SKAction.repeatActionForever(action))
 //                        self.addChild(sprite)
             // GameScene.playMMWScene()
-         }
+         //}
         
     }
 

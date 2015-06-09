@@ -8,26 +8,6 @@
 
 import Foundation
 
-/*
-
-haveColoredBombs
-haveDirectionalBombs
-haveBonusTiles
-haveBlockingTIles
-gridMode
-haveMysteryTiles
-allowOffensiveWords
-secondsLabel
-secondsEditBox
-minWordSize
-
-GameState>>
-init(GameState *theGameState)
-
-
-
-*/
-
 class MarkMyWordGame {
     
     var numPlayers : Int = -1

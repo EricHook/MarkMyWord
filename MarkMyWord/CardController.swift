@@ -47,7 +47,7 @@ class CardController : SKSpriteNode {
         frontTexture = SKTexture(imageNamed: "card_creature_wolf.png")
         largeTextureFilename = "card_back_large.png"
         let cardTexture = SKTexture(imageNamed: imageNamed)
-        super.init(texture: cardTexture, color: nil, size: cardTexture.size())
+        super.init(texture: cardTexture, color: UIColorAppleBlue, size: cardTexture.size())
         self.userInteractionEnabled = true
     }
     
@@ -70,7 +70,7 @@ class CardController : SKSpriteNode {
         }
         
         // call designated initializer on super
-        super.init(texture: frontTexture, color: nil, size: frontTexture.size())
+        super.init(texture: frontTexture, color: UIColorAppleBlue, size: frontTexture.size())
         
         // set properties defined in super
         userInteractionEnabled = true
@@ -125,13 +125,13 @@ class CardController : SKSpriteNode {
         }
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
         
         let actionSound = SKAction.playSoundFileNamed("37Bronk.mp3", waitForCompletion: true)
         runAction(actionSound)
         
-        for touch in (touches as! Set<UITouch>) {
+        for touch in (touches as Set<UITouch>) {
             //            if touch.tapCount > 1 {
             //                flip()
             //            }
@@ -155,26 +155,26 @@ class CardController : SKSpriteNode {
         }
     }
     
-    override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if enlarged { return }
-        for touch in (touches as! Set<UITouch>) {
+        for touch in (touches as Set<UITouch>) {
             if isMovable {
-                let location = touch.locationInNode(scene)
+                let location = touch.locationInNode(scene!)
                 let touchedNode = nodeAtPoint(location)
                 touchedNode.position = location
             }
         }
     }
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if enlarged { return }
-        for touch in (touches as! Set<UITouch>) {
+        //for touch in (touches as Set<UITouch>) {
 //            let location = touch.locationInNode(self)
 //            let touchedNode = nodeAtPoint(location)
             zPosition = 0
             let dropDown = SKAction.scaleTo(1.0, duration: 0.2)
             runAction(dropDown, withKey: "drop")
-        }
+        //}
     }
 
 }

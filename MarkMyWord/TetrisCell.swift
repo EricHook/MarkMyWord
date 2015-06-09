@@ -14,21 +14,21 @@ class TetrisCell : SKSpriteNode
 {
     var length: CGFloat!
     
-    override init(texture: SKTexture!, color: SKColor!, size: CGSize) {
+    override init(texture: SKTexture!, color: (SKColor!), size: CGSize) {
         self.length = 10 // Some sort of sensible default
         super.init(texture: texture, color: color, size: size)
     }
     
     convenience init(color: SKColor, length: CGFloat = 10) {
-        var size = CGSize(width: length, height: length);
+        let size = CGSize(width: length, height: length);
         self.init(texture:nil, color: color, size: size)
         self.length = length
     }
     
     convenience init() {
-        var color = SKColor(red: 0.5, green: 0.5, blue: 0.2, alpha: 0.5)
-        var length : CGFloat = 40.0
-        var size = CGSize(width: length, height: length);
+        let color = SKColor(red: 0.5, green: 0.5, blue: 0.2, alpha: 0.5)
+        let length : CGFloat = 40.0
+        let size = CGSize(width: length, height: length);
         self.init(texture:nil, color: color, size: size)
         self.length = length
     }
@@ -38,16 +38,16 @@ class TetrisCell : SKSpriteNode
         super.init(coder: aDecoder)
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        println("Tetris touch began")
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        print("Tetris touch began")
     }
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-        println("Tetris touch ended")
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        print("Tetris touch ended")
     }
     
-    override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
-        println("Tetris touch moved")
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        print("Tetris touch moved")
         
 //        for touch: AnyObject in touches {
 //            let location: CGPoint! = touch.locationInView(<#view: UIView?#>)   //.locationInNode(self)

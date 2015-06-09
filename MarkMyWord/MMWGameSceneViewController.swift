@@ -53,8 +53,8 @@ class MMWGameSceneViewController: UIViewController {
 
         // 2. Create and configure our game scene
         scene = MMWGameScene(size: self.view.bounds.size)
-        println(scene.description)
-        println("mmw scene controller")
+        print(scene.description)
+        print("mmw scene controller")
         scene.scaleMode = .AspectFill
 //
 //        
@@ -103,8 +103,8 @@ class MMWGameSceneViewController: UIViewController {
         
         // 2. Create and configure our game scene
         scene = MMWGameScene(size: view.bounds.size)
-        println(scene.description)
-        println("mmw scene controller")
+        print(scene.description)
+        print("mmw scene controller")
         scene.scaleMode = .AspectFill
         //SKView.presentScene(scene as SKView)
 
@@ -124,7 +124,7 @@ class MMWGameSceneViewController: UIViewController {
         //skView.ignoresSiblingOrder = true
         
         // add PlayerView(s) to background
-        var player1 : MMWPlayer = MMWPlayer(_playerID: 11, _playerName: "FredPlayer2")
+        let player1 : MMWPlayer = MMWPlayer(_playerID: 11, _playerName: "FredPlayer2")
         //player1.playerSeat.rackSize = 6
         scene.addPlayerView(1, mmwPlayer: player1)
         scene.topDisplayHUD2("222")

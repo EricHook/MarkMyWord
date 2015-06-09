@@ -57,7 +57,7 @@ class LetterTileSprite : SKSpriteNode {
         }
         
         // call designated initializer on super
-        super.init(texture: frontTexture, color: nil, size: CGSizeMake (47.5, 47.5) ) // frontTexture.size())
+        super.init(texture: frontTexture, color: UIColorAppleBlue, size: CGSizeMake (47.5, 47.5) ) // frontTexture.size())
         
         // initialize properties
             self.name = withChar
@@ -76,10 +76,9 @@ class LetterTileSprite : SKSpriteNode {
             tileShadow.name = "tileShadowName"
             self.addChild(tileShadow)
         
-            var letterLabel = SKLabelNode(fontNamed: FontHUDName)
-            var letterLabelShadow = SKLabelNode(fontNamed: FontHUDName)
-            var letterLabelHighlight = SKLabelNode(fontNamed: FontHUDName)
-        
+            let letterLabel = SKLabelNode(fontNamed: FontHUDName)
+            let letterLabelShadow = SKLabelNode(fontNamed: FontHUDName)
+            let letterLabelHighlight = SKLabelNode(fontNamed: FontHUDName)
         
             letterLabel.text = withChar
             letterLabelShadow.text = withChar
@@ -127,7 +126,6 @@ class LetterTileSprite : SKSpriteNode {
         
     }
 
-    
     func flip() {
         if faceUp {
             self.texture = self.backTexture
@@ -190,13 +188,13 @@ class LetterTileSprite : SKSpriteNode {
         }
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesBegan(touches, withEvent: event)
         /* Called when a touch begins */
 //        let actionSound = SKAction.playSoundFileNamed("37Bronk.mp3", waitForCompletion: true)
 //        runAction(actionSound)
         
-        for touch in (touches as! Set<UITouch>) {
+        for touch in (touches as Set<UITouch>) {
             //            if touch.tapCount > 1 {
             //                flip()
             //            }
@@ -275,11 +273,11 @@ class LetterTileSprite : SKSpriteNode {
             
             tileShadow.hidden = false
             
-            let location = touch.locationInNode(scene)
-            var testNodes = nodesAtPoint(location)
-            println("testNodeCount : \(testNodes.count ) ")
-            for node in testNodes  {
-                println("testNode ")
+            let location = touch.locationInNode(scene!)
+            let testNodes = nodesAtPoint(location)
+            print("testNodeCount : \(testNodes.count ) ")
+            for _ in testNodes  {
+                print("testNode ")
             }
 //            checkForTouches(touches)
             
@@ -287,12 +285,16 @@ class LetterTileSprite : SKSpriteNode {
 //        }
     }
     
-    override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+//    overide func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+//        <#code#>
+//    }
+    
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesMoved(touches, withEvent: event)
         if enlarged { return }
-        for touch in (touches as! Set<UITouch>) {
+        for touch in (touches as Set<UITouch>) {
             if isMovable {
-                let location = touch.locationInNode(scene)
+                let location = touch.locationInNode(scene!)
                 let touchedNode = nodeAtPoint(location)
                 touchedNode.position = location
                 //println("touchedNode description: \(touchedNode.description)")
@@ -300,13 +302,13 @@ class LetterTileSprite : SKSpriteNode {
         }
     }
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if enlarged { return }
         //var location = touch.locationInNode(self)
         
-        for touch in (touches as! Set<UITouch>) {
+        for touch in (touches as Set<UITouch>) {
             //location = touch.locationInNode(self)
-                        let location = touch.locationInNode(self)
+                        //let location = touch.locationInNode(self)
             //            let touchedNode = nodeA                                                                                                                                          Point(location)
             zPosition = 1
             let dropDown = SKAction.scaleTo(1.0, duration: 0.1)
@@ -314,10 +316,10 @@ class LetterTileSprite : SKSpriteNode {
             tileShadow.zPosition = -1
             tileShadow.hidden = true
             
-            var tileSnapTouch = (touch as UITouch).locationInView(scene!.view)
+            let tileSnapTouch = (touch as UITouch).locationInView(scene!.view)
             
             //var getSnapGrid : Grid
-            var gameGrid = (scene as! MMWGameScene).getSnapGrid(tileSnapTouch) // .getBoardGrid()
+            let gameGrid = (scene as! MMWGameScene).getSnapGrid(tileSnapTouch) // .getBoardGrid()
             
             
             //var tileSnap : CGPoint = CGPointMake(165.0, 28.0)
@@ -328,19 +330,19 @@ class LetterTileSprite : SKSpriteNode {
             // get snap location for point touch ended // -15.5 on y touch point adjusts for snapping too high to lower square
             //var tileSnapCalculate = gameGrid.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y))
             // get snap x, y values
-            var tileSnapCalculateX : CGFloat = CGFloat(gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y)).GridSquareLowerLeftCornerX)
-            var tileSnapCalculateY : CGFloat = CGFloat(gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y - 15.5)).GridSquareLowerLeftCornerY)
+            let tileSnapCalculateX : CGFloat = CGFloat(gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y)).GridSquareLowerLeftCornerX)
+            let tileSnapCalculateY : CGFloat = CGFloat(gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y - 15.5)).GridSquareLowerLeftCornerY)
             
             // get snap grid array [[]] positions // -15.5 on y touch point adjusts for snapping too high to lower square
-            var tileSnapXGrid : Int = (gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y)).GridSquareX)
-            var tileSnapYGrid : Int = (gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y - 15.5)).GridSquareY)
+            let tileSnapXGrid : Int = (gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y)).GridSquareX)
+            let tileSnapYGrid : Int = (gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y - 15.5)).GridSquareY)
             
             // move tile to snap point
             self.position.x = tileSnapCalculateX + 22.5  //adjusts 22.5 for tile center in middle of tile
             self.position.y = 768 - (tileSnapCalculateY + 38) //38 adjusts for tile center and for board not in exact middle when flipping coords
             
             
-            println("The scene at tile end touch : \(scene?.description) and grid location : \(tileSnapXGrid), \(tileSnapYGrid) ")
+            print("The scene at tile end touch : \(scene?.description) and grid location : \(tileSnapXGrid), \(tileSnapYGrid) ")
             
 //            var location = (touch as! UITouch).locationInView(MMWScene.view)  //(SKScene)   (self.view)
 //            location.y = 768 - location.y

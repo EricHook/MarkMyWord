@@ -78,33 +78,33 @@ class TileViewOLD:UIImageView {
     self.center = CGPointMake(self.center.x, self.center.y + yOffset)
   }
   
-  override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-    if let touch = touches.first as? UITouch {
-      let point = touch.locationInView(self.superview)
-      xOffset = point.x - self.center.x
-      yOffset = point.y - self.center.y
-    }
-    //show the drop shadow
-    self.layer.shadowOpacity = 0.8
-    
-    //save the current transform
-    tempTransform = self.transform
-    //enlarge the tile
-    self.transform = CGAffineTransformScale(self.transform, 1.2, 1.2)
-
-    self.superview?.bringSubviewToFront(self)
-  }
+//  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+//    if let touch = touches.first as? UITouch {
+//      let point = touch.locationInView(self.superview)
+//      xOffset = point.x - self.center.x
+//      yOffset = point.y - self.center.y
+//    }
+//    //show the drop shadow
+//    self.layer.shadowOpacity = 0.8
+//    
+//    //save the current transform
+//    tempTransform = self.transform
+//    //enlarge the tile
+//    self.transform = CGAffineTransformScale(self.transform, 1.2, 1.2)
+//
+//    self.superview?.bringSubviewToFront(self)
+//  }
   
   //2
-  override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
-    if let touch = touches.first as? UITouch {
-      let point = touch.locationInView(self.superview)
-      self.center = CGPointMake(point.x - xOffset, point.y - yOffset)
-    }
-  }
+//  override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+//    if let touch = touches.first as UITouch {
+//      let point = touch.locationInView(self.superview)
+//      self.center = CGPointMake(point.x - xOffset, point.y - yOffset)
+//    }
+//  }
   
   //3
-  override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+  override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
     self.touchesMoved(touches, withEvent: event)
     
     //restore the original transform
@@ -114,9 +114,9 @@ class TileViewOLD:UIImageView {
     self.layer.shadowOpacity = 0.0
   }
   
-  //reset the view transform in case drag is cancelled
-  override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
-    self.transform = tempTransform
-    self.layer.shadowOpacity = 0.0
-  }
+//  //reset the view transform in case drag is cancelled
+//  override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
+//    self.transform = tempTransform
+//    self.layer.shadowOpacity = 0.0
+//  }
 }

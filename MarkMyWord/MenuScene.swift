@@ -76,15 +76,14 @@ class MenuScene: SKScene {
         
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
         //        if userInteractionEnabled {
         //            let actionSound = SKAction.playSoundFileNamed("37Bronk.mp3", waitForCompletion: true)
         //            runAction(actionSound)
-        //
-        for touch in (touches as! Set<UITouch>) {
-            let location = touch.locationInNode(self)
-            let touchedNode = nodeAtPoint(location)
+        for _ in (touches as Set<UITouch>) {
+            //let location = touch.locationInNode(self)
+            //let touchedNode = nodeAtPoint(location)
             
             playMMWScene()
         }
@@ -93,9 +92,9 @@ class MenuScene: SKScene {
     
     func playMMWScene() {
         let transition = SKTransition.crossFadeWithDuration(2.0)
-        var MMWScene = MMWGameScene(size: size)
+        let MMWScene = MMWGameScene(size: size)
         MMWScene.name = "MMWScene instance name made in MenuScene"
-        var currentScene = MMWScene
+        //var currentScene = MMWScene
         view?.presentScene(MMWScene, transition: transition)
     }
 
