@@ -15,13 +15,13 @@ extension SKNode {
             let archiver = NSKeyedUnarchiver(forReadingWithData: sceneData)
             
             archiver.setClass(self.classForKeyedUnarchiver(), forClassName: "SKScene")
-            let scene = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as! GameScene
+            let scene1 = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as! GameScene
             
-            scene.name = "scene in GameViewController"
-            print("scene is: \(scene.description)")
+            scene1.name = "scene in GameViewController"
+            print("scene is: \(scene1.description)")
             
             archiver.finishDecoding()
-            return scene
+            return scene1
         } else {
             return nil
         }
@@ -32,8 +32,8 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
+        print("in GameViewController viewDidLoad 1")
+        if let scene1 = GameScene.unarchiveFromFile("GameScene") as? GameScene {
             // Configure the view.
             let skView = self.view as! SKView
             skView.showsFPS = true
@@ -43,37 +43,66 @@ class GameViewController: UIViewController {
             skView.ignoresSiblingOrder = true
             
             /* Set the scale mode to scale to fit the window */
-            scene.scaleMode = .AspectFill
+            scene1.scaleMode = .AspectFill
             
-            skView.presentScene(scene)
+            skView.presentScene(scene1)
+            print("in GameViewController viewDidLoad 2")
+            
+            print("in GameViewController viewDidLoad 3")
         }
     }
     
-    func loadMenu() {
-//        let menuScene = SKScene(fileNamed: MenuScene(size: size, gameResult: false, score: 0)  )
-        if let scene = GameScene.unarchiveFromFile("MenuScene") as? GameScene {
-            // Configure the view.
-            let skView = self.view as! SKView
-            skView.showsFPS = true
-            skView.showsNodeCount = true
-            
-            /* Sprite Kit applies additional optimizations to improve rendering performance */
-            skView.ignoresSiblingOrder = true
-            
-            /* Set the scale mode to scale to fit the window */
-            scene.scaleMode = .AspectFill
-            
-            skView.presentScene(scene)
-        }
-        
-    }
+//    func presentMMWScene() {
+//
+//            print("in GameViewController presentMMWScene 1")
+//            let mmwScene = MMWGameScene(size: view.bounds.size)
+//        
+//            // Configure the view.
+//            let skView = self.view as! SKView
+//            skView.showsFPS = true
+//            skView.showsNodeCount = true
+//            
+//            /* Sprite Kit applies additional optimizations to improve rendering performance */
+//            skView.ignoresSiblingOrder = true
+//            
+//            /* Set the scale mode to scale to fit the window */
+//            mmwScene.scaleMode = .AspectFill
+//            
+//            skView.presentScene(mmwScene)
+//            print("in GameViewController presentMMWScene 2")
+//            
+//            //MMWGameSceneViewController()
+//            presentMMWScene()
+//            print("in GameViewController presentMMWScene 3")
+//        
+//    }
+    
+    
+//    func loadMenu() {
+//        print("in GameViewController loadMenu 1")
+////        let menuScene = SKScene(fileNamed: MenuScene(size: size, gameResult: false, score: 0)  )
+//        if let scene = MenuScene.unarchiveFromFile("MenuScene") as? MenuScene {
+//            // Configure the view.
+//            let skView = self.view as! SKView
+//            skView.showsFPS = true
+//            skView.showsNodeCount = true
+//            
+//            /* Sprite Kit applies additional optimizations to improve rendering performance */
+//            skView.ignoresSiblingOrder = true
+//            
+//            /* Set the scale mode to scale to fit the window */
+//            scene.scaleMode = .ResizeFill
+//            
+//            skView.presentScene(scene)
+//            print("in GameViewController loadMenu 2")
+//        }
+//        print("in GameViewController loadMenu 3")
+//    }
 
     override func shouldAutorotate() -> Bool {
         return true
     }
     
-
-
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
             return UIInterfaceOrientationMask.AllButUpsideDown

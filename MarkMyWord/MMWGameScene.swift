@@ -14,8 +14,6 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     
     var backgroundNode : SKSpriteNode?
     var foregroundNode : SKSpriteNode?
-    //var spriteTest : SKSpriteNode?
-    //var impulseCount = 4
     //var diagnosticText : SKLabelNode?
     let MMWBoardGrid: Grid = Grid(gridLowerLeftX: 157, gridLowerLeftY: 21, gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 15, gridNumSquaresY: 15, gridName: "MMWBoardGrid")
     
@@ -28,6 +26,20 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     let MMWPlayer4of4Grid: Grid = Grid(gridLowerLeftX: 877, gridLowerLeftY: 116.5, gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "MMWPlayer4of4Grid")
     
     var numPlayers : Int = 2
+    
+    var player1View : PlayerView?
+    var player2View : PlayerView?
+    var player3View : PlayerView?
+    var player4View : PlayerView?
+    
+    var player1 : MMWPlayer?
+    var player2 : MMWPlayer?
+    var player3 : MMWPlayer?
+    var player4 : MMWPlayer?
+    
+    //var partialWordHUD = SKLabelNode(fontNamed: FontHUDName)
+    var tilesRemainingLabel = SKLabelNode(fontNamed: FontHUDName)
+    
     
 //    let Player1NameLoc : CGPoint = CGPointMake(20, 768 - 325)
 //    let Player1ScoreLoc : CGPoint = CGPointMake(20, 768 - 325)
@@ -43,6 +55,7 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        //player1 = nil
     }
     
     override init(size: CGSize) {
@@ -60,8 +73,13 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         backgroundNode?.zPosition = -100
         backgroundNode?.alpha = 0.5
         addChild(backgroundNode!)
-        
+     
         addFillerData()
+    }
+    
+    func changePlayerScore (playerView: PlayerView, player: MMWPlayer, score: Int) {
+        player.playerScore = score
+        playerView.playerScoreLabel.text = String(score)
     }
     
     func addFillerData () {
@@ -76,7 +94,10 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         foregroundNode?.zPosition=1
         timerHUD(90)
         partialWordHUD("ABCDEFG", isWord: false)  // "ABCDEFGHIJKLMNO", isWord: false)
-        tilesRemainingHUD(55)
+        
+        tilesRemainingLabel = tilesRemainingHUD(789)
+        tilesRemainingLabel.text = String(67)
+
         topDisplayHUD("Player 1 plays \"CATATONIC\" for 14 points") // ("Turn: Player 1, Special Letter Bonus In Effect, 2x Point Bonus")
         addChild(LetterTileSprite(tileStyle: .basic, withChar: "P", withColor: UIColorAppleRed, atPoint: CGPointMake(7, 448.5)) )
         addChild(LetterTileSprite(tileStyle: .basic, withChar: "M", withColor: UIColorAppleRed, atPoint: CGPointMake(54.5, 543)) )
@@ -93,12 +114,14 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         addChild(LetterTileSprite(tileStyle: .basic, withChar: "1", withColor: UIColorApplePurple, atPoint: CGPointMake(7, 305)) )
         addChild(LetterTileSprite(tileStyle: .basic, withChar: "2", withColor: UIColorApplePurple, atPoint: CGPointMake(877, 305)) )
         
-        let player1 = MMWPlayer(_playerID: 1, _playerName: "TestE1")
-        addPlayerView(1, mmwPlayer: player1)
+        player1 = MMWPlayer(_playerID: 1, _playerName: "player1")
+        player1View = PlayerView(_playerName: player1!.playerName , _playerColor: player1!.playerSeat.seatUIColor) // , _playerColor: UIColorAppleRed)
+        addPlayerView (1, playerView: player1View!)
         
-        let player2 = MMWPlayer(_playerID: 2, _playerName: "TestE2")
-        addPlayerView(2, mmwPlayer: player2)
-        
+        player2 = MMWPlayer(_playerID: 2, _playerName: "player2")
+        player2View = PlayerView(_playerName: player2!.playerName , _playerColor: player2!.playerSeat.seatUIColor) // , _playerColor: UIColorAppleRed)
+        addPlayerView(2, playerView: player2View!)
+
 //        var player3 = MMWPlayer(_playerID: 3, _playerName: "TestE3")
 //        addPlayerView(3, mmwPlayer: player3)
 //        
@@ -127,8 +150,9 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         //        //println("Grid count: \(testGrid.gridValueType.count)")
     }
     
-    func partialWordHUD (letters : String, isWord : Bool) {
-        let partialWordHUD = SKLabelNode(fontNamed: FontHUDName)
+    func partialWordHUD (letters : String, isWord : Bool)  -> SKLabelNode {
+        //let partialWordHUD = SKLabelNode(fontNamed: FontHUDName)
+        let partialWordLabel = SKLabelNode(fontNamed: FontHUDName)
         var isPartial : String
         if isWord {
             isPartial = ""
@@ -136,57 +160,63 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         else {
             isPartial = "not"
         }
-        partialWordHUD.text = "\(letters) is \(isPartial) a partial word"
-        partialWordHUD.fontSize = FontHUDSize
-        partialWordHUD.position = CGPointMake(size.width/2.0, 3)
-        partialWordHUD.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
-        addChild(partialWordHUD)
+        partialWordLabel.text = "\(letters) is \(isPartial) a partial word"
+        partialWordLabel.fontSize = FontHUDSize
+        partialWordLabel.position = CGPointMake(size.width/2.0, 3)
+        partialWordLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
+        addChild(partialWordLabel)
+        return partialWordLabel
     }
     
-    func timerHUD (timeAmount: Int) {
-        let timeRemainingHUD = SKLabelNode(fontNamed: FontHUDName)
-        timeRemainingHUD.text = "Timer: \(timeAmount)"
-        timeRemainingHUD.fontSize = FontHUDSize
-        timeRemainingHUD.fontColor = FontHUDRed
-        timeRemainingHUD.position = CGPointMake(size.width/2.0 + 255.0, 3)
-        timeRemainingHUD.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 1)!
-        addChild(timeRemainingHUD)
+    func timerHUD (timeAmount: Int)  -> SKLabelNode {
+        let timeRemainingLabel = SKLabelNode(fontNamed: FontHUDName)
+        timeRemainingLabel.text = "Timer: \(timeAmount)"
+        timeRemainingLabel.fontSize = FontHUDSize
+        timeRemainingLabel.fontColor = FontHUDRed
+        timeRemainingLabel.position = CGPointMake(size.width/2.0 + 255.0, 3)
+        timeRemainingLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 1)!
+        addChild(timeRemainingLabel)
+        return timeRemainingLabel
     }
     
-    func tilesRemainingHUD (tilesLeft : Int){
-        let tilesRemainingHUD = SKLabelNode(fontNamed: FontHUDName)
-        tilesRemainingHUD.text = "Tiles Left: \(tilesLeft)"
-        tilesRemainingHUD.fontSize = FontHUDSize
-        tilesRemainingHUD.position = CGPointMake(size.width/2.0 - 332, 3.0)
-        tilesRemainingHUD.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 1)!
-        addChild(tilesRemainingHUD)
+    func tilesRemainingHUD (tilesLeft : Int) -> SKLabelNode {
+        let tilesRemainingLabel = SKLabelNode(fontNamed: FontHUDName)
+        tilesRemainingLabel.text = "Tiles Left: \(tilesLeft)"
+        tilesRemainingLabel.fontSize = FontHUDSize
+        tilesRemainingLabel.position = CGPointMake(size.width/2.0 - 332, 3.0)
+        tilesRemainingLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 1)!
+        addChild(tilesRemainingLabel)
+        return tilesRemainingLabel
     }
     
-    func topDisplayHUD (message : String) {
-        let topDisplayHUD = SKLabelNode(fontNamed: FontHUDName)
-        topDisplayHUD.text = message
-        topDisplayHUD.fontSize = FontHUDSize
-        topDisplayHUD.position = CGPointMake(size.width/2.0, 744.0) // CGPointMake(size.width/2.0, 753.0) // 1 of 2 top lines
-        topDisplayHUD.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
-        addChild(topDisplayHUD)
+    func topDisplayHUD (message : String)  -> SKLabelNode {
+        let topDisplayLabel = SKLabelNode(fontNamed: FontHUDName)
+        topDisplayLabel.text = message
+        topDisplayLabel.fontSize = FontHUDSize
+        topDisplayLabel.position = CGPointMake(size.width/2.0, 744.0) // CGPointMake(size.width/2.0, 753.0) // 1 of 2 top lines
+        topDisplayLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
+        addChild(topDisplayLabel)
+        return topDisplayLabel
     }
     
-    func topDisplayHUD2 (message : String) {
-        let topDisplayHUD = SKLabelNode(fontNamed: FontHUDName)
-        topDisplayHUD.text = message
-        topDisplayHUD.fontSize = FontHUDSize
-        topDisplayHUD.position = CGPointMake(size.width/2.0, 735.0) // 2 of 2 top lines
-        topDisplayHUD.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
-        addChild(topDisplayHUD)
+    func topDisplayHUD2 (message : String)  -> SKLabelNode {
+        let topDisplayLabel2 = SKLabelNode(fontNamed: FontHUDName)
+        topDisplayLabel2.text = message
+        topDisplayLabel2.fontSize = FontHUDSize
+        topDisplayLabel2.position = CGPointMake(size.width/2.0, 735.0) // 2 of 2 top lines
+        topDisplayLabel2.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
+        addChild(topDisplayLabel2)
+        return topDisplayLabel2
     }
     
     func testOutput () {
         print("testOutput")
     }
 
-    func addPlayerView (playerNum : Int, mmwPlayer : MMWPlayer) {
+    func addPlayerView (playerNum : Int, playerView : PlayerView) {
         //var playerView = PlayerView(_playerName: "Doyyypprrtt", _playerColor: UIColorAppleRed)
-        let playerView = PlayerView(_playerName: mmwPlayer.playerName , _playerColor: mmwPlayer.playerSeat.seatUIColor) // , _playerColor: UIColorAppleRed)
+        //let playerView = PlayerView(_playerName: mmwPlayer.playerName , _playerColor: mmwPlayer.playerSeat.seatUIColor) // , _playerColor: UIColorAppleRed)
+        //player1View = playerView
         playerView.zPosition = -99
         
         if playerNum == 1 {
@@ -288,6 +318,8 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
             //presentMenuScene()
+            tilesRemainingLabel.text = String(987)
+            player1View?.playerScoreLabel.text = "in MMWGameScene touches"
         }
     }
     

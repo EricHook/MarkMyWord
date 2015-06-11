@@ -124,14 +124,9 @@ class LetterTileController : SKSpriteNode {
             runAction(SKAction.group([slide, scaleUp]))
         }
     }
-    
-//    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-//        <#code#>
-//    }
-    
+
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
-        
         let actionSound = SKAction.playSoundFileNamed("37Bronk.mp3", waitForCompletion: true)
         runAction(actionSound)
         
@@ -144,18 +139,9 @@ class LetterTileController : SKSpriteNode {
             }
             
             if enlarged { return }
-            //            let location = touch.locationInNode(self)
-            //            let touchedNode = nodeAtPoint(location)
             zPosition = 15
             let liftUp = SKAction.scaleTo(1.2, duration: 0.2)
             runAction(liftUp, withKey: "pickup")
-            //            let sprite = SKSpriteNode(imageNamed:"Spaceship")
-            //            sprite.xScale = 0.5
-            //            sprite.yScale = 0.5
-            //            sprite.position = location
-            //            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-            //            sprite.runAction(SKAction.repeatActionForever(action))
-            //            self.addChild(sprite)
         }
     }
     
@@ -172,13 +158,10 @@ class LetterTileController : SKSpriteNode {
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if enlarged { return }
-        //for touch in (touches as Set<UITouch>) {
-            //            let location = touch.locationInNode(self)
-            //            let touchedNode = nodeAtPoint(location)
-            zPosition = 0
-            let dropDown = SKAction.scaleTo(1.0, duration: 0.2)
-            runAction(dropDown, withKey: "drop")
-        //}
+        zPosition = 0
+        let dropDown = SKAction.scaleTo(1.0, duration: 0.2)
+        runAction(dropDown, withKey: "drop")
+
     }
     
 }

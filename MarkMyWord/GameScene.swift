@@ -8,36 +8,24 @@
 
 import SpriteKit
 
-
-
-//struct currentGameSceneStruct {
-//    static var currentGameScene : SKScene = GameViewController.
-//}
-
 class GameScene: SKScene {
+
+    var currentScene : SKScene?
+    var mmwGameScene : MMWGameScene?
+    var mmwCont : MMWGameSceneViewController?
     
+    required init?(coder aDecoder: NSCoder) {
+        //currentScene = MenuScene(size: size, gameResult: true, score: 123)
+        super.init(coder: aDecoder)
+        //mmwGameScene = MMWGameScene(size: view!.bounds.size)
+    }
     
-//    func getCurrentGameScene () {
-//        return currentGameScene
-//    }
-//    
-//    func setCurrentGameScene (newGameScene : SKScene) {
-//        currentGameScene = newGameScene
-//    }
-    
-//    var currentScene : SKScene
-//    
-//    override init() {
-//        currentScene = self.scene
-//        super.init()
-//    }
-//
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
-    
-    
+    override init(size: CGSize) {
+        super.init(size: size)
+        //mmwGameScene = MMWGameScene(size: view!.bounds.size)
+        //currentScene = MenuScene(size: size, gameResult: true, score: 123)
+    }
+
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
@@ -45,9 +33,6 @@ class GameScene: SKScene {
         let backgroundNode = SKSpriteNode(imageNamed: "MeyamaMathMenuScreenBG_1024x768.png")
         backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         backgroundNode.position = CGPoint(x: size.width/2.0, y: 0.0)
-        //        // set scale for various platforms
-        //        backgroundNode?.xScale = 0.5
-        //        backgroundNode?.yScale = 0.5
         backgroundNode.userInteractionEnabled = false
         self.addChild(backgroundNode)
         
@@ -59,87 +44,57 @@ class GameScene: SKScene {
         self.addChild(myLabel)
     }
     
-    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
-//        if userInteractionEnabled {
-//            let actionSound = SKAction.playSoundFileNamed("37Bronk.mp3", waitForCompletion: true)
-//            runAction(actionSound)
-//            
-            //for touch in (touches as Set<UITouch>) {
-                //let location = touch.locationInNode(self)
-                //let touchedNode = nodeAtPoint(location)
-//                touchedNode.zPosition = 15
-//                let liftUp = SKAction.scaleTo(1.2, duration: 0.2)
-//                touchedNode.runAction(liftUp, withKey: "pickup")
-//                
-//    //            let sprite = SKSpriteNode(imageNamed:"Spaceship")
-//    //            sprite.xScale = 0.5
-//    //            sprite.yScale = 0.5
-//    //            sprite.position = location
-//    //            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-//    //            sprite.runAction(SKAction.repeatActionForever(action))
-//    //            self.addChild(sprite)
-                
-
+        if userInteractionEnabled {
+            let actionSound = SKAction.playSoundFileNamed("37Bronk.mp3", waitForCompletion: true)
+            runAction(actionSound)
+        }
                 print("going to mmw scene")
-                presentMMWScene()
-//                println("going to mmw controller")
-//                var mmwGameController = MMWGameSceneViewController()
-//                mmwGameController.loadMMWGameView()
-//                println("going to menu scene")
-//                playMenuScene()
-            //}
-//        }
-    }
-//
-//    override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
-//        for touch in (touches as! Set<UITouch>) {
-//            if userInteractionEnabled {
-//                let location = touch.locationInNode(self)
-//                let touchedNode = nodeAtPoint(location)
-//                touchedNode.position = location
-//            }
+                mmwGameScene = presentMMWScene()
+        
+//        mmwGameScene!.player1View?.playerScoreLabel.text = String(8765)
 //        
-//        }
-//    }
-//
-//    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-//        for touch in (touches as! Set<UITouch>) {
-//            let location = touch.locationInNode(self)
-//            let touchedNode = nodeAtPoint(location)
-//            touchedNode.zPosition = 0
-//            let dropDown = SKAction.scaleTo(1.0, duration: 0.2)
-//            touchedNode.runAction(dropDown, withKey: "drop")
-//        }
-//    }
+//        mmwGameScene!.player1!.playerName = "Fred"
+//        mmwGameScene!.player1View?.playerNameLabel.text = mmwGameScene!.player1!.playerName
+//        //mmwGameScene(mmwGameScene.player1View!, player: mmwGameScene.player1!, score: 22)
+//        mmwGameScene!.player1View?.playerScoreLabel.text = String(33)
+                mmwGameScene?.tilesRemainingLabel.text = "touchesBegan test"
+                mmwGameScene?.player1View?.playerScoreLabel.text = "TEST"
+        
+                mmwCont =  createMMWSceneController()
+        
+                mmwCont!.testMMWCont()
+    }
     
     func presentMenuScene() {
         let transition = SKTransition.crossFadeWithDuration(2.0)
-        let menuScene = MenuScene(size: size,
-            gameResult: true,
-            score: 123)
-        //let skView = view
+        let menuScene = MenuScene(size: size, gameResult: true, score: 123)
         view?.presentScene(menuScene, transition: transition)
+        print("presentMenuScene")
     }
     
-    func presentMMWScene() {
+    func presentMMWScene() -> MMWGameScene {
         let transition = SKTransition.crossFadeWithDuration(2.0)
-        let MMWScene = MMWGameScene(size: size)
-        MMWScene.name = "MMWScene instance name made in GameScene"
-        //var currentScene = MMWScene
-        view?.presentScene(MMWScene, transition: transition)
-        print("in mmw controller")
-        
-//        var MMWsceneController = MMWGameSceneViewController()
-//        MMWsceneController.loadMMWGameView()
+        mmwGameScene = MMWGameScene(size: size)
+        mmwGameScene!.name = "MMWScene instance name made in GameScene"
+        currentScene = mmwGameScene
+        view?.presentScene(mmwGameScene!, transition: transition)
+        print("presentMMWScene")
+//        mmwGameScene!.player1View?.playerScoreLabel.text = String(8765)
+//        
+//        mmwGameScene!.player1!.playerName = "Fred"
+//        mmwGameScene!.player1View?.playerNameLabel.text = mmwGameScene!.player1!.playerName
+//        //mmwGameScene(mmwGameScene.player1View!, player: mmwGameScene.player1!, score: 22)
+//        mmwGameScene!.player1View?.playerScoreLabel.text = String(33)
+        return mmwGameScene!
     }
-    
-    func getTestNum () -> (Int) {
-        let num = 22
-        return num
+
+    func createMMWSceneController() -> MMWGameSceneViewController {
+        mmwCont = MMWGameSceneViewController()
+        return mmwCont!
     }
-   
+
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }

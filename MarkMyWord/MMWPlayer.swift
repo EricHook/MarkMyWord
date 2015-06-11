@@ -12,6 +12,7 @@ class MMWPlayer {
     
     var playerID : Int = 1
     var playerName : String = ""
+    var playerScore : Int = 0
     var doIt : Bool = false
     var didIt : Bool = false
     var playerSeat : MMWSeat
@@ -20,5 +21,6 @@ class MMWPlayer {
         playerSeat = MMWSeat(_playerSeatNum: 1, _seatColorNumber: 1)
         playerID = _playerID
         playerName = _playerName
+        //playerScore = _playerScore
     }
 }

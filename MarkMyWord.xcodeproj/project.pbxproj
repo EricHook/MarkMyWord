@@ -286,7 +286,6 @@
 		B8DA7ED81AE13784003FE2C6 /* MeyamaIconLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DA7ECF1AE13784003FE2C6 /* MeyamaIconLarge.png */; };
 		B8DA7ED91AE13784003FE2C6 /* MeyamaMathMenuScreenBG_1024x768.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DA7ED01AE13784003FE2C6 /* MeyamaMathMenuScreenBG_1024x768.png */; };
 		B8DA7EDA1AE13784003FE2C6 /* OrangeLetterA.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DA7ED11AE13784003FE2C6 /* OrangeLetterA.png */; };
-		B8E37F891B0F9A9200F712E1 /* xMenuSceneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E37F881B0F9A9200F712E1 /* xMenuSceneController.swift */; };
 		B8E37F8B1B0FAA1000F712E1 /* MenuSceneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E37F8A1B0FAA1000F712E1 /* MenuSceneController.swift */; };
 		B8E874E61AE17E0000763849 /* MMWTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E874E51AE17E0000763849 /* MMWTile.swift */; };
 		B8F2328B1AF56DB800B2324B /* Tile3D95x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8F2328A1AF56DB800B2324B /* Tile3D95x.png */; };
@@ -593,7 +592,6 @@
 		B8DA7ECF1AE13784003FE2C6 /* MeyamaIconLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MeyamaIconLarge.png; sourceTree = "<group>"; };
 		B8DA7ED01AE13784003FE2C6 /* MeyamaMathMenuScreenBG_1024x768.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MeyamaMathMenuScreenBG_1024x768.png; sourceTree = "<group>"; };
 		B8DA7ED11AE13784003FE2C6 /* OrangeLetterA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OrangeLetterA.png; sourceTree = "<group>"; };
-		B8E37F881B0F9A9200F712E1 /* xMenuSceneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xMenuSceneController.swift; sourceTree = "<group>"; };
 		B8E37F8A1B0FAA1000F712E1 /* MenuSceneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuSceneController.swift; sourceTree = "<group>"; };
 		B8E874E51AE17E0000763849 /* MMWTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMWTile.swift; sourceTree = "<group>"; };
 		B8F2328A1AF56DB800B2324B /* Tile3D95x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tile3D95x.png; sourceTree = "<group>"; };
@@ -947,8 +945,6 @@
 				B80AC05E1ADB837F00417531 /* ReferenceX */,
 				B8CCE1A11AD8C13500882391 /* AppDelegate.swift */,
 				B8CCE1A91AD8C13500882391 /* Main.storyboard */,
-				B8A455141AF15A1400C0D83B /* GameScene.swift */,
-				B8A455151AF15A1400C0D83B /* GameViewController.swift */,
 				B8D789271B0C3A0300C3DC36 /* MMWGame.swift */,
 				B8CCE1A31AD8C13500882391 /* GameScene.sks */,
 				B8CCE1AC1AD8C13500882391 /* Images.xcassets */,
@@ -1009,10 +1005,11 @@
 		B8DA7EC21AE136B4003FE2C6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B8B49DBA1AF1AF610086154C /* MenuScene.swift */,
+				B8A455141AF15A1400C0D83B /* GameScene.swift */,
 				B8CCE1A51AD8C13500882391 /* MMWGameScene.swift */,
-				B8C14EF01AF27E5100E640C0 /* LetterTileSprite.swift */,
+				B8B49DBA1AF1AF610086154C /* MenuScene.swift */,
 				B8D130E61AFD635500865982 /* PlayerView.swift */,
+				B8C14EF01AF27E5100E640C0 /* LetterTileSprite.swift */,
 				B8FA8FAA1AE9DF6F007CF07C /* TileViewOLD.swift */,
 			);
 			name = Views;
@@ -1021,11 +1018,11 @@
 		B8DA7EC31AE136BC003FE2C6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B8A455151AF15A1400C0D83B /* GameViewController.swift */,
 				B8CCE1A71AD8C13500882391 /* MMWGameSceneViewController.swift */,
 				B8FA8FA31AE9DD40007CF07C /* AudioController.swift */,
 				B8C14EEE1AF2783000E640C0 /* LetterTileController.swift */,
 				B8E37F8A1B0FAA1000F712E1 /* MenuSceneController.swift */,
-				B8E37F881B0F9A9200F712E1 /* xMenuSceneController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1543,7 +1540,6 @@
 				B8B294801AF064B7003F789F /* HUD.swift in Sources */,
 				B8F264FA1AE1EFED0072B9D4 /* MarkMyWordGame.swift in Sources */,
 				B8A455161AF15A1400C0D83B /* GameScene.swift in Sources */,
-				B8E37F891B0F9A9200F712E1 /* xMenuSceneController.swift in Sources */,
 				B8CCE1A21AD8C13500882391 /* AppDelegate.swift in Sources */,
 				B8A455191AF15A6D00C0D83B /* CardController.swift in Sources */,
 			);
@@ -1686,6 +1682,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -1703,6 +1700,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hookstudios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};

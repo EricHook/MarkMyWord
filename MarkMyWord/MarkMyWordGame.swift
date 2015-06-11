@@ -22,7 +22,5 @@ class MarkMyWordGame {
     var secondsEditBox = false
     var minWordSize = false
     var verboseAI = true
-    
-    
-    
+
 }

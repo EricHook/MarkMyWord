@@ -11,8 +11,8 @@ import SpriteKit
 
 class PlayerView: SKSpriteNode {
     
-
-    //var playerNameLabel : SKLabelNode
+    var playerNameLabel = SKLabelNode(fontNamed: FontHUDName)
+    var playerScoreLabel = SKLabelNode(fontNamed: FontHUDName)
     
     init (_playerName: String, _playerColor: UIColor) {
         
@@ -31,6 +31,7 @@ class PlayerView: SKSpriteNode {
         let playerScore : Int = 0
         
         super.init(texture: playerBGTex, color: UIColorAppleBlue, size: CGSizeMake(playerBGTex.size().width/2, playerBGTex.size().height/2) )  // (309/2, 1319/2) )
+        
         self.anchorPoint = CGPointMake(0, 0)
         self.alpha = (CGFloat(1.0))
 
@@ -62,20 +63,19 @@ class PlayerView: SKSpriteNode {
         playerTileGrid.alpha = 0.75
         addChild(playerTilesPlaque)
         
-        let playerNameLabel = SKLabelNode(fontNamed: FontHUDName) // SKLabelNode(fontNamed:"Chalkduster")
+        playerNameLabel = SKLabelNode(fontNamed: FontHUDName) // SKLabelNode(fontNamed:"Chalkduster")
         playerNameLabel.text = _playerName
         playerNameLabel.fontSize = 17
         playerNameLabel.fontColor =  FontHUDBlack
         playerNameLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y: 169 ) // CGRectGetMidY(self.frame) + 10 ) // 170)
         addChild(playerNameLabel)
         
-        let playerScoreLabel = SKLabelNode(fontNamed: FontHUDName) // SKLabelNode(fontNamed:"Chalkduster")
+        playerScoreLabel = SKLabelNode(fontNamed: FontHUDName) // SKLabelNode(fontNamed:"Chalkduster")
         playerScoreLabel.text = String(playerScore)
         playerScoreLabel.fontSize = 17
         playerScoreLabel.fontColor =  FontHUDBlack
         playerScoreLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y: 153 )// CGRectGetMidY(self.frame) - 6 ) // 154)
         addChild(playerScoreLabel)
-
     }
     
     required init?(coder aDecoder: NSCoder) {

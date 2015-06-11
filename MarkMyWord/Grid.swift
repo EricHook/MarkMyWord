@@ -8,14 +8,6 @@
 
 import Foundation
 
-//protocol Initable {
-//    init()
-//}
-
-//struct gridArray<T> {
-//    let grid2DArray : [T]
-//}
-
 class Grid {
     
     var gridLowerLeftX : Double = 0.0
