@@ -14,7 +14,9 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     
     var backgroundNode : SKSpriteNode?
     var foregroundNode : SKSpriteNode?
+    
     //var diagnosticText : SKLabelNode?
+    
     let MMWBoardGrid: Grid = Grid(gridLowerLeftX: 157, gridLowerLeftY: 21, gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 15, gridNumSquaresY: 15, gridName: "MMWBoardGrid")
     
     let MMWPlayer1Grid: Grid = Grid(gridLowerLeftX: 7, gridLowerLeftY: 307, gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "MMWPlayer1Grid")
@@ -37,9 +39,11 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     var player3 : MMWPlayer?
     var player4 : MMWPlayer?
     
-    //var partialWordHUD = SKLabelNode(fontNamed: FontHUDName)
+    var partialWordLabel    = SKLabelNode(fontNamed: FontHUDName)
+    var timeRemainingLabel  = SKLabelNode(fontNamed: FontHUDName)
     var tilesRemainingLabel = SKLabelNode(fontNamed: FontHUDName)
-    
+    var topDisplayLabel     = SKLabelNode(fontNamed: FontHUDName)
+    var topDisplayLabel2    = SKLabelNode(fontNamed: FontHUDName)
     
 //    let Player1NameLoc : CGPoint = CGPointMake(20, 768 - 325)
 //    let Player1ScoreLoc : CGPoint = CGPointMake(20, 768 - 325)
@@ -90,15 +94,29 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         //        addPlayerView(1, mmwPlayer: player1)
         
         foregroundNode = SKSpriteNode()
-        addChild(foregroundNode!)
-        foregroundNode?.zPosition=1
-        timerHUD(90)
-        partialWordHUD("ABCDEFG", isWord: false)  // "ABCDEFGHIJKLMNO", isWord: false)
         
-        tilesRemainingLabel = tilesRemainingHUD(789)
-        tilesRemainingLabel.text = String(67)
+        addChild(foregroundNode!)
+        
+        foregroundNode?.zPosition=1
+        
+        timeRemainingHUD(90)
+        
+        tilesRemainingHUD(321)
+        //tilesRemainingLabel = tilesRemainingHUD(789)
+        //tilesRemainingLabel.text = String(67)
+        
+        partialWordHUD("ABCDEFG", isWord: false)  // "ABCDEFGHIJKLMNO", isWord: false)
 
         topDisplayHUD("Player 1 plays \"CATATONIC\" for 14 points") // ("Turn: Player 1, Special Letter Bonus In Effect, 2x Point Bonus")
+        
+        player1 = MMWPlayer(_playerID: 1, _playerName: "player1")
+        player1View = PlayerView(_playerName: player1!.playerName , _playerColor: player1!.playerSeat.seatUIColor) // , _playerColor: UIColorAppleRed)
+        addPlayerView (1, playerView: player1View!)
+        
+        player2 = MMWPlayer(_playerID: 2, _playerName: "player2")
+        player2View = PlayerView(_playerName: player2!.playerName , _playerColor: player2!.playerSeat.seatUIColor) // , _playerColor: UIColorAppleRed)
+        addPlayerView(2, playerView: player2View!)
+        
         addChild(LetterTileSprite(tileStyle: .basic, withChar: "P", withColor: UIColorAppleRed, atPoint: CGPointMake(7, 448.5)) )
         addChild(LetterTileSprite(tileStyle: .basic, withChar: "M", withColor: UIColorAppleRed, atPoint: CGPointMake(54.5, 543)) )
         addChild(LetterTileSprite(tileStyle: .basic, withChar: "O", withColor: UIColorAppleRed, atPoint: CGPointMake(102, 496)) )
@@ -113,14 +131,6 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         addChild(LetterTileSprite(tileStyle: .basic, withChar: "C", withColor: UIColorApplePurple, atPoint: CGPointMake(924.5, 543)) )
         addChild(LetterTileSprite(tileStyle: .basic, withChar: "1", withColor: UIColorApplePurple, atPoint: CGPointMake(7, 305)) )
         addChild(LetterTileSprite(tileStyle: .basic, withChar: "2", withColor: UIColorApplePurple, atPoint: CGPointMake(877, 305)) )
-        
-        player1 = MMWPlayer(_playerID: 1, _playerName: "player1")
-        player1View = PlayerView(_playerName: player1!.playerName , _playerColor: player1!.playerSeat.seatUIColor) // , _playerColor: UIColorAppleRed)
-        addPlayerView (1, playerView: player1View!)
-        
-        player2 = MMWPlayer(_playerID: 2, _playerName: "player2")
-        player2View = PlayerView(_playerName: player2!.playerName , _playerColor: player2!.playerSeat.seatUIColor) // , _playerColor: UIColorAppleRed)
-        addPlayerView(2, playerView: player2View!)
 
 //        var player3 = MMWPlayer(_playerID: 3, _playerName: "TestE3")
 //        addPlayerView(3, mmwPlayer: player3)
@@ -152,7 +162,7 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     
     func partialWordHUD (letters : String, isWord : Bool)  -> SKLabelNode {
         //let partialWordHUD = SKLabelNode(fontNamed: FontHUDName)
-        let partialWordLabel = SKLabelNode(fontNamed: FontHUDName)
+        //partialWordLabel = SKLabelNode(fontNamed: FontHUDName)
         var isPartial : String
         if isWord {
             isPartial = ""
@@ -168,8 +178,9 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         return partialWordLabel
     }
     
-    func timerHUD (timeAmount: Int)  -> SKLabelNode {
-        let timeRemainingLabel = SKLabelNode(fontNamed: FontHUDName)
+    func timeRemainingHUD (timeAmount: Int)  -> SKLabelNode {
+        //timeRemainingLabel = SKLabelNode(fontNamed: FontHUDName)
+        timeRemainingLabel.zPosition = 1
         timeRemainingLabel.text = "Timer: \(timeAmount)"
         timeRemainingLabel.fontSize = FontHUDSize
         timeRemainingLabel.fontColor = FontHUDRed
@@ -180,7 +191,8 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func tilesRemainingHUD (tilesLeft : Int) -> SKLabelNode {
-        let tilesRemainingLabel = SKLabelNode(fontNamed: FontHUDName)
+        //let tilesRemainingLabel = SKLabelNode(fontNamed: FontHUDName)
+        tilesRemainingLabel.zPosition = 1
         tilesRemainingLabel.text = "Tiles Left: \(tilesLeft)"
         tilesRemainingLabel.fontSize = FontHUDSize
         tilesRemainingLabel.position = CGPointMake(size.width/2.0 - 332, 3.0)
@@ -190,7 +202,8 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func topDisplayHUD (message : String)  -> SKLabelNode {
-        let topDisplayLabel = SKLabelNode(fontNamed: FontHUDName)
+        //let topDisplayLabel = SKLabelNode(fontNamed: FontHUDName)
+        topDisplayLabel.zPosition = 1
         topDisplayLabel.text = message
         topDisplayLabel.fontSize = FontHUDSize
         topDisplayLabel.position = CGPointMake(size.width/2.0, 744.0) // CGPointMake(size.width/2.0, 753.0) // 1 of 2 top lines
@@ -200,7 +213,8 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func topDisplayHUD2 (message : String)  -> SKLabelNode {
-        let topDisplayLabel2 = SKLabelNode(fontNamed: FontHUDName)
+        //let topDisplayLabel2 = SKLabelNode(fontNamed: FontHUDName)
+        topDisplayLabel2.zPosition = 1
         topDisplayLabel2.text = message
         topDisplayLabel2.fontSize = FontHUDSize
         topDisplayLabel2.position = CGPointMake(size.width/2.0, 735.0) // 2 of 2 top lines
@@ -318,7 +332,8 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
             //presentMenuScene()
-            tilesRemainingLabel.text = String(987)
+            //tilesRemainingLabel.text = String(987)
+            player1View?.playerScoreLabel.zPosition = 1
             player1View?.playerScoreLabel.text = "in MMWGameScene touches"
         }
     }
@@ -361,6 +376,14 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
 //            let touchedNode = nodeAtPoint(location)
 //            touchedNode.position = location
         //////checkForTouches(touches touches, withEvent event)
+        
+        tilesRemainingLabel.zPosition = 1
+        tilesRemainingLabel.text = "TilesRemainTouchMove"
+        tilesRemainingLabel.text = String(987)
+        
+        player2View?.playerScoreLabel.zPosition = 1
+        player2View?.playerScoreLabel.text = "MMWGameSceneTouchesMoved"
+        
     }
     
     func presentMenuScene() {

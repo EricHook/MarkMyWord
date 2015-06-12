@@ -106,13 +106,12 @@ class MMWGameSceneViewController: UIViewController  {
         print("in GameViewController presentMMWScene 2")
         
         //MMWGameSceneViewController()
-        presentMMWScene()
+        //presentMMWScene()
         print("in GameViewController presentMMWScene 3")
         
+        mmwScene.changePlayerScore(mmwScene.player2View!, player: mmwScene.player2!, score: 2468)
     }
 
-    
-    
     func testMMWCont () {
         print("testMMWCont")
         

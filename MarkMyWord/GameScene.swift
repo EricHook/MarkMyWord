@@ -59,8 +59,8 @@ class GameScene: SKScene {
 //        mmwGameScene!.player1View?.playerNameLabel.text = mmwGameScene!.player1!.playerName
 //        //mmwGameScene(mmwGameScene.player1View!, player: mmwGameScene.player1!, score: 22)
 //        mmwGameScene!.player1View?.playerScoreLabel.text = String(33)
-                mmwGameScene?.tilesRemainingLabel.text = "touchesBegan test"
-                mmwGameScene?.player1View?.playerScoreLabel.text = "TEST"
+                //mmwGameScene?.tilesRemainingLabel.text = "touchesBegan test"
+                //mmwGameScene?.player1View?.playerScoreLabel.text = "TEST"
         
                 mmwCont =  createMMWSceneController()
         

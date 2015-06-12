@@ -49,7 +49,7 @@ class Grid {
         return (GridSquareX, GridSquareY, GridSquareLowerLeftCornerX, GridSquareLowerLeftCornerY )
     }
     
-    func addToGridArray (tileToAdd: Tile, xGrid: Int, yGrid: Int) {
+    func addToGridArray (tileToAdd: MMWTile, xGrid: Int, yGrid: Int) {
         //gridArr[xGrid].insert(tileToAdd, atIndex: [yGrid])  // (tileToAdd, atIndex: xGrid)
     }
 

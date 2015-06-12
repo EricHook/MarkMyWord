@@ -9,6 +9,8 @@
 import Foundation
 import SpriteKit
 
+// letter distribution 
+
 class LetterTileSprite : SKSpriteNode {
     
     var isMovable : Bool = true

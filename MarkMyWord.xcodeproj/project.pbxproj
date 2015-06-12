@@ -139,6 +139,8 @@
 		B8A456121AF171B800C0D83B /* two-swords.wav in Resources */ = {isa = PBXBuildFile; fileRef = B8A455951AF171B800C0D83B /* two-swords.wav */; };
 		B8A456131AF171B800C0D83B /* Vulcan.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B8A455961AF171B800C0D83B /* Vulcan.mp3 */; };
 		B8A456141AF171B800C0D83B /* zoup.wav in Resources */ = {isa = PBXBuildFile; fileRef = B8A455971AF171B800C0D83B /* zoup.wav */; };
+		B8AA6C061B2A464600DEAC41 /* LetterDistribution in Resources */ = {isa = PBXBuildFile; fileRef = B8AA6C051B2A464600DEAC41 /* LetterDistribution */; };
+		B8AA6C081B2A481600DEAC41 /* MMWTileBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA6C071B2A481600DEAC41 /* MMWTileBuilder.swift */; };
 		B8B2947E1AF06146003F789F /* MarkMyWordBGiPadMod@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B2947D1AF06146003F789F /* MarkMyWordBGiPadMod@2x.jpg */; };
 		B8B294801AF064B7003F789F /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B2947F1AF064B7003F789F /* HUD.swift */; };
 		B8B2CA581ADADB6000C9DEE7 /* 11Bubble Gum.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA571ADADB6000C9DEE7 /* 11Bubble Gum.mp3 */; };
@@ -441,6 +443,8 @@
 		B8A455951AF171B800C0D83B /* two-swords.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "two-swords.wav"; sourceTree = "<group>"; };
 		B8A455961AF171B800C0D83B /* Vulcan.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Vulcan.mp3; sourceTree = "<group>"; };
 		B8A455971AF171B800C0D83B /* zoup.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = zoup.wav; sourceTree = "<group>"; };
+		B8AA6C051B2A464600DEAC41 /* LetterDistribution */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LetterDistribution; sourceTree = "<group>"; };
+		B8AA6C071B2A481600DEAC41 /* MMWTileBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMWTileBuilder.swift; sourceTree = "<group>"; };
 		B8B2947D1AF06146003F789F /* MarkMyWordBGiPadMod@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MarkMyWordBGiPadMod@2x.jpg"; sourceTree = "<group>"; };
 		B8B2947F1AF064B7003F789F /* HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 		B8B2CA571ADADB6000C9DEE7 /* 11Bubble Gum.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "11Bubble Gum.mp3"; sourceTree = "<group>"; };
@@ -648,6 +652,7 @@
 			isa = PBXGroup;
 			children = (
 				B8E874E51AE17E0000763849 /* MMWTile.swift */,
+				B8AA6C071B2A481600DEAC41 /* MMWTileBuilder.swift */,
 				B82786121B0556E000916E20 /* MMWSeat.swift */,
 				B82786141B05585D00916E20 /* MMWPlayer.swift */,
 			);
@@ -1010,6 +1015,7 @@
 				B8B49DBA1AF1AF610086154C /* MenuScene.swift */,
 				B8D130E61AFD635500865982 /* PlayerView.swift */,
 				B8C14EF01AF27E5100E640C0 /* LetterTileSprite.swift */,
+				B8AA6C051B2A464600DEAC41 /* LetterDistribution */,
 				B8FA8FAA1AE9DF6F007CF07C /* TileViewOLD.swift */,
 			);
 			name = Views;
@@ -1277,6 +1283,7 @@
 				B8A455CE1AF171B800C0D83B /* card_spell_sleep_large.png in Resources */,
 				B8B2CA781ADADB7000C9DEE7 /* 1019.WAV in Resources */,
 				B8B2CAEA1ADADD9100C9DEE7 /* 10_4LetterWords.txt in Resources */,
+				B8AA6C061B2A464600DEAC41 /* LetterDistribution in Resources */,
 				B8A455D01AF171B800C0D83B /* card_spell_sleep_sel.png in Resources */,
 				B8B2CA7E1ADADB7000C9DEE7 /* wizz1.mp3 in Resources */,
 				B8A455E91AF171B800C0D83B /* draw@2x.png in Resources */,
@@ -1524,6 +1531,7 @@
 				B8C14EEF1AF2783000E640C0 /* LetterTileController.swift in Sources */,
 				B8CB742F1AF9260400AE5F40 /* Grid.swift in Sources */,
 				B8CCE1A61AD8C13500882391 /* MMWGameScene.swift in Sources */,
+				B8AA6C081B2A481600DEAC41 /* MMWTileBuilder.swift in Sources */,
 				B8FA8FA41AE9DD40007CF07C /* AudioController.swift in Sources */,
 				B82786151B05585D00916E20 /* MMWPlayer.swift in Sources */,
 				B89939431ADAF8BC00587323 /* accelerometer.swift in Sources */,

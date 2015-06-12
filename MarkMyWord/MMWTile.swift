@@ -10,37 +10,49 @@
 import SpriteKit
 
 enum TileType: Int {
-    case Unknown = 0, Letter, ColorBomb, DirectionBomb
-    
-    var spriteName: String {
-        let spriteNames = [
-            "Mystery",
-            "Letter",
-            "ColorBomb",
-            "DirectionBomb"]
-        
-        return spriteNames[rawValue - 1]
+    case Unknown = 0, Letter, Blank, ColorBomb, DirectionBomb, Blocking
     }
-    
-    var highlightedSpriteName: String {
-        return spriteName + "-Highlighted"
-    }
+
+enum spriteName: Int {
+    case Mystery = 0, Letter, Blank, ColorBomb, DirectionBomb, Blocking
+}
+
+enum gridLocation: Int {
+    case undealt = 0, player1, player2, player3, player4, gameBoard
+}
+
+enum letterValue: Int {
+    case Unknown = 0, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z
+}
+
+enum tileState: Int {
+    case black = 0, player1, player3, player4, gray, highlight
+}
+
+enum TileOwner: Int {
+    case None = 0, Player1, Player2, Player3, Player4
+}
+
+class MMWTile {
+
+    var highlightedSpriteName = ("\(spriteName.Blank) -Highlighted")
     
     static func random() -> TileType {
         return TileType(rawValue: Int(arc4random_uniform(4)) + 1)!
     }
-}
-
-class Tile {
-    //var grid : Grid
-    var column: Int
-    var row: Int
-    let tileType: TileType
+    
+    
+//    var gridLocation : gridLocation[0]
+//    var column: Int
+//    var row: Int
+//    let tileType: TileType
+    
     //var sprite: SKSpriteNode?
     
     init(column: Int, row: Int, tileType: TileType) {
-        self.column = column
-        self.row = row
-        self.tileType = tileType
+//        self.tileType = tileType
+//        self.column = column
+//        self.row = row
+        
     }
 }
