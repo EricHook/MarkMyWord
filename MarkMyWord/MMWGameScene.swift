@@ -12,6 +12,8 @@ import CoreMotion
 
 class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     
+    //var mmwGameSceneViewController : MMWGameSceneViewController!
+    
     var backgroundNode : SKSpriteNode?
     var foregroundNode : SKSpriteNode?
     
@@ -56,11 +58,12 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     
     private var secondsLeft: Int = 0
     private var timer: NSTimer?
-    
+    var viewSize : CGSize!
+    //var testTile1 : MMWTile = MMWTile(column: 3, row: 3, tileType: TileType.Unknown)
+
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        //player1 = nil
-    }
+        fatalError("init(coder:) has not been implemented")
+    } // required init
     
     override init(size: CGSize) {
         super.init(size: size)
@@ -73,13 +76,32 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         backgroundNode = SKSpriteNode(imageNamed: "MarkMyWordBGCleaniPad")
         backgroundNode!.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         backgroundNode!.position = CGPoint(x: size.width/2.0, y: 0.0)
-        backgroundNode?.userInteractionEnabled = false
+        backgroundNode?.userInteractionEnabled = true
         backgroundNode?.zPosition = -100
-        backgroundNode?.alpha = 0.5
+        //backgroundNode?.alpha = 0.5
         addChild(backgroundNode!)
      
         addFillerData()
     }
+    
+//    override init(size: CGSize) {
+//        super.init(size: size)
+//        viewSize = size
+//        
+//        let BG = SKSpriteNode(imageNamed: "MarkMyWordBGCleaniPad")
+//        BG.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
+//        userInteractionEnabled = true
+//        backgroundNode?.zPosition = -100
+//        self.addChild(BG)
+//        
+//        let hero:SKSpriteNode!
+//        hero = SKSpriteNode(imageNamed: "avatarpic-l.png")
+//        hero.position = CGPoint(x: viewSize.width/4, y: viewSize.height/2)
+//        self.addChild(hero)
+//
+//        addFillerData()
+//    }
+
     
     func changePlayerScore (playerView: PlayerView, player: MMWPlayer, score: Int) {
         player.playerScore = score
@@ -87,24 +109,15 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addFillerData () {
-        //        ///////////////////////////
-        //addPlayerView("PlayerFred")
-        //        //////////////////////////
-        //        var player1 : MMWPlayer = MMWPlayer(_playerID: 11, _playerName: "FredPlayer1")
-        //        addPlayerView(1, mmwPlayer: player1)
-        
+        print("Adding Filler Data in MMWGameScene")
         foregroundNode = SKSpriteNode()
-        
-        addChild(foregroundNode!)
-        
         foregroundNode?.zPosition=1
+        addChild(foregroundNode!)
         
         timeRemainingHUD(90)
         
         tilesRemainingHUD(321)
-        //tilesRemainingLabel = tilesRemainingHUD(789)
-        //tilesRemainingLabel.text = String(67)
-        
+
         partialWordHUD("ABCDEFG", isWord: false)  // "ABCDEFGHIJKLMNO", isWord: false)
 
         topDisplayHUD("Player 1 plays \"CATATONIC\" for 14 points") // ("Turn: Player 1, Special Letter Bonus In Effect, 2x Point Bonus")
@@ -117,20 +130,28 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         player2View = PlayerView(_playerName: player2!.playerName , _playerColor: player2!.playerSeat.seatUIColor) // , _playerColor: UIColorAppleRed)
         addPlayerView(2, playerView: player2View!)
         
-        addChild(LetterTileSprite(tileStyle: .basic, withChar: "P", withColor: UIColorAppleRed, atPoint: CGPointMake(7, 448.5)) )
-        addChild(LetterTileSprite(tileStyle: .basic, withChar: "M", withColor: UIColorAppleRed, atPoint: CGPointMake(54.5, 543)) )
-        addChild(LetterTileSprite(tileStyle: .basic, withChar: "O", withColor: UIColorAppleRed, atPoint: CGPointMake(102, 496)) )
-        addChild(LetterTileSprite(tileStyle: .basic, withChar: "H", withColor: UIColorAppleGreen, atPoint: CGPointMake(157, 68.5)) )
-        addChild(LetterTileSprite(tileStyle: .basic, withChar: "J", withColor: UIColorAppleGreen, atPoint: CGPointMake(157, 21)) )
-        addChild(LetterTileSprite(tileStyle: .basic, withChar: "K", withColor: UIColorAppleOrange, atPoint: CGPointMake(204.5, 68.5)) )
-        addChild(LetterTileSprite(tileStyle: .basic, withChar: "P", withColor: UIColorApplePurple, atPoint: CGPointMake(877, 448.5)) )
-        addChild(LetterTileSprite(tileStyle: .basic, withChar: "O", withColor: UIColorApplePurple, atPoint: CGPointMake(877, 496)) )
-        addChild(LetterTileSprite(tileStyle: .basic, withChar: "M", withColor: UIColorApplePurple, atPoint: CGPointMake(877, 543)) )
-        addChild(LetterTileSprite(tileStyle: .basic, withChar: "A", withColor: UIColorApplePurple, atPoint: CGPointMake(924.5, 448.5)) )
-        addChild(LetterTileSprite(tileStyle: .basic, withChar: "B", withColor: UIColorApplePurple, atPoint: CGPointMake(924.5, 496)) )
-        addChild(LetterTileSprite(tileStyle: .basic, withChar: "C", withColor: UIColorApplePurple, atPoint: CGPointMake(924.5, 543)) )
-        addChild(LetterTileSprite(tileStyle: .basic, withChar: "1", withColor: UIColorApplePurple, atPoint: CGPointMake(7, 305)) )
-        addChild(LetterTileSprite(tileStyle: .basic, withChar: "2", withColor: UIColorApplePurple, atPoint: CGPointMake(877, 305)) )
+
+//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "P", withColor: UIColorAppleRed, atPoint: CGPointMake(7, 448.5)) )
+//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "M", withColor: UIColorAppleRed, atPoint: CGPointMake(54.5, 543)) )
+//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "O", withColor: UIColorAppleRed, atPoint: CGPointMake(102, 496)) )
+//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "H", withColor: UIColorAppleGreen, atPoint: CGPointMake(157, 68.5)) )
+//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "J", withColor: UIColorAppleGreen, atPoint: CGPointMake(157, 21)) )
+//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "K", withColor: UIColorAppleOrange, atPoint: CGPointMake(204.5, 68.5)) )
+//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "P", withColor: UIColorApplePurple, atPoint: CGPointMake(877, 448.5)) )
+//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "O", withColor: UIColorApplePurple, atPoint: CGPointMake(877, 496)) )
+//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "M", withColor: UIColorApplePurple, atPoint: CGPointMake(877, 543)) )
+//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "A", withColor: UIColorApplePurple, atPoint: CGPointMake(924.5, 448.5)) )
+//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "B", withColor: UIColorApplePurple, atPoint: CGPointMake(924.5, 496)) )
+//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "C", withColor: UIColorApplePurple, atPoint: CGPointMake(924.5, 543)) )
+//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "1", withColor: UIColorApplePurple, atPoint: CGPointMake(7, 305)) )
+//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "2", withColor: UIColorApplePurple, atPoint: CGPointMake(877, 305)) )
+        
+//        testTile1 = MMWTile()
+//        addChild(testTile1.tileSprite)
+        
+        //var testTileArr1 : MMWTile
+        //addChild(mmwGameSceneViewController.tilebuilder.mmwTileArray[0].tileSprite)
+        
 
 //        var player3 = MMWPlayer(_playerID: 3, _playerName: "TestE3")
 //        addPlayerView(3, mmwPlayer: player3)
@@ -143,21 +164,59 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         //        playerLMid.zPosition = 100
         //        addChild(playerLMid)
         
-        //        for indexY in 1...15 {
-        //            for indexX in 1...15 {
-        //                var tileAdded : LetterTile = LetterTile(tileStyle: .basic, withChar: "C", withColor: SKColor(red: 0.0, green: 0.6132, blue: 0.8593, alpha: 1.0), atPoint: CGPointMake(xPosition, yPosition))
-        //                tileAdded.name = "X: \(xPosition), Y: \(yPosition), Letter: \(tileAdded.tileText)"
-        //                addChild(tileAdded)
-        //                xPosition += 47.5
-        //                //zPosition = -100
-        //            }
-        //            xPosition = 157.0
-        //            yPosition += 47.5
-        //        }
+        
         //        println("test grid below")
         //        var testGrid = Grid()
         //        testGrid.getGridSquare(25, locY: 15)
         //        //println("Grid count: \(testGrid.gridValueType.count)")
+    }
+    
+    func showTiles (tileBuilder: MMWTileBuilder) {
+        
+        var tileArrSelectedTile = 0
+        var xPositionMMWBoardGrid: Double = MMWBoardGrid.gridLowerLeftX + 23.75
+        var yPositionMMWBoardGrid: Double = MMWBoardGrid.gridLowerLeftY + 23.75
+        var xPositionMMWPlayer1Grid: Double = MMWPlayer1Grid.gridLowerLeftX + 23.75
+        var yPositionMMWPlayer1Grid: Double = MMWPlayer1Grid.gridLowerLeftY + 23.75
+        var xPositionMMWPlayer2Grid: Double = MMWPlayer2Grid.gridLowerLeftX + 23.75
+        var yPositionMMWPlayer2Grid: Double = MMWPlayer2Grid.gridLowerLeftY + 23.75
+        
+        //while 4 > tileArrSelectedTile {
+        for indexY in 1...2 {
+            for indexX in 1...3 {
+                if tileBuilder.mmwTileArray.count > tileArrSelectedTile {
+                    let tileAdded : MMWTile = tileBuilder.mmwTileArray[tileArrSelectedTile]
+                    tileAdded.tileSprite.position = CGPoint(x: xPositionMMWPlayer1Grid, y: yPositionMMWPlayer1Grid )
+                    tileAdded.tileSprite.color = tileAdded.tileSprite.tileColors[ Int(arc4random_uniform(4)) ]
+                    self.addChild(tileAdded.tileSprite)
+                    tileArrSelectedTile++
+                    
+                    xPositionMMWPlayer1Grid += 47.5
+                    zPosition = 50
+                }
+            }
+            xPositionMMWPlayer1Grid = MMWPlayer1Grid.gridLowerLeftX + 23.75
+            yPositionMMWPlayer1Grid += 47.5
+        }
+        
+        for indexY in 1...2 {
+            for indexX in 1...3 {
+                if tileBuilder.mmwTileArray.count > tileArrSelectedTile {
+                    let tileAdded : MMWTile = tileBuilder.mmwTileArray[tileArrSelectedTile]
+                    tileAdded.tileSprite.position = CGPoint(x: xPositionMMWPlayer2Grid, y: yPositionMMWPlayer2Grid )
+                    tileAdded.tileSprite.color = tileAdded.tileSprite.tileColors[ Int(arc4random_uniform(4)) ]
+                    self.addChild(tileAdded.tileSprite)
+                    tileArrSelectedTile++
+                    
+                    xPositionMMWPlayer2Grid += 47.5
+                    zPosition = 50
+                }
+            }
+            xPositionMMWPlayer2Grid = MMWPlayer2Grid.gridLowerLeftX + 23.75
+            yPositionMMWPlayer2Grid += 47.5
+        }
+
+        //}
     }
     
     func partialWordHUD (letters : String, isWord : Bool)  -> SKLabelNode {
@@ -292,10 +351,6 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
 //        tile.anchorPoint = CGPointMake(0, 0)
 //        foregroundNode!.addChild(tile)
 //    }
-    
-//    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-//        <#code#>
-//    }
 
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
 
@@ -331,10 +386,11 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
                     node.touchesMoved(touches, withEvent: event)
                 }
             }
-            //presentMenuScene()
-            //tilesRemainingLabel.text = String(987)
             player1View?.playerScoreLabel.zPosition = 1
             player1View?.playerScoreLabel.text = "in MMWGameScene touches"
+            
+//            self.testTile1.tileSprite.letterLabel.text = "P"
+//            self.testTile1.tileSprite.letterLabel.zPosition = 25
         }
     }
     
@@ -365,10 +421,6 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
 //        }
     }
     
-//    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-//        <#code#>
-//    }
-    
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         //presentMenuScene()
 //        for touch in (touches as! Set<UITouch>) {
@@ -383,7 +435,6 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         
         player2View?.playerScoreLabel.zPosition = 1
         player2View?.playerScoreLabel.text = "MMWGameSceneTouchesMoved"
-        
     }
     
     func presentMenuScene() {

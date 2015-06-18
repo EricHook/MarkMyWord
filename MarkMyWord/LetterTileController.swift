@@ -45,6 +45,7 @@ class LetterTileController : SKSpriteNode {
         // initialize properties
         backTexture = SKTexture(imageNamed: "card_back.png")
         frontTexture = SKTexture(imageNamed: "card_creature_wolf.png")
+        //largeTexture = SKTexture(imageNamed: "card_creature_wolf.png")
         largeTextureFilename = "card_back_large.png"
         let cardTexture = SKTexture(imageNamed: imageNamed)
         super.init(texture: cardTexture, color: UIColorAppleBlue, size: cardTexture.size())
@@ -131,9 +132,6 @@ class LetterTileController : SKSpriteNode {
         runAction(actionSound)
         
         for touch in (touches as Set<UITouch>) {
-            //            if touch.tapCount > 1 {
-            //                flip()
-            //            }
             if touch.tapCount > 1 {
                 enlarge()
             }
@@ -161,7 +159,6 @@ class LetterTileController : SKSpriteNode {
         zPosition = 0
         let dropDown = SKAction.scaleTo(1.0, duration: 0.2)
         runAction(dropDown, withKey: "drop")
-
     }
     
 }

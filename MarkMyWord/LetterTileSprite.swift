@@ -13,11 +13,14 @@ import SpriteKit
 
 class LetterTileSprite : SKSpriteNode {
     
+    let letterLabel = SKLabelNode(fontNamed: FontHUDName)
+    //let letterLabelShadow = SKLabelNode(fontNamed: FontHUDName)
+    //let letterLabelHighlight = SKLabelNode(fontNamed: FontHUDName)
+    
     var isMovable : Bool = true
     var faceUp : Bool = true
     var hasShadow : Bool = false
     var tileText = ""
-    
     var frontTexture : SKTexture
     var backTexture : SKTexture = SKTexture(imageNamed: "TileBackTest90x90")
     var largeTexture : SKTexture?
@@ -34,6 +37,9 @@ class LetterTileSprite : SKSpriteNode {
         wood,
         neon
     }
+    
+    let tileColors : [UIColor] = [UIColorAppleBlue, UIColorAppleGreen, UIColorApplePurple, UIColorAppleRed, UIColorAppleOrange]
+    
     
     required init(coder aDecoder: NSCoder) {
         fatalError("NSCoding not supported")
@@ -77,38 +83,34 @@ class LetterTileSprite : SKSpriteNode {
             tileShadow.hidden = true
             tileShadow.name = "tileShadowName"
             self.addChild(tileShadow)
-        
-            let letterLabel = SKLabelNode(fontNamed: FontHUDName)
-            let letterLabelShadow = SKLabelNode(fontNamed: FontHUDName)
-            let letterLabelHighlight = SKLabelNode(fontNamed: FontHUDName)
-        
+
             letterLabel.text = withChar
-            letterLabelShadow.text = withChar
-            letterLabelHighlight.text = withChar
+            //letterLabelShadow.text = withChar
+            //letterLabelHighlight.text = withChar
         
             letterLabel.fontSize = 40 // FontHUDSize
-            letterLabelShadow.fontSize = 40 // FontHUDSize
-            letterLabelHighlight.fontSize = 40 // FontHUDSize
+            //letterLabelShadow.fontSize = 40 // FontHUDSize
+            //letterLabelHighlight.fontSize = 40 // FontHUDSize
         
             //var colorDarkGreen : UIColor = UIColor(red: 0.1, green: 1.0, blue: 0.2, alpha: 0.80)
             letterLabel.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.98)
-            letterLabelShadow.fontColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5) // black
-            letterLabelHighlight.fontColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5) // black
+            //letterLabelShadow.fontColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5) // black
+            //letterLabelHighlight.fontColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5) // black
         
             letterLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
-            letterLabelShadow.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
-            letterLabelHighlight.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
+            //letterLabelShadow.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
+            //letterLabelHighlight.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
         
             letterLabel.position = CGPointMake(0, -14)
-            letterLabelShadow.position = CGPointMake(-0.5, -13.5)
-            letterLabelHighlight.position = CGPointMake(0.5, -14.5)
+            //letterLabelShadow.position = CGPointMake(-0.5, -13.5)
+            //letterLabelHighlight.position = CGPointMake(0.5, -14.5)
         
             letterLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
-            letterLabelShadow.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
-            letterLabelHighlight.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
+            //letterLabelShadow.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
+            //letterLabelHighlight.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
         
-            self.addChild(letterLabelShadow)
-            self.addChild(letterLabelHighlight)
+            //self.addChild(letterLabelShadow)
+            //self.addChild(letterLabelHighlight)
             self.addChild(letterLabel)
             centerTileToSquare(self)
         
@@ -125,7 +127,6 @@ class LetterTileSprite : SKSpriteNode {
 
         // set properties defined in super
         userInteractionEnabled = true
-        
     }
 
     func flip() {

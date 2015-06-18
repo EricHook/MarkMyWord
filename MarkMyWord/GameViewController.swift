@@ -15,7 +15,7 @@ extension SKNode {
             let archiver = NSKeyedUnarchiver(forReadingWithData: sceneData)
             
             archiver.setClass(self.classForKeyedUnarchiver(), forClassName: "SKScene")
-            let scene1 = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as! GameScene
+            let scene1 = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as! MainMenuScene
             
             scene1.name = "scene in GameViewController"
             print("scene is: \(scene1.description)")
@@ -29,12 +29,20 @@ extension SKNode {
 }
 
 class GameViewController: UIViewController {
-
+    
+    var tilebuilder : MMWTileBuilder = MMWTileBuilder()
+    var tileArray : [MMWTile]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         print("in GameViewController viewDidLoad 1")
-        if let scene1 = GameScene.unarchiveFromFile("GameScene") as? GameScene {
+        
+        let scene1 = MainMenuScene(size: view.bounds.size)
+        
+    //    if let scene1 = GameScene.unarchiveFromFile("GameScene") as? GameScene {
             // Configure the view.
+            
             let skView = self.view as! SKView
             skView.showsFPS = true
             skView.showsNodeCount = true
@@ -45,11 +53,13 @@ class GameViewController: UIViewController {
             /* Set the scale mode to scale to fit the window */
             scene1.scaleMode = .AspectFill
             
+            tileArray = tilebuilder.mmwTileArray
+            
             skView.presentScene(scene1)
             print("in GameViewController viewDidLoad 2")
             
             print("in GameViewController viewDidLoad 3")
-        }
+    //    }
     }
     
 //    func presentMMWScene() {
@@ -98,6 +108,10 @@ class GameViewController: UIViewController {
 //        }
 //        print("in GameViewController loadMenu 3")
 //    }
+    
+    func testMMWCont () {
+        print("testMMWCont GameViewController")
+    }
 
     override func shouldAutorotate() -> Bool {
         return true
