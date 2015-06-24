@@ -91,7 +91,7 @@ class MMWTile {
         }
 
 
-    static func random() -> TileType {
+    static func randomTileType() -> TileType {
         return TileType(rawValue: Int(arc4random_uniform(4)) + 1)!
     }
     

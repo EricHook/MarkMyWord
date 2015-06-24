@@ -29,16 +29,14 @@ extension SKNode {
 }
 
 class GameViewController: UIViewController {
-    
-    var tilebuilder : MMWTileBuilder = MMWTileBuilder()
-    var tileArray : [MMWTile]!
-    
+    //var tilebuilder : MMWTileBuilder = MMWTileBuilder()
+    //var tileArray : [MMWTile]!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print("in GameViewController viewDidLoad 1")
         
-        let scene1 = MainMenuScene(size: view.bounds.size)
+        let menuScene = MainMenuScene(size: view.bounds.size)
         
     //    if let scene1 = GameScene.unarchiveFromFile("GameScene") as? GameScene {
             // Configure the view.
@@ -51,11 +49,9 @@ class GameViewController: UIViewController {
             skView.ignoresSiblingOrder = true
             
             /* Set the scale mode to scale to fit the window */
-            scene1.scaleMode = .AspectFill
-            
-            tileArray = tilebuilder.mmwTileArray
-            
-            skView.presentScene(scene1)
+            menuScene.scaleMode = .AspectFill
+            //tileArray = tilebuilder.mmwTileArray
+            skView.presentScene(menuScene)
             print("in GameViewController viewDidLoad 2")
             
             print("in GameViewController viewDidLoad 3")
@@ -86,7 +82,6 @@ class GameViewController: UIViewController {
 //            print("in GameViewController presentMMWScene 3")
 //        
 //    }
-    
     
 //    func loadMenu() {
 //        print("in GameViewController loadMenu 1")

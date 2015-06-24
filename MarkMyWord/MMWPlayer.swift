@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SpriteKit
 
 class MMWPlayer {
     
@@ -16,11 +17,24 @@ class MMWPlayer {
     var doIt : Bool = false
     var didIt : Bool = false
     var playerSeat : MMWSeat
+    var playerColor : UIColor
+    var playerLetterTiles : [MMWTile]? = nil
+    var playerSpecialTiles : [MMWTile]? = nil
+    var playerLetterTilesPlayed : [MMWTile]? = nil
     
-    init (_playerID : Int, _playerName : String) {
-        playerSeat = MMWSeat(_playerSeatNum: 1, _seatColorNumber: 1)
+    init (_playerID : Int, _playerName : String, _playerColor : Int) {
+        playerSeat = MMWSeat(_playerSeatNum: 1, _seatColorNumber: _playerColor)
+        playerColor = playerSeat.seatUIColor
         playerID = _playerID
         playerName = _playerName
-        //playerScore = _playerScore
     }
+    
+    func setPlayerTilesArray (inout playerTiles: [MMWTile]) {
+        playerLetterTiles = playerTiles
+    }
+    
+//    getNewTiles (numTilesToGet: Int) {
+//        while playerLetterTiles.count < 7 &&
+//    }
+    
 }

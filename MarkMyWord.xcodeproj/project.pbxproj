@@ -233,6 +233,10 @@
 		B8B2CB081ADADD9100C9DEE7 /* 24-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAC31ADADD9100C9DEE7 /* 24-LetterWords.txt */; };
 		B8B2CB091ADADD9100C9DEE7 /* enable1WordList.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAC41ADADD9100C9DEE7 /* enable1WordList.txt */; };
 		B8B49DBB1AF1AF610086154C /* MMWResultsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B49DBA1AF1AF610086154C /* MMWResultsScene.swift */; };
+		B8B9B5111B34B98200E96FF2 /* MarkMyWordBGCleaniPhone@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8B9B50E1B34B98200E96FF2 /* MarkMyWordBGCleaniPhone@1x.png */; };
+		B8B9B5121B34B98200E96FF2 /* MarkMyWordBGCleaniPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8B9B50F1B34B98200E96FF2 /* MarkMyWordBGCleaniPhone@2x.png */; };
+		B8B9B5131B34B98200E96FF2 /* MarkMyWordBGCleaniPhone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8B9B5101B34B98200E96FF2 /* MarkMyWordBGCleaniPhone@3x.png */; };
+		B8B9B5151B34BE6200E96FF2 /* MarkMyWordBGCleaniPhoneLaunchImage.png in Resources */ = {isa = PBXBuildFile; fileRef = B8B9B5141B34BE6200E96FF2 /* MarkMyWordBGCleaniPhoneLaunchImage.png */; };
 		B8C14EEF1AF2783000E640C0 /* LetterTileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C14EEE1AF2783000E640C0 /* LetterTileController.swift */; };
 		B8C14EF11AF27E5100E640C0 /* LetterTileSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C14EF01AF27E5100E640C0 /* LetterTileSprite.swift */; };
 		B8C14EF31AF2811E00E640C0 /* TileBackTest90x90.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C14EF21AF2811E00E640C0 /* TileBackTest90x90.png */; };
@@ -288,6 +292,9 @@
 		B8DA7ED81AE13784003FE2C6 /* MeyamaIconLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DA7ECF1AE13784003FE2C6 /* MeyamaIconLarge.png */; };
 		B8DA7ED91AE13784003FE2C6 /* MeyamaMathMenuScreenBG_1024x768.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DA7ED01AE13784003FE2C6 /* MeyamaMathMenuScreenBG_1024x768.png */; };
 		B8DA7EDA1AE13784003FE2C6 /* OrangeLetterA.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DA7ED11AE13784003FE2C6 /* OrangeLetterA.png */; };
+		B8E2D7041B33CBE700DC2333 /* MarkMyWordBGCleaniPhone6Plus.png in Resources */ = {isa = PBXBuildFile; fileRef = B8E2D7031B33CBE700DC2333 /* MarkMyWordBGCleaniPhone6Plus.png */; };
+		B8E2D70E1B3492AF00DC2333 /* LaunchScreen@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8E2D70D1B3492AF00DC2333 /* LaunchScreen@2x.jpg */; };
+		B8E2D7101B3492B900DC2333 /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = B8E2D70F1B3492B900DC2333 /* LaunchScreen.png */; };
 		B8E37F8B1B0FAA1000F712E1 /* MenuSceneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E37F8A1B0FAA1000F712E1 /* MenuSceneController.swift */; };
 		B8E874E61AE17E0000763849 /* MMWTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E874E51AE17E0000763849 /* MMWTile.swift */; };
 		B8F2328B1AF56DB800B2324B /* Tile3D95x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8F2328A1AF56DB800B2324B /* Tile3D95x.png */; };
@@ -537,6 +544,10 @@
 		B8B2CAC31ADADD9100C9DEE7 /* 24-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "24-LetterWords.txt"; sourceTree = "<group>"; };
 		B8B2CAC41ADADD9100C9DEE7 /* enable1WordList.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = enable1WordList.txt; sourceTree = "<group>"; };
 		B8B49DBA1AF1AF610086154C /* MMWResultsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMWResultsScene.swift; sourceTree = "<group>"; };
+		B8B9B50E1B34B98200E96FF2 /* MarkMyWordBGCleaniPhone@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MarkMyWordBGCleaniPhone@1x.png"; sourceTree = "<group>"; };
+		B8B9B50F1B34B98200E96FF2 /* MarkMyWordBGCleaniPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MarkMyWordBGCleaniPhone@2x.png"; sourceTree = "<group>"; };
+		B8B9B5101B34B98200E96FF2 /* MarkMyWordBGCleaniPhone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MarkMyWordBGCleaniPhone@3x.png"; sourceTree = "<group>"; };
+		B8B9B5141B34BE6200E96FF2 /* MarkMyWordBGCleaniPhoneLaunchImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MarkMyWordBGCleaniPhoneLaunchImage.png; sourceTree = "<group>"; };
 		B8C14EEE1AF2783000E640C0 /* LetterTileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterTileController.swift; sourceTree = "<group>"; };
 		B8C14EF01AF27E5100E640C0 /* LetterTileSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterTileSprite.swift; sourceTree = "<group>"; };
 		B8C14EF21AF2811E00E640C0 /* TileBackTest90x90.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileBackTest90x90.png; sourceTree = "<group>"; };
@@ -596,6 +607,9 @@
 		B8DA7ECF1AE13784003FE2C6 /* MeyamaIconLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MeyamaIconLarge.png; sourceTree = "<group>"; };
 		B8DA7ED01AE13784003FE2C6 /* MeyamaMathMenuScreenBG_1024x768.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MeyamaMathMenuScreenBG_1024x768.png; sourceTree = "<group>"; };
 		B8DA7ED11AE13784003FE2C6 /* OrangeLetterA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OrangeLetterA.png; sourceTree = "<group>"; };
+		B8E2D7031B33CBE700DC2333 /* MarkMyWordBGCleaniPhone6Plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MarkMyWordBGCleaniPhone6Plus.png; sourceTree = "<group>"; };
+		B8E2D70D1B3492AF00DC2333 /* LaunchScreen@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "LaunchScreen@2x.jpg"; sourceTree = "<group>"; };
+		B8E2D70F1B3492B900DC2333 /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen.png; sourceTree = "<group>"; };
 		B8E37F8A1B0FAA1000F712E1 /* MenuSceneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuSceneController.swift; sourceTree = "<group>"; };
 		B8E874E51AE17E0000763849 /* MMWTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMWTile.swift; sourceTree = "<group>"; };
 		B8F2328A1AF56DB800B2324B /* Tile3D95x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tile3D95x.png; sourceTree = "<group>"; };
@@ -899,12 +913,18 @@
 		B8C900681B01203A00C72745 /* backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				B8B9B50E1B34B98200E96FF2 /* MarkMyWordBGCleaniPhone@1x.png */,
+				B8B9B50F1B34B98200E96FF2 /* MarkMyWordBGCleaniPhone@2x.png */,
+				B8B9B5101B34B98200E96FF2 /* MarkMyWordBGCleaniPhone@3x.png */,
+				B8B9B5141B34BE6200E96FF2 /* MarkMyWordBGCleaniPhoneLaunchImage.png */,
 				B8D130E21AFD44A100865982 /* MeyamaSplashScreen_iPad.jpg */,
 				B8D130E31AFD44A100865982 /* MeyamaSplashScreen_iPad@2x.jpg */,
 				B8C9007C1B0157CC00C72745 /* ButtonPlaceholderBottomLeft.png */,
 				B8DA7ECD1AE13784003FE2C6 /* MarkMyWordBG_iPadR@2x.jpg */,
 				B8B2947D1AF06146003F789F /* MarkMyWordBGiPadMod@2x.jpg */,
 				B8DA7ECE1AE13784003FE2C6 /* MarkMyWordBG2048x1536.jpg */,
+				B8E2D70D1B3492AF00DC2333 /* LaunchScreen@2x.jpg */,
+				B8E2D70F1B3492B900DC2333 /* LaunchScreen.png */,
 				B8C14F001AF3DF6F00E640C0 /* MarkMyWordBGCleaniPad@2x.png */,
 			);
 			name = backgrounds;
@@ -1063,6 +1083,7 @@
 				B8DA7ECC1AE13784003FE2C6 /* LetterTest90x90.png */,
 				B8C14EF21AF2811E00E640C0 /* TileBackTest90x90.png */,
 				B8DA7ECF1AE13784003FE2C6 /* MeyamaIconLarge.png */,
+				B8E2D7031B33CBE700DC2333 /* MarkMyWordBGCleaniPhone6Plus.png */,
 				B8DA7ED01AE13784003FE2C6 /* MeyamaMathMenuScreenBG_1024x768.png */,
 				B8C14EF41AF2DE1B00E640C0 /* default.jpg */,
 				B8F2328A1AF56DB800B2324B /* Tile3D95x.png */,
@@ -1281,6 +1302,7 @@
 				B8A455DA1AF171B800C0D83B /* castCreatures.png in Resources */,
 				B8B2CA741ADADB7000C9DEE7 /* 1014.WAV in Resources */,
 				B8A455CE1AF171B800C0D83B /* card_spell_sleep_large.png in Resources */,
+				B8E2D7041B33CBE700DC2333 /* MarkMyWordBGCleaniPhone6Plus.png in Resources */,
 				B8B2CA781ADADB7000C9DEE7 /* 1019.WAV in Resources */,
 				B8B2CAEA1ADADD9100C9DEE7 /* 10_4LetterWords.txt in Resources */,
 				B8AA6C061B2A464600DEAC41 /* LetterDistribution in Resources */,
@@ -1291,6 +1313,7 @@
 				B8A455BF1AF171B800C0D83B /* card_energy_used@2x.png in Resources */,
 				B8A455B51AF171B800C0D83B /* card_creature_wolf_large@2x.png in Resources */,
 				B8A455CD1AF171B800C0D83B /* card_spell_rabid@2x.png in Resources */,
+				B8B9B5131B34B98200E96FF2 /* MarkMyWordBGCleaniPhone@3x.png in Resources */,
 				B8A455DD1AF171B800C0D83B /* changePhase@2x.png in Resources */,
 				B8B2CAF61ADADD9100C9DEE7 /* 12_1LetterWords.txt in Resources */,
 				B8D130EB1AFD725B00865982 /* PlayerBG02Island.jpg in Resources */,
@@ -1298,6 +1321,7 @@
 				B8B2CB091ADADD9100C9DEE7 /* enable1WordList.txt in Resources */,
 				B8B2CAFC1ADADD9100C9DEE7 /* 13.1-LetterWords.txt in Resources */,
 				B8A455C41AF171B800C0D83B /* card_spell_death_ray_sel.png in Resources */,
+				B8E2D70E1B3492AF00DC2333 /* LaunchScreen@2x.jpg in Resources */,
 				B8CCE1AD1AD8C13500882391 /* Images.xcassets in Resources */,
 				B8A455B11AF171B800C0D83B /* card_creature_dragon_sel@2x.png in Resources */,
 				B8B2CAF41ADADD9100C9DEE7 /* 11.2-LetterWords.txt in Resources */,
@@ -1365,6 +1389,7 @@
 				B8A455BE1AF171B800C0D83B /* card_energy_used.png in Resources */,
 				B8A455A11AF171B800C0D83B /* Black Vortex.mp3 in Resources */,
 				B8A455EC1AF171B800C0D83B /* fanfare.wav in Resources */,
+				B8B9B5111B34B98200E96FF2 /* MarkMyWordBGCleaniPhone@1x.png in Resources */,
 				B8B2CAE31ADADD9100C9DEE7 /* 9.1-LetterWords.txt in Resources */,
 				B8B2CACB1ADADD9100C9DEE7 /* 5-LetterWords.txt in Resources */,
 				B8B2CACD1ADADD9100C9DEE7 /* 6_1LetterWords.txt in Resources */,
@@ -1384,6 +1409,7 @@
 				B8D130E91AFD668100865982 /* PlayerBG01.jpg in Resources */,
 				B8A455B91AF171B800C0D83B /* card_creature_wolf@2x.png in Resources */,
 				B8C14F011AF3DF6F00E640C0 /* MarkMyWordBGCleaniPad@2x.png in Resources */,
+				B8E2D7101B3492B900DC2333 /* LaunchScreen.png in Resources */,
 				B8C697E81AF446520070ECEE /* TileShadow90x90.png in Resources */,
 				B8B2CAD11ADADD9100C9DEE7 /* 7_1LetterWords.txt in Resources */,
 				B8A455A21AF171B800C0D83B /* card_back_large.png in Resources */,
@@ -1403,6 +1429,7 @@
 				B8B2CAF51ADADD9100C9DEE7 /* 11.3-LetterWords.txt in Resources */,
 				B8A455D91AF171B800C0D83B /* card_spell_stoneskin@2x.png in Resources */,
 				B8B2CAC91ADADD9100C9DEE7 /* 4-LetterWords.txt in Resources */,
+				B8B9B5151B34BE6200E96FF2 /* MarkMyWordBGCleaniPhoneLaunchImage.png in Resources */,
 				B8A455F31AF171B800C0D83B /* icon_star_transparent@2x.png in Resources */,
 				B8A456121AF171B800C0D83B /* two-swords.wav in Resources */,
 				B8A455D31AF171B800C0D83B /* card_spell_sleep@2x.png in Resources */,
@@ -1442,6 +1469,7 @@
 				B8A455DF1AF171B800C0D83B /* clear.png in Resources */,
 				B8A4560A1AF171B800C0D83B /* player2_beastmaster_sel.png in Resources */,
 				B8A4560E1AF171B800C0D83B /* Take a Chance.mp3 in Resources */,
+				B8B9B5121B34B98200E96FF2 /* MarkMyWordBGCleaniPhone@2x.png in Resources */,
 				B8A455B41AF171B800C0D83B /* card_creature_wolf_large.png in Resources */,
 				B8A455FE1AF171B800C0D83B /* PlayButton.png in Resources */,
 				B8C900791B01405600C72745 /* MMWPlayerTilesGrid.png in Resources */,
@@ -1690,7 +1718,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1708,7 +1736,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hookstudios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

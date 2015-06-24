@@ -1,11 +1,13 @@
 {
   "images" : [
     {
-      "orientation" : "portrait",
-      "idiom" : "ipad",
       "extent" : "full-screen",
-      "minimum-system-version" : "7.0",
-      "scale" : "1x"
+      "idiom" : "iphone",
+      "subtype" : "736h",
+      "filename" : "MarkMyWordBGCleaniPhoneLaunchImage.png",
+      "minimum-system-version" : "8.0",
+      "orientation" : "landscape",
+      "scale" : "3x"
     },
     {
       "orientation" : "landscape",
@@ -14,13 +16,6 @@
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
       "scale" : "1x"
-    },
-    {
-      "orientation" : "portrait",
-      "idiom" : "ipad",
-      "extent" : "full-screen",
-      "minimum-system-version" : "7.0",
-      "scale" : "2x"
     },
     {
       "orientation" : "landscape",

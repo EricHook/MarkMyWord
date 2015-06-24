@@ -11,38 +11,47 @@ import SpriteKit
 class MainMenuScene: SKScene {
 
     var currentScene : SKScene?
-    var mmwGameScene : MMWGameScene!
     var mmwGameSceneViewController : MMWGameSceneViewController!
     var viewSize:CGSize!
     
     required init?(coder aDecoder: NSCoder) {
-        //currentScene = MenuScene(size: size, gameResult: true, score: 123)
         super.init(coder: aDecoder)
-        //mmwGameScene = MMWGameScene(size: view!.bounds.size)
     }
     
     override init(size: CGSize) {
         super.init(size: size)
-        mmwGameSceneViewController = MMWGameSceneViewController(size: size)
-        //mmwGameScene = MMWGameScene(size: view!.bounds.size)
-        //currentScene = MenuScene(size: size, gameResult: true, score: 123)
+        //mmwGameSceneViewController = MMWGameSceneViewController(size: size)
     }
 
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
         viewSize = view.bounds.size
+        print("view size MenuScene: \(viewSize)")
+
+//        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
+//            viewSize.height *= 2
+//            viewSize.width *= 2
+//        }
+//        print("view size MenuScene mod: \(viewSize)")
         
-        let BG = SKSpriteNode(imageNamed: "MeyamaSplashScreen_iPad.jpg")
-        BG.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
-        self.addChild(BG)
+//        let BG = SKSpriteNode(imageNamed: "MeyamaSplashScreen_iPad.jpg")
+//        BG.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
+//        self.addChild(BG)
         
+//        // add BG
+//        let backgroundNode = SKSpriteNode(imageNamed: "MeyamaMathMenuScreenBG_1024x768.png")
+//        //backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+//        backgroundNode.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
+//        backgroundNode.userInteractionEnabled = false
+//        self.addChild(backgroundNode)
         
         // add BG
-        let backgroundNode = SKSpriteNode(imageNamed: "MeyamaMathMenuScreenBG_1024x768.png")
+        let backgroundNode = SKSpriteNode(imageNamed: "MMWBG")
         //backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         backgroundNode.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
         backgroundNode.userInteractionEnabled = false
+        backgroundNode.size = self.frame.size;
         self.addChild(backgroundNode)
         
         let myLabel = SKLabelNode(fontNamed:"Chalkduster")
@@ -56,43 +65,31 @@ class MainMenuScene: SKScene {
         playBtn.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
         self.addChild(playBtn)
         playBtn.name = "playBtn"
+        //self.scaleMode = .AspectFill
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
-        
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
             let _node:SKNode = self.nodeAtPoint(location)
             if(_node.name == "playBtn"){
-                
-//                let scene = MMWGameScene(size: self.size)
-//                self.view?.presentScene(scene)
-                
-                print("going to mmw scene")
-
-                //create MMW controller
+                print("going to mmw scene") //create MMW controller
                 mmwGameSceneViewController = createMMWSceneController()
-                mmwGameSceneViewController.testMMWCont() // print to test
-                //create MMW view
-                mmwGameScene = presentMMWScene(mmwGameSceneViewController)
-            
+                // mmwGameSceneViewController.testMMWCont() // print to test
+                mmwGameSceneViewController.mmwGameScene.setViewController(mmwGameSceneViewController)
+                presentMMWScene()
+                // mmwGameScene.scaleMode = SKSceneScaleMode.ResizeFill
                 if userInteractionEnabled {
                     let actionSound = SKAction.playSoundFileNamed("37Bronk.mp3", waitForCompletion: true)
                     runAction(actionSound)
                 }
             }
-            if(location.x < viewSize.width/2){
-                
+            if ( location.x < viewSize.width/2){
                 print("[GamePlayScene] touchedLeftSide ")
-                
-                
-            }else if(location.x > viewSize.width/2){
-                
+            } else if(location.x > viewSize.width/2){
                 print("[GamePlayScene] touchedRightSide ")
-                
             }
-            
         }
     }
 
@@ -103,25 +100,20 @@ class MainMenuScene: SKScene {
 //        print("presentMenuScene")
 //    }
     
-    func createMMWScene() {
-        createMMWSceneController()
-        mmwGameScene = MMWGameScene(size: size)
-    }
-    
     func createMMWSceneController() -> MMWGameSceneViewController {
         mmwGameSceneViewController = MMWGameSceneViewController(size: size)
-        //MMWGameSceneViewController.
         return mmwGameSceneViewController
     }
     
-    func presentMMWScene(mmwGameSceneViewController : MMWGameSceneViewController) -> MMWGameScene {
+    func presentMMWScene() -> MMWGameScene {
         let transition = SKTransition.crossFadeWithDuration(2.0)
-        //mmwGameScene = MMWGameScene(size: size)
-        mmwGameScene = mmwGameSceneViewController.mmwGameScene
-        currentScene = mmwGameScene
-        view?.presentScene(mmwGameScene, transition: transition)
+//        //mmwGameScene = MMWGameScene(size: size)
+//        transitionToScene = mmwGameSceneViewController.mmwGameScene
+//        currentScene = mmwGameScene
+//        mmwGameScene.scaleMode = .AspectFill
+        view?.presentScene(mmwGameSceneViewController.mmwGameScene, transition: transition)
         print("presentMMWScene")
-        return mmwGameScene
+        return mmwGameSceneViewController.mmwGameScene
     }
 
     override func update(currentTime: CFTimeInterval) {

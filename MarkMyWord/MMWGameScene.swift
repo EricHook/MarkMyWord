@@ -12,216 +12,217 @@ import CoreMotion
 
 class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     
-    //var mmwGameSceneViewController : MMWGameSceneViewController!
+    var mmwGameSceneViewController : MMWGameSceneViewController!
+    var viewSize : CGSize!
+    var backgroundNode : SKSpriteNode = SKSpriteNode( imageNamed: "MMWBG" )
+    var foregroundNode : SKSpriteNode = SKSpriteNode()
     
-    var backgroundNode : SKSpriteNode?
-    var foregroundNode : SKSpriteNode?
-    
-    //var diagnosticText : SKLabelNode?
-    
-    let MMWBoardGrid: Grid = Grid(gridLowerLeftX: 157, gridLowerLeftY: 21, gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 15, gridNumSquaresY: 15, gridName: "MMWBoardGrid")
-    
-    let MMWPlayer1Grid: Grid = Grid(gridLowerLeftX: 7, gridLowerLeftY: 307, gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "MMWPlayer1Grid")
-    let MMWPlayer2Grid: Grid = Grid(gridLowerLeftX: 877, gridLowerLeftY: 307, gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "MMWPlayer2Grid")
-    
-    let MMWPlayer1of4Grid: Grid = Grid(gridLowerLeftX: 7, gridLowerLeftY: 448.5, gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "MMWPlayer1of4Grid")
-    let MMWPlayer2of4Grid: Grid = Grid(gridLowerLeftX: 877, gridLowerLeftY: 116.5, gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "MMWPlayer2of4Grid")
-    let MMWPlayer3of4Grid: Grid = Grid(gridLowerLeftX: 7, gridLowerLeftY: 448.5, gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "MMWPlayer3of4Grid")
-    let MMWPlayer4of4Grid: Grid = Grid(gridLowerLeftX: 877, gridLowerLeftY: 116.5, gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "MMWPlayer4of4Grid")
-    
-    var numPlayers : Int = 2
-    
-    var player1View : PlayerView?
-    var player2View : PlayerView?
-    var player3View : PlayerView?
-    var player4View : PlayerView?
-    
+    var MMWBoardGrid: Grid!
+    var MMWPlayer1of2Grid: Grid!
+    var MMWPlayer2of2Grid: Grid!
+    var MMWPlayer1of4Grid: Grid!
+    var MMWPlayer2of4Grid: Grid!
+    var MMWPlayer3of4Grid: Grid!
+    var MMWPlayer4of4Grid: Grid!
+
     var player1 : MMWPlayer?
     var player2 : MMWPlayer?
     var player3 : MMWPlayer?
     var player4 : MMWPlayer?
     
+    var player1View : PlayerView?
+    var player2View : PlayerView?
+    var player3View : PlayerView?
+    var player4View : PlayerView?
+
     var partialWordLabel    = SKLabelNode(fontNamed: FontHUDName)
     var timeRemainingLabel  = SKLabelNode(fontNamed: FontHUDName)
     var tilesRemainingLabel = SKLabelNode(fontNamed: FontHUDName)
     var topDisplayLabel     = SKLabelNode(fontNamed: FontHUDName)
     var topDisplayLabel2    = SKLabelNode(fontNamed: FontHUDName)
     
-//    let Player1NameLoc : CGPoint = CGPointMake(20, 768 - 325)
-//    let Player1ScoreLoc : CGPoint = CGPointMake(20, 768 - 325)
-//    let Player2NameLoc : CGPoint = CGPointMake(880, 768 - 325)
-//    let Player2ScoreLoc : CGPoint = CGPointMake(880, 768 - 325)
-//    let Player3NameLoc : CGPoint = CGPointMake(20, 768 - 550)
-//    let Player3ScoreLoc : CGPoint = CGPointMake(20, 768 - 550)
-//    let Player4NameLoc : CGPoint = CGPointMake(880, 768 - 550)
-//    let Player4ScoreLoc : CGPoint = CGPointMake(880, 768 - 550)
-    
     private var secondsLeft: Int = 0
     private var timer: NSTimer?
-    var viewSize : CGSize!
-    //var testTile1 : MMWTile = MMWTile(column: 3, row: 3, tileType: TileType.Unknown)
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    } // required init
+    }
     
     override init(size: CGSize) {
         super.init(size: size)
-        // bottom left corner of game board
-        //var xPosition : CGFloat = 157.0
-        //var yPosition : CGFloat = 21.0
-        backgroundColor = SKColor(red: 0.5, green: 0.0, blue: 0.0, alpha: 1.0)
-        userInteractionEnabled = true
-        // add BG
-        backgroundNode = SKSpriteNode(imageNamed: "MarkMyWordBGCleaniPad")
-        backgroundNode!.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-        backgroundNode!.position = CGPoint(x: size.width/2.0, y: 0.0)
-        backgroundNode?.userInteractionEnabled = true
-        backgroundNode?.zPosition = -100
-        //backgroundNode?.alpha = 0.5
-        addChild(backgroundNode!)
-     
-        addFillerData()
+        viewSize = size
+        print("view size: \(viewSize)")  //  var viewSize = self.view!.bounds.size
+        
+        self.MMWBoardGrid = Grid(gridUpperLeftX: 156, gridUpperLeftY: (67), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 15, gridNumSquaresY: 15, gridName: "MMWBoardGrid") // 21
+        
+        self.MMWPlayer1of2Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.45830), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "MMWPlayer1of2Grid") //y 304
+        self.MMWPlayer2of2Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.45830), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "MMWPlayer2of2Grid")
+        
+        self.MMWPlayer1of4Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.273), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "MMWPlayer1of4Grid") // 0.4583
+        self.MMWPlayer2of4Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.273), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "MMWPlayer2of4Grid")
+        self.MMWPlayer3of4Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.706), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "MMWPlayer3of4Grid")
+        self.MMWPlayer4of4Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.706), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "MMWPlayer4of4Grid")
     }
     
-//    override init(size: CGSize) {
-//        super.init(size: size)
-//        viewSize = size
-//        
-//        let BG = SKSpriteNode(imageNamed: "MarkMyWordBGCleaniPad")
-//        BG.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
-//        userInteractionEnabled = true
-//        backgroundNode?.zPosition = -100
-//        self.addChild(BG)
-//        
-//        let hero:SKSpriteNode!
-//        hero = SKSpriteNode(imageNamed: "avatarpic-l.png")
-//        hero.position = CGPoint(x: viewSize.width/4, y: viewSize.height/2)
-//        self.addChild(hero)
-//
-//        addFillerData()
-//    }
+    func setViewController (mmwGameSceneController: MMWGameSceneViewController) {
+        self.mmwGameSceneViewController = mmwGameSceneController
+    }
 
-    
-    func changePlayerScore (playerView: PlayerView, player: MMWPlayer, score: Int) {
+    func changePlayerScoreDisplay (playerView: PlayerView, player: MMWPlayer, score: Int) {
         player.playerScore = score
         playerView.playerScoreLabel.text = String(score)
     }
     
-    func addFillerData () {
-        print("Adding Filler Data in MMWGameScene")
-        foregroundNode = SKSpriteNode()
-        foregroundNode?.zPosition=1
-        addChild(foregroundNode!)
+    func buildGameView () {
+        print("buildGameView() in MMWGameScene")
+        backgroundColor = SKColor(red: 0.5, green: 0.0, blue: 0.0, alpha: 1.0)
+        userInteractionEnabled = true
+        // add BG
+        backgroundNode = SKSpriteNode( imageNamed: "MMWBG" )
+        backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+        backgroundNode.position = CGPoint(x: size.width/2.0, y: 0.0)
+        backgroundNode.userInteractionEnabled = true
+        backgroundNode.zPosition = -100
+        backgroundNode.size = viewSize;
+        addChild(backgroundNode)
+        
+        addChild(foregroundNode)
         
         timeRemainingHUD(90)
-        
         tilesRemainingHUD(321)
-
         partialWordHUD("ABCDEFG", isWord: false)  // "ABCDEFGHIJKLMNO", isWord: false)
-
         topDisplayHUD("Player 1 plays \"CATATONIC\" for 14 points") // ("Turn: Player 1, Special Letter Bonus In Effect, 2x Point Bonus")
         
-        player1 = MMWPlayer(_playerID: 1, _playerName: "player1")
-        player1View = PlayerView(_playerName: player1!.playerName , _playerColor: player1!.playerSeat.seatUIColor) // , _playerColor: UIColorAppleRed)
-        addPlayerView (1, playerView: player1View!)
+        let playBtn = SKSpriteNode(imageNamed: "HookAvatar80x80.jpg")
+        playBtn.position = CGPoint(x: viewSize.width * 0.5, y: viewSize.height * 0.5)
+        playBtn.size.width = playBtn.size.width * 2
+        playBtn.name = "playBtn"
+        self.addChild(playBtn)
         
-        player2 = MMWPlayer(_playerID: 2, _playerName: "player2")
-        player2View = PlayerView(_playerName: player2!.playerName , _playerColor: player2!.playerSeat.seatUIColor) // , _playerColor: UIColorAppleRed)
-        addPlayerView(2, playerView: player2View!)
-        
-
-//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "P", withColor: UIColorAppleRed, atPoint: CGPointMake(7, 448.5)) )
-//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "M", withColor: UIColorAppleRed, atPoint: CGPointMake(54.5, 543)) )
-//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "O", withColor: UIColorAppleRed, atPoint: CGPointMake(102, 496)) )
-//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "H", withColor: UIColorAppleGreen, atPoint: CGPointMake(157, 68.5)) )
-//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "J", withColor: UIColorAppleGreen, atPoint: CGPointMake(157, 21)) )
-//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "K", withColor: UIColorAppleOrange, atPoint: CGPointMake(204.5, 68.5)) )
-//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "P", withColor: UIColorApplePurple, atPoint: CGPointMake(877, 448.5)) )
-//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "O", withColor: UIColorApplePurple, atPoint: CGPointMake(877, 496)) )
-//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "M", withColor: UIColorApplePurple, atPoint: CGPointMake(877, 543)) )
-//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "A", withColor: UIColorApplePurple, atPoint: CGPointMake(924.5, 448.5)) )
-//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "B", withColor: UIColorApplePurple, atPoint: CGPointMake(924.5, 496)) )
-//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "C", withColor: UIColorApplePurple, atPoint: CGPointMake(924.5, 543)) )
-//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "1", withColor: UIColorApplePurple, atPoint: CGPointMake(7, 305)) )
-//        addChild(LetterTileSprite(tileStyle: .basic, withChar: "2", withColor: UIColorApplePurple, atPoint: CGPointMake(877, 305)) )
-        
-//        testTile1 = MMWTile()
-//        addChild(testTile1.tileSprite)
-        
-        //var testTileArr1 : MMWTile
-        //addChild(mmwGameSceneViewController.tilebuilder.mmwTileArray[0].tileSprite)
-        
-
-//        var player3 = MMWPlayer(_playerID: 3, _playerName: "TestE3")
-//        addPlayerView(3, mmwPlayer: player3)
-//        
-//        var player4 = MMWPlayer(_playerID: 4, _playerName: "TestE4")
-//        addPlayerView(4, mmwPlayer: player4)
-        
-        //        var playerLMid = PlayerView(_playerName: "Doyyy123", _playerColor: UIColorAppleRed)
-        //        playerLMid.position = CGPointMake(0, ( 768 - ( (1319/2) - 187 ) ) )// PS coordinates is Y: 1390, convert and flip
-        //        playerLMid.zPosition = 100
-        //        addChild(playerLMid)
-        
-        
-        //        println("test grid below")
-        //        var testGrid = Grid()
-        //        testGrid.getGridSquare(25, locY: 15)
-        //        //println("Grid count: \(testGrid.gridValueType.count)")
     }
     
     func showTiles (tileBuilder: MMWTileBuilder) {
-        
+    }
+    
+    func showTilesInSquares (tileBuilder: MMWTileBuilder) {
+        var location = CGPoint(x: 100, y: 100 )
+        location.y = viewSize.height - location.y
+        let snapGrid : Grid = getSnapGrid(location)!
+        let gridSquareX = snapGrid.getGridSquare(Float(location.x), locY: Float(location.y) ).GridSquareX
+        let gridSquareY = snapGrid.getGridSquare(Float(location.x), locY: Float(location.y) ).GridSquareY
+        let gridSquareXCorner = snapGrid.getGridSquare(Float(location.x), locY: Float(location.y) ).GridSquareUpperLeftCornerX
+        let gridSquareYCorner = snapGrid.getGridSquare(Float(location.x), locY: Float(location.y) ).GridSquareUpperLeftCornerY
+        print("snapGrid: gridX\(gridSquareX), gridY\(gridSquareY) \(gridSquareXCorner) \(gridSquareYCorner)")
+
         var tileArrSelectedTile = 0
-        var xPositionMMWBoardGrid: Double = MMWBoardGrid.gridLowerLeftX + 23.75
-        var yPositionMMWBoardGrid: Double = MMWBoardGrid.gridLowerLeftY + 23.75
-        var xPositionMMWPlayer1Grid: Double = MMWPlayer1Grid.gridLowerLeftX + 23.75
-        var yPositionMMWPlayer1Grid: Double = MMWPlayer1Grid.gridLowerLeftY + 23.75
-        var xPositionMMWPlayer2Grid: Double = MMWPlayer2Grid.gridLowerLeftX + 23.75
-        var yPositionMMWPlayer2Grid: Double = MMWPlayer2Grid.gridLowerLeftY + 23.75
-        
-        //while 4 > tileArrSelectedTile {
-        for indexY in 1...2 {
-            for indexX in 1...3 {
-                if tileBuilder.mmwTileArray.count > tileArrSelectedTile {
-                    let tileAdded : MMWTile = tileBuilder.mmwTileArray[tileArrSelectedTile]
-                    tileAdded.tileSprite.position = CGPoint(x: xPositionMMWPlayer1Grid, y: yPositionMMWPlayer1Grid )
-                    tileAdded.tileSprite.color = tileAdded.tileSprite.tileColors[ Int(arc4random_uniform(4)) ]
-                    self.addChild(tileAdded.tileSprite)
-                    tileArrSelectedTile++
-                    
-                    xPositionMMWPlayer1Grid += 47.5
-                    zPosition = 50
+        let actionSound = SKAction.playSoundFileNamed("PLINK.mp3", waitForCompletion: true)
+        runAction(actionSound)
+            for y in 0...1 {   // fill Player 1 letter tiles
+                for x in 0...2 {
+                    if tileBuilder.mmwPlayer1LetterTileArray.count > tileArrSelectedTile {
+                        let tileAdded : MMWTile = tileBuilder.mmwPlayer1LetterTileArray[tileArrSelectedTile]
+                        if mmwGameSceneViewController.numPlayers == 2 {
+                            tileAdded.tileSprite.position = self.MMWPlayer1of2Grid.sendToGridSquare(self.MMWPlayer1of2Grid, squareX: x, squareY: y)
+                        }
+                        if mmwGameSceneViewController.numPlayers == 3 {
+                            tileAdded.tileSprite.position = self.MMWPlayer1of2Grid.sendToGridSquare(self.MMWPlayer1of2Grid, squareX: x, squareY: y)
+                        }
+                        else if mmwGameSceneViewController.numPlayers == 4 {
+                            tileAdded.tileSprite.position = self.MMWPlayer1of4Grid.sendToGridSquare(self.MMWPlayer1of4Grid, squareX: x, squareY: y)
+                        }
+                        // tileAdded.tileSprite.color = tileAdded.tileSprite.tileColors[ Int(arc4random_uniform(4)) ]
+                        //tileAdded.tileSprite.color =  player1View!.color  // UIColorAppleRed // player1?.playerSeat.seatUIColor
+                        self.addChild(tileAdded.tileSprite)
+                        tileArrSelectedTile++
+                    }
                 }
             }
-            xPositionMMWPlayer1Grid = MMWPlayer1Grid.gridLowerLeftX + 23.75
-            yPositionMMWPlayer1Grid += 47.5
+            
+        tileArrSelectedTile = 0
+        //let actionSound = SKAction.playSoundFileNamed("37Bronk.mp3", waitForCompletion: true)
+        runAction(actionSound)
+        for y in 0...1 {   // fill Player 2 letter tiles
+            for x in 0...2 {
+                if tileBuilder.mmwPlayer2LetterTileArray.count > tileArrSelectedTile {
+                    let tileAdded : MMWTile = tileBuilder.mmwPlayer2LetterTileArray[tileArrSelectedTile]
+                    if mmwGameSceneViewController.numPlayers == 2 {
+                        tileAdded.tileSprite.position = self.MMWPlayer2of2Grid.sendToGridSquare(self.MMWPlayer2of2Grid, squareX: x, squareY: y)
+                    }
+                    if mmwGameSceneViewController.numPlayers == 3 {
+                        tileAdded.tileSprite.position = self.MMWPlayer2of4Grid.sendToGridSquare(self.MMWPlayer2of4Grid, squareX: x, squareY: y)
+                    }
+                    else if mmwGameSceneViewController.numPlayers == 4 {
+                        tileAdded.tileSprite.position = self.MMWPlayer2of4Grid.sendToGridSquare(self.MMWPlayer2of4Grid, squareX: x, squareY: y)
+                    }
+                    //tileAdded.tileSprite.color = tileAdded.tileSprite.tileColors[ Int(arc4random_uniform(4)) ]
+                    // tileAdded.tileSprite.color = (player2?.playerSeat.seatUIColor)!
+                    //tileAdded.tileSprite.color =  UIColorApplePurple // player1?.playerSeat.seatUIColor
+                    self.addChild(tileAdded.tileSprite)
+                    tileArrSelectedTile++
+                }
+            }
         }
         
-        for indexY in 1...2 {
-            for indexX in 1...3 {
-                if tileBuilder.mmwTileArray.count > tileArrSelectedTile {
-                    let tileAdded : MMWTile = tileBuilder.mmwTileArray[tileArrSelectedTile]
-                    tileAdded.tileSprite.position = CGPoint(x: xPositionMMWPlayer2Grid, y: yPositionMMWPlayer2Grid )
-                    tileAdded.tileSprite.color = tileAdded.tileSprite.tileColors[ Int(arc4random_uniform(4)) ]
-                    self.addChild(tileAdded.tileSprite)
-                    tileArrSelectedTile++
-                    
-                    xPositionMMWPlayer2Grid += 47.5
-                    zPosition = 50
+        if mmwGameSceneViewController.numPlayers == 3 {
+            runAction(actionSound)
+            tileArrSelectedTile = 0
+            for y in 0...1 {   // fill Player 3 letter tiles
+                for x in 0...2 {
+                    if tileBuilder.mmwPlayer3LetterTileArray.count > tileArrSelectedTile {
+                        let tileAdded : MMWTile = tileBuilder.mmwPlayer3LetterTileArray[tileArrSelectedTile]
+                        tileAdded.tileSprite.position = self.MMWPlayer4of4Grid.sendToGridSquare(self.MMWPlayer4of4Grid, squareX: x, squareY: y)
+                        self.addChild(tileAdded.tileSprite)
+                        tileArrSelectedTile++
+                    }
                 }
             }
-            xPositionMMWPlayer2Grid = MMWPlayer2Grid.gridLowerLeftX + 23.75
-            yPositionMMWPlayer2Grid += 47.5
         }
 
-        //}
+        
+        if mmwGameSceneViewController.numPlayers == 4 {
+            runAction(actionSound)
+            tileArrSelectedTile = 0
+            for y in 0...1 {   // fill Player 3 letter tiles
+                for x in 0...2 {
+                    if tileBuilder.mmwPlayer3LetterTileArray.count > tileArrSelectedTile {
+                        let tileAdded : MMWTile = tileBuilder.mmwPlayer3LetterTileArray[tileArrSelectedTile]
+                        tileAdded.tileSprite.position = self.MMWPlayer3of4Grid.sendToGridSquare(self.MMWPlayer3of4Grid, squareX: x, squareY: y)
+                        self.addChild(tileAdded.tileSprite)
+                        tileArrSelectedTile++
+                    }
+                }
+            }
+            
+            tileArrSelectedTile = 0
+            runAction(actionSound)
+            for y in 0...1 {   // fill Player 4 letter tiles
+                for x in 0...2 {
+                    if tileBuilder.mmwPlayer4LetterTileArray.count > tileArrSelectedTile {
+                        let tileAdded : MMWTile = tileBuilder.mmwPlayer4LetterTileArray[tileArrSelectedTile]
+                        tileAdded.tileSprite.position = self.MMWPlayer4of4Grid.sendToGridSquare(self.MMWPlayer4of4Grid, squareX: x, squareY: y)
+                        self.addChild(tileAdded.tileSprite)
+                        tileArrSelectedTile++
+                    }
+                }
+            }
+        }
+    
+        tileArrSelectedTile = 0
+        runAction(actionSound)
+        for y in 0...14 {  // fill Board letter tiles
+            for x in 0...14 {
+                if tileBuilder.mmwPlayedTileArray.count > tileArrSelectedTile {
+                    let tileAdded : MMWTile = tileBuilder.mmwPlayedTileArray[tileArrSelectedTile]
+                    tileAdded.tileSprite.position = self.MMWBoardGrid.sendToGridSquare(self.MMWBoardGrid, squareX: x, squareY: y)
+                    tileAdded.tileSprite.color = tileAdded.tileSprite.TileColors[ Int(arc4random_uniform(4)) ]
+                    self.addChild(tileAdded.tileSprite)
+                    tileArrSelectedTile++
+                }
+            }
+        }
     }
     
     func partialWordHUD (letters : String, isWord : Bool)  -> SKLabelNode {
-        //let partialWordHUD = SKLabelNode(fontNamed: FontHUDName)
-        //partialWordLabel = SKLabelNode(fontNamed: FontHUDName)
         var isPartial : String
         if isWord {
             isPartial = ""
@@ -238,7 +239,6 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func timeRemainingHUD (timeAmount: Int)  -> SKLabelNode {
-        //timeRemainingLabel = SKLabelNode(fontNamed: FontHUDName)
         timeRemainingLabel.zPosition = 1
         timeRemainingLabel.text = "Timer: \(timeAmount)"
         timeRemainingLabel.fontSize = FontHUDSize
@@ -250,7 +250,6 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func tilesRemainingHUD (tilesLeft : Int) -> SKLabelNode {
-        //let tilesRemainingLabel = SKLabelNode(fontNamed: FontHUDName)
         tilesRemainingLabel.zPosition = 1
         tilesRemainingLabel.text = "Tiles Left: \(tilesLeft)"
         tilesRemainingLabel.fontSize = FontHUDSize
@@ -261,7 +260,6 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func topDisplayHUD (message : String)  -> SKLabelNode {
-        //let topDisplayLabel = SKLabelNode(fontNamed: FontHUDName)
         topDisplayLabel.zPosition = 1
         topDisplayLabel.text = message
         topDisplayLabel.fontSize = FontHUDSize
@@ -272,7 +270,6 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func topDisplayHUD2 (message : String)  -> SKLabelNode {
-        //let topDisplayLabel2 = SKLabelNode(fontNamed: FontHUDName)
         topDisplayLabel2.zPosition = 1
         topDisplayLabel2.text = message
         topDisplayLabel2.fontSize = FontHUDSize
@@ -287,58 +284,47 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     func addPlayerView (playerNum : Int, playerView : PlayerView) {
-        //var playerView = PlayerView(_playerName: "Doyyypprrtt", _playerColor: UIColorAppleRed)
-        //let playerView = PlayerView(_playerName: mmwPlayer.playerName , _playerColor: mmwPlayer.playerSeat.seatUIColor) // , _playerColor: UIColorAppleRed)
-        //player1View = playerView
-        playerView.zPosition = -99
-        
-        if playerNum == 1 {
-            playerView.position = CGPointMake(0, ( 768 - ( (1319/2) - 187 ) ) ) // PS coordinates is Y: 1390, convert and flip
+        if mmwGameSceneViewController.numPlayers == 2 {
+            // if only 2 players - one on left and one on right of UI
+            if playerNum == 1 {
+                playerView.position = CGPointMake(0, self.size.height * 0.384765625 ) // PS coordinates is Y: 1390, convert and flip .. x , 295.5
+            }
+            if playerNum == 2 {
+                playerView.position = CGPointMake(self.size.width * 0.84912109375, self.size.height * 0.384765625 ) // PS coordinates is Y: 1390, convert and flip , x , 295.5
+            }
         }
-        if playerNum == 2 {
-            playerView.position = CGPointMake(869.5, ( 768 - ( (1319/2) - 187 ) ) ) // PS coordinates is Y: 1390, convert and flip
-        }
-
-//        if playerNum == 1 {
-//            playerView.position = CGPointMake(0, ( 768 - ( (1319/2) - 330 ) ) ) // PS coordinates is Y: 1390, convert and flip
-//        }
-//        if playerNum == 2 {
-//            playerView.position = CGPointMake(869.5, ( 768 - ( (1319/2) - 330 ) ) ) // PS coordinates is Y: 1390, convert and flip
-//        }
-//        if playerNum == 3 {
-//            playerView.position = CGPointMake(0, ( 768 - ( (1319/2) + 2 ) ) ) // PS coordinates is Y: 1390, convert and flip
-//        }
-//        if playerNum == 4 {
-//            playerView.position = CGPointMake(869.5, ( 768 - ( (1319/2) + 2 ) ) ) // PS coordinates is Y: 1390, convert and flip
-//        }
         
+        if mmwGameSceneViewController.numPlayers == 3 {
+            // if only 2 players - one on left and one on right of UI
+            if playerNum == 1 {
+                playerView.position = CGPointMake(0, self.size.height * 0.384765625 ) // PS coordinates is Y: 1390, convert and flip .. x , 295.5
+            }
+            if playerNum == 2 {
+                playerView.position = CGPointMake(viewSize.width * 0.8491, viewSize.height * 0.57096354 ) // PS coordinates is Y: 1390, convert and flip
+            }
+            if playerNum == 3 {
+                playerView.position = CGPointMake(viewSize.width * 0.8491,  viewSize.height * 0.138 ) // PS coordinates is Y: 1390, convert and flip
+            }
+            
+        }
+   
+        if mmwGameSceneViewController.numPlayers == 4 {
+            // if 4 players - two on left and two on right of UI
+            if playerNum == 1 {
+                playerView.position = CGPointMake( 0,  viewSize.height * 0.57096354 ) // PS coordinates is Y: 1390, convert and flip
+            }
+            if playerNum == 2 {
+                playerView.position = CGPointMake(viewSize.width * 0.8491, viewSize.height * 0.57096354 ) // PS coordinates is Y: 1390, convert and flip
+            }
+            if playerNum == 3 {
+                playerView.position = CGPointMake(0, viewSize.height * 0.138 ) // PS coordinates is Y: 1390, convert and flip
+            }
+            if playerNum == 4 {
+                playerView.position = CGPointMake(viewSize.width * 0.8491,  viewSize.height * 0.138 ) // PS coordinates is Y: 1390, convert and flip
+            }
+        }
+        playerView.zPosition = 0
         addChild(playerView)
-        
-//        var playerL = PlayerView(_playerName: "Freddy", _playerColor: UIColorAppleOrange)
-//        playerL.position = CGPointMake(0, ( 768 - (1319/2) - 2 ) ) // PS coordinates is Y: 1390, convert and flip
-//        addChild(playerL)
-//
-//        var playerR = PlayerView(_playerName: "Eric Von Hook", _playerColor: UIColorAppleGreen)
-//        playerR.position = CGPointMake(869.5,  ( 768 - (1319/2) - 2 ) ) // PS coordinates is Y: 1390, convert and flip
-//        addChild(playerR)
-//
-//        var playerLTop = PlayerView(_playerName: "Sayyyyyppppyyy", _playerColor: UIColorAppleRed)
-//        playerLTop.position = CGPointMake(0,  ( 768 - ( (1319/2) - 330 ) ) )// PS coordinates is Y: 1390, convert and flip
-//        addChild(playerLTop)
-//
-//        var playerRTop = PlayerView(_playerName: "Doyyypprrtt", _playerColor: UIColorApplePurple)
-//        playerRTop.position = CGPointMake(869.5,  ( 768 - ( (1319/2) - 330 ) ) )// PS coordinates is Y: 1390, convert and flip
-//        addChild(playerRTop)
-        
-//        var playerLMid = PlayerView(_playerName: "LLDoyyypprrtt", _playerColor: UIColorAppleRed)
-//        //playerLMid.position = CGPointMake(0, ( 768 - ( (1319/2) - 187 ) ) )// PS coordinates is Y: 1390, convert and flip
-//        playerLMid.position = CGPointMake(0,0)
-//        playerLMid.zPosition = 100
-//        addChild(playerLMid)
-//
-//        var playerRMid = PlayerView(_playerName: "RRDoyyypprrtt", _playerColor: UIColorApplePurple)
-//        playerRMid.position = CGPointMake(869.5, ( 768 - ( (1319/2) - 187 ) ) )// PS coordinates is Y: 1390, convert and flip
-//        addChild(playerRMid)
     }
 
     func getBoardGrid () -> (Grid) {
@@ -353,45 +339,53 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
 //    }
 
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-
-        //checkForTouches(touches, withEvent: event)
-        print("TOUCH began in MMWGameScene: \(event!.description) ")
-        
+        /* Called when a touch begins */
         for touch: AnyObject in touches {
-            var location = (touch as! UITouch).locationInView(self.view)
+            let location = touch.locationInNode(self)
+            let _node:SKNode = self.nodeAtPoint(location)
             
-            location.y = 768 - location.y
-            //////////////let location = touch.locationInNode(self)
-            let nodes = nodesAtPoint(location) as [SKNode]
-            
-            let snapGrid : Grid = getSnapGrid(location)!
-            
-            let gridSquareX = snapGrid.getGridSquare(Float(location.x), locY: Float(location.y) ).GridSquareX
-            let gridSquareY = snapGrid.getGridSquare(Float(location.x), locY: Float(location.y) ).GridSquareY
-            let gridSquareXCorner = snapGrid.getGridSquare(Float(location.x), locY: Float(location.y) ).GridSquareLowerLeftCornerX
-            let gridSquareYCorner = snapGrid.getGridSquare(Float(location.x), locY: Float(location.y) ).GridSquareLowerLeftCornerY
-            print("snapGrid: gridX\(gridSquareX), gridY\(gridSquareY) \(gridSquareXCorner) \(gridSquareYCorner)")
-            print("nodes.count is: \(nodes.count) ")
-            //var foundNode = false
-            for node in nodes {
-                //                if !foundNode {
-                //                    if (node.name?.rangeOfString("Letter: C") != nil) {
-                //                        println("you selected \(node.description)")
-                //                        node.touchesBegan(touches, withEvent: event)//as LetterTile.touchesBeganLetterTile(touch, withEvent: event)
-                //                        foundNode = true
-                //                    }
-                //                }
-                if node.isKindOfClass(LetterTileSprite){
-                    node.touchesBegan(touches, withEvent: event)
-                    node.touchesMoved(touches, withEvent: event)
+            if(_node.name == "playBtn"){
+                //print("going to mmw scene") //create MMW controller
+                //mmwGameSceneViewController = createMMWSceneController()
+                //mmwGameSceneViewController.testMMWCont() // print to test
+                //mmwGameSceneViewController.mmwGameScene.setViewController(mmwGameSceneViewController)
+                //presentMMWScene()
+                // mmwGameScene.scaleMode = SKSceneScaleMode.ResizeFill
+                if userInteractionEnabled {
+                    let actionSound = SKAction.playSoundFileNamed("37Bronk.mp3", waitForCompletion: true)
+                    runAction(actionSound)
+                    showTilesInSquares(mmwGameSceneViewController.tileCollection) // 'deals' player tiles and shows demo tiles on board for testing
+                    _node.removeFromParent()
                 }
             }
-            player1View?.playerScoreLabel.zPosition = 1
-            player1View?.playerScoreLabel.text = "in MMWGameScene touches"
-            
-//            self.testTile1.tileSprite.letterLabel.text = "P"
-//            self.testTile1.tileSprite.letterLabel.zPosition = 25
         }
+        
+
+//        //checkForTouches(touches, withEvent: event)
+//        print("TOUCH began in MMWGameScene: \(event!.description) ")
+//        
+//        for touch: AnyObject in touches {
+//            var location = (touch as! UITouch).locationInView(self.view)
+//            
+//            location.y = 768 - location.y
+//            //////////////let location = touch.locationInNode(self)
+//            let nodes = nodesAtPoint(location) as [SKNode]
+//            let snapGrid : Grid = getSnapGrid(location)!
+//            
+//            let gridSquareX = snapGrid.getGridSquare(Float(location.x), locY: Float(location.y) ).GridSquareX
+//            let gridSquareY = snapGrid.getGridSquare(Float(location.x), locY: Float(location.y) ).GridSquareY
+//            let gridSquareXCorner = snapGrid.getGridSquare(Float(location.x), locY: Float(location.y) ).GridSquareUpperLeftCornerX
+//            let gridSquareYCorner = snapGrid.getGridSquare(Float(location.x), locY: Float(location.y) ).GridSquareUpperLeftCornerY
+//            print("snapGrid: gridX\(gridSquareX), gridY\(gridSquareY) \(gridSquareXCorner) \(gridSquareYCorner)")
+//            print("nodes.count is: \(nodes.count) ")
+//            
+//            for node in nodes {
+//                if node.isKindOfClass(LetterTileSprite){
+//                    node.touchesBegan(touches, withEvent: event)
+//                    node.touchesMoved(touches, withEvent: event)
+//                }
+//            }
+//        }
     }
     
     func getSnapGrid (testSpot : CGPoint) -> Grid? {
@@ -399,15 +393,15 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         
         if ((testSpot.x > 157) && (testSpot.x < 869.5)) {snapGrid = MMWBoardGrid}
         
-        else if numPlayers == 2 {
-            if (testSpot.x < 154.5 ) {snapGrid = MMWPlayer1Grid}
-            if (testSpot.x > 869.5) {snapGrid = MMWPlayer2Grid}
+        else if mmwGameSceneViewController.numPlayers == 2 {
+            if (testSpot.x < 154.5 ) {snapGrid = MMWPlayer1of2Grid}
+            if (testSpot.x > 869.5) {snapGrid = MMWPlayer2of2Grid}
         }
-        else if numPlayers == 4 {
-            if (testSpot.x < 154.5 ) && testSpot.y > 384 {snapGrid = MMWPlayer1of4Grid}
-            if (testSpot.x > 869.5 ) && testSpot.y > 384 {snapGrid = MMWPlayer2of4Grid}
-            if (testSpot.x < 154.5 ) && testSpot.y < 384 {snapGrid = MMWPlayer3of4Grid}
-            if (testSpot.x > 869.5 ) && testSpot.y < 384 {snapGrid = MMWPlayer4of4Grid}
+        else if mmwGameSceneViewController.numPlayers == 4 {
+            if (testSpot.x < 154.5 ) && testSpot.y < 384 {snapGrid = MMWPlayer1of4Grid}
+            if (testSpot.x > 869.5 ) && testSpot.y < 384 {snapGrid = MMWPlayer2of4Grid}
+            if (testSpot.x < 154.5 ) && testSpot.y > 384 {snapGrid = MMWPlayer3of4Grid}
+            if (testSpot.x > 869.5 ) && testSpot.y > 384 {snapGrid = MMWPlayer4of4Grid}
         }
         //else {snapGrid = nil}
         print("GetSnapGrid \(testSpot.x), \(testSpot.y), and grid \(snapGrid), and \(snapGrid.gridName)" )
@@ -415,20 +409,9 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(currentTime: NSTimeInterval) {
-//        if spriteTest!.position.y >= 180.0 {
-//            self.backgroundNode!.position = CGPointMake(self.backgroundNode!.position.x, -((self.spriteTest!.position.y-180.0)/8))
-//            foregroundNode!.position = CGPointMake(foregroundNode!.position.x, -((spriteTest!.position.y-180.0)/8))
-//        }
     }
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        //presentMenuScene()
-//        for touch in (touches as! Set<UITouch>) {
-//            let location = touch.locationInNode(self)
-//            let touchedNode = nodeAtPoint(location)
-//            touchedNode.position = location
-        //////checkForTouches(touches touches, withEvent event)
-        
         tilesRemainingLabel.zPosition = 1
         tilesRemainingLabel.text = "TilesRemainTouchMove"
         tilesRemainingLabel.text = String(987)
@@ -442,9 +425,51 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         let menuScene = MenuScene(size: size,
             gameResult: true,
             score: 123)
-        //let skView = view
         view?.presentScene(menuScene, transition: transition)
     }
+    
+//    func showAllTileSprites () {
+//        let tileCollectionTest = mmwGameSceneViewController.tileCollection
+//        let tileSnap : CGPoint = CGPointMake(165.0, 28.0)
+//        let gameGrid = (scene as! MMWGameScene).getSnapGrid(tileSnap) // .getBoardGrid()
+//        
+//        // get snap location for point touch ended // -15.5 on y touch point adjusts for snapping too high to lower square
+//        //var tileSnapCalculate = gameGrid.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y))
+//        // get snap x, y values
+//        
+//        let tileSnapCalculateX : CGFloat = CGFloat(gameGrid!.getGridSquare(Float(tileSnap.x), locY: Float(tileSnap.y)).GridSquareUpperLeftCornerX)
+//        print("tileSnapCalculateX \(tileSnapCalculateX)" )
+//        let tileSnapCalculateY : CGFloat = CGFloat(gameGrid!.getGridSquare(Float(tileSnap.x), locY: Float(tileSnap.y)).GridSquareUpperLeftCornerY - 15.5) // -15.5
+//        print("tileSnapCalculateY \(tileSnapCalculateY)" )
+//        // get snap grid array [[]] positions // -15.5 on y touch point adjusts for snapping too high to lower square
+//        let tileSnapXGrid : Int = (gameGrid!.getGridSquare(Float(tileSnap.x), locY: Float(tileSnap.y)).GridSquareX)
+//        print("tileSnapXGrid \(tileSnapXGrid)" )
+//        let tileSnapYGrid : Int = (gameGrid!.getGridSquare(Float(tileSnap.x), locY: Float(tileSnap.y)).GridSquareY ) // -15.5
+//        print("tileSnapYGrid \(tileSnapYGrid)" )
+//        
+//        // move tile to snap point
+//        self.position.x = tileSnapCalculateX + 23.75  //adjusts 22.5 for tile center in middle of tile
+//        self.position.y = 768 - (tileSnapCalculateY + 8.25) //38 adjusts for tile center and for board not in exact middle when flipping coords
+//        
+//        print("The scene at tile end touch : \(scene?.description) and grid location : \(tileSnapXGrid), \(tileSnapYGrid) ")
+//        
+//        //                let snapGrid : Grid = getSnapGrid(location)!
+//        //
+//        //                let gridSquareX = snapGrid.getGridSquare(Float(location.x), locY: Float(location.y) ).GridSquareX
+//        //                let gridSquareY = snapGrid.getGridSquare(Float(location.x), locY: Float(location.y) ).GridSquareY
+//        //                let gridSquareXCorner = snapGrid.getGridSquare(Float(location.x), locY: Float(location.y) ).GridSquareUpperLeftCornerX
+//        //                let gridSquareYCorner = snapGrid.getGridSquare(Float(location.x), locY: Float(location.y) ).GridSquareUpperLeftCornerY
+//        //                print("snapGrid: gridX\(gridSquareX), gridY\(gridSquareY) \(gridSquareXCorner) \(gridSquareYCorner)")
+//        //
+//        //
+//        var tileArrSelectedTile = 0
+//        let tileAdded : MMWTile = tileCollectionTest.mmwTileArray[tileArrSelectedTile]
+//        
+//        tileAdded.tileSprite.position = CGPointMake(tileSnapCalculateX, tileSnapCalculateY)
+//        self.addChild(tileAdded.tileSprite)
+//        tileArrSelectedTile++
+//    }
+
 }
 
  

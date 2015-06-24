@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import SpriteKit
 
 class Grid {
     
-    var gridLowerLeftX : Double = 0.0
-    var gridLowerLeftY : Double = 0.0
+    var gridUpperLeftX : Double = 0.0
+    var gridUpperLeftY : Double = 0.0
     var gridSquareSizeX : Double = 10.0
     var gridSquareSizeY : Double = 10.0
     var gridNumSquaresX : Int = 5
@@ -21,13 +22,13 @@ class Grid {
     var gridName : String = ""
     
     init() { // default 10x10 grid at 0,0
-        self.gridLowerLeftX = 4
+        self.gridUpperLeftX = 4
         gridArr = [[AnyObject]](count: gridNumSquaresY, repeatedValue: [AnyObject](count: gridNumSquaresX, repeatedValue: 0))
     }
     
-    init(gridLowerLeftX: Double, gridLowerLeftY : Double, gridSquareSizeX : Double, gridSquareSizeY : Double, gridNumSquaresX : Int, gridNumSquaresY : Int, gridName : String){
-        self.gridLowerLeftX = gridLowerLeftX
-        self.gridLowerLeftY = gridLowerLeftY
+    init(gridUpperLeftX: Double, gridUpperLeftY : Double, gridSquareSizeX : Double, gridSquareSizeY : Double, gridNumSquaresX : Int, gridNumSquaresY : Int, gridName : String){
+        self.gridUpperLeftX = gridUpperLeftX
+        self.gridUpperLeftY = gridUpperLeftY
         self.gridSquareSizeX = gridSquareSizeX
         self.gridSquareSizeY = gridSquareSizeY
         self.gridNumSquaresX = gridNumSquaresX
@@ -36,17 +37,33 @@ class Grid {
         gridArr = [[AnyObject]](count: gridNumSquaresY, repeatedValue: [AnyObject](count: gridNumSquaresX, repeatedValue: 0))
     }
     
-    func getGridSquare (locX: Float, locY: Float) -> (GridSquareX:Int, GridSquareY:Int, GridSquareLowerLeftCornerX: Double, GridSquareLowerLeftCornerY: Double) {
+    func getGridSquare (locX: Float, locY: Float) -> (GridSquareX: Int, GridSquareY: Int, GridSquareUpperLeftCornerX: Double, GridSquareUpperLeftCornerY: Double) {
+        let locYmod = locY + 35// (adj for flipped coordinates)
         var GridSquareX : Int = 0
         var GridSquareY : Int = 0
-        var GridSquareLowerLeftCornerX : Double = 0.0
-        var GridSquareLowerLeftCornerY : Double = 0.0
-        GridSquareX = Int(( Double(locX) - self.gridLowerLeftX ) / gridSquareSizeX )// arrary [] x location
-        GridSquareY = Int(( Double(locY) - self.gridLowerLeftY ) / gridSquareSizeY ) // arrary [] y location -> 0 is top left corner
-        GridSquareLowerLeftCornerX = self.gridLowerLeftX + (Double(GridSquareX) * gridSquareSizeX)
-        GridSquareLowerLeftCornerY = self.gridLowerLeftY + (Double(GridSquareY) * gridSquareSizeY)
-        print("TEST Grid square[]: [\(GridSquareX)], [\(GridSquareY)] and LL corner: \(GridSquareLowerLeftCornerX), \(GridSquareLowerLeftCornerY), click: \(locX), y: \(locY)")
-        return (GridSquareX, GridSquareY, GridSquareLowerLeftCornerX, GridSquareLowerLeftCornerY )
+        var GridSquareUpperLeftCornerX : Double = 0.0
+        var GridSquareUpperLeftCornerY : Double = 0.0
+        
+        GridSquareX = Int(( Double(locX)    - self.gridUpperLeftX ) / gridSquareSizeX ) // arrary [] x location
+        GridSquareY = Int(( Double(locYmod) - self.gridUpperLeftY ) / gridSquareSizeY ) // arrary [] y location -> 0 is top left corner
+        
+        GridSquareUpperLeftCornerX = self.gridUpperLeftX + (Double(GridSquareX) * gridSquareSizeX)
+        GridSquareUpperLeftCornerY = self.gridUpperLeftY + (Double(GridSquareY) * gridSquareSizeY)
+        
+        print("TEST Grid square[]: x[\(GridSquareX)], y[\(GridSquareY)] and UL corner: x\(GridSquareUpperLeftCornerX), y\(GridSquareUpperLeftCornerY), click: \(locX), locY: \(locY), locYmod: \(locYmod)")
+        
+        return (GridSquareX, GridSquareY, GridSquareUpperLeftCornerX, GridSquareUpperLeftCornerY )
+    }
+    
+    func sendToGridSquare (grid: Grid, squareX: Int, squareY: Int) -> (CGPoint) {
+//        let GridSquareX : Int = 0
+//        let GridSquareY : Int = 0
+//        let GridSquareUpperLeftCornerX : Double = 0.0
+//        let GridSquareUpperLeftCornerY : Double = 0.0
+        let tilePositionX = grid.gridUpperLeftX + 23.75 + ( Double(squareX) * grid.gridSquareSizeX )
+        let tilePositionY = 768 - grid.gridUpperLeftY - ( Double(squareY) * grid.gridSquareSizeY ) + 7
+        let tilePosition = CGPoint( x: tilePositionX, y: tilePositionY )
+        return tilePosition
     }
     
     func addToGridArray (tileToAdd: MMWTile, xGrid: Int, yGrid: Int) {

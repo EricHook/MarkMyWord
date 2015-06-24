@@ -11,62 +11,102 @@ import UIKit
 import SpriteKit
 import CoreMotion
 
-class MMWGameSceneViewController { //: UIViewController  {
+class MMWGameSceneViewController { 
     
     var mmwGameScene: MMWGameScene!
     var viewSize : CGSize!
     var tileCollection = MMWTileBuilder()
     
+    var numPlayers : Int = 4
+
+    var player1 = MMWPlayer(_playerID: 1, _playerName: "Abe", _playerColor: 1)
+    var player2 = MMWPlayer(_playerID: 2, _playerName: "Bart", _playerColor: 2)
+    var player3 = MMWPlayer(_playerID: 3, _playerName: "Charlie", _playerColor: 3)
+    var player4 = MMWPlayer(_playerID: 4, _playerName: "Dan", _playerColor: 4)
+    
     init (size: CGSize) {
         viewSize = size
         mmwGameScene = MMWGameScene(size: viewSize)
+        mmwGameScene.setViewController(self)
+        
+        
+        /* Set the scale mode to scale to fit the window */
+        mmwGameScene.scaleMode = .AspectFill
+        
+        if numPlayers == 2 {
+            makeTwoPlayers()
+        }
+        
+        if numPlayers == 3 {
+            makeThreePlayers()
+        }
+        
+        if numPlayers == 4 {
+            makeFourPlayers()
+        }
+        
+        mmwGameScene.buildGameView()
+        
     }
     
-//    override func prefersStatusBarHidden() -> Bool {
-//        return true
-//    }
-//    
-//    func loadMMWGameView() {
-//        // 2. Create and configure our game scene
-//        mmwGameScene = MMWGameScene(size: self.view.bounds.size)
-//        print(mmwGameScene.description)
-//        print("mmw scene controller")
-//        mmwGameScene.scaleMode = .AspectFill
-//    }
-//    
-//    override func viewDidLoad() {
-//        
-//        super.viewDidLoad()
-//        
-//        // 1. Configure the main view
-//        ///let skView = view as! SKView
-//        let skView = self.view as! SKView
-//        skView.showsFPS = true
-//        //skView.showsPhysics = true
-//        skView.showsNodeCount = true
-//        
-//        // 2. Create and configure our game scene
-//        mmwGameScene = MMWGameScene(size: view.bounds.size)
-//        print(mmwGameScene.description)
-//        print("in MMWGmaeSceneViewController viewDidLoad")
-//        mmwGameScene.scaleMode = .AspectFill
-//
-//        // add PlayerView(s) to background
-//        //let player1 : MMWPlayer = MMWPlayer(_playerID: 11, _playerName: "FredPlayer2")
-//
-//        //player1.playerSeat.rackSize = 6
-////        scene.addPlayerView(1, mmwPlayer: player1)
-////        scene.topDisplayHUD2("222")
-////        scene.topDisplayHUD("CONTROLLER")
-////        self.scene.topDisplayHUD("CONTROLLERself")
-////        scene.testOutput()
-//   
-//    }
-//    
-//    override func shouldAutorotate() -> Bool {
-//        return true
-//    }
+    func setUpPlayers () {
+        
+        
+        
+    }
     
+    func createPlayerInScene (player : MMWPlayer) {
+        //mmwGameScene.
+    }
+    
+    func makeTwoPlayers () {
+        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayedTileArray, numTilesGet: 32, changeColorTo: UIColorAppleBlue )
+        
+        player1.playerLetterTiles = tileCollection.mmwPlayer1LetterTileArray
+        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer1LetterTileArray, numTilesGet: 6, changeColorTo: player1.playerColor)
+        mmwGameScene.addPlayerView(1, playerView: PlayerView(mmwPlayer: player1))
+        
+        player2.playerLetterTiles = tileCollection.mmwPlayer2LetterTileArray
+        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer2LetterTileArray, numTilesGet: 6, changeColorTo: player2.playerColor)
+        mmwGameScene.addPlayerView(2, playerView: PlayerView(mmwPlayer: player2))
+    }
+    
+    func makeThreePlayers () {
+        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayedTileArray, numTilesGet: 32, changeColorTo: UIColorAppleBlue )
+        
+        player1.playerLetterTiles = tileCollection.mmwPlayer1LetterTileArray
+        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer1LetterTileArray, numTilesGet: 6, changeColorTo: player1.playerColor)
+        mmwGameScene.addPlayerView(1, playerView: PlayerView(mmwPlayer: player1))
+        
+        player2.playerLetterTiles = tileCollection.mmwPlayer2LetterTileArray
+        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer2LetterTileArray, numTilesGet: 6, changeColorTo: player2.playerColor)
+        mmwGameScene.addPlayerView(2, playerView: PlayerView(mmwPlayer: player2))
+        
+        player3.playerLetterTiles = tileCollection.mmwPlayer3LetterTileArray
+        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer3LetterTileArray, numTilesGet: 6, changeColorTo: player3.playerColor)
+        mmwGameScene.addPlayerView(3, playerView: PlayerView(mmwPlayer: player3))
+    }
+    
+    func makeFourPlayers () {
+        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayedTileArray, numTilesGet: 32, changeColorTo: UIColorAppleBlue )
+        
+        player1.playerLetterTiles = tileCollection.mmwPlayer1LetterTileArray
+        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer1LetterTileArray, numTilesGet: 6, changeColorTo: player1.playerColor)
+        mmwGameScene.addPlayerView(1, playerView: PlayerView(mmwPlayer: player1))
+        
+        player2.playerLetterTiles = tileCollection.mmwPlayer2LetterTileArray
+        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer2LetterTileArray, numTilesGet: 6, changeColorTo: player2.playerColor)
+        mmwGameScene.addPlayerView(2, playerView: PlayerView(mmwPlayer: player2))
+        
+        player3.playerLetterTiles = tileCollection.mmwPlayer3LetterTileArray
+        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer3LetterTileArray, numTilesGet: 6, changeColorTo: player3.playerColor)
+        mmwGameScene.addPlayerView(3, playerView: PlayerView(mmwPlayer: player3))
+        
+        player4.playerLetterTiles = tileCollection.mmwPlayer4LetterTileArray
+        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer4LetterTileArray, numTilesGet: 6, changeColorTo: player4.playerColor)
+        mmwGameScene.addPlayerView(4, playerView: PlayerView(mmwPlayer: player4))
+    }
+
 //    func presentMMWScene() {
 //
 //        let transition = SKTransition.crossFadeWithDuration(2.0)
@@ -109,86 +149,26 @@ class MMWGameSceneViewController { //: UIViewController  {
 //        mmwScene.changePlayerScore(mmwScene.player2View!, player: mmwScene.player2!, score: 2468)
 //    }
 
-    func testMMWCont () {
-        print("testMMWCont")
-        //mmwGameScene.testTile1.tileSprite.letterLabel.text = "%"
-        
-//        let testTile0 = tileCollection.mmwTileArray[8].tileSprite
-//        let testTile1 = tileCollection.mmwTileArray[9].tileSprite
-//        let testTile2 = tileCollection.mmwTileArray[10].tileSprite
-//        let testTile3 = tileCollection.mmwTileArray[11].tileSprite
-//        
-//        let tileB1 = tileCollection.tileY1.tileSprite
-//        
-//        print("Tile array info size: \(tileCollection.mmwTileArray.count), \(testTile0.letterLabel) ")
-//        print("Tile array info size: \(tileCollection.mmwTileArray.count), \(testTile1.letterLabel) ")
-//        print("Tile array info size: \(tileCollection.mmwTileArray.count), \(testTile2.letterLabel) ")
-//        print("Tile array info size: \(tileCollection.mmwTileArray.count), \(testTile3.letterLabel) ")
-//        
-////        tileCollection.mmwTileArray[0].letterString = "J"
-////        tileCollection.mmwTileArray[0].tileSprite.letterLabel.text = tileCollection.mmwTileArray[0].letterString
-//        testTile0.position = CGPoint(x: viewSize.width/2.0, y: 30.0)
-//        testTile0.color = UIColorAppleOrange
-//        
-////        tileCollection.mmwTileArray[1].letterString = "K"
-//        testTile1.position = CGPoint(x: viewSize.width/2.0, y: 70.0)
-//        testTile1.color = UIColorAppleRed
-//        
-////        tileCollection.mmwTileArray[2].letterString = "L"
-//        testTile2.position = CGPoint(x: viewSize.width/2.0, y: 110.0)
-//        testTile2.color = UIColorApplePurple
-//
-//        testTile3.position = CGPoint(x: viewSize.width/2.0, y: 180.0)
-//        testTile3.color = UIColorAppleBlue
-//        
-//        tileB1.position = CGPoint(x: viewSize.width/2.0, y: 270.0)
-//        tileB1.color = UIColorAppleGreen
-//
-//        mmwGameScene.addChild(testTile0)
-//        mmwGameScene.addChild(testTile1)
-//        mmwGameScene.addChild(testTile2)
-//        mmwGameScene.addChild(testTile3)
-//        
-//        mmwGameScene.addChild(tileB1)
-//        
-//        print("Tile array info size: \(tileCollection.mmwTileArray.count), \(testTile0.letterLabel) ")
-//        print("Tile array info size: \(tileCollection.mmwTileArray.count), \(testTile1.letterLabel) ")
-//        print("Tile array info size: \(tileCollection.mmwTileArray.count), \(testTile2.letterLabel) ")
-//        print("Tile array info size: \(tileCollection.mmwTileArray.count), \(testTile3.letterLabel) ")
-//        print("Tile array info size: \(tileCollection.mmwTileArray.count), \(tileCollection.mmwTileArray[8].letterString) ")
-//        print("Tile array info size: \(tileCollection.mmwTileArray.count), \(tileCollection.mmwTileArray[9].letterString) ")
-//        print("Tile array info size: \(tileCollection.mmwTileArray.count), \(tileCollection.mmwTileArray[10].letterString) ")
-//        print("Tile array info size: \(tileCollection.mmwTileArray.count), \(tileCollection.mmwTileArray[11].letterString) ")
-        
-//        tileCollection.mmwTileArray.removeAtIndex(8)
-//        tileCollection.mmwTileArray.removeAtIndex(9)
-//        tileCollection.mmwTileArray.removeAtIndex(10)
-//        tileCollection.mmwTileArray.removeAtIndex(11)
-//        
-//        print("Tile array info size: \(tileCollection.mmwTileArray.count), \(tileCollection.mmwTileArray[8].letterString) ")
-//        print("Tile array info size: \(tileCollection.mmwTileArray.count), \(tileCollection.mmwTileArray[9].letterString) ")
-//        print("Tile array info size: \(tileCollection.mmwTileArray.count), \(tileCollection.mmwTileArray[10].letterString) ")
-//        print("Tile array info size: \(tileCollection.mmwTileArray.count), \(tileCollection.mmwTileArray[11].letterString) ")
-//        
-//        testTile2.color = UIColorAppleGreen
-//        
-        
-        mmwGameScene.showTiles(tileCollection)
-        
-        //mmwGameScene.addChild(tileCollection.mmwTileArray[1].tileSprite)
-   
-        
-//        self.testTile1.tileSprite.letterLabel.text = "P"
-//        self.testTile1.tileSprite.letterLabel.zPosition = 25
-        
-        
-        //scene1.   .presentMMWScene()
-    }
+//    func testMMWCont () {
+//        print("testMMWCont")
+//        mmwGameScene.showTilesInSquares(tileCollection)
+//    }
     
-    //    override func didReceiveMemoryWarning() {
-    //        super.didReceiveMemoryWarning()
-    //        // Release any cached data, images, etc that aren't in use.
-    //    }
+    func getNewTiles(inout tilesFrom: [MMWTile], inout tilesTo: [MMWTile], var numTilesGet: Int, changeColorTo: UIColor) {
+        while numTilesGet > 0 {
+            let numTiles : UInt32 = UInt32(tilesFrom.count - 1)
+            let tileInArr = arc4random_uniform( numTiles )
+            let tileRemoved : MMWTile = tilesFrom.removeAtIndex( Int(tileInArr) )
+            tileRemoved.tileSprite.color = changeColorTo
+            tilesTo.append( tileRemoved )
+            numTilesGet--
+        }
+    }
+
+//    override func didReceiveMemoryWarning() {
+//        super.didReceiveMemoryWarning()
+//        // Release any cached data, images, etc that aren't in use.
+//    }
 }
 
 
