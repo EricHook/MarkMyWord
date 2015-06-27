@@ -10,11 +10,19 @@ import Foundation
 
 class MMWTileBuilder {
     
+//    var mmwTileArray = [MMWTile](count:225, repeatedValue: MMWTile())
+//    var mmwPlayedTileArray = [MMWTile](count:225, repeatedValue: MMWTile())
+//    
+//    var mmwPlayer1LetterTileArray = [MMWTile](count:6, repeatedValue: MMWTile())
+//    var mmwPlayer2LetterTileArray = [MMWTile](count:6, repeatedValue: MMWTile())
+//    var mmwPlayer3LetterTileArray = [MMWTile](count:6, repeatedValue: MMWTile())
+//    var mmwPlayer4LetterTileArray = [MMWTile](count:6, repeatedValue: MMWTile())
+    
     var mmwTileArray = [MMWTile]()
     var mmwPlayedTileArray = [MMWTile]()
     
     var mmwPlayer1LetterTileArray = [MMWTile]()
-    var mmwPlayer2LetterTileArray = [MMWTile]()
+    var mmwPlayer2LetterTileArray = [MMWTile]() // count:6, repeatedValue: MMWTile())
     var mmwPlayer3LetterTileArray = [MMWTile]()
     var mmwPlayer4LetterTileArray = [MMWTile]()
     
@@ -273,5 +281,25 @@ class MMWTileBuilder {
         
         mmwTileArray.append(tileBlank1)
         mmwTileArray.append(tileBlank2)
+        
+        //let blankTile = MMWTile(letterString: "#").tileSprite.color = UIColorGray
+        //blankTile.tileSprite.color = UIColorGray
+        
+        // fill player tiles with blank placeholders
+        for _ in 0...5 {
+            mmwPlayer1LetterTileArray.append(MMWTile(letterString: "#"))
+        }
+        
+        for _ in 0...5 {
+            mmwPlayer2LetterTileArray.append(MMWTile(letterString: "#"))
+        }
+        
+        for _ in 0...5 {
+            mmwPlayer3LetterTileArray.append(MMWTile(letterString: "#"))
+        }
+        
+        for _ in 0...5 {
+            mmwPlayer4LetterTileArray.append(MMWTile(letterString: "#"))
+        }
     }
 }

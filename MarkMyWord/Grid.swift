@@ -13,12 +13,15 @@ class Grid {
     
     var gridUpperLeftX : Double = 0.0
     var gridUpperLeftY : Double = 0.0
+    
     var gridSquareSizeX : Double = 10.0
     var gridSquareSizeY : Double = 10.0
+    
     var gridNumSquaresX : Int = 5
     var gridNumSquaresY : Int = 5
+    
     //var gridArr : [[AnyObject]]
-    var gridArr = Array<Array<AnyObject>>()
+    var gridArr = Array <Array < AnyObject > >()
     var gridName : String = ""
     
     init() { // default 10x10 grid at 0,0
@@ -35,6 +38,7 @@ class Grid {
         self.gridNumSquaresY = gridNumSquaresY
         self.gridName = gridName
         gridArr = [[AnyObject]](count: gridNumSquaresY, repeatedValue: [AnyObject](count: gridNumSquaresX, repeatedValue: 0))
+        gridArr[1][1] = 1
     }
     
     func getGridSquare (locX: Float, locY: Float) -> (GridSquareX: Int, GridSquareY: Int, GridSquareUpperLeftCornerX: Double, GridSquareUpperLeftCornerY: Double) {
@@ -50,11 +54,12 @@ class Grid {
         GridSquareUpperLeftCornerX = self.gridUpperLeftX + (Double(GridSquareX) * gridSquareSizeX)
         GridSquareUpperLeftCornerY = self.gridUpperLeftY + (Double(GridSquareY) * gridSquareSizeY)
         
-        print("TEST Grid square[]: x[\(GridSquareX)], y[\(GridSquareY)] and UL corner: x\(GridSquareUpperLeftCornerX), y\(GridSquareUpperLeftCornerY), click: \(locX), locY: \(locY), locYmod: \(locYmod)")
+        print("<Grid> TEST Grid square[]: x[\(GridSquareX)], y[\(GridSquareY)] and UL corner: x\(GridSquareUpperLeftCornerX), y\(GridSquareUpperLeftCornerY), click: \(locX), locY: \(locY), locYmod: \(locYmod)")
         
         return (GridSquareX, GridSquareY, GridSquareUpperLeftCornerX, GridSquareUpperLeftCornerY )
     }
     
+    // given a grid and x, y func returns a CGPoint to place sprite
     func sendToGridSquare (grid: Grid, squareX: Int, squareY: Int) -> (CGPoint) {
 //        let GridSquareX : Int = 0
 //        let GridSquareY : Int = 0
@@ -67,7 +72,9 @@ class Grid {
     }
     
     func addToGridArray (tileToAdd: MMWTile, xGrid: Int, yGrid: Int) {
-        //gridArr[xGrid].insert(tileToAdd, atIndex: [yGrid])  // (tileToAdd, atIndex: xGrid)
+        gridArr[xGrid].insert(tileToAdd, atIndex: [yGrid][xGrid])  // (tileToAdd, atIndex: xGrid)
     }
+    
+    
 
 }

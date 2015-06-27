@@ -42,6 +42,7 @@ let UIColorAppleRed = UIColor(red: 0.875, green: 0.2266, blue: 0.2422, alpha: 1.
 let UIColorAppleGreen = UIColor(red: 0.3828, green: 0.7305, blue: 0.2773, alpha: 1.0)
 let UIColorApplePurple = UIColor(red: 0.5859, green: 0.2383, blue: 0.5898, alpha: 1.0)
 let UIColorAppleOrange = UIColor(red: 0.9609, green: 0.5117, blue: 0.125, alpha: 1.0)
+let UIColorGray = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0)
 
 //let seatColor : UIColor = [
 

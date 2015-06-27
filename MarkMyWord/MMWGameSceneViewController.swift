@@ -51,8 +51,6 @@ class MMWGameSceneViewController {
     
     func setUpPlayers () {
         
-        
-        
     }
     
     func createPlayerInScene (player : MMWPlayer) {
@@ -63,11 +61,11 @@ class MMWGameSceneViewController {
         getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayedTileArray, numTilesGet: 32, changeColorTo: UIColorAppleBlue )
         
         player1.playerLetterTiles = tileCollection.mmwPlayer1LetterTileArray
-        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer1LetterTileArray, numTilesGet: 6, changeColorTo: player1.playerColor)
+        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer1LetterTileArray, numTilesGet: 1, changeColorTo: player1.playerColor)
         mmwGameScene.addPlayerView(1, playerView: PlayerView(mmwPlayer: player1))
         
         player2.playerLetterTiles = tileCollection.mmwPlayer2LetterTileArray
-        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer2LetterTileArray, numTilesGet: 6, changeColorTo: player2.playerColor)
+        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer2LetterTileArray, numTilesGet: 2, changeColorTo: player2.playerColor)
         mmwGameScene.addPlayerView(2, playerView: PlayerView(mmwPlayer: player2))
     }
     
@@ -75,15 +73,15 @@ class MMWGameSceneViewController {
         getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayedTileArray, numTilesGet: 32, changeColorTo: UIColorAppleBlue )
         
         player1.playerLetterTiles = tileCollection.mmwPlayer1LetterTileArray
-        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer1LetterTileArray, numTilesGet: 6, changeColorTo: player1.playerColor)
+        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer1LetterTileArray, numTilesGet: 1, changeColorTo: player1.playerColor)
         mmwGameScene.addPlayerView(1, playerView: PlayerView(mmwPlayer: player1))
         
         player2.playerLetterTiles = tileCollection.mmwPlayer2LetterTileArray
-        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer2LetterTileArray, numTilesGet: 6, changeColorTo: player2.playerColor)
+        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer2LetterTileArray, numTilesGet: 2, changeColorTo: player2.playerColor)
         mmwGameScene.addPlayerView(2, playerView: PlayerView(mmwPlayer: player2))
         
         player3.playerLetterTiles = tileCollection.mmwPlayer3LetterTileArray
-        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer3LetterTileArray, numTilesGet: 6, changeColorTo: player3.playerColor)
+        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer3LetterTileArray, numTilesGet: 3, changeColorTo: player3.playerColor)
         mmwGameScene.addPlayerView(3, playerView: PlayerView(mmwPlayer: player3))
     }
     
@@ -91,19 +89,19 @@ class MMWGameSceneViewController {
         getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayedTileArray, numTilesGet: 32, changeColorTo: UIColorAppleBlue )
         
         player1.playerLetterTiles = tileCollection.mmwPlayer1LetterTileArray
-        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer1LetterTileArray, numTilesGet: 6, changeColorTo: player1.playerColor)
+        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer1LetterTileArray, numTilesGet: 1, changeColorTo: player1.playerColor)
         mmwGameScene.addPlayerView(1, playerView: PlayerView(mmwPlayer: player1))
         
         player2.playerLetterTiles = tileCollection.mmwPlayer2LetterTileArray
-        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer2LetterTileArray, numTilesGet: 6, changeColorTo: player2.playerColor)
+        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer2LetterTileArray, numTilesGet: 2, changeColorTo: player2.playerColor)
         mmwGameScene.addPlayerView(2, playerView: PlayerView(mmwPlayer: player2))
         
         player3.playerLetterTiles = tileCollection.mmwPlayer3LetterTileArray
-        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer3LetterTileArray, numTilesGet: 6, changeColorTo: player3.playerColor)
+        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer3LetterTileArray, numTilesGet: 3, changeColorTo: player3.playerColor)
         mmwGameScene.addPlayerView(3, playerView: PlayerView(mmwPlayer: player3))
         
         player4.playerLetterTiles = tileCollection.mmwPlayer4LetterTileArray
-        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer4LetterTileArray, numTilesGet: 6, changeColorTo: player4.playerColor)
+        getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer4LetterTileArray, numTilesGet: 4, changeColorTo: player4.playerColor)
         mmwGameScene.addPlayerView(4, playerView: PlayerView(mmwPlayer: player4))
     }
 
@@ -154,16 +152,21 @@ class MMWGameSceneViewController {
 //        mmwGameScene.showTilesInSquares(tileCollection)
 //    }
     
+    // send/move num Tiles from one tile array to another tile array
     func getNewTiles(inout tilesFrom: [MMWTile], inout tilesTo: [MMWTile], var numTilesGet: Int, changeColorTo: UIColor) {
+        let originalTilesGet = numTilesGet
         while numTilesGet > 0 {
             let numTiles : UInt32 = UInt32(tilesFrom.count - 1)
-            let tileInArr = arc4random_uniform( numTiles )
+            let tileInArr = arc4random_uniform( numTiles ) // select random tile in FROM array
             let tileRemoved : MMWTile = tilesFrom.removeAtIndex( Int(tileInArr) )
             tileRemoved.tileSprite.color = changeColorTo
-            tilesTo.append( tileRemoved )
+            tilesTo.insert(tileRemoved, atIndex: originalTilesGet - numTilesGet)
+            //tilesTo.append( tileRemoved )
             numTilesGet--
         }
     }
+    
+
 
 //    override func didReceiveMemoryWarning() {
 //        super.didReceiveMemoryWarning()

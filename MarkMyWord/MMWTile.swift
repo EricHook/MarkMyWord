@@ -33,43 +33,42 @@ enum TileOwner: Int {
     case None = 0, Player1, Player2, Player3, Player4
 }
 
-
 class MMWTile {
-    
-    
-    var highlightedSpriteName = ("\(SpriteName.Blank) -Highlighted")
-    
     var tileSprite : LetterTileSprite!
-    
-    var tileType: TileType = TileType.Blank
+    var tileType: TileType = TileType.Unknown
     var spritename: SpriteName = SpriteName.Blank
     var gridLocation: GridLocation = GridLocation.undealt
-    var gridX: Int
-    var gridY: Int
-    //var letterValue: LetterValue
+    var gridLocationEnd: GridLocation = GridLocation.undealt
+    var gridHome: Grid? = nil
+    var gridEnd: Grid? = nil
+    var gridX: Int = -1
+    var gridY: Int = -1
+    var gridXEnd: Int = -1
+    var gridYEnd: Int = -1
     var letterString: String = "?"
     var tileState: TileState = TileState.black
     var tileOwner: TileOwner = TileOwner.None
-    //var tileSpriteNode : SKSpriteNode
+    var tileGrid: Grid? = nil
     
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    } // required init
-//    
-//    override init(size: CGSize) {
-//        super.init(size: size)
+    //var tileObjectParent : MMWTile
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     init () {
         self.tileType = TileType.Unknown
         self.spritename = SpriteName.Blank
-        self.gridLocation = GridLocation.undealt
+        //self.gridLocation = GridLocation[0]
         self.gridX = 0
         self.gridY = 0
-        //self.letterValue = LetterValue.Q
-        self.letterString = "?"
+        self.letterString = "!"
         self.tileState = TileState.black
         self.tileOwner = TileOwner.None
-        self.tileSprite  = LetterTileSprite(tileStyle: LetterTileSprite.TileStyle.basic, withChar: letterString, withColor: UIColorAppleBlue, atPoint: CGPointMake(0.5, 0.5))
+        self.tileSprite  = LetterTileSprite(tileStyle: LetterTileSprite.TileStyle.basic, withChar: letterString, withColor: UIColorGray, atPoint: CGPointMake(0.5, 0.5))
+        //self.tileSprite.alpha = 0.5
+        self.tileSprite.zPosition = 1
+        self.tileSprite.tileObjectParent = self
     }
     
     init (letterString : String) {
@@ -78,23 +77,18 @@ class MMWTile {
         self.gridLocation = GridLocation.undealt
         self.gridX = 0
         self.gridY = 0
-        //self.letterValue = letterString
         self.letterString = letterString
         self.tileState = TileState.black
         self.tileOwner = TileOwner.None
-        self.tileSprite  = LetterTileSprite(tileStyle: LetterTileSprite.TileStyle.basic, withChar: letterString, withColor: UIColorAppleBlue, atPoint: CGPointMake(0.5, 0.5))
-
+        self.tileSprite  = LetterTileSprite(tileStyle: LetterTileSprite.TileStyle.basic, withChar: letterString, withColor: UIColorGray, atPoint: CGPointMake(0.5, 0.5))
+        //self.tileSprite.alpha = 0.5
+        self.tileSprite.zPosition = 1
+        self.tileSprite.tileObjectParent = self
     }
-
-        required init?(coder aDecoder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-
 
     static func randomTileType() -> TileType {
         return TileType(rawValue: Int(arc4random_uniform(4)) + 1)!
     }
-    
     
 //    var gridLocation : gridLocation[0]
 //    var column: Int

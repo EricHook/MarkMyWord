@@ -1018,6 +1018,7 @@
 		B8DA7EC11AE136AC003FE2C6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B8FA8FA81AE9DDB5007CF07C /* Config.swift */,
 				B85B16251B0FDE6C00E58214 /* MMW */,
 				B858A8E01AF0944D00184931 /* Level.swift */,
 				B8F264F91AE1EFED0072B9D4 /* MarkMyWordGame.swift */,
@@ -1057,7 +1058,6 @@
 			isa = PBXGroup;
 			children = (
 				B8A4551A1AF1702200C0D83B /* PLACEHOLDER */,
-				B8FA8FA81AE9DDB5007CF07C /* Config.swift */,
 				B8F264F71AE1D5170072B9D4 /* Animations */,
 				B8DA7EC61AE136DC003FE2C6 /* Audio */,
 				B8DA7EC81AE136F4003FE2C6 /* Fonts */,
