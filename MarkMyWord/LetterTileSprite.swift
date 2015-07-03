@@ -25,12 +25,12 @@ class LetterTileSprite : SKSpriteNode {
     var backTexture : SKTexture = SKTexture(imageNamed: "TileBackTest90x90")
     var largeTexture : SKTexture?
     var largeTextureFilename : String
-    //let shadow : SKTexture = SKTexture(imageNamed: "TileShadow90x90")
     var tileShadow : SKSpriteNode = SKSpriteNode(texture: SKTexture(imageNamed: "TileShadow90x90"), color: UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.00), size: CGSizeMake(50.0, 50.0))
     
     var tileLocation : CGPoint = CGPointMake(0, 0)
     
     var tileObjectParent : MMWTile! = nil
+//    let tileScene : MMWGameScene! = nil
 
     enum TileStyle : Int {
         case basic = 0,
@@ -47,8 +47,6 @@ class LetterTileSprite : SKSpriteNode {
     }
     
     init(tileStyle: TileStyle, withChar : String, withColor : SKColor, atPoint: CGPoint) {  //  // add letter, name, colorize?,
-        
-        //tileShadow = SKSpriteNode(texture: shadow, color: UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.00), size: CGSizeMake(50.0, 50.0))
         tileText = withChar
         
         switch tileStyle {
@@ -76,8 +74,6 @@ class LetterTileSprite : SKSpriteNode {
             self.colorBlendFactor = 1.0
 
             backTexture = SKTexture(imageNamed: "TileBackTest90x90")
-        
-            //tileShadow =  SKSpriteNode(texture: shadow, color: UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.00), size: CGSizeMake(50.0, 50.0))
             tileShadow.alpha = 0.15
             tileShadow.position = CGPointMake(-5, -5)
             tileShadow.zPosition = self.zPosition - 1
@@ -86,32 +82,17 @@ class LetterTileSprite : SKSpriteNode {
             self.addChild(tileShadow)
 
             letterLabel.text = withChar
-            //letterLabelShadow.text = withChar
-            //letterLabelHighlight.text = withChar
         
             letterLabel.fontSize = 40 // FontHUDSize
-            //letterLabelShadow.fontSize = 40 // FontHUDSize
-            //letterLabelHighlight.fontSize = 40 // FontHUDSize
-        
-            //var colorDarkGreen : UIColor = UIColor(red: 0.1, green: 1.0, blue: 0.2, alpha: 0.80)
+
             letterLabel.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.98)
-            //letterLabelShadow.fontColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5) // black
-            //letterLabelHighlight.fontColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5) // black
         
             letterLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
-            //letterLabelShadow.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
-            //letterLabelHighlight.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
         
             letterLabel.position = CGPointMake(0, -14)
-            //letterLabelShadow.position = CGPointMake(-0.5, -13.5)
-            //letterLabelHighlight.position = CGPointMake(0.5, -14.5)
         
             letterLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
-            //letterLabelShadow.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
-            //letterLabelHighlight.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
         
-            //self.addChild(letterLabelShadow)
-            //self.addChild(letterLabelHighlight)
             self.addChild(letterLabel)
             centerTileToSquare(self)
         
@@ -283,10 +264,6 @@ class LetterTileSprite : SKSpriteNode {
             for _ in testNodes  {
                 print("testNode ")
             }
-//            checkForTouches(touches)
-            
-            
-//        }
     }
     
 //    overide func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -319,102 +296,86 @@ class LetterTileSprite : SKSpriteNode {
             runAction(dropDown, withKey: "drop")
             tileShadow.zPosition = -1
             tileShadow.hidden = true
-            
+
             let tileSnapTouch = (touch as UITouch).locationInView(scene!.view)
-            
             //var getSnapGrid : Grid
+            
             let gameGrid = (scene as! MMWGameScene).getSnapGrid(tileSnapTouch) // .getBoardGrid()
             
- 
-            //self.tileObjectParent.gridHome = gameGrid.
-                
+            self.tileObjectParent.gridHome = gameGrid // set tileSprite parent (MMWTile) grid to grid snapped to
             print("<LetterTileSprite> \(gameGrid?.gridArr)" )
-            //var tileSnap : CGPoint = CGPointMake(165.0, 28.0)
             
             // get snap location for point touch ended // -15.5 on y touch point adjusts for snapping too high to lower square
-            //var tileSnapCalculate = gameGrid.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y))
+            //var tileSnapCalculate = gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y))
             // get snap x, y values
             
-            let tileSnapCalculateX : CGFloat = CGFloat(gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y)).GridSquareUpperLeftCornerX)
-            print("<LetterTileSprite>tileSnapCalculateX \(tileSnapCalculateX)" )
             
-            let tileSnapCalculateY : CGFloat = CGFloat(gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y)).GridSquareUpperLeftCornerY - 15.5) // -15.5
-            print("<LetterTileSprite>tileSnapCalculateY \(tileSnapCalculateY)" )
-            
-            // get snap grid array [[]] positions // -15.5 on y touch point adjusts for snapping too high to lower square
-            let tileSnapXGrid : Int = (gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y)).GridSquareX)
-            print("<LetterTileSprite>tileSnapXGrid \(tileSnapXGrid)" )
-            let tileSnapYGrid : Int = (gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y)).GridSquareY ) // -15.5
-            print("<LetterTileSprite>tileSnapYGrid \(tileSnapYGrid)" )
+//            let tileSnapCalculateX : CGFloat = CGFloat(gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y)).GridSquareUpperLeftCornerX)
+//            print("<LetterTileSprite>tileSnapCalculateX \(tileSnapCalculateX)" )
+//            
+//            let tileSnapCalculateY : CGFloat = CGFloat(gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y)).GridSquareUpperLeftCornerY - 15.5) // -15.5
+//            print("<LetterTileSprite>tileSnapCalculateY \(tileSnapCalculateY)" )
+//            
+//            // get snap grid array [[]] positions // -15.5 on y touch point adjusts for snapping too high to lower square
+//            let tileSnapXGrid : Int = (gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y)).GridSquareX)
+//            print("<LetterTileSprite>tileSnapXGrid \(tileSnapXGrid)" )
+//            let tileSnapYGrid : Int = (gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y)).GridSquareY ) // -15.5
+//            print("<LetterTileSprite>tileSnapYGrid \(tileSnapYGrid)" )
             
             let tileSnapResults = gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y))
             
             let tileSnapResultsCalculateX = tileSnapResults.GridSquareUpperLeftCornerX
-            print("<LetterTileSprite>tileSnapResultsCalculateX \(tileSnapResultsCalculateX)" )
+            //print("<LetterTileSprite>tileSnapResultsCalculateX \(tileSnapResultsCalculateX)" )
             let tileSnapResultsCalculateY = tileSnapResults.GridSquareUpperLeftCornerY - 15.5 // -15.5
-            print("tileSnapResultsCalculateY \(tileSnapResultsCalculateY)" )
+            //print("tileSnapResultsCalculateY \(tileSnapResultsCalculateY)" )
             
             // get snap grid array [[]] positions // -15.5 on y touch point adjusts for snapping too high to lower square
             
             let tileSnapResultsXGrid = tileSnapResults.GridSquareX
-            print("<LetterTileSprite>tileSnapResultsXGrid \(tileSnapResultsXGrid)" )
+            //print("<LetterTileSprite>tileSnapResultsXGrid \(tileSnapResultsXGrid)" )
             tileObjectParent.gridXEnd = tileSnapResults.GridSquareX
             
-            // simple test to check whether grid values check out
-            if tileObjectParent.gridXEnd < 2 {
-                print("tileObjectParent.gridXEnd < 2")
-            }
-            
             let tileSnapResultsYGrid = tileSnapResults.GridSquareY
-            print("<LetterTileSprite>tileSnapResultsYGrid \(tileSnapResultsYGrid)" )
+            //print("<LetterTileSprite>tileSnapResultsYGrid \(tileSnapResultsYGrid)" )
             //tileObjectParent.gridXEnd = tileSnapResults.GridSquareY
             
-            
-            self.tileObjectParent.gridHome = gameGrid // set tileSprite parent (MMWTile) grid to grid snapped to
-            
-            // set value of snap results grid location to tile if valid location
-            self.tileObjectParent.gridHome?.gridArr[tileSnapResultsYGrid][tileSnapResultsXGrid] = self.tileObjectParent.tileSprite.tileText
-            
-            
+//            var trialTile : MMWTile = (gameGrid?.gridArr[tileSnapResultsYGrid][tileSnapResultsXGrid])! as! MMWTile
+//            // check if array location in grid is an MMWTile and if so .. prints description
+//            if ( trialTile.letterString.isEmpty  ) {
+//                print("<LetterTileSprite> EMPTY")
+//            }
+  
+            // check if array location in grid is an MMWTile and if so .. prints description
+            if ( gameGrid?.gridArr[tileSnapResultsYGrid][tileSnapResultsXGrid].description == "MarkMyWord.MMWTile") {
+                print("<LetterTileSprite> Value of grid square = MarkMyWord.MMWTile ... \( (gameGrid?.gridArr[tileSnapResultsYGrid][tileSnapResultsXGrid])!.description)")
+            }
+
+            // set value of snap results grid location to the MMWTile if valid location
+            self.tileObjectParent.gridHome?.gridArr[tileSnapResultsYGrid][tileSnapResultsXGrid] = self.tileObjectParent
             // move tile to snap point - IF valid location
             self.position.x = (CGFloat)(tileSnapResultsCalculateX + 23.75)  //adjusts 22.5 for tile center in middle of tile
             self.position.y = 768 - (CGFloat)(tileSnapResultsCalculateY + 8.25) //38 adjusts for tile center and for board not in exact middle when flipping coords
             
+//            for arrayX in gameGrid!.gridArr {
+//                //print("> debugDescription \(arrayX.debugDescription)")
+//                for arrayY in arrayX {
+//                    //print("> debugDescription \(arrayY.debugDescription)")
+//                    if arrayY.debugDescription == "0" {
+//                        print(">> arrayX debugDescription check == 0")
+//                    }
+//                }
+//            }
             
-            print("<LetterTileSprite> \(gameGrid?.gridArr)" )
-            print("<LetterTileSprite>The scene at tile end touch : \(scene?.description) and grid location : \(tileSnapResultsXGrid), \(tileSnapResultsYGrid) ")
+            (scene as! MMWGameScene).numEmptyTileSlots(gameGrid!)
             
-            //Grid.printGridContent(tileObjectParent.gridHome!)
-            
-            //mmw testTile.gridHome = mmwPlayer1of4Grid
-            
-            
+            //(scene as! MMWGameScene).mmwGameSceneViewController.tileCollection.displayTileArrayValues((gameGrid?.gridPlayer?.playerLetterTiles)!)
 
-            
-            
-//            var location = (touch as! UITouch).locationInView(MMWScene.view)  //(SKScene)   (self.view)
-//            location.y = 768 - location.y
-//            //////////////let location = touch.locationInNode(self)
-//            let nodes = nodesAtPoint(location) as! [SKNode]
+//            // prints all values of items in array for grid
+//            print("<LetterTileSprite> \(gameGrid?.gridArr)" )
 //            
-//            var gridSquareX = MMWBoardGrid.getGridSquare(MMWBoardGrid, locX: Float(location.x), locY: Float(location.y) ).GridSquareX
-//            var gridSquareY = MMWBoardGrid.getGridSquare(MMWBoardGrid, locX: Float(location.x), locY: Float(location.y) ).GridSquareY
-//            var gridSquareXCorner = MMWBoardGrid.getGridSquare(MMWBoardGrid, locX: Float(location.x), locY: Float(location.y) ).GridSquareLowerLeftCornerX
-//            var gridSquareYCorner = MMWBoardGrid.getGridSquare(MMWBoardGrid, locX: Float(location.x), locY: Float(location.y) ).GridSquareLowerLeftCornerY
-//            println("MMWBoardGrid: gridX\(gridSquareX), gridY\(gridSquareY) \(gridSquareXCorner) \(gridSquareYCorner)")
-//            println("nodes.count is: \(nodes.count) ")
+//            print("<LetterTileSprite>The scene at tile end touch : \(scene?.description) and grid location : \(tileSnapResultsXGrid), \(tileSnapResultsYGrid) ")
             
-            
-            
-            
-//            var testLocation = CGPoint(x: 22.5, y: 44.4)
-//            self.position = testLocation
-//            println("Dropped location: \(testLocation) and gridSquare is \( (self.parent as! MMWGameScene).getBoardGrid() )" )
-
-//            self.anchorPoint = CGPointMake(0.0, 0.0)
-//            let smallSlide = SKAction.moveByX(6, y: 6, duration: 0.1)
-//            runAction(smallSlide, withKey: "slideBack")
-//            runAction(SKAction.group([dropDown, smallSlide]))
+            //self.parent? as MMWTile.parent? as MMWTileBuilder.Type numEmptyTileSlots(gameGrid)
         }
     }
     

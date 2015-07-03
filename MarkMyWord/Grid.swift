@@ -23,13 +23,14 @@ class Grid {
     //var gridArr : [[AnyObject]]
     var gridArr = Array <Array < AnyObject > >()
     var gridName : String = ""
+    var gridPlayer : Player? = nil
     
     init() { // default 10x10 grid at 0,0
         self.gridUpperLeftX = 4
         gridArr = [[AnyObject]](count: gridNumSquaresY, repeatedValue: [AnyObject](count: gridNumSquaresX, repeatedValue: 0))
     }
     
-    init(gridUpperLeftX: Double, gridUpperLeftY : Double, gridSquareSizeX : Double, gridSquareSizeY : Double, gridNumSquaresX : Int, gridNumSquaresY : Int, gridName : String){
+    init (gridUpperLeftX: Double, gridUpperLeftY : Double, gridSquareSizeX : Double, gridSquareSizeY : Double, gridNumSquaresX : Int, gridNumSquaresY : Int, gridName : String){
         self.gridUpperLeftX = gridUpperLeftX
         self.gridUpperLeftY = gridUpperLeftY
         self.gridSquareSizeX = gridSquareSizeX
@@ -38,7 +39,11 @@ class Grid {
         self.gridNumSquaresY = gridNumSquaresY
         self.gridName = gridName
         gridArr = [[AnyObject]](count: gridNumSquaresY, repeatedValue: [AnyObject](count: gridNumSquaresX, repeatedValue: 0))
-        gridArr[1][1] = 1
+        gridArr[1][1] = 0 // put test placeholder value in grid
+    }
+    
+    func setGridPlayer (player : Player ) {
+        self.gridPlayer = player
     }
     
     func getGridSquare (locX: Float, locY: Float) -> (GridSquareX: Int, GridSquareY: Int, GridSquareUpperLeftCornerX: Double, GridSquareUpperLeftCornerY: Double) {
@@ -75,6 +80,10 @@ class Grid {
         gridArr[xGrid].insert(tileToAdd, atIndex: [yGrid][xGrid])  // (tileToAdd, atIndex: xGrid)
     }
     
+    func tileAtGridSquare (grid: Grid, squareX: Int, squareY: Int) -> (MMWTile?) {
+        let tile : MMWTile? = (grid.gridArr[squareY][squareX] as! MMWTile)
+        return tile
+    }
     
-
+    
 }

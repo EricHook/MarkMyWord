@@ -14,14 +14,14 @@ class PlayerView: SKSpriteNode {
     var playerNameLabel = SKLabelNode(fontNamed: FontHUDName)
     var playerScoreLabel = SKLabelNode(fontNamed: FontHUDName)
     
-    init (mmwPlayer: MMWPlayer) {
+    init (mmwPlayer: Player) {
         
 //        let playerBGTallTex : SKTexture = SKTexture(imageNamed: "PlayerBGTEST309x1320TestFull.jpg")
         let playerBGTex : SKTexture = SKTexture(imageNamed: "PlayerBGTest309x660")
         let playerTileGridTex : SKTexture = SKTexture(imageNamed: "MMWPlayerTilesGrid")
         let playerTilesPlaqueTex : SKTexture = SKTexture(imageNamed: "MMWPlayerTilesPlaque")
 
-        let playerColor : UIColor = mmwPlayer.playerColor
+        let playerColor : UIColor =   gameColors[mmwPlayer.playerColor]
         
 //        let playerBGTall : SKSpriteNode = SKSpriteNode(texture: playerBGTallTex, color: SKColor.whiteColor(), size: CGSizeMake(playerBGTallTex.size().width/2, playerBGTallTex.size().height/2) )
 //        let playerBG : SKSpriteNode = SKSpriteNode(texture: playerBGTex, color: SKColor.whiteColor(), size: CGSizeMake(playerBGTex.size().width/2, playerBGTex.size().height/2) )

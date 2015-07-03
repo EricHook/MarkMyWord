@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B82786131B0556E000916E20 /* MMWSeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82786121B0556E000916E20 /* MMWSeat.swift */; };
-		B82786151B05585D00916E20 /* MMWPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82786141B05585D00916E20 /* MMWPlayer.swift */; };
+		B82786131B0556E000916E20 /* Seat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82786121B0556E000916E20 /* Seat.swift */; };
+		B82786151B05585D00916E20 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82786141B05585D00916E20 /* Player.swift */; };
+		B84B25131B45FB050037B8EA /* MMWGameSceneText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84B25121B45FB050037B8EA /* MMWGameSceneText.swift */; };
 		B858A8E11AF0944D00184931 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = B858A8E01AF0944D00184931 /* Level.swift */; };
 		B89939431ADAF8BC00587323 /* accelerometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89939421ADAF8BC00587323 /* accelerometer.swift */; };
 		B8A455161AF15A1400C0D83B /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A455141AF15A1400C0D83B /* MainMenuScene.swift */; };
@@ -233,6 +234,15 @@
 		B8B2CB081ADADD9100C9DEE7 /* 24-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAC31ADADD9100C9DEE7 /* 24-LetterWords.txt */; };
 		B8B2CB091ADADD9100C9DEE7 /* enable1WordList.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CAC41ADADD9100C9DEE7 /* enable1WordList.txt */; };
 		B8B49DBB1AF1AF610086154C /* MMWResultsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B49DBA1AF1AF610086154C /* MMWResultsScene.swift */; };
+		B8B5BCB11B44AEEB00AC1A69 /* MarkMyWordBGCleaniPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8B5BCB01B44AEEB00AC1A69 /* MarkMyWordBGCleaniPad@2x.png */; };
+		B8B5BCB71B44B9FF00AC1A69 /* NewTilesButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8B5BCB31B44B9FF00AC1A69 /* NewTilesButton@2x.png */; };
+		B8B5BCB81B44B9FF00AC1A69 /* OptionsButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8B5BCB41B44B9FF00AC1A69 /* OptionsButton@2x.png */; };
+		B8B5BCB91B44B9FF00AC1A69 /* PassButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8B5BCB51B44B9FF00AC1A69 /* PassButton@2x.png */; };
+		B8B5BCBA1B44B9FF00AC1A69 /* PauseButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8B5BCB61B44B9FF00AC1A69 /* PauseButton@2x.png */; };
+		B8B5BCC01B45D4F000AC1A69 /* NewTilesButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B8B5BCBC1B45D4F000AC1A69 /* NewTilesButton.png */; };
+		B8B5BCC11B45D4F000AC1A69 /* OptionsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B8B5BCBD1B45D4F000AC1A69 /* OptionsButton.png */; };
+		B8B5BCC21B45D4F000AC1A69 /* PassButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B8B5BCBE1B45D4F000AC1A69 /* PassButton.png */; };
+		B8B5BCC31B45D4F000AC1A69 /* PauseButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B8B5BCBF1B45D4F000AC1A69 /* PauseButton.png */; };
 		B8B9B5111B34B98200E96FF2 /* MarkMyWordBGCleaniPhone@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8B9B50E1B34B98200E96FF2 /* MarkMyWordBGCleaniPhone@1x.png */; };
 		B8B9B5121B34B98200E96FF2 /* MarkMyWordBGCleaniPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8B9B50F1B34B98200E96FF2 /* MarkMyWordBGCleaniPhone@2x.png */; };
 		B8B9B5131B34B98200E96FF2 /* MarkMyWordBGCleaniPhone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8B9B5101B34B98200E96FF2 /* MarkMyWordBGCleaniPhone@3x.png */; };
@@ -246,7 +256,6 @@
 		B8C14EFB1AF32E3600E640C0 /* LaunchScreen@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8C14EFA1AF32E3600E640C0 /* LaunchScreen@2x.jpg */; };
 		B8C14EFE1AF32FE500E640C0 /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C14EFC1AF32FE500E640C0 /* LaunchScreen.png */; };
 		B8C14EFF1AF32FE500E640C0 /* LaunchScreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C14EFD1AF32FE500E640C0 /* LaunchScreen@2x.png */; };
-		B8C14F011AF3DF6F00E640C0 /* MarkMyWordBGCleaniPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C14F001AF3DF6F00E640C0 /* MarkMyWordBGCleaniPad@2x.png */; };
 		B8C14F031AF3E4B500E640C0 /* tileBase45x45.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C14F021AF3E4B500E640C0 /* tileBase45x45.png */; };
 		B8C697E81AF446520070ECEE /* TileShadow90x90.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C697E71AF446520070ECEE /* TileShadow90x90.png */; };
 		B8C900631B011F1C00C72745 /* appIcon120x120_MMW.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C9005B1B011F1C00C72745 /* appIcon120x120_MMW.png */; };
@@ -262,7 +271,6 @@
 		B8C900761B013C3500C72745 /* PlayerBGTEST309x1320TestFull.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8C900751B013C3500C72745 /* PlayerBGTEST309x1320TestFull.jpg */; };
 		B8C900791B01405600C72745 /* MMWPlayerTilesGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C900781B01405600C72745 /* MMWPlayerTilesGrid.png */; };
 		B8C9007B1B014EB900C72745 /* MMWPlayerTilesPlaque.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C9007A1B014EB900C72745 /* MMWPlayerTilesPlaque.png */; };
-		B8C9007D1B0157CC00C72745 /* ButtonPlaceholderBottomLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C9007C1B0157CC00C72745 /* ButtonPlaceholderBottomLeft.png */; };
 		B8C9007F1B0159C900C72745 /* PlayerBGTest309x660.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C9007E1B0159C900C72745 /* PlayerBGTest309x660.png */; };
 		B8CB74291AF803BD00AE5F40 /* GridObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CB74281AF803BD00AE5F40 /* GridObject.swift */; };
 		B8CB742C1AF880A400AE5F40 /* DoubleCross Server in Resources */ = {isa = PBXBuildFile; fileRef = B8CB742A1AF880A400AE5F40 /* DoubleCross Server */; };
@@ -299,7 +307,6 @@
 		B8E874E61AE17E0000763849 /* MMWTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E874E51AE17E0000763849 /* MMWTile.swift */; };
 		B8F2328B1AF56DB800B2324B /* Tile3D95x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8F2328A1AF56DB800B2324B /* Tile3D95x.png */; };
 		B8F264F61AE19EF50072B9D4 /* TetrisCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F264F51AE19EF50072B9D4 /* TetrisCell.swift */; };
-		B8F264FA1AE1EFED0072B9D4 /* MarkMyWordGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F264F91AE1EFED0072B9D4 /* MarkMyWordGame.swift */; };
 		B8FA8FA21AE9DC93007CF07C /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FA8FA11AE9DC93007CF07C /* GameData.swift */; };
 		B8FA8FA41AE9DD40007CF07C /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FA8FA31AE9DD40007CF07C /* AudioController.swift */; };
 		B8FA8FA71AE9DD7F007CF07C /* particle.png in Resources */ = {isa = PBXBuildFile; fileRef = B8FA8FA61AE9DD7F007CF07C /* particle.png */; };
@@ -318,8 +325,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B82786121B0556E000916E20 /* MMWSeat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMWSeat.swift; sourceTree = "<group>"; };
-		B82786141B05585D00916E20 /* MMWPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMWPlayer.swift; sourceTree = "<group>"; };
+		B82786121B0556E000916E20 /* Seat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Seat.swift; sourceTree = "<group>"; };
+		B82786141B05585D00916E20 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		B84B25121B45FB050037B8EA /* MMWGameSceneText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMWGameSceneText.swift; sourceTree = "<group>"; };
 		B858A8E01AF0944D00184931 /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		B89939421ADAF8BC00587323 /* accelerometer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = accelerometer.swift; sourceTree = "<group>"; };
 		B8A455141AF15A1400C0D83B /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
@@ -544,6 +552,15 @@
 		B8B2CAC31ADADD9100C9DEE7 /* 24-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "24-LetterWords.txt"; sourceTree = "<group>"; };
 		B8B2CAC41ADADD9100C9DEE7 /* enable1WordList.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = enable1WordList.txt; sourceTree = "<group>"; };
 		B8B49DBA1AF1AF610086154C /* MMWResultsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMWResultsScene.swift; sourceTree = "<group>"; };
+		B8B5BCB01B44AEEB00AC1A69 /* MarkMyWordBGCleaniPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MarkMyWordBGCleaniPad@2x.png"; sourceTree = "<group>"; };
+		B8B5BCB31B44B9FF00AC1A69 /* NewTilesButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NewTilesButton@2x.png"; sourceTree = "<group>"; };
+		B8B5BCB41B44B9FF00AC1A69 /* OptionsButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OptionsButton@2x.png"; sourceTree = "<group>"; };
+		B8B5BCB51B44B9FF00AC1A69 /* PassButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PassButton@2x.png"; sourceTree = "<group>"; };
+		B8B5BCB61B44B9FF00AC1A69 /* PauseButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PauseButton@2x.png"; sourceTree = "<group>"; };
+		B8B5BCBC1B45D4F000AC1A69 /* NewTilesButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewTilesButton.png; sourceTree = "<group>"; };
+		B8B5BCBD1B45D4F000AC1A69 /* OptionsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OptionsButton.png; sourceTree = "<group>"; };
+		B8B5BCBE1B45D4F000AC1A69 /* PassButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PassButton.png; sourceTree = "<group>"; };
+		B8B5BCBF1B45D4F000AC1A69 /* PauseButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PauseButton.png; sourceTree = "<group>"; };
 		B8B9B50E1B34B98200E96FF2 /* MarkMyWordBGCleaniPhone@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MarkMyWordBGCleaniPhone@1x.png"; sourceTree = "<group>"; };
 		B8B9B50F1B34B98200E96FF2 /* MarkMyWordBGCleaniPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MarkMyWordBGCleaniPhone@2x.png"; sourceTree = "<group>"; };
 		B8B9B5101B34B98200E96FF2 /* MarkMyWordBGCleaniPhone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MarkMyWordBGCleaniPhone@3x.png"; sourceTree = "<group>"; };
@@ -557,7 +574,6 @@
 		B8C14EFA1AF32E3600E640C0 /* LaunchScreen@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "LaunchScreen@2x.jpg"; sourceTree = "<group>"; };
 		B8C14EFC1AF32FE500E640C0 /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen.png; sourceTree = "<group>"; };
 		B8C14EFD1AF32FE500E640C0 /* LaunchScreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaunchScreen@2x.png"; sourceTree = "<group>"; };
-		B8C14F001AF3DF6F00E640C0 /* MarkMyWordBGCleaniPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MarkMyWordBGCleaniPad@2x.png"; sourceTree = "<group>"; };
 		B8C14F021AF3E4B500E640C0 /* tileBase45x45.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tileBase45x45.png; sourceTree = "<group>"; };
 		B8C697E71AF446520070ECEE /* TileShadow90x90.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileShadow90x90.png; sourceTree = "<group>"; };
 		B8C9005B1B011F1C00C72745 /* appIcon120x120_MMW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon120x120_MMW.png; sourceTree = "<group>"; };
@@ -573,7 +589,6 @@
 		B8C900751B013C3500C72745 /* PlayerBGTEST309x1320TestFull.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlayerBGTEST309x1320TestFull.jpg; sourceTree = "<group>"; };
 		B8C900781B01405600C72745 /* MMWPlayerTilesGrid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MMWPlayerTilesGrid.png; sourceTree = "<group>"; };
 		B8C9007A1B014EB900C72745 /* MMWPlayerTilesPlaque.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MMWPlayerTilesPlaque.png; sourceTree = "<group>"; };
-		B8C9007C1B0157CC00C72745 /* ButtonPlaceholderBottomLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonPlaceholderBottomLeft.png; sourceTree = "<group>"; };
 		B8C9007E1B0159C900C72745 /* PlayerBGTest309x660.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayerBGTest309x660.png; sourceTree = "<group>"; };
 		B8CB74281AF803BD00AE5F40 /* GridObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridObject.swift; sourceTree = "<group>"; };
 		B8CB742A1AF880A400AE5F40 /* DoubleCross Server */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "DoubleCross Server"; sourceTree = "<group>"; };
@@ -614,7 +629,6 @@
 		B8E874E51AE17E0000763849 /* MMWTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMWTile.swift; sourceTree = "<group>"; };
 		B8F2328A1AF56DB800B2324B /* Tile3D95x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tile3D95x.png; sourceTree = "<group>"; };
 		B8F264F51AE19EF50072B9D4 /* TetrisCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TetrisCell.swift; sourceTree = "<group>"; };
-		B8F264F91AE1EFED0072B9D4 /* MarkMyWordGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkMyWordGame.swift; sourceTree = "<group>"; };
 		B8FA8FA11AE9DC93007CF07C /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
 		B8FA8FA31AE9DD40007CF07C /* AudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
 		B8FA8FA51AE9DD70007CF07C /* Comic_Andy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Comic_Andy.ttf; sourceTree = "<group>"; };
@@ -653,6 +667,12 @@
 		B82786111B05493C00916E20 /* Archive */ = {
 			isa = PBXGroup;
 			children = (
+				B8FA8FA31AE9DD40007CF07C /* AudioController.swift */,
+				B8E37F8A1B0FAA1000F712E1 /* MenuSceneController.swift */,
+				B84B25121B45FB050037B8EA /* MMWGameSceneText.swift */,
+				B858A8E01AF0944D00184931 /* Level.swift */,
+				B8C14EEE1AF2783000E640C0 /* LetterTileController.swift */,
+				B8FA8FAA1AE9DF6F007CF07C /* TileViewOLD.swift */,
 				B8F264F51AE19EF50072B9D4 /* TetrisCell.swift */,
 				B8A455181AF15A6D00C0D83B /* CardController.swift */,
 				B8CB74281AF803BD00AE5F40 /* GridObject.swift */,
@@ -667,8 +687,8 @@
 			children = (
 				B8E874E51AE17E0000763849 /* MMWTile.swift */,
 				B8AA6C071B2A481600DEAC41 /* MMWTileBuilder.swift */,
-				B82786121B0556E000916E20 /* MMWSeat.swift */,
-				B82786141B05585D00916E20 /* MMWPlayer.swift */,
+				B82786121B0556E000916E20 /* Seat.swift */,
+				B82786141B05585D00916E20 /* Player.swift */,
 			);
 			name = MMW;
 			sourceTree = "<group>";
@@ -881,6 +901,41 @@
 			name = WordLists;
 			sourceTree = "<group>";
 		};
+		B8B5BCB21B44B9EE00AC1A69 /* buttons */ = {
+			isa = PBXGroup;
+			children = (
+				B8B5BCBC1B45D4F000AC1A69 /* NewTilesButton.png */,
+				B8B5BCBD1B45D4F000AC1A69 /* OptionsButton.png */,
+				B8B5BCBE1B45D4F000AC1A69 /* PassButton.png */,
+				B8B5BCBF1B45D4F000AC1A69 /* PauseButton.png */,
+				B8B5BCB31B44B9FF00AC1A69 /* NewTilesButton@2x.png */,
+				B8B5BCB41B44B9FF00AC1A69 /* OptionsButton@2x.png */,
+				B8B5BCB51B44B9FF00AC1A69 /* PassButton@2x.png */,
+				B8B5BCB61B44B9FF00AC1A69 /* PauseButton@2x.png */,
+			);
+			name = buttons;
+			sourceTree = "<group>";
+		};
+		B8B5BCBB1B44BA4200AC1A69 /* temp */ = {
+			isa = PBXGroup;
+			children = (
+				B8DA7EC91AE13784003FE2C6 /* avatarpic-l.png */,
+				B8C14F021AF3E4B500E640C0 /* tileBase45x45.png */,
+				B8C697E71AF446520070ECEE /* TileShadow90x90.png */,
+				B8DA7ECB1AE13784003FE2C6 /* HookAvatar80x80.jpg */,
+				B8DA7ECC1AE13784003FE2C6 /* LetterTest90x90.png */,
+				B8C14EF21AF2811E00E640C0 /* TileBackTest90x90.png */,
+				B8DA7ECF1AE13784003FE2C6 /* MeyamaIconLarge.png */,
+				B8E2D7031B33CBE700DC2333 /* MarkMyWordBGCleaniPhone6Plus.png */,
+				B8DA7ED01AE13784003FE2C6 /* MeyamaMathMenuScreenBG_1024x768.png */,
+				B8C14EF41AF2DE1B00E640C0 /* default.jpg */,
+				B8F2328A1AF56DB800B2324B /* Tile3D95x.png */,
+				B8C14EF61AF2DEEF00E640C0 /* OldBoard512x512.png */,
+				B8DA7ED11AE13784003FE2C6 /* OrangeLetterA.png */,
+			);
+			name = temp;
+			sourceTree = "<group>";
+		};
 		B8C900561B011DEE00C72745 /* icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -919,13 +974,12 @@
 				B8B9B5141B34BE6200E96FF2 /* MarkMyWordBGCleaniPhoneLaunchImage.png */,
 				B8D130E21AFD44A100865982 /* MeyamaSplashScreen_iPad.jpg */,
 				B8D130E31AFD44A100865982 /* MeyamaSplashScreen_iPad@2x.jpg */,
-				B8C9007C1B0157CC00C72745 /* ButtonPlaceholderBottomLeft.png */,
 				B8DA7ECD1AE13784003FE2C6 /* MarkMyWordBG_iPadR@2x.jpg */,
 				B8B2947D1AF06146003F789F /* MarkMyWordBGiPadMod@2x.jpg */,
 				B8DA7ECE1AE13784003FE2C6 /* MarkMyWordBG2048x1536.jpg */,
 				B8E2D70D1B3492AF00DC2333 /* LaunchScreen@2x.jpg */,
 				B8E2D70F1B3492B900DC2333 /* LaunchScreen.png */,
-				B8C14F001AF3DF6F00E640C0 /* MarkMyWordBGCleaniPad@2x.png */,
+				B8B5BCB01B44AEEB00AC1A69 /* MarkMyWordBGCleaniPad@2x.png */,
 			);
 			name = backgrounds;
 			sourceTree = "<group>";
@@ -1007,6 +1061,7 @@
 		B8DA7EC01AE1369F003FE2C6 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B8AA6C051B2A464600DEAC41 /* LetterDistribution */,
 				B82786111B05493C00916E20 /* Archive */,
 				B8DA7EC11AE136AC003FE2C6 /* Models */,
 				B8DA7EC21AE136B4003FE2C6 /* Views */,
@@ -1020,8 +1075,6 @@
 			children = (
 				B8FA8FA81AE9DDB5007CF07C /* Config.swift */,
 				B85B16251B0FDE6C00E58214 /* MMW */,
-				B858A8E01AF0944D00184931 /* Level.swift */,
-				B8F264F91AE1EFED0072B9D4 /* MarkMyWordGame.swift */,
 				B8FA8FA11AE9DC93007CF07C /* GameData.swift */,
 				B8CB742E1AF9260400AE5F40 /* Grid.swift */,
 			);
@@ -1036,8 +1089,6 @@
 				B8B49DBA1AF1AF610086154C /* MMWResultsScene.swift */,
 				B8D130E61AFD635500865982 /* PlayerView.swift */,
 				B8C14EF01AF27E5100E640C0 /* LetterTileSprite.swift */,
-				B8AA6C051B2A464600DEAC41 /* LetterDistribution */,
-				B8FA8FAA1AE9DF6F007CF07C /* TileViewOLD.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1047,9 +1098,6 @@
 			children = (
 				B8A455151AF15A1400C0D83B /* GameViewController.swift */,
 				B8CCE1A71AD8C13500882391 /* MMWGameSceneViewController.swift */,
-				B8FA8FA31AE9DD40007CF07C /* AudioController.swift */,
-				B8C14EEE1AF2783000E640C0 /* LetterTileController.swift */,
-				B8E37F8A1B0FAA1000F712E1 /* MenuSceneController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1072,23 +1120,12 @@
 		B8DA7EC51AE136D3003FE2C6 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B8B5BCBB1B44BA4200AC1A69 /* temp */,
+				B8B5BCB21B44B9EE00AC1A69 /* buttons */,
 				B8C900771B01404500C72745 /* player */,
 				B8C900681B01203A00C72745 /* backgrounds */,
 				B8C900671B01201600C72745 /* launchScreens */,
 				B8C900561B011DEE00C72745 /* icons */,
-				B8DA7EC91AE13784003FE2C6 /* avatarpic-l.png */,
-				B8C14F021AF3E4B500E640C0 /* tileBase45x45.png */,
-				B8C697E71AF446520070ECEE /* TileShadow90x90.png */,
-				B8DA7ECB1AE13784003FE2C6 /* HookAvatar80x80.jpg */,
-				B8DA7ECC1AE13784003FE2C6 /* LetterTest90x90.png */,
-				B8C14EF21AF2811E00E640C0 /* TileBackTest90x90.png */,
-				B8DA7ECF1AE13784003FE2C6 /* MeyamaIconLarge.png */,
-				B8E2D7031B33CBE700DC2333 /* MarkMyWordBGCleaniPhone6Plus.png */,
-				B8DA7ED01AE13784003FE2C6 /* MeyamaMathMenuScreenBG_1024x768.png */,
-				B8C14EF41AF2DE1B00E640C0 /* default.jpg */,
-				B8F2328A1AF56DB800B2324B /* Tile3D95x.png */,
-				B8C14EF61AF2DEEF00E640C0 /* OldBoard512x512.png */,
-				B8DA7ED11AE13784003FE2C6 /* OrangeLetterA.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -1296,6 +1333,7 @@
 				B8CCE1B01AD8C13500882391 /* LaunchScreen.xib in Resources */,
 				B8A456111AF171B800C0D83B /* TutorialButton@2x.png in Resources */,
 				B8A455E01AF171B800C0D83B /* clear@2x.png in Resources */,
+				B8B5BCC11B45D4F000AC1A69 /* OptionsButton.png in Resources */,
 				B8B2CAD31ADADD9100C9DEE7 /* 7_3LetterWords.txt in Resources */,
 				B8A455F81AF171B800C0D83B /* MenuButton.png in Resources */,
 				B8A455D61AF171B800C0D83B /* card_spell_stoneskin_sel.png in Resources */,
@@ -1314,6 +1352,7 @@
 				B8A455B51AF171B800C0D83B /* card_creature_wolf_large@2x.png in Resources */,
 				B8A455CD1AF171B800C0D83B /* card_spell_rabid@2x.png in Resources */,
 				B8B9B5131B34B98200E96FF2 /* MarkMyWordBGCleaniPhone@3x.png in Resources */,
+				B8B5BCC31B45D4F000AC1A69 /* PauseButton.png in Resources */,
 				B8A455DD1AF171B800C0D83B /* changePhase@2x.png in Resources */,
 				B8B2CAF61ADADD9100C9DEE7 /* 12_1LetterWords.txt in Resources */,
 				B8D130EB1AFD725B00865982 /* PlayerBG02Island.jpg in Resources */,
@@ -1350,6 +1389,7 @@
 				B8B2CAE21ADADD9100C9DEE7 /* 9_4LetterWords.txt in Resources */,
 				B8B2CAE61ADADD9100C9DEE7 /* 9.4-LetterWords.txt in Resources */,
 				B8A456061AF171B800C0D83B /* player1_druid_sel.png in Resources */,
+				B8B5BCC01B45D4F000AC1A69 /* NewTilesButton.png in Resources */,
 				B8A455A41AF171B800C0D83B /* card_back_sel.png in Resources */,
 				B8B2CAF71ADADD9100C9DEE7 /* 12_2LetterWords.txt in Resources */,
 				B8A455CF1AF171B800C0D83B /* card_spell_sleep_large@2x.png in Resources */,
@@ -1365,6 +1405,7 @@
 				B8B2CA7D1ADADB7000C9DEE7 /* PLINK.mp3 in Resources */,
 				B8C14EFB1AF32E3600E640C0 /* LaunchScreen@2x.jpg in Resources */,
 				B8C900661B011F1C00C72745 /* appIcon180x180_MMW.png in Resources */,
+				B8B5BCB91B44B9FF00AC1A69 /* PassButton@2x.png in Resources */,
 				B8A456041AF171B800C0D83B /* player_two.png in Resources */,
 				B8A455A91AF171B800C0D83B /* card_creature_bear_large@2x.png in Resources */,
 				B8A455EF1AF171B800C0D83B /* icon_heart@2x.png in Resources */,
@@ -1408,7 +1449,6 @@
 				B8B2CADA1ADADD9100C9DEE7 /* 8_4LetterWords.txt in Resources */,
 				B8D130E91AFD668100865982 /* PlayerBG01.jpg in Resources */,
 				B8A455B91AF171B800C0D83B /* card_creature_wolf@2x.png in Resources */,
-				B8C14F011AF3DF6F00E640C0 /* MarkMyWordBGCleaniPad@2x.png in Resources */,
 				B8E2D7101B3492B900DC2333 /* LaunchScreen.png in Resources */,
 				B8C697E81AF446520070ECEE /* TileShadow90x90.png in Resources */,
 				B8B2CAD11ADADD9100C9DEE7 /* 7_1LetterWords.txt in Resources */,
@@ -1431,6 +1471,7 @@
 				B8B2CAC91ADADD9100C9DEE7 /* 4-LetterWords.txt in Resources */,
 				B8B9B5151B34BE6200E96FF2 /* MarkMyWordBGCleaniPhoneLaunchImage.png in Resources */,
 				B8A455F31AF171B800C0D83B /* icon_star_transparent@2x.png in Resources */,
+				B8B5BCB71B44B9FF00AC1A69 /* NewTilesButton@2x.png in Resources */,
 				B8A456121AF171B800C0D83B /* two-swords.wav in Resources */,
 				B8A455D31AF171B800C0D83B /* card_spell_sleep@2x.png in Resources */,
 				B8A455DC1AF171B800C0D83B /* changePhase.png in Resources */,
@@ -1444,6 +1485,7 @@
 				B8D130ED1AFD7E2900865982 /* PlayerBGTEST309x1320.jpg in Resources */,
 				B8C9006D1B01240200C72745 /* appIcon76x76_MMW.png in Resources */,
 				B8A455D21AF171B800C0D83B /* card_spell_sleep.png in Resources */,
+				B8B5BCB81B44B9FF00AC1A69 /* OptionsButton@2x.png in Resources */,
 				B8A455C11AF171B800C0D83B /* card_energy@2x.png in Resources */,
 				B8B2CA711ADADB7000C9DEE7 /* 1007.WAV in Resources */,
 				B8DA7ED81AE13784003FE2C6 /* MeyamaIconLarge.png in Resources */,
@@ -1506,7 +1548,6 @@
 				B8B2CADC1ADADD9100C9DEE7 /* 8.2-LetterWords.txt in Resources */,
 				B8A4560B1AF171B800C0D83B /* player2_beastmaster_sel@2x.png in Resources */,
 				B8C900721B0124C500C72745 /* appIcon60x60_MMW.png in Resources */,
-				B8C9007D1B0157CC00C72745 /* ButtonPlaceholderBottomLeft.png in Resources */,
 				B8A455991AF171B800C0D83B /* activateEnergy.png in Resources */,
 				B8A455BB1AF171B800C0D83B /* card_energy_large@2x.png in Resources */,
 				B8B2CAD21ADADD9100C9DEE7 /* 7_2LetterWords.txt in Resources */,
@@ -1525,10 +1566,13 @@
 				B8C9007F1B0159C900C72745 /* PlayerBGTest309x660.png in Resources */,
 				B8A4560D1AF171B800C0D83B /* player2_beastmaster@2x.png in Resources */,
 				B8DA7ED91AE13784003FE2C6 /* MeyamaMathMenuScreenBG_1024x768.png in Resources */,
+				B8B5BCC21B45D4F000AC1A69 /* PassButton.png in Resources */,
 				B8C900641B011F1C00C72745 /* appIcon58x58_MMW.png in Resources */,
 				B8B2CAC81ADADD9100C9DEE7 /* 3LetterWords.txt in Resources */,
 				B8DA7ED41AE13784003FE2C6 /* HookAvatar80x80.jpg in Resources */,
+				B8B5BCBA1B44B9FF00AC1A69 /* PauseButton@2x.png in Resources */,
 				B8CCE1AB1AD8C13500882391 /* Main.storyboard in Resources */,
+				B8B5BCB11B44AEEB00AC1A69 /* MarkMyWordBGCleaniPad@2x.png in Resources */,
 				B8B2CA581ADADB6000C9DEE7 /* 11Bubble Gum.mp3 in Resources */,
 				B8A455B21AF171B800C0D83B /* card_creature_dragon.png in Resources */,
 				B8B2CADD1ADADD9100C9DEE7 /* 8.3-LetterWords.txt in Resources */,
@@ -1560,11 +1604,12 @@
 				B8CB742F1AF9260400AE5F40 /* Grid.swift in Sources */,
 				B8CCE1A61AD8C13500882391 /* MMWGameScene.swift in Sources */,
 				B8AA6C081B2A481600DEAC41 /* MMWTileBuilder.swift in Sources */,
+				B84B25131B45FB050037B8EA /* MMWGameSceneText.swift in Sources */,
 				B8FA8FA41AE9DD40007CF07C /* AudioController.swift in Sources */,
-				B82786151B05585D00916E20 /* MMWPlayer.swift in Sources */,
+				B82786151B05585D00916E20 /* Player.swift in Sources */,
 				B89939431ADAF8BC00587323 /* accelerometer.swift in Sources */,
 				B8E874E61AE17E0000763849 /* MMWTile.swift in Sources */,
-				B82786131B0556E000916E20 /* MMWSeat.swift in Sources */,
+				B82786131B0556E000916E20 /* Seat.swift in Sources */,
 				B8C14EF11AF27E5100E640C0 /* LetterTileSprite.swift in Sources */,
 				B8CCE1A81AD8C13500882391 /* MMWGameSceneViewController.swift in Sources */,
 				B8D789281B0C3A0300C3DC36 /* MMWGame.swift in Sources */,
@@ -1574,7 +1619,6 @@
 				B8FA8FA91AE9DDB5007CF07C /* Config.swift in Sources */,
 				B8A455171AF15A1400C0D83B /* GameViewController.swift in Sources */,
 				B8B294801AF064B7003F789F /* HUD.swift in Sources */,
-				B8F264FA1AE1EFED0072B9D4 /* MarkMyWordGame.swift in Sources */,
 				B8A455161AF15A1400C0D83B /* MainMenuScene.swift in Sources */,
 				B8CCE1A21AD8C13500882391 /* AppDelegate.swift in Sources */,
 				B8A455191AF15A6D00C0D83B /* CardController.swift in Sources */,
@@ -1712,7 +1756,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MarkMyWord/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hookstudios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1731,7 +1775,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MarkMyWord/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hookstudios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

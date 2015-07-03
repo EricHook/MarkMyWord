@@ -9,22 +9,23 @@
 import Foundation
 import SpriteKit
 
-class MMWPlayer {
+class Player {
     
     var playerID : Int = 1
     var playerName : String = ""
     var playerScore : Int = 0
     var doIt : Bool = false
     var didIt : Bool = false
-    var playerSeat : MMWSeat
-    var playerColor : UIColor
+    //var playerSeat : MMWSeat
+    var playerColor : Int = 0
     var playerLetterTiles : [MMWTile]? = nil
     var playerSpecialTiles : [MMWTile]? = nil
     var playerLetterTilesPlayed : [MMWTile]? = nil
     
     init (_playerID : Int, _playerName : String, _playerColor : Int) {
-        playerSeat = MMWSeat(_playerSeatNum: 1, _seatColorNumber: _playerColor)
-        playerColor = playerSeat.seatUIColor
+        //playerSeat = MMWSeat(_playerSeatNum: 1, _seatColorNumber: _playerColor)
+        //playerColor = playerSeat.seatUIColor
+        playerColor = _playerColor
         playerID = _playerID
         playerName = _playerName
     }

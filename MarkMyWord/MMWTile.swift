@@ -50,7 +50,10 @@ class MMWTile {
     var tileOwner: TileOwner = TileOwner.None
     var tileGrid: Grid? = nil
     
-    //var tileObjectParent : MMWTile
+//    var controller : MMWGameSceneViewController
+    
+//    var tileBuilder: MMWTileBuilder
+//    var tileScene: MMWGameScene
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -68,7 +71,9 @@ class MMWTile {
         self.tileSprite  = LetterTileSprite(tileStyle: LetterTileSprite.TileStyle.basic, withChar: letterString, withColor: UIColorGray, atPoint: CGPointMake(0.5, 0.5))
         //self.tileSprite.alpha = 0.5
         self.tileSprite.zPosition = 1
+        //self.controller = _controller
         self.tileSprite.tileObjectParent = self
+        self.tileSprite.hidden = true
     }
     
     init (letterString : String) {
@@ -83,7 +88,9 @@ class MMWTile {
         self.tileSprite  = LetterTileSprite(tileStyle: LetterTileSprite.TileStyle.basic, withChar: letterString, withColor: UIColorGray, atPoint: CGPointMake(0.5, 0.5))
         //self.tileSprite.alpha = 0.5
         self.tileSprite.zPosition = 1
+        //self.controller = _controller
         self.tileSprite.tileObjectParent = self
+        self.tileSprite.hidden = true
     }
 
     static func randomTileType() -> TileType {
@@ -94,8 +101,5 @@ class MMWTile {
 //    var column: Int
 //    var row: Int
 //    let tileType: TileType
-    
     //var sprite: SKSpriteNode?
-    
-
 }

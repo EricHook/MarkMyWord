@@ -47,7 +47,7 @@ class MainMenuScene: SKScene {
 //        self.addChild(backgroundNode)
         
         // add BG
-        let backgroundNode = SKSpriteNode(imageNamed: "MMWBG")
+        let backgroundNode = SKSpriteNode(imageNamed: "MarkMyWordBGCleaniPad@2x.png")
         //backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         backgroundNode.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
         backgroundNode.userInteractionEnabled = false
@@ -55,14 +55,13 @@ class MainMenuScene: SKScene {
         self.addChild(backgroundNode)
         
         let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Mark My Word" // scene is: \(scene?.description)"
-        print("scene in GameScene is: \(scene?.description)")
+        myLabel.text = "Main Game Menu" // scene is: \(scene?.description)"
         myLabel.fontSize = 65;
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
+        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y: (CGRectGetMidY(self.frame) - 50) )
         self.addChild(myLabel)
         
-        let playBtn = SKSpriteNode(imageNamed: "HookAvatar80x80.jpg")
-        playBtn.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
+        let playBtn = SKSpriteNode(imageNamed: "PlayButton.png")
+        playBtn.position = CGPoint(x: viewSize.width/2, y: viewSize.height/3)
         self.addChild(playBtn)
         playBtn.name = "playBtn"
         //self.scaleMode = .AspectFill
@@ -76,7 +75,6 @@ class MainMenuScene: SKScene {
             if(_node.name == "playBtn"){
                 print("going to mmw scene") //create MMW controller
                 mmwGameSceneViewController = createMMWSceneController()
-                // mmwGameSceneViewController.testMMWCont() // print to test
                 mmwGameSceneViewController.mmwGameScene.setViewController(mmwGameSceneViewController)
                 presentMMWScene()
                 // mmwGameScene.scaleMode = SKSceneScaleMode.ResizeFill
@@ -85,11 +83,11 @@ class MainMenuScene: SKScene {
                     runAction(actionSound)
                 }
             }
-            if ( location.x < viewSize.width/2){
-                print("[GamePlayScene] touchedLeftSide ")
-            } else if(location.x > viewSize.width/2){
-                print("[GamePlayScene] touchedRightSide ")
-            }
+//            if ( location.x < viewSize.width/2){
+//                print("[GamePlayScene] touchedLeftSide ")
+//            } else if(location.x > viewSize.width/2){
+//                print("[GamePlayScene] touchedRightSide ")
+//            }
         }
     }
 
@@ -106,7 +104,7 @@ class MainMenuScene: SKScene {
     }
     
     func presentMMWScene() -> MMWGameScene {
-        let transition = SKTransition.crossFadeWithDuration(2.0)
+        let transition = SKTransition.crossFadeWithDuration(0.5)
 //        //mmwGameScene = MMWGameScene(size: size)
 //        transitionToScene = mmwGameSceneViewController.mmwGameScene
 //        currentScene = mmwGameScene
