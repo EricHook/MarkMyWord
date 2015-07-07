@@ -303,7 +303,15 @@ class LetterTileSprite : SKSpriteNode {
             let gameGrid = (scene as! MMWGameScene).getSnapGrid(tileSnapTouch) // .getBoardGrid()
             
             self.tileObjectParent.gridHome = gameGrid // set tileSprite parent (MMWTile) grid to grid snapped to
-            print("<LetterTileSprite> \(gameGrid?.gridArr)" )
+            
+//            //for tile in [[gameGrid]] {
+//            for yVal in 0...gameGrid!.gridNumSquaresY {
+//                for xVal in 0...gameGrid!.gridNumSquaresX {
+//                    print("<  \( gameGrid?.gridArr[xVal][yVal]   ) ")
+//                }
+//
+//            }
+            
             
             // get snap location for point touch ended // -15.5 on y touch point adjusts for snapping too high to lower square
             //var tileSnapCalculate = gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y))
@@ -345,11 +353,17 @@ class LetterTileSprite : SKSpriteNode {
 //                print("<LetterTileSprite> EMPTY")
 //            }
   
-            // check if array location in grid is an MMWTile and if so .. prints description
-            if ( gameGrid?.gridArr[tileSnapResultsYGrid][tileSnapResultsXGrid].description == "MarkMyWord.MMWTile") {
-                print("<LetterTileSprite> Value of grid square = MarkMyWord.MMWTile ... \( (gameGrid?.gridArr[tileSnapResultsYGrid][tileSnapResultsXGrid])!.description)")
-            }
+            
+            
+            
+//            // check if array location in grid is an MMWTile and if so .. prints description
+//            if ( gameGrid?.gridArr[tileSnapResultsYGrid][tileSnapResultsXGrid].description == "MarkMyWord.MMWTile") {
+//                print("<LetterTileSprite> Value of grid square = MarkMyWord.MMWTile ... \( (gameGrid?.gridArr[tileSnapResultsYGrid][tileSnapResultsXGrid])!.description)")
+//            }
 
+            
+            
+            
             // set value of snap results grid location to the MMWTile if valid location
             self.tileObjectParent.gridHome?.gridArr[tileSnapResultsYGrid][tileSnapResultsXGrid] = self.tileObjectParent
             // move tile to snap point - IF valid location

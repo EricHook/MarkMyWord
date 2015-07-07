@@ -75,7 +75,7 @@ class MainMenuScene: SKScene {
             if(_node.name == "playBtn"){
                 print("going to mmw scene") //create MMW controller
                 mmwGameSceneViewController = createMMWSceneController()
-                mmwGameSceneViewController.mmwGameScene.setViewController(mmwGameSceneViewController)
+                // mmwGameSceneViewController.mmwGameScene.setViewController(mmwGameSceneViewController)
                 presentMMWScene()
                 // mmwGameScene.scaleMode = SKSceneScaleMode.ResizeFill
                 if userInteractionEnabled {

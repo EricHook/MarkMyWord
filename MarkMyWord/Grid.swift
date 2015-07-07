@@ -21,13 +21,13 @@ class Grid {
     var gridNumSquaresY : Int = 5
     
     //var gridArr : [[AnyObject]]
-    var gridArr = Array <Array < AnyObject > >()
+    var gridArr = [[MMWTile]]()
     var gridName : String = ""
     var gridPlayer : Player? = nil
     
     init() { // default 10x10 grid at 0,0
         self.gridUpperLeftX = 4
-        gridArr = [[AnyObject]](count: gridNumSquaresY, repeatedValue: [AnyObject](count: gridNumSquaresX, repeatedValue: 0))
+        gridArr = [[MMWTile]](count: gridNumSquaresY, repeatedValue: [MMWTile](count: gridNumSquaresX, repeatedValue: MMWTile() ))
     }
     
     init (gridUpperLeftX: Double, gridUpperLeftY : Double, gridSquareSizeX : Double, gridSquareSizeY : Double, gridNumSquaresX : Int, gridNumSquaresY : Int, gridName : String){
@@ -38,8 +38,8 @@ class Grid {
         self.gridNumSquaresX = gridNumSquaresX
         self.gridNumSquaresY = gridNumSquaresY
         self.gridName = gridName
-        gridArr = [[AnyObject]](count: gridNumSquaresY, repeatedValue: [AnyObject](count: gridNumSquaresX, repeatedValue: 0))
-        gridArr[1][1] = 0 // put test placeholder value in grid
+        gridArr = [[MMWTile]](count: gridNumSquaresY, repeatedValue: [MMWTile](count: gridNumSquaresX, repeatedValue: MMWTile() ))
+        // gridArr[1][1] = 0 // put test placeholder value in grid
     }
     
     func setGridPlayer (player : Player ) {
@@ -66,10 +66,6 @@ class Grid {
     
     // given a grid and x, y func returns a CGPoint to place sprite
     func sendToGridSquare (grid: Grid, squareX: Int, squareY: Int) -> (CGPoint) {
-//        let GridSquareX : Int = 0
-//        let GridSquareY : Int = 0
-//        let GridSquareUpperLeftCornerX : Double = 0.0
-//        let GridSquareUpperLeftCornerY : Double = 0.0
         let tilePositionX = grid.gridUpperLeftX + 23.75 + ( Double(squareX) * grid.gridSquareSizeX )
         let tilePositionY = 768 - grid.gridUpperLeftY - ( Double(squareY) * grid.gridSquareSizeY ) + 7
         let tilePosition = CGPoint( x: tilePositionX, y: tilePositionY )
@@ -81,9 +77,33 @@ class Grid {
     }
     
     func tileAtGridSquare (grid: Grid, squareX: Int, squareY: Int) -> (MMWTile?) {
-        let tile : MMWTile? = (grid.gridArr[squareY][squareX] as! MMWTile)
+        let tile : MMWTile? = (grid.gridArr[squareY][squareX] as MMWTile)
         return tile
     }
     
+    func fillGridFromArray (arrayIn: [MMWTile], gridToFill: Grid ) {
+        print(">>> fillGridFromArray (arrayIn: [AnyObject], gridToFill: Grid ) ")
+        var arrayInMarker = 0
+        for y in 0...(gridToFill.gridNumSquaresY - 1) {   // fill letter tiles
+            for x in 0...(gridToFill.gridNumSquaresX - 1) {
+                if arrayInMarker < (gridToFill.gridNumSquaresY) * (gridToFill.gridNumSquaresX) {
+                    gridToFill.gridArr[y][x] = arrayIn[arrayInMarker] as MMWTile
+                    print(" \( (arrayIn[arrayInMarker] as MMWTile).tileSprite.tileText) ) ")
+                    arrayInMarker++
+                }
+            }
+        }
+    }
     
+    func fillArrayFromGrid (arrayToFill: [AnyObject], gridOut: Grid ) {
+        var arrayInMarker = 0
+        for y in 0...(gridOut.gridNumSquaresY - 1) {   // fill Player 4 letter tiles
+            for x in 0...(gridOut.gridNumSquaresX - 1) {
+                if arrayInMarker < x * y {
+                    gridOut.gridArr[y][x] = arrayToFill[arrayInMarker] as! MMWTile
+                    arrayInMarker++
+                }
+            }
+        }
+    }
 }

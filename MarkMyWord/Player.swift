@@ -18,8 +18,11 @@ class Player {
     var didIt : Bool = false
     //var playerSeat : MMWSeat
     var playerColor : Int = 0
-    var playerLetterTiles : [MMWTile]? = nil
-    var playerSpecialTiles : [MMWTile]? = nil
+    
+    var playerLetterTiles : [MMWTile]! = nil
+    var playerLetterGrid: Grid! = nil
+    
+    var playerSpecialTiles : [MMWTile]! = nil
     var playerLetterTilesPlayed : [MMWTile]? = nil
     
     init (_playerID : Int, _playerName : String, _playerColor : Int) {
@@ -32,6 +35,10 @@ class Player {
     
     func setPlayerTilesArray (inout playerTiles: [MMWTile]) {
         playerLetterTiles = playerTiles
+    }
+    
+    func setPlayerTilesGrid (inout playerTilesGrid: Grid) {
+        playerLetterGrid = playerTilesGrid
     }
     
 //    getNewTiles (numTilesToGet: Int) {

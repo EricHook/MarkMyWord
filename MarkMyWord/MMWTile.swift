@@ -9,6 +9,7 @@
 
 import SpriteKit
 
+
 enum TileType: Int {
     case Unknown = 0, Letter, Blank, ColorBomb, DirectionBomb, Blocking
     }
@@ -49,6 +50,7 @@ class MMWTile {
     var tileState: TileState = TileState.black
     var tileOwner: TileOwner = TileOwner.None
     var tileGrid: Grid? = nil
+    var description = ""
     
 //    var controller : MMWGameSceneViewController
     
@@ -66,14 +68,17 @@ class MMWTile {
         self.gridX = 0
         self.gridY = 0
         self.letterString = "!"
+        description = "!"
         self.tileState = TileState.black
         self.tileOwner = TileOwner.None
         self.tileSprite  = LetterTileSprite(tileStyle: LetterTileSprite.TileStyle.basic, withChar: letterString, withColor: UIColorGray, atPoint: CGPointMake(0.5, 0.5))
-        //self.tileSprite.alpha = 0.5
+        // self.tileSprite.alpha = 0.5
+        // self.tileSprite.position ( CGPoint(x: 50.0, y: 50.0) )
+        self.tileSprite.position = CGPoint(x: 5.0751, y: 10.102)
         self.tileSprite.zPosition = 1
         //self.controller = _controller
         self.tileSprite.tileObjectParent = self
-        self.tileSprite.hidden = true
+        //self.tileSprite.hidden = true
     }
     
     init (letterString : String) {
@@ -83,14 +88,16 @@ class MMWTile {
         self.gridX = 0
         self.gridY = 0
         self.letterString = letterString
+        description = "/(letterString)"
         self.tileState = TileState.black
         self.tileOwner = TileOwner.None
         self.tileSprite  = LetterTileSprite(tileStyle: LetterTileSprite.TileStyle.basic, withChar: letterString, withColor: UIColorGray, atPoint: CGPointMake(0.5, 0.5))
         //self.tileSprite.alpha = 0.5
+        self.tileSprite.position = CGPoint(x: 5.0751, y: 10.102)
         self.tileSprite.zPosition = 1
         //self.controller = _controller
         self.tileSprite.tileObjectParent = self
-        self.tileSprite.hidden = true
+        //self.tileSprite.hidden = true
     }
 
     static func randomTileType() -> TileType {

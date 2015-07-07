@@ -14,10 +14,11 @@ class MMWTileBuilder {
     
     var mmwTileArray = [MMWTile]()
     var mmwPlayedTileArray = [MMWTile]()
-    var mmwPlayer1LetterTileArray = [MMWTile]() // count:6, repeatedValue: MMWTile())
-    var mmwPlayer2LetterTileArray = [MMWTile]()
-    var mmwPlayer3LetterTileArray = [MMWTile]()
-    var mmwPlayer4LetterTileArray = [MMWTile]()
+    
+//    var mmwPlayer1LetterTileArray = [MMWTile]() // count:6, repeatedValue: MMWTile())
+//    var mmwPlayer2LetterTileArray = [MMWTile]()
+//    var mmwPlayer3LetterTileArray = [MMWTile]()
+//    var mmwPlayer4LetterTileArray = [MMWTile]()
     
 //    var mmwTileBuilderController : MMWGameSceneViewController
 //    var mmwTileBuilderScene : MMWGameScene
@@ -30,10 +31,10 @@ class MMWTileBuilder {
 //    var mmwPlayer3LetterTileArray = [AnyObject](count:6, repeatedValue: 0)
 //    var mmwPlayer4LetterTileArray = [AnyObject](count:6, repeatedValue: 0)
     
-//    var mmwPlayer1LetterTileArray = [MMWTile](count:6, repeatedValue: MMWTile() ) // count:6, repeatedValue: MMWTile())
-//    var mmwPlayer2LetterTileArray = [MMWTile](count:6, repeatedValue: MMWTile() )
-//    var mmwPlayer3LetterTileArray = [MMWTile](count:6, repeatedValue: MMWTile() )
-//    var mmwPlayer4LetterTileArray = [MMWTile](count:6, repeatedValue: MMWTile() )
+    var mmwPlayer1LetterTileArray = [MMWTile](count:6, repeatedValue: MMWTile() ) // count:6, repeatedValue: MMWTile()) // letterValue = "!"
+    var mmwPlayer2LetterTileArray = [MMWTile](count:6, repeatedValue: MMWTile() )
+    var mmwPlayer3LetterTileArray = [MMWTile](count:6, repeatedValue: MMWTile() )
+    var mmwPlayer4LetterTileArray = [MMWTile](count:6, repeatedValue: MMWTile() )
     
     var tileA1 : MMWTile = MMWTile(letterString: "A")
     var tileA2 : MMWTile = MMWTile(letterString: "A")
@@ -313,9 +314,9 @@ class MMWTileBuilder {
     }
     
     func displayTileArrayValues (tileArray: [MMWTile]) {
-        print(" \(tileArray.debugDescription)")
+        //print(" \(tileArray.debugDescription)")
         for tile in tileArray {
-            print( "\(tile.letterString) ", appendNewLine:false )
+            print( "\(tile.letterString)") // , appendNewLine:false )
         }
     }
     
@@ -338,11 +339,16 @@ class MMWTileBuilder {
     func updateTiles(inout tilesFrom: [MMWTile], inout tilesTo: [MMWTile], var numTilesGet: Int, changeColorTo: Int) {
         let originalTilesGet = numTilesGet
         while numTilesGet > 0 {
+            
+            // ??? crash if run out of tiles undealt !!!
+            
             let numTiles : UInt32 = UInt32(tilesFrom.count - 1)
+            
             let tileInArr = arc4random_uniform( numTiles ) // select random tile in FROM array
             let tileRemoved : MMWTile = tilesFrom.removeAtIndex( Int(tileInArr) )
             tileRemoved.tileSprite.color =  gameColors[changeColorTo]
             if (originalTilesGet - numTilesGet) < tilesTo.count {
+                tilesTo[originalTilesGet - numTilesGet].tileSprite.hidden = true
                 tilesTo.removeAtIndex(originalTilesGet - numTilesGet)
             }
             tilesTo.insert(tileRemoved, atIndex: originalTilesGet - numTilesGet)
