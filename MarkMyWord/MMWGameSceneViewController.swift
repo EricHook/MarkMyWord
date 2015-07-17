@@ -65,18 +65,21 @@ class MMWGameSceneViewController {
     }
     
     func makeTwoPlayers () {
-        tileCollection.getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayedTileArray, numTilesGet: 32, changeColorTo: 0 )
         
+        //tileCollection.getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayedTileArray, numTilesGet: 32, changeColorTo: 0 )
+
         //player1.playerLetterTiles = tileCollection.mmwPlayer1LetterTileArray
-        tileCollection.getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer1LetterTileArray, numTilesGet: 6, changeColorTo: player1.playerColor)
+        //tileCollection.getAllNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer1LetterTileArray, numTilesGet: 6, changeColorTo: player1.playerColor)
         mmwGameScene.addPlayerView(1, playerView: PlayerView(mmwPlayer: player1))
         player1.setPlayerTilesGrid(&mmwGameScene.mmwPlayer1of2Grid!)
+        //mmwGameScene.updateGridFromArray(tileCollection.mmwPlayer1LetterTileArray, grid: player1.playerLetterGrid)
         
         
         //player2.playerLetterTiles = tileCollection.mmwPlayer2LetterTileArray
-        tileCollection.getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer2LetterTileArray, numTilesGet: 6, changeColorTo: player2.playerColor)
+        //tileCollection.getAllNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer2LetterTileArray, numTilesGet: 6, changeColorTo: player2.playerColor)
         mmwGameScene.addPlayerView(2, playerView: PlayerView(mmwPlayer: player2))
-        player2.setPlayerTilesGrid(&mmwGameScene.mmwPlayer1of2Grid!)
+        player2.setPlayerTilesGrid(&mmwGameScene.mmwPlayer2of2Grid!)
+        //mmwGameScene.updateGridFromArray(tileCollection.mmwPlayer2LetterTileArray, grid: player2.playerLetterGrid)
     }
     
     func makeThreePlayers () {
@@ -93,7 +96,7 @@ class MMWGameSceneViewController {
         makeTwoPlayers()
         
         //player3.playerLetterTiles = tileCollection.mmwPlayer3LetterTileArray
-        tileCollection.getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer3LetterTileArray, numTilesGet: 6, changeColorTo: player3.playerColor)
+        tileCollection.getAllNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer3LetterTileArray, numTilesGet: 6, changeColorTo: player3.playerColor)
         mmwGameScene.addPlayerView(3, playerView: PlayerView(mmwPlayer: player3))
         player3.setPlayerTilesGrid(&mmwGameScene.mmwPlayer3of4Grid!)
     }
@@ -116,7 +119,7 @@ class MMWGameSceneViewController {
         makeThreePlayers()
         
         //player4.playerLetterTiles = tileCollection.mmwPlayer4LetterTileArray
-        tileCollection.getNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer4LetterTileArray, numTilesGet: 6, changeColorTo: player4.playerColor)
+        tileCollection.getAllNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer4LetterTileArray, numTilesGet: 6, changeColorTo: player4.playerColor)
         mmwGameScene.addPlayerView(4, playerView: PlayerView(mmwPlayer: player4))
         player4.setPlayerTilesGrid(&mmwGameScene.mmwPlayer4of4Grid!)
     }
@@ -164,8 +167,6 @@ class MMWGameSceneViewController {
 //    }
 
     //func fillTiles(inout tilesFrom: [MMWTile], inout tilesTo: [MMWTile], changeColorTo: UIColor) {
-        
-//        
 //        let originalTilesGet = numTilesGet
 //        while numTilesGet > 0 {
 //            let numTiles : UInt32 = UInt32(tilesFrom.count - 1)
@@ -177,8 +178,6 @@ class MMWGameSceneViewController {
 //            numTilesGet--
 //        }
 //    }
-    
-
 
 //    override func didReceiveMemoryWarning() {
 //        super.didReceiveMemoryWarning()

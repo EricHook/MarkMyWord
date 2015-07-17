@@ -14,6 +14,7 @@ class MMWTileBuilder {
     
     var mmwTileArray = [MMWTile]()
     var mmwPlayedTileArray = [MMWTile]()
+    var mmwDiscardedTileArray = [MMWTile]()
     
 //    var mmwPlayer1LetterTileArray = [MMWTile]() // count:6, repeatedValue: MMWTile())
 //    var mmwPlayer2LetterTileArray = [MMWTile]()
@@ -31,10 +32,10 @@ class MMWTileBuilder {
 //    var mmwPlayer3LetterTileArray = [AnyObject](count:6, repeatedValue: 0)
 //    var mmwPlayer4LetterTileArray = [AnyObject](count:6, repeatedValue: 0)
     
-    var mmwPlayer1LetterTileArray = [MMWTile](count:6, repeatedValue: MMWTile() ) // count:6, repeatedValue: MMWTile()) // letterValue = "!"
-    var mmwPlayer2LetterTileArray = [MMWTile](count:6, repeatedValue: MMWTile() )
-    var mmwPlayer3LetterTileArray = [MMWTile](count:6, repeatedValue: MMWTile() )
-    var mmwPlayer4LetterTileArray = [MMWTile](count:6, repeatedValue: MMWTile() )
+    var mmwPlayer1LetterTileArray = [MMWTile](count:9, repeatedValue: MMWTile() ) // count:6, repeatedValue: MMWTile()) // letterValue = "!"
+    var mmwPlayer2LetterTileArray = [MMWTile](count:9, repeatedValue: MMWTile() )
+    var mmwPlayer3LetterTileArray = [MMWTile](count:9, repeatedValue: MMWTile() )
+    var mmwPlayer4LetterTileArray = [MMWTile](count:9, repeatedValue: MMWTile() )
     
     var tileA1 : MMWTile = MMWTile(letterString: "A")
     var tileA2 : MMWTile = MMWTile(letterString: "A")
@@ -314,26 +315,65 @@ class MMWTileBuilder {
     }
     
     func displayTileArrayValues (tileArray: [MMWTile]) {
-        //print(" \(tileArray.debugDescription)")
         for tile in tileArray {
-            print( "\(tile.letterString)") // , appendNewLine:false )
+            print( "\(tile.letterString)", appendNewLine:false) // , appendNewLine:false )
         }
     }
     
     // send/move num Tiles from one tile array to another tile array
-    func getNewTiles(inout tilesFrom: [MMWTile], inout tilesTo: [MMWTile], var numTilesGet: Int, changeColorTo: Int) {
+    func getAllNewTiles(inout tilesFrom: [MMWTile], inout tilesTo: [MMWTile], var numTilesGet: Int, changeColorTo: Int) {
+        
+        discardTiles(&tilesTo, numTilesDiscard: numTilesGet)
+        
         let originalTilesGet = numTilesGet
         while numTilesGet > 0 {
             let numTiles : UInt32 = UInt32(tilesFrom.count - 1)
             let tileInArr = arc4random_uniform( numTiles ) // select random tile in FROM array
             let tileRemoved : MMWTile = tilesFrom.removeAtIndex( Int(tileInArr) )
-            tileRemoved.tileSprite.color =  gameColors[changeColorTo]
-            //tilesTo.removeAtIndex(originalTilesGet - numTilesGet)
+            //tileRemoved.tileSprite.color =  gameColors[changeColorTo]
+
             tilesTo.insert(tileRemoved, atIndex: originalTilesGet - numTilesGet)
+            tilesTo[originalTilesGet - numTilesGet].tileSprite.color =  gameColors[changeColorTo]
+            tilesTo[originalTilesGet - numTilesGet].tileSprite.hidden = false
             //tilesTo.append( tileRemoved )
+            
             numTilesGet--
         }
     }
+    
+    // send/move num Tiles from one tile array to another tile array
+    func discardTiles(inout tilesFrom: [MMWTile], var numTilesDiscard: Int) {
+        //let originalTilesGet = numTilesDiscard
+        while numTilesDiscard > 0 {
+            //let numTiles : UInt32 = UInt32(tilesFrom.count - 1)
+            //let tileInArr = arc4random_uniform( numTiles ) // select random tile in FROM array
+            let tileRemoved : MMWTile = tilesFrom.removeAtIndex( Int(numTilesDiscard - 1) )
+            tileRemoved.tileSprite.color =  gameColors[0]          //tilesTo.removeAtIndex(originalTilesGet - numTilesGet)
+            tileRemoved.tileSprite.hidden = true
+            mmwDiscardedTileArray.insert(tileRemoved, atIndex: mmwDiscardedTileArray.count)
+            //tilesTo.append( tileRemoved )
+            numTilesDiscard--
+        }
+    }
+    
+//    // send/move num Tiles from one tile array to another tile array
+//    func discardTile (inout tileToDiscard: MMWTile) {
+//        mmwDiscardedTileArray.append(tileToDiscard)
+//        tileToDiscard.tileSprite.hidden = true
+////
+////        
+////        //let originalTilesGet = numTilesDiscard
+////        while numTilesDiscard > 0 {
+////            //let numTiles : UInt32 = UInt32(tilesFrom.count - 1)
+////            //let tileInArr = arc4random_uniform( numTiles ) // select random tile in FROM array
+////            let tileRemoved : MMWTile = tilesFrom.removeAtIndex( Int(numTilesDiscard - 1) )
+////            tileRemoved.tileSprite.color =  gameColors[0]          //tilesTo.removeAtIndex(originalTilesGet - numTilesGet)
+////            mmwDiscardedTileArray.insert(tileRemoved, atIndex: mmwDiscardedTileArray.count)
+////            //tilesTo.append( tileRemoved )
+////            numTilesDiscard--
+////        }
+////    }
+//    }
     
     // send/move num Tiles from one tile array to another tile array
     func updateTiles(inout tilesFrom: [MMWTile], inout tilesTo: [MMWTile], var numTilesGet: Int, changeColorTo: Int) {
@@ -348,12 +388,14 @@ class MMWTileBuilder {
             let tileRemoved : MMWTile = tilesFrom.removeAtIndex( Int(tileInArr) )
             tileRemoved.tileSprite.color =  gameColors[changeColorTo]
             if (originalTilesGet - numTilesGet) < tilesTo.count {
-                tilesTo[originalTilesGet - numTilesGet].tileSprite.hidden = true
+                tilesTo[originalTilesGet - numTilesGet].tileSprite.hidden = false
                 tilesTo.removeAtIndex(originalTilesGet - numTilesGet)
             }
+            
             tilesTo.insert(tileRemoved, atIndex: originalTilesGet - numTilesGet)
             //tilesTo.append( tileRemoved )
             numTilesGet--
         }
     }
+    
 }

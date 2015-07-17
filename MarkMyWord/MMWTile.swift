@@ -19,7 +19,7 @@ enum SpriteName: Int {
 }
 
 enum GridLocation: Int {
-    case undealt = 0, player1, player2, player3, player4, gameBoard
+    case Undealt = 0, Player1, Player2, Player3, Player4, GameBoard, Discard
 }
 
 //enum LetterValue: Int {
@@ -31,15 +31,15 @@ enum TileState: Int {
 }
 
 enum TileOwner: Int {
-    case None = 0, Player1, Player2, Player3, Player4
+    case None = 0, Player1, Player2, Player3, Player4, Discard
 }
 
 class MMWTile {
     var tileSprite : LetterTileSprite!
     var tileType: TileType = TileType.Unknown
     var spritename: SpriteName = SpriteName.Blank
-    var gridLocation: GridLocation = GridLocation.undealt
-    var gridLocationEnd: GridLocation = GridLocation.undealt
+    var gridLocation: GridLocation = GridLocation.Undealt
+    var gridLocationEnd: GridLocation = GridLocation.Undealt
     var gridHome: Grid? = nil
     var gridEnd: Grid? = nil
     var gridX: Int = -1
@@ -77,14 +77,14 @@ class MMWTile {
         self.tileSprite.position = CGPoint(x: 5.0751, y: 10.102)
         self.tileSprite.zPosition = 1
         //self.controller = _controller
-        self.tileSprite.tileObjectParent = self
-        //self.tileSprite.hidden = true
+        self.tileSprite.tileSpriteParent = self
+        self.tileSprite.hidden = false
     }
     
     init (letterString : String) {
         self.tileType = TileType.Unknown
         self.spritename = SpriteName.Blank
-        self.gridLocation = GridLocation.undealt
+        self.gridLocation = GridLocation.Undealt
         self.gridX = 0
         self.gridY = 0
         self.letterString = letterString
@@ -96,8 +96,8 @@ class MMWTile {
         self.tileSprite.position = CGPoint(x: 5.0751, y: 10.102)
         self.tileSprite.zPosition = 1
         //self.controller = _controller
-        self.tileSprite.tileObjectParent = self
-        //self.tileSprite.hidden = true
+        self.tileSprite.tileSpriteParent = self
+        self.tileSprite.hidden = false
     }
 
     static func randomTileType() -> TileType {

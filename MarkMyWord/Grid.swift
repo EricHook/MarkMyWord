@@ -82,22 +82,36 @@ class Grid {
     }
     
     func fillGridFromArray (arrayIn: [MMWTile], gridToFill: Grid ) {
-        print(">>> fillGridFromArray (arrayIn: [AnyObject], gridToFill: Grid ) ")
+        print("<Grid> fillGridFromArray(arrayIn: [MMWTile], gridToFill: Grid) \(gridToFill.gridName) ")
         var arrayInMarker = 0
         for y in 0...(gridToFill.gridNumSquaresY - 1) {   // fill letter tiles
             for x in 0...(gridToFill.gridNumSquaresX - 1) {
                 if arrayInMarker < (gridToFill.gridNumSquaresY) * (gridToFill.gridNumSquaresX) {
-                    gridToFill.gridArr[y][x] = arrayIn[arrayInMarker] as MMWTile
-                    print(" \( (arrayIn[arrayInMarker] as MMWTile).tileSprite.tileText) ) ")
+                    let tileUpdated : MMWTile = arrayIn[arrayInMarker]
+                    gridToFill.gridArr[y][x] = tileUpdated
+                    tileUpdated.gridX = x
+                    tileUpdated.gridY = y
+                    //print("tile: \((arrayIn[arrayInMarker] as MMWTile).tileSprite.tileText) [\(tileUpdated.gridX)] [\(tileUpdated.gridY)] ")
                     arrayInMarker++
                 }
+            }
+        }
+        printGrid(gridToFill)
+    }
+    
+    func printGrid (gridToPrint: Grid ) {
+        print("<Grid> printGrid \(gridToPrint.gridName) ")
+        for y in 0...(gridToPrint.gridNumSquaresY - 1) {   // fill letter tiles
+            for x in 0...(gridToPrint.gridNumSquaresX - 1) {
+                let gridArr = gridToPrint.gridArr[x][y]
+                print(" \( gridArr.tileSprite.tileText) -> [\(gridArr.tileSprite.tileSpriteParent.gridX)] [\(gridArr.tileSprite.tileSpriteParent.gridY)] ")
             }
         }
     }
     
     func fillArrayFromGrid (arrayToFill: [AnyObject], gridOut: Grid ) {
         var arrayInMarker = 0
-        for y in 0...(gridOut.gridNumSquaresY - 1) {   // fill Player 4 letter tiles
+        for y in 0...(gridOut.gridNumSquaresY - 1) {   // fill Player letter tiles
             for x in 0...(gridOut.gridNumSquaresX - 1) {
                 if arrayInMarker < x * y {
                     gridOut.gridArr[y][x] = arrayToFill[arrayInMarker] as! MMWTile

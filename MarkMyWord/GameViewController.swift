@@ -33,7 +33,6 @@ class GameViewController: UIViewController {
     //var tileArray : [MMWTile]!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         print("in GameViewController viewDidLoad 1")
         
         let menuScene = MainMenuScene(size: view.bounds.size)
@@ -50,12 +49,8 @@ class GameViewController: UIViewController {
             
             /* Set the scale mode to scale to fit the window */
             menuScene.scaleMode = .AspectFill
-            //tileArray = tilebuilder.mmwTileArray
+
             skView.presentScene(menuScene)
-            print("in GameViewController viewDidLoad 2")
-            
-            print("in GameViewController viewDidLoad 3")
-    //    }
     }
     
 //    func presentMMWScene() {
@@ -103,10 +98,6 @@ class GameViewController: UIViewController {
 //        }
 //        print("in GameViewController loadMenu 3")
 //    }
-    
-    func testMMWCont () {
-        print("testMMWCont GameViewController")
-    }
 
     override func shouldAutorotate() -> Bool {
         return true

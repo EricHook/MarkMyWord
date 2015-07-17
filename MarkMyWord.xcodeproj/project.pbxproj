@@ -305,6 +305,7 @@
 		B8E2D7101B3492B900DC2333 /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = B8E2D70F1B3492B900DC2333 /* LaunchScreen.png */; };
 		B8E37F8B1B0FAA1000F712E1 /* MenuSceneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E37F8A1B0FAA1000F712E1 /* MenuSceneController.swift */; };
 		B8E874E61AE17E0000763849 /* MMWTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E874E51AE17E0000763849 /* MMWTile.swift */; };
+		B8F117001B4F101C00FDC75E /* MarkMyWordBGCleaniPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8F116FF1B4F101C00FDC75E /* MarkMyWordBGCleaniPad@2x.png */; };
 		B8F2328B1AF56DB800B2324B /* Tile3D95x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8F2328A1AF56DB800B2324B /* Tile3D95x.png */; };
 		B8F264F61AE19EF50072B9D4 /* TetrisCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F264F51AE19EF50072B9D4 /* TetrisCell.swift */; };
 		B8FA8FA21AE9DC93007CF07C /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FA8FA11AE9DC93007CF07C /* GameData.swift */; };
@@ -627,6 +628,7 @@
 		B8E2D70F1B3492B900DC2333 /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen.png; sourceTree = "<group>"; };
 		B8E37F8A1B0FAA1000F712E1 /* MenuSceneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuSceneController.swift; sourceTree = "<group>"; };
 		B8E874E51AE17E0000763849 /* MMWTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMWTile.swift; sourceTree = "<group>"; };
+		B8F116FF1B4F101C00FDC75E /* MarkMyWordBGCleaniPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MarkMyWordBGCleaniPad@2x.png"; sourceTree = "<group>"; };
 		B8F2328A1AF56DB800B2324B /* Tile3D95x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tile3D95x.png; sourceTree = "<group>"; };
 		B8F264F51AE19EF50072B9D4 /* TetrisCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TetrisCell.swift; sourceTree = "<group>"; };
 		B8FA8FA11AE9DC93007CF07C /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
@@ -979,6 +981,7 @@
 				B8DA7ECE1AE13784003FE2C6 /* MarkMyWordBG2048x1536.jpg */,
 				B8E2D70D1B3492AF00DC2333 /* LaunchScreen@2x.jpg */,
 				B8E2D70F1B3492B900DC2333 /* LaunchScreen.png */,
+				B8F116FF1B4F101C00FDC75E /* MarkMyWordBGCleaniPad@2x.png */,
 				B8B5BCB01B44AEEB00AC1A69 /* MarkMyWordBGCleaniPad@2x.png */,
 			);
 			name = backgrounds;
@@ -1313,6 +1316,7 @@
 				B8A455E81AF171B800C0D83B /* draw.png in Resources */,
 				B8A455F71AF171B800C0D83B /* MenuBackground@2x.png in Resources */,
 				B8B2CA7B1ADADB7000C9DEE7 /* 1022.WAV in Resources */,
+				B8F117001B4F101C00FDC75E /* MarkMyWordBGCleaniPad@2x.png in Resources */,
 				B8C14EFE1AF32FE500E640C0 /* LaunchScreen.png in Resources */,
 				B8B2CAFA1ADADD9100C9DEE7 /* 13_1LetterWords.txt in Resources */,
 				B8B2CACA1ADADD9100C9DEE7 /* 4LetterWords.txt in Resources */,

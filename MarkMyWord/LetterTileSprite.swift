@@ -29,7 +29,7 @@ class LetterTileSprite : SKSpriteNode {
     
     var tileLocation : CGPoint = CGPointMake(0, 0)
     
-    var tileObjectParent : MMWTile! = nil
+    var tileSpriteParent : MMWTile! = nil
 //    let tileScene : MMWGameScene! = nil
 
     enum TileStyle : Int {
@@ -198,6 +198,18 @@ class LetterTileSprite : SKSpriteNode {
             runAction(liftUp, withKey: "pickup")
             
             tileShadow.hidden = false
+            
+            let location = touch.locationInNode(scene!)
+            
+            let gameGrid = (scene as! MMWGameScene).getSnapGrid(location) // .getBoardGrid()
+            tileSpriteParent.gridHome = gameGrid
+            
+            let gridHomeLocationX = gameGrid!.getGridSquare( Float(location.x), locY: Float(location.y) ).GridSquareX
+            let gridHomeLocationY = gameGrid!.getGridSquare( Float(location.x), locY: Float(location.y) ).GridSquareY
+            
+            print( "<LetterTileSprite> tileFrom: gameGrid: \(tileSpriteParent.gridHome!.gridName) [\(gridHomeLocationX)][\(gridHomeLocationY)]" )
+            
+            
 //        /* Called when a touch begins */
 //        let actionSound = SKAction.playSoundFileNamed("37Bronk.mp3", waitForCompletion: true)
 //        runAction(actionSound)
@@ -232,39 +244,41 @@ class LetterTileSprite : SKSpriteNode {
         }
     }
     
-    func touchesBeganLetterTile (touch: UITouch, withEvent event: UIEvent) {
-        //super.touchesBegan(touches, withEvent: event)
-        /* Called when a touch begins */
-//        let actionSound = SKAction.playSoundFileNamed("37Bronk.mp3", waitForCompletion: true)
-//        runAction(actionSound)
-        
-//        for touch in (touches as! Set<UITouch>) {
-            //            if touch.tapCount > 1 {
-            //                flip()
-            //            }
-//            if touch.tapCount > 1 {
-//                enlarge()
+//    func touchesBeganLetterTile (touch: UITouch, withEvent event: UIEvent) {
+//        //super.touchesBegan(touches, withEvent: event)
+//        /* Called when a touch begins */
+////        let actionSound = SKAction.playSoundFileNamed("37Bronk.mp3", waitForCompletion: true)
+////        runAction(actionSound)
+//        
+////        for touch in (touches as! Set<UITouch>) {
+//            //            if touch.tapCount > 1 {
+//            //                flip()
+//            //            }
+////            if touch.tapCount > 1 {
+////                enlarge()
+////            }
+//        
+//            if enlarged { return }
+//            //            let location = touch.locationInNode(self)
+//            //            let touchedNode = nodeAtPoint(location)
+//            zPosition = 99
+//            tileShadow.zPosition = -10
+//            
+//            let liftUp = SKAction.scaleTo(1.2, duration: 0.1)
+//            
+//            runAction(liftUp, withKey: "pickup")
+//            
+//            tileShadow.hidden = false
+//            
+//            let location = touch.locationInNode(scene!)
+//            let testNodes = nodesAtPoint(location)
+//            print("/////////////testNodeCount : \(testNodes.count ) ")
+//            for _ in testNodes  {
+//                print("testNode ")
 //            }
-        
-            if enlarged { return }
-            //            let location = touch.locationInNode(self)
-            //            let touchedNode = nodeAtPoint(location)
-            zPosition = 99
-            tileShadow.zPosition = -10
-            
-            let liftUp = SKAction.scaleTo(1.2, duration: 0.1)
-            
-            runAction(liftUp, withKey: "pickup")
-            
-            tileShadow.hidden = false
-            
-            let location = touch.locationInNode(scene!)
-            let testNodes = nodesAtPoint(location)
-            print("/////////////testNodeCount : \(testNodes.count ) ")
-            for _ in testNodes  {
-                print("testNode ")
-            }
-    }
+//        
+//
+//    }
     
 //    overide func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
 //        <#code#>
@@ -278,7 +292,11 @@ class LetterTileSprite : SKSpriteNode {
                 let location = touch.locationInNode(scene!)
                 let touchedNode = nodeAtPoint(location)
                 touchedNode.position = location
-                //println("tileFrom description: \(mmw)")
+                
+                //let tileSnapTouch = (touch as UITouch).locationInView(scene!.view)
+                //var getSnapGrid : Grid
+                
+                
             }
         }
     }
@@ -302,7 +320,7 @@ class LetterTileSprite : SKSpriteNode {
             
             let gameGrid = (scene as! MMWGameScene).getSnapGrid(tileSnapTouch) // .getBoardGrid()
             
-            self.tileObjectParent.gridHome = gameGrid // set tileSprite parent (MMWTile) grid to grid snapped to
+            self.tileSpriteParent.gridHome = gameGrid // set tileSprite parent (MMWTile) grid to grid snapped to
             
 //            //for tile in [[gameGrid]] {
 //            for yVal in 0...gameGrid!.gridNumSquaresY {
@@ -341,7 +359,7 @@ class LetterTileSprite : SKSpriteNode {
             
             let tileSnapResultsXGrid = tileSnapResults.GridSquareX
             //print("<LetterTileSprite>tileSnapResultsXGrid \(tileSnapResultsXGrid)" )
-            tileObjectParent.gridXEnd = tileSnapResults.GridSquareX
+            tileSpriteParent.gridXEnd = tileSnapResults.GridSquareX
             
             let tileSnapResultsYGrid = tileSnapResults.GridSquareY
             //print("<LetterTileSprite>tileSnapResultsYGrid \(tileSnapResultsYGrid)" )
@@ -361,11 +379,10 @@ class LetterTileSprite : SKSpriteNode {
 //                print("<LetterTileSprite> Value of grid square = MarkMyWord.MMWTile ... \( (gameGrid?.gridArr[tileSnapResultsYGrid][tileSnapResultsXGrid])!.description)")
 //            }
 
-            
-            
+
             
             // set value of snap results grid location to the MMWTile if valid location
-            self.tileObjectParent.gridHome?.gridArr[tileSnapResultsYGrid][tileSnapResultsXGrid] = self.tileObjectParent
+            self.tileSpriteParent.gridHome?.gridArr[tileSnapResultsYGrid][tileSnapResultsXGrid] = self.tileSpriteParent
             // move tile to snap point - IF valid location
             self.position.x = (CGFloat)(tileSnapResultsCalculateX + 23.75)  //adjusts 22.5 for tile center in middle of tile
             self.position.y = 768 - (CGFloat)(tileSnapResultsCalculateY + 8.25) //38 adjusts for tile center and for board not in exact middle when flipping coords
