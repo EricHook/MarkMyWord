@@ -13,30 +13,18 @@ import SpriteKit
 class MMWTileBuilder {
     
     var mmwTileArray = [MMWTile]()
-    var mmwPlayedTileArray = [MMWTile]()
+    //var mmwBoardTileArray = [MMWTile]() //     fillGridWithTiles(<#T##MMWTileBuilder#>)    //[MMWTile](count:225, repeatedValue: MMWTile() )
     var mmwDiscardedTileArray = [MMWTile]()
     
+    var mmwPlayer1LetterTile2DArray : [[MMWTile]]?
+    var mmwPlayer2LetterTile2DArray : [[MMWTile]]?
+    var mmwPlayer3LetterTile2DArray : [[MMWTile]]?
+    var mmwPlayer4LetterTile2DArray : [[MMWTile]]?
+    
+    var mmwBoardTile2DArray : [[MMWTile]]?
+
 //    var mmwPlayer1LetterTileArray = [MMWTile]() // count:6, repeatedValue: MMWTile())
-//    var mmwPlayer2LetterTileArray = [MMWTile]()
-//    var mmwPlayer3LetterTileArray = [MMWTile]()
-//    var mmwPlayer4LetterTileArray = [MMWTile]()
-    
-//    var mmwTileBuilderController : MMWGameSceneViewController
-//    var mmwTileBuilderScene : MMWGameScene
-    
-//    var mmwTileArray = [MMWTile](count:225, repeatedValue: MMWTile())
-//    var mmwPlayedTileArray = [MMWTile](count:225, repeatedValue: MMWTile())
-//
-//    var mmwPlayer1LetterTileArray = [AnyObject](count:6, repeatedValue: 0)
-//    var mmwPlayer2LetterTileArray = [AnyObject](count:6, repeatedValue: 0)
-//    var mmwPlayer3LetterTileArray = [AnyObject](count:6, repeatedValue: 0)
-//    var mmwPlayer4LetterTileArray = [AnyObject](count:6, repeatedValue: 0)
-    
-    var mmwPlayer1LetterTileArray = [MMWTile](count:9, repeatedValue: MMWTile() ) // count:6, repeatedValue: MMWTile()) // letterValue = "!"
-    var mmwPlayer2LetterTileArray = [MMWTile](count:9, repeatedValue: MMWTile() )
-    var mmwPlayer3LetterTileArray = [MMWTile](count:9, repeatedValue: MMWTile() )
-    var mmwPlayer4LetterTileArray = [MMWTile](count:9, repeatedValue: MMWTile() )
-    
+
     var tileA1 : MMWTile = MMWTile(letterString: "A")
     var tileA2 : MMWTile = MMWTile(letterString: "A")
     var tileA3 : MMWTile = MMWTile(letterString: "A")
@@ -166,6 +154,7 @@ class MMWTileBuilder {
 
     
     init () {
+
         mmwTileArray.append(tileA1)
         mmwTileArray.append(tileA2)
         mmwTileArray.append(tileA3)
@@ -293,35 +282,19 @@ class MMWTileBuilder {
         mmwTileArray.append(tileBlank1)
         mmwTileArray.append(tileBlank2)
         
-        //let blankTile = MMWTile(letterString: "#").tileSprite.color = UIColorGray
-        //blankTile.tileSprite.color = UIColorGray
+
         
-//        // fill player tiles with blank placeholders
-//        for _ in 0...5 {
-//            mmwPlayer1LetterTileArray.append(MMWTile(letterString: "#"))
-//        }
-//        
-//        for _ in 0...5 {
-//            mmwPlayer2LetterTileArray.append(MMWTile(letterString: "#"))
-//        }
-//        
-//        for _ in 0...5 {
-//            mmwPlayer3LetterTileArray.append(MMWTile(letterString: "#"))
-//        }
-//        
-//        for _ in 0...5 {
-//            mmwPlayer4LetterTileArray.append(MMWTile(letterString: "#"))
-//        }
     }
     
     func displayTileArrayValues (tileArray: [MMWTile]) {
+        print( "MMWTileBuilder displayTileArrayValues (tileArray: [MMWTile]) ...")
         for tile in tileArray {
-            print( "\(tile.letterString)", appendNewLine:false) // , appendNewLine:false )
+            print( "\(tile.letterString)", appendNewLine:false)
         }
     }
     
     // send/move num Tiles from one tile array to another tile array
-    func getAllNewTiles(inout tilesFrom: [MMWTile], inout tilesTo: [MMWTile], var numTilesGet: Int, changeColorTo: Int) {
+    func getAllNewArrayTiles(inout tilesFrom: [MMWTile], inout tilesTo: [MMWTile], var numTilesGet: Int, changeColorTo: Int) {
         
         discardTiles(&tilesTo, numTilesDiscard: numTilesGet)
         
@@ -330,13 +303,9 @@ class MMWTileBuilder {
             let numTiles : UInt32 = UInt32(tilesFrom.count - 1)
             let tileInArr = arc4random_uniform( numTiles ) // select random tile in FROM array
             let tileRemoved : MMWTile = tilesFrom.removeAtIndex( Int(tileInArr) )
-            //tileRemoved.tileSprite.color =  gameColors[changeColorTo]
-
             tilesTo.insert(tileRemoved, atIndex: originalTilesGet - numTilesGet)
             tilesTo[originalTilesGet - numTilesGet].tileSprite.color =  gameColors[changeColorTo]
             tilesTo[originalTilesGet - numTilesGet].tileSprite.hidden = false
-            //tilesTo.append( tileRemoved )
-            
             numTilesGet--
         }
     }
@@ -355,25 +324,6 @@ class MMWTileBuilder {
             numTilesDiscard--
         }
     }
-    
-//    // send/move num Tiles from one tile array to another tile array
-//    func discardTile (inout tileToDiscard: MMWTile) {
-//        mmwDiscardedTileArray.append(tileToDiscard)
-//        tileToDiscard.tileSprite.hidden = true
-////
-////        
-////        //let originalTilesGet = numTilesDiscard
-////        while numTilesDiscard > 0 {
-////            //let numTiles : UInt32 = UInt32(tilesFrom.count - 1)
-////            //let tileInArr = arc4random_uniform( numTiles ) // select random tile in FROM array
-////            let tileRemoved : MMWTile = tilesFrom.removeAtIndex( Int(numTilesDiscard - 1) )
-////            tileRemoved.tileSprite.color =  gameColors[0]          //tilesTo.removeAtIndex(originalTilesGet - numTilesGet)
-////            mmwDiscardedTileArray.insert(tileRemoved, atIndex: mmwDiscardedTileArray.count)
-////            //tilesTo.append( tileRemoved )
-////            numTilesDiscard--
-////        }
-////    }
-//    }
     
     // send/move num Tiles from one tile array to another tile array
     func updateTiles(inout tilesFrom: [MMWTile], inout tilesTo: [MMWTile], var numTilesGet: Int, changeColorTo: Int) {
@@ -398,4 +348,20 @@ class MMWTileBuilder {
         }
     }
     
+    func fillGridWithBlankTiles (inout gridToFill: Grid, inout tilesFrom: [MMWTile], changeColorTo: Int) {
+        let gridNumSquaresX = gridToFill.gridNumSquaresX
+        let gridNumSquaresY = gridToFill.gridNumSquaresY
+        
+        for y in 0...(gridNumSquaresY - 1) {   // fill letter tiles
+            for x in 0...(gridNumSquaresX - 1) {
+                let newTile = MMWTile()
+                gridToFill.grid2DArr[x][y] = newTile
+                newTile.gridX = x
+                newTile.gridXEnd = x
+                newTile.gridY = y
+                newTile.gridYEnd = y
+                newTile.gridHome = gridToFill
+            }
+        } 
+    }
 }

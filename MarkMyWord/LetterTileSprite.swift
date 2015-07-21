@@ -171,6 +171,9 @@ class LetterTileSprite : SKSpriteNode {
             let scaleUp = SKAction.scaleTo(5.0, duration:0.3)
             runAction(SKAction.group([slide, scaleUp]))
         }
+        print("  home\(self.tileSpriteParent.gridHome?.gridName) [\(self.tileSpriteParent.gridX)] [\(self.tileSpriteParent.gridY)]")
+        print("  end\(self.tileSpriteParent.gridEnd?.gridName) [\(self.tileSpriteParent.gridXEnd)] [\(self.tileSpriteParent.gridYEnd)]")
+        print("  state:\(self.tileSpriteParent.tileState) type:\(self.tileSpriteParent.tileType) owner:\(self.tileSpriteParent.tileOwner)")
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -256,6 +259,7 @@ class LetterTileSprite : SKSpriteNode {
 //            //            }
 ////            if touch.tapCount > 1 {
 ////                enlarge()
+    
 ////            }
 //        
 //            if enlarged { return }
@@ -295,8 +299,7 @@ class LetterTileSprite : SKSpriteNode {
                 
                 //let tileSnapTouch = (touch as UITouch).locationInView(scene!.view)
                 //var getSnapGrid : Grid
-                
-                
+
             }
         }
     }
@@ -306,9 +309,6 @@ class LetterTileSprite : SKSpriteNode {
         //var location = touch.locationInNode(self)
         
         for touch in (touches as Set<UITouch>) {
-            //location = touch.locationInNode(self)
-                        //let location = touch.locationInNode(self)
-            //            let touchedNode = nodeA                                                                                                                                          Point(location)
             zPosition = 1
             let dropDown = SKAction.scaleTo(1.0, duration: 0.1)
             runAction(dropDown, withKey: "drop")
@@ -316,76 +316,54 @@ class LetterTileSprite : SKSpriteNode {
             tileShadow.hidden = true
 
             let tileSnapTouch = (touch as UITouch).locationInView(scene!.view)
-            //var getSnapGrid : Grid
             
-            let gameGrid = (scene as! MMWGameScene).getSnapGrid(tileSnapTouch) // .getBoardGrid()
-            
-            self.tileSpriteParent.gridHome = gameGrid // set tileSprite parent (MMWTile) grid to grid snapped to
-            
-//            //for tile in [[gameGrid]] {
-//            for yVal in 0...gameGrid!.gridNumSquaresY {
-//                for xVal in 0...gameGrid!.gridNumSquaresX {
-//                    print("<  \( gameGrid?.gridArr[xVal][yVal]   ) ")
-//                }
-//
-//            }
-            
-            
-            // get snap location for point touch ended // -15.5 on y touch point adjusts for snapping too high to lower square
-            //var tileSnapCalculate = gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y))
-            // get snap x, y values
-            
-            
-//            let tileSnapCalculateX : CGFloat = CGFloat(gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y)).GridSquareUpperLeftCornerX)
-//            print("<LetterTileSprite>tileSnapCalculateX \(tileSnapCalculateX)" )
-//            
-//            let tileSnapCalculateY : CGFloat = CGFloat(gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y)).GridSquareUpperLeftCornerY - 15.5) // -15.5
-//            print("<LetterTileSprite>tileSnapCalculateY \(tileSnapCalculateY)" )
-//            
-//            // get snap grid array [[]] positions // -15.5 on y touch point adjusts for snapping too high to lower square
-//            let tileSnapXGrid : Int = (gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y)).GridSquareX)
-//            print("<LetterTileSprite>tileSnapXGrid \(tileSnapXGrid)" )
-//            let tileSnapYGrid : Int = (gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y)).GridSquareY ) // -15.5
-//            print("<LetterTileSprite>tileSnapYGrid \(tileSnapYGrid)" )
-            
-            let tileSnapResults = gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y))
-            
-            let tileSnapResultsCalculateX = tileSnapResults.GridSquareUpperLeftCornerX
-            //print("<LetterTileSprite>tileSnapResultsCalculateX \(tileSnapResultsCalculateX)" )
-            let tileSnapResultsCalculateY = tileSnapResults.GridSquareUpperLeftCornerY - 15.5 // -15.5
-            //print("tileSnapResultsCalculateY \(tileSnapResultsCalculateY)" )
-            
-            // get snap grid array [[]] positions // -15.5 on y touch point adjusts for snapping too high to lower square
-            
-            let tileSnapResultsXGrid = tileSnapResults.GridSquareX
-            //print("<LetterTileSprite>tileSnapResultsXGrid \(tileSnapResultsXGrid)" )
-            tileSpriteParent.gridXEnd = tileSnapResults.GridSquareX
-            
-            let tileSnapResultsYGrid = tileSnapResults.GridSquareY
-            //print("<LetterTileSprite>tileSnapResultsYGrid \(tileSnapResultsYGrid)" )
-            //tileObjectParent.gridXEnd = tileSnapResults.GridSquareY
-            
-//            var trialTile : MMWTile = (gameGrid?.gridArr[tileSnapResultsYGrid][tileSnapResultsXGrid])! as! MMWTile
-//            // check if array location in grid is an MMWTile and if so .. prints description
-//            if ( trialTile.letterString.isEmpty  ) {
-//                print("<LetterTileSprite> EMPTY")
-//            }
-  
-            
-            
-            
-//            // check if array location in grid is an MMWTile and if so .. prints description
-//            if ( gameGrid?.gridArr[tileSnapResultsYGrid][tileSnapResultsXGrid].description == "MarkMyWord.MMWTile") {
-//                print("<LetterTileSprite> Value of grid square = MarkMyWord.MMWTile ... \( (gameGrid?.gridArr[tileSnapResultsYGrid][tileSnapResultsXGrid])!.description)")
-//            }
+//            print( "<LetterTileSprite> tileHome: gameGrid: \(tileSpriteParent.gridHome!.gridName) [\(tileSpriteParent.gridX)][\(tileSpriteParent.gridY)]" )
+//            print( "<LetterTileSprite> tileEnd: gameGrid: \(tileSpriteParent.gridEnd!.gridName)  [\(tileSpriteParent.gridXEnd)][\(tileSpriteParent.gridYEnd)]" )
 
-
+            // IF valid drop spot, update tile information
+            //            // check if array location in grid is an MMWTile and if so .. prints description
+            //            if ( gameGrid?.gridArr[tileSnapResultsYGrid][tileSnapResultsXGrid].description == "MarkMyWord.MMWTile") {
+            //                print("<LetterTileSprite> Value of grid square = MarkMyWord.MMWTile ... \( (gameGrid?.gridArr[tileSnapResultsYGrid][tileSnapResultsXGrid])!.description)")
+            //            }
+            //            var trialTile : MMWTile = (gameGrid?.gridArr[tileSnapResultsYGrid][tileSnapResultsXGrid])! as! MMWTile
+            //            // check if array location in grid is an MMWTile and if so .. prints description
+            //            if ( trialTile.letterString.isEmpty  ) {
+            //                print("<LetterTileSprite> EMPTY")
+            //            }
             
-            // set value of snap results grid location to the MMWTile if valid location
-            self.tileSpriteParent.gridHome?.gridArr[tileSnapResultsYGrid][tileSnapResultsXGrid] = self.tileSpriteParent
-            // move tile to snap point - IF valid location
-            self.position.x = (CGFloat)(tileSnapResultsCalculateX + 23.75)  //adjusts 22.5 for tile center in middle of tile
-            self.position.y = 768 - (CGFloat)(tileSnapResultsCalculateY + 8.25) //38 adjusts for tile center and for board not in exact middle when flipping coords
+                    let gameGrid = (scene as! MMWGameScene).getSnapGrid(tileSnapTouch) // .getBoardGrid()
+                    self.tileSpriteParent.gridEnd = gameGrid // set tileSprite parent (MMWTile) grid to grid snapped to
+
+                    let tileSnapResults = gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y))
+                    
+                    let tileSnapResultsCalculateX = tileSnapResults.GridSquareUpperLeftCornerX
+                    let tileSnapResultsCalculateY = tileSnapResults.GridSquareUpperLeftCornerY - 15.5 // -15.5
+                    
+                    // get snap grid array [[]] positions // -15.5 on y touch point adjusts for snapping too high to lower square
+                    let tileSnapResultsXGrid = tileSnapResults.GridSquareX
+                    tileSpriteParent.gridXEnd = tileSnapResults.GridSquareX
+                    let tileSnapResultsYGrid = tileSnapResults.GridSquareY
+                    tileSpriteParent.gridYEnd = tileSnapResults.GridSquareY
+
+                    tileSpriteParent.gridHome?.grid2DArr[tileSpriteParent.gridX][tileSpriteParent.gridY] = MMWTile()
+
+                    // set value of snap results grid location to the MMWTile if valid location
+                    self.tileSpriteParent.gridHome? = self.tileSpriteParent.gridEnd!
+                    
+                    self.tileSpriteParent.gridHome?.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid] = self.tileSpriteParent
+//                    self.tileSpriteParent.gridHome?.grid1DArr[((tileSnapResultsYGrid) * (self.tileSpriteParent.gridHome?.gridNumSquaresX)!) + self.tileSpriteParent.gridX] = self.tileSpriteParent
+            
+                    self.tileSpriteParent.gridX = tileSnapResultsXGrid
+                    self.tileSpriteParent.gridY = tileSnapResultsYGrid
+
+                    //self.tileSpriteParent.gridHome!.fillArrayFromGrid(self.tileSpriteParent.gridHome!.gridArr , gridOut: self.tileSpriteParent.gridHome!)
+                    
+                    // move tile to snap point
+                    self.position.x = (CGFloat)(tileSnapResultsCalculateX + 23.75)  //adjusts 22.5 for tile center in middle of tile
+                    self.position.y = 768 - (CGFloat)(tileSnapResultsCalculateY + 8.25) //38 adjusts for tile center and for board not in exact middle when flipping coords
+                    
+                    self.tileSpriteParent.gridHome?.printGrid(self.tileSpriteParent.gridHome!)
+                    self.tileSpriteParent.gridHome?.printGrid(self.tileSpriteParent.gridEnd!)
             
 //            for arrayX in gameGrid!.gridArr {
 //                //print("> debugDescription \(arrayX.debugDescription)")
@@ -397,7 +375,20 @@ class LetterTileSprite : SKSpriteNode {
 //                }
 //            }
             
-            (scene as! MMWGameScene).numEmptyTileSlots(gameGrid!)
+            print( "<LetterTileSprite> tileHome: gameGrid: \(tileSpriteParent.gridHome!.gridName) [\(tileSnapResultsXGrid)][\(tileSnapResultsYGrid)]" )
+            print( "<LetterTileSprite> tileEnd: gameGrid: \(tileSpriteParent.gridEnd!.gridName)  [\(tileSnapResultsXGrid)][\(tileSnapResultsYGrid)]" )
+            print( "<LetterTileSprite> tileHome: gameGrid: \(tileSpriteParent.gridHome!.gridName) [\(tileSpriteParent.gridX)][\(tileSpriteParent.gridY)]" )
+            print( "<LetterTileSprite> tileEnd: gameGrid: \(tileSpriteParent.gridEnd!.gridName)  [\(tileSpriteParent.gridXEnd)][\(tileSpriteParent.gridYEnd)]" )
+            //(scene as! MMWGameScene).numEmptyTileSlots(gameGrid!)
+ 
+            
+            //tileSpriteParent.updateTileGrid()
+            
+            //(scene as! MMWGameScene).mmwBoardGrid.fillGridFromArray(tileSpriteParent.gridHome?.gridArr, gridToFill: tileSpriteParent.gridHome!)
+            
+            //tileSpriteParent.gridHome?.fillArrayFromGrid((tileSpriteParent.gridHome?.gridArr)!, gridOut: tileSpriteParent.gridHome!)
+
+            
             
             //(scene as! MMWGameScene).mmwGameSceneViewController.tileCollection.displayTileArrayValues((gameGrid?.gridPlayer?.playerLetterTiles)!)
 

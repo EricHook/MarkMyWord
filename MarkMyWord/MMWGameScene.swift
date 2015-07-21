@@ -20,12 +20,10 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     
     var mmwBoardGrid: Grid!
     
-    var mmwPlayer1of2Grid: Grid!
-    var mmwPlayer2of2Grid: Grid!
-    var mmwPlayer1of4Grid: Grid!
-    var mmwPlayer2of4Grid: Grid!
-    var mmwPlayer3of4Grid: Grid!
-    var mmwPlayer4of4Grid: Grid!
+    var mmwPlayer1Grid : Grid!
+    var mmwPlayer2Grid : Grid!
+    var mmwPlayer3Grid : Grid!
+    var mmwPlayer4Grid : Grid!
     
     var mmwUnplayedGrid: Grid!
     
@@ -67,32 +65,45 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     
     func setViewController (mmwGameSceneController: MMWGameSceneViewController) {
         self.mmwGameSceneViewController = mmwGameSceneController
-//        self.player1 = mmwGameSceneViewController.player1
-//        self.player2 = mmwGameSceneViewController.player2
-//        self.player3 = mmwGameSceneViewController.player3
-//        self.player4 = mmwGameSceneViewController.player4
     }
     
     func setGrids () {
-        self.mmwBoardGrid = Grid(gridUpperLeftX: 156, gridUpperLeftY: (67), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 15, gridNumSquaresY: 15, gridName: "mmwBoardGrid") // 21
         
-        self.mmwPlayer1of2Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.45830), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer1of2Grid") //y 304
-        self.mmwPlayer1of2Grid.setGridPlayer(mmwGameSceneViewController.player1)
+        self.mmwBoardGrid = Grid(gridUpperLeftX: 156, gridUpperLeftY: (67), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 15, gridNumSquaresY: 15, gridName: "mmwBoardGrid", mmwGameScene: self) // 21
         
-        self.mmwPlayer2of2Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.45830), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer2of2Grid")
-        self.mmwPlayer2of2Grid.setGridPlayer(mmwGameSceneViewController.player2)
         
-        self.mmwPlayer1of4Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.273), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer1of4Grid") // 0.4583
-        self.mmwPlayer1of4Grid.setGridPlayer(mmwGameSceneViewController.player1)
-        
-        self.mmwPlayer2of4Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.273), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer2of4Grid")
-        self.mmwPlayer2of4Grid.setGridPlayer(mmwGameSceneViewController.player2)
-        
-        self.mmwPlayer3of4Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.706), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer3of4Grid")
-        self.mmwPlayer3of4Grid.setGridPlayer(mmwGameSceneViewController.player3)
-        
-        self.mmwPlayer4of4Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.706), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer4of4Grid")
-        self.mmwPlayer4of4Grid.setGridPlayer(mmwGameSceneViewController.player4)
+        if mmwGameSceneViewController.numPlayers == 2 {
+            self.mmwPlayer1Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.45830), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer1of2Grid", mmwGameScene: self) //y 304
+            self.mmwPlayer1Grid.setGridPlayer(mmwGameSceneViewController.player1)
+            
+            self.mmwPlayer2Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.45830), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer2of2Grid", mmwGameScene: self)
+            self.mmwPlayer2Grid.setGridPlayer(mmwGameSceneViewController.player2)
+        }
+//
+//        if mmwGameSceneViewController.numPlayers == 3 {
+//            self.mmwPlayer1Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.273), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer1of3Grid", mmwGameScene: self) // 0.4583
+//            self.mmwPlayer1Grid.setGridPlayer(mmwGameSceneViewController.player1)
+//            
+//            self.mmwPlayer2Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.273), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer2of3Grid", mmwGameScene: self)
+//            self.mmwPlayer2Grid.setGridPlayer(mmwGameSceneViewController.player2)
+//            
+//            self.mmwPlayer3Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.706), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer3of3Grid", mmwGameScene: self)
+//            self.mmwPlayer3Grid.setGridPlayer(mmwGameSceneViewController.player3)
+//        }
+//        
+//        if mmwGameSceneViewController.numPlayers == 4 {
+//            self.mmwPlayer1Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.273), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer1of4Grid", mmwGameScene: self) // 0.4583
+//            self.mmwPlayer1Grid.setGridPlayer(mmwGameSceneViewController.player1)
+//            
+//            self.mmwPlayer2Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.273), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer2of4Grid", mmwGameScene: self)
+//            self.mmwPlayer2Grid.setGridPlayer(mmwGameSceneViewController.player2)
+//            
+//            self.mmwPlayer3Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.706), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer3of4Grid", mmwGameScene: self)
+//            self.mmwPlayer3Grid.setGridPlayer(mmwGameSceneViewController.player3)
+//            
+//            self.mmwPlayer4Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.706), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer4of4Grid", mmwGameScene: self)
+//            self.mmwPlayer4Grid.setGridPlayer(mmwGameSceneViewController.player4)
+//        }
     }
 
     func changePlayerScoreDisplay (playerView: PlayerView, player: Player, score: Int) {
@@ -147,111 +158,118 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    func showAllGridTiles (gridToDisplay: Grid) {
+        runAction(dealTilesSound)
+        for x in 0...gridToDisplay.gridNumSquaresX - 1 {   // fill Player 1 letter tiles : 2 in y and 3 in x
+            for y in 0...gridToDisplay.gridNumSquaresY - 1 {
+                let tileAdded : MMWTile = gridToDisplay.grid2DArr[x][y] // tileBuilder.mmwPlayer1LetterTileArray[tileArrSelectedTile]
+                tileAdded.tileSprite.hidden = false
+                tileAdded.tileSprite.position = gridToDisplay.sendToGridSquare(gridToDisplay, squareX: x, squareY: y)
+            }
+        }
+        
+    }
+    
     func showTilesInSquares (tileBuilder: MMWTileBuilder) { // shows all tiles from TileBuilder [MMWTile] arrays
 
-        var tileArrSelectedTile = 0
+        //var tileArrSelectedTile = 0
         
         runAction(dealTilesSound)
-
-        for y in 0...1 {   // fill Player 1 letter tiles : 2 in y and 3 in x
-            for x in 0...2 {
-                if tileBuilder.mmwPlayer1LetterTileArray.count > tileArrSelectedTile {
-                    let tileAdded : MMWTile = tileBuilder.mmwPlayer1LetterTileArray[tileArrSelectedTile]
-                    tileAdded.tileSprite.hidden = false
-                    if (mmwGameSceneViewController.numPlayers == 2 || mmwGameSceneViewController.numPlayers == 3) {
-                        tileAdded.tileSprite.position = self.mmwPlayer1of2Grid.sendToGridSquare(self.mmwPlayer1of2Grid, squareX: x, squareY: y)
-                    }
-                    else if mmwGameSceneViewController.numPlayers == 4 {
-                        tileAdded.tileSprite.position = self.mmwPlayer1of4Grid.sendToGridSquare(self.mmwPlayer1of4Grid, squareX: x, squareY: y)
-                    }
-                    //self.addChild(tileAdded.tileSprite)
-                    tileArrSelectedTile++
-                }
-            }
-        }
-            
-        tileArrSelectedTile = 0
-        runAction(dealTilesSound)
-        for y in 0...1 {   // fill Player 2 letter tiles
-            for x in 0...2 {
-                if tileBuilder.mmwPlayer2LetterTileArray.count > tileArrSelectedTile{
-                    let tileAdded : MMWTile = tileBuilder.mmwPlayer2LetterTileArray[tileArrSelectedTile]
-                    tileAdded.tileSprite.hidden = false
-                    if mmwGameSceneViewController.numPlayers == 2 {
-                        tileAdded.tileSprite.position = self.mmwPlayer2of2Grid.sendToGridSquare(self.mmwPlayer2of2Grid, squareX: x, squareY: y)
-                    }
-                    if mmwGameSceneViewController.numPlayers == 3 {
-                        tileAdded.tileSprite.position = self.mmwPlayer2of4Grid.sendToGridSquare(self.mmwPlayer2of4Grid, squareX: x, squareY: y)
-                    }
-                    else if mmwGameSceneViewController.numPlayers == 4 {
-                        tileAdded.tileSprite.position = self.mmwPlayer2of4Grid.sendToGridSquare(self.mmwPlayer2of4Grid, squareX: x, squareY: y)
-                    }
-                    //self.addChild(tileAdded.tileSprite)
-                    tileArrSelectedTile++
-                }
-            }
-        }
         
-        if mmwGameSceneViewController.numPlayers == 3 {
-            runAction(dealTilesSound)
-            tileArrSelectedTile = 0
-            for y in 0...1 {   // fill Player 3 letter tiles if 3 players (lower right)
-                for x in 0...2 {
-                    if tileBuilder.mmwPlayer3LetterTileArray.count > tileArrSelectedTile {
-                        let tileAdded : MMWTile = tileBuilder.mmwPlayer3LetterTileArray[tileArrSelectedTile]
-                        tileAdded.tileSprite.hidden = false
-                        tileAdded.tileSprite.position = self.mmwPlayer4of4Grid.sendToGridSquare(self.mmwPlayer4of4Grid, squareX: x, squareY: y)
-                        //self.addChild(tileAdded.tileSprite)
-                        tileArrSelectedTile++
-                    }
-                }
-            }
-        }
+        showAllGridTiles(mmwPlayer1Grid)
+        showAllGridTiles(mmwPlayer2Grid)
+        
 
-        if mmwGameSceneViewController.numPlayers == 4 {
-            runAction(dealTilesSound)
-            tileArrSelectedTile = 0
-            for y in 0...1 {   // fill Player 3 letter tiles if 4 players (lower left)
-                for x in 0...2 {
-                    if tileBuilder.mmwPlayer3LetterTileArray.count > tileArrSelectedTile {
-                        let tileAdded : MMWTile = tileBuilder.mmwPlayer3LetterTileArray[tileArrSelectedTile]
-                        tileAdded.tileSprite.hidden = false
-                        tileAdded.tileSprite.position = self.mmwPlayer3of4Grid.sendToGridSquare(self.mmwPlayer3of4Grid, squareX: x, squareY: y)
-                        //self.addChild(tileAdded.tileSprite)
-                        tileArrSelectedTile++
-                    }
-                }
-            }
-            
-            tileArrSelectedTile = 0
-            runAction(dealTilesSound)
-            for y in 0...1 {   // fill Player 4 letter tiles (lower right)
-                for x in 0...2 {
-                    if tileBuilder.mmwPlayer4LetterTileArray.count > tileArrSelectedTile {
-                        let tileAdded : MMWTile = tileBuilder.mmwPlayer4LetterTileArray[tileArrSelectedTile]
-                        tileAdded.tileSprite.hidden = false
-                        tileAdded.tileSprite.position = self.mmwPlayer4of4Grid.sendToGridSquare(self.mmwPlayer4of4Grid, squareX: x, squareY: y)
-                        //self.addChild(tileAdded.tileSprite)
-                        tileArrSelectedTile++
-                    }
-                }
-            }
-        }
+//        for y in 0...1 {   // fill Player 1 letter tiles : 2 in y and 3 in x
+//            for x in 0...2 {
+//                let tileAdded : MMWTile = mmwPlayer1Grid.grid2DArr[x][y] // tileBuilder.mmwPlayer1LetterTileArray[tileArrSelectedTile]
+//                tileAdded.tileSprite.hidden = false
+//                tileAdded.tileSprite.position = self.mmwPlayer1Grid.sendToGridSquare(self.mmwPlayer1Grid, squareX: x, squareY: y)
+//                }
+//        }
+        
+//        tileArrSelectedTile = 0
+//        runAction(dealTilesSound)
+//        for y in 0...1 {   // fill Player 2 letter tiles
+//            for x in 0...2 {
+//                if tileBuilder.mmwPlayer2LetterTileArray.count > tileArrSelectedTile{
+//                    let tileAdded : MMWTile = tileBuilder.mmwPlayer2LetterTileArray[tileArrSelectedTile]
+//                    tileAdded.tileSprite.hidden = false
+//                    if mmwGameSceneViewController.numPlayers == 2 {
+//                        tileAdded.tileSprite.position = self.mmwPlayer2of2Grid.sendToGridSquare(self.mmwPlayer2of2Grid, squareX: x, squareY: y)
+//                    }
+//                    if mmwGameSceneViewController.numPlayers == 3 {
+//                        tileAdded.tileSprite.position = self.mmwPlayer2of4Grid.sendToGridSquare(self.mmwPlayer2of4Grid, squareX: x, squareY: y)
+//                    }
+//                    else if mmwGameSceneViewController.numPlayers == 4 {
+//                        tileAdded.tileSprite.position = self.mmwPlayer2of4Grid.sendToGridSquare(self.mmwPlayer2of4Grid, squareX: x, squareY: y)
+//                    }
+//                    //self.addChild(tileAdded.tileSprite)
+//                    tileArrSelectedTile++
+//                }
+//            }
+//        }
+        
+//        if mmwGameSceneViewController.numPlayers == 3 {
+//            runAction(dealTilesSound)
+//            tileArrSelectedTile = 0
+//            for y in 0...1 {   // fill Player 3 letter tiles if 3 players (lower right)
+//                for x in 0...2 {
+//                    if tileBuilder.mmwPlayer3LetterTileArray.count > tileArrSelectedTile {
+//                        let tileAdded : MMWTile = tileBuilder.mmwPlayer3LetterTileArray[tileArrSelectedTile]
+//                        tileAdded.tileSprite.hidden = false
+//                        tileAdded.tileSprite.position = self.mmwPlayer4of4Grid.sendToGridSquare(self.mmwPlayer4of4Grid, squareX: x, squareY: y)
+//                        //self.addChild(tileAdded.tileSprite)
+//                        tileArrSelectedTile++
+//                    }
+//                }
+//            }
+//        }
+//
+//        if mmwGameSceneViewController.numPlayers == 4 {
+//            runAction(dealTilesSound)
+//            tileArrSelectedTile = 0
+//            for y in 0...1 {   // fill Player 3 letter tiles if 4 players (lower left)
+//                for x in 0...2 {
+//                    if tileBuilder.mmwPlayer3LetterTileArray.count > tileArrSelectedTile {
+//                        let tileAdded : MMWTile = tileBuilder.mmwPlayer3LetterTileArray[tileArrSelectedTile]
+//                        tileAdded.tileSprite.hidden = false
+//                        tileAdded.tileSprite.position = self.mmwPlayer3of4Grid.sendToGridSquare(self.mmwPlayer3of4Grid, squareX: x, squareY: y)
+//                        //self.addChild(tileAdded.tileSprite)
+//                        tileArrSelectedTile++
+//                    }
+//                }
+//            }
+//            
+//            tileArrSelectedTile = 0
+//            runAction(dealTilesSound)
+//            for y in 0...1 {   // fill Player 4 letter tiles (lower right)
+//                for x in 0...2 {
+//                    if tileBuilder.mmwPlayer4LetterTileArray.count > tileArrSelectedTile {
+//                        let tileAdded : MMWTile = tileBuilder.mmwPlayer4LetterTileArray[tileArrSelectedTile]
+//                        tileAdded.tileSprite.hidden = false
+//                        tileAdded.tileSprite.position = self.mmwPlayer4of4Grid.sendToGridSquare(self.mmwPlayer4of4Grid, squareX: x, squareY: y)
+//                        //self.addChild(tileAdded.tileSprite)
+//                        tileArrSelectedTile++
+//                    }
+//                }
+//            }
+//        }
     
-        tileArrSelectedTile = 0
-        runAction(dealTilesSound)
-        for y in 0...14 {  // fill Board letter tiles
-            for x in 0...14 {
-                if tileBuilder.mmwPlayedTileArray.count > tileArrSelectedTile {
-                    let tileAdded : MMWTile = tileBuilder.mmwPlayedTileArray[tileArrSelectedTile]
-                    tileAdded.tileSprite.hidden = false
-                    tileAdded.tileSprite.position = self.mmwBoardGrid.sendToGridSquare(self.mmwBoardGrid, squareX: x, squareY: y)
-                    tileAdded.tileSprite.color = tileAdded.tileSprite.TileColors[ Int(arc4random_uniform(4)) ]
-                    //self.addChild(tileAdded.tileSprite)
-                    tileArrSelectedTile++
-                }
-            }
-        }
+//        tileArrSelectedTile = 0
+//        runAction(dealTilesSound)
+//        for y in 0...14 {  // fill Board letter tiles
+//            for x in 0...14 {
+//                if tileBuilder.mmwTileArray.count > tileArrSelectedTile {
+//                    let tileAdded : MMWTile = tileBuilder.mmwBoardTile2DArray[tileArrSelectedTile]
+//                    tileAdded.tileSprite.hidden = false
+//                    tileAdded.tileSprite.position = self.mmwBoardGrid.sendToGridSquare(self.mmwBoardGrid, squareX: x, squareY: y)
+//                    tileAdded.tileSprite.color = tileAdded.tileSprite.TileColors[ Int(arc4random_uniform(4)) ]
+//                    //self.addChild(tileAdded.tileSprite)
+//                    tileArrSelectedTile++
+//                }
+//            }
+//        }
     }
 
     func partialWordHUD (letters : String, isWord : Bool)  -> SKLabelNode {
@@ -362,63 +380,34 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         playerView.zPosition = 0
         addChild(playerView)
     }
-
-//
-//    func addTile (letterTile : Character, location : CGPoint){
-//        var tile = SKSpriteNode(imageNamed: "LetterTest90x90")
-//        tile.position = location
-//        tile.anchorPoint = CGPointMake(0, 0)
-//        foregroundNode!.addChild(tile)
-//    }
-    
-    func updateGridFromArray (arrayOfTiles: [MMWTile], grid: Grid) {
-         grid.fillGridFromArray(arrayOfTiles, gridToFill: grid)
-        
-        var tileArrSelectedTile = 0
-        for y in 0...1 {   // fill Player 3 letter tiles
-            for x in 0...2 {
-                if mmwGameSceneViewController.tileCollection.mmwPlayedTileArray.count > tileArrSelectedTile {
-                    let tileToGrid : MMWTile = arrayOfTiles[tileArrSelectedTile]
-                    //tileToGrid.tileSprite.hidden = false
-                    // grid.   tileToGrid.tileSprite
-                    tileToGrid.tileSprite.position = grid.sendToGridSquare(grid, squareX: x, squareY: y)
-                    //tileToGrid.tileSprite.removeFromParent()
-                    //self.addChild(tileToGrid.tileSprite)
-                    tileArrSelectedTile++
-                }
-            }
-        }
-        printGrid(grid)
-        updateGridInScene(grid)
-    }
     
     func updateGridInScene (gridToUpdate: Grid) {
         for y in 0...(gridToUpdate.gridNumSquaresY - 1) {
             for x in 0...(gridToUpdate.gridNumSquaresX - 1) {
-                let tileToUpdate : MMWTile = gridToUpdate.gridArr[x][y]
+                let tileToUpdate : MMWTile = gridToUpdate.grid2DArr[x][y]
                 tileToUpdate.tileSprite.tileLocation = gridToUpdate.sendToGridSquare(gridToUpdate, squareX: x, squareY: y)
             }
         }
     }
     
-    func printGrid (gridToPrint: Grid) {
-        print("<MMWGameScene>printGrid(): \(gridToPrint)")
-        var arrayInMarker = 0
-        for y in 0...(gridToPrint.gridNumSquaresY - 1) {   // fill letter tiles
-            for x in 0...(gridToPrint.gridNumSquaresX - 1) {
-                if arrayInMarker < gridToPrint.gridNumSquaresX * gridToPrint.gridNumSquaresY {
-                    //gridToPrint.gridArr[y][x].tileSprite.letterLabel     // = arrayIn[arrayInMarker] as MMWTile
-                    print("> \( gridToPrint.gridArr[y][x].tileSprite.tileText) [\(x)] [\(y)]")
-                    arrayInMarker++
-                }
-            }
-        }
-    }
+//    func printTileGrid (gridToPrint: Grid) {
+//        print("<MMWGameScene>printGrid(): \(gridToPrint)")
+//        var arrayInMarker = 0
+//        for x in 0...(gridToPrint.gridNumSquaresX - 1) {   // fill letter tiles
+//            for y in 0...(gridToPrint.gridNumSquaresY - 1) {
+//                if arrayInMarker < gridToPrint.gridNumSquaresX * gridToPrint.gridNumSquaresY {
+//                    //gridToPrint.gridArr[y][x].tileSprite.letterLabel     // = arrayIn[arrayInMarker] as MMWTile
+//                    print("> \( gridToPrint.grid2DArr[x][y].tileSprite.tileText) [\(x)] [\(y)]")
+//                    arrayInMarker++
+//                }
+//            }
+//        }
+//    }
     
-    func printTileArray (tileArrayToPrint: [MMWTile]) {
-        print("<MMWGameScene>printTileArray(): \(tileArrayToPrint) (refers to tileCollection.displayTileArrayValues(tileArrayToPrint)")
-        mmwGameSceneViewController.tileCollection.displayTileArrayValues(tileArrayToPrint)
-    }
+//    func printTileArray (tileArrayToPrint: [MMWTile]) {
+//        print("<MMWGameScene>printTileArray(): \(tileArrayToPrint) (refers to tileCollection.displayTileArrayValues(tileArrayToPrint)")
+//        mmwGameSceneViewController.tileCollection.displayTileArrayValues(tileArrayToPrint)
+//    }
 
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
@@ -431,19 +420,16 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
                     print(">>> PLAY BUTTON PRESSED >>>")
                     runAction(actionSound)
                     
-                    mmwGameSceneViewController.tileCollection.getAllNewTiles(&mmwGameSceneViewController.tileCollection.mmwTileArray, tilesTo: &mmwGameSceneViewController.tileCollection.mmwPlayer1LetterTileArray, numTilesGet: 6, changeColorTo: (1))
-                    
-                    mmwGameSceneViewController.tileCollection.getAllNewTiles(&mmwGameSceneViewController.tileCollection.mmwTileArray, tilesTo: &mmwGameSceneViewController.tileCollection.mmwPlayer2LetterTileArray, numTilesGet: 6, changeColorTo: (2))
-                    
-                    printTileArray(mmwGameSceneViewController.tileCollection.mmwPlayer1LetterTileArray)
-                    updateGridFromArray(mmwGameSceneViewController.tileCollection.mmwPlayer1LetterTileArray, grid: mmwPlayer1of2Grid)
-                    printTileArray(mmwGameSceneViewController.tileCollection.mmwPlayer2LetterTileArray)
-                    updateGridFromArray(mmwGameSceneViewController.tileCollection.mmwPlayer2LetterTileArray, grid: mmwPlayer2of2Grid)
+                    if mmwGameSceneViewController.numPlayers == 2 {
+                        
+                        mmwPlayer1Grid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, changeColorTo: 1)
+                        mmwPlayer2Grid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, changeColorTo: 2)
+
+                    }
                     
                     showTilesInSquares(mmwGameSceneViewController.tileCollection) // 'deals' player tiles and shows demo tiles on board for testing
                     
-                    _node.removeFromParent() // gets rid of play button in middle of screen
-                    
+                    _node.removeFromParent() // gets rid of play button in middle of screen  
                 }
             }
             
@@ -452,54 +438,14 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
                     print(">>> NEW TILES BUTTON PRESSED >>>")
                     runAction(actionSound)
 
-                    mmwGameSceneViewController.tileCollection.getAllNewTiles(&mmwGameSceneViewController.tileCollection.mmwTileArray, tilesTo: &mmwGameSceneViewController.tileCollection.mmwPlayer1LetterTileArray, numTilesGet: 6, changeColorTo: (1))
-                    
-                    mmwGameSceneViewController.tileCollection.getAllNewTiles(&mmwGameSceneViewController.tileCollection.mmwTileArray, tilesTo: &mmwGameSceneViewController.tileCollection.mmwPlayer2LetterTileArray, numTilesGet: 6, changeColorTo: (2))
-                    
-//                    mmwGameSceneViewController.tileCollection.updateTiles(&mmwGameSceneViewController.tileCollection.mmwTileArray, tilesTo: &mmwGameSceneViewController.tileCollection.mmwPlayer3LetterTileArray, numTilesGet: 6, changeColorTo: (3))
-//                    
-//                    mmwGameSceneViewController.tileCollection.updateTiles(&mmwGameSceneViewController.tileCollection.mmwTileArray, tilesTo: &mmwGameSceneViewController.tileCollection.mmwPlayer4LetterTileArray, numTilesGet: 6, changeColorTo: (4))
-                    
-                    //showTilesInSquares(mmwGameSceneViewController.tileCollection) // 'deals' player tiles and shows demo tiles on board for testing
                     if mmwGameSceneViewController.numPlayers == 2 {
-                        
-//                        mmwPlayer1of2Grid.fillGridFromArray(mmwGameSceneViewController.tileCollection.mmwPlayer1LetterTileArray, gridToFill: mmwPlayer1of2Grid)
-//                        fillPlayerTileRack(mmwGameSceneViewController.player1)
-//                        mmwPlayer2of2Grid.fillGridFromArray(mmwGameSceneViewController.tileCollection.mmwPlayer2LetterTileArray, gridToFill: mmwPlayer2of2Grid)
-//                        updatePlayerTileRack(mmwGameSceneViewController.player2)
-                        
-                        printTileArray(mmwGameSceneViewController.tileCollection.mmwPlayer1LetterTileArray)
-                        updateGridFromArray(mmwGameSceneViewController.tileCollection.mmwPlayer1LetterTileArray, grid: mmwPlayer1of2Grid)
-                        printTileArray(mmwGameSceneViewController.tileCollection.mmwPlayer2LetterTileArray)
-                        updateGridFromArray(mmwGameSceneViewController.tileCollection.mmwPlayer2LetterTileArray, grid: mmwPlayer2of2Grid)
+
+                        mmwPlayer1Grid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, changeColorTo: 1)
+                        mmwPlayer2Grid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, changeColorTo: 2)
                         
                         showTilesInSquares(mmwGameSceneViewController.tileCollection) // 'deals' player tiles and shows demo tiles on board for testing
                     }
-                    
-//                    else if mmwGameSceneViewController.numPlayers == 3 {
-//                        mmwPlayer1of2Grid.fillGridFromArray(mmwGameSceneViewController.player1.playerLetterTiles!, gridToFill: mmwPlayer1of2Grid)
-//                        updatePlayerTileRack(mmwGameSceneViewController.player1)
-//                        mmwPlayer2of4Grid.fillGridFromArray(mmwGameSceneViewController.player2.playerLetterTiles!, gridToFill: mmwPlayer2of4Grid)
-//                        updatePlayerTileRack(mmwGameSceneViewController.player2)
-//                        mmwPlayer4of4Grid.fillGridFromArray(mmwGameSceneViewController.player3.playerLetterTiles!, gridToFill: mmwPlayer4of4Grid)
-//                        updatePlayerTileRack(mmwGameSceneViewController.player3)
-//                    }
-//                    
-//                    else if mmwGameSceneViewController.numPlayers == 4 {
-//                        mmwPlayer1of4Grid.fillGridFromArray(mmwGameSceneViewController.player1.playerLetterTiles!, gridToFill: mmwPlayer1of4Grid)
-//                        updatePlayerTileRack(mmwGameSceneViewController.player1)
-//                        mmwPlayer2of4Grid.fillGridFromArray(mmwGameSceneViewController.player2.playerLetterTiles!, gridToFill: mmwPlayer2of4Grid)
-//                        updatePlayerTileRack(mmwGameSceneViewController.player2)
-//                        mmwPlayer3of4Grid.fillGridFromArray(mmwGameSceneViewController.player3.playerLetterTiles!, gridToFill: mmwPlayer3of4Grid)
-//                        updatePlayerTileRack(mmwGameSceneViewController.player3)
-//                        mmwPlayer4of4Grid.fillGridFromArray(mmwGameSceneViewController.player4.playerLetterTiles!, gridToFill: mmwPlayer4of4Grid)
-//                        updatePlayerTileRack(mmwGameSceneViewController.player4)
-//                    }
-                    
-                    //mmwBoardGrid.fillGridFromArray(mmwGameSceneViewController.tileCollection.mmwTileArray, gridToFill: mmwBoardGrid)
-                    //updateBoard(mmwBoardGrid)
-                    
-                    tilesRemainingLabel.text = "Tiles Left: \(mmwGameSceneViewController.tileCollection.mmwTileArray.count  )" // " (mmwGameSceneViewController.tileCollection.mmwTileArray.count))"
+                                        tilesRemainingLabel.text = "Tiles Left: \(mmwGameSceneViewController.tileCollection.mmwTileArray.count  )" // " (mmwGameSceneViewController.tileCollection.mmwTileArray.count))"
                     if mmwGameSceneViewController.tileCollection.mmwTileArray.count <= 0 {
                         tilesRemainingLabel.text = "Tiles Left: None"
                     }
@@ -510,7 +456,9 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
                 if userInteractionEnabled {
                     runAction(actionSound)
                     //showTilesInSquares(mmwGameSceneViewController.tileCollection) // 'deals' player tiles and shows demo tiles on board for testing
-                    numEmptyTileSlots(mmwPlayer1of4Grid)
+                    //numEmptyTileSlots(mmwPlayer1Grid)
+                    mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwTileArray)
+                    mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray)
                 }
             }
             
@@ -518,23 +466,30 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
                 if userInteractionEnabled {
                     runAction(actionSound)
                     //showTilesInSquares(mmwGameSceneViewController.tileCollection) // 'deals' player tiles and shows demo tiles on board for testing
-                    print("SHOW TILE ARRAYS")
-                    print("mmwGameSceneViewController.tileCollection.mmwPlayer1LetterTileArray: ")
-                    mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwPlayer1LetterTileArray)
-                    print("mmwGameSceneViewController.tileCollection.mmwPlayer2LetterTileArray: ")
-                    mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwPlayer2LetterTileArray)
-                    print("mmwGameSceneViewController.tileCollection.mmwPlayer3LetterTileArray: ")
-                    mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwPlayer3LetterTileArray)
-                    print("mmwGameSceneViewController.tileCollection.mmwPlayer4LetterTileArray: ")
-                    mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwPlayer4LetterTileArray)
-                    print("mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray: ")
-                    mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray)
-                    print("mmwGameSceneViewController.tileCollection.mmwPlayedTileArray: ")
-                    mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwPlayedTileArray)
-                    print("mmwGameSceneViewController.tileCollection.mmwTileArray: ")
-                    mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwTileArray)
-                    print("END TILE ARRAYS")
                     
+//                    print("SHOW TILE ARRAYS")
+//                    
+//                    print("mmwGameSceneViewController.tileCollection.tileCollection.mmwDiscardedTileArray: ")
+//                    mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray)
+//
+//                    print("mmwGameSceneViewController.tileCollection.mmwTileArray: ")
+//                    mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwTileArray)
+                    
+                    print("SHOW TILE GRIDS")
+                    
+                    print(">>>mmwGameSceneViewController.mmwGameScene.mmwPlayer1of2Grid: ")
+                    mmwPlayer1Grid.printGrid()
+                    print(">>>mmwGameSceneViewController.mmwGameScene.mmwPlayer2of2Grid: ")
+                    mmwPlayer2Grid.printGrid()
+
+//                    print("mmwGameSceneViewController.tileCollection.mmwPlayer3LetterTileArray: ")
+//                    //mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwPlayer3LetterTileArray)
+//                    print("mmwGameSceneViewController.tileCollection.mmwPlayer4LetterTileArray: ")
+//                    //mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwPlayer4LetterTileArray)
+//                    print("mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray: ")
+
+                    print(">>>mmwGameSceneViewController.mmwGameScene.mmwBoardGrid: ")
+                    mmwBoardGrid.printGrid()
                 }
             }
             
@@ -590,14 +545,20 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         if ((testSpot.x > 157) && (testSpot.x < 869.5)) {snapGrid = mmwBoardGrid}
         
         else if mmwGameSceneViewController.numPlayers == 2 {
-            if (testSpot.x < 154.5 ) {snapGrid = mmwPlayer1of2Grid}
-            if (testSpot.x > 869.5) {snapGrid = mmwPlayer2of2Grid}
+            if (testSpot.x < 154.5 ) {snapGrid = mmwPlayer1Grid}
+            if (testSpot.x > 869.5) {snapGrid = mmwPlayer2Grid}
+        }
+        else if mmwGameSceneViewController.numPlayers == 3 {
+            if (testSpot.x < 154.5 ) {snapGrid = mmwPlayer1Grid}
+            //if (testSpot.x < 154.5 ) && testSpot.y < 384 {snapGrid = mmwPlayer1Grid}
+            if (testSpot.x > 869.5 ) && testSpot.y < 384 {snapGrid = mmwPlayer2Grid}
+            if (testSpot.x > 869.5 ) && testSpot.y > 384 {snapGrid = mmwPlayer3Grid}
         }
         else if mmwGameSceneViewController.numPlayers == 4 {
-            if (testSpot.x < 154.5 ) && testSpot.y < 384 {snapGrid = mmwPlayer1of4Grid}
-            if (testSpot.x > 869.5 ) && testSpot.y < 384 {snapGrid = mmwPlayer2of4Grid}
-            if (testSpot.x < 154.5 ) && testSpot.y > 384 {snapGrid = mmwPlayer3of4Grid}
-            if (testSpot.x > 869.5 ) && testSpot.y > 384 {snapGrid = mmwPlayer4of4Grid}
+            if (testSpot.x < 154.5 ) && testSpot.y < 384 {snapGrid = mmwPlayer1Grid}
+            if (testSpot.x > 869.5 ) && testSpot.y < 384 {snapGrid = mmwPlayer2Grid}
+            if (testSpot.x < 154.5 ) && testSpot.y > 384 {snapGrid = mmwPlayer3Grid}
+            if (testSpot.x > 869.5 ) && testSpot.y > 384 {snapGrid = mmwPlayer4Grid}
         }
         //else {snapGrid = nil}
         print("<MMWGameScene.GetSnapGrid> \(testSpot.x), \(testSpot.y), and grid \(snapGrid), and \(snapGrid.gridName)" )
@@ -614,7 +575,7 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
 //        }
 //        print(">> There are \(numEmpty) slots != MarkMyWord.MMWTile in grid")
         
-        for arrayX in tileGrid.gridArr {
+        for arrayX in tileGrid.grid2DArr {
             //print("> debugDescription \(arrayX.debugDescription)")
             for arrayY in arrayX {
                 //print("> debugDescription \(arrayY.debugDescription)")

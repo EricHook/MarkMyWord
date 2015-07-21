@@ -11,26 +11,27 @@ import SpriteKit
 
 class Grid {
     
-    var gridUpperLeftX : Double = 0.0
-    var gridUpperLeftY : Double = 0.0
+    var gridUpperLeftX : Double = 1.0
+    var gridUpperLeftY : Double = 1.0
     
-    var gridSquareSizeX : Double = 10.0
-    var gridSquareSizeY : Double = 10.0
+    var gridSquareSizeX : Double = 1.0
+    var gridSquareSizeY : Double = 1.0
     
-    var gridNumSquaresX : Int = 5
-    var gridNumSquaresY : Int = 5
-    
-    //var gridArr : [[AnyObject]]
-    var gridArr = [[MMWTile]]()
+    var gridNumSquaresX : Int = 1
+    var gridNumSquaresY : Int = 1
+
+    var grid2DArr = [[MMWTile]]()
     var gridName : String = ""
     var gridPlayer : Player? = nil
     
-    init() { // default 10x10 grid at 0,0
-        self.gridUpperLeftX = 4
-        gridArr = [[MMWTile]](count: gridNumSquaresY, repeatedValue: [MMWTile](count: gridNumSquaresX, repeatedValue: MMWTile() ))
-    }
+    var mmwGameScene : MMWGameScene
     
-    init (gridUpperLeftX: Double, gridUpperLeftY : Double, gridSquareSizeX : Double, gridSquareSizeY : Double, gridNumSquaresX : Int, gridNumSquaresY : Int, gridName : String){
+//    init() { // default 10x10 grid at 0,0
+//        self.gridUpperLeftX = 4
+//        grid2DArr = [[MMWTile]](count: gridNumSquaresY, repeatedValue: [MMWTile](count: gridNumSquaresX, repeatedValue: MMWTile() ))
+//    }
+    
+    init (gridUpperLeftX: Double, gridUpperLeftY : Double, gridSquareSizeX : Double, gridSquareSizeY : Double, gridNumSquaresX : Int, gridNumSquaresY : Int, gridName : String, mmwGameScene: MMWGameScene){
         self.gridUpperLeftX = gridUpperLeftX
         self.gridUpperLeftY = gridUpperLeftY
         self.gridSquareSizeX = gridSquareSizeX
@@ -38,11 +39,13 @@ class Grid {
         self.gridNumSquaresX = gridNumSquaresX
         self.gridNumSquaresY = gridNumSquaresY
         self.gridName = gridName
-        gridArr = [[MMWTile]](count: gridNumSquaresY, repeatedValue: [MMWTile](count: gridNumSquaresX, repeatedValue: MMWTile() ))
+        self.mmwGameScene = mmwGameScene
+        //self.grid1DArr = gridArr
+        grid2DArr = [[MMWTile]](count: gridNumSquaresX, repeatedValue: [MMWTile](count: gridNumSquaresY, repeatedValue: MMWTile() ))
         // gridArr[1][1] = 0 // put test placeholder value in grid
     }
     
-    func setGridPlayer (player : Player ) {
+    func setGridPlayer (player : Player) {
         self.gridPlayer = player
     }
     
@@ -72,51 +75,125 @@ class Grid {
         return tilePosition
     }
     
+    // given a grid and x, y func returns a CGPoint to place sprite
+    func sendToGridSquare (squareX: Int, squareY: Int) -> (CGPoint) {
+        let tilePositionX = self.gridUpperLeftX + 23.75 + ( Double(squareX) * self.gridSquareSizeX )
+        let tilePositionY = 768 - self.gridUpperLeftY - ( Double(squareY) * self.gridSquareSizeY ) + 7
+        let tilePosition = CGPoint( x: tilePositionX, y: tilePositionY )
+        return tilePosition
+    }
+    
     func addToGridArray (tileToAdd: MMWTile, xGrid: Int, yGrid: Int) {
-        gridArr[xGrid].insert(tileToAdd, atIndex: [yGrid][xGrid])  // (tileToAdd, atIndex: xGrid)
+        grid2DArr[xGrid].insert(tileToAdd, atIndex: [yGrid][xGrid])  // (tileToAdd, atIndex: xGrid)
     }
     
     func tileAtGridSquare (grid: Grid, squareX: Int, squareY: Int) -> (MMWTile?) {
-        let tile : MMWTile? = (grid.gridArr[squareY][squareX] as MMWTile)
+        let tile : MMWTile? = (grid.grid2DArr[squareY][squareX] as MMWTile)
         return tile
     }
     
-    func fillGridFromArray (arrayIn: [MMWTile], gridToFill: Grid ) {
-        print("<Grid> fillGridFromArray(arrayIn: [MMWTile], gridToFill: Grid) \(gridToFill.gridName) ")
-        var arrayInMarker = 0
-        for y in 0...(gridToFill.gridNumSquaresY - 1) {   // fill letter tiles
-            for x in 0...(gridToFill.gridNumSquaresX - 1) {
-                if arrayInMarker < (gridToFill.gridNumSquaresY) * (gridToFill.gridNumSquaresX) {
-                    let tileUpdated : MMWTile = arrayIn[arrayInMarker]
-                    gridToFill.gridArr[y][x] = tileUpdated
-                    tileUpdated.gridX = x
-                    tileUpdated.gridY = y
-                    //print("tile: \((arrayIn[arrayInMarker] as MMWTile).tileSprite.tileText) [\(tileUpdated.gridX)] [\(tileUpdated.gridY)] ")
-                    arrayInMarker++
-                }
-            }
-        }
-        printGrid(gridToFill)
+    func tileAtGridSquare (squareX: Int, squareY: Int) -> (MMWTile?) {
+        let tile : MMWTile? = (self.grid2DArr[squareY][squareX] as MMWTile)
+        return tile
     }
     
-    func printGrid (gridToPrint: Grid ) {
-        print("<Grid> printGrid \(gridToPrint.gridName) ")
-        for y in 0...(gridToPrint.gridNumSquaresY - 1) {   // fill letter tiles
-            for x in 0...(gridToPrint.gridNumSquaresX - 1) {
-                let gridArr = gridToPrint.gridArr[x][y]
+    func dealGridFromArrayRandom (inout arrayIn: [MMWTile], numTilesToDeal: Int, changeColorTo: Int) {
+        print("<Grid> fillGridFromArray(arrayIn: [MMWTile], gridToFill: Grid) \(self.gridName) ")
+        //var arrayInMarker = 0
+        for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
+            for x in 0...(self.gridNumSquaresX - 1) {
+                   mmwGameScene.mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray.append(self.grid2DArr[x][y])
+                    self.grid2DArr[x][y].tileSprite.hidden = true
+
+                    let numTiles : UInt32 = UInt32(arrayIn.count - 1)
+                    let randomTileNumber = arc4random_uniform(numTiles) // select random tile in FROM array
+                    let dealtTile : MMWTile = arrayIn[Int(randomTileNumber)]
+                    self.grid2DArr[x][y] = dealtTile
+                    arrayIn.removeAtIndex( Int(randomTileNumber) )
+                    dealtTile.tileSprite.color =  gameColors[changeColorTo]
+                    dealtTile.gridX = x
+                    dealtTile.gridY = y
+                    dealtTile.gridHome = self
+            }
+        }
+    }
+    
+//    // send/move num Tiles from one tile array to another tile array
+//    func getAllNewGridTiles(inout tilesFromArray: [MMWTile], var numTilesToDeal: Int, changeColorTo: Int) {
+//        let originalNumTilesToDeal = numTilesToDeal
+//        for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
+//            for x in 0...(self.gridNumSquaresX - 1) {
+//                if numTilesToDeal > 0 {
+//                    
+//                    self.grid2DArr[x][y]
+//                    let numTiles : UInt32 = UInt32(tilesFromArray.count - 1)
+//                    let tileInArr = arc4random_uniform( numTiles ) // select random tile in FROM array
+//                    let tileRemoved : MMWTile = tilesFrom.removeAtIndex( Int(tileInArr) )
+//                    self.grid2DArr[x][y] = tileRemoved
+//                    tilesTo[originalNumTilesToDeal - numTilesToDeal].tileSprite.color =  gameColors[changeColorTo]
+//                    tilesTo[originalNumTilesToDeal - numTilesToDeal].tileSprite.hidden = false
+//                    numTilesGet--
+//        }
+//    }
+    
+//    func fillArrayFromGrid (arrayToFill: [MMWTile], gridOut: Grid ) {
+//        var arrayInMarker = 0
+//        for y in 0...(gridOut.gridNumSquaresY - 1) {   // fill Player letter tiles
+//            for x in 0...(gridOut.gridNumSquaresX - 1) {
+//                if arrayInMarker < x * y {
+//                    gridOut.grid2DArr[y][x] = arrayToFill[arrayInMarker] as MMWTile
+//                    arrayInMarker++
+//                }
+//            }
+//        }
+//    }
+    
+//    func fillArrayFromGrid () {
+//        var arrayInMarker = 0
+//        for y in 0...(self.gridNumSquaresY - 1) {   // fill Player letter tiles
+//            for x in 0...(self.gridNumSquaresX - 1) {
+//                if arrayInMarker < x * y {
+//                    self.grid1DArr[x] = self.grid1DArr[arrayInMarker] as MMWTile
+//                    arrayInMarker++
+//                }
+//            }
+//        }
+//    }
+//    
+//    func fillGridFromArray () {
+//        print("<Grid> fillGridFromArray() ")
+//        var arrayInMarker = 0
+//        for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
+//            for x in 0...(self.gridNumSquaresX - 1) {
+//                if arrayInMarker < (self.gridNumSquaresY) * (self.gridNumSquaresX) {
+//                    let tileUpdated : MMWTile = grid1DArr[arrayInMarker]
+//                    self.grid2DArr[y][x] = tileUpdated
+//                    tileUpdated.gridX = x
+//                    tileUpdated.gridY = y
+//                    //print("tile: \((arrayIn[arrayInMarker] as MMWTile).tileSprite.tileText) [\(tileUpdated.gridX)] [\(tileUpdated.gridY)] ")
+//                    arrayInMarker++
+//                }
+//            }
+//        }
+//        printGrid(self)
+//    }
+    
+    func printGrid () {
+        print("<Grid> printGrid \(self.gridName) ")
+        for x in 0...(self.gridNumSquaresX - 1) {   // fill letter tiles
+            for y in 0...(self.gridNumSquaresY - 1) {
+                let gridArr = self.grid2DArr[x][y]
                 print(" \( gridArr.tileSprite.tileText) -> [\(gridArr.tileSprite.tileSpriteParent.gridX)] [\(gridArr.tileSprite.tileSpriteParent.gridY)] ")
             }
         }
     }
-    
-    func fillArrayFromGrid (arrayToFill: [AnyObject], gridOut: Grid ) {
-        var arrayInMarker = 0
-        for y in 0...(gridOut.gridNumSquaresY - 1) {   // fill Player letter tiles
-            for x in 0...(gridOut.gridNumSquaresX - 1) {
-                if arrayInMarker < x * y {
-                    gridOut.gridArr[y][x] = arrayToFill[arrayInMarker] as! MMWTile
-                    arrayInMarker++
-                }
+
+    func printGrid (gridToPrint: Grid ) {
+        print("<Grid> printGrid \(gridToPrint.gridName) ")
+        for x in 0...(gridToPrint.gridNumSquaresX - 1) {   // fill letter tiles
+            for y in 0...(gridToPrint.gridNumSquaresY - 1) {
+                let gridArr = gridToPrint.grid2DArr[x][y]
+                print(" \( gridArr.tileSprite.tileText) -> [\(gridArr.tileSprite.tileSpriteParent.gridX)] [\(gridArr.tileSprite.tileSpriteParent.gridY)] ")
             }
         }
     }

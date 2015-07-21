@@ -65,8 +65,8 @@ class MMWTile {
         self.tileType = TileType.Unknown
         self.spritename = SpriteName.Blank
         //self.gridLocation = GridLocation[0]
-        self.gridX = 0
-        self.gridY = 0
+        self.gridX = -1
+        self.gridY = -1
         self.letterString = "!"
         description = "!"
         self.tileState = TileState.black
@@ -79,6 +79,7 @@ class MMWTile {
         //self.controller = _controller
         self.tileSprite.tileSpriteParent = self
         self.tileSprite.hidden = false
+        tileSprite.alpha = 0.3
     }
     
     init (letterString : String) {
@@ -102,6 +103,10 @@ class MMWTile {
 
     static func randomTileType() -> TileType {
         return TileType(rawValue: Int(arc4random_uniform(4)) + 1)!
+    }
+    
+    func updateTileGrid () {
+        self.gridEnd?.addToGridArray(self, xGrid: self.gridXEnd, yGrid: self.gridYEnd)
     }
     
 //    var gridLocation : gridLocation[0]

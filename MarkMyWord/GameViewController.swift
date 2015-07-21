@@ -29,8 +29,7 @@ extension SKNode {
 }
 
 class GameViewController: UIViewController {
-    //var tilebuilder : MMWTileBuilder = MMWTileBuilder()
-    //var tileArray : [MMWTile]!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         print("in GameViewController viewDidLoad 1")

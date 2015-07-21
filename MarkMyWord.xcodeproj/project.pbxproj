@@ -669,6 +669,7 @@
 		B82786111B05493C00916E20 /* Archive */ = {
 			isa = PBXGroup;
 			children = (
+				B82786121B0556E000916E20 /* Seat.swift */,
 				B8FA8FA31AE9DD40007CF07C /* AudioController.swift */,
 				B8E37F8A1B0FAA1000F712E1 /* MenuSceneController.swift */,
 				B84B25121B45FB050037B8EA /* MMWGameSceneText.swift */,
@@ -689,7 +690,6 @@
 			children = (
 				B8E874E51AE17E0000763849 /* MMWTile.swift */,
 				B8AA6C071B2A481600DEAC41 /* MMWTileBuilder.swift */,
-				B82786121B0556E000916E20 /* Seat.swift */,
 				B82786141B05585D00916E20 /* Player.swift */,
 			);
 			name = MMW;
