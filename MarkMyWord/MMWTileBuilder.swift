@@ -279,8 +279,17 @@ class MMWTileBuilder {
         
         mmwTileArray.append(tileZ1)
         
+        for tile in mmwTileArray {
+            tile.tileType = TileType.Letter
+        }
+        
         mmwTileArray.append(tileBlank1)
         mmwTileArray.append(tileBlank2)
+        
+        for tile in mmwTileArray {
+            tile.tileState = TileState.undealt
+            tile.tileOwner = TileOwner.None
+        }
         
 
         

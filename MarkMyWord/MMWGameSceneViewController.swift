@@ -17,7 +17,7 @@ class MMWGameSceneViewController {
     var viewSize : CGSize!
     var tileCollection : MMWTileBuilder = MMWTileBuilder()
     
-    var numPlayers : Int = 2
+    var numPlayers : Int = 4
     
     var player1 : Player = Player(_playerID: 1, _playerName: "Abe", _playerColor: 1)
     var player2 : Player = Player(_playerID: 2, _playerName: "Bart", _playerColor: 2)
@@ -27,10 +27,8 @@ class MMWGameSceneViewController {
     init (size: CGSize) {
         viewSize = size
         mmwGameScene = MMWGameScene(size: viewSize)
-
 //        /* Set the scale mode to scale to fit the window */
 //        mmwGameScene.scaleMode = .AspectFill
-        
         mmwGameScene.setViewController(self)
         mmwGameScene.setGrids() // sets tile grid positions, size of square, number of squares and position on screen for each grid possible
         setUpPlayers() // add player to view, match player to grid, fill grid with starter tiles and colorize to player color
@@ -44,15 +42,13 @@ class MMWGameSceneViewController {
             makeTwoPlayers()
         }
         
-//        if numPlayers == 3 {
-//            //mmwGameScene.setViewController(self)
-//            makeThreePlayers()
-//        }
-//        
-//        if numPlayers == 4 {
-//            //mmwGameScene.setViewController(self)
-//            makeFourPlayers()
-//        }
+        if numPlayers == 3 {
+            makeThreePlayers()
+        }
+        
+        if numPlayers == 4 {
+            makeFourPlayers()
+        }
     }
     
     func makeTwoPlayers () {
@@ -70,17 +66,19 @@ class MMWGameSceneViewController {
     
     func makeThreePlayers () {
         makeTwoPlayers()
-//        tileCollection.getAllNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer3LetterTileArray, numTilesGet: 6, changeColorTo: player3.playerColor)
+        
         mmwGameScene.addPlayerView(3, playerView: PlayerView(mmwPlayer: player3))
         player3.setPlayerTilesGrid(&mmwGameScene.mmwPlayer3Grid!)
+        
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer3Grid!, tilesFrom: &tileCollection.mmwTileArray, changeColorTo: 3)
     }
     
     func makeFourPlayers () {
         makeThreePlayers()
-//        tileCollection.getAllNewTiles(&tileCollection.mmwTileArray, tilesTo: &tileCollection.mmwPlayer4LetterTileArray, numTilesGet: 6, changeColorTo: player4.playerColor)
+        
         mmwGameScene.addPlayerView(4, playerView: PlayerView(mmwPlayer: player4))
         player4.setPlayerTilesGrid(&mmwGameScene.mmwPlayer4Grid!)
+        
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer4Grid!, tilesFrom: &tileCollection.mmwTileArray, changeColorTo: 4)
     }
 

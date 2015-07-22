@@ -11,7 +11,7 @@ import SpriteKit
 
 
 enum TileType: Int {
-    case Unknown = 0, Letter, Blank, ColorBomb, DirectionBomb, Blocking
+    case Unknown = 0, Letter, Blank, ColorBomb, DirectionBomb, Blocking, Placeholder
     }
 
 enum SpriteName: Int {
@@ -27,7 +27,7 @@ enum GridLocation: Int {
 //}
 
 enum TileState: Int {
-    case black = 0, player1, player3, player4, gray, highlight
+    case undealt = 0, player1, player2, player3, player4, played, locked
 }
 
 enum TileOwner: Int {
@@ -47,7 +47,7 @@ class MMWTile {
     var gridXEnd: Int = -1
     var gridYEnd: Int = -1
     var letterString: String = "?"
-    var tileState: TileState = TileState.black
+    var tileState: TileState = TileState.undealt
     var tileOwner: TileOwner = TileOwner.None
     var tileGrid: Grid? = nil
     var description = ""
@@ -62,21 +62,18 @@ class MMWTile {
     }
     
     init () {
-        self.tileType = TileType.Unknown
+        self.tileType = TileType.Placeholder
         self.spritename = SpriteName.Blank
         //self.gridLocation = GridLocation[0]
         self.gridX = -1
         self.gridY = -1
         self.letterString = "!"
         description = "!"
-        self.tileState = TileState.black
+        self.tileState = TileState.undealt
         self.tileOwner = TileOwner.None
         self.tileSprite  = LetterTileSprite(tileStyle: LetterTileSprite.TileStyle.basic, withChar: letterString, withColor: UIColorGray, atPoint: CGPointMake(0.5, 0.5))
-        // self.tileSprite.alpha = 0.5
-        // self.tileSprite.position ( CGPoint(x: 50.0, y: 50.0) )
         self.tileSprite.position = CGPoint(x: 5.0751, y: 10.102)
         self.tileSprite.zPosition = 1
-        //self.controller = _controller
         self.tileSprite.tileSpriteParent = self
         self.tileSprite.hidden = false
         tileSprite.alpha = 0.3
@@ -84,19 +81,17 @@ class MMWTile {
     
     init (letterString : String) {
         self.tileType = TileType.Unknown
-        self.spritename = SpriteName.Blank
+        self.spritename = SpriteName.Letter
         self.gridLocation = GridLocation.Undealt
         self.gridX = 0
         self.gridY = 0
         self.letterString = letterString
         description = "/(letterString)"
-        self.tileState = TileState.black
+        self.tileState = TileState.undealt
         self.tileOwner = TileOwner.None
         self.tileSprite  = LetterTileSprite(tileStyle: LetterTileSprite.TileStyle.basic, withChar: letterString, withColor: UIColorGray, atPoint: CGPointMake(0.5, 0.5))
-        //self.tileSprite.alpha = 0.5
         self.tileSprite.position = CGPoint(x: 5.0751, y: 10.102)
         self.tileSprite.zPosition = 1
-        //self.controller = _controller
         self.tileSprite.tileSpriteParent = self
         self.tileSprite.hidden = false
     }

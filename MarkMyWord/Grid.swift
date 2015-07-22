@@ -19,10 +19,14 @@ class Grid {
     
     var gridNumSquaresX : Int = 1
     var gridNumSquaresY : Int = 1
+    
+    var gridNumSquaresXMin : Int = 3
+    var gridNumSquaresYMin : Int = 2
 
     var grid2DArr = [[MMWTile]]()
     var gridName : String = ""
     var gridPlayer : Player? = nil
+    var gridNum : Int = 0
     
     var mmwGameScene : MMWGameScene
     
@@ -97,23 +101,34 @@ class Grid {
         return tile
     }
     
-    func dealGridFromArrayRandom (inout arrayIn: [MMWTile], numTilesToDeal: Int, changeColorTo: Int) {
+    func dealGridFromArrayRandom (inout arrayIn: [MMWTile], var numTilesToDeal: Int, playerNum: Int) {
         print("<Grid> fillGridFromArray(arrayIn: [MMWTile], gridToFill: Grid) \(self.gridName) ")
         //var arrayInMarker = 0
         for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
             for x in 0...(self.gridNumSquaresX - 1) {
                    mmwGameScene.mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray.append(self.grid2DArr[x][y])
                     self.grid2DArr[x][y].tileSprite.hidden = true
-
-                    let numTiles : UInt32 = UInt32(arrayIn.count - 1)
-                    let randomTileNumber = arc4random_uniform(numTiles) // select random tile in FROM array
-                    let dealtTile : MMWTile = arrayIn[Int(randomTileNumber)]
-                    self.grid2DArr[x][y] = dealtTile
-                    arrayIn.removeAtIndex( Int(randomTileNumber) )
-                    dealtTile.tileSprite.color =  gameColors[changeColorTo]
-                    dealtTile.gridX = x
-                    dealtTile.gridY = y
-                    dealtTile.gridHome = self
+                if arrayIn.count > 0 {
+                    if numTilesToDeal > 0 {
+                        let numTiles : UInt32 = UInt32(arrayIn.count)
+                        let randomTileNumber = arc4random_uniform(numTiles) // select random tile in FROM array
+                        let dealtTile : MMWTile = arrayIn[Int(randomTileNumber)]
+                        
+                        dealtTile.tileOwner = TileOwner(rawValue: playerNum)!
+                        dealtTile.tileState = TileState(rawValue: playerNum)!
+                        
+                        self.grid2DArr[x][y] = dealtTile
+                        arrayIn.removeAtIndex( Int(randomTileNumber) )
+                        dealtTile.tileSprite.color =  gameColors[playerNum]
+                        dealtTile.gridX = x
+                        dealtTile.gridY = y
+                        dealtTile.gridHome = self
+                        numTilesToDeal--
+                    }
+                }
+                else {
+                    print("No More Tiles To Deal ... ")
+                }
             }
         }
     }
@@ -180,8 +195,8 @@ class Grid {
     
     func printGrid () {
         print("<Grid> printGrid \(self.gridName) ")
-        for x in 0...(self.gridNumSquaresX - 1) {   // fill letter tiles
-            for y in 0...(self.gridNumSquaresY - 1) {
+        for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
+            for x in 0...(self.gridNumSquaresX - 1) {
                 let gridArr = self.grid2DArr[x][y]
                 print(" \( gridArr.tileSprite.tileText) -> [\(gridArr.tileSprite.tileSpriteParent.gridX)] [\(gridArr.tileSprite.tileSpriteParent.gridY)] ")
             }
@@ -193,7 +208,7 @@ class Grid {
         for x in 0...(gridToPrint.gridNumSquaresX - 1) {   // fill letter tiles
             for y in 0...(gridToPrint.gridNumSquaresY - 1) {
                 let gridArr = gridToPrint.grid2DArr[x][y]
-                print(" \( gridArr.tileSprite.tileText) -> [\(gridArr.tileSprite.tileSpriteParent.gridX)] [\(gridArr.tileSprite.tileSpriteParent.gridY)] ")
+                print(" \( gridArr.tileSprite.tileText) -> [\(gridArr.tileSprite.tileSpriteParent.gridX)] [\(gridArr.tileSprite.tileSpriteParent.gridY)] state:[\(gridArr.tileSprite.tileSpriteParent.tileState)] owner:[\(gridArr.tileSprite.tileSpriteParent.tileOwner)] type:[\(gridArr.tileSprite.tileSpriteParent.tileType)]")
             }
         }
     }
