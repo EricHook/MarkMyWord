@@ -21,7 +21,7 @@ class PlayerView: SKSpriteNode {
         let playerBGTex : SKTexture = SKTexture(imageNamed: "PlayerBGTest309x660")
         let playerTileGridTex : SKTexture = SKTexture(imageNamed: "MMWPlayerTilesGrid")
         let playerTilesPlaqueTex : SKTexture = SKTexture(imageNamed: "MMWPlayerTilesPlaque")
-        let mmwPlayer = mmwPlayer
+        self.mmwPlayer = mmwPlayer
         let playerColor : UIColor =   gameColors[mmwPlayer.playerColor]
         
 //        let playerBGTall : SKSpriteNode = SKSpriteNode(texture: playerBGTallTex, color: SKColor.whiteColor(), size: CGSizeMake(playerBGTallTex.size().width/2, playerBGTallTex.size().height/2) )
@@ -83,14 +83,15 @@ class PlayerView: SKSpriteNode {
     }
     
     func playerViewBeginTurn () {
-        playerNameLabel.fontColor = UIColor.whiteColor()
-        playerScoreLabel.fontColor = UIColor.whiteColor()
+        self.playerNameLabel.fontColor = UIColor.whiteColor()
+        self.playerScoreLabel.fontColor = UIColor.whiteColor()
     }
     
     func playerViewEndTurn () {
-        playerNameLabel.fontColor =  FontHUDBlack
-        playerScoreLabel.fontColor = FontHUDBlack
-        playerScoreLabel.text = String(mmwPlayer.playerScore += 100)
+        self.playerNameLabel.fontColor =  FontHUDBlack
+        self.playerScoreLabel.fontColor = FontHUDBlack
+        mmwPlayer.playerScore += 25
+        self.playerScoreLabel.text = String(mmwPlayer.playerScore)
     }
     
     required init?(coder aDecoder: NSCoder) {

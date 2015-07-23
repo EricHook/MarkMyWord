@@ -35,9 +35,12 @@ class MMWGameSceneViewController {
         playerArray  = [player1, player2, player3, player4]
         mmwGameScene.setViewController(self)
         mmwGameScene.setGrids() // sets tile grid positions, size of square, number of squares and position on screen for each grid possible
+        
+        mmwGameScene.buildGameView()
+        
         setUpPlayers() // add player to view, match player to grid, fill grid with starter tiles and colorize to player color
 
-        mmwGameScene.buildGameView()
+        
     }
     
     func setUpPlayers () {
@@ -59,10 +62,12 @@ class MMWGameSceneViewController {
         //mmwGameScene.addPlayerView(1, playerView: PlayerView(mmwPlayer: player1))
         player1.setPlayerTilesGrid(&mmwGameScene.mmwPlayer1Grid!)
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer1Grid!)
+        player1.setPlayerView(mmwGameScene.player1View)
         
         //mmwGameScene.addPlayerView(2, playerView: PlayerView(mmwPlayer: player2))
         player2.setPlayerTilesGrid(&mmwGameScene.mmwPlayer2Grid!)
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer2Grid!)
+        player2.setPlayerView(mmwGameScene.player2View)
         
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwBoardGrid!)
     }
@@ -73,6 +78,7 @@ class MMWGameSceneViewController {
         //mmwGameScene.addPlayerView(3, playerView: PlayerView(mmwPlayer: player3))
         player3.setPlayerTilesGrid(&mmwGameScene.mmwPlayer3Grid!)
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer3Grid!)
+        player3.setPlayerView(mmwGameScene.player3View)
     }
     
     func makeFourPlayers () {
@@ -81,6 +87,7 @@ class MMWGameSceneViewController {
         //mmwGameScene.addPlayerView(4, playerView: PlayerView(mmwPlayer: player4))
         player4.setPlayerTilesGrid(&mmwGameScene.mmwPlayer4Grid!)
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer4Grid!)
+        player4.setPlayerView(mmwGameScene.player4View)
     }
     
 //    func makeTwoPlayers () {
