@@ -9,8 +9,6 @@
 import Foundation
 import SpriteKit
 
-// letter distribution 
-
 class LetterTileSprite : SKSpriteNode {
     
     let letterLabel = SKLabelNode(fontNamed: FontHUDName)
@@ -98,19 +96,17 @@ class LetterTileSprite : SKSpriteNode {
         self.addChild(letterLabel)
         centerTileToSquare(self)
         
-//            var letterValueLabel = SKLabelNode(fontNamed: FontHUDName)
-//            letterValueLabel.text = "💣"
-//            letterValueLabel.fontSize = 10
-//            letterValueLabel.fontColor = FontHUDWhite
-//            letterValueLabel.position = CGPointMake(-22, -20)
-//            letterValueLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 1)!
-//            self.addChild(letterValueLabel)
-        
-//            foregroundNode!.addChild(tileNode)
-//        }
+//        // add 'bomb' detail to lower left corner of tiles
+//        let letterValueLabel = SKLabelNode(fontNamed: FontHUDName)
+//        letterValueLabel.text = "💣"
+//        letterValueLabel.fontSize = 10
+//        letterValueLabel.fontColor = FontHUDWhite
+//        letterValueLabel.position = CGPointMake(-22, -20)
+//        letterValueLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 1)!
+//        self.addChild(letterValueLabel)
 
         // set properties defined in super
-        userInteractionEnabled = true
+        userInteractionEnabled = false
     }
 
     func flip() {
@@ -243,43 +239,6 @@ class LetterTileSprite : SKSpriteNode {
         }
     }
     
-//    func touchesBeganLetterTile (touch: UITouch, withEvent event: UIEvent) {
-//        //super.touchesBegan(touches, withEvent: event)
-//        /* Called when a touch begins */
-////        let actionSound = SKAction.playSoundFileNamed("37Bronk.mp3", waitForCompletion: true)
-////        runAction(actionSound)
-//        
-////        for touch in (touches as! Set<UITouch>) {
-//            //            if touch.tapCount > 1 {
-//            //                flip()
-//            //            }
-////            if touch.tapCount > 1 {
-////                enlarge()
-    
-////            }
-//        
-//            if enlarged { return }
-//            //            let location = touch.locationInNode(self)
-//            //            let touchedNode = nodeAtPoint(location)
-//            zPosition = 99
-//            tileShadow.zPosition = -10
-//            
-//            let liftUp = SKAction.scaleTo(1.2, duration: 0.1)
-//            
-//            runAction(liftUp, withKey: "pickup")
-//            
-//            tileShadow.hidden = false
-//            
-//            let location = touch.locationInNode(scene!)
-//            let testNodes = nodesAtPoint(location)
-//            print("/////////////testNodeCount : \(testNodes.count ) ")
-//            for _ in testNodes  {
-//                print("testNode ")
-//            }
-//        
-//
-//    }
-    
 //    overide func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
 //        <#code#>
 //    }
@@ -292,10 +251,6 @@ class LetterTileSprite : SKSpriteNode {
                 let location = touch.locationInNode(scene!)
                 let touchedNode = nodeAtPoint(location)
                 touchedNode.position = location
-                
-                //let tileSnapTouch = (touch as UITouch).locationInView(scene!.view)
-                //var getSnapGrid : Grid
-
             }
         }
     }
@@ -303,7 +258,7 @@ class LetterTileSprite : SKSpriteNode {
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?){
         if enlarged { return }
         //var location = touch.locationInNode(self)
-        
+    
         for touch in (touches as Set<UITouch>) {
             zPosition = 1
             let dropDown = SKAction.scaleTo(1.0, duration: 0.1)
@@ -312,19 +267,7 @@ class LetterTileSprite : SKSpriteNode {
             tileShadow.hidden = true
 
             let tileSnapTouch = (touch as UITouch).locationInView(scene!.view)
-
-//             //IF valid drop spot, update tile information
-//            // check if array location in grid is an MMWTile and if so .. prints description
-//            if ( gameGrid?.gridArr[tileSnapResultsYGrid][tileSnapResultsXGrid].description == "MarkMyWord.MMWTile") {
-//                print("<LetterTileSprite> Value of grid square = MarkMyWord.MMWTile ... \( (gameGrid?.gridArr[tileSnapResultsYGrid][tileSnapResultsXGrid])!.description)")
-//            }
-//            var trialTile : MMWTile = (gameGrid?.gridArr[tileSnapResultsYGrid][tileSnapResultsXGrid])! as! MMWTile
-//            // check if array location in grid is an MMWTile and if so .. prints description
-//            if ( trialTile.letterString.isEmpty  ) {
-//                print("<LetterTileSprite> EMPTY")
-//            }
-            
-            
+  
             // IF VALID DROP LOCATION
             
             let gameGrid = (scene as! MMWGameScene).getSnapGrid(tileSnapTouch) // .getBoardGrid()
@@ -341,7 +284,6 @@ class LetterTileSprite : SKSpriteNode {
                 self.position = (tileAtDropSpot.gridHome?.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: self.tileSpriteParent.gridX , squareY: self.tileSpriteParent.gridY ))!
             }
             print("drop location info: state:\(tileAtDropSpot.tileOwner) letter:\(tileAtDropSpot.tileSprite.tileText)")
-            
             
             self.tileSpriteParent.gridEnd = gameGrid // set tileSprite parent (MMWTile) grid to grid snapped to
 
@@ -377,28 +319,6 @@ class LetterTileSprite : SKSpriteNode {
             let slide = SKAction.moveTo(oldPosition!, duration:0.3)
             let scaleUp = SKAction.scaleTo(1.0, duration:0.3)
             runAction(SKAction.group([slide, scaleUp]))
-            
-            
-            
-            
-            //(scene as! MMWGameScene).numEmptyTileSlots(gameGrid!)
- 
-            //tileSpriteParent.updateTileGrid()
-            
-            //(scene as! MMWGameScene).mmwBoardGrid.fillGridFromArray(tileSpriteParent.gridHome?.gridArr, gridToFill: tileSpriteParent.gridHome!)
-            
-            //tileSpriteParent.gridHome?.fillArrayFromGrid((tileSpriteParent.gridHome?.gridArr)!, gridOut: tileSpriteParent.gridHome!)
-
-            
-            
-            //(scene as! MMWGameScene).mmwGameSceneViewController.tileCollection.displayTileArrayValues((gameGrid?.gridPlayer?.playerLetterTiles)!)
-
-//            // prints all values of items in array for grid
-//            print("<LetterTileSprite> \(gameGrid?.gridArr)" )
-//            
-//            print("<LetterTileSprite>The scene at tile end touch : \(scene?.description) and grid location : \(tileSnapResultsXGrid), \(tileSnapResultsYGrid) ")
-            
-            //self.parent? as MMWTile.parent? as MMWTileBuilder.Type numEmptyTileSlots(gameGrid)
         }
     }
     

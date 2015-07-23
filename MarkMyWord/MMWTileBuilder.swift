@@ -34,17 +34,21 @@ class MMWTileBuilder {
     var tileA7 : MMWTile = MMWTile(letterString: "A")
     var tileA8 : MMWTile = MMWTile(letterString: "A")
     var tileA9 : MMWTile = MMWTile(letterString: "A")
+    var tileA10 : MMWTile = MMWTile(letterString: "A")
     
     var tileB1 : MMWTile = MMWTile(letterString: "B")
     var tileB2 : MMWTile = MMWTile(letterString: "B")
-    
+    var tileB3 : MMWTile = MMWTile(letterString: "B")
+
     var tileC1 : MMWTile = MMWTile(letterString: "C")
     var tileC2 : MMWTile = MMWTile(letterString: "C")
+    var tileC3 : MMWTile = MMWTile(letterString: "C")
     
     var tileD1 : MMWTile = MMWTile(letterString: "D")
     var tileD2 : MMWTile = MMWTile(letterString: "D")
     var tileD3 : MMWTile = MMWTile(letterString: "D")
     var tileD4 : MMWTile = MMWTile(letterString: "D")
+    var tileD5 : MMWTile = MMWTile(letterString: "D")
     
     var tileE1 : MMWTile = MMWTile(letterString: "E")
     var tileE2 : MMWTile = MMWTile(letterString: "E")
@@ -58,6 +62,7 @@ class MMWTileBuilder {
     var tileE10 : MMWTile = MMWTile(letterString: "E")
     var tileE11 : MMWTile = MMWTile(letterString: "E")
     var tileE12 : MMWTile = MMWTile(letterString: "E")
+    var tileE13 : MMWTile = MMWTile(letterString: "E")
     
     var tileF1 : MMWTile = MMWTile(letterString: "F")
     var tileF2 : MMWTile = MMWTile(letterString: "F")
@@ -65,9 +70,11 @@ class MMWTileBuilder {
     var tileG1 : MMWTile = MMWTile(letterString: "G")
     var tileG2 : MMWTile = MMWTile(letterString: "G")
     var tileG3 : MMWTile = MMWTile(letterString: "G")
+    var tileG4 : MMWTile = MMWTile(letterString: "G")
     
     var tileH1 : MMWTile = MMWTile(letterString: "H")
     var tileH2 : MMWTile = MMWTile(letterString: "H")
+    var tileH3 : MMWTile = MMWTile(letterString: "H")
     
     var tileI1 : MMWTile = MMWTile(letterString: "I")
     var tileI2 : MMWTile = MMWTile(letterString: "I")
@@ -78,10 +85,12 @@ class MMWTileBuilder {
     var tileI7 : MMWTile = MMWTile(letterString: "I")
     var tileI8 : MMWTile = MMWTile(letterString: "I")
     var tileI9 : MMWTile = MMWTile(letterString: "I")
+    var tileI10 : MMWTile = MMWTile(letterString: "I")
     
     var tileJ1 : MMWTile = MMWTile(letterString: "J")
     
     var tileK1 : MMWTile = MMWTile(letterString: "K")
+    var tileK2 : MMWTile = MMWTile(letterString: "K")
     
     var tileL1 : MMWTile = MMWTile(letterString: "L")
     var tileL2 : MMWTile = MMWTile(letterString: "L")
@@ -90,6 +99,8 @@ class MMWTileBuilder {
     
     var tileM1 : MMWTile = MMWTile(letterString: "M")
     var tileM2 : MMWTile = MMWTile(letterString: "M")
+    var tileM3 : MMWTile = MMWTile(letterString: "M")
+    var tileM4 : MMWTile = MMWTile(letterString: "M")
     
     var tileN1 : MMWTile = MMWTile(letterString: "N")
     var tileN2 : MMWTile = MMWTile(letterString: "N")
@@ -106,9 +117,11 @@ class MMWTileBuilder {
     var tileO6 : MMWTile = MMWTile(letterString: "O")
     var tileO7 : MMWTile = MMWTile(letterString: "O")
     var tileO8 : MMWTile = MMWTile(letterString: "O")
+    var tileO9 : MMWTile = MMWTile(letterString: "O")
     
     var tileP1 : MMWTile = MMWTile(letterString: "P")
     var tileP2 : MMWTile = MMWTile(letterString: "P")
+    var tileP3 : MMWTile = MMWTile(letterString: "P")
 
     var tileQ1 : MMWTile = MMWTile(letterString: "Q")
 
@@ -118,11 +131,14 @@ class MMWTileBuilder {
     var tileR4 : MMWTile = MMWTile(letterString: "R")
     var tileR5 : MMWTile = MMWTile(letterString: "R")
     var tileR6 : MMWTile = MMWTile(letterString: "R")
+    var tileR7 : MMWTile = MMWTile(letterString: "R")
 
     var tileS1 : MMWTile = MMWTile(letterString: "S")
     var tileS2 : MMWTile = MMWTile(letterString: "S")
     var tileS3 : MMWTile = MMWTile(letterString: "S")
     var tileS4 : MMWTile = MMWTile(letterString: "S")
+    var tileS5 : MMWTile = MMWTile(letterString: "S")
+    var tileS6 : MMWTile = MMWTile(letterString: "S")
 
     var tileT1 : MMWTile = MMWTile(letterString: "T")
     var tileT2 : MMWTile = MMWTile(letterString: "T")
@@ -130,6 +146,7 @@ class MMWTileBuilder {
     var tileT4 : MMWTile = MMWTile(letterString: "T")
     var tileT5 : MMWTile = MMWTile(letterString: "T")
     var tileT6 : MMWTile = MMWTile(letterString: "T")
+    var tileT7 : MMWTile = MMWTile(letterString: "T")
 
     var tileU1 : MMWTile = MMWTile(letterString: "U")
     var tileU2 : MMWTile = MMWTile(letterString: "U")
@@ -146,6 +163,7 @@ class MMWTileBuilder {
 
     var tileY1 : MMWTile = MMWTile(letterString: "Y")
     var tileY2 : MMWTile = MMWTile(letterString: "Y")
+    var tileY3 : MMWTile = MMWTile(letterString: "Y")
 
     var tileZ1 : MMWTile = MMWTile(letterString: "Z")
 
@@ -290,15 +308,12 @@ class MMWTileBuilder {
             tile.tileState = TileState.undealt
             tile.tileOwner = TileOwner.None
         }
-        
-
-        
     }
     
     func displayTileArrayValues (tileArray: [MMWTile]) {
         print( "MMWTileBuilder displayTileArrayValues (tileArray: [MMWTile]) ...")
         for tile in tileArray {
-            print( "\(tile.letterString)", appendNewLine:false)
+            print("\(tile.letterString)", appendNewLine: false)
         }
     }
     
@@ -321,15 +336,11 @@ class MMWTileBuilder {
     
     // send/move num Tiles from one tile array to another tile array
     func discardTiles(inout tilesFrom: [MMWTile], var numTilesDiscard: Int) {
-        //let originalTilesGet = numTilesDiscard
         while numTilesDiscard > 0 {
-            //let numTiles : UInt32 = UInt32(tilesFrom.count - 1)
-            //let tileInArr = arc4random_uniform( numTiles ) // select random tile in FROM array
             let tileRemoved : MMWTile = tilesFrom.removeAtIndex( Int(numTilesDiscard - 1) )
             tileRemoved.tileSprite.color =  gameColors[0]          //tilesTo.removeAtIndex(originalTilesGet - numTilesGet)
             tileRemoved.tileSprite.hidden = true
             mmwDiscardedTileArray.insert(tileRemoved, atIndex: mmwDiscardedTileArray.count)
-            //tilesTo.append( tileRemoved )
             numTilesDiscard--
         }
     }
@@ -338,11 +349,7 @@ class MMWTileBuilder {
     func updateTiles(inout tilesFrom: [MMWTile], inout tilesTo: [MMWTile], var numTilesGet: Int, changeColorTo: Int) {
         let originalTilesGet = numTilesGet
         while numTilesGet > 0 {
-            
-            // ??? crash if run out of tiles undealt !!!
-            
             let numTiles : UInt32 = UInt32(tilesFrom.count - 1)
-            
             let tileInArr = arc4random_uniform( numTiles ) // select random tile in FROM array
             let tileRemoved : MMWTile = tilesFrom.removeAtIndex( Int(tileInArr) )
             tileRemoved.tileSprite.color =  gameColors[changeColorTo]
@@ -350,27 +357,41 @@ class MMWTileBuilder {
                 tilesTo[originalTilesGet - numTilesGet].tileSprite.hidden = false
                 tilesTo.removeAtIndex(originalTilesGet - numTilesGet)
             }
-            
             tilesTo.insert(tileRemoved, atIndex: originalTilesGet - numTilesGet)
-            //tilesTo.append( tileRemoved )
             numTilesGet--
         }
     }
     
-    func fillGridWithBlankTiles (inout gridToFill: Grid, inout tilesFrom: [MMWTile], changeColorTo: Int) {
+    func fillGridWithBlankTiles (inout gridToFill: Grid) {
         let gridNumSquaresX = gridToFill.gridNumSquaresX
         let gridNumSquaresY = gridToFill.gridNumSquaresY
-        
         for y in 0...(gridNumSquaresY - 1) {   // fill letter tiles
             for x in 0...(gridNumSquaresX - 1) {
                 let newTile = MMWTile()
                 gridToFill.grid2DArr[x][y] = newTile
+                newTile.gridHome = gridToFill
                 newTile.gridX = x
                 newTile.gridXEnd = x
                 newTile.gridY = y
                 newTile.gridYEnd = y
-                newTile.gridHome = gridToFill
             }
-        } 
+        }
     }
+    
+//    func fillGridWithBlankTiles (inout gridToFill: Grid, inout tilesFrom: [MMWTile], changeColorTo: Int) {
+//        let gridNumSquaresX = gridToFill.gridNumSquaresX
+//        let gridNumSquaresY = gridToFill.gridNumSquaresY
+//        
+//        for y in 0...(gridNumSquaresY - 1) {   // fill letter tiles
+//            for x in 0...(gridNumSquaresX - 1) {
+//                let newTile = MMWTile()
+//                gridToFill.grid2DArr[x][y] = newTile
+//                newTile.gridX = x
+//                newTile.gridXEnd = x
+//                newTile.gridY = y
+//                newTile.gridYEnd = y
+//                newTile.gridHome = gridToFill
+//            }
+//        } 
+//    }
 }

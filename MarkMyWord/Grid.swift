@@ -53,6 +53,16 @@ class Grid {
         self.gridPlayer = player
     }
     
+    
+    func makeTilesInGridInteractive (isInteractive : Bool) {
+        //for y in gridToInteract.grid2DArr
+        for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
+            for x in 0...(self.gridNumSquaresX - 1) {
+                self.grid2DArr[x][y].tileSprite.userInteractionEnabled = isInteractive
+            }
+        }
+    }
+    
     func getGridSquare (locX: Float, locY: Float) -> (GridSquareX: Int, GridSquareY: Int, GridSquareUpperLeftCornerX: Double, GridSquareUpperLeftCornerY: Double) {
         let locYmod = locY + 35// (adj for flipped coordinates)
         var GridSquareX : Int = 0
@@ -87,9 +97,9 @@ class Grid {
         return tilePosition
     }
     
-    func addToGridArray (tileToAdd: MMWTile, xGrid: Int, yGrid: Int) {
-        grid2DArr[xGrid].insert(tileToAdd, atIndex: [yGrid][xGrid])  // (tileToAdd, atIndex: xGrid)
-    }
+//    func addToGrid2DArray (tileToAdd: MMWTile, xGrid: Int, yGrid: Int) {
+//        grid2DArr[xGrid].insert(tileToAdd, atIndex: [yGrid][xGrid])  // (tileToAdd, atIndex: xGrid)
+//    }
     
     func tileAtGridSquare (grid: Grid, squareX: Int, squareY: Int) -> (MMWTile?) {
         let tile : MMWTile? = (grid.grid2DArr[squareY][squareX] as MMWTile)

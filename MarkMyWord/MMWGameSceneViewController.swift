@@ -18,21 +18,25 @@ class MMWGameSceneViewController {
     var tileCollection : MMWTileBuilder = MMWTileBuilder()
     
     var numPlayers : Int = 4
+    var playerTurn :  Int = 1
     
     var player1 : Player = Player(_playerID: 1, _playerName: "Abe", _playerColor: 1)
     var player2 : Player = Player(_playerID: 2, _playerName: "Bart", _playerColor: 2)
     var player3 : Player = Player(_playerID: 3, _playerName: "Charlie", _playerColor: 3)
     var player4 : Player = Player(_playerID: 4, _playerName: "Dan", _playerColor: 4)
+    
+    let playerArray : [Player]!
 
     init (size: CGSize) {
         viewSize = size
         mmwGameScene = MMWGameScene(size: viewSize)
 //        /* Set the scale mode to scale to fit the window */
 //        mmwGameScene.scaleMode = .AspectFill
+        playerArray  = [player1, player2, player3, player4]
         mmwGameScene.setViewController(self)
         mmwGameScene.setGrids() // sets tile grid positions, size of square, number of squares and position on screen for each grid possible
         setUpPlayers() // add player to view, match player to grid, fill grid with starter tiles and colorize to player color
-        
+
         mmwGameScene.buildGameView()
     }
     
@@ -52,35 +56,54 @@ class MMWGameSceneViewController {
     }
     
     func makeTwoPlayers () {
-        mmwGameScene.addPlayerView(1, playerView: PlayerView(mmwPlayer: player1))
+        //mmwGameScene.addPlayerView(1, playerView: PlayerView(mmwPlayer: player1))
         player1.setPlayerTilesGrid(&mmwGameScene.mmwPlayer1Grid!)
-        tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer1Grid!, tilesFrom: &tileCollection.mmwTileArray, changeColorTo: 1)
-
-        mmwGameScene.addPlayerView(2, playerView: PlayerView(mmwPlayer: player2))
+        tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer1Grid!)
+        
+        //mmwGameScene.addPlayerView(2, playerView: PlayerView(mmwPlayer: player2))
         player2.setPlayerTilesGrid(&mmwGameScene.mmwPlayer2Grid!)
-        tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer2Grid!, tilesFrom: &tileCollection.mmwTileArray, changeColorTo: 2)
+        tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer2Grid!)
         
-        tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwBoardGrid!, tilesFrom: &tileCollection.mmwTileArray, changeColorTo: 0)
-        
+        tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwBoardGrid!)
     }
     
     func makeThreePlayers () {
         makeTwoPlayers()
         
-        mmwGameScene.addPlayerView(3, playerView: PlayerView(mmwPlayer: player3))
+        //mmwGameScene.addPlayerView(3, playerView: PlayerView(mmwPlayer: player3))
         player3.setPlayerTilesGrid(&mmwGameScene.mmwPlayer3Grid!)
-        
-        tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer3Grid!, tilesFrom: &tileCollection.mmwTileArray, changeColorTo: 3)
+        tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer3Grid!)
     }
     
     func makeFourPlayers () {
         makeThreePlayers()
         
-        mmwGameScene.addPlayerView(4, playerView: PlayerView(mmwPlayer: player4))
+        //mmwGameScene.addPlayerView(4, playerView: PlayerView(mmwPlayer: player4))
         player4.setPlayerTilesGrid(&mmwGameScene.mmwPlayer4Grid!)
-        
-        tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer4Grid!, tilesFrom: &tileCollection.mmwTileArray, changeColorTo: 4)
+        tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer4Grid!)
     }
+    
+//    func makeTwoPlayers () {
+//        mmwGameScene.addPlayerView(1, playerView: PlayerView(mmwPlayer: player1))
+//        player1.setPlayerTilesGrid(&mmwGameScene.mmwPlayer1Grid!)
+//        tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer1Grid!, tilesFrom: &tileCollection.mmwTileArray, changeColorTo: 1)
+//        mmwGameScene.addPlayerView(2, playerView: PlayerView(mmwPlayer: player2))
+//        player2.setPlayerTilesGrid(&mmwGameScene.mmwPlayer2Grid!)
+//        tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer2Grid!, tilesFrom: &tileCollection.mmwTileArray, changeColorTo: 2)
+//        tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwBoardGrid!, tilesFrom: &tileCollection.mmwTileArray, changeColorTo: 0)
+//    }
+//    func makeThreePlayers () {
+//        makeTwoPlayers()
+//        mmwGameScene.addPlayerView(3, playerView: PlayerView(mmwPlayer: player3))
+//        player3.setPlayerTilesGrid(&mmwGameScene.mmwPlayer3Grid!)
+//        tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer3Grid!, tilesFrom: &tileCollection.mmwTileArray, changeColorTo: 3)
+//    }
+//    func makeFourPlayers () {
+//        makeThreePlayers()
+//        mmwGameScene.addPlayerView(4, playerView: PlayerView(mmwPlayer: player4))
+//        player4.setPlayerTilesGrid(&mmwGameScene.mmwPlayer4Grid!)
+//        tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer4Grid!, tilesFrom: &tileCollection.mmwTileArray, changeColorTo: 4)
+//    }
 
 //    func presentMMWScene() {
 //

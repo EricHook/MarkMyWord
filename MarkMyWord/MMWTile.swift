@@ -52,16 +52,11 @@ class MMWTile {
     var tileGrid: Grid? = nil
     var description = ""
     
-//    var controller : MMWGameSceneViewController
-    
-//    var tileBuilder: MMWTileBuilder
-//    var tileScene: MMWGameScene
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init () {
+    init () {  // creates blank placeholder tile
         self.tileType = TileType.Placeholder
         self.spritename = SpriteName.Blank
         //self.gridLocation = GridLocation[0]
@@ -96,17 +91,11 @@ class MMWTile {
         self.tileSprite.hidden = false
     }
 
-    static func randomTileType() -> TileType {
-        return TileType(rawValue: Int(arc4random_uniform(4)) + 1)!
-    }
+//    static func randomTileType() -> TileType {
+//        return TileType(rawValue: Int(arc4random_uniform(4)) + 1)!
+//    }
     
-    func updateTileGrid () {
-        self.gridEnd?.addToGridArray(self, xGrid: self.gridXEnd, yGrid: self.gridYEnd)
-    }
-    
-//    var gridLocation : gridLocation[0]
-//    var column: Int
-//    var row: Int
-//    let tileType: TileType
-    //var sprite: SKSpriteNode?
+//    func updateTileGrid () {
+//        self.gridEnd?.addToGridArray(self, xGrid: self.gridXEnd, yGrid: self.gridYEnd)
+//    }
 }

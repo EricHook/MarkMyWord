@@ -22,6 +22,8 @@ class Player {
     var playerLetterTiles : [MMWTile]! = nil
     var playerLetterGrid: Grid! = nil
     
+    var playerView : PlayerView! = nil
+    
     var playerSpecialTiles : [MMWTile]! = nil
     var playerLetterTilesPlayed : [MMWTile]? = nil
     
@@ -34,11 +36,15 @@ class Player {
     }
     
     func setPlayerTilesArray (inout playerTiles: [MMWTile]) {
-        playerLetterTiles = playerTiles
+        self.playerLetterTiles = playerTiles
     }
     
     func setPlayerTilesGrid (inout playerTilesGrid: Grid) {
-        playerLetterGrid = playerTilesGrid
+        self.playerLetterGrid = playerTilesGrid
+    }
+    
+    func setPlayerView (playerView: PlayerView) {
+        self.playerView = playerView
     }
     
 //    getNewTiles (numTilesToGet: Int) {

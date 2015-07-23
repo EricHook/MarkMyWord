@@ -13,6 +13,7 @@ class PlayerView: SKSpriteNode {
     
     var playerNameLabel = SKLabelNode(fontNamed: FontHUDName)
     var playerScoreLabel = SKLabelNode(fontNamed: FontHUDName)
+    var mmwPlayer : Player!
     
     init (mmwPlayer: Player) {
         
@@ -20,7 +21,7 @@ class PlayerView: SKSpriteNode {
         let playerBGTex : SKTexture = SKTexture(imageNamed: "PlayerBGTest309x660")
         let playerTileGridTex : SKTexture = SKTexture(imageNamed: "MMWPlayerTilesGrid")
         let playerTilesPlaqueTex : SKTexture = SKTexture(imageNamed: "MMWPlayerTilesPlaque")
-
+        let mmwPlayer = mmwPlayer
         let playerColor : UIColor =   gameColors[mmwPlayer.playerColor]
         
 //        let playerBGTall : SKSpriteNode = SKSpriteNode(texture: playerBGTallTex, color: SKColor.whiteColor(), size: CGSizeMake(playerBGTallTex.size().width/2, playerBGTallTex.size().height/2) )
@@ -74,6 +75,22 @@ class PlayerView: SKSpriteNode {
         playerScoreLabel.fontColor =  FontHUDBlack
         playerScoreLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y: self.frame.height * 0.467 ) // CGRectGetMidY(self.frame) - 6 ) // 154)
         addChild(playerScoreLabel)
+    }
+    
+    func changePlayerScoreDisplay (score: Int) {
+        mmwPlayer.playerScore = score
+        self.playerScoreLabel.text = String(score)
+    }
+    
+    func playerViewBeginTurn () {
+        playerNameLabel.fontColor = UIColor.whiteColor()
+        playerScoreLabel.fontColor = UIColor.whiteColor()
+    }
+    
+    func playerViewEndTurn () {
+        playerNameLabel.fontColor =  FontHUDBlack
+        playerScoreLabel.fontColor = FontHUDBlack
+        playerScoreLabel.text = String(mmwPlayer.playerScore += 100)
     }
     
     required init?(coder aDecoder: NSCoder) {
