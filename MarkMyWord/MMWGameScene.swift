@@ -333,6 +333,27 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
                     print(">>> PLAY BUTTON PRESSED >>>")
                     runAction(actionSound)
                     
+                    
+//                    
+                    let path = "/Users/erichook/Desktop/testSmallUTF8.txt" // "~/file.txt"
+                    //let expandedPath = path.stringByExpandingTildeInPath
+                    let data: NSData? = NSData(contentsOfFile: path)
+                    
+                    if let fileData = data {
+                        let content = NSString(data: fileData, encoding:NSUTF8StringEncoding) as! String
+                        print(content) // prints the content of data.txt
+                    }
+                    
+                    
+//                    let path = NSBundle.mainBundle().pathForResource("FileName", ofType: "txt")
+//                    let text = try String(contentsOfFile: path!, encoding: NSUTF8StringEncoding)
+//                    catch {
+//                        print("Bad")
+//                    }
+//                    print(text)
+                    
+                    
+                    
                     mmwPlayer1Grid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: 1)
                     mmwPlayer2Grid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: 2)
                     
@@ -509,6 +530,16 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         
         player2View?.playerScoreLabel.zPosition = 1
         player2View?.playerScoreLabel.text = "MMWGameSceneTouchesMoved"
+        
+//        let path = "/Users/erichook/Desktop/testSmallUTF8.txt" // "~/file.txt"
+//        //let expandedPath = path.stringByExpandingTildeInPath
+//        let data: NSData? = NSData(contentsOfFile: path)
+//        
+//        if let fileData = data {
+//            let content = NSString(data: fileData, encoding:NSUTF8StringEncoding) as! String
+//            print(content) // prints the content of data.txt
+//        }
+        
     }
     
     func presentMenuScene() {

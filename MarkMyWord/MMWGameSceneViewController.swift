@@ -17,7 +17,7 @@ class MMWGameSceneViewController {
     var viewSize : CGSize!
     var tileCollection : MMWTileBuilder = MMWTileBuilder()
     
-    var numPlayers : Int = 4
+    var numPlayers : Int = 2
     var playerTurn :  Int = 1
     
     var player1 : Player = Player(_playerID: 1, _playerName: "Abe", _playerColor: 1)
