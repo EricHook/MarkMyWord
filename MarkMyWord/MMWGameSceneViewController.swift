@@ -11,21 +11,30 @@ import UIKit
 import SpriteKit
 import CoreMotion
 
-class MMWGameSceneViewController { 
+extension StreamReader : SequenceType {
+    func generate() -> AnyGenerator<String> {
+        return anyGenerator {
+            return self.nextLine()
+        }
+    }
+}
+
+class MMWGameSceneViewController {
     
     var mmwGameScene: MMWGameScene!
     var viewSize : CGSize!
     var tileCollection : MMWTileBuilder = MMWTileBuilder()
-    
-    var numPlayers : Int = 2
+    var tilesPlayable : [MMWTile]
+    var numPlayers : Int = 3
     var playerTurn :  Int = 1
     
     var player1 : Player = Player(_playerID: 1, _playerName: "Abe", _playerColor: 1)
     var player2 : Player = Player(_playerID: 2, _playerName: "Bart", _playerColor: 2)
+    // player 3 and 4 objects created but only used in 3 or 4 player games
     var player3 : Player = Player(_playerID: 3, _playerName: "Charlie", _playerColor: 3)
     var player4 : Player = Player(_playerID: 4, _playerName: "Dan", _playerColor: 4)
     
-    let playerArray : [Player]!
+    let playerArray : [Player]! // array of all players 0-3 for easier iteration of player turns
 
     init (size: CGSize) {
         viewSize = size
@@ -33,16 +42,16 @@ class MMWGameSceneViewController {
 //        /* Set the scale mode to scale to fit the window */
 //        mmwGameScene.scaleMode = .AspectFill
         playerArray  = [player1, player2, player3, player4]
+        tilesPlayable = tileCollection.mmwTileArray
         mmwGameScene.setViewController(self)
         mmwGameScene.setGrids() // sets tile grid positions, size of square, number of squares and position on screen for each grid possible
+        
         
         mmwGameScene.buildGameView()
         
         setUpPlayers() // add player to view, match player to grid, fill grid with starter tiles and colorize to player color
-
-        
     }
-    
+ 
     func setUpPlayers () {
         mmwGameScene.setViewController(self)
         if numPlayers == 2 {
@@ -89,6 +98,10 @@ class MMWGameSceneViewController {
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer4Grid!)
         player4.setPlayerView(mmwGameScene.player4View)
     }
+    
+//    func getWord (wordSize: Int = 5, letterDrawInput: [MMWTile] = tilesPlayable) {
+//        
+//    }
     
 //    func makeTwoPlayers () {
 //        mmwGameScene.addPlayerView(1, playerView: PlayerView(mmwPlayer: player1))

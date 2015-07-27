@@ -87,13 +87,13 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         }
 
         if mmwGameSceneViewController.numPlayers == 3 {
-            self.mmwPlayer1Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.273), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer1Grid", mmwGameScene: self) // 0.4583
+            self.mmwPlayer1Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.45830), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer1Grid", mmwGameScene: self) // 0.4583
             self.mmwPlayer1Grid.setGridPlayer(mmwGameSceneViewController.player1)
             
             self.mmwPlayer2Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.273), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer2Grid", mmwGameScene: self)
             self.mmwPlayer2Grid.setGridPlayer(mmwGameSceneViewController.player2)
             
-            self.mmwPlayer3Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.706), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer3Grid", mmwGameScene: self)
+            self.mmwPlayer3Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.706), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer3Grid", mmwGameScene: self)
             self.mmwPlayer3Grid.setGridPlayer(mmwGameSceneViewController.player3)
         }
         
@@ -118,7 +118,6 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func buildGameView () {
-        //print("buildGameView() in MMWGameScene")
         backgroundColor = SKColor(red: 0.5, green: 0.0, blue: 0.0, alpha: 1.0)
         userInteractionEnabled = true
         // add BG
@@ -129,18 +128,20 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         backgroundNode.zPosition = -100
         backgroundNode.size = viewSize;
         addChild(backgroundNode)
-        
-        
+
         player1View = addPlayerView(1, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player1))
         player2View = addPlayerView(2, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player2))
-        player3View = addPlayerView(3, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player3))
-        player4View = addPlayerView(4, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player4))
-        
-        
+        if mmwGameSceneViewController.numPlayers > 2 {
+            player3View = addPlayerView(3, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player3))
+        }
+        if mmwGameSceneViewController.numPlayers > 3 {
+            player4View = addPlayerView(4, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player4))
+        }
+
         addChild(foregroundNode)
         
-        timeRemainingHUD(90)
-        tilesRemainingHUD(321)
+        timeRemainingHUD(30)
+        tilesRemainingHUD(777)
         partialWordHUD("ABCDEFG", isWord: false)  // "ABCDEFGHIJKLMNO", isWord: false)
         topDisplayHUD("Player 1 plays \"CATATONIC\" for 14 points") // ("Turn: Player 1, Special Letter Bonus In Effect, 2x Point Bonus")
 
@@ -332,28 +333,68 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
                 if userInteractionEnabled {
                     print(">>> PLAY BUTTON PRESSED >>>")
                     runAction(actionSound)
+        
+/////////////////////
                     
+                    var numWords = 0
                     
-//                    
+                    print("let path = \"/Users/erichook/Desktop/testSmallUTF8.txt")
                     let path = "/Users/erichook/Desktop/testSmallUTF8.txt" // "~/file.txt"
+                    
                     //let expandedPath = path.stringByExpandingTildeInPath
                     let data: NSData? = NSData(contentsOfFile: path)
                     
                     if let fileData = data {
                         let content = NSString(data: fileData, encoding:NSUTF8StringEncoding) as! String
-                        print(content) // prints the content of data.txt
+                        print(content + " END OF FIRST FILE READ ATTEMPT \n") // prints the content of data.txt
+                    }
+        
+                    /////////////////////////////
+                    
+                    print("if let aStreamReader = ... ")
+                    //let testPath = NSBundle.mainBundle().pathForResource("testSmallUTF8", ofType: "txt")
+                    //let filePath = "/Users/erichook/Desktop/testSmallUTF8.txt"
+                    
+                    //////////////////////////////
+                    
+                    if let aStreamReader = StreamReader(file: "5-LetterWords") { // "/Users/erichook/Desktop/testSmallUTF8.txt") {
+                        var numLines = 0
+                        while let line = aStreamReader.nextLine() {
+                            print(line)
+//                            if line == "be\r" {
+//                                break
+//                            }
+                            ++numLines
+                        }
+                        print("Number of Lines in Word List: " + String(numLines) )
+                        
+                        let randomWordNum : Int = Int(arc4random()) % (numLines - 1)
+                        
+                        print("Random Word Line Number: " + String(randomWordNum) )
+                        
+                        var lineNumber = 0
+                        
+                        aStreamReader.rewind()
+                        
+                        while let line = aStreamReader.nextLine() {
+                            if lineNumber == randomWordNum {
+                                print("Random Word: " + String(line) )
+                                break
+                            }
+                            ++lineNumber
+                        }
+
+                        // You can close the underlying file explicitly. Otherwise it will be
+                        // closed when the reader is deallocated.
+                        aStreamReader.close()
+                        print("Final numLines: " + String(numLines) )
                     }
                     
                     
-//                    let path = NSBundle.mainBundle().pathForResource("FileName", ofType: "txt")
-//                    let text = try String(contentsOfFile: path!, encoding: NSUTF8StringEncoding)
-//                    catch {
-//                        print("Bad")
-//                    }
-//                    print(text)
-                    
-                    
-                    
+                    /////////////////////////////
+
+/////////////////////
+
                     mmwPlayer1Grid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: 1)
                     mmwPlayer2Grid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: 2)
                     
@@ -539,7 +580,6 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
 //            let content = NSString(data: fileData, encoding:NSUTF8StringEncoding) as! String
 //            print(content) // prints the content of data.txt
 //        }
-        
     }
     
     func presentMenuScene() {
