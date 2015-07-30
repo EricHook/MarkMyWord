@@ -29,12 +29,7 @@ class Grid {
     var gridNum : Int = 0
     
     var mmwGameScene : MMWGameScene
-    
-//    init() { // default 10x10 grid at 0,0
-//        self.gridUpperLeftX = 4
-//        grid2DArr = [[MMWTile]](count: gridNumSquaresY, repeatedValue: [MMWTile](count: gridNumSquaresX, repeatedValue: MMWTile() ))
-//    }
-    
+
     init (gridUpperLeftX: Double, gridUpperLeftY : Double, gridSquareSizeX : Double, gridSquareSizeY : Double, gridNumSquaresX : Int, gridNumSquaresY : Int, gridName : String, mmwGameScene: MMWGameScene){
         self.gridUpperLeftX = gridUpperLeftX
         self.gridUpperLeftY = gridUpperLeftY
@@ -46,13 +41,11 @@ class Grid {
         self.mmwGameScene = mmwGameScene
         //self.grid1DArr = gridArr
         grid2DArr = [[MMWTile]](count: gridNumSquaresX, repeatedValue: [MMWTile](count: gridNumSquaresY, repeatedValue: MMWTile() ))
-        // gridArr[1][1] = 0 // put test placeholder value in grid
     }
     
     func setGridPlayer (player : Player) {
         self.gridPlayer = player
     }
-    
     
     func makeTilesInGridInteractive (isInteractive : Bool) {
         //for y in gridToInteract.grid2DArr
@@ -116,7 +109,7 @@ class Grid {
         //var arrayInMarker = 0
         for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
             for x in 0...(self.gridNumSquaresX - 1) {
-                   mmwGameScene.mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray.append(self.grid2DArr[x][y])
+            mmwGameScene.mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray.append( self.grid2DArr[x][y])
                     self.grid2DArr[x][y].tileSprite.hidden = true
                 if arrayIn.count > 0 {
                     if numTilesToDeal > 0 {
@@ -141,6 +134,35 @@ class Grid {
                 }
             }
         }
+    }
+    
+    func dealGridFromArraySpecificTile (inout arrayIn: [MMWTile], tileArrayLocation: Int, playerNum: Int, squareX: Int, squareY: Int) {
+        print("<Grid> dealGridFromArrayTile (inout arrayIn: [MMWTile], var tileArrayLocation: Int, playerNum: Int) \(self.gridName) ")
+        //var arrayInMarker = 0
+//        for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
+//            for x in 0...(self.gridNumSquaresX - 1) {
+//                mmwGameScene.mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray.append(self.grid2DArr[x][y])
+//                self.grid2DArr[x][y].tileSprite.hidden = true
+                if arrayIn.count > 0 {
+//                    if numTilesToDeal > 0 {
+//                        let numTiles : UInt32 = UInt32(arrayIn.count)
+//                        let randomTileNumber = arc4random_uniform(numTiles) // select random tile in FROM array
+                        let dealtTile : MMWTile = arrayIn[Int(tileArrayLocation)]
+                        
+                        dealtTile.tileOwner = TileOwner(rawValue: playerNum)!
+                        dealtTile.tileState = TileState(rawValue: playerNum)!
+                        
+                        self.grid2DArr[squareX][squareY] = dealtTile
+                        arrayIn.removeAtIndex( Int(tileArrayLocation) )
+                        dealtTile.tileSprite.color =  gameColors[playerNum]
+                        dealtTile.gridX = squareX
+                        dealtTile.gridY = squareY
+                        dealtTile.gridHome = self
+//                        numTilesToDeal--
+                }
+                else {
+                    print("No More Tiles To Deal ... ")
+                }
     }
     
 //    // send/move num Tiles from one tile array to another tile array

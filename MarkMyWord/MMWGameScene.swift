@@ -25,16 +25,10 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     var mmwPlayer3Grid : Grid!
     var mmwPlayer4Grid : Grid!
     
-//    var player1View : PlayerView! = mmwGameScene.addPlayerView(1, playerView: PlayerView(mmwGameSceneCont  mmwPlayer: player1))
-//    mmwGameScene.addPlayerView(1, playerView: PlayerView(mmwPlayer: player1))
-    
-    var player1View : PlayerView! // = addPlayerView(1, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player1))
+    var player1View : PlayerView!
     var player2View : PlayerView!
     var player3View : PlayerView!
     var player4View : PlayerView!
-    
-    //                player1View = addPlayerView(1, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player1))
-    //                mmwGameSceneViewController.player1.setPlayerView(player1View)
 
     var partialWordLabel    = SKLabelNode(fontNamed: FontHUDName)
     var timeRemainingLabel  = SKLabelNode(fontNamed: FontHUDName)
@@ -129,6 +123,7 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         backgroundNode.size = viewSize;
         addChild(backgroundNode)
 
+
         player1View = addPlayerView(1, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player1))
         player2View = addPlayerView(2, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player2))
         if mmwGameSceneViewController.numPlayers > 2 {
@@ -164,12 +159,22 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         optionsButton.position = CGPoint(x: viewSize.width * 0.9228, y: viewSize.height * 0.04)
         optionsButton.name = "optionsButton"
         self.addChild(optionsButton)
-        
+
+//        // TEST place letter from playable letters on board
+//        mmwGameSceneViewController.dealLetter( &mmwGameSceneViewController.tileCollection.mmwTileArray[99], gridToPlaceLetter: mmwBoardGrid, xSquare: 7, ySquare: 5)
+
+//        mmwGameSceneViewController.dealLetter( &mmwGameSceneViewController.tileCollection.mmwTileArray[99], gridToPlaceLetter: mmwBoardGrid, xSquare: 7, ySquare: 6)
+
+//        mmwGameSceneViewController.dealLetter( &mmwGameSceneViewController.tileCollection.mmwTileArray[99], gridToPlaceLetter: mmwBoardGrid, xSquare: 7, ySquare: 7)
+
         // ADD ALL TILES TO Scene - they start as invisible
+        var tileTempXLocation = 0
         for tile in mmwGameSceneViewController.tileCollection.mmwTileArray {
-            tile.tileSprite.hidden = false /////
+            tile.tileSprite.hidden = false
+            tileTempXLocation += 40
+            tile.tileSprite.tileLocation = CGPoint(x: tileTempXLocation, y: 15 )
             self.addChild(tile.tileSprite)
-        }
+        }  
     }
     
     func showAllGridTiles (gridToDisplay: Grid) {
@@ -197,6 +202,8 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         if mmwGameSceneViewController.numPlayers > 3 {
             showAllGridTiles(mmwPlayer4Grid)
         }
+        
+        showAllGridTiles(mmwBoardGrid)
     }
 
     func partialWordHUD (letters : String, isWord : Bool)  -> SKLabelNode {
@@ -269,12 +276,7 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         if mmwGameSceneViewController.numPlayers == 2 {
             // if only 2 players - one on left and one on right of UI
             if playerNum == 1 {
-//                
-//                player1View = addPlayerView(1, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player1))
-//                mmwGameSceneViewController.player1.setPlayerView(player1View)
-                
                 playerView.position = CGPointMake(0, self.size.height * 0.384765625 ) // PS coordinates is Y: 1390, convert and flip .. x , 295.5
-                //mmwGameSceneViewController.player1.setPlayerView(&<#T##playerView: PlayerView##PlayerView#>)
             }
             if playerNum == 2 {
                 playerView.position = CGPointMake(self.size.width * 0.84912109375, self.size.height * 0.384765625 ) // PS coordinates is Y: 1390, convert and flip , x , 295.5
@@ -333,67 +335,18 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
                 if userInteractionEnabled {
                     print(">>> PLAY BUTTON PRESSED >>>")
                     runAction(actionSound)
-        
-/////////////////////
-                    
-                    var numWords = 0
-                    
-                    print("let path = \"/Users/erichook/Desktop/testSmallUTF8.txt")
-                    let path = "/Users/erichook/Desktop/testSmallUTF8.txt" // "~/file.txt"
-                    
-                    //let expandedPath = path.stringByExpandingTildeInPath
-                    let data: NSData? = NSData(contentsOfFile: path)
-                    
-                    if let fileData = data {
-                        let content = NSString(data: fileData, encoding:NSUTF8StringEncoding) as! String
-                        print(content + " END OF FIRST FILE READ ATTEMPT \n") // prints the content of data.txt
-                    }
-        
-                    /////////////////////////////
-                    
-                    print("if let aStreamReader = ... ")
-                    //let testPath = NSBundle.mainBundle().pathForResource("testSmallUTF8", ofType: "txt")
-                    //let filePath = "/Users/erichook/Desktop/testSmallUTF8.txt"
-                    
-                    //////////////////////////////
-                    
-                    if let aStreamReader = StreamReader(file: "5-LetterWords") { // "/Users/erichook/Desktop/testSmallUTF8.txt") {
-                        var numLines = 0
-                        while let line = aStreamReader.nextLine() {
-                            print(line)
-//                            if line == "be\r" {
-//                                break
-//                            }
-                            ++numLines
-                        }
-                        print("Number of Lines in Word List: " + String(numLines) )
-                        
-                        let randomWordNum : Int = Int(arc4random()) % (numLines - 1)
-                        
-                        print("Random Word Line Number: " + String(randomWordNum) )
-                        
-                        var lineNumber = 0
-                        
-                        aStreamReader.rewind()
-                        
-                        while let line = aStreamReader.nextLine() {
-                            if lineNumber == randomWordNum {
-                                print("Random Word: " + String(line) )
-                                break
-                            }
-                            ++lineNumber
-                        }
 
-                        // You can close the underlying file explicitly. Otherwise it will be
-                        // closed when the reader is deallocated.
-                        aStreamReader.close()
-                        print("Final numLines: " + String(numLines) )
-                    }
-                    
+                    let starterWord = mmwGameSceneViewController.getRandomWord()
+                    mmwGameSceneViewController.checkUndealtTilesForWord(starterWord)
+                
+                    //mmwGameSceneViewController.placeWord(mmwGameSceneViewController.player2, startLocX: 7, startLocY: 12, direction: "H")                    
+                    ///////////////////////
+
+//                    mmwGameSceneViewController.mmwGameScene.mmwBoardGrid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: (mmwGameSceneViewController.playerTurn))
+//
+//                    self.mmwBoardGrid.dealGridFromArraySpecificTile(&mmwGameSceneViewController.tileCollection.mmwTileArray, tileArrayLocation: 49, playerNum: 0, squareX: 7, squareY: 5)
                     
                     /////////////////////////////
-
-/////////////////////
 
                     mmwPlayer1Grid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: 1)
                     mmwPlayer2Grid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: 2)
@@ -406,7 +359,7 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
                         mmwPlayer4Grid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: 4)
                     }
                     
-                    showTilesInSquares(mmwGameSceneViewController.tileCollection) // 'deals' player tiles and shows demo tiles on board for testing
+                    showTilesInSquares(mmwGameSceneViewController.tileCollection) // 'deals' player tiles
                     
                     _node.removeFromParent() // gets rid of play button in middle of screen  
                     
@@ -420,18 +373,7 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
                     runAction(actionSound)
                     
                     mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: (mmwGameSceneViewController.playerTurn))
-                    
-//                    mmwPlayer1Grid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: 1)
-//                    mmwPlayer2Grid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: 2)
-//                    
-//                    if mmwGameSceneViewController.numPlayers > 2 {
-//                        mmwPlayer3Grid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: 3)
-//                    }
-//                    
-//                    if mmwGameSceneViewController.numPlayers > 3 {
-//                        mmwPlayer4Grid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: 4)
-//                    }
-                    
+
                     showTilesInSquares(mmwGameSceneViewController.tileCollection) // 'deals' player tiles and shows demo tiles on board for testing
                     
                     changePlayerTurn()
@@ -457,11 +399,11 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
                 if userInteractionEnabled {
                     runAction(actionSound)
                     
-//                    print("SHOW TILE ARRAYS")
-//                    print("mmwGameSceneViewController.tileCollection.tileCollection.mmwDiscardedTileArray: ")
-//                    mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray)
-//                    print("mmwGameSceneViewController.tileCollection.mmwTileArray: ")
-//                    mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwTileArray)
+                    print("SHOW TILE ARRAYS")
+                    print("mmwGameSceneViewController.tileCollection.tileCollection.mmwDiscardedTileArray: ")
+                    mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray)
+                    print("mmwGameSceneViewController.tileCollection.mmwTileArray: ")
+                    mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwTileArray)
                     
                     print("SHOW TILE GRIDS (player tiles and board grid)")
                     print(">>>mmwGameSceneViewController.mmwGameScene.mmwPlayer1Grid: ")
@@ -483,7 +425,6 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
             
             if(_node.name == "pauseButton"){
                 if userInteractionEnabled {
-                    //mmwPlayer3of4Grid.fillArrayFromGrid((mmwGameSceneViewController.player1.playerLetterTiles)!, gridOut: mmwPlayer3of4Grid)
                     runAction(actionSound)
                     if !isPaused {
                         isPaused = true

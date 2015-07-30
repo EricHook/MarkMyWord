@@ -38,7 +38,7 @@ class LetterTileSprite : SKSpriteNode {
         neon
     }
     
-    let TileColors : [UIColor] = [UIColorAppleBlue, UIColorAppleGreen, UIColorApplePurple, UIColorAppleRed, UIColorAppleOrange, UIColorGray]
+    let TileColors : [UIColor] = [UIColorAppleBlue, UIColorAppleGreen, UIColorApplePurple, UIColorAppleRed, UIColorAppleOrange, UIColorGray, UIColor.blackColor()]
     
     let actionSound = SKAction.playSoundFileNamed("37Bronk.mp3", waitForCompletion: true)
     
@@ -291,7 +291,7 @@ class LetterTileSprite : SKSpriteNode {
             
             tileSpriteParent.gridYEnd = tileSnapResults.GridSquareY
 
-            tileSpriteParent.tileState = TileState.played  // if put on valid board location set TileState to played
+            tileSpriteParent.tileState = TileState.Played  // if put on valid board location set TileState to played
             
             // set basic placeholder tile settings to fit in void in grid - home grid and x and y values
             let replacementPlaceholderTile : MMWTile = MMWTile()
@@ -308,9 +308,7 @@ class LetterTileSprite : SKSpriteNode {
             // move tile to snap point
             self.position.x = (CGFloat)(tileSnapResultsCalculateX + 23.75)  //adjusts 22.5 for tile center in middle of tile
             self.position.y = 768 - (CGFloat)(tileSnapResultsCalculateY + 8.25) //38 adjusts for tile center and for board not in exact middle when flipping coords
-       
 
-            
             
             // IF NOT VALID LOCATION
             

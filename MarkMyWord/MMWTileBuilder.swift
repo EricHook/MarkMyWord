@@ -13,7 +13,9 @@ import SpriteKit
 class MMWTileBuilder {
     
     var mmwTileArray = [MMWTile]()
-    //var mmwBoardTileArray = [MMWTile]() //     fillGridWithTiles(<#T##MMWTileBuilder#>)    //[MMWTile](count:225, repeatedValue: MMWTile() )
+    
+    var mmwTileArrayTemp = [MMWTile]()
+
     var mmwDiscardedTileArray = [MMWTile]()
     
     var mmwPlayer1LetterTile2DArray : [[MMWTile]]?
@@ -23,6 +25,7 @@ class MMWTileBuilder {
     
     var mmwBoardTile2DArray : [[MMWTile]]?
 
+//    var mmwBoardTileArray = [MMWTile]() //     fillGridWithTiles()    //[MMWTile](count:225, repeatedValue: MMWTile() )
 //    var mmwPlayer1LetterTileArray = [MMWTile]() // count:6, repeatedValue: MMWTile())
 
     var tileA1 : MMWTile = MMWTile(letterString: "A")
@@ -173,7 +176,7 @@ class MMWTileBuilder {
     
     init () {
 
-        mmwTileArray.append(tileA1)
+        mmwTileArray.append(tileA1) 
         mmwTileArray.append(tileA2)
         mmwTileArray.append(tileA3)
         mmwTileArray.append(tileA4)
@@ -305,7 +308,7 @@ class MMWTileBuilder {
         mmwTileArray.append(tileBlank2)
         
         for tile in mmwTileArray {
-            tile.tileState = TileState.undealt
+            tile.tileState = TileState.Undealt
             tile.tileOwner = TileOwner.None
         }
     }
