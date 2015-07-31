@@ -10,10 +10,10 @@
 		B820241F1B65BFD0004E413A /* StreamReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B820241E1B65BFD0004E413A /* StreamReader.swift */; };
 		B82786131B0556E000916E20 /* Seat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82786121B0556E000916E20 /* Seat.swift */; };
 		B82786151B05585D00916E20 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82786141B05585D00916E20 /* Player.swift */; };
+		B84301911B6A9A2600BD874D /* testSmallUTF8.txt in Resources */ = {isa = PBXBuildFile; fileRef = B84301901B6A9A2600BD874D /* testSmallUTF8.txt */; };
 		B84B25131B45FB050037B8EA /* MMWGameSceneText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84B25121B45FB050037B8EA /* MMWGameSceneText.swift */; };
 		B858A8E11AF0944D00184931 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = B858A8E01AF0944D00184931 /* Level.swift */; };
 		B87B0AD71B669AFD005D76EB /* testSmallUTF8B.txt in Resources */ = {isa = PBXBuildFile; fileRef = B87B0AD61B669AFD005D76EB /* testSmallUTF8B.txt */; };
-		B87B0AD91B66D505005D76EB /* testSmallUTF8C.txt in Resources */ = {isa = PBXBuildFile; fileRef = B87B0AD81B66D505005D76EB /* testSmallUTF8C.txt */; };
 		B89939431ADAF8BC00587323 /* accelerometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89939421ADAF8BC00587323 /* accelerometer.swift */; };
 		B8A455161AF15A1400C0D83B /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A455141AF15A1400C0D83B /* MainMenuScene.swift */; };
 		B8A455171AF15A1400C0D83B /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A455151AF15A1400C0D83B /* GameViewController.swift */; };
@@ -332,10 +332,10 @@
 		B820241E1B65BFD0004E413A /* StreamReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamReader.swift; sourceTree = "<group>"; };
 		B82786121B0556E000916E20 /* Seat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Seat.swift; sourceTree = "<group>"; };
 		B82786141B05585D00916E20 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		B84301901B6A9A2600BD874D /* testSmallUTF8.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testSmallUTF8.txt; sourceTree = "<group>"; };
 		B84B25121B45FB050037B8EA /* MMWGameSceneText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMWGameSceneText.swift; sourceTree = "<group>"; };
 		B858A8E01AF0944D00184931 /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		B87B0AD61B669AFD005D76EB /* testSmallUTF8B.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testSmallUTF8B.txt; sourceTree = "<group>"; };
-		B87B0AD81B66D505005D76EB /* testSmallUTF8C.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testSmallUTF8C.txt; sourceTree = "<group>"; };
 		B89939421ADAF8BC00587323 /* accelerometer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = accelerometer.swift; sourceTree = "<group>"; };
 		B8A455141AF15A1400C0D83B /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		B8A455151AF15A1400C0D83B /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -694,7 +694,7 @@
 		B85B16251B0FDE6C00E58214 /* MMW */ = {
 			isa = PBXGroup;
 			children = (
-				B87B0AD81B66D505005D76EB /* testSmallUTF8C.txt */,
+				B84301901B6A9A2600BD874D /* testSmallUTF8.txt */,
 				B8E874E51AE17E0000763849 /* MMWTile.swift */,
 				B8AA6C071B2A481600DEAC41 /* MMWTileBuilder.swift */,
 				B82786141B05585D00916E20 /* Player.swift */,
@@ -1324,7 +1324,6 @@
 				B8A456051AF171B800C0D83B /* player_two@2x.png in Resources */,
 				B8A455E81AF171B800C0D83B /* draw.png in Resources */,
 				B8A455F71AF171B800C0D83B /* MenuBackground@2x.png in Resources */,
-				B87B0AD91B66D505005D76EB /* testSmallUTF8C.txt in Resources */,
 				B8B2CA7B1ADADB7000C9DEE7 /* 1022.WAV in Resources */,
 				B8F117001B4F101C00FDC75E /* MarkMyWordBGCleaniPad@2x.png in Resources */,
 				B8C14EFE1AF32FE500E640C0 /* LaunchScreen.png in Resources */,
@@ -1581,6 +1580,7 @@
 				B8C9007F1B0159C900C72745 /* PlayerBGTest309x660.png in Resources */,
 				B8A4560D1AF171B800C0D83B /* player2_beastmaster@2x.png in Resources */,
 				B8DA7ED91AE13784003FE2C6 /* MeyamaMathMenuScreenBG_1024x768.png in Resources */,
+				B84301911B6A9A2600BD874D /* testSmallUTF8.txt in Resources */,
 				B8B5BCC21B45D4F000AC1A69 /* PassButton.png in Resources */,
 				B8C900641B011F1C00C72745 /* appIcon58x58_MMW.png in Resources */,
 				B8B2CAC81ADADD9100C9DEE7 /* 3LetterWords.txt in Resources */,

@@ -244,7 +244,7 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     
     func tilesRemainingHUD (tilesLeft : Int) -> SKLabelNode {
         tilesRemainingLabel.zPosition = 1
-        tilesRemainingLabel.text = "Tiles Left: \(tilesLeft)"
+        tilesRemainingLabel.text = "Tiles Left: \(mmwGameSceneViewController.tileCollection.mmwTileArray.count  )" // "Tiles Left: \(tilesLeft)"
         tilesRemainingLabel.fontSize = FontHUDSize
         tilesRemainingLabel.position = CGPointMake(size.width/2.0 - 332, 3.0)
         tilesRemainingLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 1)!
@@ -337,13 +337,15 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
                     runAction(actionSound)
 
                     let starterWord = mmwGameSceneViewController.getRandomWord()
-                    mmwGameSceneViewController.checkUndealtTilesForWord(starterWord)
-                
+                    var starterWordTileArray = mmwGameSceneViewController.checkUndealtTilesForWord(starterWord, letterTileArray:    &mmwGameSceneViewController.tileCollection.mmwTileArray)
+                    
+                    // SENDS RANDOM WORD TO CENTER OF BOARD
+                    mmwGameSceneViewController.sendWordToBoard(&starterWordTileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 7, yStartSquare: 5, IsHorizonal: true, player: mmwGameSceneViewController.player1)
+
                     //mmwGameSceneViewController.placeWord(mmwGameSceneViewController.player2, startLocX: 7, startLocY: 12, direction: "H")                    
                     ///////////////////////
 
-//                    mmwGameSceneViewController.mmwGameScene.mmwBoardGrid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: (mmwGameSceneViewController.playerTurn))
-//
+//mmwGameSceneViewController.mmwGameScene.mmwBoardGrid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: (mmwGameSceneViewController.playerTurn))
 //                    self.mmwBoardGrid.dealGridFromArraySpecificTile(&mmwGameSceneViewController.tileCollection.mmwTileArray, tileArrayLocation: 49, playerNum: 0, squareX: 7, squareY: 5)
                     
                     /////////////////////////////
@@ -362,6 +364,8 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
                     showTilesInSquares(mmwGameSceneViewController.tileCollection) // 'deals' player tiles
                     
                     _node.removeFromParent() // gets rid of play button in middle of screen  
+                    
+                    tilesRemainingLabel.text = "Tiles Left: \(mmwGameSceneViewController.tileCollection.mmwTileArray.count  )"
                     
                     mmwPlayer1Grid.makeTilesInGridInteractive(true)
                 }

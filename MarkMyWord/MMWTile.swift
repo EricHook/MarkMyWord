@@ -47,6 +47,7 @@ class MMWTile {
     var gridXEnd: Int = -1
     var gridYEnd: Int = -1
     var letterString: String = "?"
+    var undealt = true
     var tileState: TileState = TileState.Undealt
     var tileOwner: TileOwner = TileOwner.None
     var tileGrid: Grid? = nil

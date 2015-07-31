@@ -52,11 +52,9 @@ class MMWGameSceneViewController {
         if numPlayers == 2 {
             makeTwoPlayers()
         }
-        
         if numPlayers == 3 {
             makeThreePlayers()
-        }
-        
+        }  
         if numPlayers == 4 {
             makeFourPlayers()
         }
@@ -108,49 +106,116 @@ class MMWGameSceneViewController {
         }
     }
     
-    func placeWord (player: Player, startLocX: Int, startLocY: Int, direction: Character, wordToPlace: String = ""){
-        
-        var tileToPlace = self.tilesPlayable[0]
-        tileToPlace.tileSprite.color = tileToPlace.tileSprite.TileColors[player.playerID]
-        tileToPlace.tileSprite.tileLocation = CGPoint(x: 200, y: 200)
-        tileToPlace.gridHome = mmwGameScene.mmwBoardGrid
-        tileToPlace.gridEnd = mmwGameScene.mmwBoardGrid
-        tileToPlace.tileGrid = mmwGameScene.mmwBoardGrid
-        tileToPlace.gridX = startLocX
-        tileToPlace.gridXEnd = startLocX
-        tileToPlace.gridY = startLocY
-        tileToPlace.gridYEnd = startLocY
-        
-        setTileOwner(&tileToPlace, player: player)
-        //tileToPlace.gridHome?.sendToGridSquare(tileToPlace.gridX, squareY: tileToPlace.gridY)
-        tileToPlace.tileSprite.tileLocation = tileToPlace.gridHome!.sendToGridSquare(tileToPlace.gridX, squareY: tileToPlace.gridY)
-        tileToPlace.tileState = TileState.Played
-        tileToPlace.gridHome?.grid2DArr[tileToPlace.gridX][tileToPlace.gridY] = tileToPlace
-        tileToPlace.tileSprite.zPosition = 11
-        tileToPlace.tileSprite.hidden = false
+    func getRandomWord() -> String {
+        let wordToReturn : String
+        if let aStreamReader = StreamReader(file: "5-LetterWords") { // "/Users/erichook/Desktop/testSmallUTF8.txt") {
+            var numLines = 0
+            while let line = aStreamReader.nextLine() {
+                print(line)
+                //                            if line == "be\r" {
+                //                                break
+                //                            }
+                ++numLines
+            }
+            print("Number of Lines in Word List: " + String(numLines) )
+            
+            let randomWordNum : Int = Int(arc4random()) % (numLines - 1)
+            
+            print("Random Word Line Number: " + String(randomWordNum) )
+            
+            var lineNumber = 0
+            
+            aStreamReader.rewind()  // goback and get word selected on random line number
+            
+            while let line = aStreamReader.nextLine() {
+                if lineNumber == randomWordNum {
+                    wordToReturn = String(line)
+                    print("Random getFirstWord () Word: " + wordToReturn)
+                    
+                    return String(wordToReturn)
+                    //break
+                }
+                ++lineNumber
+            }
+            // You can close the underlying file explicitly. Otherwise it will be
+            // closed when the reader is deallocated.
+            aStreamReader.close()
+            print("Final numLines getFirstWord (): " + String(numLines) )
+        }
+        return String("Random getFirstWord () Word: XYZ")
     }
+
     
     func getWordLetters () {
         
     }
     
-    func checkUndealtTilesForWord (wordToCheck: String) {
-        let string = wordToCheck
+    func checkUndealtTilesForWord (wordToCheck: String, inout letterTileArray: [MMWTile]) -> [MMWTile]? {
+        let string = wordToCheck // "dryad" //wordToCheck // can place test "STRING" in this value for testing purposed
         var lettersToPlay = [Int]()
+        var tilesToBoard = [MMWTile]()
         let wordToCheckArr = Array(string.characters)
-        
+        var wordToCheckArrCount = wordToCheckArr.count
+
+        var foundLetterInPass = false
         var tileArrayNumber = 0
-        for tile in self.tileCollection.mmwTileArray {
-            for letter in wordToCheckArr {
-                if String(letter).uppercaseString == tile.letterString.uppercaseString {
-                    print("Found letter: \(letter) in tiles \(tile.tileSprite.tileText)")
-                    
-                    self.tileCollection.mmwTileArray.append(tile)
-                    lettersToPlay.append(tileArrayNumber)
+        var lettersToPlayCount = 0
+        for letter in wordToCheckArr {
+             for tile in letterTileArray {
+                if String(letter).uppercaseString == "\r" {
+                    print ("String(letter).uppercaseString == \r ...return char at \(letter)")
+                    --wordToCheckArrCount
+                    break
+                }  // return char exits loop
+                if String(letter).uppercaseString == tile.letterString.uppercaseString && !lettersToPlay.contains(tileArrayNumber){
+                        print("Found letter: \(letter) in tiles \(tile.tileSprite.tileText)")
+                        lettersToPlay.append(tileArrayNumber)
+                        ++lettersToPlayCount
+                        print("LettersToPlay.count: \(lettersToPlay.count), lettersToPlayCount: \(lettersToPlayCount)")
+                        foundLetterInPass = true
+                        break
                 }
-               tileArrayNumber++
+                tileArrayNumber++
+                foundLetterInPass = false
             }
+            if String(letter).uppercaseString == "\r" {break}  // return char exits loop
+            if foundLetterInPass == false {
+                print("Tile \(String(letter).uppercaseString) doesn't exist to create word")
+                break
+            }
+            tileArrayNumber = 0
         }
+        
+        print("Letters to Play from letterTileArray: \(lettersToPlay)")
+        print("LettersToPlay.count: \(lettersToPlay.count), wordToCheckArr.count: \(wordToCheckArrCount)")
+        
+        if lettersToPlay.count < wordToCheckArrCount{
+            print("FAIL!")
+            return nil
+        }
+        print("PASS! Found \(string)! self.tileCollection.mmwTileArray.count: \(letterTileArray.count)" )
+        
+        ////////////////////////////////////////////
+        for arrNum in lettersToPlay {
+            tilesToBoard.append(letterTileArray[arrNum])
+            //letterTileArray.removeAtIndex(arrNum)
+        }
+        ////////////////////////////////////////////
+        tileArrayNumber = 0
+        for letter in wordToCheckArr {
+            for tile in letterTileArray {
+                if String(letter).uppercaseString == tile.letterString.uppercaseString {
+                    print("REMOVE letter: \(letter) in tiles \(tile.tileSprite.tileText)")
+                    letterTileArray.removeAtIndex(tileArrayNumber)
+                    break
+                }
+                tileArrayNumber++
+            }
+            if String(letter).uppercaseString == "\r" {break}  // return char exits loop
+            tileArrayNumber = 0
+        }
+        print("After remove tiles: letterTileArray.count: \(letterTileArray.count)" )
+            return tilesToBoard
     }
 
     func dealLetter (inout letterToPlace: MMWTile, gridToPlaceLetter: Grid, xSquare: Int, ySquare: Int) {
@@ -188,44 +253,53 @@ class MMWGameSceneViewController {
         letterToPlace.tileSprite.position.x = tileLocX
         letterToPlace.tileSprite.position.y = tileLocY
     }
-
-    func getRandomWord() -> String {
-        let wordToReturn : String
-        if let aStreamReader = StreamReader(file: "5-LetterWords") { // "/Users/erichook/Desktop/testSmallUTF8.txt") {
-            var numLines = 0
-            while let line = aStreamReader.nextLine() {
-                print(line)
-//                            if line == "be\r" {
-//                                break
-//                            }
-                ++numLines
-            }
-            print("Number of Lines in Word List: " + String(numLines) )
+    
+    func placeWord (player: Player, startLocX: Int, startLocY: Int, direction: Character, wordToPlace: [MMWTile]){
+        var tileToPlace = self.tilesPlayable[0]
+        tileToPlace.tileSprite.color = tileToPlace.tileSprite.TileColors[player.playerID]
+        tileToPlace.tileSprite.tileLocation = CGPoint(x: 200, y: 200)
+        tileToPlace.gridHome = mmwGameScene.mmwBoardGrid
+        tileToPlace.gridEnd = mmwGameScene.mmwBoardGrid
+        tileToPlace.tileGrid = mmwGameScene.mmwBoardGrid
+        tileToPlace.gridX = startLocX
+        tileToPlace.gridXEnd = startLocX
+        tileToPlace.gridY = startLocY
+        tileToPlace.gridYEnd = startLocY
+        
+        setTileOwner(&tileToPlace, player: player)
+        //tileToPlace.gridHome?.sendToGridSquare(tileToPlace.gridX, squareY: tileToPlace.gridY)
+        tileToPlace.tileSprite.tileLocation = tileToPlace.gridHome!.sendToGridSquare(tileToPlace.gridX, squareY: tileToPlace.gridY)
+        tileToPlace.tileState = TileState.Played
+        tileToPlace.gridHome?.grid2DArr[tileToPlace.gridX][tileToPlace.gridY] = tileToPlace
+        tileToPlace.tileSprite.zPosition = 11
+        tileToPlace.tileSprite.hidden = false
+    }
+    
+    func sendWordToBoard (inout letterTileArray: [MMWTile], gridToDisplay: Grid, xStartSquare: Int, yStartSquare: Int, IsHorizonal: Bool, player: Player) {
+        //let wordToDisplayArray = Array(wordToDisplay.characters)
+        var xLoc: Int = xStartSquare
+        var yLoc: Int = yStartSquare
+        for var tileInWord in letterTileArray {
+            if tileInWord.letterString == "\r" {break}
+            print("Letter tileInWord \(tileInWord) is at x:\(xLoc) y:\(yLoc)")
+            setTileOwner(&tileInWord, player: player)
+            tileInWord.gridHome = mmwGameScene.mmwBoardGrid
+            tileInWord.tileGrid = mmwGameScene.mmwBoardGrid
+            tileInWord.gridX = xLoc
+            tileInWord.gridXEnd = xLoc
+            tileInWord.gridY = yLoc
+            tileInWord.gridYEnd = yLoc
+            tileInWord.gridHome?.grid2DArr[xLoc][yLoc] = tileInWord
+            tileInWord.tileState = TileState.Played
+            tileInWord.tileSprite.zPosition = 11
+            tileInWord.tileSprite.hidden = false
             
-            let randomWordNum : Int = Int(arc4random()) % (numLines - 1)
-            
-            print("Random Word Line Number: " + String(randomWordNum) )
-            
-            var lineNumber = 0
-            
-            aStreamReader.rewind()  // goback and get word selected on random line number
-            
-            while let line = aStreamReader.nextLine() {
-                if lineNumber == randomWordNum {
-                    wordToReturn = String(line)
-                    print("Random getFirstWord () Word: " + wordToReturn)
-  
-                    return String(wordToReturn)
-                    //break
-                }
-                ++lineNumber
-            }
-            // You can close the underlying file explicitly. Otherwise it will be
-            // closed when the reader is deallocated.
-            aStreamReader.close()
-            print("Final numLines getFirstWord (): " + String(numLines) )
+            if IsHorizonal { ++xLoc }
+            else if !IsHorizonal { ++yLoc }
         }
-        return String("Random getFirstWord () Word: XYZ")
+        
+        mmwGameScene.updateGridInScene(mmwGameScene.mmwBoardGrid)
+        mmwGameScene.updateGridInScene(player.playerLetterGrid)
     }
     
     
