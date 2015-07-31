@@ -136,8 +136,43 @@ class Grid {
         }
     }
     
+    func refillGridFromArrayRandom (inout arrayIn: [MMWTile], var numTilesToDeal: Int, playerNum: Int) {
+        print("<Grid> fillGridFromArray(arrayIn: [MMWTile], gridToFill: Grid) \(self.gridName) ")
+        //var arrayInMarker = 0
+        for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
+            for x in 0...(self.gridNumSquaresX - 1) {
+                mmwGameScene.mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray.append( self.grid2DArr[x][y])
+                self.grid2DArr[x][y].tileSprite.hidden = true
+                if arrayIn.count > 0 {
+                    if numTilesToDeal > 0  && self.grid2DArr[x][y].letterString == "!"  {
+                        let numTiles : UInt32 = UInt32(arrayIn.count)
+                        let randomTileNumber = arc4random_uniform(numTiles) // select random tile in FROM array
+                        let dealtTile : MMWTile = arrayIn[Int(randomTileNumber)]
+                        
+                        dealtTile.tileOwner = TileOwner(rawValue: playerNum)!
+                        dealtTile.tileState = TileState(rawValue: playerNum)!
+                        
+                        self.grid2DArr[x][y] = dealtTile
+                        arrayIn.removeAtIndex( Int(randomTileNumber) )
+                        dealtTile.tileSprite.color =  gameColors[playerNum]
+                        dealtTile.gridX = x
+                        dealtTile.gridY = y
+                        dealtTile.gridHome = self
+                        
+                    }
+                    numTilesToDeal--
+                }
+                else {
+                    print("No More Tiles To Deal ... ")
+                }
+            }
+        }
+    }
+    
+    
+    
     func dealGridFromArraySpecificTile (inout arrayIn: [MMWTile], tileArrayLocation: Int, playerNum: Int, squareX: Int, squareY: Int) {
-        print("<Grid> dealGridFromArrayTile (inout arrayIn: [MMWTile], var tileArrayLocation: Int, playerNum: Int) \(self.gridName) ")
+        print("<Grid> refillGridFromArrayTile (inout arrayIn: [MMWTile], var tileArrayLocation: Int, playerNum: Int) \(self.gridName) ")
         //var arrayInMarker = 0
 //        for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
 //            for x in 0...(self.gridNumSquaresX - 1) {
@@ -230,7 +265,7 @@ class Grid {
         for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
             for x in 0...(self.gridNumSquaresX - 1) {
                 let gridArr = self.grid2DArr[x][y]
-                print(" \( gridArr.tileSprite.tileText) -> [\(gridArr.tileSprite.tileSpriteParent.gridX)] [\(gridArr.tileSprite.tileSpriteParent.gridY)] ")
+                print(" \( gridArr.tileSprite.tileText) -> [\(gridArr.tileSprite.tileSpriteParent.gridX)] [\(gridArr.tileSprite.tileSpriteParent.gridY)] -> \(gridArr.tileSprite.tileSpriteParent.tileOwner) ->  \(gridArr.tileSprite.tileSpriteParent.tileState) -> \(gridArr.tileSprite.tileSpriteParent.tileType) ")
             }
         }
     }

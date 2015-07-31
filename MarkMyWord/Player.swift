@@ -11,7 +11,7 @@ import SpriteKit
 
 class Player {
     
-    var playerID : Int = 1
+    var playerID : Int = 0
     var playerName : String = ""
     var playerScore : Int = 0
     var doIt : Bool = false

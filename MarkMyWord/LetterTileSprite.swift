@@ -135,6 +135,14 @@ class LetterTileSprite : SKSpriteNode {
         tile.position.x += 23.75  // 22.5?
         tile.position.y += 23.75  // 22.5?
     }
+    
+    func lockTile () {
+        let textColor = self.color
+        print("/(textColor)")
+        letterLabel.fontColor =  textColor // self.color
+        self.color = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.00)
+        //letterLabel.zPosition = ++self.zPosition
+    }
 
     
     func enlarge() {
@@ -157,7 +165,7 @@ class LetterTileSprite : SKSpriteNode {
                 largeTexture = SKTexture(imageNamed: largeTextureFilename)
                 texture = largeTexture
             }
-            zPosition = 20
+            zPosition = 50
             
             let newPosition = CGPointMake(CGRectGetMidX(parent!.frame), CGRectGetMidY(parent!.frame))
             removeAllActions()
@@ -165,10 +173,14 @@ class LetterTileSprite : SKSpriteNode {
             let slide = SKAction.moveTo(newPosition, duration:0.3)
             let scaleUp = SKAction.scaleTo(5.0, duration:0.3)
             runAction(SKAction.group([slide, scaleUp]))
+            
+            self.lockTile()
+            
         }
         print("  home\(self.tileSpriteParent.gridHome?.gridName) [\(self.tileSpriteParent.gridX)] [\(self.tileSpriteParent.gridY)]")
         print("  end\(self.tileSpriteParent.gridEnd?.gridName) [\(self.tileSpriteParent.gridXEnd)] [\(self.tileSpriteParent.gridYEnd)]")
         print("  state:\(self.tileSpriteParent.tileState) type:\(self.tileSpriteParent.tileType) owner:\(self.tileSpriteParent.tileOwner)")
+        
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -279,45 +291,63 @@ class LetterTileSprite : SKSpriteNode {
             let tileSnapResultsYGrid = tileSnapResults.GridSquareY
             let tileAtDropSpot : MMWTile = (gameGrid?.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid])!
             ////////////  TEST FOR TILE UNDER DROP SPOT
-            if tileAtDropSpot.tileOwner == TileOwner.Player1 {
-                runAction(actionSound)
-                self.position = (tileAtDropSpot.gridHome?.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: self.tileSpriteParent.gridX , squareY: self.tileSpriteParent.gridY ))!
+            
+            if gameGrid?.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid].tileType == TileType.Letter {
+                print("Tried drop tile on letter")
+                self.zPosition = 25
+                let returnPosition = (scene as! MMWGameScene).mmwBoardGrid.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: self.tileSpriteParent.gridX, squareY: self.tileSpriteParent.gridY)
+                let slide = SKAction.moveTo(returnPosition, duration:0.3)
+                let scaleUp = SKAction.scaleTo(1.5, duration:0.15)
+                let scaleDown = SKAction.scaleTo(1.0, duration:0.15)
+                runAction(SKAction.group([slide, scaleUp, scaleDown]))
+                
             }
-            print("drop location info: state:\(tileAtDropSpot.tileOwner) letter:\(tileAtDropSpot.tileSprite.tileText)")
             
-            self.tileSpriteParent.gridEnd = gameGrid // set tileSprite parent (MMWTile) grid to grid snapped to
-
-            tileSpriteParent.gridXEnd = tileSnapResults.GridSquareX
-            
-            tileSpriteParent.gridYEnd = tileSnapResults.GridSquareY
-
-            tileSpriteParent.tileState = TileState.Played  // if put on valid board location set TileState to played
-            
-            // set basic placeholder tile settings to fit in void in grid - home grid and x and y values
-            let replacementPlaceholderTile : MMWTile = MMWTile()
-            replacementPlaceholderTile.gridHome = self.tileSpriteParent.gridHome
-            replacementPlaceholderTile.gridX = self.tileSpriteParent.gridX
-            replacementPlaceholderTile.gridY = self.tileSpriteParent.gridY
-            tileSpriteParent.gridHome?.grid2DArr[tileSpriteParent.gridX][tileSpriteParent.gridY] = replacementPlaceholderTile
-
-            // set value of snap results grid location to the MMWTile if valid location
-            self.tileSpriteParent.gridHome? = self.tileSpriteParent.gridEnd!
-            self.tileSpriteParent.gridHome?.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid] = self.tileSpriteParent
-            self.tileSpriteParent.gridX = tileSnapResultsXGrid
-            self.tileSpriteParent.gridY = tileSnapResultsYGrid
-            // move tile to snap point
-            self.position.x = (CGFloat)(tileSnapResultsCalculateX + 23.75)  //adjusts 22.5 for tile center in middle of tile
-            self.position.y = 768 - (CGFloat)(tileSnapResultsCalculateY + 8.25) //38 adjusts for tile center and for board not in exact middle when flipping coords
-
-            
-            // IF NOT VALID LOCATION
-            
-            // RETURN TILE SPRITE TO ORIGINAL POSITION
-            let oldPosition = self.tileSpriteParent.gridHome?.sendToGridSquare(self.tileSpriteParent.gridX, squareY: self.tileSpriteParent.gridY)
-            let slide = SKAction.moveTo(oldPosition!, duration:0.3)
-            let scaleUp = SKAction.scaleTo(1.0, duration:0.3)
-            runAction(SKAction.group([slide, scaleUp]))
+            else {
+                
+                if tileAtDropSpot.tileOwner == TileOwner.Player1 {
+                    runAction(actionSound)
+                    self.position = (tileAtDropSpot.gridHome?.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: self.tileSpriteParent.gridX , squareY: self.tileSpriteParent.gridY ))!
+                }
+                print("drop location info: state:\(tileAtDropSpot.tileOwner) letter:\(tileAtDropSpot.tileSprite.tileText)")
+                
+                self.tileSpriteParent.gridEnd = gameGrid // set tileSprite parent (MMWTile) grid to grid snapped to
+                
+                tileSpriteParent.gridXEnd = tileSnapResults.GridSquareX
+                
+                tileSpriteParent.gridYEnd = tileSnapResults.GridSquareY
+                
+                tileSpriteParent.tileState = TileState.Played  // if put on valid board location set TileState to played
+                
+                // set basic placeholder tile settings to fit in void in grid - home grid and x and y values
+                let replacementPlaceholderTile : MMWTile = MMWTile()
+                replacementPlaceholderTile.gridHome = self.tileSpriteParent.gridHome
+                replacementPlaceholderTile.gridX = self.tileSpriteParent.gridX
+                replacementPlaceholderTile.gridY = self.tileSpriteParent.gridY
+                tileSpriteParent.gridHome?.grid2DArr[tileSpriteParent.gridX][tileSpriteParent.gridY] = replacementPlaceholderTile
+                
+                // set value of snap results grid location to the MMWTile if valid location
+                self.tileSpriteParent.gridHome? = self.tileSpriteParent.gridEnd!
+                self.tileSpriteParent.gridHome?.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid] = self.tileSpriteParent
+                self.tileSpriteParent.gridX = tileSnapResultsXGrid
+                self.tileSpriteParent.gridY = tileSnapResultsYGrid
+                // move tile to snap point
+                self.position.x = (CGFloat)(tileSnapResultsCalculateX + 23.75)  //adjusts 22.5 for tile center in middle of tile
+                self.position.y = 768 - (CGFloat)(tileSnapResultsCalculateY + 8.25) //38 adjusts for tile center and for board not in exact middle when flipping coords
+                
+                
+                // IF NOT VALID LOCATION
+                
+                // RETURN TILE SPRITE TO ORIGINAL POSITION
+                let oldPosition = self.tileSpriteParent.gridHome?.sendToGridSquare(self.tileSpriteParent.gridX, squareY: self.tileSpriteParent.gridY)
+                let slide = SKAction.moveTo(oldPosition!, duration:0.3)
+                let scaleUp = SKAction.scaleTo(1.0, duration:0.3)
+                runAction(SKAction.group([slide, scaleUp]))
+            }
+  
         }
+            
+            
     }
     
     func checkForTouches(touches: NSSet) {

@@ -340,7 +340,7 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
                     var starterWordTileArray = mmwGameSceneViewController.checkUndealtTilesForWord(starterWord, letterTileArray:    &mmwGameSceneViewController.tileCollection.mmwTileArray)
                     
                     // SENDS RANDOM WORD TO CENTER OF BOARD
-                    mmwGameSceneViewController.sendWordToBoard(&starterWordTileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 7, yStartSquare: 5, IsHorizonal: true, player: mmwGameSceneViewController.player1)
+                    mmwGameSceneViewController.sendWordToBoard(&starterWordTileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 7, yStartSquare: 5, IsHorizonal: false, player: mmwGameSceneViewController.player0)
 
                     //mmwGameSceneViewController.placeWord(mmwGameSceneViewController.player2, startLocX: 7, startLocY: 12, direction: "H")                    
                     ///////////////////////
@@ -383,7 +383,9 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
                     changePlayerTurn()
                 }
                 
+                
                 tilesRemainingLabel.text = "Tiles Left: \(mmwGameSceneViewController.tileCollection.mmwTileArray.count  )" // " (mmwGameSceneViewController.tileCollection.mmwTileArray.count))"
+                
                 if mmwGameSceneViewController.tileCollection.mmwTileArray.count <= 0 {
                     tilesRemainingLabel.text = "Tiles Left: None"
                 }
@@ -395,7 +397,20 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
                     print("SHOW TILE ARRAYS (undealt and discarded)")
                     mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwTileArray)
                     mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray)
+                    
+                    mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.refillGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: (mmwGameSceneViewController.playerTurn))
+                    
+                    showTilesInSquares(mmwGameSceneViewController.tileCollection) // 'deals' player tiles and shows demo tiles on board for testing
+                    
+//                    self.mmwBoardGrid.refillGridFromArrayRandom(&<#T##arrayIn: [MMWTile]##[MMWTile]#>, numTilesToDeal: 6, playerNum: mmwGameSceneViewController.playerTurn)
+                    
                     changePlayerTurn()
+                    
+                    tilesRemainingLabel.text = "Tiles Left: \(mmwGameSceneViewController.tileCollection.mmwTileArray.count  )" // " (mmwGameSceneViewController.tileCollection.mmwTileArray.count))"
+                    
+                    if mmwGameSceneViewController.tileCollection.mmwTileArray.count <= 0 {
+                        tilesRemainingLabel.text = "Tiles Left: None"
+                    }
                 }
             }
             

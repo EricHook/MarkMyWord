@@ -28,6 +28,7 @@ class MMWGameSceneViewController {
     var numPlayers : Int = 3
     var playerTurn :  Int = 1
     
+    var player0 : Player = Player(_playerID: 0, _playerName: "AI", _playerColor: 0)
     var player1 : Player = Player(_playerID: 1, _playerName: "Abe", _playerColor: 1)
     var player2 : Player = Player(_playerID: 2, _playerName: "Bart", _playerColor: 2)
     // player 3 and 4 objects created but only used in 3 or 4 player games
@@ -299,7 +300,10 @@ class MMWGameSceneViewController {
         }
         
         mmwGameScene.updateGridInScene(mmwGameScene.mmwBoardGrid)
-        mmwGameScene.updateGridInScene(player.playerLetterGrid)
+        if player.playerLetterGrid != nil {
+            self.mmwGameScene.updateGridInScene(player.playerLetterGrid)
+        }
+        
     }
     
     
