@@ -293,6 +293,7 @@ class MMWGameSceneViewController {
             tileInWord.gridHome?.grid2DArr[xLoc][yLoc] = tileInWord
             tileInWord.tileState = TileState.Played
             tileInWord.tileSprite.zPosition = 11
+            tileInWord.tileState = TileState.Locked
             tileInWord.tileSprite.hidden = false
             
             if IsHorizonal { ++xLoc }
@@ -305,6 +306,8 @@ class MMWGameSceneViewController {
         }
         
     }
+    
+
     
     
 //    func getWord (wordSize: Int = 5, letterDrawInput: [MMWTile] = tilesPlayable) {

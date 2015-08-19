@@ -71,7 +71,12 @@ class Grid {
         
         print("<Grid> TEST Grid square[]: x[\(GridSquareX)], y[\(GridSquareY)] and UL corner: x\(GridSquareUpperLeftCornerX), y\(GridSquareUpperLeftCornerY), click: \(locX), locY: \(locY), locYmod: \(locYmod)")
         
-        return (GridSquareX, GridSquareY, GridSquareUpperLeftCornerX, GridSquareUpperLeftCornerY )
+        if GridSquareX < 0 { GridSquareX = 0}
+        if GridSquareX > 14 { GridSquareX = 14}
+        if GridSquareY < 0 { GridSquareY = 0}
+        if GridSquareY > 14 { GridSquareY = 14}
+            
+        return (GridSquareX, GridSquareY, GridSquareUpperLeftCornerX, GridSquareUpperLeftCornerY)
     }
     
     // given a grid and x, y func returns a CGPoint to place sprite
@@ -259,6 +264,15 @@ class Grid {
 //        }
 //        printGrid(self)
 //    }
+    
+    func checkAllNearLockedTiles (xGrid: Int, yGrid: Int) -> Bool{
+        var isLocked: Bool = false
+        if grid2DArr[xGrid+1][yGrid].tileState == TileState.Locked {
+            isLocked = true
+        }
+        return isLocked
+        
+    }
     
     func printGrid () {
         print("<Grid> printGrid \(self.gridName) ")

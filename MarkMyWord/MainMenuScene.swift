@@ -59,11 +59,13 @@ class MainMenuScene: SKScene {
         myLabel.fontSize = 65;
         myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y: (CGRectGetMidY(self.frame) - 50) )
         self.addChild(myLabel)
+        myLabel.zPosition = 100
         
         let playBtn = SKSpriteNode(imageNamed: "PlayButton.png")
         playBtn.position = CGPoint(x: viewSize.width/2, y: viewSize.height/3)
         self.addChild(playBtn)
         playBtn.name = "playBtn"
+        playBtn.zPosition = 100
         //self.scaleMode = .AspectFill
     }
     

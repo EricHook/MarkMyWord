@@ -92,6 +92,8 @@ class LetterTileSprite : SKSpriteNode {
         letterLabel.position = CGPointMake(0, -14)
     
         letterLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
+        
+        letterLabel.zPosition = self.zPosition + 1
     
         self.addChild(letterLabel)
         centerTileToSquare(self)
@@ -264,6 +266,81 @@ class LetterTileSprite : SKSpriteNode {
                 let touchedNode = nodeAtPoint(location)
                 touchedNode.position = location
             }
+            let tileSnapTouch = (touch as UITouch).locationInView(scene!.view)
+            
+            // IF VALID DROP LOCATION
+            if tileSnapTouch.x > 200 && tileSnapTouch.x < 800 {
+                
+                let gameGrid = (scene as! MMWGameScene).getSnapGrid(tileSnapTouch) // .getBoardGrid()
+                let tileSnapResults = gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y))
+                // get snap grid array [[]] positions
+                let tileSnapResultsCalculateX = tileSnapResults.GridSquareUpperLeftCornerX
+                let tileSnapResultsCalculateY = tileSnapResults.GridSquareUpperLeftCornerY - 15.5 // -15.5 on y touch point adjusts snapping too high to lower square
+                let tileSnapResultsXGrid = tileSnapResults.GridSquareX
+                let tileSnapResultsYGrid = tileSnapResults.GridSquareY
+                let tileAtDropSpot : MMWTile = (gameGrid?.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid])!
+                
+                ////////////  TEST FOR TILE RIGHT DROP SPOT
+                
+                //print (" \(gameGrid?.grid2DArr[tileSnapResultsXGrid + 1][tileSnapResultsYGrid].tileState)")
+                
+                // currently state shows as Undealt
+                if (tileSnapResultsXGrid > 0) {
+                    
+                    if gameGrid?.grid2DArr[tileSnapResultsXGrid - 1][tileSnapResultsYGrid].tileState  == TileState.Locked {
+                        var currentXPosition = tileSnapResultsXGrid - 1
+                        print("Tile To Left \( gameGrid?.grid2DArr[tileSnapResultsXGrid - 1][tileSnapResultsYGrid].letterString ) LOCKED")
+
+                    }
+                }
+                if (tileSnapResultsXGrid < 14) {
+                    if gameGrid?.grid2DArr[tileSnapResultsXGrid + 1][tileSnapResultsYGrid].tileState  == TileState.Locked {
+                        print("Tile To Right LOCKED")
+                    }
+                }
+                
+                if (tileSnapResultsYGrid > 0) {
+                    var currentCheckYGridNum = tileSnapResultsYGrid
+                    var stringUpToCheck: String = ""
+                    var stringToAdd : String = ""
+                    while ( (currentCheckYGridNum > 0) && (gameGrid?.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].tileState == TileState.Locked || (gameGrid?.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].tileState == TileState.Played) ) )  {
+                        print("Tile To Top \( gameGrid?.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].letterString ) LOCKED")
+                         // gameGrid?.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].letterString
+                        var letterToAdd : String = "\(gameGrid!.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].letterString)"
+                        
+                        stringToAdd = letterToAdd.stringByAppendingString(stringToAdd)
+                        print ("Up String sub: \(stringToAdd)")
+                        currentCheckYGridNum--
+                    }
+                    print ("Up String: \(stringUpToCheck)")
+                    print ("Up String: \(stringToAdd)")
+                    //print ("Up String: \(stringToAdd.stringByAppendingString(stringUpToCheck))")
+//                    if gameGrid?.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid - 1].tileState  == TileState.Locked {
+//                        print("Tile To Top LOCKED")
+//                    }
+                }
+                
+                if (tileSnapResultsYGrid < 14) {
+                    var currentCheckYGridNum = tileSnapResultsYGrid
+                    while ( (currentCheckYGridNum < 14) && ( (gameGrid?.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum + 1].tileState == TileState.Locked) || (gameGrid?.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum + 1].tileState == TileState.Played) ) ) {
+                        print("Tile To Bottom \( gameGrid?.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum + 1].letterString ) LOCKED")
+                        currentCheckYGridNum++
+                    }
+//                    if gameGrid?.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid + 1].tileState  == TileState.Locked {
+//                        print("Tile To Bottom \( gameGrid?.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid + 1].letterString ) LOCKED")
+//                    }
+                }
+        
+                    //                self.zPosition = 25
+                    //                let returnPosition = (scene as! MMWGameScene).mmwBoardGrid.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: self.tileSpriteParent.gridX, squareY: self.tileSpriteParent.gridY)
+                    //                let slide = SKAction.moveTo(returnPosition, duration:0.3)
+                    //                let scaleUp = SKAction.scaleTo(1.5, duration:0.15)
+                    //                let scaleDown = SKAction.scaleTo(1.0, duration:0.15)
+                    //                runAction(SKAction.group([slide, scaleUp, scaleDown]))
+                
+                
+            }
+            
         }
     }
     
@@ -293,14 +370,13 @@ class LetterTileSprite : SKSpriteNode {
             ////////////  TEST FOR TILE UNDER DROP SPOT
             
             if gameGrid?.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid].tileType == TileType.Letter {
-                print("Tried drop tile on letter")
+                print("Tried drop tile on existing letter")
                 self.zPosition = 25
                 let returnPosition = (scene as! MMWGameScene).mmwBoardGrid.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: self.tileSpriteParent.gridX, squareY: self.tileSpriteParent.gridY)
                 let slide = SKAction.moveTo(returnPosition, duration:0.3)
                 let scaleUp = SKAction.scaleTo(1.5, duration:0.15)
                 let scaleDown = SKAction.scaleTo(1.0, duration:0.15)
                 runAction(SKAction.group([slide, scaleUp, scaleDown]))
-                
             }
             
             else {

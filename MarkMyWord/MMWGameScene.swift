@@ -532,6 +532,10 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         player2View?.playerScoreLabel.zPosition = 1
         player2View?.playerScoreLabel.text = "MMWGameSceneTouchesMoved"
         
+        //var currentGrid =
+        
+        //checkAllNearLockedTiles (xGrid: Int, yGrid: Int)
+        
 //        let path = "/Users/erichook/Desktop/testSmallUTF8.txt" // "~/file.txt"
 //        //let expandedPath = path.stringByExpandingTildeInPath
 //        let data: NSData? = NSData(contentsOfFile: path)
