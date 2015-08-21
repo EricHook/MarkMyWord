@@ -280,55 +280,54 @@ class LetterTileSprite : SKSpriteNode {
                 let tileSnapResultsYGrid = tileSnapResults.GridSquareY
                 let tileAtDropSpot : MMWTile = (gameGrid?.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid])!
                 
-                ////////////  TEST FOR TILE RIGHT DROP SPOT
-                
-                //print (" \(gameGrid?.grid2DArr[tileSnapResultsXGrid + 1][tileSnapResultsYGrid].tileState)")
-                
-                // currently state shows as Undealt
-                if (tileSnapResultsXGrid > 0) {
+                ////////////  TEST FOR ADJACENT TILE PARTIAL WORDS
+                // LEFT
+                if (tileSnapResultsXGrid > 0 && tileSnapResultsXGrid < 14 && tileSnapResultsYGrid > 0 && tileSnapResultsYGrid < 14) {
                     
-                    if gameGrid?.grid2DArr[tileSnapResultsXGrid - 1][tileSnapResultsYGrid].tileState  == TileState.Locked {
-                        var currentXPosition = tileSnapResultsXGrid - 1
-                        print("Tile To Left \( gameGrid?.grid2DArr[tileSnapResultsXGrid - 1][tileSnapResultsYGrid].letterString ) LOCKED")
-
-                    }
-                }
-                if (tileSnapResultsXGrid < 14) {
-                    if gameGrid?.grid2DArr[tileSnapResultsXGrid + 1][tileSnapResultsYGrid].tileState  == TileState.Locked {
-                        print("Tile To Right LOCKED")
-                    }
-                }
-                
-                if (tileSnapResultsYGrid > 0) {
-                    var currentCheckYGridNum = tileSnapResultsYGrid
-                    var stringUpToCheck: String = ""
+                    var currentCheckXGridNum = tileSnapResultsXGrid
                     var stringToAdd : String = ""
-                    while ( (currentCheckYGridNum > 0) && (gameGrid?.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].tileState == TileState.Locked || (gameGrid?.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].tileState == TileState.Played) ) )  {
-                        print("Tile To Top \( gameGrid?.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].letterString ) LOCKED")
-                         // gameGrid?.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].letterString
-                        var letterToAdd : String = "\(gameGrid!.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].letterString)"
-                        
+                    while ( (currentCheckXGridNum > 0) && (gameGrid?.grid2DArr[currentCheckXGridNum - 1][tileSnapResultsYGrid].tileState == TileState.Locked || (gameGrid?.grid2DArr[currentCheckXGridNum - 1][tileSnapResultsYGrid].tileState == TileState.Played) ) )  {
+                        var letterToAdd : String = "\(gameGrid!.grid2DArr[currentCheckXGridNum - 1][tileSnapResultsYGrid].letterString)"
                         stringToAdd = letterToAdd.stringByAppendingString(stringToAdd)
-                        print ("Up String sub: \(stringToAdd)")
+                        currentCheckXGridNum--
+                    }
+                    print ("Left String: \(stringToAdd)+\(self.tileText)")
+                //}
+                //RIGHT
+                //if (tileSnapResultsXGrid < 14) {
+                    currentCheckXGridNum = tileSnapResultsXGrid
+                    stringToAdd = ""
+                    while ( (currentCheckXGridNum < 14) && (gameGrid?.grid2DArr[currentCheckXGridNum + 1][tileSnapResultsYGrid].tileState == TileState.Locked || (gameGrid?.grid2DArr[currentCheckXGridNum + 1][tileSnapResultsYGrid].tileState == TileState.Played) ) )  {
+                        var letterToAdd : String = "\(gameGrid!.grid2DArr[currentCheckXGridNum + 1][tileSnapResultsYGrid].letterString)"
+                        stringToAdd = stringToAdd.stringByAppendingString(letterToAdd)
+                        currentCheckXGridNum++
+                    }
+                    print ("Right String: \(self.tileText)+\(stringToAdd)")
+                //}
+                //UP
+                //if (tileSnapResultsYGrid > 0) {
+                    var currentCheckYGridNum = tileSnapResultsYGrid
+                    stringToAdd = ""
+                    while ( (currentCheckYGridNum > 0) && (gameGrid?.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].tileState == TileState.Locked || (gameGrid?.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].tileState == TileState.Played) ) )  {
+                        //print("Tile To Top \( gameGrid?.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].letterString ) LOCKED")
+                        var letterToAdd : String = "\(gameGrid!.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].letterString)"
+                        stringToAdd = letterToAdd.stringByAppendingString(stringToAdd)
+                        //print ("Up String sub: \(stringToAdd)")
                         currentCheckYGridNum--
                     }
-                    print ("Up String: \(stringUpToCheck)")
-                    print ("Up String: \(stringToAdd)")
-                    //print ("Up String: \(stringToAdd.stringByAppendingString(stringUpToCheck))")
-//                    if gameGrid?.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid - 1].tileState  == TileState.Locked {
-//                        print("Tile To Top LOCKED")
-//                    }
-                }
-                
-                if (tileSnapResultsYGrid < 14) {
-                    var currentCheckYGridNum = tileSnapResultsYGrid
+                    print ("Up String: \(stringToAdd)+\(self.tileText)")
+                //}
+                //DOWN
+                //if (tileSnapResultsYGrid < 14) {
+                    currentCheckYGridNum = tileSnapResultsYGrid
+                    stringToAdd = ""
                     while ( (currentCheckYGridNum < 14) && ( (gameGrid?.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum + 1].tileState == TileState.Locked) || (gameGrid?.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum + 1].tileState == TileState.Played) ) ) {
-                        print("Tile To Bottom \( gameGrid?.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum + 1].letterString ) LOCKED")
+                        var letterToAdd : String = "\(gameGrid!.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum + 1].letterString)"
+                        stringToAdd = stringToAdd.stringByAppendingString(letterToAdd)
                         currentCheckYGridNum++
                     }
-//                    if gameGrid?.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid + 1].tileState  == TileState.Locked {
-//                        print("Tile To Bottom \( gameGrid?.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid + 1].letterString ) LOCKED")
-//                    }
+                    print ("Down String: \(self.tileText)+\(stringToAdd)")
+                    
                 }
         
                     //                self.zPosition = 25
@@ -366,7 +365,10 @@ class LetterTileSprite : SKSpriteNode {
             let tileSnapResultsCalculateY = tileSnapResults.GridSquareUpperLeftCornerY - 15.5 // -15.5 on y touch point adjusts snapping too high to lower square
             let tileSnapResultsXGrid = tileSnapResults.GridSquareX
             let tileSnapResultsYGrid = tileSnapResults.GridSquareY
+            
+            // ERROR IF DRAG TO FAR RIGHT _ INDEX OUT OF RANGE !!! ///////////
             let tileAtDropSpot : MMWTile = (gameGrid?.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid])!
+            
             ////////////  TEST FOR TILE UNDER DROP SPOT
             
             if gameGrid?.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid].tileType == TileType.Letter {
