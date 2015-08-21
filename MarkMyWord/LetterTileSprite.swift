@@ -269,7 +269,7 @@ class LetterTileSprite : SKSpriteNode {
             let tileSnapTouch = (touch as UITouch).locationInView(scene!.view)
             
             // IF VALID DROP LOCATION
-            if tileSnapTouch.x > 200 && tileSnapTouch.x < 800 {
+            if tileSnapTouch.x > 165 && tileSnapTouch.x < 850 {
                 
                 let gameGrid = (scene as! MMWGameScene).getSnapGrid(tileSnapTouch) // .getBoardGrid()
                 let tileSnapResults = gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y))
@@ -282,8 +282,8 @@ class LetterTileSprite : SKSpriteNode {
                 
                 ////////////  TEST FOR ADJACENT TILE PARTIAL WORDS
                 // LEFT
-                if (tileSnapResultsXGrid > 0 && tileSnapResultsXGrid < 14 && tileSnapResultsYGrid > 0 && tileSnapResultsYGrid < 14) {
-                    
+                if (tileSnapResultsXGrid >= 0 && tileSnapResultsXGrid < 15 && tileSnapResultsYGrid >= 0 && tileSnapResultsYGrid < 15) {
+                    print ("..IN CHECK..")
                     var currentCheckXGridNum = tileSnapResultsXGrid
                     var stringToAdd : String = ""
                     while ( (currentCheckXGridNum > 0) && (gameGrid?.grid2DArr[currentCheckXGridNum - 1][tileSnapResultsYGrid].tileState == TileState.Locked || (gameGrid?.grid2DArr[currentCheckXGridNum - 1][tileSnapResultsYGrid].tileState == TileState.Played) ) )  {
