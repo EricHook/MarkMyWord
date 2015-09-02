@@ -10,7 +10,7 @@ import SpriteKit
 import UIKit
 import CoreMotion
 
-class MMWGameScene: SKScene, SKPhysicsContactDelegate {
+class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
     
     var mmwGameSceneViewController : MMWGameSceneViewController!
 
@@ -38,7 +38,7 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
     var topDisplayLabel2    = SKLabelNode(fontNamed: FontHUDName)
     
     let playButton = SKSpriteNode(imageNamed: "PlayButton.png")
-    let newTilesButton = SKSpriteNode(imageNamed: "NewTilesButton.png")
+    var newTilesButton = SKSpriteNode(imageNamed: "NewTilesButton.png")
     let passButton = SKSpriteNode(imageNamed: "PassButton.png")
     let pauseButton = SKSpriteNode(imageNamed: "PauseButton.png")
     let optionsButton = SKSpriteNode(imageNamed: "OptionsButton.png")
@@ -123,7 +123,6 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
         backgroundNode.size = viewSize;
         addChild(backgroundNode)
 
-
         player1View = addPlayerView(1, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player1))
         player2View = addPlayerView(2, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player2))
         if mmwGameSceneViewController.numPlayers > 2 {
@@ -135,8 +134,8 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
 
         addChild(foregroundNode)
         
-        timeRemainingHUD(30)
-        tilesRemainingHUD(777)
+        timeRemainingHUD(30)  // default set to standard time remaining
+        tilesRemainingHUD(777) // default test number to tiles remaining
         partialWordHUD("ABCDEFG", isWord: false)  // "ABCDEFGHIJKLMNO", isWord: false)
         topDisplayHUD("Player 1 plays \"CATATONIC\" for 14 points") // ("Turn: Player 1, Special Letter Bonus In Effect, 2x Point Bonus")
 
@@ -162,9 +161,7 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
 
 //        // TEST place letter from playable letters on board
 //        mmwGameSceneViewController.dealLetter( &mmwGameSceneViewController.tileCollection.mmwTileArray[99], gridToPlaceLetter: mmwBoardGrid, xSquare: 7, ySquare: 5)
-
 //        mmwGameSceneViewController.dealLetter( &mmwGameSceneViewController.tileCollection.mmwTileArray[99], gridToPlaceLetter: mmwBoardGrid, xSquare: 7, ySquare: 6)
-
 //        mmwGameSceneViewController.dealLetter( &mmwGameSceneViewController.tileCollection.mmwTileArray[99], gridToPlaceLetter: mmwBoardGrid, xSquare: 7, ySquare: 7)
 
         // ADD ALL TILES TO Scene - they start as invisible
@@ -334,20 +331,18 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
             if(_node.name == "playButton"){
                 if userInteractionEnabled {
                     print(">>> PLAY BUTTON PRESSED >>>")
-                    runAction(actionSound)
+//                    runAction(actionSound)
 
                     let starterWord = mmwGameSceneViewController.getRandomWord()
-                    var starterWordTileArray = mmwGameSceneViewController.checkUndealtTilesForWord(starterWord, letterTileArray:    &mmwGameSceneViewController.tileCollection.mmwTileArray)
+                    var starterWordTileArray = mmwGameSceneViewController.checkUndealtTilesForWord(starterWord, letterTileArray: &mmwGameSceneViewController.tileCollection.mmwTileArray)
                     
                     // SENDS RANDOM WORD TO CENTER OF BOARD
                     mmwGameSceneViewController.sendWordToBoard(&starterWordTileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 7, yStartSquare: 5, IsHorizonal: false, player: mmwGameSceneViewController.player0)
 
                     //mmwGameSceneViewController.placeWord(mmwGameSceneViewController.player2, startLocX: 7, startLocY: 12, direction: "H")                    
                     ///////////////////////
-
 //mmwGameSceneViewController.mmwGameScene.mmwBoardGrid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: (mmwGameSceneViewController.playerTurn))
 //                    self.mmwBoardGrid.dealGridFromArraySpecificTile(&mmwGameSceneViewController.tileCollection.mmwTileArray, tileArrayLocation: 49, playerNum: 0, squareX: 7, squareY: 5)
-                    
                     /////////////////////////////
 
                     mmwPlayer1Grid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: 1)
@@ -375,15 +370,10 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
                 if userInteractionEnabled {
                     print(">>> NEW TILES BUTTON PRESSED >>>")
                     runAction(actionSound)
-                    
                     mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: (mmwGameSceneViewController.playerTurn))
-
                     showTilesInSquares(mmwGameSceneViewController.tileCollection) // 'deals' player tiles and shows demo tiles on board for testing
-                    
                     changePlayerTurn()
                 }
-                
-                
                 tilesRemainingLabel.text = "Tiles Left: \(mmwGameSceneViewController.tileCollection.mmwTileArray.count  )" // " (mmwGameSceneViewController.tileCollection.mmwTileArray.count))"
                 
                 if mmwGameSceneViewController.tileCollection.mmwTileArray.count <= 0 {
@@ -478,6 +468,7 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
             mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.makeTilesInGridInteractive(true)
             mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerView.playerViewBeginTurn()
         }
+        newTileButtonOn()
     }
     
     func getSnapGrid (testSpot : CGPoint) -> Grid? {
@@ -544,6 +535,16 @@ class MMWGameScene: SKScene, SKPhysicsContactDelegate {
 //            let content = NSString(data: fileData, encoding:NSUTF8StringEncoding) as! String
 //            print(content) // prints the content of data.txt
 //        }
+    }
+    
+    func newTileButtonOn () {
+        self.newTilesButton.alpha = 1.0
+        self.newTilesButton.userInteractionEnabled = false
+    }
+    
+    func newTileButtonOff () {
+        self.newTilesButton.alpha = 0.5
+        self.newTilesButton.userInteractionEnabled = true
     }
     
     func presentMenuScene() {

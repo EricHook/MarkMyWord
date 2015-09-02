@@ -6,9 +6,7 @@
 //  Copyright (c) 2015 Hook Studios. All rights reserved.
 //
 
-
 import SpriteKit
-
 
 enum TileType: Int {
     case Unknown = 0, Letter, Blank, ColorBomb, DirectionBomb, Blocking, Placeholder

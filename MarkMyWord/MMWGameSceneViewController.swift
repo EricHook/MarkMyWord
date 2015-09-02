@@ -27,6 +27,7 @@ class MMWGameSceneViewController {
     var tilesPlayable : [MMWTile]
     var numPlayers : Int = 3
     var playerTurn :  Int = 1
+    var minWordSize = 3
     
     var player0 : Player = Player(_playerID: 0, _playerName: "AI", _playerColor: 0)
     var player1 : Player = Player(_playerID: 1, _playerName: "Abe", _playerColor: 1)
@@ -47,6 +48,7 @@ class MMWGameSceneViewController {
         mmwGameScene.buildGameView()
         setUpPlayers() // add player to view, match player to grid, fill grid with starter tiles and colorize to player color
     }
+
  
     func setUpPlayers () {
         mmwGameScene.setViewController(self)
@@ -145,8 +147,39 @@ class MMWGameSceneViewController {
         }
         return String("Random getFirstWord () Word: XYZ")
     }
-
     
+    func checkWholeWordMatch(wordToCheck: String) -> Bool {
+        //let wordToReturn : String
+        if let aStreamReader = StreamReader(file: "enable1WordList") { // "/Users/erichook/Desktop/enable1WordList.txt") {
+            var numLines = 0
+            while var line = aStreamReader.nextLine() {
+                line = line.stringByReplacingOccurrencesOfString("\r", withString: "") // remove /r character at end of line
+                if wordToCheck.caseInsensitiveCompare(line) == NSComparisonResult.OrderedSame && wordToCheck.characters.count >= self.minWordSize  {
+                    print("MATCH ... \(line)") // !!! NEED TO LOCK LETTERS HERE ??? currently lock in LetterTileSprite
+                    return true
+                }
+                ++numLines
+            }
+       }
+        return false
+    }
+    
+    func checkPartialWordMatch(wordToCheck: String) -> Bool {
+        //let wordToReturn : String
+        if let aStreamReader = StreamReader(file: "3-LetterWords") { // "/Users/erichook/Desktop/enable1WordList.txt") {
+            var numLines = 0
+            while var line = aStreamReader.nextLine() {
+                line = line.stringByReplacingOccurrencesOfString("\r", withString: "") // remove /r character at end of line
+                if wordToCheck.caseInsensitiveCompare(line) == NSComparisonResult.OrderedSame {
+                    print("MATCH ... \(line)") // !!! NEED TO LOCK LETTERS HERE ??? currently lock in LetterTileSprite
+                    return true
+                }
+                ++numLines
+            }
+        }
+        return false
+    }
+
     func getWordLetters () {
         
     }
@@ -157,7 +190,6 @@ class MMWGameSceneViewController {
         var tilesToBoard = [MMWTile]()
         let wordToCheckArr = Array(string.characters)
         var wordToCheckArrCount = wordToCheckArr.count
-
         var foundLetterInPass = false
         var tileArrayNumber = 0
         var lettersToPlayCount = 0
