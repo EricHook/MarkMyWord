@@ -21,11 +21,13 @@ class PlayerView: SKSpriteNode {
         let playerBGTex : SKTexture = SKTexture(imageNamed: "PlayerBGTest309x660")
         let playerTileGridTex : SKTexture = SKTexture(imageNamed: "MMWPlayerTilesGrid")
         let playerTilesPlaqueTex : SKTexture = SKTexture(imageNamed: "MMWPlayerTilesPlaque")
+        let yellowPlayerTex : SKTexture = SKTexture(imageNamed: "yellowPlayer.png")
         self.mmwPlayer = mmwPlayer
         let playerColor : UIColor =   gameColors[mmwPlayer.playerColor]
         
 //        let playerBGTall : SKSpriteNode = SKSpriteNode(texture: playerBGTallTex, color: SKColor.whiteColor(), size: CGSizeMake(playerBGTallTex.size().width/2, playerBGTallTex.size().height/2) )
 //        let playerBG : SKSpriteNode = SKSpriteNode(texture: playerBGTex, color: SKColor.whiteColor(), size: CGSizeMake(playerBGTex.size().width/2, playerBGTex.size().height/2) )
+        let yellowPlayerSprite : SKSpriteNode = SKSpriteNode(texture: yellowPlayerTex, color: playerColor, size: CGSizeMake(yellowPlayerTex.size().width/2, yellowPlayerTex.size().height/2) )
         let playerTileGrid : SKSpriteNode = SKSpriteNode(texture: playerTileGridTex, color: playerColor, size: CGSizeMake(playerTileGridTex.size().width/2, playerTileGridTex.size().height/2) )
         let playerTilesPlaque : SKSpriteNode = SKSpriteNode(texture: playerTilesPlaqueTex, color: playerColor, size: CGSizeMake(playerTilesPlaqueTex.size().width/2, playerTilesPlaqueTex.size().height/2) )
         let playerScore : Int = 0
@@ -47,6 +49,14 @@ class PlayerView: SKSpriteNode {
 //        playerBG.colorBlendFactor = CGFloat(0.1)
 //        playerBG.alpha = 1.0
 //        addChild(playerBG)
+        
+        yellowPlayerSprite.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+        yellowPlayerSprite.position = CGPoint(x: size.width/2.0, y: 150.0)  // 337.0)
+        yellowPlayerSprite.userInteractionEnabled = false
+        //yellowPlayerSprite.colorBlendFactor = CGFloat(1.0)
+        yellowPlayerSprite.alpha = 1.0
+        yellowPlayerSprite.zPosition = 1
+        addChild(yellowPlayerSprite)
 
         
         playerNameLabel = SKLabelNode(fontNamed: FontHUDName) // SKLabelNode(fontNamed:"Chalkduster")
@@ -72,8 +82,7 @@ class PlayerView: SKSpriteNode {
         playerTileGrid.alpha = 0.75
         playerTileGrid.zPosition = 1
         addChild(playerTileGrid)
-        
-        
+
         playerTilesPlaque.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         playerTilesPlaque.position = CGPoint(x: size.width/2.0, y: 152.0) // 482.0)
         playerTilesPlaque.userInteractionEnabled = false

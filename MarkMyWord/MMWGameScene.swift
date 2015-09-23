@@ -45,8 +45,8 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
     
     var placeholderTexture : SKTexture = SKTexture(imageNamed: "TileBackTest90x90")
     
-    let actionSound = SKAction.playSoundFileNamed("37Bronk.mp3", waitForCompletion: true)
-    let dealTilesSound = SKAction.playSoundFileNamed("PLINK.mp3", waitForCompletion: true)
+    let actionSound = SKAction.playSoundFileNamed("1007.WAV", waitForCompletion: true)
+    let dealTilesSound = SKAction.playSoundFileNamed("1003.WAV", waitForCompletion: true)
 
     private var timer: NSTimer?
     private var isPaused: Bool = false
@@ -136,8 +136,12 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
         
         timeRemainingHUD(30)  // default set to standard time remaining
         tilesRemainingHUD(777) // default test number to tiles remaining
-        partialWordHUD("ABCDEFG", isWord: false)  // "ABCDEFGHIJKLMNO", isWord: false)
-        topDisplayHUD("Player 1 plays \"CATATONIC\" for 14 points") // ("Turn: Player 1, Special Letter Bonus In Effect, 2x Point Bonus")
+        
+        //partialWordHUD("Begin ... ", isWord: false)  // "ABCDEFGHIJKLMNO", isWord: false)
+        partialWordHUD("Begin ... ")
+        
+        topDisplayHUD("Welcome to Mark My Word") // ("Turn: Player 1, Special Letter Bonus In Effect, 2x Point Bonus")
+        topDisplayHUD2("topDisplayHUD2")
 
         playButton.position = CGPoint(x: viewSize.width * 0.5, y: viewSize.height * 0.5)
         playButton.name = "playButton"
@@ -145,18 +149,22 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
 
         newTilesButton.position = CGPoint(x: viewSize.width * 0.0751, y: viewSize.height * 0.102)
         newTilesButton.name = "newTilesButton"
+        newTilesButton.userInteractionEnabled = true
         self.addChild(newTilesButton)
 
         passButton.position = CGPoint(x: viewSize.width * 0.0752, y: viewSize.height * 0.04)
         passButton.name = "passButton"
+        passButton.userInteractionEnabled = true
         self.addChild(passButton)
 
         pauseButton.position = CGPoint(x: viewSize.width * 0.9228, y: viewSize.height * 0.102)
         pauseButton.name = "pauseButton"
+        pauseButton.userInteractionEnabled = true
         self.addChild(pauseButton)
 
         optionsButton.position = CGPoint(x: viewSize.width * 0.9228, y: viewSize.height * 0.04)
         optionsButton.name = "optionsButton"
+        optionsButton.userInteractionEnabled = true
         self.addChild(optionsButton)
 
 //        // TEST place letter from playable letters on board
@@ -203,21 +211,30 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
         showAllGridTiles(mmwBoardGrid)
     }
 
-    func partialWordHUD (letters : String, isWord : Bool)  -> SKLabelNode {
-        var isPartial : String
-        if isWord {
-            isPartial = ""
-        }
-        else {
-            isPartial = "not"
-        }
-        partialWordLabel.text = "\(letters) is \(isPartial) a partial word"
+    func partialWordHUD (letters : String)  -> SKLabelNode {
+        partialWordLabel.text = "\(letters)"
         partialWordLabel.fontSize = FontHUDSize
         partialWordLabel.position = CGPointMake(size.width/2.0, 3)
         partialWordLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
         addChild(partialWordLabel)
         return partialWordLabel
     }
+    
+//    func partialWordHUD (letters : String, isWord : Bool)  -> SKLabelNode {
+//        var isPartial : String
+//        if isWord {
+//            isPartial = ""
+//        }
+//        else {
+//            isPartial = "not"
+//        }
+//        partialWordLabel.text = "\(letters) is \(isPartial) a partial word"
+//        partialWordLabel.fontSize = FontHUDSize
+//        partialWordLabel.position = CGPointMake(size.width/2.0, 3)
+//        partialWordLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
+//        addChild(partialWordLabel)
+//        return partialWordLabel
+//    }
     
     func timeRemainingHUD (timeAmount: Int)  -> SKLabelNode {
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
@@ -253,7 +270,7 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
         topDisplayLabel.zPosition = 1
         topDisplayLabel.text = message
         topDisplayLabel.fontSize = FontHUDSize
-        topDisplayLabel.position = CGPointMake(size.width/2.0, 744.0) // CGPointMake(size.width/2.0, 753.0) // 1 of 2 top lines
+        topDisplayLabel.position = CGPointMake(size.width/2.0, 753.0) // CGPointMake(size.width/2.0, 753.0) // 1 of 2 top lines
         topDisplayLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
         addChild(topDisplayLabel)
         return topDisplayLabel
@@ -357,12 +374,15 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
                     }
                     
                     showTilesInSquares(mmwGameSceneViewController.tileCollection) // 'deals' player tiles
-                    
-                    _node.removeFromParent() // gets rid of play button in middle of screen  
-                    
+                    _node.removeFromParent() // gets rid of play button in middle of screen
                     tilesRemainingLabel.text = "Tiles Left: \(mmwGameSceneViewController.tileCollection.mmwTileArray.count  )"
-                    
                     mmwPlayer1Grid.makeTilesInGridInteractive(true)
+                    // buttons inactive until "play" is pressed
+                    newTilesButton.userInteractionEnabled = false
+                    passButton.userInteractionEnabled = false
+                    pauseButton.userInteractionEnabled = false
+                    optionsButton.userInteractionEnabled = false
+ 
                 }
             }
             
@@ -517,14 +537,12 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
 //    }
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        tilesRemainingLabel.zPosition = 1
-        tilesRemainingLabel.text = "TilesRemaing: xxx"
+        //tilesRemainingLabel.zPosition = 1
+        //tilesRemainingLabel.text = "TilesRemaing: xxx"
         
-        player2View?.playerScoreLabel.zPosition = 1
-        player2View?.playerScoreLabel.text = "MMWGameSceneTouchesMoved"
-        
-        //var currentGrid =
-        
+        //player2View?.playerScoreLabel.zPosition = 1
+        //player2View?.playerScoreLabel.text = "MMWGameSceneTouchesMoved"
+ 
         //checkAllNearLockedTiles (xGrid: Int, yGrid: Int)
         
 //        let path = "/Users/erichook/Desktop/testSmallUTF8.txt" // "~/file.txt"
@@ -545,6 +563,10 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
     func newTileButtonOff () {
         self.newTilesButton.alpha = 0.5
         self.newTilesButton.userInteractionEnabled = true
+    }
+    
+    func updatePartialWordFeedback (updatedText: String) {
+        partialWordLabel.text = updatedText
     }
     
     func presentMenuScene() {

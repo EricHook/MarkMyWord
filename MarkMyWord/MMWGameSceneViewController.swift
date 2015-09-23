@@ -28,7 +28,6 @@ class MMWGameSceneViewController {
     var numPlayers : Int = 3
     var playerTurn :  Int = 1
     var minWordSize = 3
-    
     var player0 : Player = Player(_playerID: 0, _playerName: "AI", _playerColor: 0)
     var player1 : Player = Player(_playerID: 1, _playerName: "Abe", _playerColor: 1)
     var player2 : Player = Player(_playerID: 2, _playerName: "Bart", _playerColor: 2)
@@ -49,7 +48,6 @@ class MMWGameSceneViewController {
         setUpPlayers() // add player to view, match player to grid, fill grid with starter tiles and colorize to player color
     }
 
- 
     func setUpPlayers () {
         mmwGameScene.setViewController(self)
         if numPlayers == 2 {
@@ -115,9 +113,7 @@ class MMWGameSceneViewController {
             var numLines = 0
             while let line = aStreamReader.nextLine() {
                 print(line)
-                //                            if line == "be\r" {
-                //                                break
-                //                            }
+                // if line == "be\r" { break }
                 ++numLines
             }
             print("Number of Lines in Word List: " + String(numLines) )
@@ -183,7 +179,7 @@ class MMWGameSceneViewController {
     func getWordLetters () {
         
     }
-    
+
     func checkUndealtTilesForWord (wordToCheck: String, inout letterTileArray: [MMWTile]) -> [MMWTile]? {
         let string = wordToCheck // "dryad" //wordToCheck // can place test "STRING" in this value for testing purposed
         var lettersToPlay = [Int]()
@@ -234,6 +230,7 @@ class MMWGameSceneViewController {
             //letterTileArray.removeAtIndex(arrNum)
         }
         ////////////////////////////////////////////
+        
         tileArrayNumber = 0
         for letter in wordToCheckArr {
             for tile in letterTileArray {
@@ -300,7 +297,6 @@ class MMWGameSceneViewController {
         tileToPlace.gridYEnd = startLocY
         
         setTileOwner(&tileToPlace, player: player)
-        //tileToPlace.gridHome?.sendToGridSquare(tileToPlace.gridX, squareY: tileToPlace.gridY)
         tileToPlace.tileSprite.tileLocation = tileToPlace.gridHome!.sendToGridSquare(tileToPlace.gridX, squareY: tileToPlace.gridY)
         tileToPlace.tileState = TileState.Played
         tileToPlace.gridHome?.grid2DArr[tileToPlace.gridX][tileToPlace.gridY] = tileToPlace
@@ -338,35 +334,7 @@ class MMWGameSceneViewController {
         }
         
     }
-    
 
-    
-    
-//    func getWord (wordSize: Int = 5, letterDrawInput: [MMWTile] = tilesPlayable) {
-//
-//    }
-    
-//    func makeTwoPlayers () {
-//        mmwGameScene.addPlayerView(1, playerView: PlayerView(mmwPlayer: player1))
-//        player1.setPlayerTilesGrid(&mmwGameScene.mmwPlayer1Grid!)
-//        tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer1Grid!, tilesFrom: &tileCollection.mmwTileArray, changeColorTo: 1)
-//        mmwGameScene.addPlayerView(2, playerView: PlayerView(mmwPlayer: player2))
-//        player2.setPlayerTilesGrid(&mmwGameScene.mmwPlayer2Grid!)
-//        tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer2Grid!, tilesFrom: &tileCollection.mmwTileArray, changeColorTo: 2)
-//        tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwBoardGrid!, tilesFrom: &tileCollection.mmwTileArray, changeColorTo: 0)
-//    }
-//    func makeThreePlayers () {
-//        makeTwoPlayers()
-//        mmwGameScene.addPlayerView(3, playerView: PlayerView(mmwPlayer: player3))
-//        player3.setPlayerTilesGrid(&mmwGameScene.mmwPlayer3Grid!)
-//        tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer3Grid!, tilesFrom: &tileCollection.mmwTileArray, changeColorTo: 3)
-//    }
-//    func makeFourPlayers () {
-//        makeThreePlayers()
-//        mmwGameScene.addPlayerView(4, playerView: PlayerView(mmwPlayer: player4))
-//        player4.setPlayerTilesGrid(&mmwGameScene.mmwPlayer4Grid!)
-//        tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer4Grid!, tilesFrom: &tileCollection.mmwTileArray, changeColorTo: 4)
-//    }
 
 //    func presentMMWScene() {
 //
@@ -410,7 +378,7 @@ class MMWGameSceneViewController {
 //        mmwScene.changePlayerScore(mmwScene.player2View!, player: mmwScene.player2!, score: 2468)
 //    }
 
-    //func fillTiles(inout tilesFrom: [MMWTile], inout tilesTo: [MMWTile], changeColorTo: UIColor) {
+//    func fillTiles(inout tilesFrom: [MMWTile], inout tilesTo: [MMWTile], changeColorTo: UIColor) {
 //        let originalTilesGet = numTilesGet
 //        while numTilesGet > 0 {
 //            let numTiles : UInt32 = UInt32(tilesFrom.count - 1)

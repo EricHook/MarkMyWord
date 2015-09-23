@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B808A42E1B9A0C000070A1A6 /* Trie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B808A42D1B9A0C000070A1A6 /* Trie.swift */; };
+		B808A4301B9A662F0070A1A6 /* yellowPlayer.png in Resources */ = {isa = PBXBuildFile; fileRef = B808A42F1B9A662F0070A1A6 /* yellowPlayer.png */; };
 		B820241F1B65BFD0004E413A /* StreamReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B820241E1B65BFD0004E413A /* StreamReader.swift */; };
 		B82786131B0556E000916E20 /* Seat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82786121B0556E000916E20 /* Seat.swift */; };
 		B82786151B05585D00916E20 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82786141B05585D00916E20 /* Player.swift */; };
@@ -329,6 +331,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B808A42D1B9A0C000070A1A6 /* Trie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trie.swift; sourceTree = "<group>"; };
+		B808A42F1B9A662F0070A1A6 /* yellowPlayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowPlayer.png; sourceTree = "<group>"; };
 		B820241E1B65BFD0004E413A /* StreamReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamReader.swift; sourceTree = "<group>"; };
 		B82786121B0556E000916E20 /* Seat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Seat.swift; sourceTree = "<group>"; };
 		B82786141B05585D00916E20 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -1006,6 +1010,7 @@
 		B8C900771B01404500C72745 /* player */ = {
 			isa = PBXGroup;
 			children = (
+				B808A42F1B9A662F0070A1A6 /* yellowPlayer.png */,
 				B8C9007A1B014EB900C72745 /* MMWPlayerTilesPlaque.png */,
 				B8C900781B01405600C72745 /* MMWPlayerTilesGrid.png */,
 				B8D130E81AFD668100865982 /* PlayerBG01.jpg */,
@@ -1097,6 +1102,7 @@
 				B8FA8FA11AE9DC93007CF07C /* GameData.swift */,
 				B8CB742E1AF9260400AE5F40 /* Grid.swift */,
 				B820241E1B65BFD0004E413A /* StreamReader.swift */,
+				B808A42D1B9A0C000070A1A6 /* Trie.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1568,6 +1574,7 @@
 				B8B2947E1AF06146003F789F /* MarkMyWordBGiPadMod@2x.jpg in Resources */,
 				B8DA7ED71AE13784003FE2C6 /* MarkMyWordBG2048x1536.jpg in Resources */,
 				B8B2CADC1ADADD9100C9DEE7 /* 8.2-LetterWords.txt in Resources */,
+				B808A4301B9A662F0070A1A6 /* yellowPlayer.png in Resources */,
 				B8A4560B1AF171B800C0D83B /* player2_beastmaster_sel@2x.png in Resources */,
 				B8C900721B0124C500C72745 /* appIcon60x60_MMW.png in Resources */,
 				B8A455991AF171B800C0D83B /* activateEnergy.png in Resources */,
@@ -1639,6 +1646,7 @@
 				B8F264F61AE19EF50072B9D4 /* TetrisCell.swift in Sources */,
 				B8CB74291AF803BD00AE5F40 /* GridObject.swift in Sources */,
 				B8FA8FA21AE9DC93007CF07C /* GameData.swift in Sources */,
+				B808A42E1B9A0C000070A1A6 /* Trie.swift in Sources */,
 				B8FA8FA91AE9DDB5007CF07C /* Config.swift in Sources */,
 				B8A455171AF15A1400C0D83B /* GameViewController.swift in Sources */,
 				B8B294801AF064B7003F789F /* HUD.swift in Sources */,

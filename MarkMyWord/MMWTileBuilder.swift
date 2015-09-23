@@ -316,7 +316,7 @@ class MMWTileBuilder {
     func displayTileArrayValues (tileArray: [MMWTile]) {
         print( "MMWTileBuilder displayTileArrayValues (tileArray: [MMWTile]) ...")
         for tile in tileArray {
-            print("\(tile.letterString)", appendNewLine: false)
+            print("\(tile.letterString)")
         }
     }
     
