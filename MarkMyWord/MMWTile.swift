@@ -33,7 +33,9 @@ enum TileOwner: Int {
 }
 
 class MMWTile {
+    var mmwGameSceneViewController : MMWGameSceneViewController?
     var tileSprite : LetterTileSprite!
+    var tileBuilder : MMWTileBuilder? = nil
     var tileType: TileType = TileType.Unknown
     var spritename: SpriteName = SpriteName.Blank
     var gridLocation: GridLocation = GridLocation.Undealt
@@ -88,6 +90,10 @@ class MMWTile {
         self.tileSprite.zPosition = 1
         self.tileSprite.tileSpriteParent = self
         self.tileSprite.hidden = false
+    }
+    
+    func setViewController (mmwGameSceneController: MMWGameSceneViewController) {
+        self.mmwGameSceneViewController = mmwGameSceneController
     }
 
 //    static func randomTileType() -> TileType {

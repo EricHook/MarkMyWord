@@ -23,7 +23,7 @@ class MMWGameSceneViewController {
     
     var mmwGameScene: MMWGameScene!
     var viewSize : CGSize!
-    var tileCollection : MMWTileBuilder = MMWTileBuilder()
+    var tileCollection : MMWTileBuilder
     var tilesPlayable : [MMWTile]
     var numPlayers : Int = 3
     var playerTurn :  Int = 1
@@ -39,10 +39,13 @@ class MMWGameSceneViewController {
 
     init (size: CGSize) {
         viewSize = size
-        mmwGameScene = MMWGameScene(size: viewSize)
+        tileCollection = MMWTileBuilder()
+                mmwGameScene = MMWGameScene(size: viewSize)
         playerArray  = [player1, player2, player3, player4]
         tilesPlayable = tileCollection.mmwTileArray
         mmwGameScene.setViewController(self)
+        tileCollection.setViewController(self)
+
         mmwGameScene.setGrids() // sets tile grid positions, size of square, number of squares and position on screen for each grid possible
         mmwGameScene.buildGameView()
         setUpPlayers() // add player to view, match player to grid, fill grid with starter tiles and colorize to player color
@@ -118,7 +121,11 @@ class MMWGameSceneViewController {
             }
             print("Number of Lines in Word List: " + String(numLines) )
             
-            let randomWordNum : Int = Int(arc4random()) % (numLines - 1)
+            let randomWordNum = Int(arc4random_uniform((UInt32(numLines-1))) )
+            
+            //let randomWordNum : Int = randNum % (numLines - 2)
+            //let randomWordNum : Int = 22
+
             
             print("Random Word Line Number: " + String(randomWordNum) )
             
@@ -177,6 +184,10 @@ class MMWGameSceneViewController {
     }
 
     func getWordLetters () {
+        
+    }
+    
+    func highlightWord (wordToCheck: String, inout letterTileArray: [MMWTile]){
         
     }
 
@@ -320,7 +331,7 @@ class MMWGameSceneViewController {
             tileInWord.gridYEnd = yLoc
             tileInWord.gridHome?.grid2DArr[xLoc][yLoc] = tileInWord
             tileInWord.tileState = TileState.Played
-            tileInWord.tileSprite.zPosition = 11
+            tileInWord.tileSprite.zPosition = 0
             tileInWord.tileState = TileState.Locked
             tileInWord.tileSprite.hidden = false
             

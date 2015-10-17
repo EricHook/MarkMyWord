@@ -1,29 +1,13 @@
-//
-//  Trei.swift
-//  MarkMyWord
-//
-//  Created by Eric Hook on 9/4/15.
-//  Copyright © 2015 Hook Studios. All rights reserved.
-//
 
-// import Foundation
-
-//SwiftTrie/SwiftTrie.playground/Sources/Trie.swift
-//oisdk 25 days ago Initial commit
-//0 contributors
-//RawBlameHistory     318 lines (280 sloc)  8.54 kB
-
-//  https://github.com/oisdk/SwiftTrie/blob/master/SwiftTrie.playground/Sources/Trie.swift
-
-//// MARK: Definition
+// MARK: Definition
 
 /**
 A Trie is a set-like data structure. It stores *sequences* of hashable elements, though.
 Lookup, insertion, and deletion are all *O(n)*, where *n* is the length of the sequence.
 */
 
-public struct Trie<Element : Hashable> {
-    private var children: [Element:Trie<Element>]
+public struct Trie<TrieElement : Hashable> {
+    private var children: [TrieElement:Trie<TrieElement>]
     private var endHere : Bool
     public init() {
         children = [:]
@@ -33,12 +17,11 @@ public struct Trie<Element : Hashable> {
 
 extension Trie : CustomDebugStringConvertible {
     public var debugDescription: String {
-        //return ", ".join(map {"".join($0.map { String(reflecting: $0) })})
-        return "testDebug"
+        return ", "
     }
 }
 
-public func == <T>(lhs: Trie<T>, rhs: Trie<T>) -> Bool {
+public func ==<T>(lhs: Trie<T>, rhs: Trie<T>) -> Bool {
     return lhs.endHere == rhs.endHere && lhs.children == rhs.children
 }
 
@@ -47,7 +30,7 @@ extension Trie : Equatable {}
 // MARK: Init
 
 extension Trie {
-    private init<G : GeneratorType where G.Element == Element>(var gen: G) {
+    private init<G : GeneratorType where G.Element == TrieElement>(var gen: G) {
         if let head = gen.next() {
             (children, endHere) = ([head:Trie(gen:gen)], false)
         } else {
@@ -58,7 +41,7 @@ extension Trie {
 
 extension Trie {
     private mutating func insert
-        <G : GeneratorType where G.Element == Element>
+        <G : GeneratorType where G.Element == TrieElement>
         (var gen: G) {
             if let head = gen.next() {
                 children[head]?.insert(gen) ?? {children[head] = Trie(gen: gen)}()
@@ -72,7 +55,7 @@ extension Trie {
     public init<
         S : SequenceType, IS : SequenceType where
         S.Generator.Element == IS,
-        IS.Generator.Element == Element
+        IS.Generator.Element == TrieElement
         >(_ seq: S) {
             var trie = Trie()
             for word in seq { trie.insert(word) }
@@ -82,12 +65,12 @@ extension Trie {
 
 public extension Trie {
     public init
-        <S : SequenceType where S.Generator.Element == Element>
+        <S : SequenceType where S.Generator.Element == TrieElement>
         (_ seq: S) {
             self.init(gen: seq.generate())
     }
     public mutating func insert
-        <S : SequenceType where S.Generator.Element == Element>
+        <S : SequenceType where S.Generator.Element == TrieElement>
         (seq: S) {
             insert(seq.generate())
     }
@@ -95,11 +78,11 @@ public extension Trie {
 
 // MARK: SequenceType
 
-public struct TrieGenerator<Element : Hashable> : GeneratorType {
-    private var children: DictionaryGenerator< Element, Trie<Element> >
-    private var curHead : Element?
+public struct TrieGenerator<TrieElement : Hashable> : GeneratorType {
+    private var children: DictionaryGenerator<TrieElement, Trie<TrieElement>>
+    private var curHead : TrieElement?
     private var curEnd  : Bool = false
-    private var innerGen: (() -> [Element]?)?
+    private var innerGen: (() -> [TrieElement]?)?
     private mutating func update() {
         guard let (head, child) = children.next() else { innerGen = nil; return }
         curHead = head
@@ -107,7 +90,7 @@ public struct TrieGenerator<Element : Hashable> : GeneratorType {
         innerGen = {g.next()}
         curEnd = child.endHere
     }
-    public mutating func next() -> [Element]? {
+    public mutating func next() -> [TrieElement]? {
         for ; innerGen != nil; update() {
             if let next = innerGen!() {
                 return [curHead!] + next
@@ -118,14 +101,14 @@ public struct TrieGenerator<Element : Hashable> : GeneratorType {
         }
         return nil
     }
-    private init( _ from: Trie<Element>) {
+    private init(_ from: Trie<TrieElement>) {
         children = from.children.generate()
         update()
     }
 }
 
 extension Trie: SequenceType {
-    public func generate() -> TrieGenerator<Element>  {
+    public func generate() -> TrieGenerator<TrieElement>  {
         return TrieGenerator(self)
     }
 }
@@ -134,8 +117,8 @@ extension Trie: SequenceType {
 
 extension Trie {
     private func completions
-        <G : GeneratorType where G.Element == Element>
-        (var start: G) -> Trie<Element> {
+        <G : GeneratorType where G.Element == TrieElement>
+        (var start: G) -> Trie<TrieElement> {
             guard let head = start.next() else  { return self }
             guard let child = children[head] else { return Trie() }
             return child
@@ -143,14 +126,14 @@ extension Trie {
                 .map { [head] + $0 }
     }
     
-    public func completions<S : SequenceType where S.Generator.Element == Element>(start: S) -> Trie<Element> {
+    public func completions<S : SequenceType where S.Generator.Element == TrieElement>(start: S) -> Trie<TrieElement> {
         return completions(start.generate())
     }
 }
 
 extension Trie {
     private mutating func remove<
-        G : GeneratorType where G.Element == Element
+        G : GeneratorType where G.Element == TrieElement
         >(var g: G) -> Bool { // Return value signifies whether or not it can be removed
             if let head = g.next() {
                 guard children[head]?.remove(g) == true else { return false }
@@ -161,7 +144,7 @@ extension Trie {
             return children.isEmpty
     }
     public mutating func remove<
-        S : SequenceType where S.Generator.Element == Element
+        S : SequenceType where S.Generator.Element == TrieElement
         >(seq: S) {
             remove(seq.generate())
     }
@@ -176,13 +159,13 @@ isStrictSupersetOf(_:)
 
 public extension Trie {
     private func contains<
-        G : GeneratorType where G.Element == Element
+        G : GeneratorType where G.Element == TrieElement
         >(var gen: G) -> Bool {
             guard let head = gen.next() else { return endHere }
             return children[head]?.contains(gen) ?? false
     }
     public func contains
-        <S : SequenceType where S.Generator.Element == Element>
+        <S : SequenceType where S.Generator.Element == TrieElement>
         (seq: S) -> Bool {
             return contains(seq.generate())
     }
@@ -190,8 +173,8 @@ public extension Trie {
     public func exclusiveOr<
         S : SequenceType where
         S.Generator.Element : SequenceType,
-        S.Generator.Element.Generator.Element == Element
-        > (sequence: S) -> Trie<Element> {
+        S.Generator.Element.Generator.Element == TrieElement
+        > (sequence: S) -> Trie<TrieElement> {
             var ret = self
             for element in sequence {
                 ret.contains(element) ? ret.remove(element) : ret.insert(element)
@@ -202,7 +185,7 @@ public extension Trie {
     public mutating func exclusiveOrInPlace<
         S : SequenceType where
         S.Generator.Element : SequenceType,
-        S.Generator.Element.Generator.Element == Element
+        S.Generator.Element.Generator.Element == TrieElement
         >(sequence: S) {
             for element in sequence { contains(element) ? remove(element) : insert(element) }
     }
@@ -210,15 +193,15 @@ public extension Trie {
     public func intersect<
         S : SequenceType where
         S.Generator.Element : SequenceType,
-        S.Generator.Element.Generator.Element == Element
-        >(sequence: S) -> Trie<Element> {
+        S.Generator.Element.Generator.Element == TrieElement
+        >(sequence: S) -> Trie<TrieElement> {
             return Trie(sequence.filter(contains))
     }
     
     public mutating func intersectInPlace<
         S : SequenceType where
         S.Generator.Element : SequenceType,
-        S.Generator.Element.Generator.Element == Element
+        S.Generator.Element.Generator.Element == TrieElement
         >(sequence: S) {
             self = intersect(sequence)
     }
@@ -226,13 +209,13 @@ public extension Trie {
     public func isDisjointWith<
         S : SequenceType where
         S.Generator.Element : SequenceType,
-        S.Generator.Element.Generator.Element == Element
+        S.Generator.Element.Generator.Element == TrieElement
         >(sequence: S) -> Bool { return !sequence.contains(self.contains) }
     
     public func isSupersetOf<
         S : SequenceType where
         S.Generator.Element : SequenceType,
-        S.Generator.Element.Generator.Element == Element
+        S.Generator.Element.Generator.Element == TrieElement
         >(sequence: S) -> Bool {
             return !sequence.contains { !self.contains($0) }
     }
@@ -240,12 +223,12 @@ public extension Trie {
     public func isSubsetOf<
         S : SequenceType where
         S.Generator.Element : SequenceType,
-        S.Generator.Element.Generator.Element == Element
+        S.Generator.Element.Generator.Element == TrieElement
         >(sequence: S) -> Bool {
             return Trie(sequence).isSupersetOf(self)
     }
     
-    public mutating func unionInPlace(with: Trie<Element>) {
+    public mutating func unionInPlace(with: Trie<TrieElement>) {
         endHere = endHere || with.endHere
         for (head, child) in with.children {
             children[head]?.unionInPlace(child) ?? {children[head] = child}()
@@ -255,8 +238,8 @@ public extension Trie {
     public func subtract<
         S : SequenceType where
         S.Generator.Element : SequenceType,
-        S.Generator.Element.Generator.Element == Element
-        >(sequence: S) -> Trie<Element> {
+        S.Generator.Element.Generator.Element == TrieElement
+        >(sequence: S) -> Trie<TrieElement> {
             var result = self
             for element in sequence { result.remove(element) }
             return result
@@ -265,7 +248,7 @@ public extension Trie {
     public mutating func subtractInPlace<
         S : SequenceType where
         S.Generator.Element : SequenceType,
-        S.Generator.Element.Generator.Element == Element
+        S.Generator.Element.Generator.Element == TrieElement
         >(sequence: S) {
             for element in sequence { remove(element) }
     }
@@ -273,10 +256,10 @@ public extension Trie {
     public mutating func unionInPlace<
         S : SequenceType where
         S.Generator.Element : SequenceType,
-        S.Generator.Element.Generator.Element == Element
+        S.Generator.Element.Generator.Element == TrieElement
         >(sequence: S) { unionInPlace(Trie(sequence)) }
     
-    public func union(var with: Trie<Element>) -> Trie<Element> {
+    public func union(var with: Trie<TrieElement>) -> Trie<TrieElement> {
         with.unionInPlace(self)
         return with
     }
@@ -284,8 +267,8 @@ public extension Trie {
     public func union<
         S : SequenceType where
         S.Generator.Element : SequenceType,
-        S.Generator.Element.Generator.Element == Element
-        >(sequence: S)  -> Trie<Element> {
+        S.Generator.Element.Generator.Element == TrieElement
+        >(sequence: S)  -> Trie<TrieElement> {
             return union(Trie(sequence))
     }
 }
@@ -293,7 +276,7 @@ public extension Trie {
 // MARK: More effecient implementations
 
 extension Trie {
-    public func map<S : SequenceType>(@noescape transform: [Element] -> S) -> Trie<S.Generator.Element> {
+    public func map<S : SequenceType>(@noescape transform: [TrieElement] -> S) -> Trie<S.Generator.Element> {
         var result = Trie<S.Generator.Element>()
         for seq in self {
             result.insert(transform(seq))
@@ -303,7 +286,7 @@ extension Trie {
 }
 
 extension Trie {
-    public func flatMap<S : SequenceType>(@noescape transform: [Element] -> S?) -> Trie<S.Generator.Element> {
+    public func flatMap<S : SequenceType>(@noescape transform: [TrieElement] -> S?) -> Trie<S.Generator.Element> {
         var result = Trie<S.Generator.Element>()
         for seq in self {
             if let transformed = transform(seq) {
@@ -312,7 +295,7 @@ extension Trie {
         }
         return result
     }
-    public func flatMap<T>(@noescape transform: [Element] -> Trie<T>) -> Trie<T> {
+    public func flatMap<T>(@noescape transform: [TrieElement] -> Trie<T>) -> Trie<T> {
         var ret = Trie<T>()
         for seq in self {
             ret.unionInPlace(transform(seq))
@@ -322,7 +305,7 @@ extension Trie {
 }
 
 extension Trie {
-    public func filter(@noescape includeElement: [Element] -> Bool) -> Trie<Element> {
+    public func filter(@noescape includeElement: [TrieElement] -> Bool) -> Trie<TrieElement> {
         var ret = self
         for element in self where !includeElement(element) { ret.remove(element) }
         return ret

@@ -12,6 +12,8 @@ import SpriteKit
 
 class MMWTileBuilder {
     
+    var mmwGameSceneViewController : MMWGameSceneViewController?
+    
     var mmwTileArray = [MMWTile]()
     
     var mmwTileArrayTemp = [MMWTile]()
@@ -24,6 +26,7 @@ class MMWTileBuilder {
     var mmwPlayer4LetterTile2DArray : [[MMWTile]]?
     
     var mmwBoardTile2DArray : [[MMWTile]]?
+    //mmwBoardGrid
 
 //    var mmwBoardTileArray = [MMWTile]() //     fillGridWithTiles()    //[MMWTile](count:225, repeatedValue: MMWTile() )
 //    var mmwPlayer1LetterTileArray = [MMWTile]() // count:6, repeatedValue: MMWTile())
@@ -175,6 +178,8 @@ class MMWTileBuilder {
 
     
     init () {
+        
+        //self.mmwGameSceneViewController = mmwGameSceneViewController
 
         mmwTileArray.append(tileA1) 
         mmwTileArray.append(tileA2)
@@ -300,6 +305,10 @@ class MMWTileBuilder {
         
         mmwTileArray.append(tileZ1)
         
+//        for _ in mmwTileArray {
+//            setViewController(mmwGameSceneViewController!)
+//        }
+        
         for tile in mmwTileArray {
             tile.tileType = TileType.Letter
         }
@@ -310,7 +319,14 @@ class MMWTileBuilder {
         for tile in mmwTileArray {
             tile.tileState = TileState.Undealt
             tile.tileOwner = TileOwner.None
+            tile.tileBuilder = self
         }
+        
+        //fillGridWithBlankTiles(&mmwBoardGrid)
+    }
+    
+    func setViewController (mmwGameSceneController: MMWGameSceneViewController) {
+        self.mmwGameSceneViewController = mmwGameSceneController
     }
     
     func displayTileArrayValues (tileArray: [MMWTile]) {
@@ -347,6 +363,8 @@ class MMWTileBuilder {
             numTilesDiscard--
         }
     }
+    
+    //func removeAllHighlights
     
     // send/move num Tiles from one tile array to another tile array
     func updateTiles(inout tilesFrom: [MMWTile], inout tilesTo: [MMWTile], var numTilesGet: Int, changeColorTo: Int) {

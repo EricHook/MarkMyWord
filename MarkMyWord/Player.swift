@@ -43,6 +43,21 @@ class Player {
         self.playerLetterGrid = playerTilesGrid
     }
     
+//    func checkPlayerTilesGrid (playerTilesGrid: Grid) -> Int {
+//        var numBlankTiles = 0
+//        for tileX in playerTilesGrid.grid2DArr {
+//            for tileY in tileX {
+//                playerTilesGrid
+//                if tileY.spritename == "Blank" {
+//                    
+//                    (playerTilesGrid.grid2DArr  .gridArr.tileSprite.tileSpriteParent.tileType)
+//                    
+//                    numBlankTiles ++
+//                }
+//            }
+//        }
+//    }
+    
     func setPlayerView (playerView: PlayerView) {
         self.playerView = playerView
     }
