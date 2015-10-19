@@ -92,6 +92,10 @@ class PlayerView: SKSpriteNode {
         addChild(playerTilesPlaque)
 
     }
+    func changePlayerScoreDisplay () {
+        let score = mmwPlayer.playerScore
+        self.playerScoreLabel.text = String(score)
+    }
     
     func changePlayerScoreDisplay (score: Int) {
         mmwPlayer.playerScore = score
@@ -106,8 +110,9 @@ class PlayerView: SKSpriteNode {
     func playerViewEndTurn () {
         self.playerNameLabel.fontColor =  FontHUDBlack
         self.playerScoreLabel.fontColor = FontHUDBlack
-        mmwPlayer.playerScore += 25
-        self.playerScoreLabel.text = String(mmwPlayer.playerScore)
+        //mmwPlayer.playerScore += 25
+        //self.playerScoreLabel.text = String(mmwPlayer.playerScore)
+        changePlayerScoreDisplay()
     }
     
     required init?(coder aDecoder: NSCoder) {

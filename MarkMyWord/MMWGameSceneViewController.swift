@@ -28,20 +28,30 @@ class MMWGameSceneViewController {
     var numPlayers : Int = 3
     var playerTurn :  Int = 1
     var minWordSize = 3
-    var player0 : Player = Player(_playerID: 0, _playerName: "AI", _playerColor: 0)
+    var player0 : Player = Player(_playerID: 0, _playerName: "AI", _playerColor: 0) // used to add initial word ownership
     var player1 : Player = Player(_playerID: 1, _playerName: "Abe", _playerColor: 1)
     var player2 : Player = Player(_playerID: 2, _playerName: "Bart", _playerColor: 2)
     // player 3 and 4 objects created but only used in 3 or 4 player games
     var player3 : Player = Player(_playerID: 3, _playerName: "Charlie", _playerColor: 3)
     var player4 : Player = Player(_playerID: 4, _playerName: "Dan", _playerColor: 4)
-    
-    let playerArray : [Player]! // array of all players 0-3 for easier iteration of player turns
+    var playerArray : [Player]! // array of all players 0-3 for easier iteration of player turns
 
     init (size: CGSize) {
         viewSize = size
         tileCollection = MMWTileBuilder()
                 mmwGameScene = MMWGameScene(size: viewSize)
-        playerArray  = [player1, player2, player3, player4]
+        //playerArray  = [player1, player2, player3, player4]
+        
+        if numPlayers == 2 {
+            playerArray  = [player1, player2]
+        }
+        if numPlayers == 3 {
+            playerArray  = [player1, player2, player3]
+        }
+        if numPlayers == 4 {
+            playerArray  = [player1, player2, player3, player4]
+        }
+        
         tilesPlayable = tileCollection.mmwTileArray
         mmwGameScene.setViewController(self)
         tileCollection.setViewController(self)
@@ -74,6 +84,8 @@ class MMWGameSceneViewController {
         player2.setPlayerView(mmwGameScene.player2View)
         
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwBoardGrid!)
+        
+        
     }
     
     func makeThreePlayers () {
@@ -122,11 +134,7 @@ class MMWGameSceneViewController {
             print("Number of Lines in Word List: " + String(numLines) )
             
             let randomWordNum = Int(arc4random_uniform((UInt32(numLines-1))) )
-            
-            //let randomWordNum : Int = randNum % (numLines - 2)
-            //let randomWordNum : Int = 22
 
-            
             print("Random Word Line Number: " + String(randomWordNum) )
             
             var lineNumber = 0
@@ -158,8 +166,14 @@ class MMWGameSceneViewController {
             while var line = aStreamReader.nextLine() {
                 line = line.stringByReplacingOccurrencesOfString("\r", withString: "") // remove /r character at end of line
                 if wordToCheck.caseInsensitiveCompare(line) == NSComparisonResult.OrderedSame && wordToCheck.characters.count >= self.minWordSize  {
-                    print("MATCH ... \(line)") // !!! NEED TO LOCK LETTERS HERE ??? currently lock in LetterTileSprite
+                    print("MATCH ... \(line) >> +3 points for playerArray[ \(playerArray[playerTurn - 1]) ]") // !!! NEED TO LOCK LETTERS HERE ??? currently lock in LetterTileSprite
+                    
+                    // 3 points for making a new complete word
+                    playerArray[playerTurn - 1].playerScore += 3
+                    //player1.playerScore += 10
+
                     return true
+                    
                 }
                 ++numLines
             }

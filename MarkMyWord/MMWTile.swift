@@ -13,7 +13,7 @@ enum TileType: Int {
     }
 
 enum SpriteName: Int {
-    case Mystery = 0, Letter, Blank, ColorBomb, DirectionBomb, Blocking
+    case Mystery = 0, Letter, Blank, ColorBovar, DirectionBomb, Blocking
 }
 
 enum GridLocation: Int {
@@ -33,7 +33,8 @@ enum TileOwner: Int {
 }
 
 class MMWTile {
-    var mmwGameSceneViewController : MMWGameSceneViewController?
+    //var mmwGameSceneViewController : MMWGameSceneViewController?
+    //var mmwGameScene : MMWGameScene?
     var tileSprite : LetterTileSprite!
     var tileBuilder : MMWTileBuilder? = nil
     var tileType: TileType = TileType.Unknown
@@ -71,6 +72,8 @@ class MMWTile {
         self.tileSprite.position = CGPoint(x: 5.0751, y: 10.102)
         self.tileSprite.zPosition = 1
         self.tileSprite.tileSpriteParent = self
+        //self.tileSprite.mmwGameSceneController = self.mmwGameSceneViewController
+        //self.tileSprite.mmwGameScene = self.mmwGameScene
         self.tileSprite.hidden = false
         tileSprite.alpha = 0.3
     }
@@ -92,9 +95,9 @@ class MMWTile {
         self.tileSprite.hidden = false
     }
     
-    func setViewController (mmwGameSceneController: MMWGameSceneViewController) {
-        self.mmwGameSceneViewController = mmwGameSceneController
-    }
+//    func setViewController (mmwGameSceneController: MMWGameSceneViewController) {
+//        self.mmwGameSceneViewController = mmwGameSceneController
+//    }
 
 //    static func randomTileType() -> TileType {
 //        return TileType(rawValue: Int(arc4random_uniform(4)) + 1)!

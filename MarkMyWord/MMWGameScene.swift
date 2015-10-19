@@ -362,10 +362,7 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
 //                    self.mmwBoardGrid.dealGridFromArraySpecificTile(&mmwGameSceneViewController.tileCollection.mmwTileArray, tileArrayLocation: 49, playerNum: 0, squareX: 7, squareY: 5)
                     /////////////////////////////
 
-                    
-                    
-                    
-                    
+
                     mmwPlayer1Grid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: 1)
                     mmwPlayer2Grid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: 2)
                     
@@ -409,7 +406,6 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
             if(_node.name == "passButton"){
                 if userInteractionEnabled {
                     runAction(actionSound)
-                    print("SHOW TILE ARRAYS (undealt and discarded)")
                     mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwTileArray)
                     mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray)
                     
@@ -417,10 +413,7 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
                     
                     showTilesInSquares(mmwGameSceneViewController.tileCollection) // 'deals' player tiles and shows demo tiles on board for testing
                     
-//                    self.mmwBoardGrid.refillGridFromArrayRandom(&<#T##arrayIn: [MMWTile]##[MMWTile]#>, numTilesToDeal: 6, playerNum: mmwGameSceneViewController.playerTurn)
-                    
                     changePlayerTurn()
-                   
                 }
             }
             
@@ -490,9 +483,8 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
             mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.makeTilesInGridInteractive(true)
             mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerView.playerViewBeginTurn()
         }
-        
-        
-        tilesRemainingLabel.text = "Tiles Left: \(mmwGameSceneViewController.tileCollection.mmwTileArray.count  )" // " (mmwGameSceneViewController.tileCollection.mmwTileArray.count))"
+
+        tilesRemainingLabel.text = "Tiles Left: \(mmwGameSceneViewController.tileCollection.mmwTileArray.count)" // " (mmwGameSceneViewController.tileCollection.mmwTileArray.count))"
         
         if mmwGameSceneViewController.tileCollection.mmwTileArray.count <= 0 {
             tilesRemainingLabel.text = "Tiles Left: None"

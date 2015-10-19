@@ -13,6 +13,7 @@ import SpriteKit
 class MMWTileBuilder {
     
     var mmwGameSceneViewController : MMWGameSceneViewController?
+    var mmwGameScene: MMWGameScene?
     
     var mmwTileArray = [MMWTile]()
     
@@ -26,10 +27,6 @@ class MMWTileBuilder {
     var mmwPlayer4LetterTile2DArray : [[MMWTile]]?
     
     var mmwBoardTile2DArray : [[MMWTile]]?
-    //mmwBoardGrid
-
-//    var mmwBoardTileArray = [MMWTile]() //     fillGridWithTiles()    //[MMWTile](count:225, repeatedValue: MMWTile() )
-//    var mmwPlayer1LetterTileArray = [MMWTile]() // count:6, repeatedValue: MMWTile())
 
     var tileA1 : MMWTile = MMWTile(letterString: "A")
     var tileA2 : MMWTile = MMWTile(letterString: "A")
@@ -305,10 +302,6 @@ class MMWTileBuilder {
         
         mmwTileArray.append(tileZ1)
         
-//        for _ in mmwTileArray {
-//            setViewController(mmwGameSceneViewController!)
-//        }
-        
         for tile in mmwTileArray {
             tile.tileType = TileType.Letter
         }
@@ -321,8 +314,7 @@ class MMWTileBuilder {
             tile.tileOwner = TileOwner.None
             tile.tileBuilder = self
         }
-        
-        //fillGridWithBlankTiles(&mmwBoardGrid)
+
     }
     
     func setViewController (mmwGameSceneController: MMWGameSceneViewController) {
@@ -398,21 +390,4 @@ class MMWTileBuilder {
             }
         }
     }
-    
-//    func fillGridWithBlankTiles (inout gridToFill: Grid, inout tilesFrom: [MMWTile], changeColorTo: Int) {
-//        let gridNumSquaresX = gridToFill.gridNumSquaresX
-//        let gridNumSquaresY = gridToFill.gridNumSquaresY
-//        
-//        for y in 0...(gridNumSquaresY - 1) {   // fill letter tiles
-//            for x in 0...(gridNumSquaresX - 1) {
-//                let newTile = MMWTile()
-//                gridToFill.grid2DArr[x][y] = newTile
-//                newTile.gridX = x
-//                newTile.gridXEnd = x
-//                newTile.gridY = y
-//                newTile.gridYEnd = y
-//                newTile.gridHome = gridToFill
-//            }
-//        } 
-//    }
 }
