@@ -17,6 +17,8 @@
 		B84B25131B45FB050037B8EA /* MMWGameSceneText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84B25121B45FB050037B8EA /* MMWGameSceneText.swift */; };
 		B858A8E11AF0944D00184931 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = B858A8E01AF0944D00184931 /* Level.swift */; };
 		B86530651BB7114F00A6A471 /* TrieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86530641BB7114F00A6A471 /* TrieTests.swift */; };
+		B879D8EF1BDD8CB20088A5A4 /* enable1WordListORIG.txt in Resources */ = {isa = PBXBuildFile; fileRef = B879D8EE1BDD8CB20088A5A4 /* enable1WordListORIG.txt */; };
+		B879D8F11BDDCE4E0088A5A4 /* enable1WordListMod.txt in Resources */ = {isa = PBXBuildFile; fileRef = B879D8F01BDDCE4E0088A5A4 /* enable1WordListMod.txt */; };
 		B87B0AD71B669AFD005D76EB /* testSmallUTF8B.txt in Resources */ = {isa = PBXBuildFile; fileRef = B87B0AD61B669AFD005D76EB /* testSmallUTF8B.txt */; };
 		B89939431ADAF8BC00587323 /* accelerometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89939421ADAF8BC00587323 /* accelerometer.swift */; };
 		B8A455161AF15A1400C0D83B /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A455141AF15A1400C0D83B /* MainMenuScene.swift */; };
@@ -347,6 +349,8 @@
 		B84B25121B45FB050037B8EA /* MMWGameSceneText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMWGameSceneText.swift; sourceTree = "<group>"; };
 		B858A8E01AF0944D00184931 /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		B86530641BB7114F00A6A471 /* TrieTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrieTests.swift; sourceTree = "<group>"; };
+		B879D8EE1BDD8CB20088A5A4 /* enable1WordListORIG.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = enable1WordListORIG.txt; sourceTree = "<group>"; };
+		B879D8F01BDDCE4E0088A5A4 /* enable1WordListMod.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = enable1WordListMod.txt; sourceTree = "<group>"; };
 		B87B0AD61B669AFD005D76EB /* testSmallUTF8B.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testSmallUTF8B.txt; sourceTree = "<group>"; };
 		B89939421ADAF8BC00587323 /* accelerometer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = accelerometer.swift; sourceTree = "<group>"; };
 		B8A455141AF15A1400C0D83B /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
@@ -930,6 +934,8 @@
 				B8B2CAC11ADADD9100C9DEE7 /* 22-LetterWords.txt */,
 				B8B2CAC21ADADD9100C9DEE7 /* 23-LetterWords.txt */,
 				B8B2CAC31ADADD9100C9DEE7 /* 24-LetterWords.txt */,
+				B879D8F01BDDCE4E0088A5A4 /* enable1WordListMod.txt */,
+				B879D8EE1BDD8CB20088A5A4 /* enable1WordListORIG.txt */,
 				B8B2CAC41ADADD9100C9DEE7 /* enable1WordList.txt */,
 			);
 			name = WordLists;
@@ -1419,6 +1425,7 @@
 				B8A455C61AF171B800C0D83B /* card_spell_death_ray.png in Resources */,
 				B8A455C31AF171B800C0D83B /* card_spell_death_ray_large@2x.png in Resources */,
 				B8A455E71AF171B800C0D83B /* deal.wav in Resources */,
+				B879D8EF1BDD8CB20088A5A4 /* enable1WordListORIG.txt in Resources */,
 				B8B2CAD81ADADD9100C9DEE7 /* 8_2LetterWords.txt in Resources */,
 				B8B2CB051ADADD9100C9DEE7 /* 21-LetterWords.txt in Resources */,
 				B8A455EB1AF171B800C0D83B /* end_turn@2x.png in Resources */,
@@ -1555,6 +1562,7 @@
 				B8A455AA1AF171B800C0D83B /* card_creature_bear_sel.png in Resources */,
 				B8B2CAD41ADADD9100C9DEE7 /* 7.1-LetterWords.txt in Resources */,
 				B8B2CA771ADADB7000C9DEE7 /* 1018.WAV in Resources */,
+				B879D8F11BDDCE4E0088A5A4 /* enable1WordListMod.txt in Resources */,
 				B8B2CAE71ADADD9100C9DEE7 /* 10_1LetterWords.txt in Resources */,
 				B8A456081AF171B800C0D83B /* player1_druid.png in Resources */,
 				B8B2CAE91ADADD9100C9DEE7 /* 10_3LetterWords.txt in Resources */,

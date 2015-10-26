@@ -27,7 +27,7 @@ class MMWGameSceneViewController {
     var tilesPlayable : [MMWTile]
     var numPlayers : Int = 3
     var playerTurn :  Int = 1
-    var minWordSize = 3
+    var minWordSize = 2
     var player0 : Player = Player(_playerID: 0, _playerName: "AI", _playerColor: 0) // used to add initial word ownership
     var player1 : Player = Player(_playerID: 1, _playerName: "Abe", _playerColor: 1)
     var player2 : Player = Player(_playerID: 2, _playerName: "Bart", _playerColor: 2)
@@ -35,6 +35,16 @@ class MMWGameSceneViewController {
     var player3 : Player = Player(_playerID: 3, _playerName: "Charlie", _playerColor: 3)
     var player4 : Player = Player(_playerID: 4, _playerName: "Dan", _playerColor: 4)
     var playerArray : [Player]! // array of all players 0-3 for easier iteration of player turns
+
+    var wordArray : [String] = [""]
+    var wordArrayMod : [String.CharacterView] = ["".characters]
+    
+    let words = ["hello", "hiya", "hell", "jonah", "jolly", "joseph", "jobs"].map{$0.characters}
+    
+    // var store = Trie(words)  // : Trie() // = Trie(words)
+    
+    
+    var wordTrie : Trie<Character>?
 
     init (size: CGSize) {
         viewSize = size
@@ -59,6 +69,10 @@ class MMWGameSceneViewController {
         mmwGameScene.setGrids() // sets tile grid positions, size of square, number of squares and position on screen for each grid possible
         mmwGameScene.buildGameView()
         setUpPlayers() // add player to view, match player to grid, fill grid with starter tiles and colorize to player color
+        
+        buildWordArray()
+        buildTrie()
+        //wordTrie = buildTrie()
     }
 
     func setUpPlayers () {
@@ -84,8 +98,6 @@ class MMWGameSceneViewController {
         player2.setPlayerView(mmwGameScene.player2View)
         
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwBoardGrid!)
-        
-        
     }
     
     func makeThreePlayers () {
@@ -159,43 +171,157 @@ class MMWGameSceneViewController {
         return String("Random getFirstWord () Word: XYZ")
     }
     
-    func checkWholeWordMatch(wordToCheck: String) -> Bool {
-        //let wordToReturn : String
-        if let aStreamReader = StreamReader(file: "enable1WordList") { // "/Users/erichook/Desktop/enable1WordList.txt") {
-            var numLines = 0
-            while var line = aStreamReader.nextLine() {
-                line = line.stringByReplacingOccurrencesOfString("\r", withString: "") // remove /r character at end of line
-                if wordToCheck.caseInsensitiveCompare(line) == NSComparisonResult.OrderedSame && wordToCheck.characters.count >= self.minWordSize  {
-                    print("MATCH ... \(line) >> +3 points for playerArray[ \(playerArray[playerTurn - 1]) ]") // !!! NEED TO LOCK LETTERS HERE ??? currently lock in LetterTileSprite
-                    
-                    // 3 points for making a new complete word
-                    playerArray[playerTurn - 1].playerScore += 3
-                    //player1.playerScore += 10
-
-                    return true
-                    
-                }
-                ++numLines
+    func buildWordArray() -> [String] {
+        
+        // read the file
+        //var wordTrie = Trie<Character>()
+        
+        if let aStreamReader = StreamReader(file: "testSmallUTF8B") { // "/Users/erichook/Desktop/testSmallUTF8.txt") {
+            
+            while let line = aStreamReader.nextLine() {
+                wordArray.append(line)
             }
-       }
-        return false
+            aStreamReader.close()
+            print("FINISHED buildWordArray()")
+        }
+
+        return wordArray
+        
     }
     
-    func checkPartialWordMatch(wordToCheck: String) -> Bool {
-        //let wordToReturn : String
-        if let aStreamReader = StreamReader(file: "3-LetterWords") { // "/Users/erichook/Desktop/enable1WordList.txt") {
-            var numLines = 0
-            while var line = aStreamReader.nextLine() {
-                line = line.stringByReplacingOccurrencesOfString("\r", withString: "") // remove /r character at end of line
-                if wordToCheck.caseInsensitiveCompare(line) == NSComparisonResult.OrderedSame {
-                    print("MATCH ... \(line)") // !!! NEED TO LOCK LETTERS HERE ??? currently lock in LetterTileSprite
-                    return true
-                }
-                ++numLines
-            }
+    func buildTrie() {
+        
+//        let words = ["hello", "hiya", "hell", "jonah", "jolly", "joseph", "jobs"].map{$0.characters}
+//        
+//        //                if let aStreamReader = StreamReader(file: "enable1WordListORIG") { // "/Users/erichook/Desktop/testSmallUTF8.txt") {
+//        //
+//        //                        while let line = aStreamReader.nextLine() {
+//        //
+//        //                    }
+//        
+//        var store = Trie(words)
+//        
+//        store.map(String.init)
+//        
+//        store.contains("hello".characters)
+//        
+//        store.completions("hel".characters)
+//        store.map(String.init)
+//        
+//        store.remove("jonah".characters)
+//        
+//        //store
+//        store.completions("jo".characters)
+//        store.map(String.init)
+//        print("Trie store.count: + \(store.count) ")
+//        print("Trie store.completions(\"jo\".characters): + \(store.completions("jo".characters)) ")
+//        print("Trie contains jolly: + \(store.completions("jolly".characters))")
+//        print("Trie: joll+ \(store.completions("joll".characters) )")
+//        print("Trie: jo+ \(store.completions("jo".characters))")
+//        print("Trie: zoll+ \(store.completions("zoll".characters))")
+//        
+//        //print(" Trie: + \(store.completions(\"hel\".characters)) ")
+//        print ("Words: \(words)" )
+//        print ("Store: \(store.enumerate())" )
+
+        
+        //let words = wordArray.map{$0.characters}
+        
+        //var store = Trie(wordArray)
+        
+//        // read the file
+//        //var wordTrie = Trie<Character>()
+//        let words = ["hello", "hiya", "hell", "jonah", "jolly", "joseph", "jobs", "do"].map{$0.characters}
+//        wordTrie = Trie(words)
+//        print("Trie store.count: + \(wordTrie!.count) ")
+//        print("Trie store.contains jo: + \(wordTrie!.completions("jo".characters).count)")
+//        print("Trie store.contains jo: + \(wordTrie!.contains("jolly".characters))")
+//        //wordTrie.insert("Do".map{$0.characters})
+//        print("FINISHED buildTrie()")
+        
+        //var wordTrie = Trie<Character>()
+        //let wordsArr = ["hello", "hiya", "hell", "jonah", "jolly", "joseph", "jobs", "do"]
+        
+        wordArrayMod = wordArray.map{$0.characters}
+        
+        wordTrie = Trie(wordArrayMod)
+        print("Trie store.count: + \(wordTrie!.count) ")
+        
+        print("Trie store.contains jo: + \(wordTrie!.completions("jo".characters).count)")
+        print("Trie store.contains jollyx: + \(wordTrie!.contains("jolly\r".characters))")
+        //wordTrie.insert("Do".map{$0.characters})
+        
+        print("FINISHED buildTrie()")
+        
+        
+        
+//        if let aStreamReader = StreamReader(file: "enable1WordListORIG") { // "/Users/erichook/Desktop/testSmallUTF8.txt") {
+//            while let line = aStreamReader.nextLine() {
+//                wordTrie.insert(line.characters)
+//            }
+//            aStreamReader.close()
+//            print("FINISHED buildTrie()")
+//        }
+//        return wordTrie
+        
+        
+        
+    }
+    
+    func checkPartialWordMatch(var wordToCheck: String) -> Bool {
+        wordToCheck = wordToCheck + "\r"
+        if wordTrie!.contains(wordToCheck.characters){
+            return true
         }
         return false
     }
+    
+    func checkWholeWordMatch(var wordToCheck: String) -> Bool {
+        wordToCheck = wordToCheck + "\r"
+        wordToCheck = wordToCheck.lowercaseString
+        if wordTrie!.contains(wordToCheck.characters){
+            return true
+        }
+        return false
+    }
+
+    
+//    func checkWholeWordMatch(wordToCheck: String) -> Bool {
+//        if let aStreamReader = StreamReader(file: "enable1WordList") { // "/Users/erichook/Desktop/enable1WordList.txt") {
+//            var numLines = 0
+//            while var line = aStreamReader.nextLine() {
+//                line = line.stringByReplacingOccurrencesOfString("\r", withString: "") // remove /r character at end of line
+//                if wordToCheck.caseInsensitiveCompare(line) == NSComparisonResult.OrderedSame && wordToCheck.characters.count >= self.minWordSize  {
+//                    print("MATCH ... \(line) >> +3 points for playerArray[ \(playerArray[playerTurn - 1]) ]") // !!! NEED TO LOCK LETTERS HERE ??? currently lock in LetterTileSprite
+//                    
+//                    // 3 points for making a new complete word
+//                    //playerArray[playerTurn - 1].playerScore += 3
+//                    //player1.playerScore += 10
+//
+//                    return true
+//                    
+//                }
+//                ++numLines
+//            }
+//       }
+//        return false
+//    }
+    
+//    func checkPartialWordMatch(wordToCheck: String) -> Bool {
+//        //let wordToReturn : String
+//        if let aStreamReader = StreamReader(file: "3-LetterWords") { // "/Users/erichook/Desktop/enable1WordList.txt") {
+//            var numLines = 0
+//            while var line = aStreamReader.nextLine() {
+//                line = line.stringByReplacingOccurrencesOfString("\r", withString: "") // remove /r character at end of line
+//                if wordToCheck.caseInsensitiveCompare(line) == NSComparisonResult.OrderedSame {
+//                    print("MATCH ... \(line)") // !!! NEED TO LOCK LETTERS HERE ??? currently lock in LetterTileSprite
+//                    return true
+//                }
+//                ++numLines
+//            }
+//        }
+//        return false
+//    }
 
     func getWordLetters () {
         
@@ -328,7 +454,8 @@ class MMWGameSceneViewController {
         tileToPlace.tileSprite.zPosition = 11
         tileToPlace.tileSprite.hidden = false
     }
-    
+
+ 
     func sendWordToBoard (inout letterTileArray: [MMWTile], gridToDisplay: Grid, xStartSquare: Int, yStartSquare: Int, IsHorizonal: Bool, player: Player) {
         //let wordToDisplayArray = Array(wordToDisplay.characters)
         var xLoc: Int = xStartSquare
@@ -359,7 +486,8 @@ class MMWGameSceneViewController {
         }
         
     }
-
+    
+    
 
 //    func presentMMWScene() {
 //
