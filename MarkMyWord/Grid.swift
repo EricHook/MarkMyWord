@@ -69,7 +69,7 @@ class Grid {
         GridSquareUpperLeftCornerX = self.gridUpperLeftX + (Double(GridSquareX) * gridSquareSizeX)
         GridSquareUpperLeftCornerY = self.gridUpperLeftY + (Double(GridSquareY) * gridSquareSizeY)
         
-        print("<Grid> TEST Grid square[]: x[\(GridSquareX)], y[\(GridSquareY)] and UL corner: x\(GridSquareUpperLeftCornerX), y\(GridSquareUpperLeftCornerY), click: \(locX), locY: \(locY), locYmod: \(locYmod)")
+        //print("<Grid> TEST Grid square[]: x[\(GridSquareX)], y[\(GridSquareY)] and UL corner: x\(GridSquareUpperLeftCornerX), y\(GridSquareUpperLeftCornerY), click: \(locX), locY: \(locY), locYmod: \(locYmod)")
         
         if GridSquareX < 0 { GridSquareX = 0}
         if GridSquareX > 14 { GridSquareX = 14}

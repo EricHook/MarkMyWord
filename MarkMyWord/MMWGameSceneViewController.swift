@@ -50,7 +50,6 @@ class MMWGameSceneViewController {
         viewSize = size
         tileCollection = MMWTileBuilder()
                 mmwGameScene = MMWGameScene(size: viewSize)
-        //playerArray  = [player1, player2, player3, player4]
         
         if numPlayers == 2 {
             playerArray  = [player1, player2]
@@ -70,9 +69,15 @@ class MMWGameSceneViewController {
         mmwGameScene.buildGameView()
         setUpPlayers() // add player to view, match player to grid, fill grid with starter tiles and colorize to player color
         
-        buildWordArray()
+        
+        buildWordArray("WordList1to3LetterNoDup")
         buildTrie()
-        //wordTrie = buildTrie()
+        print("buildTrie() 1-3")
+        
+        buildWordArray("WordList4to5LetterNoDup")
+        insertTrie()
+        print("insertTrie() 4-5")
+
     }
 
     func setUpPlayers () {
@@ -138,16 +143,15 @@ class MMWGameSceneViewController {
         let wordToReturn : String
         if let aStreamReader = StreamReader(file: "5-LetterWords") { // "/Users/erichook/Desktop/testSmallUTF8.txt") {
             var numLines = 0
-            while let line = aStreamReader.nextLine() {
-                print(line)
-                // if line == "be\r" { break }
+            while (aStreamReader.nextLine() != nil) {
+                //print(line)
                 ++numLines
             }
-            print("Number of Lines in Word List: " + String(numLines) )
+            //print("Number of Lines in Word List: " + String(numLines) )
             
             let randomWordNum = Int(arc4random_uniform((UInt32(numLines-1))) )
 
-            print("Random Word Line Number: " + String(randomWordNum) )
+            //print("Random Word Line Number: " + String(randomWordNum) )
             
             var lineNumber = 0
             
@@ -156,105 +160,55 @@ class MMWGameSceneViewController {
             while let line = aStreamReader.nextLine() {
                 if lineNumber == randomWordNum {
                     wordToReturn = String(line)
-                    print("Random getFirstWord () Word: " + wordToReturn)
-                    
+                    //print("Random getFirstWord () Word: " + wordToReturn)
                     return String(wordToReturn)
-                    //break
                 }
                 ++lineNumber
             }
             // You can close the underlying file explicitly. Otherwise it will be
             // closed when the reader is deallocated.
             aStreamReader.close()
-            print("Final numLines getFirstWord (): " + String(numLines) )
+            //print("Final numLines getFirstWord (): " + String(numLines) )
         }
         return String("Random getFirstWord () Word: XYZ")
     }
     
-    func buildWordArray() -> [String] {
+    func buildWordArray(wordList : String) -> [String] {
         
         // read the file
         //var wordTrie = Trie<Character>()
         
-        if let aStreamReader = StreamReader(file: "testSmallUTF8B") { // "/Users/erichook/Desktop/testSmallUTF8.txt") {
+        wordArray = [""]  // clear wordArray so can add new chuncks of wordList
+        
+        if let aStreamReader = StreamReader(file: wordList) { // "/Users/erichook/Desktop/testSmallUTF8.txt") {
             
             while let line = aStreamReader.nextLine() {
                 wordArray.append(line)
             }
             aStreamReader.close()
-            print("FINISHED buildWordArray()")
+            print("FINISHED buildWordArray() with \(wordList)")
         }
-
-        return wordArray
         
+        return wordArray
     }
     
     func buildTrie() {
-        
-//        let words = ["hello", "hiya", "hell", "jonah", "jolly", "joseph", "jobs"].map{$0.characters}
-//        
-//        //                if let aStreamReader = StreamReader(file: "enable1WordListORIG") { // "/Users/erichook/Desktop/testSmallUTF8.txt") {
-//        //
-//        //                        while let line = aStreamReader.nextLine() {
-//        //
-//        //                    }
-//        
-//        var store = Trie(words)
-//        
-//        store.map(String.init)
-//        
-//        store.contains("hello".characters)
-//        
-//        store.completions("hel".characters)
-//        store.map(String.init)
-//        
-//        store.remove("jonah".characters)
-//        
-//        //store
-//        store.completions("jo".characters)
-//        store.map(String.init)
-//        print("Trie store.count: + \(store.count) ")
-//        print("Trie store.completions(\"jo\".characters): + \(store.completions("jo".characters)) ")
-//        print("Trie contains jolly: + \(store.completions("jolly".characters))")
-//        print("Trie: joll+ \(store.completions("joll".characters) )")
-//        print("Trie: jo+ \(store.completions("jo".characters))")
-//        print("Trie: zoll+ \(store.completions("zoll".characters))")
-//        
-//        //print(" Trie: + \(store.completions(\"hel\".characters)) ")
-//        print ("Words: \(words)" )
-//        print ("Store: \(store.enumerate())" )
 
-        
-        //let words = wordArray.map{$0.characters}
-        
-        //var store = Trie(wordArray)
-        
-//        // read the file
-//        //var wordTrie = Trie<Character>()
-//        let words = ["hello", "hiya", "hell", "jonah", "jolly", "joseph", "jobs", "do"].map{$0.characters}
-//        wordTrie = Trie(words)
-//        print("Trie store.count: + \(wordTrie!.count) ")
-//        print("Trie store.contains jo: + \(wordTrie!.completions("jo".characters).count)")
-//        print("Trie store.contains jo: + \(wordTrie!.contains("jolly".characters))")
-//        //wordTrie.insert("Do".map{$0.characters})
-//        print("FINISHED buildTrie()")
-        
-        //var wordTrie = Trie<Character>()
-        //let wordsArr = ["hello", "hiya", "hell", "jonah", "jolly", "joseph", "jobs", "do"]
-        
         wordArrayMod = wordArray.map{$0.characters}
         
         wordTrie = Trie(wordArrayMod)
-        print("Trie store.count: + \(wordTrie!.count) ")
         
-        print("Trie store.contains jo: + \(wordTrie!.completions("jo".characters).count)")
-        print("Trie store.contains jollyx: + \(wordTrie!.contains("jolly\r".characters))")
-        //wordTrie.insert("Do".map{$0.characters})
-        
-        print("FINISHED buildTrie()")
-        
-        
-        
+//        print("Trie store.count START: + \(wordTrie!.count) ")
+//        print("Trie store.contains jo: + \(wordTrie!.completions("jo".characters).count)")
+//        let stringTest = "jox"
+//        wordTrie!.insert(stringTest.characters) //    (wordArrayMod.map{$0.characters})
+//        //wordTrie!.insert(wordArray.map{$0.characters})
+//        print("Trie store.count ADD jox: + \(wordTrie!.count) ")
+//        print("Trie store.contains jo: + \(wordTrie!.completions("jo".characters).count)")
+//        print("Trie store.contains jollyx: + \(wordTrie!.contains("jolly\r".characters))")
+//        //wordTrie.insert("Do".map{$0.characters})
+//        print("FINISHED buildTrie()")
+       
 //        if let aStreamReader = StreamReader(file: "enable1WordListORIG") { // "/Users/erichook/Desktop/testSmallUTF8.txt") {
 //            while let line = aStreamReader.nextLine() {
 //                wordTrie.insert(line.characters)
@@ -263,23 +217,56 @@ class MMWGameSceneViewController {
 //            print("FINISHED buildTrie()")
 //        }
 //        return wordTrie
+
+    }
+    
+    func insertTrie() {
+
+        wordArrayMod = wordArray.map{$0.characters}
         
+        //wordTrie = Trie(wordArrayMod)
         
+        print("InsertTrie store.count START: + \(wordTrie!.count) ")
+        print("InsertTrie store.contains jo: + \(wordTrie!.completions("jo".characters).count)")
+        let stringTest = "jox"
+        wordTrie!.insert(stringTest.characters) //    (wordArrayMod.map{$0.characters})
+        
+        for word in wordArray {
+            wordTrie!.insert(word.characters)
+        }
+
+        print("InsertTrie store.count ADD jox: + \(wordTrie!.count) ")
+        print("InsertTrie store.contains jo: + \(wordTrie!.completions("jo".characters).count)")
+        print("InsertTrie store.contains jollyx: + \(wordTrie!.contains("jolly\r".characters))")
+        //wordTrie.insert("Do".map{$0.characters})
+        
+        print("FINISHED InsertTrie()")
+        
+        //        if let aStreamReader = StreamReader(file: "enable1WordListORIG") { // "/Users/erichook/Desktop/testSmallUTF8.txt") {
+        //            while let line = aStreamReader.nextLine() {
+        //                wordTrie.insert(line.characters)
+        //            }
+        //            aStreamReader.close()
+        //            print("FINISHED buildTrie()")
+        //        }
+        //        return wordTrie
         
     }
     
+    
     func checkPartialWordMatch(var wordToCheck: String) -> Bool {
-        wordToCheck = wordToCheck + "\r"
-        if wordTrie!.contains(wordToCheck.characters){
+        //wordToCheck = wordToCheck + "\r"
+        wordToCheck = wordToCheck.lowercaseString
+        if wordTrie!.contains("\(wordToCheck)".characters){
             return true
         }
         return false
     }
     
     func checkWholeWordMatch(var wordToCheck: String) -> Bool {
-        wordToCheck = wordToCheck + "\r"
+        //wordToCheck = wordToCheck // + "\r"
         wordToCheck = wordToCheck.lowercaseString
-        if wordTrie!.contains(wordToCheck.characters){
+        if wordTrie!.contains("\(wordToCheck)!".characters){
             return true
         }
         return false

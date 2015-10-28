@@ -348,6 +348,10 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
             if(_node.name == "playButton"){
                 if userInteractionEnabled {
                     print(">>> PLAY BUTTON PRESSED >>>")
+                    
+//                    mmwGameSceneViewController.buildWordArray("WordList4to5LetterNoDup")
+//                    mmwGameSceneViewController.buildTrie()
+
 //                    runAction(actionSound)
 
                     let starterWord = mmwGameSceneViewController.getRandomWord()
@@ -515,7 +519,7 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
             if (testSpot.x > 869.5 ) && testSpot.y > 384 {snapGrid = mmwPlayer4Grid}
         }
         //else {snapGrid = nil}
-        print("<MMWGameScene.GetSnapGrid> \(testSpot.x), \(testSpot.y), and grid \(snapGrid), and \(snapGrid.gridName)" )
+        //print("<MMWGameScene.GetSnapGrid> \(testSpot.x), \(testSpot.y), and grid \(snapGrid), and \(snapGrid.gridName)" )
         return snapGrid
     }
     
