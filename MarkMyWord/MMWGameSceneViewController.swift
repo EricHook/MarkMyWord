@@ -25,9 +25,9 @@ class MMWGameSceneViewController {
     var viewSize : CGSize!
     var tileCollection : MMWTileBuilder
     var tilesPlayable : [MMWTile]
-    var numPlayers : Int = 3
+    var numPlayers : Int = 2
     var playerTurn :  Int = 1
-    var minWordSize = 2
+    var minWordSize = 3
     var player0 : Player = Player(_playerID: 0, _playerName: "AI", _playerColor: 0) // used to add initial word ownership
     var player1 : Player = Player(_playerID: 1, _playerName: "Abe", _playerColor: 1)
     var player2 : Player = Player(_playerID: 2, _playerName: "Bart", _playerColor: 2)
@@ -42,8 +42,7 @@ class MMWGameSceneViewController {
     let words = ["hello", "hiya", "hell", "jonah", "jolly", "joseph", "jobs"].map{$0.characters}
     
     // var store = Trie(words)  // : Trie() // = Trie(words)
-    
-    
+
     var wordTrie : Trie<Character>?
 
     init (size: CGSize) {
@@ -68,15 +67,18 @@ class MMWGameSceneViewController {
         mmwGameScene.setGrids() // sets tile grid positions, size of square, number of squares and position on screen for each grid possible
         mmwGameScene.buildGameView()
         setUpPlayers() // add player to view, match player to grid, fill grid with starter tiles and colorize to player color
-        
-        
+
         buildWordArray("WordList1to3LetterNoDup")
         buildTrie()
         print("buildTrie() 1-3")
         
-        buildWordArray("WordList4to5LetterNoDup")
+        buildWordArray("WordList4LetterNoDup")
         insertTrie()
-        print("insertTrie() 4-5")
+        print("insertTrie() 4")
+        
+//        buildWordArray("WordList5LetterNoDup")
+//        insertTrie()
+//        print("insertTrie() 5")
 
     }
 
@@ -147,11 +149,8 @@ class MMWGameSceneViewController {
                 //print(line)
                 ++numLines
             }
-            //print("Number of Lines in Word List: " + String(numLines) )
             
             let randomWordNum = Int(arc4random_uniform((UInt32(numLines-1))) )
-
-            //print("Random Word Line Number: " + String(randomWordNum) )
             
             var lineNumber = 0
             
@@ -174,10 +173,8 @@ class MMWGameSceneViewController {
     }
     
     func buildWordArray(wordList : String) -> [String] {
-        
         // read the file
         //var wordTrie = Trie<Character>()
-        
         wordArray = [""]  // clear wordArray so can add new chuncks of wordList
         
         if let aStreamReader = StreamReader(file: wordList) { // "/Users/erichook/Desktop/testSmallUTF8.txt") {
@@ -188,7 +185,6 @@ class MMWGameSceneViewController {
             aStreamReader.close()
             print("FINISHED buildWordArray() with \(wordList)")
         }
-        
         return wordArray
     }
     
@@ -223,9 +219,7 @@ class MMWGameSceneViewController {
     func insertTrie() {
 
         wordArrayMod = wordArray.map{$0.characters}
-        
         //wordTrie = Trie(wordArrayMod)
-        
         print("InsertTrie store.count START: + \(wordTrie!.count) ")
         print("InsertTrie store.contains jo: + \(wordTrie!.completions("jo".characters).count)")
         let stringTest = "jox"
@@ -255,7 +249,6 @@ class MMWGameSceneViewController {
     
     
     func checkPartialWordMatch(var wordToCheck: String) -> Bool {
-        //wordToCheck = wordToCheck + "\r"
         wordToCheck = wordToCheck.lowercaseString
         if wordTrie!.contains("\(wordToCheck)".characters){
             return true
@@ -264,7 +257,6 @@ class MMWGameSceneViewController {
     }
     
     func checkWholeWordMatch(var wordToCheck: String) -> Bool {
-        //wordToCheck = wordToCheck // + "\r"
         wordToCheck = wordToCheck.lowercaseString
         if wordTrie!.contains("\(wordToCheck)!".characters){
             return true
@@ -443,8 +435,9 @@ class MMWGameSceneViewController {
     }
 
  
-    func sendWordToBoard (inout letterTileArray: [MMWTile], gridToDisplay: Grid, xStartSquare: Int, yStartSquare: Int, IsHorizonal: Bool, player: Player) {
+    func sendWordToBoard (inout letterTileArray: [MMWTile], gridToDisplay: Grid, xStartSquare: Int, yStartSquare: Int, var IsHorizonal: Bool, player: Player) {
         //let wordToDisplayArray = Array(wordToDisplay.characters)
+        IsHorizonal = true
         var xLoc: Int = xStartSquare
         var yLoc: Int = yStartSquare
         for var tileInWord in letterTileArray {
@@ -464,7 +457,7 @@ class MMWGameSceneViewController {
             tileInWord.tileSprite.hidden = false
             
             if IsHorizonal { ++xLoc }
-            else if !IsHorizonal { ++yLoc }
+            else { ++yLoc }
         }
         
         mmwGameScene.updateGridInScene(mmwGameScene.mmwBoardGrid)

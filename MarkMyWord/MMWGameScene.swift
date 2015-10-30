@@ -15,7 +15,8 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
     var mmwGameSceneViewController : MMWGameSceneViewController!
 
     var viewSize : CGSize!
-    var backgroundNode : SKSpriteNode = SKSpriteNode( imageNamed: "MMWBG" )
+    var backgroundNode : SKSpriteNode = SKSpriteNode( imageNamed: "MarkMyWordBGCleaniPad@2x.png" )
+    var optionsLayerNode  : SKSpriteNode = SKSpriteNode(imageNamed: "MMWOptionScreen")
     var foregroundNode : SKSpriteNode = SKSpriteNode()
     
     var mmwBoardGrid: Grid!
@@ -42,7 +43,7 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
     let passButton = SKSpriteNode(imageNamed: "PassButton.png")
     let pauseButton = SKSpriteNode(imageNamed: "PauseButton.png")
     let optionsButton = SKSpriteNode(imageNamed: "OptionsButton.png")
-    
+
     var placeholderTexture : SKTexture = SKTexture(imageNamed: "TileBackTest90x90")
     
     let actionSound = SKAction.playSoundFileNamed("1007.WAV", waitForCompletion: true)
@@ -113,9 +114,10 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
     
     func buildGameView () {
         backgroundColor = SKColor(red: 0.5, green: 0.0, blue: 0.0, alpha: 1.0)
+        
         userInteractionEnabled = true
         // add BG
-        backgroundNode = SKSpriteNode( imageNamed: "MarkMyWordBGCleaniPad@2x.png" )
+        //backgroundNode = SKSpriteNode( imageNamed: "MarkMyWordBGCleaniPad@2x.png" )
         backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         backgroundNode.position = CGPoint(x: size.width/2.0, y: 0.0)
         backgroundNode.userInteractionEnabled = false
@@ -180,6 +182,16 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
             tile.tileSprite.tileLocation = CGPoint(x: tileTempXLocation, y: 15 )
             self.addChild(tile.tileSprite)
         }
+        
+        optionsLayerNode.name = "optionsLayerNode"
+        optionsLayerNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+        optionsLayerNode.position = CGPoint(x: size.width/2.0, y: 0.0)
+        optionsLayerNode.userInteractionEnabled = false
+        optionsLayerNode.zPosition = 100
+        optionsLayerNode.size = viewSize
+        optionsLayerNode.hidden = true
+        self.addChild(optionsLayerNode)
+
     }
     
     func showAllGridTiles (gridToDisplay: Grid) {
@@ -345,13 +357,21 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
             let location = touch.locationInNode(self)
             let _node:SKNode = self.nodeAtPoint(location)
             
+            if(_node.name == "optionsLayerNode"){
+                //if userInteractionEnabled {
+                    runAction(actionSound)
+                    print(">>> optionsLayerNode PRESSED >>>")
+                optionsLayerNode.hidden = true
+                    //_node.removeFromParent() // gets rid node
+                //}
+            }
+            
             if(_node.name == "playButton"){
                 if userInteractionEnabled {
                     print(">>> PLAY BUTTON PRESSED >>>")
                     
 //                    mmwGameSceneViewController.buildWordArray("WordList4to5LetterNoDup")
 //                    mmwGameSceneViewController.buildTrie()
-
 //                    runAction(actionSound)
 
                     let starterWord = mmwGameSceneViewController.getRandomWord()
@@ -359,13 +379,6 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
                     
                     // SENDS RANDOM WORD TO CENTER OF BOARD
                     mmwGameSceneViewController.sendWordToBoard(&starterWordTileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 7, yStartSquare: 5, IsHorizonal: false, player: mmwGameSceneViewController.player0)
-
-                    //mmwGameSceneViewController.placeWord(mmwGameSceneViewController.player2, startLocX: 7, startLocY: 12, direction: "H")                    
-                    ///////////////////////
-//mmwGameSceneViewController.mmwGameScene.mmwBoardGrid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: (mmwGameSceneViewController.playerTurn))
-//                    self.mmwBoardGrid.dealGridFromArraySpecificTile(&mmwGameSceneViewController.tileCollection.mmwTileArray, tileArrayLocation: 49, playerNum: 0, squareX: 7, squareY: 5)
-                    /////////////////////////////
-
 
                     mmwPlayer1Grid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: 1)
                     mmwPlayer2Grid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: 2)
@@ -377,17 +390,19 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
                     if mmwGameSceneViewController.numPlayers > 3 {
                         mmwPlayer4Grid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: 4)
                     }
+
+                    _node.removeFromParent() // gets rid of play button in middle of screen
                     
                     showTilesInSquares(mmwGameSceneViewController.tileCollection) // 'deals' player tiles
-                    _node.removeFromParent() // gets rid of play button in middle of screen
+
                     tilesRemainingLabel.text = "Tiles Left: \(mmwGameSceneViewController.tileCollection.mmwTileArray.count  )"
                     mmwPlayer1Grid.makeTilesInGridInteractive(true)
+                    
                     // buttons inactive until "play" is pressed
                     newTilesButton.userInteractionEnabled = false
                     passButton.userInteractionEnabled = false
                     pauseButton.userInteractionEnabled = false
                     optionsButton.userInteractionEnabled = false
- 
                 }
             }
             
@@ -409,13 +424,13 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
   
             if(_node.name == "passButton"){
                 if userInteractionEnabled {
-                    runAction(actionSound)
-                    mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwTileArray)
-                    mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray)
-                    
-                    mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.refillGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: (mmwGameSceneViewController.playerTurn))
-                    
-                    showTilesInSquares(mmwGameSceneViewController.tileCollection) // 'deals' player tiles and shows demo tiles on board for testing
+//                    runAction(actionSound)
+//                    //mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwTileArray)
+//                    //mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray)
+//                    
+//                    mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.refillGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: (mmwGameSceneViewController.playerTurn))
+//                    
+//                    showTilesInSquares(mmwGameSceneViewController.tileCollection) // 'deals' player tiles and shows demo tiles on board for testing
                     
                     changePlayerTurn()
                 }
@@ -448,6 +463,8 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
                     }
                     print(">>>mmwGameSceneViewController.mmwGameScene.mmwBoardGrid: ")
                     mmwBoardGrid.printGrid()
+                    
+                    optionsLayerNode.hidden = false
                 }
             }
             
@@ -470,6 +487,16 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
     }
     
     func changePlayerTurn () {
+        
+        runAction(actionSound)
+        //mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwTileArray)
+        //mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray)
+        
+        mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.refillGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: (mmwGameSceneViewController.playerTurn))
+        
+        showTilesInSquares(mmwGameSceneViewController.tileCollection) // 'deals' player tiles and shows demo tiles on board for testing
+
+        
         let oldPlayer = mmwGameSceneViewController.playerTurn - 1  // player array is 0 based, players are 1 through 4
         mmwGameSceneViewController.playerArray[oldPlayer].playerLetterGrid.makeTilesInGridInteractive(false)
         if oldPlayer < mmwGameSceneViewController.numPlayers - 1 {
@@ -493,7 +520,6 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
         if mmwGameSceneViewController.tileCollection.mmwTileArray.count <= 0 {
             tilesRemainingLabel.text = "Tiles Left: None"
         }
-        
         newTileButtonOn()
     }
     
