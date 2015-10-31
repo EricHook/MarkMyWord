@@ -223,30 +223,6 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
         showAllGridTiles(mmwBoardGrid)
     }
 
-    func partialWordHUD (letters : String)  -> SKLabelNode {
-        partialWordLabel.text = "\(letters)"
-        partialWordLabel.fontSize = FontHUDSize
-        partialWordLabel.position = CGPointMake(size.width/2.0, 3)
-        partialWordLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
-        addChild(partialWordLabel)
-        return partialWordLabel
-    }
-    
-//    func partialWordHUD (letters : String, isWord : Bool)  -> SKLabelNode {
-//        var isPartial : String
-//        if isWord {
-//            isPartial = ""
-//        }
-//        else {
-//            isPartial = "not"
-//        }
-//        partialWordLabel.text = "\(letters) is \(isPartial) a partial word"
-//        partialWordLabel.fontSize = FontHUDSize
-//        partialWordLabel.position = CGPointMake(size.width/2.0, 3)
-//        partialWordLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
-//        addChild(partialWordLabel)
-//        return partialWordLabel
-//    }
     
     func timeRemainingHUD (timeAmount: Int)  -> SKLabelNode {
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
@@ -278,9 +254,20 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
         return tilesRemainingLabel
     }
     
+    
+    func partialWordHUD (letters : String)  -> SKLabelNode {
+        partialWordLabel.zPosition = 1
+        partialWordLabel.text = "\(letters)"
+        partialWordLabel.fontSize = FontHUDSize
+        partialWordLabel.position = CGPointMake(size.width/2.0, 3)
+        partialWordLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
+        addChild(partialWordLabel)
+        return partialWordLabel
+    }
+    
     func topDisplayHUD (message : String)  -> SKLabelNode {
         topDisplayLabel.zPosition = 1
-        topDisplayLabel.text = message
+        topDisplayLabel.text = "\(message)"
         topDisplayLabel.fontSize = FontHUDSize
         topDisplayLabel.position = CGPointMake(size.width/2.0, 753.0) // CGPointMake(size.width/2.0, 753.0) // 1 of 2 top lines
         topDisplayLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
@@ -377,8 +364,13 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
                     let starterWord = mmwGameSceneViewController.getRandomWord()
                     var starterWordTileArray = mmwGameSceneViewController.checkUndealtTilesForWord(starterWord, letterTileArray: &mmwGameSceneViewController.tileCollection.mmwTileArray)
                     
-                    // SENDS RANDOM WORD TO CENTER OF BOARD
-                    mmwGameSceneViewController.sendWordToBoard(&starterWordTileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 7, yStartSquare: 5, IsHorizonal: false, player: mmwGameSceneViewController.player0)
+                    // SENDS RANDOM WORD TO CENTER OF BOARD // half of the time Horizontal and the rest Vertical
+                    if arc4random_uniform(100) < 50 { // VERTICAL
+                        mmwGameSceneViewController.sendWordToBoard(&starterWordTileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 7, yStartSquare: 5, IsHorizonal: false, player: mmwGameSceneViewController.player0)
+                    }
+                    else { // HORIZONTAL
+                        mmwGameSceneViewController.sendWordToBoard(&starterWordTileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 5, yStartSquare: 7, IsHorizonal: true, player: mmwGameSceneViewController.player0)
+                    }
 
                     mmwPlayer1Grid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: 1)
                     mmwPlayer2Grid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: 2)
@@ -598,7 +590,8 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
     }
     
     func updatePartialWordFeedback (updatedText: String) {
-        partialWordLabel.text = updatedText
+        topDisplayLabel.text = updatedText
+        //partialWordLabel.text = updatedText
     }
     
     func presentMenuScene() {

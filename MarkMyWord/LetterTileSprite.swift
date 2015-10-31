@@ -17,7 +17,7 @@ import SpriteKit
 class LetterTileSprite : SKSpriteNode {
     
     var mmwGameSceneViewController : MMWGameSceneViewController! = nil
-    var mmwGameScene : MMWGameScene! = nil
+//    var mmwGameScene : MMWGameScene! = nil
     var tileSpriteParent : MMWTile! = nil
     let letterLabel = SKLabelNode(fontNamed: FontHUDName)
     var isMovable : Bool = true
@@ -32,12 +32,9 @@ class LetterTileSprite : SKSpriteNode {
     var tileShadow : SKSpriteNode = SKSpriteNode(texture: SKTexture(imageNamed: "TileShadow90x90"), color: UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.00), size: CGSizeMake(50.0, 50.0))
     var tileGlow : SKSpriteNode = SKSpriteNode(texture: SKTexture(imageNamed: "Tile3D100xGLOW"), color: UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.00), size: CGSizeMake(50.0, 50.0))
     var tileLocation : CGPoint = CGPointMake(0, 0)
-
     var enlarged = false
     var savedPosition = CGPointZero
     var hasLockedPotentialWord = false
-    
-
 
     enum TileStyle : Int {
         case basic = 0,
@@ -75,6 +72,7 @@ class LetterTileSprite : SKSpriteNode {
 //                frontTexture = SKTexture(imageNamed: "Tile3D95x")
 //                largeTextureFilename = "Tile3D95x"
 //        }
+        
         let myCGSize = CGSizeMake(47.5, 47.5)
         super.init(texture: frontTexture, color: UIColorAppleBlue, size: myCGSize)
         // call designated initializer on super
@@ -127,6 +125,7 @@ class LetterTileSprite : SKSpriteNode {
 
         // set properties defined in super
         userInteractionEnabled = false
+        
     }
 
     func flip() {
@@ -144,12 +143,6 @@ class LetterTileSprite : SKSpriteNode {
             self.faceUp = true
         }
     }
-    
-//    func moveTileToCenterSquare (cornerPoint : CGPoint) -> CGPoint {
-//        cornerPoint.x += 23.75     // 22.5?
-//        cornerPoint.y += 23.75     // 22.5?
-//        return cornerPoint
-//    }
     
     func centerTileToSquare(tile : LetterTileSprite) {
         tile.position.x += 23.75  // 22.5?
@@ -272,6 +265,7 @@ class LetterTileSprite : SKSpriteNode {
 //    overide func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
 //        <#code#>
 //    }
+    
 
     /// returnTileToGridHome() sends tile to return postition, with scaling effects and removes glow from tile and from all tiles on board
     /// - Returns: nothing
@@ -287,8 +281,6 @@ class LetterTileSprite : SKSpriteNode {
         self.tileGlow.hidden = true
         removeBoardTileHighlights ()
         runAction(actionSound2)
-        
-        
     }
     
     /// removeBoardTileHighlights() resets rollover highlights for all tiles on board -- otherwise last word remain highlighted
@@ -522,22 +514,10 @@ class LetterTileSprite : SKSpriteNode {
                 let tileSnapResultsYGrid = tileSnapResults.GridSquareY
                 
                 checkForValidWords(tileSnapResultsXGrid, gridYSpot: tileSnapResultsYGrid, gameGrid: gameGrid!)
-                
             }
         }
     }
     
-//    ////////////  TEST FOR PROXIMITY TO LOCKED TILE
-//    func testProximityLockedTile (gridXSpot: Int, gridYSpot: Int) -> Bool {
-//        if ( gridXSpot >= 0 && gridXSpot <= 14 && gridYSpot >= 0 && gridYSpot <= 14) { // since + and - 1 -> make sure in array bounds
-//            if !hasLockedPotentialWord { // hasLockedPotentialWord tested and set while dragging tile
-//                print("No neighboring locked tile! touchesEnded")
-//                returnTileToGridHome()
-//                return false
-//            }
-//        }
-//        return true
-//    }
     
     func testForTileAtDropSpot(gameGrid: Grid, tileSnapResultsXGrid: Int, tileSnapResultsYGrid: Int) -> Bool {
         if gameGrid.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid].tileType == TileType.Letter {
@@ -547,6 +527,7 @@ class LetterTileSprite : SKSpriteNode {
         }
         return false
     }
+    
     
     func testForValidWordsAtDropSpot (gameGrid: Grid, tileSnapResultsXGrid: Int, tileSnapResultsYGrid: Int) -> (validHorizontalPartialWord: Bool, validVerticalPartialWord: Bool, validHorizontalWholeWord: Bool, validVerticalWholeWord: Bool) {
         var leftString : String = ""
@@ -696,22 +677,12 @@ class LetterTileSprite : SKSpriteNode {
         if (horizontalString.characters.count > 1 && !validHorizontalPartialWord) ||
             (verticalString.characters.count > 1 && !validVerticalPartialWord ) {
                 print("NOT !!! VALID PARTIAL WORD Horiz and Vert")
-                print("Not valid words BOTH directions")
-                
-                //if (( gameGrid.mmwGameScene.mmwGameSceneViewController.checkPartialWordMatch(horizontalString)) == false) {
-                    print ( "Horizontal \(horizontalString) -> NOT a valid partial word - 2 points !!! touchesEnded" )
-                    runAction(actionSound)
-                    runAction(actionSound2)
-                    // -2 points for non-partial word // SCORE
-                    self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController?.playerArray[(self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController?.playerTurn)! - 1].playerScore -= 2
-                
-//                    for playerView in 0..<(self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.numPlayers)! {
-//                        self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.playerArray[playerView].playerView.changePlayerScoreDisplay()
-//                    }
-                
-                //}
+                print ( "Horizontal \(horizontalString) && Vertical \(verticalString) -> NOT valid partial words - 5 points !!! touchesEnded" )
+                runAction(actionSound)
+                runAction(actionSound2)
+                // -2 points for non-partial word // SCORE
+                self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController?.playerArray[(self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController?.playerTurn)! - 1].playerScore -= 5
 
-                
                 returnTileToGridHome()
                 
                 tileSpriteParent.tileBuilder!.mmwGameSceneViewController!.mmwGameScene.changePlayerTurn()
@@ -798,41 +769,28 @@ class LetterTileSprite : SKSpriteNode {
         else {
             print ( "Horizontal \(horizontalString) -> VALID whole word !!! touchesEnded" )
             for tile in possibleWordTilesHorizontal {
-                // points for existing locked letter
+                // 3 points for existing locked letter
                 //self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController?.playerArray[tileSpriteParent.tileOwner.rawValue - 1].playerScore += 1
 
                 if tile.tileState != TileState.Locked {
                     // points for each unlocked letter to tile owner
-                    tile.tileBuilder?.mmwGameSceneViewController?.playerArray[tile.tileOwner.rawValue - 1].playerScore += 1
+                    tile.tileBuilder?.mmwGameSceneViewController?.playerArray[tile.tileOwner.rawValue - 1].playerScore += 3
                     tile.tileSprite.letterLabel.fontColor = TileColors[tileSpriteParent.tileOwner.rawValue]
                     tile.tileSprite.color = UIColor.blackColor()
-                
                 }
                 tile.tileState = TileState.Locked
                 }
-                // 3 points for making a new complete word // SCORE
-                self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController?.playerArray[(self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController?.playerTurn)! - 1].playerScore += 3
+                // 10 points for making a new complete word // SCORE
+                self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController?.playerArray[(self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController?.playerTurn)! - 1].playerScore += 10
                 
                 for playerView in 0..<(self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.numPlayers)! {
                     self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.playerArray[playerView].playerView.changePlayerScoreDisplay()
                 }
-            
-//            if gameGrid.mmwGameScene.mmwGameSceneViewController.checkPartialWordMatch(horizontalString) == false && gameGrid.mmwGameScene.mmwGameSceneViewController.checkPartialWordMatch(verticalString) == false {
-//                runAction(actionSound)
-//                runAction(actionSound2)
-//                // -2 points for non-partial word // SCORE
-//                self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController?.playerArray[(self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController?.playerTurn)! - 1].playerScore -= 2
-//                
-//                for playerView in 0..<(self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.numPlayers)! {
-//                    self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.playerArray[playerView].playerView.changePlayerScoreDisplay()
-//     
-//                }
         }
-            
         
+        //UP
         stringToAdd = ""
         foundLockedTile = false
-        //UP
         while ( (currentCheckYGridNum > 0) && (gameGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].tileState == TileState.Locked || (gameGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].tileState == TileState.Played) ) )  {
             numVerticalAdjacentLetters++
             let letterToAdd : String = "\(gameGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].letterString)"
@@ -872,16 +830,6 @@ class LetterTileSprite : SKSpriteNode {
             // updates GUI for feedback on horizonal partial word
             self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback("Vertical \(verticalString)-> Not a valid partial word !!! touchesEnded")
             print ( "Vertical \(verticalString) -> NOT a valid partial word !!! touchesEnded" )
-            
-//            runAction(actionSound)
-//            runAction(actionSound2)
-//            // -2 points for non-partial word // SCORE
-//            self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController?.playerArray[(self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController?.playerTurn)! - 1].playerScore -= 2
-//            for playerView in 0..<(self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.numPlayers)! {
-//                self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.playerArray[playerView].playerView.changePlayerScoreDisplay()
-//                
-//            }
-            
         }
             
         if (( gameGrid.mmwGameScene.mmwGameSceneViewController.checkWholeWordMatch(verticalString) ) == false || verticalString.characters.count < tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.minWordSize  ) {
@@ -896,17 +844,17 @@ class LetterTileSprite : SKSpriteNode {
             for tile in possibleWordTilesVertical {
                 if tile.tileState != TileState.Locked {
                 
-                // points for each unlocked letter to tile owner // SCORE
+                // 3 points for each unlocked letter to tile owner // SCORE
                 tile.tileBuilder?.mmwGameSceneViewController?.playerArray[tile.tileOwner.rawValue - 1].playerScore += 1
-                print ( "+ 1")
+                print ( "+ 3")
                 
                 tile.tileSprite.letterLabel.fontColor = TileColors[tileSpriteParent.tileOwner.rawValue]
                 tile.tileSprite.color = UIColor.blackColor()
                 }
             tile.tileState = TileState.Locked
             }
-            // 3 points for making a new complete word // SCORE
-            self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController?.playerArray[(self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController?.playerTurn)! - 1].playerScore += 3
+            // 10 points for making a new complete word // SCORE
+            self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController?.playerArray[(self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController?.playerTurn)! - 1].playerScore += 10
             
             for playerView in 0..<(self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.numPlayers)! {
                 self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.playerArray[playerView].playerView.changePlayerScoreDisplay()
@@ -1016,11 +964,26 @@ class LetterTileSprite : SKSpriteNode {
                 //////////// TEST FOR ADJACENT TILE PARTIAL WORDS
                 
                 let validWordTestAtDropSpot = testForValidWordsAtDropSpot(gameGrid!, tileSnapResultsXGrid: tileSnapResultsXGrid, tileSnapResultsYGrid: tileSnapResultsYGrid)
+                
                 if validWordTestAtDropSpot.validHorizontalPartialWord && validWordTestAtDropSpot.validVerticalPartialWord {
                     updateWordsAtDropSpot(gameGrid!, tileSnapResultsXGrid: tileSnapResultsXGrid, tileSnapResultsYGrid: tileSnapResultsYGrid, touchX: Float(tileSnapTouch.x), touchY: Float(tileSnapTouch.y)) ()
                 }
+                
                 //////////// TEST FOR ADJACENT TILE PARTIAL WORDS
             }
+        }
+
+        
+        //self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController?.playerArray[]
+
+        
+        //mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid
+        
+        
+        let letterTilesRemaining = self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.playerArray[(self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.playerTurn)! - 1].playerLetterGrid.numLetterTilesInGrid()
+            
+        if letterTilesRemaining <= 0 {
+            tileSpriteParent.tileBuilder!.mmwGameSceneViewController!.mmwGameScene.changePlayerTurn()
         }
     }
     

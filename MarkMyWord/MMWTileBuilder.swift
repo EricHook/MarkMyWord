@@ -313,8 +313,9 @@ class MMWTileBuilder {
             tile.tileState = TileState.Undealt
             tile.tileOwner = TileOwner.None
             tile.tileBuilder = self
+            tile.mmwGameSceneViewController = self.mmwGameSceneViewController
+            tile.tileSprite.mmwGameSceneViewController = self.mmwGameSceneViewController
         }
-
     }
     
     func setViewController (mmwGameSceneController: MMWGameSceneViewController) {

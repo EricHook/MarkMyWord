@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWTileBuilder.swift"
-            timestampString = "466912058.15163"
+            timestampString = "467949868.752667"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "348"
-            endingLineNumber = "348"
+            startingLineNumber = "349"
+            endingLineNumber = "349"
             landmarkName = "MMWTileBuilder"
             landmarkType = "3">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "467860505.203721"
+            timestampString = "467919338.873123"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "505"
-            endingLineNumber = "505"
+            startingLineNumber = "497"
+            endingLineNumber = "497"
             landmarkName = "changePlayerTurn()"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "467860821.255147"
+            timestampString = "467919338.873123"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "591"
-            endingLineNumber = "591"
+            startingLineNumber = "583"
+            endingLineNumber = "583"
             landmarkName = "newTileButtonOn()"
             landmarkType = "5">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "467860821.255147"
+            timestampString = "467919338.873123"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "596"
-            endingLineNumber = "596"
+            startingLineNumber = "588"
+            endingLineNumber = "588"
             landmarkName = "newTileButtonOff()"
             landmarkType = "5">
          </BreakpointContent>

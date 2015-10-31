@@ -47,6 +47,19 @@ class Grid {
         self.gridPlayer = player
     }
     
+    func numLetterTilesInGrid () -> Int {
+        var numLetterTiles = 0
+        for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
+            for x in 0...(self.gridNumSquaresX - 1) {
+                if self.grid2DArr[x][y].tileType == TileType.Letter {
+                    numLetterTiles++
+                }
+                
+            }
+        }
+        return numLetterTiles
+    }
+    
     func makeTilesInGridInteractive (isInteractive : Bool) {
         //for y in gridToInteract.grid2DArr
         for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
