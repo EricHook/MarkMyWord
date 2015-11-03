@@ -16,7 +16,7 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
 
     var viewSize : CGSize!
     var backgroundNode : SKSpriteNode = SKSpriteNode( imageNamed: "MarkMyWordBGCleaniPad@2x.png" )
-    var optionsLayerNode  : SKSpriteNode = SKSpriteNode(imageNamed: "MMWOptionScreen")
+    var optionsLayerNode  : SKSpriteNode = SKSpriteNode(imageNamed: "MMWOptionsScreen.jpg")
     var foregroundNode : SKSpriteNode = SKSpriteNode()
     
     var mmwBoardGrid: Grid!
@@ -31,12 +31,12 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
     var player3View : PlayerView!
     var player4View : PlayerView!
 
-    var partialWordLabel    = SKLabelNode(fontNamed: FontHUDName)
     var timeRemainingLabel  = SKLabelNode(fontNamed: FontHUDName)
-    private var secondsLeft: Int = 17
+    private var secondsLeft: Int = 20
     var tilesRemainingLabel = SKLabelNode(fontNamed: FontHUDName)
     var topDisplayLabel     = SKLabelNode(fontNamed: FontHUDName)
     var topDisplayLabel2    = SKLabelNode(fontNamed: FontHUDName)
+    var bottomDisplayLabel    = SKLabelNode(fontNamed: FontHUDName)
     
     let playButton = SKSpriteNode(imageNamed: "PlayButton.png")
     var newTilesButton = SKSpriteNode(imageNamed: "NewTilesButton.png")
@@ -68,6 +68,11 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
     
     func setViewController (mmwGameSceneController: MMWGameSceneViewController) {
         self.mmwGameSceneViewController = mmwGameSceneController
+    }
+    
+    func resetPassCounter () {
+        mmwGameSceneViewController.consequtivePasses = 0
+        print("\(mmwGameSceneViewController.consequtivePasses) consequtive passes")
     }
     
     func setGrids () {
@@ -116,8 +121,7 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
         backgroundColor = SKColor(red: 0.5, green: 0.0, blue: 0.0, alpha: 1.0)
         
         userInteractionEnabled = true
-        // add BG
-        //backgroundNode = SKSpriteNode( imageNamed: "MarkMyWordBGCleaniPad@2x.png" )
+        // add backgroundNode
         backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         backgroundNode.position = CGPoint(x: size.width/2.0, y: 0.0)
         backgroundNode.userInteractionEnabled = false
@@ -126,21 +130,25 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
         addChild(backgroundNode)
 
         player1View = addPlayerView(1, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player1))
+        player1View.setPlayerGameSceneAndController(self, mmwGameSceneViewController: self.mmwGameSceneViewController)
         player2View = addPlayerView(2, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player2))
+        player2View.setPlayerGameSceneAndController(self, mmwGameSceneViewController: self.mmwGameSceneViewController)
         if mmwGameSceneViewController.numPlayers > 2 {
             player3View = addPlayerView(3, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player3))
+            player3View.setPlayerGameSceneAndController(self, mmwGameSceneViewController: self.mmwGameSceneViewController)
         }
         if mmwGameSceneViewController.numPlayers > 3 {
             player4View = addPlayerView(4, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player4))
+            player4View.setPlayerGameSceneAndController(self, mmwGameSceneViewController: self.mmwGameSceneViewController)
         }
 
         addChild(foregroundNode)
-        
-        timeRemainingHUD(30)  // default set to standard time remaining
+
         tilesRemainingHUD(777) // default test number to tiles remaining
-        
-        //partialWordHUD("Begin ... ", isWord: false)  // "ABCDEFGHIJKLMNO", isWord: false)
-        partialWordHUD("Begin ... ")
+
+        timeRemainingLabel.text = "TIME REMAINING..."
+
+        bottomDisplayHUD("Begin ... ")
         
         topDisplayHUD("Welcome to Mark My Word") // ("Turn: Player 1, Special Letter Bonus In Effect, 2x Point Bonus")
         topDisplayHUD2("topDisplayHUD2")
@@ -169,15 +177,10 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
         optionsButton.userInteractionEnabled = true
         self.addChild(optionsButton)
 
-//        // TEST place letter from playable letters on board
-//        mmwGameSceneViewController.dealLetter( &mmwGameSceneViewController.tileCollection.mmwTileArray[99], gridToPlaceLetter: mmwBoardGrid, xSquare: 7, ySquare: 5)
-//        mmwGameSceneViewController.dealLetter( &mmwGameSceneViewController.tileCollection.mmwTileArray[99], gridToPlaceLetter: mmwBoardGrid, xSquare: 7, ySquare: 6)
-//        mmwGameSceneViewController.dealLetter( &mmwGameSceneViewController.tileCollection.mmwTileArray[99], gridToPlaceLetter: mmwBoardGrid, xSquare: 7, ySquare: 7)
-
-        // ADD ALL TILES TO Scene - they start as invisible
+        // ADD ALL TILES to Scene - they start as invisible
         var tileTempXLocation = 0
         for tile in mmwGameSceneViewController.tileCollection.mmwTileArray {
-            tile.tileSprite.hidden = false
+            tile.tileSprite.hidden = true
             tileTempXLocation += 40
             tile.tileSprite.tileLocation = CGPoint(x: tileTempXLocation, y: 15 )
             self.addChild(tile.tileSprite)
@@ -185,14 +188,16 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
         
         optionsLayerNode.name = "optionsLayerNode"
         optionsLayerNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-        optionsLayerNode.position = CGPoint(x: size.width/2.0, y: 0.0)
+        optionsLayerNode.position = CGPoint(x: size.width/2.0, y: size.height/2.0)
         optionsLayerNode.userInteractionEnabled = false
         optionsLayerNode.zPosition = 100
-        optionsLayerNode.size = viewSize
+        optionsLayerNode.size = CGSize(width: viewSize.width * 0.9,  height: viewSize.height * 0.8)
+        optionsLayerNode.alpha = 0.75
         optionsLayerNode.hidden = true
         self.addChild(optionsLayerNode)
-
     }
+    
+    //func displayOptions
     
     func showAllGridTiles (gridToDisplay: Grid) {
         runAction(dealTilesSound)
@@ -223,7 +228,6 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
         showAllGridTiles(mmwBoardGrid)
     }
 
-    
     func timeRemainingHUD (timeAmount: Int)  -> SKLabelNode {
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
         timeRemainingLabel.zPosition = 1
@@ -253,19 +257,18 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
         addChild(tilesRemainingLabel)
         return tilesRemainingLabel
     }
-    
-    
-    func partialWordHUD (letters : String)  -> SKLabelNode {
-        partialWordLabel.zPosition = 1
-        partialWordLabel.text = "\(letters)"
-        partialWordLabel.fontSize = FontHUDSize
-        partialWordLabel.position = CGPointMake(size.width/2.0, 3)
-        partialWordLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
-        addChild(partialWordLabel)
-        return partialWordLabel
+     
+    func bottomDisplayHUD (letters : String)  -> SKLabelNode {        // bottom text display area - first line
+        bottomDisplayLabel.zPosition = 1
+        bottomDisplayLabel.text = "\(letters)"
+        bottomDisplayLabel.fontSize = FontHUDSize
+        bottomDisplayLabel.position = CGPointMake(size.width/2.0, 3)
+        bottomDisplayLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
+        addChild(bottomDisplayLabel)
+        return bottomDisplayLabel
     }
     
-    func topDisplayHUD (message : String)  -> SKLabelNode {
+    func topDisplayHUD (message : String)  -> SKLabelNode {         // top text display area - first line
         topDisplayLabel.zPosition = 1
         topDisplayLabel.text = "\(message)"
         topDisplayLabel.fontSize = FontHUDSize
@@ -275,7 +278,7 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
         return topDisplayLabel
     }
     
-    func topDisplayHUD2 (message : String)  -> SKLabelNode {
+    func topDisplayHUD2 (message : String)  -> SKLabelNode {        // top text display area - second line
         topDisplayLabel2.zPosition = 1
         topDisplayLabel2.text = message
         topDisplayLabel2.fontSize = FontHUDSize
@@ -286,8 +289,7 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
     }
 
     func addPlayerView (playerNum : Int, playerView : PlayerView) -> PlayerView {
-        if mmwGameSceneViewController.numPlayers == 2 {
-            // if only 2 players - one on left and one on right of UI
+        if mmwGameSceneViewController.numPlayers == 2 {         // if only 2 players - one on left and one on right of UI
             if playerNum == 1 {
                 playerView.position = CGPointMake(0, self.size.height * 0.384765625 ) // PS coordinates is Y: 1390, convert and flip .. x , 295.5
             }
@@ -296,8 +298,7 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
             }
         }
         
-        if mmwGameSceneViewController.numPlayers == 3 {
-            // if 3 players - one on left and two on right of UI
+        if mmwGameSceneViewController.numPlayers == 3 {     // if 3 players - one on left and two on right of UI
             if playerNum == 1 {
                 playerView.position = CGPointMake(0, self.size.height * 0.384765625 ) // PS coordinates is Y: 1390, convert and flip .. x , 295.5
             }
@@ -309,8 +310,7 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
             }
         }
    
-        if mmwGameSceneViewController.numPlayers == 4 {
-            // if 4 players - two on left and two on right of UI
+        if mmwGameSceneViewController.numPlayers == 4 {     // if 4 players - two on left and two on right of UI
             if playerNum == 1 {
                 playerView.position = CGPointMake( 0,  viewSize.height * 0.57096354 ) // PS coordinates is Y: 1390, convert and flip
             }
@@ -325,6 +325,7 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
             }
         }
         playerView.zPosition = -1
+        
         addChild(playerView)
         return playerView
     }
@@ -387,43 +388,44 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
                     
                     showTilesInSquares(mmwGameSceneViewController.tileCollection) // 'deals' player tiles
 
-                    tilesRemainingLabel.text = "Tiles Left: \(mmwGameSceneViewController.tileCollection.mmwTileArray.count  )"
+                    tilesRemainingLabel.text = "Tiles Left: \(mmwGameSceneViewController.tileCollection.mmwTileArray.count)"
                     mmwPlayer1Grid.makeTilesInGridInteractive(true)
+                    
+                    mmwGameSceneViewController.player1.playerView.playerViewBeginTurn()
                     
                     // buttons inactive until "play" is pressed
                     newTilesButton.userInteractionEnabled = false
                     passButton.userInteractionEnabled = false
                     pauseButton.userInteractionEnabled = false
                     optionsButton.userInteractionEnabled = false
+
+                    timeRemainingHUD(30)  // default set to standard time remaining
                 }
             }
             
             if(_node.name == "newTilesButton"){
                 if userInteractionEnabled {
-                    print(">>> NEW TILES BUTTON PRESSED >>>")
                     runAction(actionSound)
+                    
                     mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: (mmwGameSceneViewController.playerTurn))
+                    
                     showTilesInSquares(mmwGameSceneViewController.tileCollection) // 'deals' player tiles and shows demo tiles on board for testing
+                    mmwGameSceneViewController.resetConsequtivePasses()
                     changePlayerTurn()
                 }
-                
-//                tilesRemainingLabel.text = "Tiles Left: \(mmwGameSceneViewController.tileCollection.mmwTileArray.count  )" // " (mmwGameSceneViewController.tileCollection.mmwTileArray.count))"
-//                
-//                if mmwGameSceneViewController.tileCollection.mmwTileArray.count <= 0 {
-//                    tilesRemainingLabel.text = "Tiles Left: None"
-//                }
             }
   
             if(_node.name == "passButton"){
                 if userInteractionEnabled {
-//                    runAction(actionSound)
-//                    //mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwTileArray)
-//                    //mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray)
-//                    
-//                    mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.refillGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: (mmwGameSceneViewController.playerTurn))
-//                    
-//                    showTilesInSquares(mmwGameSceneViewController.tileCollection) // 'deals' player tiles and shows demo tiles on board for testing
+                    if mmwGameSceneViewController.lettersPlayedInTurn == 0 {
+                        mmwGameSceneViewController.consequtivePasses += 1
+                    }
                     
+                    print("\(mmwGameSceneViewController.consequtivePasses) consequtive passes")
+                    if mmwGameSceneViewController.consequtivePasses >= mmwGameSceneViewController.numPlayers {
+                        print("CHECK TO END GAME > PASSES = \(mmwGameSceneViewController.consequtivePasses)")
+                    }
+//                  runAction(actionSound)
                     changePlayerTurn()
                 }
             }
@@ -438,7 +440,6 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
                     print("mmwGameSceneViewController.tileCollection.mmwTileArray: ")
                     mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwTileArray)
                     print("mmwGameSceneViewController.tileCollection.mmwTileArray: ")
-                    //mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.)
                     
                     print("SHOW TILE GRIDS (player tiles and board grid)")
                     print(">>>mmwGameSceneViewController.mmwGameScene.mmwPlayer1Grid: ")
@@ -481,14 +482,11 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
     func changePlayerTurn () {
         
         runAction(actionSound)
-        //mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwTileArray)
-        //mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray)
         
         mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.refillGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: (mmwGameSceneViewController.playerTurn))
         
         showTilesInSquares(mmwGameSceneViewController.tileCollection) // 'deals' player tiles and shows demo tiles on board for testing
 
-        
         let oldPlayer = mmwGameSceneViewController.playerTurn - 1  // player array is 0 based, players are 1 through 4
         mmwGameSceneViewController.playerArray[oldPlayer].playerLetterGrid.makeTilesInGridInteractive(false)
         if oldPlayer < mmwGameSceneViewController.numPlayers - 1 {
@@ -507,12 +505,16 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
             mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerView.playerViewBeginTurn()
         }
 
-        tilesRemainingLabel.text = "Tiles Left: \(mmwGameSceneViewController.tileCollection.mmwTileArray.count)" // " (mmwGameSceneViewController.tileCollection.mmwTileArray.count))"
-        
-        if mmwGameSceneViewController.tileCollection.mmwTileArray.count <= 0 {
+        if mmwGameSceneViewController.tileCollection.mmwTileArray.count > 0 {
+            tilesRemainingLabel.text = "Tiles Left: \(mmwGameSceneViewController.tileCollection.mmwTileArray.count)"
+        }
+        else {
             tilesRemainingLabel.text = "Tiles Left: None"
         }
+
         newTileButtonOn()
+        
+        secondsLeft = 21
     }
     
     func getSnapGrid (testSpot : CGPoint) -> Grid? {
@@ -536,8 +538,7 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
             if (testSpot.x < 154.5 ) && testSpot.y > 384 {snapGrid = mmwPlayer3Grid}
             if (testSpot.x > 869.5 ) && testSpot.y > 384 {snapGrid = mmwPlayer4Grid}
         }
-        //else {snapGrid = nil}
-        //print("<MMWGameScene.GetSnapGrid> \(testSpot.x), \(testSpot.y), and grid \(snapGrid), and \(snapGrid.gridName)" )
+        //else {snapGrid = nil
         return snapGrid
     }
     
@@ -591,7 +592,10 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
     
     func updatePartialWordFeedback (updatedText: String) {
         topDisplayLabel.text = updatedText
-        //partialWordLabel.text = updatedText
+    }
+    
+    func updatePartialWordFeedback2(updatedText: String) {
+        topDisplayLabel2.text = updatedText
     }
     
     func presentMenuScene() {
@@ -601,7 +605,6 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
             score: 123)
         view?.presentScene(menuScene, transition: transition)
     }
-    
 }
 
  

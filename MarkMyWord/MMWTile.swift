@@ -34,7 +34,7 @@ enum TileOwner: Int {
 
 class MMWTile {
     var mmwGameSceneViewController : MMWGameSceneViewController?
-//    var mmwGameScene : MMWGameScene?
+    var mmwGameScene : MMWGameScene?
     var tileSprite : LetterTileSprite!
     var tileBuilder : MMWTileBuilder? = nil
     var tileType: TileType = TileType.Unknown
@@ -47,12 +47,15 @@ class MMWTile {
     var gridY: Int = -1
     var gridXEnd: Int = -1
     var gridYEnd: Int = -1
+
     var letterString: String = "?"
     var undealt = true
     var tileState: TileState = TileState.Undealt
     var tileOwner: TileOwner = TileOwner.None
     var tileGrid: Grid? = nil
     var description = ""
+
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -69,12 +72,12 @@ class MMWTile {
         self.tileState = TileState.Undealt
         self.tileOwner = TileOwner.None
         self.tileSprite  = LetterTileSprite(tileStyle: LetterTileSprite.TileStyle.basic, withChar: letterString, withColor: UIColorGray, atPoint: CGPointMake(0.5, 0.5))
-        self.tileSprite.position = CGPoint(x: 5.0751, y: 10.102)
+        self.tileSprite.position = CGPoint(x: 0.0, y: 0.0)
         self.tileSprite.zPosition = 1
         self.tileSprite.tileSpriteParent = self
-//        self.tileSprite.mmwGameSceneController = self.mmwGameSceneViewController
-//        self.tileSprite.mmwGameScene = self.mmwGameScene
-        self.tileSprite.hidden = false
+        self.tileSprite.mmwGameSceneViewController = self.mmwGameSceneViewController
+        self.tileSprite.mmwGameScene = self.mmwGameScene
+        self.tileSprite.hidden = true
         tileSprite.alpha = 0.3
     }
     
@@ -88,11 +91,13 @@ class MMWTile {
         description = "/(letterString)"
         self.tileState = TileState.Undealt
         self.tileOwner = TileOwner.None
-        self.tileSprite  = LetterTileSprite(tileStyle: LetterTileSprite.TileStyle.basic, withChar: letterString, withColor: UIColor.blackColor(), atPoint: CGPointMake(0.5, 0.5))
-        self.tileSprite.position = CGPoint(x: 5.0751, y: 10.102)
+        self.tileSprite  = LetterTileSprite(tileStyle: LetterTileSprite.TileStyle.basic, withChar: letterString, withColor: UIColor.blackColor(), atPoint: CGPointMake(0.0, 0.0))
+        self.tileSprite.position = CGPoint(x: 0.0, y: 0.0)
         self.tileSprite.zPosition = 1
         self.tileSprite.tileSpriteParent = self
-        self.tileSprite.hidden = false
+        self.tileSprite.mmwGameSceneViewController = self.mmwGameSceneViewController
+        self.tileSprite.mmwGameScene = self.mmwGameScene
+        self.tileSprite.hidden = true
     }
     
 //    func setViewController (mmwGameSceneController: MMWGameSceneViewController) {

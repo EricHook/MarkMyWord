@@ -313,17 +313,26 @@ class MMWTileBuilder {
             tile.tileState = TileState.Undealt
             tile.tileOwner = TileOwner.None
             tile.tileBuilder = self
-            tile.mmwGameSceneViewController = self.mmwGameSceneViewController
-            tile.tileSprite.mmwGameSceneViewController = self.mmwGameSceneViewController
+            //tile.mmwGameSceneViewController = self.mmwGameSceneViewController
+            //tile.tileSprite.mmwGameSceneViewController = self.mmwGameSceneViewController
         }
     }
     
-    func setViewController (mmwGameSceneController: MMWGameSceneViewController) {
+    func setViewControllerAndScene (mmwGameSceneController: MMWGameSceneViewController) {
         self.mmwGameSceneViewController = mmwGameSceneController
+        for tile in mmwTileArray {
+//            tile.tileState = TileState.Undealt
+//            tile.tileOwner = TileOwner.None
+//            tile.tileBuilder = self
+            tile.mmwGameSceneViewController = self.mmwGameSceneViewController
+            tile.tileSprite.mmwGameSceneViewController = self.mmwGameSceneViewController
+            tile.mmwGameScene = self.mmwGameScene
+            tile.tileSprite.mmwGameScene = self.mmwGameScene
+        }
     }
     
     func displayTileArrayValues (tileArray: [MMWTile]) {
-        print( "MMWTileBuilder displayTileArrayValues (tileArray: [MMWTile]) ...")
+        print( "MMWTileBuilder.displayTileArrayValues (tileArray: [MMWTile]) ...")
         for tile in tileArray {
             print("\(tile.letterString)")
         }

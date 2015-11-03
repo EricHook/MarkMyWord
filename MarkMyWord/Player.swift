@@ -26,6 +26,9 @@ class Player {
     
     var playerSpecialTiles : [MMWTile]! = nil
     var playerLetterTilesPlayed : [MMWTile]? = nil
+
+    var mmwGameSceneViewController : MMWGameSceneViewController!
+    var mmwGameScene : MMWGameScene!
     
     init (_playerID : Int, _playerName : String, _playerColor : Int) {
         //playerSeat = MMWSeat(_playerSeatNum: 1, _seatColorNumber: _playerColor)
@@ -58,9 +61,20 @@ class Player {
 //        }
 //    }
     
-    func setPlayerView (playerView: PlayerView) {
+    func setPlayerView (playerView: PlayerView, mmwGameScene: MMWGameScene, mmwGameSceneViewController: MMWGameSceneViewController) {
         self.playerView = playerView
+        self.mmwGameScene = mmwGameScene
+        self.mmwGameSceneViewController = mmwGameSceneViewController
+    
+//        playerView.mmwGameSceneViewController = self.mmwGameSceneViewController
+//        playerView.mmwGameScene = mmwGameScene
     }
+    
+    
+//    func setPlayerGameSceneAndController (mmwGameScene: MMWGameScene, mmwGameSceneViewController: MMWGameSceneViewController) {
+//        self.mmwGameScene = mmwGameScene
+//        self.mmwGameSceneViewController = mmwGameSceneViewController
+//    }
     
 //    getNewTiles (numTilesToGet: Int) {
 //        while playerLetterTiles.count < 7 &&

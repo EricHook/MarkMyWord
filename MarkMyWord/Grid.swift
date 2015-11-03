@@ -101,6 +101,14 @@ class Grid {
     }
     
     // given a grid and x, y func returns a CGPoint to place sprite
+    class func sendToGridSquare (grid: Grid, squareX: Int, squareY: Int) -> (CGPoint) {
+        let tilePositionX = grid.gridUpperLeftX + 23.75 + ( Double(squareX) * grid.gridSquareSizeX )
+        let tilePositionY = 768 - grid.gridUpperLeftY - ( Double(squareY) * grid.gridSquareSizeY ) + 7
+        let tilePosition = CGPoint( x: tilePositionX, y: tilePositionY )
+        return tilePosition
+    }
+    
+    // given a grid and x, y func returns a CGPoint to place sprite
     func sendToGridSquare (squareX: Int, squareY: Int) -> (CGPoint) {
         let tilePositionX = self.gridUpperLeftX + 23.75 + ( Double(squareX) * self.gridSquareSizeX )
         let tilePositionY = 768 - self.gridUpperLeftY - ( Double(squareY) * self.gridSquareSizeY ) + 7
@@ -127,8 +135,8 @@ class Grid {
         //var arrayInMarker = 0
         for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
             for x in 0...(self.gridNumSquaresX - 1) {
-            mmwGameScene.mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray.append( self.grid2DArr[x][y])
-                    self.grid2DArr[x][y].tileSprite.hidden = true
+                mmwGameScene.mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray.append( self.grid2DArr[x][y])
+                self.grid2DArr[x][y].tileSprite.hidden = true
                 if arrayIn.count > 0 {
                     if numTilesToDeal > 0 {
                         let numTiles : UInt32 = UInt32(arrayIn.count)

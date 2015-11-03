@@ -25,7 +25,7 @@ class MMWGameSceneViewController {
     var viewSize : CGSize!
     var tileCollection : MMWTileBuilder
     var tilesPlayable : [MMWTile]
-    var numPlayers : Int = 2
+    var numPlayers : Int = 4
     var playerTurn :  Int = 1
     var minWordSize = 3
     var player0 : Player = Player(_playerID: 0, _playerName: "AI", _playerColor: 0) // used to add initial word ownership
@@ -39,16 +39,19 @@ class MMWGameSceneViewController {
     var wordArray : [String] = [""]
     var wordArrayMod : [String.CharacterView] = ["".characters]
     
-    let words = ["hello", "hiya", "hell", "jonah", "jolly", "joseph", "jobs"].map{$0.characters}
+    var consequtivePasses = 0
+    var lettersPlayedInTurn = 0
     
-    // var store = Trie(words)  // : Trie() // = Trie(words)
+//    let words = ["hello", "hiya", "hell", "jonah", "jolly", "joseph", "jobs"].map{$0.characters}
+//    // var store = Trie(words)  // : Trie() // = Trie(words)
 
     var wordTrie : Trie<Character>?
 
     init (size: CGSize) {
         viewSize = size
         tileCollection = MMWTileBuilder()
-                mmwGameScene = MMWGameScene(size: viewSize)
+        mmwGameScene = MMWGameScene(size: viewSize)
+
         
         if numPlayers == 2 {
             playerArray  = [player1, player2]
@@ -62,11 +65,15 @@ class MMWGameSceneViewController {
         
         tilesPlayable = tileCollection.mmwTileArray
         mmwGameScene.setViewController(self)
-        tileCollection.setViewController(self)
+        //tileCollection.setViewControllerAndScene(self)
 
         mmwGameScene.setGrids() // sets tile grid positions, size of square, number of squares and position on screen for each grid possible
         mmwGameScene.buildGameView()
         setUpPlayers() // add player to view, match player to grid, fill grid with starter tiles and colorize to player color
+        
+        tileCollection.mmwGameSceneViewController = self
+        tileCollection.mmwGameScene = self.mmwGameScene
+        tileCollection.setViewControllerAndScene(self)
 
         buildWordArray("WordList1to3LetterNoDup")
         buildTrie()
@@ -93,16 +100,19 @@ class MMWGameSceneViewController {
         if numPlayers == 4 {
             makeFourPlayers()
         }
+        
     }
     
     func makeTwoPlayers () {
         player1.setPlayerTilesGrid(&mmwGameScene.mmwPlayer1Grid!)
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer1Grid!)
-        player1.setPlayerView(mmwGameScene.player1View)
+        player1.setPlayerView(mmwGameScene.player1View, mmwGameScene: self.mmwGameScene, mmwGameSceneViewController: self)
+        //player1.setPlayerGameSceneAndController(self.mmwGameScene, mmwGameSceneViewController: self)
         
         player2.setPlayerTilesGrid(&mmwGameScene.mmwPlayer2Grid!)
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer2Grid!)
-        player2.setPlayerView(mmwGameScene.player2View)
+        player2.setPlayerView(mmwGameScene.player2View, mmwGameScene: self.mmwGameScene, mmwGameSceneViewController: self)
+        //player2.setPlayerGameSceneAndController(self.mmwGameScene, mmwGameSceneViewController: self)
         
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwBoardGrid!)
     }
@@ -112,7 +122,8 @@ class MMWGameSceneViewController {
         
         player3.setPlayerTilesGrid(&mmwGameScene.mmwPlayer3Grid!)
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer3Grid!)
-        player3.setPlayerView(mmwGameScene.player3View)
+        player3.setPlayerView(mmwGameScene.player3View, mmwGameScene: self.mmwGameScene, mmwGameSceneViewController: self)
+        //player3.setPlayerGameSceneAndController(self.mmwGameScene, mmwGameSceneViewController: self)
     }
     
     func makeFourPlayers () {
@@ -120,7 +131,8 @@ class MMWGameSceneViewController {
 
         player4.setPlayerTilesGrid(&mmwGameScene.mmwPlayer4Grid!)
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer4Grid!)
-        player4.setPlayerView(mmwGameScene.player4View)
+        player4.setPlayerView(mmwGameScene.player4View, mmwGameScene: self.mmwGameScene, mmwGameSceneViewController: self)
+        //player4.setPlayerGameSceneAndController(self.mmwGameScene, mmwGameSceneViewController: self)
     }
     
     func setTileOwner (inout tileToSet: MMWTile, player: Player) {
@@ -140,6 +152,15 @@ class MMWGameSceneViewController {
             tileToSet.tileOwner = TileOwner.None
         }
     }
+    
+    func resetConsequtivePasses () {
+        self.consequtivePasses = 0
+    }
+    
+    func resetLettersPlayedInTurn () {
+        self.lettersPlayedInTurn = 0
+    }
+
     
     func getRandomWord() -> String {
         let wordToReturn : String
@@ -258,7 +279,7 @@ class MMWGameSceneViewController {
     
     func checkWholeWordMatch(var wordToCheck: String) -> Bool {
         wordToCheck = wordToCheck.lowercaseString
-        if wordTrie!.contains("\(wordToCheck)!".characters){
+        if wordTrie!.contains("\(wordToCheck)!".characters){ // whole words have ! at end of string
             return true
         }
         return false
@@ -382,12 +403,12 @@ class MMWGameSceneViewController {
         
         let tileAtDropSpot : MMWTile = (gridToPlaceLetter.grid2DArr[xSquare][ySquare])
         ////////////  TEST FOR TILE UNDER DROP SPOT
-        if tileAtDropSpot.tileOwner == TileOwner.Player1 {
-            //runAction(actionSound)
-            letterToPlace.tileSprite.position = (tileAtDropSpot.gridHome?.sendToGridSquare(letterToPlace.gridHome!, squareX: letterToPlace.gridX , squareY: letterToPlace.gridY ))!
-        }
+//        if tileAtDropSpot.tileOwner == TileOwner.Player1 {
+//            //runAction(actionSound)
+//            letterToPlace.tileSprite.position = (tileAtDropSpot.gridHome?.sendToGridSquare(letterToPlace.gridHome!, squareX: letterToPlace.gridX , squareY: letterToPlace.gridY ))!
+//        }
         print("drop location info: state:\(tileAtDropSpot.tileOwner) letter:\(tileAtDropSpot.tileSprite.tileText)")
-        
+  
         letterToPlace.gridEnd = gridToPlaceLetter // set tileSprite parent (MMWTile) grid to grid snapped to
         letterToPlace.gridXEnd = xSquare
         letterToPlace.gridYEnd = ySquare
@@ -435,9 +456,8 @@ class MMWGameSceneViewController {
     }
 
  
-    func sendWordToBoard (inout letterTileArray: [MMWTile], gridToDisplay: Grid, xStartSquare: Int, yStartSquare: Int, var IsHorizonal: Bool, player: Player) {
+    func sendWordToBoard (inout letterTileArray: [MMWTile], gridToDisplay: Grid, xStartSquare: Int, yStartSquare: Int, IsHorizonal: Bool, player: Player) {
         //let wordToDisplayArray = Array(wordToDisplay.characters)
-        IsHorizonal = true
         var xLoc: Int = xStartSquare
         var yLoc: Int = yStartSquare
         for var tileInWord in letterTileArray {

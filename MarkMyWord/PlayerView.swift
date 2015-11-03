@@ -15,6 +15,9 @@ class PlayerView: SKSpriteNode {
     var playerScoreLabel = SKLabelNode(fontNamed: FontHUDName)
     var mmwPlayer : Player!
     
+    var mmwGameSceneViewController : MMWGameSceneViewController!
+    var mmwGameScene : MMWGameScene!
+    
     init (mmwPlayer: Player) {
         
 //        let playerBGTallTex : SKTexture = SKTexture(imageNamed: "PlayerBGTEST309x1320TestFull.jpg")
@@ -92,6 +95,12 @@ class PlayerView: SKSpriteNode {
         addChild(playerTilesPlaque)
 
     }
+    
+    func setPlayerGameSceneAndController (mmwGameScene: MMWGameScene, mmwGameSceneViewController: MMWGameSceneViewController) {
+        self.mmwGameScene = mmwGameScene
+        self.mmwGameSceneViewController = mmwGameSceneViewController
+    }
+    
     func changePlayerScoreDisplay () {
         let score = mmwPlayer.playerScore
         self.playerScoreLabel.text = String(score)
@@ -105,6 +114,7 @@ class PlayerView: SKSpriteNode {
     func playerViewBeginTurn () {
         self.playerNameLabel.fontColor = UIColor.whiteColor()
         self.playerScoreLabel.fontColor = UIColor.whiteColor()
+        mmwGameScene.bottomDisplayLabel.text =  ("\(mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerName ), place letters")
     }
     
     func playerViewEndTurn () {
@@ -113,6 +123,11 @@ class PlayerView: SKSpriteNode {
         //mmwPlayer.playerScore += 25
         //self.playerScoreLabel.text = String(mmwPlayer.playerScore)
         changePlayerScoreDisplay()
+        
+        mmwGameScene.topDisplayLabel.text = ("Great Job, \(self.playerNameLabel.text)!!!")
+        mmwGameScene.topDisplayLabel2.text = ("You rock!!!")
+        mmwGameScene.bottomDisplayLabel.text = ("Word Feedback ...")
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
