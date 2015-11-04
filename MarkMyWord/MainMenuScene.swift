@@ -69,7 +69,7 @@ class MainMenuScene: SKScene {
         
         
         let playBtnTEMP = SKSpriteNode(imageNamed: "PlayButton.png")
-        playBtnTEMP.position = CGPoint(x: viewSize.width/4, y: viewSize.height/5)
+        playBtnTEMP.position = CGPoint(x: viewSize.width/4, y: viewSize.height/6)
         self.addChild(playBtnTEMP)
         playBtnTEMP.name = "playBtnTEMP"
         playBtnTEMP.zPosition = 100

@@ -55,8 +55,6 @@ class MMWTile {
     var tileGrid: Grid? = nil
     var description = ""
 
-    
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -28,6 +28,7 @@ class MMWGameSceneViewController {
     var numPlayers : Int = 4
     var playerTurn :  Int = 1
     var minWordSize = 3
+    var secondsPerTurn = 25
     var player0 : Player = Player(_playerID: 0, _playerName: "AI", _playerColor: 0) // used to add initial word ownership
     var player1 : Player = Player(_playerID: 1, _playerName: "Abe", _playerColor: 1)
     var player2 : Player = Player(_playerID: 2, _playerName: "Bart", _playerColor: 2)
@@ -76,16 +77,16 @@ class MMWGameSceneViewController {
         tileCollection.setViewControllerAndScene(self)
 
         buildWordArray("WordList1to3LetterNoDup")
-        buildTrie()
+        buildTrie( buildWordArray("WordList1to3LetterNoDup") )
         print("buildTrie() 1-3")
         
         buildWordArray("WordList4LetterNoDup")
-        insertTrie()
+        insertTrie( buildWordArray("WordList4LetterNoDup") )
         print("insertTrie() 4")
         
-//        buildWordArray("WordList5LetterNoDup")
-//        insertTrie()
-//        print("insertTrie() 5")
+        buildWordArray("WordList5LetterNoDup")
+        insertTrie( buildWordArray("WordList5LetterNoDup") )
+        print("insertTrie() 5")
 
     }
 
@@ -209,9 +210,11 @@ class MMWGameSceneViewController {
         return wordArray
     }
     
-    func buildTrie() {
+    func buildTrie(stringArray: [String]) {
 
-        wordArrayMod = wordArray.map{$0.characters}
+//        wordArrayMod = wordArray.map{$0.characters}
+        
+        wordArrayMod = stringArray.map{$0.characters}
         
         wordTrie = Trie(wordArrayMod)
         
@@ -237,10 +240,15 @@ class MMWGameSceneViewController {
 
     }
     
-    func insertTrie() {
+    func insertTrie(stringArray: [String]) {
 
-        wordArrayMod = wordArray.map{$0.characters}
-        //wordTrie = Trie(wordArrayMod)
+//        wordArrayMod = wordArray.map{$0.characters}
+//
+//        //wordTrie = Trie(wordArrayMod)
+        
+        wordArrayMod = stringArray.map{$0.characters}
+        
+        
         print("InsertTrie store.count START: + \(wordTrie!.count) ")
         print("InsertTrie store.contains jo: + \(wordTrie!.completions("jo".characters).count)")
         let stringTest = "jox"
@@ -437,7 +445,7 @@ class MMWGameSceneViewController {
     
     func placeWord (player: Player, startLocX: Int, startLocY: Int, direction: Character, wordToPlace: [MMWTile]){
         var tileToPlace = self.tilesPlayable[0]
-        tileToPlace.tileSprite.color = tileToPlace.tileSprite.TileColors[player.playerID]
+        tileToPlace.tileSprite.color = tileColors[player.playerID]
         tileToPlace.tileSprite.tileLocation = CGPoint(x: 200, y: 200)
         tileToPlace.gridHome = mmwGameScene.mmwBoardGrid
         tileToPlace.gridEnd = mmwGameScene.mmwBoardGrid

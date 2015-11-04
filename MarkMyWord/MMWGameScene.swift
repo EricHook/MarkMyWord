@@ -245,6 +245,7 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
         if secondsLeft <= -1 {
             if secondsLeft == -1 { runAction(actionSound) }  // play turn over sound
             timeRemainingLabel.text = ("Timer: 0")
+            changePlayerTurn()
         }
     }
     
@@ -338,6 +339,8 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
             }
         }
     }
+    
+    
 
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
@@ -358,8 +361,8 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
                 if userInteractionEnabled {
                     print(">>> PLAY BUTTON PRESSED >>>")
                     
-//                    mmwGameSceneViewController.buildWordArray("WordList4to5LetterNoDup")
-//                    mmwGameSceneViewController.buildTrie()
+//                    mmwGameSceneViewController.buildWordArray("WordList5LetterNoDup")
+//                    mmwGameSceneViewController.insertTrie()
 //                    runAction(actionSound)
 
                     let starterWord = mmwGameSceneViewController.getRandomWord()
@@ -399,7 +402,7 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
                     pauseButton.userInteractionEnabled = false
                     optionsButton.userInteractionEnabled = false
 
-                    timeRemainingHUD(30)  // default set to standard time remaining
+                    timeRemainingHUD(mmwGameSceneViewController.secondsPerTurn)  // default set to standard time remaining
                 }
             }
             
@@ -412,6 +415,9 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
                     showTilesInSquares(mmwGameSceneViewController.tileCollection) // 'deals' player tiles and shows demo tiles on board for testing
                     mmwGameSceneViewController.resetConsequtivePasses()
                     changePlayerTurn()
+                    if isPaused == true {
+                        startTimer(mmwGameSceneViewController.secondsPerTurn)
+                    }
                 }
             }
   
@@ -427,12 +433,17 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
                     }
 //                  runAction(actionSound)
                     changePlayerTurn()
+                    if isPaused == true {
+                        startTimer(mmwGameSceneViewController.secondsPerTurn)
+                    }
+                    
                 }
             }
             
             if(_node.name == "optionsButton"){
                 if userInteractionEnabled {
                     runAction(actionSound)
+                    stopTimer()
                     
                     print("SHOW TILE ARRAYS")
                     print("mmwGameSceneViewController.tileCollection.tileCollection.mmwDiscardedTileArray: ")
@@ -463,26 +474,53 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
             
             if(_node.name == "pauseButton"){
                 if userInteractionEnabled {
-                    runAction(actionSound)
+                    //runAction(actionSound)
                     if !isPaused {
-                        isPaused = true
-                        pauseButton.texture = SKTexture(imageNamed: "PlayButton.png")
-                        timer!.invalidate()
+//                        isPaused = true
+//                        pauseButton.texture = SKTexture(imageNamed: "PlayButton.png")
+//                        timer!.invalidate()
+                        stopTimer()
                     }
                     else {
-                        isPaused = false
-                        pauseButton.texture = SKTexture(imageNamed: "PauseButton.png")
-                        timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
+//                        isPaused = false
+//                        pauseButton.texture = SKTexture(imageNamed: "PauseButton.png")
+//                        timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
+                        startTimer(secondsLeft)
                     }
                 }
             }
         }
     }
     
+    func startTimer(seconds: Int) {
+        runAction(actionSound)
+        isPaused = false
+        pauseButton.texture = SKTexture(imageNamed: "PauseButton.png")
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
+    }
+    
+    func stopTimer() {
+        isPaused = true
+        pauseButton.texture = SKTexture(imageNamed: "PlayButton.png")
+        timer!.invalidate()
+    }
+
+    func explosion(pos: CGPoint) {
+        let emitterNode = SKEmitterNode(fileNamed: "MagicParticle.sks")
+        emitterNode?.zPosition = 100
+        emitterNode!.particlePosition = pos
+        self.addChild(emitterNode!)
+        // Don't forget to remove the emitter node after the explosion
+        self.runAction(SKAction.waitForDuration(2), completion: { emitterNode!.removeFromParent() })
+        runAction(SKAction.playSoundFileNamed("1023.wav", waitForCompletion: false))
+        
+    }
+    
     func changePlayerTurn () {
         
         runAction(actionSound)
-        
+        //explosion(CGPointMake(self.size.width/2, self.size.height/2))
+  
         mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.refillGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: (mmwGameSceneViewController.playerTurn))
         
         showTilesInSquares(mmwGameSceneViewController.tileCollection) // 'deals' player tiles and shows demo tiles on board for testing
@@ -515,6 +553,8 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
         newTileButtonOn()
         
         secondsLeft = 21
+        
+        mmwGameSceneViewController.lettersPlayedInTurn = 0
     }
     
     func getSnapGrid (testSpot : CGPoint) -> Grid? {

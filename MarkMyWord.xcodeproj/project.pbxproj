@@ -336,6 +336,8 @@
 		B8FA8FA91AE9DDB5007CF07C /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FA8FA81AE9DDB5007CF07C /* Config.swift */; };
 		B8FA8FAB1AE9DF6F007CF07C /* TileViewOLD.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FA8FAA1AE9DF6F007CF07C /* TileViewOLD.swift */; };
 		B8FFF25B1BE8286D006D2010 /* MMWOptionsScreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8FFF25A1BE8286D006D2010 /* MMWOptionsScreen.jpg */; };
+		B8FFF25E1BE96E2E006D2010 /* MagicParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = B8FFF25C1BE96E2E006D2010 /* MagicParticle.sks */; };
+		B8FFF25F1BE96E2E006D2010 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = B8FFF25D1BE96E2E006D2010 /* spark.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -683,6 +685,8 @@
 		B8FA8FA81AE9DDB5007CF07C /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		B8FA8FAA1AE9DF6F007CF07C /* TileViewOLD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileViewOLD.swift; sourceTree = "<group>"; };
 		B8FFF25A1BE8286D006D2010 /* MMWOptionsScreen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MMWOptionsScreen.jpg; sourceTree = "<group>"; };
+		B8FFF25C1BE96E2E006D2010 /* MagicParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MagicParticle.sks; sourceTree = "<group>"; };
+		B8FFF25D1BE96E2E006D2010 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1166,6 +1170,8 @@
 			children = (
 				B8A455141AF15A1400C0D83B /* MainMenuScene.swift */,
 				B8CCE1A51AD8C13500882391 /* MMWGameScene.swift */,
+				B8FFF25C1BE96E2E006D2010 /* MagicParticle.sks */,
+				B8FFF25D1BE96E2E006D2010 /* spark.png */,
 				B8B49DBA1AF1AF610086154C /* MMWResultsScene.swift */,
 				B8D130E61AFD635500865982 /* PlayerView.swift */,
 				B8C14EF01AF27E5100E640C0 /* LetterTileSprite.swift */,
@@ -1464,6 +1470,7 @@
 				B8A455A71AF171B800C0D83B /* card_back@2x.png in Resources */,
 				B8A455F11AF171B800C0D83B /* icon_star_filled@2x.png in Resources */,
 				B8A455C81AF171B800C0D83B /* card_spell_rabid_large.png in Resources */,
+				B8FFF25F1BE96E2E006D2010 /* spark.png in Resources */,
 				B8A455E61AF171B800C0D83B /* deadCreature@2x.png in Resources */,
 				B8A455C51AF171B800C0D83B /* card_spell_death_ray_sel@2x.png in Resources */,
 				B8A455CA1AF171B800C0D83B /* card_spell_rabid_sel.png in Resources */,
@@ -1500,6 +1507,7 @@
 				B8C900741B0125D100C72745 /* appIcon87x87_MMW.png in Resources */,
 				B8B2CB081ADADD9100C9DEE7 /* 24-LetterWords.txt in Resources */,
 				B8A456141AF171B800C0D83B /* zoup.wav in Resources */,
+				B8FFF25E1BE96E2E006D2010 /* MagicParticle.sks in Resources */,
 				B8B2CA701ADADB7000C9DEE7 /* 1006.WAV in Resources */,
 				B8B2CACF1ADADD9100C9DEE7 /* 6.1-LetterWords.txt in Resources */,
 				B8A455A01AF171B800C0D83B /* bg_board@2x.png in Resources */,
