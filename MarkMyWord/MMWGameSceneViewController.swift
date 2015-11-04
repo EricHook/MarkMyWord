@@ -42,9 +42,6 @@ class MMWGameSceneViewController {
     
     var consequtivePasses = 0
     var lettersPlayedInTurn = 0
-    
-//    let words = ["hello", "hiya", "hell", "jonah", "jolly", "joseph", "jobs"].map{$0.characters}
-//    // var store = Trie(words)  // : Trie() // = Trie(words)
 
     var wordTrie : Trie<Character>?
 
@@ -52,8 +49,7 @@ class MMWGameSceneViewController {
         viewSize = size
         tileCollection = MMWTileBuilder()
         mmwGameScene = MMWGameScene(size: viewSize)
-
-        
+ 
         if numPlayers == 2 {
             playerArray  = [player1, player2]
         }
@@ -66,8 +62,6 @@ class MMWGameSceneViewController {
         
         tilesPlayable = tileCollection.mmwTileArray
         mmwGameScene.setViewController(self)
-        //tileCollection.setViewControllerAndScene(self)
-
         mmwGameScene.setGrids() // sets tile grid positions, size of square, number of squares and position on screen for each grid possible
         mmwGameScene.buildGameView()
         setUpPlayers() // add player to view, match player to grid, fill grid with starter tiles and colorize to player color
@@ -87,6 +81,10 @@ class MMWGameSceneViewController {
         buildWordArray("WordList5LetterNoDup")
         insertTrie( buildWordArray("WordList5LetterNoDup") )
         print("insertTrie() 5")
+        
+//        buildWordArray("WordList6LetterNoDup")
+//        insertTrie( buildWordArray("WordList6LetterNoDup") )
+//        print("insertTrie() 6")
 
     }
 
@@ -108,12 +106,10 @@ class MMWGameSceneViewController {
         player1.setPlayerTilesGrid(&mmwGameScene.mmwPlayer1Grid!)
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer1Grid!)
         player1.setPlayerView(mmwGameScene.player1View, mmwGameScene: self.mmwGameScene, mmwGameSceneViewController: self)
-        //player1.setPlayerGameSceneAndController(self.mmwGameScene, mmwGameSceneViewController: self)
         
         player2.setPlayerTilesGrid(&mmwGameScene.mmwPlayer2Grid!)
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer2Grid!)
         player2.setPlayerView(mmwGameScene.player2View, mmwGameScene: self.mmwGameScene, mmwGameSceneViewController: self)
-        //player2.setPlayerGameSceneAndController(self.mmwGameScene, mmwGameSceneViewController: self)
         
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwBoardGrid!)
     }
@@ -124,7 +120,6 @@ class MMWGameSceneViewController {
         player3.setPlayerTilesGrid(&mmwGameScene.mmwPlayer3Grid!)
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer3Grid!)
         player3.setPlayerView(mmwGameScene.player3View, mmwGameScene: self.mmwGameScene, mmwGameSceneViewController: self)
-        //player3.setPlayerGameSceneAndController(self.mmwGameScene, mmwGameSceneViewController: self)
     }
     
     func makeFourPlayers () {
@@ -133,7 +128,6 @@ class MMWGameSceneViewController {
         player4.setPlayerTilesGrid(&mmwGameScene.mmwPlayer4Grid!)
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer4Grid!)
         player4.setPlayerView(mmwGameScene.player4View, mmwGameScene: self.mmwGameScene, mmwGameSceneViewController: self)
-        //player4.setPlayerGameSceneAndController(self.mmwGameScene, mmwGameSceneViewController: self)
     }
     
     func setTileOwner (inout tileToSet: MMWTile, player: Player) {
@@ -162,7 +156,6 @@ class MMWGameSceneViewController {
         self.lettersPlayedInTurn = 0
     }
 
-    
     func getRandomWord() -> String {
         let wordToReturn : String
         if let aStreamReader = StreamReader(file: "5-LetterWords") { // "/Users/erichook/Desktop/testSmallUTF8.txt") {
@@ -211,69 +204,22 @@ class MMWGameSceneViewController {
     }
     
     func buildTrie(stringArray: [String]) {
-
-//        wordArrayMod = wordArray.map{$0.characters}
-        
         wordArrayMod = stringArray.map{$0.characters}
-        
         wordTrie = Trie(wordArrayMod)
-        
-//        print("Trie store.count START: + \(wordTrie!.count) ")
-//        print("Trie store.contains jo: + \(wordTrie!.completions("jo".characters).count)")
-//        let stringTest = "jox"
-//        wordTrie!.insert(stringTest.characters) //    (wordArrayMod.map{$0.characters})
-//        //wordTrie!.insert(wordArray.map{$0.characters})
-//        print("Trie store.count ADD jox: + \(wordTrie!.count) ")
-//        print("Trie store.contains jo: + \(wordTrie!.completions("jo".characters).count)")
-//        print("Trie store.contains jollyx: + \(wordTrie!.contains("jolly\r".characters))")
-//        //wordTrie.insert("Do".map{$0.characters})
-//        print("FINISHED buildTrie()")
-       
-//        if let aStreamReader = StreamReader(file: "enable1WordListORIG") { // "/Users/erichook/Desktop/testSmallUTF8.txt") {
-//            while let line = aStreamReader.nextLine() {
-//                wordTrie.insert(line.characters)
-//            }
-//            aStreamReader.close()
-//            print("FINISHED buildTrie()")
-//        }
-//        return wordTrie
-
     }
     
     func insertTrie(stringArray: [String]) {
-
-//        wordArrayMod = wordArray.map{$0.characters}
-//
-//        //wordTrie = Trie(wordArrayMod)
-        
         wordArrayMod = stringArray.map{$0.characters}
-        
-        
         print("InsertTrie store.count START: + \(wordTrie!.count) ")
-        print("InsertTrie store.contains jo: + \(wordTrie!.completions("jo".characters).count)")
-        let stringTest = "jox"
-        wordTrie!.insert(stringTest.characters) //    (wordArrayMod.map{$0.characters})
+//        print("InsertTrie store.contains jo: + \(wordTrie!.completions("jo".characters).count)")
+//        let stringTest = "jox"
+//        wordTrie!.insert(stringTest.characters) //    (wordArrayMod.map{$0.characters})
         
         for word in wordArray {
             wordTrie!.insert(word.characters)
         }
-
-        print("InsertTrie store.count ADD jox: + \(wordTrie!.count) ")
-        print("InsertTrie store.contains jo: + \(wordTrie!.completions("jo".characters).count)")
-        print("InsertTrie store.contains jollyx: + \(wordTrie!.contains("jolly\r".characters))")
-        //wordTrie.insert("Do".map{$0.characters})
-        
+  
         print("FINISHED InsertTrie()")
-        
-        //        if let aStreamReader = StreamReader(file: "enable1WordListORIG") { // "/Users/erichook/Desktop/testSmallUTF8.txt") {
-        //            while let line = aStreamReader.nextLine() {
-        //                wordTrie.insert(line.characters)
-        //            }
-        //            aStreamReader.close()
-        //            print("FINISHED buildTrie()")
-        //        }
-        //        return wordTrie
-        
     }
     
     
@@ -491,8 +437,7 @@ class MMWGameSceneViewController {
         mmwGameScene.updateGridInScene(mmwGameScene.mmwBoardGrid)
         if player.playerLetterGrid != nil {
             self.mmwGameScene.updateGridInScene(player.playerLetterGrid)
-        }
-        
+        } 
     }
     
     

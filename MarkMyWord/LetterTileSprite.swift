@@ -790,10 +790,7 @@ class LetterTileSprite : SKSpriteNode {
                 tileScore3!.fontSize = 45
                 tileScore3!.fontName = FontHUDName
                 showNegativeScoreTextToGridHome(-5)
-                
-                
-                
-                
+
                 
                 self.tileSpriteParent.tileOwner = TileOwner.None
                 mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray.append(self.tileSpriteParent)

@@ -26,6 +26,7 @@
 		B879D8EF1BDD8CB20088A5A4 /* enable1WordListORIG.txt in Resources */ = {isa = PBXBuildFile; fileRef = B879D8EE1BDD8CB20088A5A4 /* enable1WordListORIG.txt */; };
 		B879D8F11BDDCE4E0088A5A4 /* enable1WordListMod.txt in Resources */ = {isa = PBXBuildFile; fileRef = B879D8F01BDDCE4E0088A5A4 /* enable1WordListMod.txt */; };
 		B87B0AD71B669AFD005D76EB /* testSmallUTF8B.txt in Resources */ = {isa = PBXBuildFile; fileRef = B87B0AD61B669AFD005D76EB /* testSmallUTF8B.txt */; };
+		B88118DC1BEAA32A003E74E5 /* WordList6LetterNoDup.txt in Resources */ = {isa = PBXBuildFile; fileRef = B88118DB1BEAA32A003E74E5 /* WordList6LetterNoDup.txt */; };
 		B89939431ADAF8BC00587323 /* accelerometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89939421ADAF8BC00587323 /* accelerometer.swift */; };
 		B8A455161AF15A1400C0D83B /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A455141AF15A1400C0D83B /* MainMenuScene.swift */; };
 		B8A455171AF15A1400C0D83B /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A455151AF15A1400C0D83B /* GameViewController.swift */; };
@@ -370,6 +371,7 @@
 		B879D8EE1BDD8CB20088A5A4 /* enable1WordListORIG.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = enable1WordListORIG.txt; sourceTree = "<group>"; };
 		B879D8F01BDDCE4E0088A5A4 /* enable1WordListMod.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = enable1WordListMod.txt; sourceTree = "<group>"; };
 		B87B0AD61B669AFD005D76EB /* testSmallUTF8B.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testSmallUTF8B.txt; sourceTree = "<group>"; };
+		B88118DB1BEAA32A003E74E5 /* WordList6LetterNoDup.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WordList6LetterNoDup.txt; sourceTree = "<group>"; };
 		B89939421ADAF8BC00587323 /* accelerometer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = accelerometer.swift; sourceTree = "<group>"; };
 		B8A455141AF15A1400C0D83B /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		B8A455151AF15A1400C0D83B /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -781,6 +783,53 @@
 			name = MMW;
 			sourceTree = "<group>";
 		};
+		B88118DA1BEA90AA003E74E5 /* H WordLists */ = {
+			isa = PBXGroup;
+			children = (
+				B8B2CA801ADADD9000C9DEE7 /* 2-LetterWords.txt */,
+				B8B2CA821ADADD9000C9DEE7 /* 3-LetterWords.txt */,
+				B8B2CA841ADADD9000C9DEE7 /* 4-LetterWords.txt */,
+				B8B2CA861ADADD9000C9DEE7 /* 5-LetterWords.txt */,
+				B8B2CA8A1ADADD9000C9DEE7 /* 6.1-LetterWords.txt */,
+				B8B2CA8B1ADADD9000C9DEE7 /* 6.2-LetterWords.txt */,
+				B8B2CA8F1ADADD9000C9DEE7 /* 7.1-LetterWords.txt */,
+				B8B2CA901ADADD9000C9DEE7 /* 7.2-LetterWords.txt */,
+				B8B2CA911ADADD9100C9DEE7 /* 7.3-LetterWords.txt */,
+				B8B2CA961ADADD9100C9DEE7 /* 8.1-LetterWords.txt */,
+				B8B2CA971ADADD9100C9DEE7 /* 8.2-LetterWords.txt */,
+				B8B2CA981ADADD9100C9DEE7 /* 8.3-LetterWords.txt */,
+				B8B2CA991ADADD9100C9DEE7 /* 8.4-LetterWords.txt */,
+				B8B2CA9E1ADADD9100C9DEE7 /* 9.1-LetterWords.txt */,
+				B8B2CA9F1ADADD9100C9DEE7 /* 9.2-LetterWords.txt */,
+				B8B2CAA01ADADD9100C9DEE7 /* 9.3-LetterWords.txt */,
+				B8B2CAA11ADADD9100C9DEE7 /* 9.4-LetterWords.txt */,
+				B8B2CAA61ADADD9100C9DEE7 /* 10.1-LetterWords.txt */,
+				B8B2CAA71ADADD9100C9DEE7 /* 10.2-LetterWords.txt */,
+				B8B2CAA81ADADD9100C9DEE7 /* 10.3-LetterWords.txt */,
+				B8B2CAA91ADADD9100C9DEE7 /* 10.4-LetterWords.txt */,
+				B8B2CAAA1ADADD9100C9DEE7 /* 10.5-LetterWords.txt */,
+				B8B2CAAE1ADADD9100C9DEE7 /* 11.1-LetterWords.txt */,
+				B8B2CAAF1ADADD9100C9DEE7 /* 11.2-LetterWords.txt */,
+				B8B2CAB01ADADD9100C9DEE7 /* 11.3-LetterWords.txt */,
+				B8B2CAB31ADADD9100C9DEE7 /* 12.1-LetterWords.txt */,
+				B8B2CAB41ADADD9100C9DEE7 /* 12.2-LetterWords.txt */,
+				B8B2CAB71ADADD9100C9DEE7 /* 13.1-LetterWords.txt */,
+				B8B2CAB81ADADD9100C9DEE7 /* 13.2-LetterWords.txt */,
+				B8B2CAB91ADADD9100C9DEE7 /* 14-LetterWords.txt */,
+				B8B2CABA1ADADD9100C9DEE7 /* 15-LetterWords.txt */,
+				B8B2CABB1ADADD9100C9DEE7 /* 16-LetterWords.txt */,
+				B8B2CABC1ADADD9100C9DEE7 /* 17-LetterWords.txt */,
+				B8B2CABD1ADADD9100C9DEE7 /* 18-LetterWords.txt */,
+				B8B2CABE1ADADD9100C9DEE7 /* 19-LetterWords.txt */,
+				B8B2CABF1ADADD9100C9DEE7 /* 20-LetterWords.txt */,
+				B8B2CAC01ADADD9100C9DEE7 /* 21-LetterWords.txt */,
+				B8B2CAC11ADADD9100C9DEE7 /* 22-LetterWords.txt */,
+				B8B2CAC21ADADD9100C9DEE7 /* 23-LetterWords.txt */,
+				B8B2CAC31ADADD9100C9DEE7 /* 24-LetterWords.txt */,
+			);
+			name = "H WordLists";
+			sourceTree = "<group>";
+		};
 		B8A4551A1AF1702200C0D83B /* PLACEHOLDER */ = {
 			isa = PBXGroup;
 			children = (
@@ -919,52 +968,14 @@
 				B84EBE951BE14700008B6B12 /* WordList1to3LetterNoDup.txt */,
 				B84EBE961BE14700008B6B12 /* WordList4LetterNoDup.txt */,
 				B8361E381BE2AAC1000CEB0E /* WordList5LetterNoDup.txt */,
+				B88118DB1BEAA32A003E74E5 /* WordList6LetterNoDup.txt */,
 				B84EBE8F1BE142A5008B6B12 /* WordList1to5LetterNoDup.txt */,
 				B8C75D1D1BDFFECF0036BD25 /* wordListModNoDup65mmto88mm.txt */,
 				B8C75D1E1BDFFECF0036BD25 /* wordListModNoDup35mmto65mm.txt */,
 				B8C75D1F1BDFFECF0036BD25 /* wordListModNoDup0to35mm.txt */,
 				B82D49391B908C5600607595 /* WM */,
 				B87B0AD61B669AFD005D76EB /* testSmallUTF8B.txt */,
-				B8B2CA801ADADD9000C9DEE7 /* 2-LetterWords.txt */,
-				B8B2CA821ADADD9000C9DEE7 /* 3-LetterWords.txt */,
-				B8B2CA841ADADD9000C9DEE7 /* 4-LetterWords.txt */,
-				B8B2CA861ADADD9000C9DEE7 /* 5-LetterWords.txt */,
-				B8B2CA8A1ADADD9000C9DEE7 /* 6.1-LetterWords.txt */,
-				B8B2CA8B1ADADD9000C9DEE7 /* 6.2-LetterWords.txt */,
-				B8B2CA8F1ADADD9000C9DEE7 /* 7.1-LetterWords.txt */,
-				B8B2CA901ADADD9000C9DEE7 /* 7.2-LetterWords.txt */,
-				B8B2CA911ADADD9100C9DEE7 /* 7.3-LetterWords.txt */,
-				B8B2CA961ADADD9100C9DEE7 /* 8.1-LetterWords.txt */,
-				B8B2CA971ADADD9100C9DEE7 /* 8.2-LetterWords.txt */,
-				B8B2CA981ADADD9100C9DEE7 /* 8.3-LetterWords.txt */,
-				B8B2CA991ADADD9100C9DEE7 /* 8.4-LetterWords.txt */,
-				B8B2CA9E1ADADD9100C9DEE7 /* 9.1-LetterWords.txt */,
-				B8B2CA9F1ADADD9100C9DEE7 /* 9.2-LetterWords.txt */,
-				B8B2CAA01ADADD9100C9DEE7 /* 9.3-LetterWords.txt */,
-				B8B2CAA11ADADD9100C9DEE7 /* 9.4-LetterWords.txt */,
-				B8B2CAA61ADADD9100C9DEE7 /* 10.1-LetterWords.txt */,
-				B8B2CAA71ADADD9100C9DEE7 /* 10.2-LetterWords.txt */,
-				B8B2CAA81ADADD9100C9DEE7 /* 10.3-LetterWords.txt */,
-				B8B2CAA91ADADD9100C9DEE7 /* 10.4-LetterWords.txt */,
-				B8B2CAAA1ADADD9100C9DEE7 /* 10.5-LetterWords.txt */,
-				B8B2CAAE1ADADD9100C9DEE7 /* 11.1-LetterWords.txt */,
-				B8B2CAAF1ADADD9100C9DEE7 /* 11.2-LetterWords.txt */,
-				B8B2CAB01ADADD9100C9DEE7 /* 11.3-LetterWords.txt */,
-				B8B2CAB31ADADD9100C9DEE7 /* 12.1-LetterWords.txt */,
-				B8B2CAB41ADADD9100C9DEE7 /* 12.2-LetterWords.txt */,
-				B8B2CAB71ADADD9100C9DEE7 /* 13.1-LetterWords.txt */,
-				B8B2CAB81ADADD9100C9DEE7 /* 13.2-LetterWords.txt */,
-				B8B2CAB91ADADD9100C9DEE7 /* 14-LetterWords.txt */,
-				B8B2CABA1ADADD9100C9DEE7 /* 15-LetterWords.txt */,
-				B8B2CABB1ADADD9100C9DEE7 /* 16-LetterWords.txt */,
-				B8B2CABC1ADADD9100C9DEE7 /* 17-LetterWords.txt */,
-				B8B2CABD1ADADD9100C9DEE7 /* 18-LetterWords.txt */,
-				B8B2CABE1ADADD9100C9DEE7 /* 19-LetterWords.txt */,
-				B8B2CABF1ADADD9100C9DEE7 /* 20-LetterWords.txt */,
-				B8B2CAC01ADADD9100C9DEE7 /* 21-LetterWords.txt */,
-				B8B2CAC11ADADD9100C9DEE7 /* 22-LetterWords.txt */,
-				B8B2CAC21ADADD9100C9DEE7 /* 23-LetterWords.txt */,
-				B8B2CAC31ADADD9100C9DEE7 /* 24-LetterWords.txt */,
+				B88118DA1BEA90AA003E74E5 /* H WordLists */,
 				B879D8F01BDDCE4E0088A5A4 /* enable1WordListMod.txt */,
 				B879D8EE1BDD8CB20088A5A4 /* enable1WordListORIG.txt */,
 				B8B2CAC41ADADD9100C9DEE7 /* enable1WordList.txt */,
@@ -1393,6 +1404,7 @@
 				B8A4559A1AF171B800C0D83B /* activateEnergy@2x.png in Resources */,
 				B8A455D11AF171B800C0D83B /* card_spell_sleep_sel@2x.png in Resources */,
 				B8A455D71AF171B800C0D83B /* card_spell_stoneskin_sel@2x.png in Resources */,
+				B88118DC1BEAA32A003E74E5 /* WordList6LetterNoDup.txt in Resources */,
 				B8C14EF91AF32CF900E640C0 /* LaunchScreen.jpg in Resources */,
 				B8C900631B011F1C00C72745 /* appIcon120x120_MMW.png in Resources */,
 				B8A456051AF171B800C0D83B /* player_two@2x.png in Resources */,

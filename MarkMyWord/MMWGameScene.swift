@@ -103,11 +103,13 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
             
             self.mmwPlayer2Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.273), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer2Grid", mmwGameScene: self)
             self.mmwPlayer2Grid.setGridPlayer(mmwGameSceneViewController.player2)
+
             
-            self.mmwPlayer3Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.706), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer3Grid", mmwGameScene: self)
+            self.mmwPlayer3Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.706), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer3Grid", mmwGameScene: self)
             self.mmwPlayer3Grid.setGridPlayer(mmwGameSceneViewController.player3)
             
-            self.mmwPlayer4Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.706), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer4Grid", mmwGameScene: self)
+            
+            self.mmwPlayer4Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.706), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer4Grid", mmwGameScene: self)
             self.mmwPlayer4Grid.setGridPlayer(mmwGameSceneViewController.player4)
         }
     }
@@ -195,6 +197,19 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
         optionsLayerNode.alpha = 0.75
         optionsLayerNode.hidden = true
         self.addChild(optionsLayerNode)
+        
+        // Placeholder for dictionary data loading progress display
+        let playBtnTEMP = SKSpriteNode(imageNamed: "PlayButton.png")
+        playBtnTEMP.position = CGPoint(x: viewSize.width/4, y: viewSize.height/6)
+        self.addChild(playBtnTEMP)
+        playBtnTEMP.name = "playBtnTEMP"
+        playBtnTEMP.zPosition = 100
+        playBtnTEMP.anchorPoint = CGPointMake(0, 0)
+        let scaleHoriz = SKAction.scaleXTo(2, duration: 3.0)
+        let loadingAnim = SKAction.group([scaleHoriz])
+        let loadingAnimSequence = SKAction.sequence([loadingAnim, SKAction.removeFromParent()])
+        playBtnTEMP.runAction(loadingAnimSequence)
+
     }
     
     //func displayOptions
@@ -319,14 +334,13 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
                 playerView.position = CGPointMake(viewSize.width * 0.8491, viewSize.height * 0.57096354 ) // PS coordinates is Y: 1390, convert and flip
             }
             if playerNum == 3 {
-                playerView.position = CGPointMake(0, viewSize.height * 0.138 ) // PS coordinates is Y: 1390, convert and flip
+                playerView.position = CGPointMake(viewSize.width * 0.8491,  viewSize.height * 0.138 ) // PS coordinates is Y: 1390, convert and flip
             }
             if playerNum == 4 {
-                playerView.position = CGPointMake(viewSize.width * 0.8491,  viewSize.height * 0.138 ) // PS coordinates is Y: 1390, convert and flip
+                playerView.position = CGPointMake(0, viewSize.height * 0.138 ) // PS coordinates is Y: 1390, convert and flip
             }
         }
         playerView.zPosition = -1
-        
         addChild(playerView)
         return playerView
     }
@@ -339,8 +353,6 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
             }
         }
     }
-    
-    
 
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
@@ -513,7 +525,6 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
         // Don't forget to remove the emitter node after the explosion
         self.runAction(SKAction.waitForDuration(2), completion: { emitterNode!.removeFromParent() })
         runAction(SKAction.playSoundFileNamed("1023.wav", waitForCompletion: false))
-        
     }
     
     func changePlayerTurn () {
@@ -572,11 +583,16 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
             if (testSpot.x > 869.5 ) && testSpot.y < 384 {snapGrid = mmwPlayer2Grid}
             if (testSpot.x > 869.5 ) && testSpot.y > 384 {snapGrid = mmwPlayer3Grid}
         }
+            
         else if mmwGameSceneViewController.numPlayers == 4 {
             if (testSpot.x < 154.5 ) && testSpot.y < 384 {snapGrid = mmwPlayer1Grid}
             if (testSpot.x > 869.5 ) && testSpot.y < 384 {snapGrid = mmwPlayer2Grid}
-            if (testSpot.x < 154.5 ) && testSpot.y > 384 {snapGrid = mmwPlayer3Grid}
-            if (testSpot.x > 869.5 ) && testSpot.y > 384 {snapGrid = mmwPlayer4Grid}
+            
+//            if (testSpot.x < 154.5 ) && testSpot.y > 384 {snapGrid = mmwPlayer3Grid}
+//            if (testSpot.x > 869.5 ) && testSpot.y > 384 {snapGrid = mmwPlayer4Grid}
+            
+            if (testSpot.x < 154.5 ) && testSpot.y > 384 {snapGrid = mmwPlayer4Grid}
+            if (testSpot.x > 869.5 ) && testSpot.y > 384 {snapGrid = mmwPlayer3Grid}
         }
         //else {snapGrid = nil
         return snapGrid

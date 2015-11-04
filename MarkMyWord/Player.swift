@@ -16,7 +16,6 @@ class Player {
     var playerScore : Int = 0
     var doIt : Bool = false
     var didIt : Bool = false
-    //var playerSeat : MMWSeat
     var playerColor : Int = 0
     
     var playerLetterTiles : [MMWTile]! = nil
@@ -65,16 +64,7 @@ class Player {
         self.playerView = playerView
         self.mmwGameScene = mmwGameScene
         self.mmwGameSceneViewController = mmwGameSceneViewController
-    
-//        playerView.mmwGameSceneViewController = self.mmwGameSceneViewController
-//        playerView.mmwGameScene = mmwGameScene
     }
-    
-    
-//    func setPlayerGameSceneAndController (mmwGameScene: MMWGameScene, mmwGameSceneViewController: MMWGameSceneViewController) {
-//        self.mmwGameScene = mmwGameScene
-//        self.mmwGameSceneViewController = mmwGameSceneViewController
-//    }
     
 //    getNewTiles (numTilesToGet: Int) {
 //        while playerLetterTiles.count < 7 &&

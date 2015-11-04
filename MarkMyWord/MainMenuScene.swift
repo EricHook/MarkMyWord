@@ -67,18 +67,7 @@ class MainMenuScene: SKScene {
         playBtn.name = "playBtn"
         playBtn.zPosition = 100
         
-        
-        let playBtnTEMP = SKSpriteNode(imageNamed: "PlayButton.png")
-        playBtnTEMP.position = CGPoint(x: viewSize.width/4, y: viewSize.height/6)
-        self.addChild(playBtnTEMP)
-        playBtnTEMP.name = "playBtnTEMP"
-        playBtnTEMP.zPosition = 100
-        playBtnTEMP.anchorPoint = CGPointMake(0, 0)
-        let scaleHoriz = SKAction.scaleXTo(2, duration: 3.0)
-        let loadingAnim = SKAction.group([scaleHoriz])
-        //SKAction.
-        playBtnTEMP.runAction(loadingAnim)
-        
+                
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
