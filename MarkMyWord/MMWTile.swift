@@ -48,12 +48,14 @@ class MMWTile {
     var gridXEnd: Int = -1
     var gridYEnd: Int = -1
 
-    var letterString: String = "?"
+    var tileText: String = "?"
     var undealt = true
     var tileState: TileState = TileState.Undealt
     var tileOwner: TileOwner = TileOwner.None
     var tileGrid: Grid? = nil
     var description = ""
+    
+    var playableSpotsEachDirection : (left: Int, right: Int, up: Int, down: Int) = (0, 0, 0, 0)
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -65,11 +67,11 @@ class MMWTile {
         //self.gridLocation = GridLocation[0]
         self.gridX = -1
         self.gridY = -1
-        self.letterString = "!"
+        self.tileText = "!"
         description = "!"
         self.tileState = TileState.Undealt
         self.tileOwner = TileOwner.None
-        self.tileSprite  = LetterTileSprite(tileStyle: LetterTileSprite.TileStyle.basic, withChar: letterString, withColor: UIColorGray, atPoint: CGPointMake(0.5, 0.5))
+        self.tileSprite  = LetterTileSprite(tileStyle: LetterTileSprite.TileStyle.basic, withChar: tileText, withColor: UIColorGray, atPoint: CGPointMake(0.5, 0.5))
         self.tileSprite.position = CGPoint(x: 0.0, y: 0.0)
         self.tileSprite.zPosition = 1
         self.tileSprite.tileSpriteParent = self
@@ -85,7 +87,7 @@ class MMWTile {
         self.gridLocation = GridLocation.Undealt
         self.gridX = 0
         self.gridY = 0
-        self.letterString = letterString
+        self.tileText = letterString
         description = "/(letterString)"
         self.tileState = TileState.Undealt
         self.tileOwner = TileOwner.None
@@ -97,6 +99,8 @@ class MMWTile {
         self.tileSprite.mmwGameScene = self.mmwGameScene
         self.tileSprite.hidden = true
     }
+    
+    
     
 //    func setViewController (mmwGameSceneController: MMWGameSceneViewController) {
 //        self.mmwGameSceneViewController = mmwGameSceneController

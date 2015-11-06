@@ -21,7 +21,7 @@ class PlayerView: SKSpriteNode {
     init (mmwPlayer: Player) {
         
 //        let playerBGTallTex : SKTexture = SKTexture(imageNamed: "PlayerBGTEST309x1320TestFull.jpg")
-        let playerBGTex : SKTexture = SKTexture(imageNamed: "PlayerBGTest309x660")
+        let playerBGTex : SKTexture = SKTexture(imageNamed: "PlayerBG")
         let playerTileGridTex : SKTexture = SKTexture(imageNamed: "MMWPlayerTilesGrid")
         let playerTilesPlaqueTex : SKTexture = SKTexture(imageNamed: "MMWPlayerTilesPlaque")
         let yellowPlayerTex : SKTexture = SKTexture(imageNamed: "yellowPlayer.png")

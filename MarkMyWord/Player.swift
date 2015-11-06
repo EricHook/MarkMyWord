@@ -23,15 +23,13 @@ class Player {
     
     var playerView : PlayerView! = nil
     
-    var playerSpecialTiles : [MMWTile]! = nil
-    var playerLetterTilesPlayed : [MMWTile]? = nil
+    //var playerSpecialTiles : [MMWTile]! = nil
+    //var playerLetterTilesPlayed : [MMWTile]? = nil
 
     var mmwGameSceneViewController : MMWGameSceneViewController!
     var mmwGameScene : MMWGameScene!
     
     init (_playerID : Int, _playerName : String, _playerColor : Int) {
-        //playerSeat = MMWSeat(_playerSeatNum: 1, _seatColorNumber: _playerColor)
-        //playerColor = playerSeat.seatUIColor
         playerColor = _playerColor
         playerID = _playerID
         playerName = _playerName
@@ -45,29 +43,9 @@ class Player {
         self.playerLetterGrid = playerTilesGrid
     }
     
-//    func checkPlayerTilesGrid (playerTilesGrid: Grid) -> Int {
-//        var numBlankTiles = 0
-//        for tileX in playerTilesGrid.grid2DArr {
-//            for tileY in tileX {
-//                playerTilesGrid
-//                if tileY.spritename == "Blank" {
-//                    
-//                    (playerTilesGrid.grid2DArr  .gridArr.tileSprite.tileSpriteParent.tileType)
-//                    
-//                    numBlankTiles ++
-//                }
-//            }
-//        }
-//    }
-    
     func setPlayerView (playerView: PlayerView, mmwGameScene: MMWGameScene, mmwGameSceneViewController: MMWGameSceneViewController) {
         self.playerView = playerView
         self.mmwGameScene = mmwGameScene
         self.mmwGameSceneViewController = mmwGameSceneViewController
     }
-    
-//    getNewTiles (numTilesToGet: Int) {
-//        while playerLetterTiles.count < 7 &&
-//    }
-    
 }

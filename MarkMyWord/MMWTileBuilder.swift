@@ -313,17 +313,12 @@ class MMWTileBuilder {
             tile.tileState = TileState.Undealt
             tile.tileOwner = TileOwner.None
             tile.tileBuilder = self
-            //tile.mmwGameSceneViewController = self.mmwGameSceneViewController
-            //tile.tileSprite.mmwGameSceneViewController = self.mmwGameSceneViewController
         }
     }
     
     func setViewControllerAndScene (mmwGameSceneController: MMWGameSceneViewController) {
         self.mmwGameSceneViewController = mmwGameSceneController
         for tile in mmwTileArray {
-//            tile.tileState = TileState.Undealt
-//            tile.tileOwner = TileOwner.None
-//            tile.tileBuilder = self
             tile.mmwGameSceneViewController = self.mmwGameSceneViewController
             tile.tileSprite.mmwGameSceneViewController = self.mmwGameSceneViewController
             tile.mmwGameScene = self.mmwGameScene
@@ -334,7 +329,7 @@ class MMWTileBuilder {
     func displayTileArrayValues (tileArray: [MMWTile]) {
         print( "MMWTileBuilder.displayTileArrayValues (tileArray: [MMWTile]) ...")
         for tile in tileArray {
-            print("\(tile.letterString)")
+            print("\(tile.tileText)")
         }
     }
     
@@ -365,8 +360,6 @@ class MMWTileBuilder {
             numTilesDiscard--
         }
     }
-    
-    //func removeAllHighlights
     
     // send/move num Tiles from one tile array to another tile array
     func updateTiles(inout tilesFrom: [MMWTile], inout tilesTo: [MMWTile], var numTilesGet: Int, changeColorTo: Int) {

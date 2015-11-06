@@ -39,7 +39,6 @@ class Grid {
         self.gridNumSquaresY = gridNumSquaresY
         self.gridName = gridName
         self.mmwGameScene = mmwGameScene
-        //self.grid1DArr = gridArr
         grid2DArr = [[MMWTile]](count: gridNumSquaresX, repeatedValue: [MMWTile](count: gridNumSquaresY, repeatedValue: MMWTile() ))
     }
     
@@ -53,15 +52,27 @@ class Grid {
             for x in 0...(self.gridNumSquaresX - 1) {
                 if self.grid2DArr[x][y].tileType == TileType.Letter {
                     numLetterTiles++
-                }
-                
+                }  
             }
         }
         return numLetterTiles
     }
     
+    func getArrayLetterTilesInGrid () -> [MMWTile] {
+        var letterTilesInGrid = [MMWTile]()
+        var numLetterTiles = 0
+        for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
+            for x in 0...(self.gridNumSquaresX - 1) {
+                if self.grid2DArr[x][y].tileType == TileType.Letter {
+                    numLetterTiles++
+                    letterTilesInGrid.append(grid2DArr[x][y])
+                }
+            }
+        }
+        return letterTilesInGrid
+    }
+    
     func makeTilesInGridInteractive (isInteractive : Bool) {
-        //for y in gridToInteract.grid2DArr
         for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
             for x in 0...(self.gridNumSquaresX - 1) {
                 self.grid2DArr[x][y].tileSprite.userInteractionEnabled = isInteractive
@@ -92,13 +103,13 @@ class Grid {
         return (GridSquareX, GridSquareY, GridSquareUpperLeftCornerX, GridSquareUpperLeftCornerY)
     }
     
-    // given a grid and x, y func returns a CGPoint to place sprite
-    func sendToGridSquare (grid: Grid, squareX: Int, squareY: Int) -> (CGPoint) {
-        let tilePositionX = grid.gridUpperLeftX + 23.75 + ( Double(squareX) * grid.gridSquareSizeX )
-        let tilePositionY = 768 - grid.gridUpperLeftY - ( Double(squareY) * grid.gridSquareSizeY ) + 7
-        let tilePosition = CGPoint( x: tilePositionX, y: tilePositionY )
-        return tilePosition
-    }
+//    // given a grid and x, y func returns a CGPoint to place sprite
+//    func sendToGridSquare (grid: Grid, squareX: Int, squareY: Int) -> (CGPoint) {
+//        let tilePositionX = grid.gridUpperLeftX + 23.75 + ( Double(squareX) * grid.gridSquareSizeX )
+//        let tilePositionY = 768 - grid.gridUpperLeftY - ( Double(squareY) * grid.gridSquareSizeY ) + 7
+//        let tilePosition = CGPoint( x: tilePositionX, y: tilePositionY )
+//        return tilePosition
+//    }
     
     // given a grid and x, y func returns a CGPoint to place sprite
     class func sendToGridSquare (grid: Grid, squareX: Int, squareY: Int) -> (CGPoint) {
@@ -120,7 +131,7 @@ class Grid {
 //        grid2DArr[xGrid].insert(tileToAdd, atIndex: [yGrid][xGrid])  // (tileToAdd, atIndex: xGrid)
 //    }
     
-    func tileAtGridSquare (grid: Grid, squareX: Int, squareY: Int) -> (MMWTile?) {
+    class func tileAtGridSquare (grid: Grid, squareX: Int, squareY: Int) -> (MMWTile?) {
         let tile : MMWTile? = (grid.grid2DArr[squareY][squareX] as MMWTile)
         return tile
     }
@@ -170,7 +181,7 @@ class Grid {
                 mmwGameScene.mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray.append( self.grid2DArr[x][y])
                 self.grid2DArr[x][y].tileSprite.hidden = true
                 if arrayIn.count > 0 {
-                    if numTilesToDeal > 0  && self.grid2DArr[x][y].letterString == "!"  {
+                    if numTilesToDeal > 0  && self.grid2DArr[x][y].tileText == "!"  {
                         let numTiles : UInt32 = UInt32(arrayIn.count)
                         let randomTileNumber = arc4random_uniform(numTiles) // select random tile in FROM array
                         let dealtTile : MMWTile = arrayIn[Int(randomTileNumber)]
@@ -204,26 +215,26 @@ class Grid {
 //            for x in 0...(self.gridNumSquaresX - 1) {
 //                mmwGameScene.mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray.append(self.grid2DArr[x][y])
 //                self.grid2DArr[x][y].tileSprite.hidden = true
-                if arrayIn.count > 0 {
+        if arrayIn.count > 0 {
 //                    if numTilesToDeal > 0 {
 //                        let numTiles : UInt32 = UInt32(arrayIn.count)
 //                        let randomTileNumber = arc4random_uniform(numTiles) // select random tile in FROM array
-                        let dealtTile : MMWTile = arrayIn[Int(tileArrayLocation)]
-                        
-                        dealtTile.tileOwner = TileOwner(rawValue: playerNum)!
-                        dealtTile.tileState = TileState(rawValue: playerNum)!
-                        
-                        self.grid2DArr[squareX][squareY] = dealtTile
-                        arrayIn.removeAtIndex( Int(tileArrayLocation) )
-                        dealtTile.tileSprite.color =  gameColors[playerNum]
-                        dealtTile.gridX = squareX
-                        dealtTile.gridY = squareY
-                        dealtTile.gridHome = self
+                let dealtTile : MMWTile = arrayIn[Int(tileArrayLocation)]
+                
+                dealtTile.tileOwner = TileOwner(rawValue: playerNum)!
+                dealtTile.tileState = TileState(rawValue: playerNum)!
+                
+                self.grid2DArr[squareX][squareY] = dealtTile
+                arrayIn.removeAtIndex( Int(tileArrayLocation) )
+                dealtTile.tileSprite.color =  gameColors[playerNum]
+                dealtTile.gridX = squareX
+                dealtTile.gridY = squareY
+                dealtTile.gridHome = self
 //                        numTilesToDeal--
-                }
-                else {
-                    print("No More Tiles To Deal ... ")
-                }
+        }
+        else {
+            print("No More Tiles To Deal ... ")
+        }
     }
     
 //    // send/move num Tiles from one tile array to another tile array
@@ -292,7 +303,6 @@ class Grid {
             isLocked = true
         }
         return isLocked
-        
     }
     
     func printGrid () {
@@ -305,7 +315,7 @@ class Grid {
         }
     }
 
-    func printGrid (gridToPrint: Grid ) {
+    class func printGrid (gridToPrint: Grid ) {
         print("<Grid> printGrid \(gridToPrint.gridName) ")
         for x in 0...(gridToPrint.gridNumSquaresX - 1) {   // fill letter tiles
             for y in 0...(gridToPrint.gridNumSquaresY - 1) {
@@ -314,4 +324,21 @@ class Grid {
             }
         }
     }
+    
+    
+    
+    func stringFromGridLetters () -> String {
+        var stringFromGrid2DArr = ""
+        for x in 0...(self.gridNumSquaresX - 1) {   // fill letter tiles
+            for y in 0...(self.gridNumSquaresY - 1) {
+                stringFromGrid2DArr = stringFromGrid2DArr.stringByAppendingString(self.grid2DArr[x][y].tileText)
+            }
+        }
+        return stringFromGrid2DArr
+    }
+    
+    
+    
+    
+    
 }

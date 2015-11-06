@@ -78,9 +78,9 @@ class MMWGameSceneViewController {
         insertTrie( buildWordArray("WordList4LetterNoDup") )
         print("insertTrie() 4")
         
-        buildWordArray("WordList5LetterNoDup")
-        insertTrie( buildWordArray("WordList5LetterNoDup") )
-        print("insertTrie() 5")
+//        buildWordArray("WordList5LetterNoDup")
+//        insertTrie( buildWordArray("WordList5LetterNoDup") )
+//        print("insertTrie() 5")
         
 //        buildWordArray("WordList6LetterNoDup")
 //        insertTrie( buildWordArray("WordList6LetterNoDup") )
@@ -99,7 +99,6 @@ class MMWGameSceneViewController {
         if numPlayers == 4 {
             makeFourPlayers()
         }
-        
     }
     
     func makeTwoPlayers () {
@@ -184,7 +183,7 @@ class MMWGameSceneViewController {
             aStreamReader.close()
             //print("Final numLines getFirstWord (): " + String(numLines) )
         }
-        return String("Random getFirstWord () Word: XYZ")
+        return String("error - didn't find word in getRandomWord()")
     }
     
     func buildWordArray(wordList : String) -> [String] {
@@ -223,6 +222,16 @@ class MMWGameSceneViewController {
     }
     
     
+    
+    func stringFromTileArr (tileArr: [MMWTile]) -> String {
+        var stringFromArr = ""
+        for tile in tileArr {
+            stringFromArr = stringFromArr.stringByAppendingString( String(tile.tileSprite.letterLabel) )
+        }
+        return stringFromArr
+    }
+    
+    
     func checkPartialWordMatch(var wordToCheck: String) -> Bool {
         wordToCheck = wordToCheck.lowercaseString
         if wordTrie!.contains("\(wordToCheck)".characters){
@@ -237,6 +246,14 @@ class MMWGameSceneViewController {
             return true
         }
         return false
+    }
+    
+    func AIPlayTiles (player: Player) {
+        for tileColumn in self.tileCollection.mmwBoardTile2DArray! {
+            for tile in tileColumn {
+                print(" \(tile.tileOwner.hashValue) ")
+            }
+        }
     }
 
     
@@ -301,7 +318,7 @@ class MMWGameSceneViewController {
                     --wordToCheckArrCount
                     break
                 }  // return char exits loop
-                if String(letter).uppercaseString == tile.letterString.uppercaseString && !lettersToPlay.contains(tileArrayNumber){
+                if String(letter).uppercaseString == tile.tileText.uppercaseString && !lettersToPlay.contains(tileArrayNumber){
                         print("Found letter: \(letter) in tiles \(tile.tileSprite.tileText)")
                         lettersToPlay.append(tileArrayNumber)
                         ++lettersToPlayCount
@@ -339,7 +356,7 @@ class MMWGameSceneViewController {
         tileArrayNumber = 0
         for letter in wordToCheckArr {
             for tile in letterTileArray {
-                if String(letter).uppercaseString == tile.letterString.uppercaseString {
+                if String(letter).uppercaseString == tile.tileText.uppercaseString {
                     print("REMOVE letter: \(letter) in tiles \(tile.tileSprite.tileText)")
                     letterTileArray.removeAtIndex(tileArrayNumber)
                     break
@@ -353,6 +370,7 @@ class MMWGameSceneViewController {
             return tilesToBoard
     }
 
+    
     func dealLetter (inout letterToPlace: MMWTile, gridToPlaceLetter: Grid, xSquare: Int, ySquare: Int) {
         
         let tileAtDropSpot : MMWTile = (gridToPlaceLetter.grid2DArr[xSquare][ySquare])
@@ -382,11 +400,18 @@ class MMWGameSceneViewController {
         letterToPlace.gridY = ySquare
         // move tile to snap point
         //let tileSnapResults = gameGrid.getGridSquare(Float(xSquare), locY: Float(ySquare))
-        let tileLocation = gridToPlaceLetter.sendToGridSquare(gridToPlaceLetter, squareX: xSquare, squareY: ySquare)
+        let tileLocation = Grid.sendToGridSquare(gridToPlaceLetter, squareX: xSquare, squareY: ySquare)
         let tileLocX = tileLocation.x
         let tileLocY = tileLocation.y
         letterToPlace.tileSprite.position.x = tileLocX
         letterToPlace.tileSprite.position.y = tileLocY
+    }
+    
+    
+    func dealTestLetters () {
+        //dealLetter(&<#T##letterToPlace: MMWTile##MMWTile#>, gridToPlaceLetter: <#T##Grid#>, xSquare: <#T##Int#>, ySquare: <#T##Int#>)
+        
+        
     }
     
     func placeWord (player: Player, startLocX: Int, startLocY: Int, direction: Character, wordToPlace: [MMWTile]){
@@ -415,7 +440,7 @@ class MMWGameSceneViewController {
         var xLoc: Int = xStartSquare
         var yLoc: Int = yStartSquare
         for var tileInWord in letterTileArray {
-            if tileInWord.letterString == "\r" {break}
+            if tileInWord.tileText == "\r" {break}
             print("Letter tileInWord \(tileInWord) is at x:\(xLoc) y:\(yLoc)")
             setTileOwner(&tileInWord, player: player)
             tileInWord.gridHome = mmwGameScene.mmwBoardGrid
