@@ -23,7 +23,7 @@
 		B88A58571BEAD859003E0957 /* MarkMyWordBGCleaniPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A584A1BEAD859003E0957 /* MarkMyWordBGCleaniPad@2x.png */; };
 		B88A58581BEAD859003E0957 /* MeyamaSplashScreen_iPad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B88A584B1BEAD859003E0957 /* MeyamaSplashScreen_iPad.jpg */; };
 		B88A58591BEAD859003E0957 /* MeyamaSplashScreen_iPad@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B88A584C1BEAD859003E0957 /* MeyamaSplashScreen_iPad@2x.jpg */; };
-		B88A585A1BEAD859003E0957 /* MMWOptionScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A584D1BEAD859003E0957 /* MMWOptionScreen.png */; };
+		B88A585A1BEAD859003E0957 /* MMWOptionsScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A584D1BEAD859003E0957 /* MMWOptionsScreen.png */; };
 		B88A585B1BEAD859003E0957 /* NewTilesButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A584E1BEAD859003E0957 /* NewTilesButton.png */; };
 		B88A585C1BEAD859003E0957 /* OptionsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A584F1BEAD859003E0957 /* OptionsButton.png */; };
 		B88A585D1BEAD859003E0957 /* PassButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A58501BEAD859003E0957 /* PassButton.png */; };
@@ -93,7 +93,7 @@
 		B88A584A1BEAD859003E0957 /* MarkMyWordBGCleaniPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MarkMyWordBGCleaniPad@2x.png"; sourceTree = "<group>"; };
 		B88A584B1BEAD859003E0957 /* MeyamaSplashScreen_iPad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MeyamaSplashScreen_iPad.jpg; sourceTree = "<group>"; };
 		B88A584C1BEAD859003E0957 /* MeyamaSplashScreen_iPad@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MeyamaSplashScreen_iPad@2x.jpg"; sourceTree = "<group>"; };
-		B88A584D1BEAD859003E0957 /* MMWOptionScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MMWOptionScreen.png; sourceTree = "<group>"; };
+		B88A584D1BEAD859003E0957 /* MMWOptionsScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MMWOptionsScreen.png; sourceTree = "<group>"; };
 		B88A584E1BEAD859003E0957 /* NewTilesButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewTilesButton.png; sourceTree = "<group>"; };
 		B88A584F1BEAD859003E0957 /* OptionsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OptionsButton.png; sourceTree = "<group>"; };
 		B88A58501BEAD859003E0957 /* PassButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PassButton.png; sourceTree = "<group>"; };
@@ -294,7 +294,7 @@
 				B88A584A1BEAD859003E0957 /* MarkMyWordBGCleaniPad@2x.png */,
 				B88A584B1BEAD859003E0957 /* MeyamaSplashScreen_iPad.jpg */,
 				B88A584C1BEAD859003E0957 /* MeyamaSplashScreen_iPad@2x.jpg */,
-				B88A584D1BEAD859003E0957 /* MMWOptionScreen.png */,
+				B88A584D1BEAD859003E0957 /* MMWOptionsScreen.png */,
 			);
 			name = backgrounds;
 			sourceTree = "<group>";
@@ -622,7 +622,7 @@
 				B879D8F11BDDCE4E0088A5A4 /* enable1WordListMod.txt in Resources */,
 				B88A58551BEAD859003E0957 /* 1007.WAV in Resources */,
 				B88A586A1BEAD9D5003E0957 /* Tile3D95x.png in Resources */,
-				B88A585A1BEAD859003E0957 /* MMWOptionScreen.png in Resources */,
+				B88A585A1BEAD859003E0957 /* MMWOptionsScreen.png in Resources */,
 				B8D130E41AFD44A100865982 /* MeyamaSplashScreen_iPad.jpg in Resources */,
 				B8FA8FA71AE9DD7F007CF07C /* particle.png in Resources */,
 				B84EBE981BE14700008B6B12 /* WordList4LetterNoDup.txt in Resources */,

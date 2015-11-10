@@ -78,9 +78,9 @@ class MMWGameSceneViewController {
         insertTrie( buildWordArray("WordList4LetterNoDup") )
         print("insertTrie() 4")
         
-//        buildWordArray("WordList5LetterNoDup")
-//        insertTrie( buildWordArray("WordList5LetterNoDup") )
-//        print("insertTrie() 5")
+        buildWordArray("WordList5LetterNoDup")
+        insertTrie( buildWordArray("WordList5LetterNoDup") )
+        print("insertTrie() 5")
         
 //        buildWordArray("WordList6LetterNoDup")
 //        insertTrie( buildWordArray("WordList6LetterNoDup") )
@@ -188,7 +188,6 @@ class MMWGameSceneViewController {
     
     func buildWordArray(wordList : String) -> [String] {
         // read the file
-        //var wordTrie = Trie<Character>()
         wordArray = [""]  // clear wordArray so can add new chuncks of wordList
         
         if let aStreamReader = StreamReader(file: wordList) { // "/Users/erichook/Desktop/testSmallUTF8.txt") {
@@ -213,7 +212,6 @@ class MMWGameSceneViewController {
 //        print("InsertTrie store.contains jo: + \(wordTrie!.completions("jo".characters).count)")
 //        let stringTest = "jox"
 //        wordTrie!.insert(stringTest.characters) //    (wordArrayMod.map{$0.characters})
-        
         for word in wordArray {
             wordTrie!.insert(word.characters)
         }
@@ -294,13 +292,6 @@ class MMWGameSceneViewController {
 //        return false
 //    }
 
-    func getWordLetters () {
-        
-    }
-    
-    func highlightWord (wordToCheck: String, inout letterTileArray: [MMWTile]){
-        
-    }
 
     func checkUndealtTilesForWord (wordToCheck: String, inout letterTileArray: [MMWTile]) -> [MMWTile]? {
         let string = wordToCheck // "dryad" //wordToCheck // can place test "STRING" in this value for testing purposed
@@ -374,13 +365,7 @@ class MMWGameSceneViewController {
     func dealLetter (inout letterToPlace: MMWTile, gridToPlaceLetter: Grid, xSquare: Int, ySquare: Int) {
         
         let tileAtDropSpot : MMWTile = (gridToPlaceLetter.grid2DArr[xSquare][ySquare])
-        ////////////  TEST FOR TILE UNDER DROP SPOT
-//        if tileAtDropSpot.tileOwner == TileOwner.Player1 {
-//            //runAction(actionSound)
-//            letterToPlace.tileSprite.position = (tileAtDropSpot.gridHome?.sendToGridSquare(letterToPlace.gridHome!, squareX: letterToPlace.gridX , squareY: letterToPlace.gridY ))!
-//        }
-        print("drop location info: state:\(tileAtDropSpot.tileOwner) letter:\(tileAtDropSpot.tileSprite.tileText)")
-  
+        //print("drop location info: state:\(tileAtDropSpot.tileOwner) letter:\(tileAtDropSpot.tileSprite.tileText)")
         letterToPlace.gridEnd = gridToPlaceLetter // set tileSprite parent (MMWTile) grid to grid snapped to
         letterToPlace.gridXEnd = xSquare
         letterToPlace.gridYEnd = ySquare
@@ -464,7 +449,6 @@ class MMWGameSceneViewController {
             self.mmwGameScene.updateGridInScene(player.playerLetterGrid)
         } 
     }
-    
     
 
 //    func presentMMWScene() {
