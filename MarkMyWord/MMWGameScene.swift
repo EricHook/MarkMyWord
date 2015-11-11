@@ -1085,7 +1085,13 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
 
         //++gridXSpot // just to test letter to right of existing locked letter
         
-        var permutationsToPlay : Set<String> = Set<String>()    // make and remake permuations based on letters and number of squares to play
+        
+        
+        var permutationsToPlay : Set<String> = permuteLetters(playerTilesLettersArr, minStringLen: 3, maxStringLen: 3)
+        
+        print(permutationsToPlay)
+        
+        //var permutationsToPlay : Set<String> = Set<String>()    // make and remake permuations based on letters and number of squares to play
         var placedTiles = 0
         var existingPlayedTiles = 0
         var horizontalString = ""               // mmwGameSceneViewController.mmwGameScene.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].letterString
@@ -1121,8 +1127,11 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
 
             //playerLetterTilesArr[0].tileSprite.checkForValidWords(gridTestX, gridYSpot: gridTestX, IsAI: true)
 
-        for playerLetters in permuteLetters(playerTilesLettersArr, minStringLen: 3, maxStringLen: 3) {  // get all permutations of player letters based on number
-            
+        for playerLetters in permutationsToPlay {  // get all permutations of player letters based on number
+
+            shiftLeft = numTilesToPlayLeftMaxComplete
+            shiftRight = 0
+
             for shiftToRight in 0..<playerLetters.characters.count {
 //                //print(playerLetters)
 //                playerLettersToTest = playerLetters
@@ -1244,8 +1253,6 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
                     shiftRight++
                 }
 
-                
-        
             }
             
         }
@@ -1518,7 +1525,7 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
     }
 
     
-    func permuteLetters(list: [String], minStringLen: Int = 1, maxStringLen: Int = 2) -> Set<String> {
+    func permuteLetters(list: [String], minStringLen : Int, maxStringLen: Int) -> Set<String> {
         func permuteLetters(fromList: [String], toList: [String], minStringLen: Int, maxStringLen: Int, inout set: Set<String>) {
             if toList.count >= minStringLen && toList.count <= maxStringLen {
                 set.insert(toList.joinWithSeparator(""))
