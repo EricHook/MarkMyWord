@@ -140,14 +140,13 @@ class Grid {
         let tile : MMWTile? = (self.grid2DArr[squareY][squareX] as MMWTile)
         return tile
     }
-    
-    
+ 
     func dealGridFromArrayRandom (inout arrayIn: [MMWTile], var numTilesToDeal: Int, playerNum: Int, clearGrid: Bool) {
         print("<Grid> fillGridFromArray(arrayIn: [MMWTile], gridToFill: Grid) \(self.gridName) ")
 
         for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
             for x in 0...(self.gridNumSquaresX - 1) {
-                mmwGameScene.mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray.append( self.grid2DArr[x][y])
+                mmwGameScene.mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray.append(self.grid2DArr[x][y])
                 self.grid2DArr[x][y].tileSprite.hidden = true
                 if arrayIn.count > 0 {
                     
@@ -181,6 +180,18 @@ class Grid {
         }
     }
     
+    
+    /// func convert2DGridToArray (tileGrid : [[MMWTile]] ) () -> [MMWTile]
+    /// converts a 2D player tile grid to a MMWTIle array
+    func convert2DGridToArray (tileGrid : [[MMWTile]] ) () -> [MMWTile] {
+        var tileArr = [MMWTile]()
+        for tileRow in tileGrid {
+            for tile in tileRow {
+                tileArr.append(tile)
+            }
+        }
+        return tileArr
+    }
     
     
     func dealGridFromArraySpecificTile (inout arrayIn: [MMWTile], tileArrayLocation: Int, playerNum: Int, squareX: Int, squareY: Int) {
@@ -272,6 +283,8 @@ class Grid {
 //        printGrid(self)
 //    }
     
+    
+    
     func checkAllNearLockedTiles (xGrid: Int, yGrid: Int) -> Bool{
         var isLocked: Bool = false
         if grid2DArr[xGrid+1][yGrid].tileState == TileState.Locked {
@@ -279,6 +292,8 @@ class Grid {
         }
         return isLocked
     }
+    
+    
     
     func printGrid () {
         print("<Grid>printGrid \(self.gridName) ")
@@ -291,6 +306,8 @@ class Grid {
         }
     }
 
+    
+    
     class func printGrid (gridToPrint: Grid ) {
         print("<Grid> printGrid \(gridToPrint.gridName) ")
         for x in 0...(gridToPrint.gridNumSquaresX - 1) {   // fill letter tiles

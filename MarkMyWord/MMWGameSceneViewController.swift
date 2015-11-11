@@ -293,6 +293,8 @@ class MMWGameSceneViewController {
 //    }
 
 
+    
+    
     func checkUndealtTilesForWord (wordToCheck: String, inout letterTileArray: [MMWTile]) -> [MMWTile]? {
         let string = wordToCheck // "dryad" //wordToCheck // can place test "STRING" in this value for testing purposed
         var lettersToPlay = [Int]()
@@ -313,7 +315,7 @@ class MMWGameSceneViewController {
                         print("Found letter: \(letter) in tiles \(tile.tileSprite.tileText)")
                         lettersToPlay.append(tileArrayNumber)
                         ++lettersToPlayCount
-                        print("LettersToPlay.count: \(lettersToPlay.count), lettersToPlayCount: \(lettersToPlayCount)")
+                        print( "LettersToPlay.count: \(lettersToPlay.count), lettersToPlayCount: \(lettersToPlayCount)" )
                         foundLetterInPass = true
                         break
                 }
@@ -322,20 +324,20 @@ class MMWGameSceneViewController {
             }
             if String(letter).uppercaseString == "\r" {break}  // return char exits loop
             if foundLetterInPass == false {
-                print("Tile \(String(letter).uppercaseString) doesn't exist to create word")
+                print( "Tile \(String(letter).uppercaseString) doesn't exist to create word" )
                 break
             }
             tileArrayNumber = 0
         }
         
-        print("Letters to Play from letterTileArray: \(lettersToPlay)")
-        print("LettersToPlay.count: \(lettersToPlay.count), wordToCheckArr.count: \(wordToCheckArrCount)")
+        print( "Letters to Play from letterTileArray: \(lettersToPlay)" )
+        print( "LettersToPlay.count: \(lettersToPlay.count), wordToCheckArr.count: \(wordToCheckArrCount)" )
         
         if lettersToPlay.count < wordToCheckArrCount{
             print("FAIL!")
             return nil
         }
-        print("PASS! Found \(string)! self.tileCollection.mmwTileArray.count: \(letterTileArray.count)" )
+        print( "PASS! Found \(string)! self.tileCollection.mmwTileArray.count: \(letterTileArray.count)" )
         
         ////////////////////////////////////////////
         for arrNum in lettersToPlay {

@@ -333,7 +333,7 @@ class MMWTileBuilder {
         }
     }
     
-    // send/move num Tiles from one tile array to another tile array
+    /// send/move num Tiles from one tile array to another tile array
     func getAllNewArrayTiles(inout tilesFrom: [MMWTile], inout tilesTo: [MMWTile], var numTilesGet: Int, changeColorTo: Int) {
         
         discardTiles(&tilesTo, numTilesDiscard: numTilesGet)
@@ -350,7 +350,7 @@ class MMWTileBuilder {
         }
     }
     
-    // send/move num Tiles from one tile array to another tile array
+    /// send/move num Tiles from one tile array to another tile array
     func discardTiles(inout tilesFrom: [MMWTile], var numTilesDiscard: Int) {
         while numTilesDiscard > 0 {
             let tileRemoved : MMWTile = tilesFrom.removeAtIndex( Int(numTilesDiscard - 1) )
@@ -361,7 +361,7 @@ class MMWTileBuilder {
         }
     }
     
-    // send/move num Tiles from one tile array to another tile array
+    /// send/move num Tiles from one tile array to another tile array
     func updateTiles(inout tilesFrom: [MMWTile], inout tilesTo: [MMWTile], var numTilesGet: Int, changeColorTo: Int) {
         let originalTilesGet = numTilesGet
         while numTilesGet > 0 {

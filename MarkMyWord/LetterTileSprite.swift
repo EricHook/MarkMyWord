@@ -234,9 +234,7 @@ class LetterTileSprite : SKSpriteNode {
             runAction(liftUp, withKey: "pickup")
             tileShadow.zPosition = self.zPosition - 100
             tileShadow.hidden = false
-            
 
-            
             //let location = touch.locationInNode(scene!)
             // mark home grid and x and y grid locations at start of drag
 //            let gameGrid = (scene as! MMWGameScene).getSnapGrid(location)
@@ -326,12 +324,8 @@ class LetterTileSprite : SKSpriteNode {
         self.tileSpriteParent.gridHome = self.tileSpriteParent.gridEnd!
         self.tileSpriteParent.gridX = self.tileSpriteParent.gridXEnd
         self.tileSpriteParent.gridY = self.tileSpriteParent.gridYEnd
-        
-    
     }
-    
-    
-    
+
     
     /// showTileScoreTextToGridHome() sends tile to return postition, with scaling effects and removes glow from tile and from all tiles on board
     /// - Returns: nothing
