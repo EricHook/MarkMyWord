@@ -490,7 +490,7 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
         
         //lookForPlayedSpots()
         
-        checkForValidWordsAI(5 , gridYSpot: 7,  availableTiles: [MMWTile()], numLettersToPlay: 1)
+        checkForValidWordsAI(3 , gridYSpot: 7,  availableTiles: [MMWTile()], numLettersToPlay: 6)
     }
     
     func lookForPlayedSpots() -> ([MMWTile]){
@@ -1063,7 +1063,7 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
         return (leftOpenTileLocations, rightOpenTileLocations, upOpenTileLocations, downOpenTileLocations)
     }
     
-    func checkForValidWordsAI (var gridXSpot: Int, gridYSpot: Int, availableTiles: [MMWTile], var numLettersToPlay: Int) {  // might have to check if numLettersToPlay more than player tile letters ???
+    func checkForValidWordsAI (var gridXSpot: Int, gridYSpot: Int, availableTiles: [MMWTile], numLettersToPlay: Int) {  // might have to check if numLettersToPlay more than player tile letters ???
         
         ////////////  TEST FOR ADJACENT TILE PARTIAL WORDS
         var gridTestX = gridXSpot
@@ -1073,7 +1073,6 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
 
         var playerLetterTilesArr = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.getArrayLetterTilesInGrid() // num of tilesToPlay 0 to numTiles in player grid
         var playerTilesLettersArr : [String] = [String]()  // the playerTilesArr in corresponding Letter array
-        var playerTilesPermutations : [String] = [String]() // an array of all pemutations to play
         
         var testValidWordTileArr : [MMWTile] = [MMWTile]() // an array of words that makes a valid partial word // if find higher pt array, replace existing (randomly)
         
@@ -1083,15 +1082,9 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
         }
         print("")      // to add a return on last letter
 
-        //++gridXSpot // just to test letter to right of existing locked letter
-        
-        
-        
-        var permutationsToPlay : Set<String> = permuteLetters(playerTilesLettersArr, minStringLen: 3, maxStringLen: 3)
-        
+        var permutationsToPlay : Set<String> = permuteLetters(playerTilesLettersArr, minStringLen: 1, maxStringLen: 2)
         print(permutationsToPlay)
-        
-        //var permutationsToPlay : Set<String> = Set<String>()    // make and remake permuations based on letters and number of squares to play
+
         var placedTiles = 0
         var existingPlayedTiles = 0
         var horizontalString = ""               // mmwGameSceneViewController.mmwGameScene.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].letterString
@@ -1100,15 +1093,13 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
         //
         // edge of grid to test spot MINUS existing letters = possible tile locations
         
-        var numEmptyLetterSpotsLeft = calculateOpenTileLocations(gridXSpot, gridYStart: gridXSpot).leftOpenTileLocations // from 0 to num player tiles PLUS existing tiles MINUS numLettersRight AND more than grid x = 0
-        var numEmptyLetterSpotsRight = calculateOpenTileLocations(gridXSpot, gridYStart: gridXSpot).rightOpenTileLocations // from 0 to num player tiles PLUS existing tiles MINUS numLettersLeft AND more than grid x = 0
+        var numEmptyLetterSpotsLeft = calculateOpenTileLocations(gridXSpot, gridYStart: gridYSpot).leftOpenTileLocations // from 0 to num player tiles PLUS existing tiles MINUS numLettersRight AND more than grid x = 0
+        var numEmptyLetterSpotsRight = calculateOpenTileLocations(gridXSpot, gridYStart: gridYSpot).rightOpenTileLocations // from 0 to num player tiles PLUS existing tiles MINUS numLettersLeft AND more than grid x = 0
 
-        
-        numLettersToPlay = 3 //////////////////////////////// hard code of argument 
-        
-        
+        //numLettersToPlay = 6 //////////////////////////////// hard code of argument
+
         var numTilesToPlayLeftMaxComplete = (numLettersToPlay <= numEmptyLetterSpotsLeft) ?  numLettersToPlay  :  numEmptyLetterSpotsLeft // the number of tiles to play Left : 0 to < playerTilesArr && < numEmptyLetterSpotsLeft
-        var numTilesToPlayRightMaxComplete = (numLettersToPlay <= numEmptyLetterSpotsLeft) ?  numLettersToPlay  :  numEmptyLetterSpotsLeft // the number of tiles to play Left : 0 to < playerTilesArr && < numEmptyLetterSpotsLeft
+        var numTilesToPlayRightMaxComplete = (numLettersToPlay <= numEmptyLetterSpotsRight) ?  numLettersToPlay  :  numEmptyLetterSpotsRight // the number of tiles to play Left : 0 to < playerTilesArr && < numEmptyLetterSpotsLeft
 
         var testTile = playerTilesLettersArr[0]
         
@@ -1128,35 +1119,29 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
             //playerLetterTilesArr[0].tileSprite.checkForValidWords(gridTestX, gridYSpot: gridTestX, IsAI: true)
 
         for playerLetters in permutationsToPlay {  // get all permutations of player letters based on number
+            
+            numTilesToPlayLeftMaxComplete = (numEmptyLetterSpotsLeft <= playerLetters.characters.count) ?  numEmptyLetterSpotsLeft : playerLetters.characters.count
+            numTilesToPlayRightMaxComplete = (numEmptyLetterSpotsRight <= playerLetters.characters.count) ?  numEmptyLetterSpotsRight  :  playerLetters.characters.count
 
             shiftLeft = numTilesToPlayLeftMaxComplete
             shiftRight = 0
 
             for shiftToRight in 0..<playerLetters.characters.count {
-//                //print(playerLetters)
-//                playerLettersToTest = playerLetters
-//                //playerLettersToTestLeft = "L"
-//                playerLettersToTestLeft.appendContentsOf(playerLetters)
-//                //playerLettersToTestRight = "R"
-//                playerLettersToTestRight.appendContentsOf(playerLetters)
-
-                
+ 
                 while shiftRight <= numTilesToPlayRightMaxComplete {
                     
                     //print(playerLetters)
-                    
-                    
                     playerLettersToTest = playerLetters
                     playerLettersToTestLeft = playerLetters
                     playerLettersToTestRight = playerLetters
                     var numTilesToPlayLeftMax = numTilesToPlayLeftMaxComplete
                     var numTilesToPlayRightMax = numTilesToPlayRightMaxComplete
                     
-                    if playerLettersToTestLeft.characters.count > 0 {
+                    if playerLettersToTestLeft.characters.count > 0 && shiftRight <= playerLetters.characters.count {
                         let rangeLeft : Range! = playerLettersToTestLeft.endIndex.advancedBy(-shiftRight)..<playerLettersToTestLeft.endIndex
                         playerLettersToTestLeft.removeRange(rangeLeft)  // make copy of letters to manipulate and remove from
                     }
-                    if playerLettersToTestRight.characters.count > 0 {
+                    if playerLettersToTestRight.characters.count > 0 && shiftRight <= playerLetters.characters.count {
                         let rangeRight : Range! = playerLettersToTestRight.startIndex..<playerLettersToTestRight.endIndex.advancedBy(-shiftRight)
                         playerLettersToTestRight.removeRange(rangeRight)  // make copy of letters to manipulate and remove from
                     }
@@ -1166,41 +1151,58 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
                     gridTestY = gridYSpot
 
                     while playerLettersToTestLeft.characters.count > (0) && playerLettersToTestLeft.characters.count <= numTilesToPlayLeftMax {
-                        --gridTestX
-                        --numTilesToPlayLeftMax
-                        if self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileType != TileType.Letter {
+                        
+                        
+                        if gridTestX >= 1 && self.mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileType != TileType.Letter {
+                            --numTilesToPlayLeftMax
                             var permutationLeftLastLetter = String( playerLettersToTestLeft.removeAtIndex(playerLettersToTestLeft.endIndex.predecessor()) )
                             testString = permutationLeftLastLetter + testString
-
-                            while self.mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileType == TileType.Letter {
+                            --gridTestX
+                            while gridTestX >= 1 && self.mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileType == TileType.Letter {
+                                
+                                var existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileText)
                                 --gridTestX
-                                var existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText)
-                                //print("Added existing letter: \(mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText) ")
                                 testString = existingLetterToAdd + testString
-                                //print (testString)
                             }
-                            //print("Added permutation letter: \(existingLetterToAdd) : testString \(testString) ")
                         }
                         
                         else {
-                            while self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileType == TileType.Letter {
-                                
-                                var existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText)
-                                //print("Added existing letter: \(mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText) ")
+                            while gridTestX >= 1 && self.mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileType == TileType.Letter {
+                                var existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileText)
                                 testString = existingLetterToAdd + testString
-                                //print (testString)
+                                //++numTilesToPlayLeftMax  // add back space that was already counted in spaces
                                 --gridTestX
                             }
                         }
+                        
+                        
+                       
                     }
+                    
+                    // grab left letters if only right letters on full right shift
+                    if gridTestX >= 1 &&  self.mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileType == TileType.Letter && playerLettersToTestLeft.characters.count == (0) {
+                        gridTestX = gridXSpot // reset test spot as it was moved to left in code above
+                        gridTestY = gridYSpot
+                        
+                        while self.mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileType == TileType.Letter {
+                            var existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileText)
+                            testString = existingLetterToAdd + testString
+                            --gridTestX
+                        }
+                    }
+
+                    
+                    
+                    
+                    
                     
                     gridTestX = gridXSpot // reset test spot as it was moved to left in code above
                     gridTestY = gridYSpot
                     
                     // CHECK RIGHT
-                    ++gridTestX
+                    //++gridTestX
                     // grab existing letters to right even if no shift right characters to test
-                    while self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileType == TileType.Letter {
+                    while self.mmwBoardGrid.grid2DArr[gridTestX+1][gridTestY].tileType == TileType.Letter {
                         var existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText)
                         //print("Added existing letter: \(self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText) ")
                         testString = testString + existingLetterToAdd
@@ -1208,15 +1210,18 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
                     }
 
                     while playerLettersToTestRight.characters.count > 0 && playerLettersToTestRight.characters.count <= numTilesToPlayRightMax {
-                        --numTilesToPlayRightMax
+                        
                         // if NOT a letter then play a letter
-                        if self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileType != TileType.Letter {
+                        if self.mmwBoardGrid.grid2DArr[gridTestX+1][gridTestY].tileType != TileType.Letter {
                             var permutationRightFirstLetter = String( playerLettersToTestRight.removeAtIndex(playerLettersToTestRight.startIndex))
+                            --numTilesToPlayRightMax
                             testString = testString + permutationRightFirstLetter
+                            ++gridTestX
+
                             // if IS a letter then add a letter(s)
                             while self.mmwBoardGrid.grid2DArr[gridTestX+1][gridTestY].tileType == TileType.Letter {
-                                var existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText)
-                                //print("Added existing letter: \(mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText) ")
+                                var existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX+1][gridTestY].tileText)
+                                //print("Added existing letter: \(mmwBoardGrid.grid2DArr[gridTestX+1][gridTestY].tileText) ")
                                 testString = testString + existingLetterToAdd
                                 ++gridTestX
                                 //print (testString)
@@ -1224,7 +1229,7 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
                         }
   
                         else {
-                            while self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileType == TileType.Letter {
+                            while self.mmwBoardGrid.grid2DArr[gridTestX+1][gridTestY].tileType == TileType.Letter {
                                 
                                 var existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText)
                                 //print("Added existing letter: \(self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText) ")
@@ -1238,6 +1243,7 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
                     if (self.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkPartialWordMatch(testString) == true ) {
                         print("Horizontal partial Word Match! \(testString)" )
                         if (self.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkWholeWordMatch(testString) == true ) {
+                            
                             print("!!! Horizontal WHOLE Word Match! \(testString)" )
                             // letterTile.checkForValidWord  x y
                         }
