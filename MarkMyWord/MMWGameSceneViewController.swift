@@ -27,7 +27,7 @@ class MMWGameSceneViewController {
     var tilesPlayable : [MMWTile]
     var numPlayers : Int = 4
     var playerTurn :  Int = 1
-    var minWordSize = 3
+    var minWordSize = 2
     var secondsPerTurn = 25
     var player0 : Player = Player(_playerID: 0, _playerName: "AI", _playerColor: 0) // used to add initial word ownership
     var player1 : Player = Player(_playerID: 1, _playerName: "Abe", _playerColor: 1)

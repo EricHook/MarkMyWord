@@ -72,6 +72,33 @@ class Grid {
         return letterTilesInGrid
     }
     
+    func getArrayLockedLetterTilesInGrid () -> [MMWTile] {
+        var letterTilesInGrid = [MMWTile]()
+        var randomizedTilesInGrid = [MMWTile]()
+        
+        var numLetterTiles = 0
+        //var letterTilesInGrid = Set<MMWTile>()
+        
+
+        for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
+            for x in 0...(self.gridNumSquaresX - 1) {
+                if self.grid2DArr[x][y].tileType == TileType.Letter && self.grid2DArr[x][y].tileState == TileState.Locked {
+                    numLetterTiles++
+                    letterTilesInGrid.append(grid2DArr[x][y])
+                }
+            }
+        }
+        
+        for tile in 0..<letterTilesInGrid.count {
+            let randomTileNumber = Int(arc4random_uniform( UInt32(letterTilesInGrid.count - 1) ) )
+            let tileToMove = letterTilesInGrid.removeAtIndex(randomTileNumber)
+            randomizedTilesInGrid.append( tileToMove )
+        }
+
+        return randomizedTilesInGrid
+
+    }
+    
     func makeTilesInGridInteractive (isInteractive : Bool) {
         for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
             for x in 0...(self.gridNumSquaresX - 1) {
@@ -285,13 +312,13 @@ class Grid {
     
     
     
-    func checkAllNearLockedTiles (xGrid: Int, yGrid: Int) -> Bool{
-        var isLocked: Bool = false
-        if grid2DArr[xGrid+1][yGrid].tileState == TileState.Locked {
-            isLocked = true
-        }
-        return isLocked
-    }
+//    func checkAllNearLockedTiles (xGrid: Int, yGrid: Int) -> Bool{
+//        var isLocked: Bool = false
+//        if grid2DArr[xGrid+1][yGrid].tileState == TileState.Locked {
+//            isLocked = true
+//        }
+//        return isLocked
+//    }
     
     
     
@@ -328,6 +355,17 @@ class Grid {
             }
         }
         return stringFromGrid2DArr
+    }
+    
+    func getTileWithLetter(letterToFind : String) -> MMWTile? {
+        for tileRow in self.grid2DArr {
+            for tile in tileRow {
+                if tile.tileText == letterToFind {
+                    return tile
+                }
+            }
+        }
+        return nil
     }
     
     
