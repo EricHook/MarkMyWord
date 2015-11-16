@@ -281,8 +281,109 @@ class LetterTileSprite : SKSpriteNode {
 //    overide func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
 //        <#code#>
 //    }
-    
 
+    
+    
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        super.touchesMoved(touches, withEvent: event)
+        if enlarged { return }
+        
+        hasLockedPotentialWord = false
+        
+        for touch in (touches as Set<UITouch>) {
+            if isMovable {
+                let location = touch.locationInNode(scene!)
+                let touchedNode = nodeAtPoint(location)
+                touchedNode.position = location
+            }
+            
+            let tileSnapTouch = (touch as UITouch).locationInView(scene!.view)
+            
+            // IF VALID DROP LOCATION
+            if (tileSnapTouch.x > 160 && tileSnapTouch.x < 860) && (tileSnapTouch.y > 50 && tileSnapTouch.y < 747) { // checks that drag location within game grid boundaries
+                
+                let gameGrid = (scene as! MMWGameScene).getSnapGrid(tileSnapTouch)
+                let tileSnapResults = gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y)) // gets grid x, y on tile drag
+                
+                let tileSnapResultsXGrid = tileSnapResults.GridSquareX
+                let tileSnapResultsYGrid = tileSnapResults.GridSquareY
+                
+                checkForValidWords(tileSnapResultsXGrid, gridYSpot: tileSnapResultsYGrid, IsAI: false)
+            }
+        }
+    }
+    
+    /// touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
+    /// - Returns: nothing
+    /// - Parameters:
+    ///     - touches: Set<UITouch>: touches
+    ///     - withEvent event: UIEvent?): event
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if enlarged { return }
+        //var location = touch.locationInNode(self)
+        
+        for touch in (touches as Set<UITouch>) {
+            zPosition = 1
+            let dropDown = SKAction.scaleTo(1.0, duration: 0.1)
+            runAction(dropDown, withKey: "drop")
+            tileShadow.hidden = true
+            
+            let tileSnapTouch = (touch as UITouch).locationInView(scene!.view)
+            //let tileSnapTouchX = tileSnapTouch.x
+            //let tileSnapTouchY = tileSnapTouch.y
+            
+            // IF NOT VALID DROP LOCATION ON BOARD, RETURN TILE TO PLAYER
+            if (tileSnapTouch.x <= 160 || tileSnapTouch.x >= 860) {
+                print("Tried drop tile outside game board touchesEnded")
+                returnTileToGridHome()
+                return
+            }
+            
+            let gameGrid = (scene as! MMWGameScene).getSnapGrid(tileSnapTouch)
+            let tileSnapResults = gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y))
+            
+            //let tileSnapResultsCalculateX = tileSnapResults.GridSquareUpperLeftCornerX
+            //let tileSnapResultsCalculateY = tileSnapResults.GridSquareUpperLeftCornerY - 15.5 // -15.5 on y touch point adjusts snapping too high to lower square
+            let tileSnapResultsXGrid = tileSnapResults.GridSquareX
+            let tileSnapResultsYGrid = tileSnapResults.GridSquareY
+            //let tileAtDropSpot : MMWTile = (gameGrid?.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid])! // ERROR IF DRAG TOO FAR RIGHT _ INDEX OUT OF RANGE !!! ///////////
+            
+            if !hasLockedPotentialWord { // checked for locked tile on drag, return
+                returnTileToGridHome()
+                continue
+            }
+            
+            //////////// TEST FOR TILE UNDER DROP SPOT
+            if testForTileAtDropSpot(gameGrid!, tileSnapResultsXGrid: tileSnapResultsXGrid, tileSnapResultsYGrid: tileSnapResultsYGrid) {
+                break
+            }
+                
+            else {
+                let gameGrid = (scene as! MMWGameScene).getSnapGrid(tileSnapTouch)
+                let tileSnapResults = gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y))
+                let tileSnapResultsXGrid = tileSnapResults.GridSquareX
+                let tileSnapResultsYGrid = tileSnapResults.GridSquareY
+                
+                let validWordTestAtDropSpot = testForValidPartialWordsAtDropSpot(tileSnapResultsXGrid, tileSnapResultsYGrid: tileSnapResultsYGrid, isAI: false)
+                
+                if validWordTestAtDropSpot.validHorizontalPartialWord && validWordTestAtDropSpot.validVerticalPartialWord {
+                    updateWordsAtDropSpot(tileSnapResultsXGrid, tileSnapResultsYGrid: tileSnapResultsYGrid, touchX: Float(tileSnapTouch.x), touchY: Float(tileSnapTouch.y)) ()
+                }
+            }
+        }
+        mmwGameSceneViewController.resetConsequtivePasses()
+        mmwGameSceneViewController.lettersPlayedInTurn += 1
+        print("letters playedInTurn = \(mmwGameSceneViewController.lettersPlayedInTurn)")
+        
+        // Change turns if player has no letter tiles remaining
+        let letterTilesRemaining = self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.playerArray[(self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.playerTurn)! - 1].playerLetterGrid.numLetterTilesInGrid()
+        if letterTilesRemaining <= 0 {
+            tileSpriteParent.tileBuilder!.mmwGameSceneViewController!.mmwGameScene.changePlayerTurn()
+        }
+    }
+    
+    
+    
     /// returnTileToGridHome() sends tile to return postition, with scaling effects and removes glow from tile and from all tiles on board
     /// - Returns: nothing
     /// - Parameters:
@@ -299,31 +400,49 @@ class LetterTileSprite : SKSpriteNode {
         runAction(actionSound2)
     }
     
-    /// returnTileToGridHome() sends tile to return postition, with scaling effects and removes glow from tile and from all tiles on board
+    
+    /// playTileToBoardGrid (pauseDuration: Double)
     /// - Returns: nothing
-    /// - Parameters:
-    ///     - none: nothing
+    /// - Parameters: pauseDuration: Double
+    ///     - 
     func playTileToBoardGrid (pauseDuration: Double) {
-        self.zPosition = 25
-        let boardPosition = Grid.sendToGridSquare(self.tileSpriteParent.gridEnd!, squareX: self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridYEnd)
         
-        let slide = SKAction.moveTo(boardPosition, duration:2.0)
-        let scaleUp = SKAction.scaleTo(1.5, duration:0.5)
-        let scaleDown = SKAction.scaleTo(1.0, duration:0.5)
-        
-        let pauseAction : SKAction = SKAction.waitForDuration(pauseDuration, withRange: 0)
-        
-        //SKAction.group([pauseAction])
-        let pauseSlide = SKAction.sequence([pauseAction, slide ])
-        let scaleUpDown = SKAction.sequence([scaleUp, scaleDown, actionSound2, ])
-        runAction(SKAction.group([pauseSlide, scaleUpDown]))
-        //sleep(1)
-        self.tileGlow.hidden = true
-        removeBoardTileHighlights ()
-        
-        self.tileSpriteParent.gridHome = self.tileSpriteParent.gridEnd!
-        self.tileSpriteParent.gridX = self.tileSpriteParent.gridXEnd
-        self.tileSpriteParent.gridY = self.tileSpriteParent.gridYEnd
+        func loadWords() {
+            
+            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+            dispatch_async(dispatch_get_global_queue(priority, 0), { ()->() in
+                ///////////////////
+                print("gcd hello")
+                self.zPosition = 25
+                let boardPosition = Grid.sendToGridSquare(self.tileSpriteParent.gridEnd!, squareX: self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridYEnd)
+                
+                let slide = SKAction.moveTo(boardPosition, duration:2.0)
+                let scaleUp = SKAction.scaleTo(1.5, duration:0.5)
+                let scaleDown = SKAction.scaleTo(1.0, duration:0.5)
+                let pauseAction : SKAction = SKAction.waitForDuration(pauseDuration, withRange: 0)
+                
+                //SKAction.group([pauseAction])
+                let pauseSlide = SKAction.sequence([slide, pauseAction ])
+                let scaleUpDown = SKAction.sequence([scaleUp, scaleDown, self.actionSound2, ])
+                self.runAction(SKAction.group([pauseSlide, scaleUpDown]))
+                //sleep(1)
+                self.tileGlow.hidden = true
+                self.removeBoardTileHighlights ()
+                
+                self.tileSpriteParent.gridHome = self.tileSpriteParent.gridEnd!
+                self.tileSpriteParent.gridX = self.tileSpriteParent.gridXEnd
+                self.tileSpriteParent.gridY = self.tileSpriteParent.gridYEnd
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    print("hello from UI thread executed as dispatch")
+                    
+                })
+            })
+            
+            print("hello from UI thread")
+        }
+
+//        CATransaction.commit()
     }
 
     
@@ -332,6 +451,11 @@ class LetterTileSprite : SKSpriteNode {
     /// - Parameters:
     ///     - none: nothing
     func showTileScoreTextToGridHome (number: Int) {
+        
+//        CATransaction.begin()
+//        CATransaction.setCompletionBlock({
+//            sleep(2)
+//        })
         
         self.tileScore1!.zPosition = 25
 
@@ -352,6 +476,8 @@ class LetterTileSprite : SKSpriteNode {
         self.tileScore1!.runAction(SKAction.group([fadeIn, animPart1, fadeOut, animScale]) )
 
         runAction(actionSound2)
+        
+//        CATransaction.commit()
     }
     
     /// showWordScoreTextToGridHome() sends tile to return postition, with scaling effects and removes glow from tile and from all tiles on board
@@ -426,6 +552,11 @@ class LetterTileSprite : SKSpriteNode {
         }
     }
     
+    
+    /// func checkForValidWords (gridXSpot: Int, gridYSpot: Int, IsAI: Bool)
+    /// used on touchesMoved to determine highlighted tile hints and possible partial word
+    /// -Parameters: gridXSpot: Int, gridYSpot: Int, IsAI: Bool
+    /// -Returns: none
     func checkForValidWords (gridXSpot: Int, gridYSpot: Int, IsAI: Bool) {
         ////////////  TEST FOR ADJACENT TILE PARTIAL WORDS
         var leftString : String = ""
@@ -603,34 +734,6 @@ class LetterTileSprite : SKSpriteNode {
         }
     }
 
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesMoved(touches, withEvent: event)
-        if enlarged { return }
-        
-        hasLockedPotentialWord = false
-        
-        for touch in (touches as Set<UITouch>) {
-            if isMovable {
-                let location = touch.locationInNode(scene!)
-                let touchedNode = nodeAtPoint(location)
-                touchedNode.position = location
-            }
-            
-            let tileSnapTouch = (touch as UITouch).locationInView(scene!.view)
-            
-            // IF VALID DROP LOCATION
-            if (tileSnapTouch.x > 160 && tileSnapTouch.x < 860) && (tileSnapTouch.y > 50 && tileSnapTouch.y < 747) { // checks that drag location within game grid boundaries
-                
-                let gameGrid = (scene as! MMWGameScene).getSnapGrid(tileSnapTouch)
-                let tileSnapResults = gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y)) // gets grid x, y on tile drag
-                
-                let tileSnapResultsXGrid = tileSnapResults.GridSquareX
-                let tileSnapResultsYGrid = tileSnapResults.GridSquareY
-                
-                checkForValidWords(tileSnapResultsXGrid, gridYSpot: tileSnapResultsYGrid, IsAI: false)
-            }
-        }
-    }
     
     
     func testForTileAtDropSpot(gameGrid: Grid, tileSnapResultsXGrid: Int, tileSnapResultsYGrid: Int) -> Bool {
@@ -1028,7 +1131,10 @@ class LetterTileSprite : SKSpriteNode {
         var currentCheckXGridNum = tileXGridDestination
         var currentCheckYGridNum = tileYGridDestination
         var stringToAdd : String = ""
-        while ( (currentCheckXGridNum > 0) && (mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum - 1][tileYGridDestination].tileState == TileState.Locked || (mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum - 1][tileYGridDestination].tileState == TileState.Played) ) )  {
+        while ( (currentCheckXGridNum > 0)
+            && ((mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum - 1][tileYGridDestination].tileState == TileState.Locked
+            || (mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum - 1][tileYGridDestination].tileState == TileState.Played) ) ) )  {
+                
             let letterToAdd : String = "\(mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum - 1][tileYGridDestination].tileText)"
             stringToAdd = letterToAdd.stringByAppendingString(stringToAdd)
             possibleWordTilesHorizontal.append((mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum - 1][tileYGridDestination]))
@@ -1185,7 +1291,7 @@ class LetterTileSprite : SKSpriteNode {
             }
             tile.tileState = TileState.Locked
             
-            sleep(1)
+            //sleep(1)
         }
         // + 5 * wordLen points for making a new complete word // SCORE
         self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController?.playerArray[(self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController?.playerTurn)! - 1].playerScore += (5 * wordLen)
@@ -1207,76 +1313,7 @@ class LetterTileSprite : SKSpriteNode {
     }
 
     
-    /// touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
-    /// - Returns: nothing
-    /// - Parameters:
-    ///     - touches: Set<UITouch>: touches
-    ///     - withEvent event: UIEvent?): event
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if enlarged { return }
-        //var location = touch.locationInNode(self)
-    
-        for touch in (touches as Set<UITouch>) {
-            zPosition = 1
-            let dropDown = SKAction.scaleTo(1.0, duration: 0.1)
-            runAction(dropDown, withKey: "drop")
-            tileShadow.hidden = true
-
-            let tileSnapTouch = (touch as UITouch).locationInView(scene!.view)
-            //let tileSnapTouchX = tileSnapTouch.x
-            //let tileSnapTouchY = tileSnapTouch.y
-  
-            // IF NOT VALID DROP LOCATION ON BOARD, RETURN TILE TO PLAYER
-            if (tileSnapTouch.x <= 160 || tileSnapTouch.x >= 860) {
-                print("Tried drop tile outside game board touchesEnded")
-                returnTileToGridHome()
-                return
-            }
-            
-            let gameGrid = (scene as! MMWGameScene).getSnapGrid(tileSnapTouch)
-            let tileSnapResults = gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y))
-            
-            //let tileSnapResultsCalculateX = tileSnapResults.GridSquareUpperLeftCornerX
-            //let tileSnapResultsCalculateY = tileSnapResults.GridSquareUpperLeftCornerY - 15.5 // -15.5 on y touch point adjusts snapping too high to lower square
-            let tileSnapResultsXGrid = tileSnapResults.GridSquareX
-            let tileSnapResultsYGrid = tileSnapResults.GridSquareY
-            //let tileAtDropSpot : MMWTile = (gameGrid?.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid])! // ERROR IF DRAG TOO FAR RIGHT _ INDEX OUT OF RANGE !!! ///////////
-
-            if !hasLockedPotentialWord { // checked for locked tile on drag, return
-                returnTileToGridHome()
-                continue
-            }
-            
-            //////////// TEST FOR TILE UNDER DROP SPOT
-            if testForTileAtDropSpot(gameGrid!, tileSnapResultsXGrid: tileSnapResultsXGrid, tileSnapResultsYGrid: tileSnapResultsYGrid) {
-                break
-            }
-
-            else {
-                let gameGrid = (scene as! MMWGameScene).getSnapGrid(tileSnapTouch)
-                let tileSnapResults = gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y))
-                let tileSnapResultsXGrid = tileSnapResults.GridSquareX
-                let tileSnapResultsYGrid = tileSnapResults.GridSquareY
-
-                let validWordTestAtDropSpot = testForValidPartialWordsAtDropSpot(tileSnapResultsXGrid, tileSnapResultsYGrid: tileSnapResultsYGrid, isAI: false)
-                
-                if validWordTestAtDropSpot.validHorizontalPartialWord && validWordTestAtDropSpot.validVerticalPartialWord {
-                    updateWordsAtDropSpot(tileSnapResultsXGrid, tileSnapResultsYGrid: tileSnapResultsYGrid, touchX: Float(tileSnapTouch.x), touchY: Float(tileSnapTouch.y)) ()
-                }
-            }
-        }
-        mmwGameSceneViewController.resetConsequtivePasses()
-        mmwGameSceneViewController.lettersPlayedInTurn += 1
-        print("letters playedInTurn = \(mmwGameSceneViewController.lettersPlayedInTurn)")
-
-        // Change turns if player has no letter tiles remaining
-        let letterTilesRemaining = self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.playerArray[(self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.playerTurn)! - 1].playerLetterGrid.numLetterTilesInGrid()
-        if letterTilesRemaining <= 0 {
-            tileSpriteParent.tileBuilder!.mmwGameSceneViewController!.mmwGameScene.changePlayerTurn()
-        }
-    }
-    
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     func adjustPlayerPoints (points: Int, player : Player) {
         player.playerScore += points

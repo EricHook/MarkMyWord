@@ -50,6 +50,82 @@ class GameViewController: UIViewController {
             menuScene.scaleMode = .AspectFill
 
             skView.presentScene(menuScene)
+        
+        
+        
+        
+        
+        
+//        assert(image != nil, "Image not set; required to use view controller")
+//        photoImageView.image = image
+//        
+//        // Resize if neccessary to ensure it's not pixelated
+//        if image.size.height <= photoImageView.bounds.size.height &&
+//            image.size.width <= photoImageView.bounds.size.width {
+//                photoImageView.contentMode = .Center
+//        }
+//        
+//        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)) { // 1
+//            let overlayImage = self.faceOverlayImageFromImage(self.image)
+//            dispatch_async(dispatch_get_main_queue()) { // 2
+//                self.fadeInNewImage(overlayImage) // 3
+//            }
+//        }
+//        //func downloadImageURLWithString(urlString: String) {
+//            let url = NSURL(string: urlString)
+//            let semaphore = dispatch_semaphore_create(0) // 1
+//            let photo = DownloadPhoto(url: url!) {
+//                image, error in
+//                if let error = error {
+//                    XCTFail("\(urlString) failed. \(error.localizedDescription)")
+//                }
+//                dispatch_semaphore_signal(semaphore) // 2
+//            }
+//            
+//            let timeout = dispatch_time(DISPATCH_TIME_NOW, DefaultTimeoutLengthInNanoSeconds)
+//            if dispatch_semaphore_wait(semaphore, timeout) != 0 { // 3
+//                XCTFail("\(urlString) timed out")
+//            }
+//        //}
+        
+        
+        
+        
+//        var starterWord1 = mmwGameSceneViewController.getRandomWord()
+//        
+//        while mmwGameSceneViewController.checkTilesForWord(starterWord1, letterTileArray: mmwGameSceneViewController.tileCollection.mmwTileArray) == false {
+//            starterWord1 = mmwGameSceneViewController.getRandomWord()
+//        }
+//        var starterWord1TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord1, letterTileArray: &mmwGameSceneViewController.tileCollection.mmwTileArray)
+//        
+//        var starterWord2 = mmwGameSceneViewController.getRandomWord()
+//        while (starterWord2 == starterWord1) || (mmwGameSceneViewController.checkTilesForWord(starterWord2, letterTileArray: mmwGameSceneViewController.tileCollection.mmwTileArray ) == false )  {
+//            starterWord2 = mmwGameSceneViewController.getRandomWord()
+//        }
+//        var starterWord2TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord2, letterTileArray: &mmwGameSceneViewController.tileCollection.mmwTileArray)
+//        
+//        var starterWord3 = mmwGameSceneViewController.getRandomWord()
+//        while (starterWord3 == starterWord2) || (starterWord3 == starterWord1) || (mmwGameSceneViewController.checkTilesForWord(starterWord3, letterTileArray: mmwGameSceneViewController.tileCollection.mmwTileArray ) == false )  {
+//            starterWord3 = mmwGameSceneViewController.getRandomWord()
+//        }
+//        var starterWord3TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord3, letterTileArray: &mmwGameSceneViewController.tileCollection.mmwTileArray)
+//        
+//        var starterWord4 = mmwGameSceneViewController.getRandomWord()
+//        while (starterWord4 == starterWord3) || (starterWord4 == starterWord2) || (starterWord4 == starterWord1) && (mmwGameSceneViewController.checkTilesForWord(starterWord4, letterTileArray: mmwGameSceneViewController.tileCollection.mmwTileArray ) == false )  {
+//            starterWord4 = mmwGameSceneViewController.getRandomWord()
+//        }
+//        var starterWord4TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord4, letterTileArray: &mmwGameSceneViewController.tileCollection.mmwTileArray)
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
     
 //    func presentMMWScene() {

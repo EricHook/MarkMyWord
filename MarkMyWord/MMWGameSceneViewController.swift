@@ -27,8 +27,8 @@ class MMWGameSceneViewController {
     var tilesPlayable : [MMWTile]
     var numPlayers : Int = 4
     var playerTurn :  Int = 1
-    var minWordSize = 2
-    var secondsPerTurn = 25
+    var minWordSize = 3
+    var secondsPerTurn = 30
     var player0 : Player = Player(_playerID: 0, _playerName: "AI", _playerColor: 0) // used to add initial word ownership
     var player1 : Player = Player(_playerID: 1, _playerName: "Abe", _playerColor: 1)
     var player2 : Player = Player(_playerID: 2, _playerName: "Bart", _playerColor: 2)
@@ -36,6 +36,13 @@ class MMWGameSceneViewController {
     var player3 : Player = Player(_playerID: 3, _playerName: "Charlie", _playerColor: 3)
     var player4 : Player = Player(_playerID: 4, _playerName: "Dan", _playerColor: 4)
     var playerArray : [Player]! // array of all players 0-3 for easier iteration of player turns
+    var wordsLoaded4 = false
+    var wordsLoaded5 = false
+    var wordsLoaded6 = false
+    var wordsLoaded7 = false
+    var wordsLoaded8 = false
+    var wordsLoaded9 = false
+    var wordsLoaded10Plus = false
 
     var wordArray : [String] = [""]
     var wordArrayMod : [String.CharacterView] = ["".characters]
@@ -69,25 +76,30 @@ class MMWGameSceneViewController {
         tileCollection.mmwGameSceneViewController = self
         tileCollection.mmwGameScene = self.mmwGameScene
         tileCollection.setViewControllerAndScene(self)
+        
+        
+        loadWords()  //  send off threads to get sections of word list to build array and trei
 
-        buildWordArray("WordList1to3LetterNoDup")
-        buildTrie( buildWordArray("WordList1to3LetterNoDup") )
-        print("buildTrie() 1-3")
-        
-        buildWordArray("WordList4LetterNoDup")
-        insertTrie( buildWordArray("WordList4LetterNoDup") )
-        print("insertTrie() 4")
-        
-        buildWordArray("WordList5LetterNoDup")
-        insertTrie( buildWordArray("WordList5LetterNoDup") )
-        print("insertTrie() 5")
-        
-//        buildWordArray("WordList6LetterNoDup")
-//        insertTrie( buildWordArray("WordList6LetterNoDup") )
-//        print("insertTrie() 6")
+//        buildWordArray("WordList1to3LetterNoDup")
+//        buildTrie( buildWordArray("WordList1to3LetterNoDup") )
+//        print("buildTrie() 1-3")
+//        
+//        buildWordArray("WordList4LetterNoDup")
+//        insertTrie( buildWordArray("WordList4LetterNoDup") )
+//        print("insertTrie() 4")
+//        
+//        buildWordArray("WordList5LetterNoDup")
+//        insertTrie( buildWordArray("WordList5LetterNoDup") )
+//        print("insertTrie() 5")
+//        
+////        buildWordArray("WordList6LetterNoDup")
+////        insertTrie( buildWordArray("WordList6LetterNoDup") )
+////        print("insertTrie() 6")
 
     }
+    
 
+    
     func setUpPlayers () {
         mmwGameScene.setViewController(self)
         if numPlayers == 2 {
@@ -218,8 +230,7 @@ class MMWGameSceneViewController {
   
         print("FINISHED InsertTrie()")
     }
-    
-    
+
     
     func stringFromTileArr (tileArr: [MMWTile]) -> String {
         var stringFromArr = ""
@@ -295,10 +306,10 @@ class MMWGameSceneViewController {
 
     
     
-    func checkUndealtTilesForWord (wordToCheck: String, inout letterTileArray: [MMWTile]) -> [MMWTile]? {
+    func checkTilesForWord (wordToCheck: String, letterTileArray: [MMWTile]) -> Bool {
         let string = wordToCheck // "dryad" //wordToCheck // can place test "STRING" in this value for testing purposed
         var lettersToPlay = [Int]()
-        var tilesToBoard = [MMWTile]()
+        //var tilesToBoard = [MMWTile]()
         let wordToCheckArr = Array(string.characters)
         var wordToCheckArrCount = wordToCheckArr.count
         var foundLetterInPass = false
@@ -325,6 +336,54 @@ class MMWGameSceneViewController {
             if String(letter).uppercaseString == "\r" {break}  // return char exits loop
             if foundLetterInPass == false {
                 print( "Tile \(String(letter).uppercaseString) doesn't exist to create word" )
+                return false
+            }
+            tileArrayNumber = 0
+        }
+        
+        print( "Letters to Play from letterTileArray: \(lettersToPlay)" )
+        print( "LettersToPlay.count: \(lettersToPlay.count), wordToCheckArr.count: \(wordToCheckArrCount)" )
+        
+//        if lettersToPlay.count < wordToCheckArrCount{ // letters not availible return nil
+//            print("FAIL!")
+//            return false
+//        }
+        print( "PASS! Found \(string)! self.tileCollection.mmwTileArray.count: \(letterTileArray.count)" )
+        return true
+    }
+    
+    
+    
+    func returnTilesForWord (wordToCheck: String, inout letterTileArray: [MMWTile]) -> [MMWTile]? {
+        let string = wordToCheck // "dryad" //wordToCheck // can place test "STRING" in this value for testing purposed
+        var lettersToPlay = [Int]()
+        var tilesToBoard = [MMWTile]()
+        let wordToCheckArr = Array(string.characters)
+        var wordToCheckArrCount = wordToCheckArr.count
+        var foundLetterInPass = false
+        var tileArrayNumber = 0
+        var lettersToPlayCount = 0
+        for letter in wordToCheckArr {
+            for tile in letterTileArray {
+                if String(letter).uppercaseString == "\r" {
+                    print ("String(letter).uppercaseString == \r ...return char at \(letter)")
+                    --wordToCheckArrCount
+                    break
+                }  // return char exits loop
+                if String(letter).uppercaseString == tile.tileText.uppercaseString && !lettersToPlay.contains(tileArrayNumber){
+                    print("Found letter: \(letter) in tiles \(tile.tileSprite.tileText)")
+                    lettersToPlay.append(tileArrayNumber)
+                    ++lettersToPlayCount
+                    print( "LettersToPlay.count: \(lettersToPlay.count), lettersToPlayCount: \(lettersToPlayCount)" )
+                    foundLetterInPass = true
+                    break
+                }
+                tileArrayNumber++
+                foundLetterInPass = false
+            }
+            if String(letter).uppercaseString == "\r" {break}  // return char exits loop
+            if foundLetterInPass == false {
+                print( "Tile \(String(letter).uppercaseString) doesn't exist to create word" )
                 break
             }
             tileArrayNumber = 0
@@ -333,12 +392,13 @@ class MMWGameSceneViewController {
         print( "Letters to Play from letterTileArray: \(lettersToPlay)" )
         print( "LettersToPlay.count: \(lettersToPlay.count), wordToCheckArr.count: \(wordToCheckArrCount)" )
         
-        if lettersToPlay.count < wordToCheckArrCount{
+        if lettersToPlay.count < wordToCheckArrCount{ // letters not availible return nil
             print("FAIL!")
             return nil
         }
         print( "PASS! Found \(string)! self.tileCollection.mmwTileArray.count: \(letterTileArray.count)" )
-        
+        //return true
+  
         ////////////////////////////////////////////
         for arrNum in lettersToPlay {
             tilesToBoard.append(letterTileArray[arrNum])
@@ -363,7 +423,82 @@ class MMWGameSceneViewController {
             return tilesToBoard
     }
 
-    
+//func checkUndealtTilesForWord (wordToCheck: String, inout letterTileArray: [MMWTile]) -> [MMWTile]? {
+//    let string = wordToCheck // "dryad" //wordToCheck // can place test "STRING" in this value for testing purposed
+//    var lettersToPlay = [Int]()
+//    var tilesToBoard = [MMWTile]()
+//    let wordToCheckArr = Array(string.characters)
+//    var wordToCheckArrCount = wordToCheckArr.count
+//    var foundLetterInPass = false
+//    var tileArrayNumber = 0
+//    var lettersToPlayCount = 0
+//    for letter in wordToCheckArr {
+//        for tile in letterTileArray {
+//            if String(letter).uppercaseString == "\r" {
+//                print ("String(letter).uppercaseString == \r ...return char at \(letter)")
+//                --wordToCheckArrCount
+//                break
+//            }  // return char exits loop
+//            if String(letter).uppercaseString == tile.tileText.uppercaseString && !lettersToPlay.contains(tileArrayNumber){
+//                print("Found letter: \(letter) in tiles \(tile.tileSprite.tileText)")
+//                lettersToPlay.append(tileArrayNumber)
+//                ++lettersToPlayCount
+//                print( "LettersToPlay.count: \(lettersToPlay.count), lettersToPlayCount: \(lettersToPlayCount)" )
+//                foundLetterInPass = true
+//                break
+//            }
+//            tileArrayNumber++
+//            foundLetterInPass = false
+//        }
+//        if String(letter).uppercaseString == "\r" {break}  // return char exits loop
+//        if foundLetterInPass == false {
+//            print( "Tile \(String(letter).uppercaseString) doesn't exist to create word" )
+//            break
+//        }
+//        tileArrayNumber = 0
+//    }
+//    
+//    print( "Letters to Play from letterTileArray: \(lettersToPlay)" )
+//    print( "LettersToPlay.count: \(lettersToPlay.count), wordToCheckArr.count: \(wordToCheckArrCount)" )
+//    
+//    if lettersToPlay.count < wordToCheckArrCount{ // letters not availible return nil
+//        print("FAIL!")
+//        return false
+//    }
+//    print( "PASS! Found \(string)! self.tileCollection.mmwTileArray.count: \(letterTileArray.count)" )
+//    return true
+//}
+//
+//
+//////////////////////////////////////////////
+//for arrNum in lettersToPlay {
+//    tilesToBoard.append(letterTileArray[arrNum])
+//    //letterTileArray.removeAtIndex(arrNum)
+//}
+//////////////////////////////////////////////
+//
+//tileArrayNumber = 0
+//for letter in wordToCheckArr {
+//    for tile in letterTileArray {
+//        if String(letter).uppercaseString == tile.tileText.uppercaseString {
+//            print("REMOVE letter: \(letter) in tiles \(tile.tileSprite.tileText)")
+//            letterTileArray.removeAtIndex(tileArrayNumber)
+//            break
+//        }
+//        tileArrayNumber++
+//    }
+//    if String(letter).uppercaseString == "\r" {break}  // return char exits loop
+//    tileArrayNumber = 0
+//}
+//print("After remove tiles: letterTileArray.count: \(letterTileArray.count)" )
+//return tilesToBoard
+//}
+
+
+
+
+
+
     func dealLetter (inout letterToPlace: MMWTile, gridToPlaceLetter: Grid, xSquare: Int, ySquare: Int) {
         
         let tileAtDropSpot : MMWTile = (gridToPlaceLetter.grid2DArr[xSquare][ySquare])
@@ -451,6 +586,190 @@ class MMWGameSceneViewController {
             self.mmwGameScene.updateGridInScene(player.playerLetterGrid)
         } 
     }
+
+    func loadWords() {
+        
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        dispatch_async(dispatch_get_global_queue(priority, 0), { ()->() in
+
+            print("gcd hello")
+            print("hello from UI thread executed as dispatch 1")
+            print("Currently dispatched asynchronously 0")
+            
+            self.buildWordArray("WordList1to3LetterNoDup")
+            self.buildTrie( self.buildWordArray("WordList1to3LetterNoDup") )
+            print("buildTrie() 1-3")
+            print("Currently dispatched asynchronously 1-3")
+            
+            self.buildWordArray("WordList4LetterNoDup")
+            self.insertTrie(self.buildWordArray("WordList4LetterNoDup") )
+            self.wordsLoaded4 = true
+            print("insertTrie() 4")
+            print("Currently dispatched asynchronously 4")
+            
+            self.buildWordArray("WordList5LetterNoDup")
+            self.insertTrie(self.buildWordArray("WordList5LetterNoDup") )
+            self.wordsLoaded5 = true
+            print("insertTrie() 5")
+            print("Currently dispatched asynchronously 5")
+            print("hello from UI thread executed as dispatch 2")
+            
+            self.buildWordArray("WordList6LetterNoDup")
+            self.insertTrie(self.buildWordArray("WordList6LetterNoDup") )
+            self.wordsLoaded4 = true
+            print("insertTrie() 6")
+            print("Currently dispatched asynchronously 6")
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                print("hello from UI thread executed as dispatch")
+
+            })
+        })
+
+        print("hello from UI thread")
+        
+        
+//        dispatch_async(dispatch_get_main_queue()) {
+//            print("Currently dispatched asynchronously 0")
+//            
+//            self.buildWordArray("WordList1to3LetterNoDup")
+//            self.buildTrie( self.buildWordArray("WordList1to3LetterNoDup") )
+//            print("buildTrie() 1-3")
+//            print("Currently dispatched asynchronously 1-3")
+//            
+//            self.buildWordArray("WordList4LetterNoDup")
+//            self.insertTrie(self.buildWordArray("WordList4LetterNoDup") )
+//            print("insertTrie() 4")
+//            print("Currently dispatched asynchronously 4")
+//
+//            self.buildWordArray("WordList5LetterNoDup")
+//            self.insertTrie(self.buildWordArray("WordList5LetterNoDup") )
+//            print("insertTrie() 5")
+//            print("Currently dispatched asynchronously 5")
+//
+//            self.buildWordArray("WordList6LetterNoDup")
+//            self.insertTrie(self.buildWordArray("WordList6LetterNoDup") )
+//            print("insertTrie() 6")
+//            print("Currently dispatched asynchronously 6")
+
+//        }
+        
+        
+        
+        
+        
+        
+        
+//        //let url = NSURL(string: urlString)
+//        let semaphore = dispatch_semaphore_create(0) // 1
+//        //let loadWords1to3 = buildWordArray("WordList1to3LetterNoDup")
+//        
+//        
+////        buildWordArray("WordList1to3LetterNoDup")
+////        buildTrie( buildWordArray("WordList1to3LetterNoDup") )
+////        print("buildTrie() 1-3")
+////
+////        buildWordArray("WordList4LetterNoDup")
+////        insertTrie( buildWordArray("WordList4LetterNoDup") )
+////        print("insertTrie() 4")
+////
+////        buildWordArray("WordList5LetterNoDup")
+////        insertTrie( buildWordArray("WordList5LetterNoDup") )
+////        print("insertTrie() 5")
+////
+////        buildWordArray("WordList6LetterNoDup")
+////        insertTrie( buildWordArray("WordList6LetterNoDup") )
+////        print("insertTrie() 6")
+//        
+//        
+//        
+////        if let error = error {
+////            XCTFail(" failed. \(error.localizedDescription)")
+////        }
+////                    image, error in
+////                    if let error = error {
+////                        XCTFail("\(urlString) failed. \(error.localizedDescription)")
+////                    }
+//         dispatch_semaphore_signal(semaphore) // 2
+//                //}
+//        
+//        let timeout = dispatch_time(DISPATCH_TIME_NOW, 500)   // DefaultTimeoutLengthInNanoSeconds)
+//        if dispatch_semaphore_wait(semaphore, timeout) != 0 { // 3
+//            print("semaphore timed out")
+//        }
+    }
+
+
+    
+    
+    
+    
+//                buildWordArray("WordList1to3LetterNoDup")
+//                buildTrie( buildWordArray("WordList1to3LetterNoDup") )
+//                print("buildTrie() 1-3")
+
+//                buildWordArray("WordList4LetterNoDup")
+//                insertTrie( buildWordArray("WordList4LetterNoDup") )
+//                print("insertTrie() 4")
+//        
+//                buildWordArray("WordList5LetterNoDup")
+//                insertTrie( buildWordArray("WordList5LetterNoDup") )
+//                print("insertTrie() 5")
+    
+        //        buildWordArray("WordList6LetterNoDup")
+        //        insertTrie( buildWordArray("WordList6LetterNoDup") )
+        //        print("insertTrie() 6")
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //    override func viewDidLoad() {
+        //        super.viewDidLoad()
+        //        assert(image != nil, "Image not set; required to use view controller")
+        //        photoImageView.image = image
+        //
+        //        // Resize if neccessary to ensure it's not pixelated
+        //        if image.size.height <= photoImageView.bounds.size.height &&
+        //            image.size.width <= photoImageView.bounds.size.width {
+        //                photoImageView.contentMode = .Center
+        //        }
+        //
+        //        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)) { // 1
+        //            let overlayImage = self.faceOverlayImageFromImage(self.image)
+        //            dispatch_async(dispatch_get_main_queue()) { // 2
+        //                self.fadeInNewImage(overlayImage) // 3
+        //            }
+        //        }
+        //    }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
     
 
 //    func presentMMWScene() {
