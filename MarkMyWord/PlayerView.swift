@@ -115,19 +115,27 @@ class PlayerView: SKSpriteNode {
         self.playerNameLabel.fontColor = UIColor.whiteColor()
         self.playerScoreLabel.fontColor = UIColor.whiteColor()
         mmwGameScene.bottomDisplayLabel.text =  ("\(mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerName ), place letters")
+        let playerGrid = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid!.grid2DArr
+        for tileColumn in playerGrid {
+            for tile in tileColumn {
+                tile.tileSprite.userInteractionEnabled = true
+            }
+        }
     }
     
     func playerViewEndTurn () {
         self.playerNameLabel.fontColor =  FontHUDBlack
         self.playerScoreLabel.fontColor = FontHUDBlack
-        //mmwPlayer.playerScore += 25
-        //self.playerScoreLabel.text = String(mmwPlayer.playerScore)
         changePlayerScoreDisplay()
-        
         mmwGameScene.topDisplayLabel.text = ("Great Job, \(self.playerNameLabel.text)!!!")
         mmwGameScene.topDisplayLabel2.text = ("You rock!!!")
         mmwGameScene.bottomDisplayLabel.text = ("Word Feedback ...")
-        
+        let playerGrid = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid!.grid2DArr
+        for tileColumn in playerGrid {
+            for tile in tileColumn {
+                tile.tileSprite.userInteractionEnabled = false
+            }
+        }   
     }
     
     required init?(coder aDecoder: NSCoder) {

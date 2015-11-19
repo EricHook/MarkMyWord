@@ -231,7 +231,8 @@ class MMWGameSceneViewController {
         print("FINISHED InsertTrie()")
     }
 
-    
+    /// func stringFromTileArr (tileArr: [MMWTile]) -> String
+    /// given an array of tiles, get letter associated and return string
     func stringFromTileArr (tileArr: [MMWTile]) -> String {
         var stringFromArr = ""
         for tile in tileArr {
@@ -240,7 +241,10 @@ class MMWGameSceneViewController {
         return stringFromArr
     }
     
-    
+    /// checkPartialWordMatch(var wordToCheck: String) -> Bool
+    /// -Parameters: var wordToCheck: String (var because converts to lower case for check)
+    /// -Returns: Bool
+    /// given a string, convert to lowercase, check for partial word in Trei (e.g. exists without trailing '!' character)
     func checkPartialWordMatch(var wordToCheck: String) -> Bool {
         wordToCheck = wordToCheck.lowercaseString
         if wordTrie!.contains("\(wordToCheck)".characters){
@@ -249,6 +253,8 @@ class MMWGameSceneViewController {
         return false
     }
     
+    /// checkPartialWordMatch(var wordToCheck: String) -> Bool
+    /// given a string, convert to lowercase, check for whole word in Trei (e.g. exists withtrailing '!' character)
     func checkWholeWordMatch(var wordToCheck: String) -> Bool {
         wordToCheck = wordToCheck.lowercaseString
         if wordTrie!.contains("\(wordToCheck)!".characters){ // whole words have ! at end of string

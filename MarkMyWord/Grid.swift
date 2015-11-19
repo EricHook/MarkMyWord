@@ -74,11 +74,8 @@ class Grid {
     
     func getArrayLockedLetterTilesInGrid () -> [MMWTile] {
         var letterTilesInGrid = [MMWTile]()
-        var randomizedTilesInGrid = [MMWTile]()
-        
+        var randomizedTilesInGrid = [MMWTile]() 
         var numLetterTiles = 0
-        //var letterTilesInGrid = Set<MMWTile>()
-        
 
         for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
             for x in 0...(self.gridNumSquaresX - 1) {
@@ -94,9 +91,7 @@ class Grid {
             let tileToMove = letterTilesInGrid.removeAtIndex(randomTileNumber)
             randomizedTilesInGrid.append( tileToMove )
         }
-
         return randomizedTilesInGrid
-
     }
     
     func makeTilesInGridInteractive (isInteractive : Bool) {
@@ -184,19 +179,24 @@ class Grid {
                     }
 
                     if numTilesToDeal > 0  && self.grid2DArr[x][y].tileText == "!"  {
+                        
+                        mmwGameScene.mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray.append(self.grid2DArr[x][y])
+                        self.grid2DArr[x][y].tileSprite.hidden = true
+ 
                         let numTiles : UInt32 = UInt32(arrayIn.count)
                         let randomTileNumber = arc4random_uniform(numTiles) // select random tile in FROM array
                         let dealtTile : MMWTile = arrayIn[Int(randomTileNumber)]
                         
                         dealtTile.tileOwner = TileOwner(rawValue: playerNum)!
                         dealtTile.tileState = TileState(rawValue: playerNum)!
-                        
                         self.grid2DArr[x][y] = dealtTile
                         arrayIn.removeAtIndex( Int(randomTileNumber) )
                         dealtTile.tileSprite.color =  gameColors[playerNum]
                         dealtTile.gridX = x
                         dealtTile.gridY = y
                         dealtTile.gridHome = self
+                        dealtTile.tileSprite.isMovable = true
+                        dealtTile.tileSprite.userInteractionEnabled = true
                     }
                     numTilesToDeal--
                 }
@@ -323,7 +323,7 @@ class Grid {
     
     
     func printGrid () {
-        print("<Grid>printGrid \(self.gridName) ")
+        print("<Grid> printGrid \(self.gridName) ")
         //print(">>>mmwGameSceneViewController.mmwGameScene.mmwPlayer1Grid: ")
         for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
             for x in 0...(self.gridNumSquaresX - 1) {
@@ -333,8 +333,7 @@ class Grid {
         }
     }
 
-    
-    
+
     class func printGrid (gridToPrint: Grid ) {
         print("<Grid> printGrid \(gridToPrint.gridName) ")
         for x in 0...(gridToPrint.gridNumSquaresX - 1) {   // fill letter tiles

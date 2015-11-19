@@ -47,6 +47,8 @@ class MMWTile {
     var gridY: Int = -1
     var gridXEnd: Int = -1
     var gridYEnd: Int = -1
+    var gridXTest: Int = -1
+    var gridYTest: Int = -1
 
     var tileText: String = "?"
     var undealt = true
