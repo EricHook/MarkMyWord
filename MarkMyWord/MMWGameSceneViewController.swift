@@ -76,8 +76,7 @@ class MMWGameSceneViewController {
         tileCollection.mmwGameSceneViewController = self
         tileCollection.mmwGameScene = self.mmwGameScene
         tileCollection.setViewControllerAndScene(self)
-        
-        
+
         loadWords()  //  send off threads to get sections of word list to build array and trei
 
 //        buildWordArray("WordList1to3LetterNoDup")
@@ -92,13 +91,12 @@ class MMWGameSceneViewController {
 //        insertTrie( buildWordArray("WordList5LetterNoDup") )
 //        print("insertTrie() 5")
 //        
-////        buildWordArray("WordList6LetterNoDup")
-////        insertTrie( buildWordArray("WordList6LetterNoDup") )
-////        print("insertTrie() 6")
+//        buildWordArray("WordList6LetterNoDup")
+//        insertTrie( buildWordArray("WordList6LetterNoDup") )
+//        print("insertTrie() 6")
 
     }
     
-
     
     func setUpPlayers () {
         mmwGameScene.setViewController(self)
@@ -113,6 +111,7 @@ class MMWGameSceneViewController {
         }
     }
     
+    
     func makeTwoPlayers () {
         player1.setPlayerTilesGrid(&mmwGameScene.mmwPlayer1Grid!)
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer1Grid!)
@@ -125,6 +124,7 @@ class MMWGameSceneViewController {
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwBoardGrid!)
     }
     
+    
     func makeThreePlayers () {
         makeTwoPlayers()
         
@@ -133,6 +133,7 @@ class MMWGameSceneViewController {
         player3.setPlayerView(mmwGameScene.player3View, mmwGameScene: self.mmwGameScene, mmwGameSceneViewController: self)
     }
     
+    
     func makeFourPlayers () {
         makeThreePlayers()
 
@@ -140,6 +141,7 @@ class MMWGameSceneViewController {
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer4Grid!)
         player4.setPlayerView(mmwGameScene.player4View, mmwGameScene: self.mmwGameScene, mmwGameSceneViewController: self)
     }
+    
     
     func setTileOwner (inout tileToSet: MMWTile, player: Player) {
         if player.playerID == 1 {
@@ -159,14 +161,17 @@ class MMWGameSceneViewController {
         }
     }
     
+    
     func resetConsequtivePasses () {
         self.consequtivePasses = 0
     }
+    
     
     func resetLettersPlayedInTurn () {
         self.lettersPlayedInTurn = 0
     }
 
+    
     func getRandomWord() -> String {
         let wordToReturn : String
         if let aStreamReader = StreamReader(file: "5-LetterWords") { // "/Users/erichook/Desktop/testSmallUTF8.txt") {
@@ -198,6 +203,7 @@ class MMWGameSceneViewController {
         return String("error - didn't find word in getRandomWord()")
     }
     
+    
     func buildWordArray(wordList : String) -> [String] {
         // read the file
         wordArray = [""]  // clear wordArray so can add new chuncks of wordList
@@ -213,10 +219,12 @@ class MMWGameSceneViewController {
         return wordArray
     }
     
+    
     func buildTrie(stringArray: [String]) {
         wordArrayMod = stringArray.map{$0.characters}
         wordTrie = Trie(wordArrayMod)
     }
+    
     
     func insertTrie(stringArray: [String]) {
         wordArrayMod = stringArray.map{$0.characters}
@@ -231,6 +239,7 @@ class MMWGameSceneViewController {
         print("FINISHED InsertTrie()")
     }
 
+    
     /// func stringFromTileArr (tileArr: [MMWTile]) -> String
     /// given an array of tiles, get letter associated and return string
     func stringFromTileArr (tileArr: [MMWTile]) -> String {
@@ -240,6 +249,7 @@ class MMWGameSceneViewController {
         }
         return stringFromArr
     }
+    
     
     /// checkPartialWordMatch(var wordToCheck: String) -> Bool
     /// -Parameters: var wordToCheck: String (var because converts to lower case for check)
@@ -252,6 +262,7 @@ class MMWGameSceneViewController {
         }
         return false
     }
+    
     
     /// checkPartialWordMatch(var wordToCheck: String) -> Bool
     /// given a string, convert to lowercase, check for whole word in Trei (e.g. exists withtrailing '!' character)
@@ -309,8 +320,6 @@ class MMWGameSceneViewController {
 //        return false
 //    }
 
-
-    
     
     func checkTilesForWord (wordToCheck: String, letterTileArray: [MMWTile]) -> Bool {
         let string = wordToCheck // "dryad" //wordToCheck // can place test "STRING" in this value for testing purposed
@@ -357,7 +366,6 @@ class MMWGameSceneViewController {
         print( "PASS! Found \(string)! self.tileCollection.mmwTileArray.count: \(letterTileArray.count)" )
         return true
     }
-    
     
     
     func returnTilesForWord (wordToCheck: String, inout letterTileArray: [MMWTile]) -> [MMWTile]? {
@@ -500,11 +508,7 @@ class MMWGameSceneViewController {
 //return tilesToBoard
 //}
 
-
-
-
-
-
+    
     func dealLetter (inout letterToPlace: MMWTile, gridToPlaceLetter: Grid, xSquare: Int, ySquare: Int) {
         
         let tileAtDropSpot : MMWTile = (gridToPlaceLetter.grid2DArr[xSquare][ySquare])
@@ -538,9 +542,9 @@ class MMWGameSceneViewController {
     
     func dealTestLetters () {
         //dealLetter(&<#T##letterToPlace: MMWTile##MMWTile#>, gridToPlaceLetter: <#T##Grid#>, xSquare: <#T##Int#>, ySquare: <#T##Int#>)
-        
-        
+  
     }
+    
     
     func placeWord (player: Player, startLocX: Int, startLocY: Int, direction: Character, wordToPlace: [MMWTile]){
         var tileToPlace = self.tilesPlayable[0]
@@ -593,6 +597,7 @@ class MMWGameSceneViewController {
         } 
     }
 
+    
     func loadWords() {
         
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
@@ -633,8 +638,7 @@ class MMWGameSceneViewController {
         })
 
         print("hello from UI thread")
-        
-        
+
 //        dispatch_async(dispatch_get_main_queue()) {
 //            print("Currently dispatched asynchronously 0")
 //            
@@ -662,10 +666,7 @@ class MMWGameSceneViewController {
         
         
         
-        
-        
-        
-        
+
 //        //let url = NSURL(string: urlString)
 //        let semaphore = dispatch_semaphore_create(0) // 1
 //        //let loadWords1to3 = buildWordArray("WordList1to3LetterNoDup")
@@ -706,10 +707,7 @@ class MMWGameSceneViewController {
     }
 
 
-    
-    
-    
-    
+
 //                buildWordArray("WordList1to3LetterNoDup")
 //                buildTrie( buildWordArray("WordList1to3LetterNoDup") )
 //                print("buildTrie() 1-3")
@@ -727,14 +725,7 @@ class MMWGameSceneViewController {
         //        print("insertTrie() 6")
     
         
-        
-        
-        
-        
-        
-        
-        
-        
+    
         
         
         
@@ -758,23 +749,7 @@ class MMWGameSceneViewController {
         //    }
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
 
-        
-        
-        
-        
-        
         
     
 
@@ -837,6 +812,8 @@ class MMWGameSceneViewController {
 //        super.didReceiveMemoryWarning()
 //        // Release any cached data, images, etc that aren't in use.
 //    }
+    
+    
 }
 
 

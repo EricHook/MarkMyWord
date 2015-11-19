@@ -61,7 +61,6 @@ class PlayerView: SKSpriteNode {
         yellowPlayerSprite.zPosition = 1
         addChild(yellowPlayerSprite)
 
-        
         playerNameLabel = SKLabelNode(fontNamed: FontHUDName) // SKLabelNode(fontNamed:"Chalkduster")
         playerNameLabel.text = mmwPlayer.playerName
         playerNameLabel.fontSize = 17
@@ -115,27 +114,33 @@ class PlayerView: SKSpriteNode {
         self.playerNameLabel.fontColor = UIColor.whiteColor()
         self.playerScoreLabel.fontColor = UIColor.whiteColor()
         mmwGameScene.bottomDisplayLabel.text =  ("\(mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerName ), place letters")
-        let playerGrid = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid!.grid2DArr
-        for tileColumn in playerGrid {
-            for tile in tileColumn {
-                tile.tileSprite.userInteractionEnabled = true
-            }
-        }
+        let playerGrid = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid!  // .grid2DArr
+        playerGrid.makeTilesInGridInteractive(true)
+//        for tileColumn in playerGrid {
+//            for tile in tileColumn {
+//                tile.tileSprite.userInteractionEnabled = true
+//                tile.tileSprite.isMovable = true
+//            }
+//        }
     }
     
     func playerViewEndTurn () {
         self.playerNameLabel.fontColor =  FontHUDBlack
         self.playerScoreLabel.fontColor = FontHUDBlack
         changePlayerScoreDisplay()
+        
         mmwGameScene.topDisplayLabel.text = ("Great Job, \(self.playerNameLabel.text)!!!")
         mmwGameScene.topDisplayLabel2.text = ("You rock!!!")
         mmwGameScene.bottomDisplayLabel.text = ("Word Feedback ...")
-        let playerGrid = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid!.grid2DArr
-        for tileColumn in playerGrid {
-            for tile in tileColumn {
-                tile.tileSprite.userInteractionEnabled = false
-            }
-        }   
+        
+        let playerGrid = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid!  // .grid2DArr
+        playerGrid.makeTilesInGridInteractive(false)
+//        for tileColumn in playerGrid {
+//            for tile in tileColumn {
+//                tile.tileSprite.userInteractionEnabled = false
+//                tile.tileSprite.isMovable = false
+//            }
+//        }   
     }
     
     required init?(coder aDecoder: NSCoder) {

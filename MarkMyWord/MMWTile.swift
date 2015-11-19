@@ -80,6 +80,7 @@ class MMWTile {
         self.tileSprite.mmwGameSceneViewController = self.mmwGameSceneViewController
         self.tileSprite.mmwGameScene = self.mmwGameScene
         self.tileSprite.hidden = true
+        self.tileSprite.userInteractionEnabled = false
         tileSprite.alpha = 0.3
     }
     
@@ -100,6 +101,7 @@ class MMWTile {
         self.tileSprite.mmwGameSceneViewController = self.mmwGameSceneViewController
         self.tileSprite.mmwGameScene = self.mmwGameScene
         self.tileSprite.hidden = true
+        self.tileSprite.userInteractionEnabled = false
     }
     
     

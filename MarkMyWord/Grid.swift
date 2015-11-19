@@ -196,7 +196,7 @@ class Grid {
                         dealtTile.gridY = y
                         dealtTile.gridHome = self
                         dealtTile.tileSprite.isMovable = true
-                        dealtTile.tileSprite.userInteractionEnabled = true
+                        dealtTile.tileSprite.userInteractionEnabled = false
                     }
                     numTilesToDeal--
                 }

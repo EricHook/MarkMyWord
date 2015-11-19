@@ -10,27 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/LetterTileSprite.swift"
-            timestampString = "469583178.394782"
+            timestampString = "469609335.505266"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1329"
-            endingLineNumber = "1329"
-            landmarkName = "scoreTilesInArr(_:wordString:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MarkMyWord/LetterTileSprite.swift"
-            timestampString = "469583178.394782"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "902"
-            endingLineNumber = "902"
+            startingLineNumber = "962"
+            endingLineNumber = "962"
             landmarkName = "testForValidWordsAtDropSpot(_:tileSnapResultsYGrid:isAI:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -41,29 +25,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MarkMyWord/LetterTileSprite.swift"
-            timestampString = "469583178.394782"
+            filePath = "MarkMyWord/MMWGameScene.swift"
+            timestampString = "469611263.620053"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1230"
-            endingLineNumber = "1230"
-            landmarkName = "updateAIWordsAtDropSpot(_:tileYGridDestination:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MarkMyWord/LetterTileSprite.swift"
-            timestampString = "469583178.394782"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1270"
-            endingLineNumber = "1270"
-            landmarkName = "updateAIWordsAtDropSpot(_:tileYGridDestination:)"
+            startingLineNumber = "959"
+            endingLineNumber = "959"
+            landmarkName = "checkForValidWordsAI(_:gridYSpot:availableTiles:numLettersToPlayMin:numLettersToPlayMax:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,107 +42,91 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "469583576.390989"
+            timestampString = "469611263.620053"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "958"
+            endingLineNumber = "958"
+            landmarkName = "checkForValidWordsAI(_:gridYSpot:availableTiles:numLettersToPlayMin:numLettersToPlayMax:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarkMyWord/MMWGameScene.swift"
+            timestampString = "469611263.620053"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "926"
+            endingLineNumber = "926"
+            landmarkName = "calculateOpenTileLocations(_:gridYStart:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarkMyWord/MMWGameScene.swift"
+            timestampString = "469611263.620053"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "892"
+            endingLineNumber = "892"
+            landmarkName = "calculateOpenTileLocations(_:gridYStart:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarkMyWord/MMWGameScene.swift"
+            timestampString = "469611263.620053"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "922"
+            endingLineNumber = "922"
+            landmarkName = "calculateOpenTileLocations(_:gridYStart:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarkMyWord/MMWGameScene.swift"
+            timestampString = "469611263.620053"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "969"
+            endingLineNumber = "969"
+            landmarkName = "checkForValidWordsAI(_:gridYSpot:availableTiles:numLettersToPlayMin:numLettersToPlayMax:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarkMyWord/MMWGameScene.swift"
+            timestampString = "469611263.620053"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "933"
             endingLineNumber = "933"
-            landmarkName = "checkForValidWordsAI(_:gridYSpot:availableTiles:numLettersToPlayMin:numLettersToPlayMax:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "469583576.390989"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "932"
-            endingLineNumber = "932"
-            landmarkName = "checkForValidWordsAI(_:gridYSpot:availableTiles:numLettersToPlayMin:numLettersToPlayMax:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "469583576.390989"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "899"
-            endingLineNumber = "899"
-            landmarkName = "calculateOpenTileLocations(_:gridYStart:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "469583576.390989"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "865"
-            endingLineNumber = "865"
-            landmarkName = "calculateOpenTileLocations(_:gridYStart:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "469583576.390989"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "895"
-            endingLineNumber = "895"
-            landmarkName = "calculateOpenTileLocations(_:gridYStart:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "469583576.390989"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "943"
-            endingLineNumber = "943"
-            landmarkName = "checkForValidWordsAI(_:gridYSpot:availableTiles:numLettersToPlayMin:numLettersToPlayMax:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "469583576.390989"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "906"
-            endingLineNumber = "906"
             landmarkName = "calculateOpenTileLocations(_:gridYStart:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -202,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "469583576.390989"
+            timestampString = "469611263.620053"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1132"
-            endingLineNumber = "1132"
+            startingLineNumber = "1153"
+            endingLineNumber = "1153"
             landmarkName = "checkForValidWordsAI(_:gridYSpot:availableTiles:numLettersToPlayMin:numLettersToPlayMax:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -218,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "469583576.390989"
+            timestampString = "469611263.620053"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1230"
-            endingLineNumber = "1230"
+            startingLineNumber = "1253"
+            endingLineNumber = "1253"
             landmarkName = "checkForValidWordsAI(_:gridYSpot:availableTiles:numLettersToPlayMin:numLettersToPlayMax:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -234,12 +186,60 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "469583576.390989"
+            timestampString = "469611263.620053"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1138"
-            endingLineNumber = "1138"
+            startingLineNumber = "1159"
+            endingLineNumber = "1159"
             landmarkName = "checkForValidWordsAI(_:gridYSpot:availableTiles:numLettersToPlayMin:numLettersToPlayMax:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarkMyWord/MMWGameScene.swift"
+            timestampString = "469611263.620053"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "947"
+            endingLineNumber = "947"
+            landmarkName = "checkForValidWordsAI(_:gridYSpot:availableTiles:numLettersToPlayMin:numLettersToPlayMax:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarkMyWord/MMWGameScene.swift"
+            timestampString = "469599543.051516"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "556"
+            endingLineNumber = "556"
+            landmarkName = "playBtnPlay(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarkMyWord/MMWGameScene.swift"
+            timestampString = "469599543.051516"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "561"
+            endingLineNumber = "561"
+            landmarkName = "playBtnPlay(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -250,107 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/LetterTileSprite.swift"
-            timestampString = "469583178.394782"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1281"
-            endingLineNumber = "1281"
-            landmarkName = "updateAIWordsAtDropSpot(_:tileYGridDestination:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MarkMyWord/LetterTileSprite.swift"
-            timestampString = "469583178.394782"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1184"
-            endingLineNumber = "1184"
-            landmarkName = "updateAIWordsAtDropSpot(_:tileYGridDestination:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "469583576.390989"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "920"
-            endingLineNumber = "920"
-            landmarkName = "checkForValidWordsAI(_:gridYSpot:availableTiles:numLettersToPlayMin:numLettersToPlayMax:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "469583576.390989"
+            timestampString = "469609335.505266"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "924"
             endingLineNumber = "924"
-            landmarkName = "checkForValidWordsAI(_:gridYSpot:availableTiles:numLettersToPlayMin:numLettersToPlayMax:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "469583178.394782"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "560"
-            endingLineNumber = "560"
-            landmarkName = "playBtnPlay(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "469583178.394782"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "565"
-            endingLineNumber = "565"
-            landmarkName = "playBtnPlay(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MarkMyWord/LetterTileSprite.swift"
-            timestampString = "469583178.394782"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "864"
-            endingLineNumber = "864"
             landmarkName = "testForValidWordsAtDropSpot(_:tileSnapResultsYGrid:isAI:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -362,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/LetterTileSprite.swift"
-            timestampString = "469583178.394782"
+            timestampString = "469609335.505266"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "856"
-            endingLineNumber = "856"
+            startingLineNumber = "916"
+            endingLineNumber = "916"
             landmarkName = "testForValidWordsAtDropSpot(_:tileSnapResultsYGrid:isAI:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -378,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/LetterTileSprite.swift"
-            timestampString = "469583178.394782"
+            timestampString = "469609335.505266"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "821"
-            endingLineNumber = "821"
+            startingLineNumber = "881"
+            endingLineNumber = "881"
             landmarkName = "testForValidWordsAtDropSpot(_:tileSnapResultsYGrid:isAI:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -410,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "469583576.390989"
+            timestampString = "469611263.620053"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "770"
-            endingLineNumber = "770"
+            startingLineNumber = "797"
+            endingLineNumber = "797"
             landmarkName = "changePlayerTurn()"
             landmarkType = "5">
          </BreakpointContent>
@@ -426,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "469583576.390989"
+            timestampString = "469611263.620053"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "764"
-            endingLineNumber = "764"
+            startingLineNumber = "791"
+            endingLineNumber = "791"
             landmarkName = "changePlayerTurn()"
             landmarkType = "5">
          </BreakpointContent>
@@ -442,12 +346,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "469583178.394782"
+            timestampString = "469611263.620053"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "601"
-            endingLineNumber = "601"
+            startingLineNumber = "626"
+            endingLineNumber = "626"
             landmarkName = "playBtnPlay(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarkMyWord/LetterTileSprite.swift"
+            timestampString = "469609335.505266"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1588"
+            endingLineNumber = "1588"
+            landmarkName = "scoreTilesInArr(_:wordString:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
