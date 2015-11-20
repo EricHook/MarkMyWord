@@ -195,6 +195,9 @@ class Grid {
                         dealtTile.gridX = x
                         dealtTile.gridY = y
                         dealtTile.gridHome = self
+                        dealtTile.gridXTest = x
+                        dealtTile.gridYTest = y
+                        dealtTile.gridTest = self
                         dealtTile.tileSprite.isMovable = true
                         dealtTile.tileSprite.userInteractionEnabled = false
                     }

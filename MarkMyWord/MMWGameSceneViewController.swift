@@ -47,7 +47,7 @@ class MMWGameSceneViewController {
     var wordArray : [String] = [""]
     var wordArrayMod : [String.CharacterView] = ["".characters]
     
-    var consequtivePasses = 0
+    var consecutivePasses = 0
     var lettersPlayedInTurn = 0
 
     var wordTrie : Trie<Character>?
@@ -163,7 +163,7 @@ class MMWGameSceneViewController {
     
     
     func resetConsequtivePasses () {
-        self.consequtivePasses = 0
+        self.consecutivePasses = 0
     }
     
     
@@ -235,7 +235,6 @@ class MMWGameSceneViewController {
         for word in wordArray {
             wordTrie!.insert(word.characters)
         }
-  
         print("FINISHED InsertTrie()")
     }
 
@@ -511,7 +510,7 @@ class MMWGameSceneViewController {
     
     func dealLetter (inout letterToPlace: MMWTile, gridToPlaceLetter: Grid, xSquare: Int, ySquare: Int) {
         
-        let tileAtDropSpot : MMWTile = (gridToPlaceLetter.grid2DArr[xSquare][ySquare])
+        //let tileAtDropSpot : MMWTile = (gridToPlaceLetter.grid2DArr[xSquare][ySquare])
         //print("drop location info: state:\(tileAtDropSpot.tileOwner) letter:\(tileAtDropSpot.tileSprite.tileText)")
         letterToPlace.gridEnd = gridToPlaceLetter // set tileSprite parent (MMWTile) grid to grid snapped to
         letterToPlace.gridXEnd = xSquare
@@ -537,12 +536,15 @@ class MMWGameSceneViewController {
         let tileLocY = tileLocation.y
         letterToPlace.tileSprite.position.x = tileLocX
         letterToPlace.tileSprite.position.y = tileLocY
+        
+        letterToPlace.gridTest? = gridToPlaceLetter
+        letterToPlace.gridXTest = xSquare
+        letterToPlace.gridYTest = ySquare
     }
     
     
     func dealTestLetters () {
         //dealLetter(&<#T##letterToPlace: MMWTile##MMWTile#>, gridToPlaceLetter: <#T##Grid#>, xSquare: <#T##Int#>, ySquare: <#T##Int#>)
-  
     }
     
     

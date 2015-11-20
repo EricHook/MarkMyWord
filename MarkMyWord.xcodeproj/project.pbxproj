@@ -53,8 +53,6 @@
 		B8CCE1AD1AD8C13500882391 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8CCE1AC1AD8C13500882391 /* Images.xcassets */; };
 		B8CCE1B01AD8C13500882391 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8CCE1AE1AD8C13500882391 /* LaunchScreen.xib */; };
 		B8CCE1BC1AD8C13500882391 /* MarkMyWordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CCE1BB1AD8C13500882391 /* MarkMyWordTests.swift */; };
-		B8D130E41AFD44A100865982 /* MeyamaSplashScreen_iPad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8D130E21AFD44A100865982 /* MeyamaSplashScreen_iPad.jpg */; };
-		B8D130E51AFD44A100865982 /* MeyamaSplashScreen_iPad@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8D130E31AFD44A100865982 /* MeyamaSplashScreen_iPad@2x.jpg */; };
 		B8D130E71AFD635500865982 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D130E61AFD635500865982 /* PlayerView.swift */; };
 		B8D789281B0C3A0300C3DC36 /* MMWGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D789271B0C3A0300C3DC36 /* MMWGame.swift */; };
 		B8E874E61AE17E0000763849 /* MMWTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E874E51AE17E0000763849 /* MMWTile.swift */; };
@@ -559,7 +557,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Hook Studios";
 				TargetAttributes = {
 					B8CCE19B1AD8C13500882391 = {
@@ -616,14 +614,12 @@
 				B88A58591BEAD859003E0957 /* MeyamaSplashScreen_iPad@2x.jpg in Resources */,
 				B84EBE971BE14700008B6B12 /* WordList1to3LetterNoDup.txt in Resources */,
 				B88A58641BEAD969003E0957 /* MMWPlayerTilesGrid.png in Resources */,
-				B8D130E51AFD44A100865982 /* MeyamaSplashScreen_iPad@2x.jpg in Resources */,
 				B8B2CACC1ADADD9100C9DEE7 /* 5-LetterWords.txt in Resources */,
 				B8CCE1A41AD8C13500882391 /* GameScene.sks in Resources */,
 				B879D8F11BDDCE4E0088A5A4 /* enable1WordListMod.txt in Resources */,
 				B88A58551BEAD859003E0957 /* 1007.WAV in Resources */,
 				B88A586A1BEAD9D5003E0957 /* Tile3D95x.png in Resources */,
 				B88A585A1BEAD859003E0957 /* MMWOptionsScreen.png in Resources */,
-				B8D130E41AFD44A100865982 /* MeyamaSplashScreen_iPad.jpg in Resources */,
 				B8FA8FA71AE9DD7F007CF07C /* particle.png in Resources */,
 				B84EBE981BE14700008B6B12 /* WordList4LetterNoDup.txt in Resources */,
 				B8CCE1AB1AD8C13500882391 /* Main.storyboard in Resources */,

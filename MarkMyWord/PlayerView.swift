@@ -114,14 +114,14 @@ class PlayerView: SKSpriteNode {
         self.playerNameLabel.fontColor = UIColor.whiteColor()
         self.playerScoreLabel.fontColor = UIColor.whiteColor()
         mmwGameScene.bottomDisplayLabel.text =  ("\(mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerName ), place letters")
-        let playerGrid = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid!  // .grid2DArr
+        let playerGrid = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid! 
         playerGrid.makeTilesInGridInteractive(true)
-//        for tileColumn in playerGrid {
-//            for tile in tileColumn {
-//                tile.tileSprite.userInteractionEnabled = true
-//                tile.tileSprite.isMovable = true
-//            }
-//        }
+        for tileColumn in playerGrid.grid2DArr {
+            for tile in tileColumn {
+                tile.tileSprite.userInteractionEnabled = true
+                tile.tileSprite.isMovable = true
+            }
+        }
     }
     
     func playerViewEndTurn () {

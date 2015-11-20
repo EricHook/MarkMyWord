@@ -170,8 +170,8 @@ class MMWTileBuilder {
 
     var tileZ1 : MMWTile = MMWTile(letterString: "Z")
 
-    var tileBlank1 : MMWTile = MMWTile(letterString: "?")
-    var tileBlank2 : MMWTile = MMWTile(letterString: "?")
+//    var tileBlank1 : MMWTile = MMWTile(letterString: "?")
+//    var tileBlank2 : MMWTile = MMWTile(letterString: "?")
 
     
     init () {
@@ -306,8 +306,8 @@ class MMWTileBuilder {
             tile.tileType = TileType.Letter
         }
         
-        mmwTileArray.append(tileBlank1)
-        mmwTileArray.append(tileBlank2)
+//        mmwTileArray.append(tileBlank1)
+//        mmwTileArray.append(tileBlank2)
         
         for tile in mmwTileArray {
             tile.tileState = TileState.Undealt

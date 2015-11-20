@@ -51,10 +51,7 @@ class GameViewController: UIViewController {
 
             skView.presentScene(menuScene)
         
-        
-        
-        
-        
+    
         
 //        assert(image != nil, "Image not set; required to use view controller")
 //        photoImageView.image = image

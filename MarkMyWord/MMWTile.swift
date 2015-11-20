@@ -25,7 +25,7 @@ enum GridLocation: Int {
 //}
 
 enum TileState: Int {
-    case Undealt = 0, Player1, Player2, Player3, Player4, Played, Locked
+    case Undealt = 0, Player1, Player2, Player3, Player4, Played, PlayedMadeWord, Locked
 }
 
 enum TileOwner: Int {
@@ -43,6 +43,7 @@ class MMWTile {
     var gridLocationEnd: GridLocation = GridLocation.Undealt
     var gridHome: Grid? = nil
     var gridEnd: Grid? = nil
+    var gridTest: Grid? = nil
     var gridX: Int = -1
     var gridY: Int = -1
     var gridXEnd: Int = -1
