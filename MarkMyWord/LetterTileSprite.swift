@@ -355,7 +355,7 @@ class LetterTileSprite : SKSpriteNode {
             
             //////////// TEST FOR TILE UNDER DROP SPOT
             if testForTileAtDropSpot(gameGrid!, tileSnapResultsXGrid: tileSnapResultsXGrid, tileSnapResultsYGrid: tileSnapResultsYGrid) {
-                break
+                break 
             }
                 
             else {
