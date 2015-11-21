@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "469692406.48885"
+            timestampString = "469750389.747167"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1062"
-            endingLineNumber = "1062"
+            startingLineNumber = "1064"
+            endingLineNumber = "1064"
             landmarkName = "checkForValidWordsAI(_:gridYSpot:availableTiles:numLettersToPlayMin:numLettersToPlayMax:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "469692406.48885"
+            timestampString = "469750389.747167"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1061"
-            endingLineNumber = "1061"
+            startingLineNumber = "1063"
+            endingLineNumber = "1063"
             landmarkName = "checkForValidWordsAI(_:gridYSpot:availableTiles:numLettersToPlayMin:numLettersToPlayMax:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "469692406.48885"
+            timestampString = "469750389.747167"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1070"
-            endingLineNumber = "1070"
+            startingLineNumber = "1072"
+            endingLineNumber = "1072"
             landmarkName = "checkForValidWordsAI(_:gridYSpot:availableTiles:numLettersToPlayMin:numLettersToPlayMax:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "469696554.37359"
+            timestampString = "469755251.20703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1324"
-            endingLineNumber = "1324"
+            startingLineNumber = "1348"
+            endingLineNumber = "1348"
             landmarkName = "checkForValidWordsAI(_:gridYSpot:availableTiles:numLettersToPlayMin:numLettersToPlayMax:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/LetterTileSprite.swift"
-            timestampString = "469695965.591019"
+            timestampString = "469739870.363052"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "939"
-            endingLineNumber = "939"
+            startingLineNumber = "913"
+            endingLineNumber = "913"
             landmarkName = "testForValidWordsAtDropSpot(_:tileSnapResultsYGrid:isAI:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/LetterTileSprite.swift"
-            timestampString = "469695965.591019"
+            timestampString = "469739870.363052"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "931"
-            endingLineNumber = "931"
+            startingLineNumber = "905"
+            endingLineNumber = "905"
             landmarkName = "testForValidWordsAtDropSpot(_:tileSnapResultsYGrid:isAI:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/LetterTileSprite.swift"
-            timestampString = "469695965.591019"
+            timestampString = "469739870.363052"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "896"
-            endingLineNumber = "896"
+            startingLineNumber = "870"
+            endingLineNumber = "870"
             landmarkName = "testForValidWordsAtDropSpot(_:tileSnapResultsYGrid:isAI:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/LetterTileSprite.swift"
-            timestampString = "469695965.591019"
+            timestampString = "469739870.363052"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "626"
-            endingLineNumber = "626"
+            startingLineNumber = "600"
+            endingLineNumber = "600"
             landmarkName = "checkForValidWordsOnTileDrag(_:gridYSpot:IsAI:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -297,22 +297,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "469692406.48885"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1146"
-            endingLineNumber = "1146"
-            landmarkName = "checkForValidWordsAI(_:gridYSpot:availableTiles:numLettersToPlayMin:numLettersToPlayMax:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameSceneViewController.swift"
             timestampString = "469657606.356085"
             startingColumnNumber = "9223372036854775807"
@@ -330,11 +314,75 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "469695958.121443"
+            timestampString = "469755251.20703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1256"
-            endingLineNumber = "1256"
+            startingLineNumber = "1268"
+            endingLineNumber = "1268"
+            landmarkName = "checkForValidWordsAI(_:gridYSpot:availableTiles:numLettersToPlayMin:numLettersToPlayMax:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarkMyWord/LetterTileSprite.swift"
+            timestampString = "469755251.20703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1563"
+            endingLineNumber = "1563"
+            landmarkName = "scoreTilesInArr(_:wordString:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarkMyWord/LetterTileSprite.swift"
+            timestampString = "469739870.363052"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "474"
+            endingLineNumber = "474"
+            landmarkName = "showTileScoreTextToGridHome(_:pointsForTile:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarkMyWord/LetterTileSprite.swift"
+            timestampString = "469755251.20703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1457"
+            endingLineNumber = "1457"
+            landmarkName = "updateAIWordsAtDropSpot(_:tileYGridDestination:madeValidWord:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarkMyWord/MMWGameScene.swift"
+            timestampString = "469755251.20703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1288"
+            endingLineNumber = "1288"
             landmarkName = "checkForValidWordsAI(_:gridYSpot:availableTiles:numLettersToPlayMin:numLettersToPlayMax:)"
             landmarkType = "5">
          </BreakpointContent>

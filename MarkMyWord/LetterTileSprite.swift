@@ -26,9 +26,9 @@ class LetterTileSprite : SKSpriteNode {
     var hasShadow : Bool = false
     var tileText = ""
 
-    var tileScore1 : SKLabelNode? = nil
-    var tileScore2 : SKLabelNode? = nil
-    var tileScore3 : SKLabelNode? = nil
+//    var tileScore1 : SKLabelNode = SKLabelNode()
+//    var tileScore2 : SKLabelNode = SKLabelNode()
+//    var tileScore3 : SKLabelNode = SKLabelNode()
  
     var frontTexture : SKTexture? = SKTexture(imageNamed: "Tile3D95x")
     var backTexture : SKTexture? = SKTexture(imageNamed: "Tile3D95xBack") // "TileBackTest90x90")
@@ -355,7 +355,7 @@ class LetterTileSprite : SKSpriteNode {
             
             //////////// TEST FOR TILE UNDER DROP SPOT
             if testForTileAtDropSpot(gameGrid!, tileSnapResultsXGrid: tileSnapResultsXGrid, tileSnapResultsYGrid: tileSnapResultsYGrid) {
-                break 
+                break
             }
                 
             else {
@@ -407,43 +407,41 @@ class LetterTileSprite : SKSpriteNode {
     /// - Parameters: pauseDuration: Double
     ///     -
     func playTileToBoardGrid (pauseDuration: Double) {
-        
-        self.zPosition = 25
-        let boardPosition = Grid.sendToGridSquare(mmwGameScene.mmwBoardGrid, squareX: self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridYEnd)
+
+        self.zPosition = 75
+        let boardPosition = Grid.sendToGridSquare(self.mmwGameScene.mmwBoardGrid, squareX: self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridYEnd)
         
         let slide = SKAction.moveTo(boardPosition, duration:2.0)
         let scaleUp = SKAction.scaleTo(1.5, duration:0.5)
         let scaleDown = SKAction.scaleTo(1.0, duration:0.5)
-        //let pauseAction : SKAction = SKAction.waitForDuration(pauseDuration, withRange: 0)
-        //SKAction.group([pauseAction])
         let pauseSlide = SKAction.sequence([slide])
         let scaleUpDown = SKAction.sequence([scaleUp, scaleDown, self.actionSound2, ])
         self.runAction(SKAction.group([pauseSlide, scaleUpDown]))
-        
-        self.tileGlow.hidden = true
-        self.removeBoardTileHighlights ()
         
         // save original tile info for animations
         self.tileSpriteParent.gridTest = self.tileSpriteParent.gridHome
         self.tileSpriteParent.gridXTest = self.tileSpriteParent.gridX
         self.tileSpriteParent.gridYTest = self.tileSpriteParent.gridY
         // update tile info
-        self.tileSpriteParent.gridHome = mmwGameScene.mmwBoardGrid
-        self.tileSpriteParent.gridHome?.grid2DArr[self.tileSpriteParent.gridXEnd][self.tileSpriteParent.gridYEnd] = tileSpriteParent
+        self.tileSpriteParent.gridHome = self.mmwGameScene.mmwBoardGrid
+        self.tileSpriteParent.gridHome?.grid2DArr[self.tileSpriteParent.gridXEnd][self.tileSpriteParent.gridYEnd] = self.tileSpriteParent
         self.tileSpriteParent.gridX = self.tileSpriteParent.gridXEnd
         self.tileSpriteParent.gridY = self.tileSpriteParent.gridYEnd
-
+        
+        self.userInteractionEnabled = false
+        self.tileGlow.hidden = true
+        self.removeBoardTileHighlights ()
+        self.zPosition = 10
         
         
-        
-        
-        
-        
-//        func loadWords() {
+//        func playTile() {
 //            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-//            dispatch_async(dispatch_get_global_queue(priority, 1), { ()->() in   // priority def 0
+//            dispatch_async(dispatch_get_global_queue(priority, 2), { ()->() in   // priority def 0
 //                ///////////////////
 //                print("gcd playTileToBoardGrid hello")
+//
+//                
+//
 //                dispatch_async(dispatch_get_main_queue(), {
 //                    print("hello from playTileToBoardGrid thread executed as dispatch")
 //                })
@@ -451,6 +449,10 @@ class LetterTileSprite : SKSpriteNode {
 //
 //            print("hello from playTileToBoardGrid thread")
 //        }
+//        
+//        
+//        playTile()
+        
 //        CATransaction.commit()
         
     }
@@ -460,57 +462,34 @@ class LetterTileSprite : SKSpriteNode {
     /// - Returns: nothing
     /// - Parameters:
     ///     - none: nothing
-    func showTileScoreTextToGridHome (number: Int) {
-//        CATransaction.begin()
-//        CATransaction.setCompletionBlock({
-//            sleep(2)
-//        })
-        
-        //let delay = SKAction.waitForDuration( Double(2) )
-        //self.runAction( delay ) {
-            //run code here after 5 secs
-            //self.runAction( delay )
-            
-            self.tileScore1!.zPosition = 25
-            let endPosition = Grid.sendToGridSquare(self.tileSpriteParent.gridEnd!, squareX: self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridYEnd)
-            let homePosition = Grid.sendToGridSquare(self.tileSpriteParent.gridTest!, squareX: self.tileSpriteParent.gridXTest, squareY: self.tileSpriteParent.gridYTest)
-            let changeInX : CGFloat = -(endPosition.x - homePosition.x)
-            let changeInY : CGFloat = -(endPosition.y - homePosition.y)
-            let returnPosition = CGPointMake(changeInX, changeInY)
-            let unhide = SKAction.unhide()
-            let slide = SKAction.moveTo(returnPosition, duration:1.0)
-            let scaleUp = SKAction.scaleTo(1.5, duration:0.5)
-            let scaleDown = SKAction.scaleTo(0.66, duration:0.5)
-            let hide = SKAction.hide() //   .resizeToHeight(400, duration: 1.0)  //.removeFromParent()
-            let fadeIn = SKAction.fadeInWithDuration(1.0)
-            let fadeOut = SKAction.fadeOutWithDuration(1.0)
-            let animPart1 = SKAction.group([unhide, slide])
-            let animScale = SKAction.sequence([scaleUp, scaleDown, hide])
-            self.tileScore1!.runAction(SKAction.group([fadeIn, animPart1, fadeOut, animScale]) )
-            self.runAction(self.actionSound2)
-        //}
+    func showTileScoreTextToGridHome (delaySec: Int, pointsForTile: Int ) {
 
+        var tileScore = SKLabelNode()
+        tileScore = self.createLetterScoreText ( CGPointMake(0.0, 0.0) , endLocation: CGPointMake(0.0, 0.0), textColor: gameColors[self.tileSpriteParent.tileOwner.rawValue], displayText: String(pointsForTile) )
+        tileScore.zPosition = 100
+        tileScore.text = String(pointsForTile)
+        tileScore.fontColor =  gameColors[self.tileSpriteParent.tileOwner.rawValue]
+        tileScore.fontSize = 45
+        tileScore.fontName = FontHUDName
+        let endPosition  = Grid.sendToGridSquare(self.tileSpriteParent.gridEnd!, squareX: self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridYEnd)
+        let homePosition = Grid.sendToGridSquare(self.tileSpriteParent.gridTest!, squareX: self.tileSpriteParent.gridXTest, squareY: self.tileSpriteParent.gridYTest)
+
+        let changeInX : CGFloat = -(endPosition.x - homePosition.x)
+        let changeInY : CGFloat = -(endPosition.y - homePosition.y)
+        let returnPosition = CGPointMake(changeInX, changeInY)
+
+        let slide     = SKAction.moveTo(returnPosition, duration:1.0)
+        let scaleUp   = SKAction.scaleTo(1.5, duration:0.5)
+        let scaleDown = SKAction.scaleTo(0.66, duration:0.5)
+        let fadeIn    = SKAction.fadeInWithDuration(1.0)
+        let fadeOut   = SKAction.fadeOutWithDuration(1.0)
+        let animPart1 = SKAction.group([fadeIn, scaleUp])
+        let animPart2 = SKAction.group([fadeOut, scaleDown])
+        let removeText = SKAction.removeFromParent()
+        let tileEffects = SKAction.sequence([animPart1, animPart2,removeText])
+        tileScore.runAction(SKAction.group([slide, tileEffects]) )
+        //self.runAction(self.actionSound2)
    
-        
-//        self.tileScore1!.zPosition = 25
-//        let endPosition = Grid.sendToGridSquare(self.tileSpriteParent.gridEnd!, squareX: self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridYEnd)
-//        let homePosition = Grid.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: self.tileSpriteParent.gridX, squareY: self.tileSpriteParent.gridY)
-//        let changeInX : CGFloat = -(endPosition.x - homePosition.x)
-//        let changeInY : CGFloat = -(endPosition.y - homePosition.y)
-//        let returnPosition = CGPointMake(changeInX, changeInY)
-//        let unhide = SKAction.unhide()
-//        let slide = SKAction.moveTo(returnPosition, duration:1.0)
-//        let scaleUp = SKAction.scaleTo(1.5, duration:0.5)
-//        let scaleDown = SKAction.scaleTo(0.66, duration:0.5)
-//        let hide = SKAction.hide() //   .resizeToHeight(400, duration: 1.0)  //.removeFromParent()
-//        let fadeIn = SKAction.fadeInWithDuration(1.0)
-//        let fadeOut = SKAction.fadeOutWithDuration(1.0)
-//        let animPart1 = SKAction.group([unhide, slide])
-//        let animScale = SKAction.sequence([scaleUp, scaleDown, hide])
-//        self.tileScore1!.runAction(SKAction.group([fadeIn, animPart1, fadeOut, animScale]) )
-//        runAction(actionSound2)
-        
-//        CATransaction.commit()
     }
     
     /// showWordScoreTextToGridHome() sends tile to return postition, with scaling effects and removes glow from tile and from all tiles on board
@@ -519,7 +498,14 @@ class LetterTileSprite : SKSpriteNode {
     ///     - none: nothing
     func showWordScoreTextToGridHome (number: Int) {
         
-        self.tileScore2!.zPosition = 25
+        var tileScore = SKLabelNode()
+        
+        tileScore = createLetterScoreText (CGPointMake(0.0, 0.0), endLocation: CGPointMake(0.0, 0.0), textColor: gameColors[self.tileSpriteParent.tileOwner.rawValue], displayText: String("") )
+        tileScore.fontColor = gameColors[self.tileSpriteParent.tileOwner.rawValue]
+        tileScore.fontSize = 65
+        tileScore.fontName = FontHUDName
+        tileScore.text = (String(number) )
+        tileScore.zPosition = 75
         
         let endPosition = Grid.sendToGridSquare(self.tileSpriteParent.gridEnd!, squareX: self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridYEnd)
         let homePosition = Grid.sendToGridSquare(self.tileSpriteParent.gridEnd!, squareX: self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridXEnd)
@@ -528,42 +514,24 @@ class LetterTileSprite : SKSpriteNode {
         let returnPosition = CGPointMake(changeInX, changeInY)
 
         let delay = SKAction.waitForDuration( Double(0.0) )
-        self.runAction( delay ) {
-            //run code here after 5 secs
-            //self.runAction( delay )
-            
+        self.runAction( delay ) {  //  !! Delay for show word score text set here
+ 
             let unhide = SKAction.unhide()
             let slide = SKAction.moveTo(returnPosition, duration:1.5)
             let scaleUp = SKAction.scaleTo(2.0, duration:0.75)
             let scaleDown = SKAction.scaleTo(0.5, duration:0.75)
-            let hide = SKAction.hide() //   .resizeToHeight(400, duration: 1.0)  //.removeFromParent()
             let fadeIn = SKAction.fadeInWithDuration(0.75)
             let fadeOut = SKAction.fadeOutWithDuration(0.75)
+            let remove = SKAction.removeFromParent()
             
             let animPart1 = SKAction.group([unhide, slide])
-            let animScale = SKAction.sequence([scaleUp, scaleDown, hide])
-            
-            self.tileScore2!.runAction(SKAction.group([fadeIn, animPart1, fadeOut, animScale]) )
-            
-            self.runAction(self.actionSound)
-            self.mmwGameScene.explosion(endPosition)
-        }
+            let animScale = SKAction.sequence([scaleUp, scaleDown, remove])
 
-        
-        
-//        let unhide = SKAction.unhide()
-//        let slide = SKAction.moveTo(returnPosition, duration:1.5)
-//        let scaleUp = SKAction.scaleTo(2.0, duration:0.7)
-//        let scaleDown = SKAction.scaleTo(0.5, duration:0.7)
-//        let hide = SKAction.hide() //   .resizeToHeight(400, duration: 1.0)  //.removeFromParent()
-//        let fadeIn = SKAction.fadeInWithDuration(1.0)
-//        let fadeOut = SKAction.fadeOutWithDuration(1.0)
-//        let animPart1 = SKAction.group([unhide, slide])
-//        let animScale = SKAction.sequence([scaleUp, scaleDown, hide])
-//        self.tileScore2!.runAction(SKAction.group([fadeIn, animPart1, fadeOut, animScale]) )
-//        runAction(actionSound)
-        
-//        mmwGameScene.explosion(endPosition)
+            tileScore.runAction(SKAction.group([fadeIn, animPart1, fadeOut, animScale]) )
+
+            self.mmwGameScene.explosion(endPosition)
+            //self.runAction(self.actionSound)
+        }
     }
     
     /// showWordScoreTextToGridHome() sends tile to return postition, with scaling effects and removes glow from tile and from all tiles on board
@@ -572,10 +540,17 @@ class LetterTileSprite : SKSpriteNode {
     ///     - none: nothing
     func showNegativeScoreTextToGridHome (number: Int) {
         
-        self.tileScore3!.zPosition = 25
+        var tileScore = SKLabelNode()
+        
+        tileScore = createLetterScoreText ( CGPointMake(0.0, 0.0) , endLocation: CGPointMake(0.0, 0.0), textColor: gameColors[self.tileSpriteParent.tileOwner.rawValue], displayText: String("-5") )
+        tileScore.text = String("-5")
+        tileScore.fontColor = gameColors[self.tileSpriteParent.tileOwner.rawValue]
+        tileScore.fontSize = 45
+        tileScore.fontName = FontHUDName
+        tileScore.zPosition = 75
         let endPosition = self.position
         //let endPosition = Grid.sendToGridSquare(self.tileSpriteParent.gridEnd!, squareX: self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridYEnd)
-        let homePosition = Grid.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: self.tileSpriteParent.gridX, squareY: self.tileSpriteParent.gridY)
+        let homePosition = Grid.sendToGridSquare(self.tileSpriteParent.gridTest!, squareX: self.tileSpriteParent.gridXTest, squareY: self.tileSpriteParent.gridYTest)
         let changeInX : CGFloat = -(endPosition.x - homePosition.x)
         let changeInY : CGFloat = -(endPosition.y - homePosition.y)
         let returnPosition = CGPointMake(changeInX, changeInY)
@@ -588,13 +563,12 @@ class LetterTileSprite : SKSpriteNode {
         let fadeOut = SKAction.fadeOutWithDuration(0.75)
         let animPart1 = SKAction.group([unhide, slide])
         let animScale = SKAction.sequence([scaleUp, scaleDown, hide])
-        self.tileScore3!.runAction(SKAction.group([fadeIn, animPart1, fadeOut, animScale]) )
+        tileScore.runAction(SKAction.group([fadeIn, animPart1, fadeOut, animScale]) )
         
         runAction(actionSound)
         
         mmwGameScene.explosion(endPosition)
     }
-    
     
     
     /// removeBoardTileHighlights() resets rollover highlights for all tiles on board -- otherwise last word remain highlighted
@@ -938,17 +912,18 @@ class LetterTileSprite : SKSpriteNode {
             if (horizontalString.characters.count > 1 && !validHorizontalPartialWord) ||
                 (verticalString.characters.count > 1 && !validVerticalPartialWord ) {
                     runAction(actionSound)
-                    runAction(actionSound2)
+                    //runAction(actionSound2)
+                    
                     // -5 points for non-partial word // SCORE
                     self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController?.playerArray[(self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController?.playerTurn)! - 1].playerScore -= 5
+                    showNegativeScoreTextToGridHome(-5)
                     
                     //display points awarded animation (for each individual letter)
-                    tileScore3 = createLetterScoreText ( CGPointMake(0.0, 0.0) , endLocation: CGPointMake(0.0, 0.0), textColor: SKColor(red: 1, green: 0, blue: 0, alpha: 1), displayText: String("-5") )
-                    tileScore3?.text = String("-5")
-                    tileScore3!.fontColor = self.color
-                    tileScore3!.fontSize = 45
-                    tileScore3!.fontName = FontHUDName
-                    showNegativeScoreTextToGridHome(-5)
+//                    tileScore3 = createLetterScoreText ( CGPointMake(0.0, 0.0) , endLocation: CGPointMake(0.0, 0.0), textColor: SKColor(red: 1, green: 0, blue: 0, alpha: 1), displayText: String("-5") )
+//                    tileScore3.text = String("-5")
+//                    tileScore3.fontColor = self.color
+//                    tileScore3.fontSize = 45
+//                    tileScore3.fontName = FontHUDName
                     
                     self.tileSpriteParent.tileOwner = TileOwner.None
                     mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray.append(self.tileSpriteParent)
@@ -1439,15 +1414,17 @@ class LetterTileSprite : SKSpriteNode {
             possibleWordTilesHorizontal.append(mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileYGridDestination])
             currentCheckXGridNum++
         }
-        rightString = self.tileText.stringByAppendingString(stringToAdd)
+        rightString =   self.tileText.stringByAppendingString(stringToAdd)
         horizontalString = leftString.stringByAppendingString(stringToAdd)
         
         if ( ( mmwGameScene.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkPartialWordMatch(horizontalString) ) == true ) {
-               print ( "\(horizontalString) is a partial word string (horizontal) updateAIWordsAtDropSpot LetterTileSprite" )
+            print ( "\(horizontalString) is a partial word string (horizontal) updateAIWordsAtDropSpot LetterTileSprite" )
+            self.tileSpriteParent.tileState = TileState.Played
         }
 
         if ( ( mmwGameScene.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkWholeWordMatch(horizontalString) ) == true && horizontalString.characters.count >= tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.minWordSize  ) {
-                print ( "\(horizontalString) is a valid whole word string (horizontal) updateAIWordsAtDropSpot LetterTileSprite" )
+            print ( "\(horizontalString) is a valid whole word string (horizontal) updateAIWordsAtDropSpot LetterTileSprite" )
+            self.tileSpriteParent.tileState = TileState.PlayedMadeWord
         }
         
         else {
@@ -1456,9 +1433,15 @@ class LetterTileSprite : SKSpriteNode {
        
         //self.playTileToBoardGrid(0) // if above replacementPlaceholderTiles, player grid won't repopulate
         
-        if (tileSpriteParent.tileState != TileState.Locked) {
-            tileSpriteParent.tileState = TileState.Played // if put on valid board location set TileState to played if NOT already locked
-        }
+        // set value of snap results grid location to the MMWTile if valid location
+        self.tileSpriteParent.gridEnd? = mmwGameScene.mmwBoardGrid
+        self.tileSpriteParent.gridEnd?.grid2DArr[tileXGridDestination][tileYGridDestination] = self.tileSpriteParent
+        self.tileSpriteParent.gridXEnd = tileXGridDestination
+        self.tileSpriteParent.gridYEnd = tileYGridDestination
+        //self.tileSpriteParent.gridXTest = self.tileSpriteParent.gridX
+        //self.tileSpriteParent.gridYTest = self.tileSpriteParent.gridY
+        //self.isMovable = false // so can't remove tile once placed
+        //self.userInteractionEnabled = false
         
         // set basic placeholder tile settings to fit in void in grid - home grid and x and y values
         let replacementPlaceholderTile : MMWTile = MMWTile()
@@ -1466,34 +1449,27 @@ class LetterTileSprite : SKSpriteNode {
         replacementPlaceholderTile.gridX = self.tileSpriteParent.gridX
         replacementPlaceholderTile.gridY = self.tileSpriteParent.gridY
         tileSpriteParent.gridHome?.grid2DArr[tileSpriteParent.gridX][tileSpriteParent.gridY] = replacementPlaceholderTile
+
         
-        // set value of snap results grid location to the MMWTile if valid location
-        self.tileSpriteParent.gridEnd? = mmwGameScene.mmwBoardGrid
-        self.tileSpriteParent.gridEnd?.grid2DArr[tileXGridDestination][tileYGridDestination] = self.tileSpriteParent
-        self.tileSpriteParent.gridXEnd = tileXGridDestination
-        self.tileSpriteParent.gridYEnd = tileYGridDestination
-        self.tileSpriteParent.gridXTest = self.tileSpriteParent.gridX
-        self.tileSpriteParent.gridYTest = self.tileSpriteParent.gridY
-        self.isMovable = false // so can't remove tile once placed
-        self.userInteractionEnabled = false
         
-        if madeValidWord == true {
-            self.tileSpriteParent.tileState = TileState.PlayedMadeWord   // track which letter made valid word so can run scoring when letter played
+        self.playTileToBoardGrid(0)  // animation to move to position on board and set Grid, x and y values for tile at tile End Position
+
+        if self.tileSpriteParent.tileState == TileState.PlayedMadeWord  {
+            //self.tileSpriteParent.tileState = TileState.PlayedMadeWord   // track which letter made valid word so can run scoring when letter playe
+            delay(2.0){
+    //          self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback2("\(horizontalString) is a word (horizontal) updateAIWordsAtDropSpot LetterTileSprite") // updates GUI for feedback on horizonal whole word
+    //          print ( "\(horizontalString) is a whole word string (horizontal) updateAIWordsAtDropSpot LetterTileSprite" )
+                if self.tileSpriteParent.tileState == TileState.PlayedMadeWord {
+                    self.scoreTilesInArr(possibleWordTilesHorizontal, wordString: horizontalString)
+                }
+                
+            }
         }
         
-        removeBoardTileHighlights ()
-
-        self.playTileToBoardGrid(0)
-
-        delay(2.0){
-            // updates GUI for feedback on horizonal whole word
-            self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback2("\(horizontalString) is a word (horizontal) updateAIWordsAtDropSpot LetterTileSprite")
-            //print ( "\(horizontalString) is a whole word string (horizontal) updateAIWordsAtDropSpot LetterTileSprite" )
-            self.scoreTilesInArr(possibleWordTilesHorizontal, wordString: horizontalString)
-        }
+        //removeBoardTileHighlights ()
 
         self.tileSpriteParent.gridHome?.mmwGameScene.newTilesButtonOff() // placed tile on board so now can only pass turn
-   
+    }
 
 
 //        //UP
@@ -1577,70 +1553,73 @@ class LetterTileSprite : SKSpriteNode {
 //        else {
 //            print ( "\(verticalString) is NOT valid whole word string (vertical) updateAIWordsAtDropSpot LetterTileSprite" )
 //        }
-    }
+//    }
     
 
     /// func scoreTilesInArr (tileArrToScore: [MMWTile], wordString: String) -> Int
     /// -Parameters: tileArrToScore: [MMWTile], wordString: String
     /// -Returns: Int
     /// counts tile in up/down or left/right tile array and adds poonts for unlocked tiles and complete word and kicks off points awarded animations
-    func scoreTilesInArr (tileArrToScore: [MMWTile], wordString: String) -> Int {
-        
+    func scoreTilesInArr (var tileArrToScore: [MMWTile], wordString: String) -> Int {
+        //tileArrToScore = tileArrToScore.reverse()
         let wordLen = tileArrToScore.count
         var tileNum = 0.0
+        
         for tile in tileArrToScore {
-            
-            delay(tileNum*0.0) {
+            //delay(tileNum*0.5) {  // !! possible issue with timing - doesn't update tiles properly on delay
                 self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback2("\(wordString) is a valid word scoreTilesInArr LetterTileSprite")
                 
                 if tile.tileState != TileState.Locked {
+                    let pointsForTile = wordLen * 3
                     // + wordLen points for each unlocked letter to tile owner // SCORE
-                    tile.tileBuilder?.mmwGameSceneViewController?.playerArray[tile.tileOwner.rawValue - 1].playerScore += wordLen
-                    //display points awarded animation (for each individual letter)
-                    tile.tileSprite.tileScore1 = self.createLetterScoreText ( CGPointMake(0.0, 0.0) , endLocation: CGPointMake(0.0, 0.0), textColor: SKColor(red: 1, green: 0, blue: 0, alpha: 1), displayText: String(wordLen) )
-                    tile.tileSprite.tileScore1?.zPosition = 25
-                    tile.tileSprite.tileScore1?.text = String(wordLen)
-                    tile.tileSprite.tileScore1!.fontColor = tile.tileSprite.color
-                    tile.tileSprite.tileScore1!.fontSize = 45
-                    tile.tileSprite.tileScore1!.fontName = FontHUDName
-                    tile.tileSprite.showTileScoreTextToGridHome(wordLen)
+                    
+                    self.adjustPlayerPoints(pointsForTile, player: (self.mmwGameScene.mmwGameSceneViewController.playerArray[tile.tileOwner.rawValue - 1]) )
+                    //tile.tileBuilder?.mmwGameSceneViewController?.playerArray[tile.tileOwner.rawValue - 1].playerScore += pointsForTile
+
+                    
                     tile.mmwGameScene?.explosion(tile.tileSprite.position)
+                    
                     tile.tileSprite.letterLabel.fontColor = tileColors[self.tileSpriteParent.tileOwner.rawValue]
-                    tile.tileSprite.color = UIColor.blackColor()
+                    delay(tileNum*0.5) {
+                        tile.tileSprite.showTileScoreTextToGridHome (1, pointsForTile: pointsForTile )
+                    }
                 }
-                tile.tileState = TileState.Locked
-            }
+            
+            tile.tileSprite.color = UIColor.blackColor()
+
+            //}
             ++tileNum
         }
+
         
         
         if tileSpriteParent.tileState == TileState.PlayedMadeWord {
             
             // + 5 * wordLen points for making a new complete word // SCORE
-            self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController?.playerArray[(self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController?.playerTurn)! - 1].playerScore += (5 * wordLen)
+            //self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController?.playerArray[(self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController?.playerTurn)! - 1].playerScore += (5 * wordLen)
             
             //display points awarded animation (for completing whole word)
-            self.tileScore2 = createLetterScoreText (CGPointMake(0.0, 0.0), endLocation: CGPointMake(0.0, 0.0), textColor: SKColor(red: 1, green: 0, blue: 0, alpha: 1), displayText: String("") )
-            self.tileScore2!.fontColor = self.letterLabel.fontColor
-            self.tileScore2!.fontSize = 65
-            self.tileScore2!.fontName = FontHUDName
-            self.tileScore2!.text = (String(5 * wordLen) )
-            
-            //        let delay = SKAction.waitForDuration( Double(3) )
-            //        self.runAction( delay ) {
-            //            //run code here after 5 secs
-            //            self.showWordScoreTextToGridHome(5 * wordLen) // doesn't actually use value, already set in setting letterScore.2 above
-            //        }
-            
-            
-            showWordScoreTextToGridHome(5 * wordLen) // doesn't actually use value, already set in setting letterScore.2 above
-            //print ("+ 5 * \(wordLen)")
-            
+            let delay = SKAction.waitForDuration( Double(3) )
+            self.runAction( delay ) {
+            //run code here after delay secs
+                let pointsForCompletingWord = wordLen * 5
+                self.showWordScoreTextToGridHome(pointsForCompletingWord) // doesn't actually use value, already set in setting letterScore.2 above
+                self.adjustPlayerPoints(pointsForCompletingWord, player: (self.mmwGameScene.mmwGameSceneViewController.playerArray[self.tileSpriteParent.tileOwner.rawValue - 1]) )
+            }
         }
+        
+        
+        for tile in tileArrToScore {
+            tile.tileSprite.tileSpriteParent.tileState = TileState.Locked
+        }
+        
 
-        for playerView in 0..<(self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.numPlayers)! {
-            self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.playerArray[playerView].playerView.changePlayerScoreDisplay()
-        }
+//        for playerView in 0..<(self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.numPlayers)! {
+//            
+//            self.adjustPlayerPoints(pointsForTile, player: (self.mmwGameScene.mmwGameSceneViewController.playerArray[tile.tileOwner.rawValue - 1]) )
+//
+//            self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.playerArray[playerView].playerView.changePlayerScoreDisplay()
+//        }
         return 0
     }
 
