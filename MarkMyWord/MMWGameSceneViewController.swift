@@ -36,6 +36,7 @@ class MMWGameSceneViewController {
     var player3 : Player = Player(_playerID: 3, _playerName: "Charlie", _playerColor: 3)
     var player4 : Player = Player(_playerID: 4, _playerName: "Dan", _playerColor: 4)
     var playerArray : [Player]! // array of all players 0-3 for easier iteration of player turns
+    var wordsLoaded1to3 = false
     var wordsLoaded4 = false
     var wordsLoaded5 = false
     var wordsLoaded6 = false
@@ -608,32 +609,35 @@ class MMWGameSceneViewController {
             print("gcd hello")
             print("hello from UI thread executed as dispatch 1")
             print("Currently dispatched asynchronously 0")
-            
-            self.buildWordArray("WordList1to3LetterNoDup")
+
+            //self.buildWordArray("WordList1to3LetterNoDup")
             self.buildTrie( self.buildWordArray("WordList1to3LetterNoDup") )
+            self.wordsLoaded1to3 = true
             print("buildTrie() 1-3")
             print("Currently dispatched asynchronously 1-3")
             
-            self.buildWordArray("WordList4LetterNoDup")
+            //self.buildWordArray("WordList4LetterNoDup")
             self.insertTrie(self.buildWordArray("WordList4LetterNoDup") )
             self.wordsLoaded4 = true
             print("insertTrie() 4")
             print("Currently dispatched asynchronously 4")
             
-            self.buildWordArray("WordList5LetterNoDup")
+            //self.buildWordArray("WordList5LetterNoDup")
             self.insertTrie(self.buildWordArray("WordList5LetterNoDup") )
             self.wordsLoaded5 = true
             print("insertTrie() 5")
             print("Currently dispatched asynchronously 5")
-            print("hello from UI thread executed as dispatch 2")
+            //print("hello from UI thread executed as dispatch 2")
             
-            self.buildWordArray("WordList6LetterNoDup")
+            //self.buildWordArray("WordList6LetterNoDup")
             self.insertTrie(self.buildWordArray("WordList6LetterNoDup") )
-            self.wordsLoaded4 = true
+            self.wordsLoaded6 = true
             print("insertTrie() 6")
             print("Currently dispatched asynchronously 6")
             
+            
             dispatch_async(dispatch_get_main_queue(), {
+                
                 print("hello from UI thread executed as dispatch")
 
             })

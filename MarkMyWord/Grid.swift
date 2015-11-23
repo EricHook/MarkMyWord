@@ -72,6 +72,20 @@ class Grid {
         return letterTilesInGrid
     }
     
+//    func sendLocationForPlayerScore () -> x: Int, y. {
+//        var letterTilesInGrid = [MMWTile]()
+//        var numLetterTiles = 0
+//        for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
+//            for x in 0...(self.gridNumSquaresX - 1) {
+//                if self.grid2DArr[x][y].tileType == TileType.Letter {
+//                    numLetterTiles++
+//                    letterTilesInGrid.append(grid2DArr[x][y])
+//                }
+//            }
+//        }
+//        return letterTilesInGrid
+//    }
+    
     func getArrayLockedLetterTilesInGrid () -> [MMWTile] {
         var letterTilesInGrid = [MMWTile]()
         var randomizedTilesInGrid = [MMWTile]() 
@@ -363,7 +377,11 @@ class Grid {
         for tileRow in self.grid2DArr {
             for tile in tileRow {
                 if tile.tileText == letterToFind {
-                    return tile
+                    
+                    if tile.tileState != TileState.PlayedMadeWord || tile.tileState != TileState.Played {
+                        tile.tileState = TileState.Played
+                        return tile
+                    }  
                 }
             }
         }
