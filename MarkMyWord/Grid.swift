@@ -227,7 +227,7 @@ class Grid {
     
     /// func convert2DGridToArray (tileGrid : [[MMWTile]] ) () -> [MMWTile]
     /// converts a 2D player tile grid to a MMWTIle array
-    func convert2DGridToArray (tileGrid : [[MMWTile]] ) () -> [MMWTile] {
+    func convert2DGridToArray (tileGrid : [[MMWTile]]) -> [MMWTile] {
         var tileArr = [MMWTile]()
         for tileRow in tileGrid {
             for tile in tileRow {
@@ -356,7 +356,7 @@ class Grid {
         for x in 0...(gridToPrint.gridNumSquaresX - 1) {   // fill letter tiles
             for y in 0...(gridToPrint.gridNumSquaresY - 1) {
                 let gridArr = gridToPrint.grid2DArr[x][y]
-                print(" \( gridArr.tileSprite.tileText) -> [\(gridArr.tileSprite.tileSpriteParent.gridX)] [\(gridArr.tileSprite.tileSpriteParent.gridY)] state:[\(gridArr.tileSprite.tileSpriteParent.tileState)] owner:[\(gridArr.tileSprite.tileSpriteParent.tileOwner)] type:[\(gridArr.tileSprite.tileSpriteParent.tileType)]")
+                print(" \( gridArr.tileSprite.tileText) -> [\(gridArr.tileSprite.tileSpriteParent.gridX)] [\(gridArr.tileSprite.tileSpriteParent.gridY)] [\(gridArr.tileSprite.tileSpriteParent.gridHome)] state:[\(gridArr.tileSprite.tileSpriteParent.tileState)] owner:[\(gridArr.tileSprite.tileSpriteParent.tileOwner)] type:[\(gridArr.tileSprite.tileSpriteParent.tileType)]")
             }
         }
     }
@@ -374,18 +374,18 @@ class Grid {
     }
     
     func getTileWithLetter(letterToFind : String) -> MMWTile? {
+        var tileToReturn = MMWTile()
         for tileRow in self.grid2DArr {
             for tile in tileRow {
-                if tile.tileText == letterToFind {
+                if tile.tileText == letterToFind && (tile.tileState != TileState.PlayedMadeWord) && (tile.tileState != TileState.Played) {
+                    //tile.tileState = TileState.Played
+                    tileToReturn = tile
                     
-                    if tile.tileState != TileState.PlayedMadeWord || tile.tileState != TileState.Played {
-                        tile.tileState = TileState.Played
-                        return tile
-                    }  
                 }
             }
+            
         }
-        return nil
+        return tileToReturn
     }
     
     
