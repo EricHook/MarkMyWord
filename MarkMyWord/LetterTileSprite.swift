@@ -445,6 +445,7 @@ class LetterTileSprite : SKSpriteNode {
         self.tileSpriteParent.gridTest = self.tileSpriteParent.gridHome
         self.tileSpriteParent.gridXTest = self.tileSpriteParent.gridX
         self.tileSpriteParent.gridYTest = self.tileSpriteParent.gridY
+        
         // update tile info
 //        self.tileSpriteParent.gridHome = self.mmwGameScene.mmwBoardGrid
 //        self.tileSpriteParent.gridHome?.grid2DArr[self.tileSpriteParent.gridXEnd][self.tileSpriteParent.gridYEnd] = self.tileSpriteParent
@@ -463,7 +464,31 @@ class LetterTileSprite : SKSpriteNode {
 //                ///////////////////
 //                print("gcd playTileToBoardGrid hello")
 //
-//                
+////                        self.zPosition = 100
+////                        let boardPosition = Grid.sendToGridSquare(self.mmwGameScene.mmwBoardGrid, squareX: self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridYEnd)
+////                
+////                        let slide = SKAction.moveTo(boardPosition, duration:1.0)
+////                        let scaleUp = SKAction.scaleTo(1.5, duration:0.5)
+////                        let scaleDown = SKAction.scaleTo(1.0, duration:0.5)
+////                        let pauseSlide = SKAction.sequence([slide])
+////                        let scaleUpDown = SKAction.sequence([scaleUp, scaleDown, self.actionSound2, ])
+////                        self.runAction(SKAction.group([pauseSlide, scaleUpDown]))
+////                
+////                        // save original tile info for animations
+////                        self.tileSpriteParent.gridTest = self.tileSpriteParent.gridHome
+////                        self.tileSpriteParent.gridXTest = self.tileSpriteParent.gridX
+////                        self.tileSpriteParent.gridYTest = self.tileSpriteParent.gridY
+////                        // update tile info
+////                        self.tileSpriteParent.gridHome = self.mmwGameScene.mmwBoardGrid
+////                        self.tileSpriteParent.gridHome?.grid2DArr[self.tileSpriteParent.gridXEnd][self.tileSpriteParent.gridYEnd] = self.tileSpriteParent
+////                        self.tileSpriteParent.gridX = self.tileSpriteParent.gridXEnd
+////                        self.tileSpriteParent.gridY = self.tileSpriteParent.gridYEnd
+////                
+////                        self.userInteractionEnabled = false
+////                        self.tileGlow.hidden = true
+////                        self.removeBoardTileHighlights ()
+////                        self.zPosition = 10
+//
 //
 //                dispatch_async(dispatch_get_main_queue(), {
 //                    print("hello from playTileToBoardGrid thread executed as dispatch")
@@ -498,8 +523,7 @@ class LetterTileSprite : SKSpriteNode {
         let homePosition = Grid.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: self.tileSpriteParent.gridX, squareY: self.tileSpriteParent.gridY)
         //let homePosition = Grid.sendToGridSquare(self.tileSpriteParent.gridTest!, squareX: self.tileSpriteParent.gridXTest, squareY: self.tileSpriteParent.gridYTest)
         let endPosition  = Grid.sendToGridSquare(self.tileSpriteParent.gridEnd!, squareX: self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridYEnd)
-        
-        
+
         //self.mmwGameScene.mmwGameSceneViewController.playerArray[tile.tileOwner.rawValue - 1])
 
         let changeInX : CGFloat = -(endPosition.x - homePosition.x)
@@ -516,6 +540,12 @@ class LetterTileSprite : SKSpriteNode {
         let tileEffects = SKAction.sequence([animPart1, animPart2,removeText])
         tileScore.runAction(SKAction.group([slide, tileEffects]) )
         //self.runAction(self.actionSound2)
+        
+        // update tile info
+//                self.tileSpriteParent.gridHome = self.mmwGameScene.mmwBoardGrid
+//                self.tileSpriteParent.gridHome?.grid2DArr[self.tileSpriteParent.gridXEnd][self.tileSpriteParent.gridYEnd] = self.tileSpriteParent
+//                self.tileSpriteParent.gridX = self.tileSpriteParent.gridXEnd
+//                self.tileSpriteParent.gridY = self.tileSpriteParent.gridYEnd
    
     }
     
@@ -945,13 +975,13 @@ class LetterTileSprite : SKSpriteNode {
                     validVerticalPartialWord = false
                     validVerticalWholeWord = false
                     self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback2("\(verticalString)-> Not a valid partial word !!! testForValidWordsAtDropSpot LetterTileSprite")
-                    print ( "Vertical L:'\(upString)' R:'\(downString)' H:'\(verticalString)'-> INVALID horizontal partial word !!! testForValidPartialWordsAtDropSpot  LetterTIleSprite.swift" )
+                    print ( "Vertical U:'\(upString)' D:'\(downString)' V:'\(verticalString)'-> INVALID horizontal partial word !!! testForValidPartialWordsAtDropSpot  LetterTIleSprite.swift" )
                 }
                     
                 else {
                     validVerticalPartialWord = true
                     self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback2("Vertical \(verticalString)-> VALID partial word !!! testForValidWordsAtDropSpot LetterTileSprite")
-                    print ( "Vertical L:'\(upString)' R:'\(downString)' H:'\(verticalString)'-> VALID vartical partial word !!! testForValidWordsAtDropSpot  LetterTileSprite.swift"  )
+                    print ( "Vertical U:'\(upString)' D:'\(downString)' V:'\(verticalString)'-> VALID vartical partial word !!! testForValidWordsAtDropSpot  LetterTileSprite.swift"  )
                 }
         }
         
@@ -1156,10 +1186,6 @@ class LetterTileSprite : SKSpriteNode {
             scoreTilesInArr(possibleWordTilesVertical, wordString: verticalString)
         }
         
-        //if (tileSpriteParent.tileState != TileState.Locked || tileSpriteParent.tileState != TileState.PlayedMadeWord) {
-        
-        //}
-        
         // set basic placeholder tile settings to fit in void in grid - home grid and x and y values
         let replacementPlaceholderTile : MMWTile = MMWTile()
         replacementPlaceholderTile.gridHome = self.tileSpriteParent.gridHome
@@ -1199,164 +1225,175 @@ class LetterTileSprite : SKSpriteNode {
 
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /// func updateWordsAtDropSpot2 (tileSnapResultsXGrid: Int, tileSnapResultsYGrid: Int, touchX: Float, touchY: Float) ()
-    /// used on touchesEnded to determine played tile
-    /// -Parameters: tileSnapResultsXGrid: Int, tileSnapResultsYGrid: Int, touchX: Float, touchY: Float
-    /// -Returns: none
-    /// used to test when a whole or partial word play exists at drop spot & updates tile data on successful play
-    func updateWordsAtDropSpot2(tileSnapResultsXGrid: Int, tileSnapResultsYGrid: Int) {
-        
-        let tileSnapResultsXGrid = tileSnapResultsXGrid
-        let tileSnapResultsYGrid = tileSnapResultsYGrid
-        var tileAtDropSpot = mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid]
-        
-        var leftString : String = ""
-        var rightString : String = ""
-        var upString : String = ""
-        var downString : String = ""
-        var horizontalString : String = ""
-        var verticalString : String = ""
-        
-        var possibleWordTilesHorizontal : [MMWTile] = []
-        var possibleWordTilesVertical : [MMWTile] = []
-        
-        var numHorizontalAdjacentLetters = 0
-        var numVerticalAdjacentLetters = 0
-        var foundLockedTile = false
-        
-        self.tileSpriteParent.gridEnd = mmwGameScene.mmwBoardGrid // set tileSprite parent (MMWTile) grid to grid snapped to
-        tileSpriteParent.gridXEnd = tileSnapResultsXGrid
-        tileSpriteParent.gridYEnd = tileSnapResultsYGrid
-        
-        // LEFT
-        var currentCheckXGridNum = tileSnapResultsXGrid
-        var currentCheckYGridNum = tileSnapResultsYGrid
-        var stringToAdd : String = ""
-        while ( (currentCheckXGridNum > 0) && (mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum - 1][tileSnapResultsYGrid].tileState == TileState.Locked || (mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum - 1][tileSnapResultsYGrid].tileState == TileState.Played) || (mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileSnapResultsYGrid].tileState == TileState.PlayedMadeWord) ) )  {
-            let letterToAdd : String = "\(mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum - 1][tileSnapResultsYGrid].tileText)"
-            stringToAdd = letterToAdd.stringByAppendingString(stringToAdd)
-            possibleWordTilesHorizontal.append((mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum - 1][tileSnapResultsYGrid]))
-            //gameGrid?.grid2DArr[currentCheckXGridNum - 1][tileSnapResultsYGrid].tileOwner
-            if mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum - 1][tileSnapResultsYGrid].tileState == TileState.Locked {
-                foundLockedTile = true // stops check on last last locked tile
-                hasLockedPotentialWord = true
-            }
-            currentCheckXGridNum--
-        }
-        
-        leftString = stringToAdd.stringByAppendingString(self.tileText)
-        possibleWordTilesHorizontal.append(tileSpriteParent)
-        
-        //RIGHT
-        currentCheckXGridNum = tileSnapResultsXGrid
-        stringToAdd = ""
-        while ( (currentCheckXGridNum < 14) && (mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileSnapResultsYGrid].tileState == TileState.Locked || (mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileSnapResultsYGrid].tileState == TileState.Played) || (mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileSnapResultsYGrid].tileState == TileState.PlayedMadeWord)) )  {
-            numHorizontalAdjacentLetters++
-            numHorizontalAdjacentLetters++
-            let letterToAdd : String = "\(mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileSnapResultsYGrid].tileText)"
-            stringToAdd = stringToAdd.stringByAppendingString(letterToAdd)
-            if mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileSnapResultsYGrid].tileState == TileState.Locked {
-                foundLockedTile = true
-                hasLockedPotentialWord = true
-            }
-            
-            possibleWordTilesHorizontal.append(mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileSnapResultsYGrid])
-            currentCheckXGridNum++
-        }
-        rightString = self.tileText.stringByAppendingString(stringToAdd)
-        horizontalString = leftString.stringByAppendingString(stringToAdd)
-        
-        if ( ( mmwGameScene.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkWholeWordMatch(horizontalString) ) == false || horizontalString.characters.count < tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.minWordSize  ) {
-            // updates GUI for feedback on horizonal partial word
-            self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback("\(horizontalString) is a partial word (horizontal) updateWordsAtDropSpot LetterTileSprite")
-            print ( "\(horizontalString) is a partial word (horizontal) updateWordsAtDropSpot LetterTileSprite" )
 
-        }
-            
-        else {
-            print ( "\(horizontalString) is a valid word (horizontal) updateWordsAtDropSpot LetterTileSprite" )
-            scoreTilesInArr(possibleWordTilesHorizontal, wordString: horizontalString)
-        }
-        
-        //playTileToBoardGrid (0)
-
-        //UP
-        stringToAdd = ""
-        foundLockedTile = false
-        while ( (currentCheckYGridNum > 0) && (mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].tileState == TileState.Locked || (mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].tileState == TileState.Played) || (mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].tileState == TileState.PlayedMadeWord) ) )  {
-            numVerticalAdjacentLetters++
-            let letterToAdd : String = "\(mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].tileText)"
-            stringToAdd = letterToAdd.stringByAppendingString(stringToAdd)
-            
-            possibleWordTilesVertical.append((mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1]))
-            if mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].tileState == TileState.Locked {
-                foundLockedTile = true
-                hasLockedPotentialWord = true
-            }
-            currentCheckYGridNum--
-        }
-        
-        upString = stringToAdd.stringByAppendingString(self.tileText)
-        possibleWordTilesVertical.append(tileSpriteParent)
-        
-        //DOWN
-        currentCheckYGridNum = tileSnapResultsYGrid
-        stringToAdd = ""
-        while ( (currentCheckYGridNum < 14) && ( (mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum + 1].tileState == TileState.Locked) || (mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum + 1].tileState == TileState.Played) || (mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum + 1].tileState == TileState.PlayedMadeWord) ) ) {
-            numVerticalAdjacentLetters++
-            let letterToAdd : String = "\(mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum + 1].tileText)"
-            stringToAdd = stringToAdd.stringByAppendingString(letterToAdd)
-            possibleWordTilesVertical.append((mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum + 1]))
-            if mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum + 1].tileState == TileState.Locked {
-                foundLockedTile = true
-                hasLockedPotentialWord = true
-            }
-            currentCheckYGridNum++
-        }
-        
-        downString = self.tileText.stringByAppendingString(stringToAdd)
-        verticalString = upString.stringByAppendingString(stringToAdd)
-        
-        if (( mmwGameScene.mmwGameSceneViewController.checkWholeWordMatch(verticalString) ) == false || verticalString.characters.count < tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.minWordSize  ) {
-            // updates GUI for feedback on horizonal partial word
-            self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback2("\(verticalString) is a partial word (vertical) updateWordsAtDropSpot LetterTileSprite")
-            print ( "\(verticalString) is a partial word (vertical) updateWordsAtDropSpot LetterTileSprite" )
-        }
-            
-        else {
-            print ( "\(verticalString) is a valid word (vertical) updateWordsAtDropSpot LetterTileSprite" )
-            //scoreTilesInArr(possibleWordTilesVertical, wordString: verticalString)
-        }
-        
-        
-//        scoreTilesInArr(possibleWordTilesHorizontal, wordString: horizontalString) // IF VALID HORIZONTAL WORD
-//        //scoreTilesInArr(possibleWordTilesVertical, wordString: verticalString)   // IF VALID VERTICAL WORD
+    
+    
+//    /// func updateWordsAtDropSpot2 (tileSnapResultsXGrid: Int, tileSnapResultsYGrid: Int, touchX: Float, touchY: Float) ()
+//    /// used on touchesEnded to determine played tile
+//    /// -Parameters: tileSnapResultsXGrid: Int, tileSnapResultsYGrid: Int, touchX: Float, touchY: Float
+//    /// -Returns: none
+//    /// used to test when a whole or partial word play exists at drop spot & updates tile data on successful play
+//    func updateWordsAtDropSpot2(tileSnapResultsXGrid: Int, tileSnapResultsYGrid: Int) {
 //        
-//        if (tileSpriteParent.tileState != TileState.Locked) {
-//            tileSpriteParent.tileState = TileState.Played // if put on valid board location set TileState to played if NOT already locked
+//        let tileSnapResultsXGrid = tileSnapResultsXGrid
+//        let tileSnapResultsYGrid = tileSnapResultsYGrid
+//        var tileAtDropSpot = mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid]
+//        
+//        var leftString : String = ""
+//        var rightString : String = ""
+//        var upString : String = ""
+//        var downString : String = ""
+//        var horizontalString : String = ""
+//        var verticalString : String = ""
+//        
+//        var possibleWordTilesHorizontal : [MMWTile] = []
+//        var possibleWordTilesVertical : [MMWTile] = []
+//        
+//        var numHorizontalAdjacentLetters = 0
+//        var numVerticalAdjacentLetters = 0
+//        var foundLockedTile = false
+//        
+//        self.tileSpriteParent.gridEnd = mmwGameScene.mmwBoardGrid // set tileSprite parent (MMWTile) grid to grid snapped to
+//        tileSpriteParent.gridXEnd = tileSnapResultsXGrid
+//        tileSpriteParent.gridYEnd = tileSnapResultsYGrid
+//        
+//        // LEFT
+//        var currentCheckXGridNum = tileSnapResultsXGrid
+//        var currentCheckYGridNum = tileSnapResultsYGrid
+//        var stringToAdd : String = ""
+//        while ( (currentCheckXGridNum > 0) && (mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum - 1][tileSnapResultsYGrid].tileState == TileState.Locked || (mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum - 1][tileSnapResultsYGrid].tileState == TileState.Played) || (mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileSnapResultsYGrid].tileState == TileState.PlayedMadeWord) ) )  {
+//            let letterToAdd : String = "\(mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum - 1][tileSnapResultsYGrid].tileText)"
+//            stringToAdd = letterToAdd.stringByAppendingString(stringToAdd)
+//            possibleWordTilesHorizontal.append((mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum - 1][tileSnapResultsYGrid]))
+//            //gameGrid?.grid2DArr[currentCheckXGridNum - 1][tileSnapResultsYGrid].tileOwner
+//            if mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum - 1][tileSnapResultsYGrid].tileState == TileState.Locked {
+//                foundLockedTile = true // stops check on last last locked tile
+//                hasLockedPotentialWord = true
+//            }
+//            currentCheckXGridNum--
+//        }
+//        
+//        leftString = stringToAdd.stringByAppendingString(self.tileText)
+//        possibleWordTilesHorizontal.append(tileSpriteParent)
+//        
+//        //RIGHT
+//        currentCheckXGridNum = tileSnapResultsXGrid
+//        stringToAdd = ""
+//        while ( (currentCheckXGridNum < 14) && (mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileSnapResultsYGrid].tileState == TileState.Locked || (mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileSnapResultsYGrid].tileState == TileState.Played) || (mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileSnapResultsYGrid].tileState == TileState.PlayedMadeWord)) )  {
+//            numHorizontalAdjacentLetters++
+//            numHorizontalAdjacentLetters++
+//            let letterToAdd : String = "\(mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileSnapResultsYGrid].tileText)"
+//            stringToAdd = stringToAdd.stringByAppendingString(letterToAdd)
+//            if mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileSnapResultsYGrid].tileState == TileState.Locked {
+//                foundLockedTile = true
+//                hasLockedPotentialWord = true
+//            }
+//            
+//            possibleWordTilesHorizontal.append(mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileSnapResultsYGrid])
+//            currentCheckXGridNum++
+//        }
+//        rightString = self.tileText.stringByAppendingString(stringToAdd)
+//        horizontalString = leftString.stringByAppendingString(stringToAdd)
+//        
+//        if ( ( mmwGameScene.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkWholeWordMatch(horizontalString) ) == false || horizontalString.characters.count < tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.minWordSize  ) {
+//            // updates GUI for feedback on horizonal partial word
+//            self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback("\(horizontalString) is a partial word (horizontal) updateWordsAtDropSpot LetterTileSprite")
+//            print ( "\(horizontalString) is a partial word (horizontal) updateWordsAtDropSpot LetterTileSprite" )
+//
+//        }
+//            
+//        else {
+//            print ( "\(horizontalString) is a valid word (horizontal) updateWordsAtDropSpot LetterTileSprite" )
+//            scoreTilesInArr(possibleWordTilesHorizontal, wordString: horizontalString)
+//        }
+//        
+//        //playTileToBoardGrid (0)
+//
+//        //UP
+//        stringToAdd = ""
+//        foundLockedTile = false
+//        while ( (currentCheckYGridNum > 0) && (mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].tileState == TileState.Locked || (mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].tileState == TileState.Played) || (mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].tileState == TileState.PlayedMadeWord) ) )  {
+//            numVerticalAdjacentLetters++
+//            let letterToAdd : String = "\(mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].tileText)"
+//            stringToAdd = letterToAdd.stringByAppendingString(stringToAdd)
+//            
+//            possibleWordTilesVertical.append((mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1]))
+//            if mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].tileState == TileState.Locked {
+//                foundLockedTile = true
+//                hasLockedPotentialWord = true
+//            }
+//            currentCheckYGridNum--
+//        }
+//        
+//        upString = stringToAdd.stringByAppendingString(self.tileText)
+//        possibleWordTilesVertical.append(tileSpriteParent)
+//        
+//        //DOWN
+//        currentCheckYGridNum = tileSnapResultsYGrid
+//        stringToAdd = ""
+//        while ( (currentCheckYGridNum < 14) && ( (mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum + 1].tileState == TileState.Locked) || (mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum + 1].tileState == TileState.Played) || (mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum + 1].tileState == TileState.PlayedMadeWord) ) ) {
+//            numVerticalAdjacentLetters++
+//            let letterToAdd : String = "\(mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum + 1].tileText)"
+//            stringToAdd = stringToAdd.stringByAppendingString(letterToAdd)
+//            possibleWordTilesVertical.append((mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum + 1]))
+//            if mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum + 1].tileState == TileState.Locked {
+//                foundLockedTile = true
+//                hasLockedPotentialWord = true
+//            }
+//            currentCheckYGridNum++
+//        }
+//        
+//        downString = self.tileText.stringByAppendingString(stringToAdd)
+//        verticalString = upString.stringByAppendingString(stringToAdd)
+//        
+//        if (( mmwGameScene.mmwGameSceneViewController.checkWholeWordMatch(verticalString) ) == false || verticalString.characters.count < tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.minWordSize  ) {
+//            // updates GUI for feedback on horizonal partial word
+//            self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback2("\(verticalString) is a partial word (vertical) updateWordsAtDropSpot LetterTileSprite")
+//            print ( "\(verticalString) is a partial word (vertical) updateWordsAtDropSpot LetterTileSprite" )
+//        }
+//            
+//        else {
+//            print ( "\(verticalString) is a valid word (vertical) updateWordsAtDropSpot LetterTileSprite" )
+//            //scoreTilesInArr(possibleWordTilesVertical, wordString: verticalString)
 //        }
 //        
 //        
-//        // set value of snap results grid location to the MMWTile if valid location
-//        self.tileSpriteParent.gridEnd? = mmwGameScene.mmwBoardGrid
-//        self.tileSpriteParent.gridEnd?.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid] = self.tileSpriteParent
-//        self.tileSpriteParent.gridXEnd = tileSnapResultsXGrid
-//        self.tileSpriteParent.gridYEnd = tileSnapResultsYGrid
+////        scoreTilesInArr(possibleWordTilesHorizontal, wordString: horizontalString) // IF VALID HORIZONTAL WORD
+////        //scoreTilesInArr(possibleWordTilesVertical, wordString: verticalString)   // IF VALID VERTICAL WORD
+////        
+////        if (tileSpriteParent.tileState != TileState.Locked) {
+////            tileSpriteParent.tileState = TileState.Played // if put on valid board location set TileState to played if NOT already locked
+////        }
+////        
+////        
+////        // set value of snap results grid location to the MMWTile if valid location
+////        self.tileSpriteParent.gridEnd? = mmwGameScene.mmwBoardGrid
+////        self.tileSpriteParent.gridEnd?.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid] = self.tileSpriteParent
+////        self.tileSpriteParent.gridXEnd = tileSnapResultsXGrid
+////        self.tileSpriteParent.gridYEnd = tileSnapResultsYGrid
+////        
+////        // set basic placeholder tile settings to fit in void in grid - home grid and x and y values
+////        let replacementPlaceholderTile : MMWTile = MMWTile()
+////        replacementPlaceholderTile.gridHome = self.tileSpriteParent.gridHome
+////        replacementPlaceholderTile.gridX = self.tileSpriteParent.gridX
+////        replacementPlaceholderTile.gridY = self.tileSpriteParent.gridY
+////        tileSpriteParent.gridHome?.grid2DArr[tileSpriteParent.gridX][tileSpriteParent.gridY] = replacementPlaceholderTile
+////        
+////        //        // move tile to snap point
+////        //        self.position.x = (CGFloat)(tileSnapResultsCalculateX + 23.75)  //adjusts 22.5 for tile center in middle of tile
+////        //        self.position.y = 768 - (CGFloat)(tileSnapResultsCalculateY + 8.25) //38 adjusts for tile center and for board not in exact middle when flipping coords
+////        
+////        self.isMovable = false // so can't remove tile once placed
+////        self.userInteractionEnabled = false
+////        //self.lockTile()
+////        
+////        removeBoardTileHighlights ()
+////        
+////        self.tileSpriteParent.gridHome?.mmwGameScene.newTilesButtonOff() // placed tile on board so now can only pass turn
+//
+//        if (tileSpriteParent.tileState != TileState.Locked) {
+//            tileSpriteParent.tileState = TileState.Played // if put on valid board location set TileState to played if NOT already locked
+//        }
 //        
 //        // set basic placeholder tile settings to fit in void in grid - home grid and x and y values
 //        let replacementPlaceholderTile : MMWTile = MMWTile()
@@ -1365,45 +1402,22 @@ class LetterTileSprite : SKSpriteNode {
 //        replacementPlaceholderTile.gridY = self.tileSpriteParent.gridY
 //        tileSpriteParent.gridHome?.grid2DArr[tileSpriteParent.gridX][tileSpriteParent.gridY] = replacementPlaceholderTile
 //        
-//        //        // move tile to snap point
-//        //        self.position.x = (CGFloat)(tileSnapResultsCalculateX + 23.75)  //adjusts 22.5 for tile center in middle of tile
-//        //        self.position.y = 768 - (CGFloat)(tileSnapResultsCalculateY + 8.25) //38 adjusts for tile center and for board not in exact middle when flipping coords
+//        // set value of snap results grid location to the MMWTile if valid location
+//        self.tileSpriteParent.gridEnd? = mmwGameScene.mmwBoardGrid
 //        
+//        self.tileSpriteParent.gridXEnd = tileSnapResultsXGrid
+//        self.tileSpriteParent.gridYEnd = tileSnapResultsYGrid
 //        self.isMovable = false // so can't remove tile once placed
-//        self.userInteractionEnabled = false
-//        //self.lockTile()
+//        self.userInteractionEnabled = true
+//   
+//        self.playTileToBoardGrid(0)
 //        
+//        self.tileSpriteParent.gridEnd?.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid] = self.tileSpriteParent
+//
 //        removeBoardTileHighlights ()
-//        
+//
 //        self.tileSpriteParent.gridHome?.mmwGameScene.newTilesButtonOff() // placed tile on board so now can only pass turn
-
-        if (tileSpriteParent.tileState != TileState.Locked) {
-            tileSpriteParent.tileState = TileState.Played // if put on valid board location set TileState to played if NOT already locked
-        }
-        
-        // set basic placeholder tile settings to fit in void in grid - home grid and x and y values
-        let replacementPlaceholderTile : MMWTile = MMWTile()
-        replacementPlaceholderTile.gridHome = self.tileSpriteParent.gridHome
-        replacementPlaceholderTile.gridX = self.tileSpriteParent.gridX
-        replacementPlaceholderTile.gridY = self.tileSpriteParent.gridY
-        tileSpriteParent.gridHome?.grid2DArr[tileSpriteParent.gridX][tileSpriteParent.gridY] = replacementPlaceholderTile
-        
-        // set value of snap results grid location to the MMWTile if valid location
-        self.tileSpriteParent.gridEnd? = mmwGameScene.mmwBoardGrid
-        
-        self.tileSpriteParent.gridXEnd = tileSnapResultsXGrid
-        self.tileSpriteParent.gridYEnd = tileSnapResultsYGrid
-        self.isMovable = false // so can't remove tile once placed
-        self.userInteractionEnabled = true
-   
-        self.playTileToBoardGrid(0)
-        
-        self.tileSpriteParent.gridEnd?.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid] = self.tileSpriteParent
-
-        removeBoardTileHighlights ()
-
-        self.tileSpriteParent.gridHome?.mmwGameScene.newTilesButtonOff() // placed tile on board so now can only pass turn
-    }
+//    }
 
 
     /// func updateAIWordsAtDropSpot (tileXGridDestination: Int, tileYGridDestination: Int) ()
@@ -1532,12 +1546,9 @@ class LetterTileSprite : SKSpriteNode {
         let replacementPlaceholderTile : MMWTile = MMWTile()
         tileSpriteParent.gridHome?.grid2DArr[tileSpriteParent.gridX][tileSpriteParent.gridY] = replacementPlaceholderTile
         
-
                 tileSpriteParent.gridHome = self.tileSpriteParent.gridEnd
                 tileSpriteParent.gridX = self.tileSpriteParent.gridXEnd
                 tileSpriteParent.gridY = self.tileSpriteParent.gridYEnd
-        
-        
         
         //removeBoardTileHighlights ()
 

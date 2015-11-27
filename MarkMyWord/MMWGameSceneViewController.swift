@@ -333,7 +333,7 @@ class MMWGameSceneViewController {
         for letter in wordToCheckArr {
              for tile in letterTileArray {
                 if String(letter).uppercaseString == "\r" {
-                    print ("String(letter).uppercaseString == \r ...return char at \(letter)")
+                    //print ("String(letter).uppercaseString == \r ...return char at \(letter)")
                     --wordToCheckArrCount
                     break
                 }  // return char exits loop
@@ -341,7 +341,7 @@ class MMWGameSceneViewController {
                         print("Found letter: \(letter) in tiles \(tile.tileSprite.tileText)")
                         lettersToPlay.append(tileArrayNumber)
                         ++lettersToPlayCount
-                        print( "LettersToPlay.count: \(lettersToPlay.count), lettersToPlayCount: \(lettersToPlayCount)" )
+                        //print( "LettersToPlay.count: \(lettersToPlay.count), lettersToPlayCount: \(lettersToPlayCount)" )
                         foundLetterInPass = true
                         break
                 }
@@ -350,20 +350,20 @@ class MMWGameSceneViewController {
             }
             if String(letter).uppercaseString == "\r" {break}  // return char exits loop
             if foundLetterInPass == false {
-                print( "Tile \(String(letter).uppercaseString) doesn't exist to create word" )
+                //print( "Tile \(String(letter).uppercaseString) doesn't exist to create word" )
                 return false
             }
             tileArrayNumber = 0
         }
         
-        print( "Letters to Play from letterTileArray: \(lettersToPlay)" )
-        print( "LettersToPlay.count: \(lettersToPlay.count), wordToCheckArr.count: \(wordToCheckArrCount)" )
+        //print( "Letters to Play from letterTileArray: \(lettersToPlay)" )
+        //print( "LettersToPlay.count: \(lettersToPlay.count), wordToCheckArr.count: \(wordToCheckArrCount)" )
         
 //        if lettersToPlay.count < wordToCheckArrCount{ // letters not availible return nil
 //            print("FAIL!")
 //            return false
 //        }
-        print( "PASS! Found \(string)! self.tileCollection.mmwTileArray.count: \(letterTileArray.count)" )
+        //print( "PASS! Found \(string)! self.tileCollection.mmwTileArray.count: \(letterTileArray.count)" )
         return true
     }
     
