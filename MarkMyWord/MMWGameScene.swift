@@ -485,10 +485,10 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
             /////////////////////////////////////////////////////
             
             if arc4random_uniform(100) > 0 { // VERTICAL  !!!!!!!!! CURRENTLY SET SO ALWAYS VERTICAL
-                mmwGameSceneViewController.sendWordToBoard(&starterWord1TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 2, yStartSquare: 2, IsHorizonal: false, player: mmwGameSceneViewController.player0)
-                mmwGameSceneViewController.sendWordToBoard(&starterWord2TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 4, yStartSquare: 3, IsHorizonal: false, player: mmwGameSceneViewController.player0)
-                mmwGameSceneViewController.sendWordToBoard(&starterWord3TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 6, yStartSquare: 5, IsHorizonal: false, player: mmwGameSceneViewController.player0)
-                mmwGameSceneViewController.sendWordToBoard(&starterWord4TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 8, yStartSquare: 2, IsHorizonal: false, player: mmwGameSceneViewController.player0)
+//                mmwGameSceneViewController.sendWordToBoard(&starterWord1TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 2, yStartSquare: 2, IsHorizonal: false, player: mmwGameSceneViewController.player0)
+//                mmwGameSceneViewController.sendWordToBoard(&starterWord2TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 4, yStartSquare: 3, IsHorizonal: false, player: mmwGameSceneViewController.player0)
+//                mmwGameSceneViewController.sendWordToBoard(&starterWord3TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 6, yStartSquare: 5, IsHorizonal: false, player: mmwGameSceneViewController.player0)
+                mmwGameSceneViewController.sendWordToBoard(&starterWord4TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 14, yStartSquare: 2, IsHorizonal: false, player: mmwGameSceneViewController.player0)
             }
                 
             else { // HORIZONTAL
@@ -1145,7 +1145,7 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
                     gridTestY = gridYSpot
                     
                     while playerLettersToTestLeft.characters.count > (0) && playerLettersToTestLeft.characters.count <= numTilesToPlayLeftMax {
-                        if (gridTestX>=1 && gridTestX<14) && (gridTestY>=0 && gridTestY<14) && self.mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileType != TileType.Letter {
+                        if (gridTestX>=1 && gridTestX<=14) && self.mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileType != TileType.Letter {
                             --numTilesToPlayLeftMax
                             let permutationLeftLastLetter = String( playerLettersToTestLeft.removeAtIndex(playerLettersToTestLeft.endIndex.predecessor()) )
 
@@ -1153,15 +1153,9 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
                             currentTestAILetterPlay.gridXEnd = gridTestX-1
                             currentTestAILetterPlay.gridYEnd = gridTestY
 
-                            //
-   
-                            //if currentTestAILetterPlay.tileSpriteLetter != "" {
                                 currentPossibleAILetterPlayArr.append(currentTestAILetterPlay)
                                 lettersPlayedInPermutation++
-                            //}
-                            
-                            //
-
+ 
                             testString = permutationLeftLastLetter + testString
                             if (gridTestX>=1) {--gridTestX}
                             
@@ -1176,9 +1170,7 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
                             while gridTestX>=1 && self.mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileType == TileType.Letter {
                                 let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileText)
                                 testString = existingLetterToAdd + testString
-    
-                                // ?? ++numTilesToPlayLeftMax  // add back space that was already counted in spaces
- 
+
                                 if (gridTestX>=1) {--gridTestX}
                             }
                         }
@@ -1191,20 +1183,20 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
 //                        //++numTilesToPlayLeftMax  // add back space that was already counted in spaces
 //                        if (gridTestX>=1) {--gridTestX}
 //                    }
+  
                     
                     // grab left letters if only right letters on full right shift
-                    if gridTestX >= 1 &&  self.mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileType == TileType.Letter && playerLettersToTestLeft.characters.count == (0) {
+                    if gridTestX >= 1 &&  self.mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileType == TileType.Letter { // && playerLettersToTestLeft.characters.count == (0) {
                         gridTestX = gridXSpot // reset test spot as it was moved to left in code above
                         gridTestY = gridYSpot
-                        
-                        while gridTestX>1 && self.mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileType == TileType.Letter {
+
+                        while gridTestX>=1 && self.mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileType == TileType.Letter {
                             let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileText)
                             testString = existingLetterToAdd + testString
                             --gridTestX
                         }
                     }
-                    
-                    
+ 
                     gridTestX = gridXSpot // reset test spot as it was moved to left in code above
                     gridTestY = gridYSpot
                     // CHECK RIGHT
@@ -1226,32 +1218,10 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
                             currentTestAILetterPlay.tileSpriteLetter = permutationRightFirstLetter
                             currentTestAILetterPlay.gridXEnd = gridTestX+1
                             currentTestAILetterPlay.gridYEnd = gridTestY
-                            
-                            
-                            
-                            
-                            /////
-                            
-                            
-                            
-                            
-                            //if currentTestAILetterPlay.tileSpriteLetter != "" {
+
                                 currentPossibleAILetterPlayArr.append(currentTestAILetterPlay)
                                 lettersPlayedInPermutation++
-                            //}
-                            
-                            
-                            
-                            
-                            ////
-                            
-//                            currentPossibleAILetterPlayArr.append(currentTestAILetterPlay)
-//                            lettersPlayedInPermutation++
-                            
-                            
-                            //////
-                            
-                            
+
                             
                             testString = testString + permutationRightFirstLetter
                             ++gridTestX
@@ -1295,34 +1265,12 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
                                 if validPartialAILetterPlayArr[0].gridXEnd == -1 {
                                     validPartialAILetterPlayArr.removeFirst()
                                 }
-                                
-                                
-                                //validPartialAILetterPlayArr.removeFirst()
-
-                                //validPartialAILetterPlayArr.append(currentTestAILetterPlay)
-                                
                             }
 
-                            print("!!! mmwGameSceneViewController.checkWholeWordMatch(testString) == true \(testString) && testString.characters.count > 2  Now TRY to play checkForValidWordsAI mmwGameScene" )
+                            print("!!! mmwGameSceneViewController.checkWholeWordMatch(testString) == true \(testString) && testString.characters.count > 2  Now TRY to play FROM checkForValidWordsAI mmwGameScene" )
                             
                             validWholeWordAILetterPlayArr = validPartialAILetterPlayArr
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-//                            if validWholeWordAILetterPlayArr.count > 0 {
-//                                validWholeWordAILetterPlayArr.removeFirst()    // gets rid of nil [0] array item
-//                            }
-                            
-                            
-                            
-                            
-                            
-                            
+       
 //                            allValidWholeWordTilePlayArr.append(validWholeWordTilePlayArr)
 //                            print("!!! allValidWholeWordTilePlayArr \(allValidWholeWordTilePlayArr)  checkForValidWordsAI mmwGameScene" )
                             foundHorizontalWholeWordsNumber++
@@ -1335,14 +1283,14 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
                             print("Trying to play: \(testString) at \(gridXSpot), \(gridYSpot) validWholeWordAILetterPlayArr.count: \(validWholeWordAILetterPlayArr.count)")
 
                             var isValidHorizontalWholeWord = true
-                            var isValidPartialWord = false
-                            for var letterTilePlaceholder in validWholeWordAILetterPlayArr {
+                            //var isValidPartialWord = false
+                            for letterTilePlaceholder in validWholeWordAILetterPlayArr {
                                 print("getting letter \(letterTilePlaceholder.tileSpriteLetter),  \(letterTilePlaceholder.gridXEnd),  \(letterTilePlaceholder.gridYEnd),  \(letterTilePlaceholder.madeValidWord),  \(letterTilePlaceholder.partOfWord)")
                                 let letterTileTest = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid.getTileWithLetter(letterTilePlaceholder.tileSpriteLetter)
                                 let validWordTestAtDropSpot = letterTileTest?.tileSprite.testForValidWordsAtDropSpot(letterTilePlaceholder.gridXEnd, tileSnapResultsYGrid: letterTilePlaceholder.gridYEnd, isAI: true)
                     
                                 if validWordTestAtDropSpot!.validHorizontalPartialWord == false || validWordTestAtDropSpot!.validVerticalPartialWord == false {
-                                    isValidPartialWord = false
+                                    //isValidPartialWord = false
                                     isValidHorizontalWholeWord = false
                                     break
                                 }
@@ -1355,10 +1303,7 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
 //                                }
                                 print("...for var letterTilePlaceholder ... in validWholeWordAILetterPlayArr { \(letterTilePlaceholder.tileSpriteLetter) -  \(letterTilePlaceholder.gridXEnd), \(letterTilePlaceholder.gridYEnd) -> \(letterTilePlaceholder.partOfWord) checkForValidWordsAI mmwGameScene ")
                             }
-                    
-                            
-                            
-                            
+
                             if isValidHorizontalWholeWord == true && testString.characters.count > 2  {
                                 print("Found word : \(testString)")
                                 //validWordPlays.append(word)
