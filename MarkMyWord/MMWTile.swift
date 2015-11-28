@@ -28,6 +28,10 @@ enum TileState: Int {
     case Undealt = 0, Player1, Player2, Player3, Player4, Played, PlayedMadeWord, Locked
 }
 
+enum PlayedMadeWord: Int {
+    case None = 0, Vertical, Horizontal, Both
+}
+
 enum TileOwner: Int {
     case None = 0, Player1, Player2, Player3, Player4, Discard
 }
@@ -54,6 +58,7 @@ class MMWTile {
     var tileText: String = "?"
     var undealt = true
     var tileState: TileState = TileState.Undealt
+    var playedMadeWord = PlayedMadeWord.None
     var tileOwner: TileOwner = TileOwner.None
     var tileGrid: Grid? = nil
     var description = ""
