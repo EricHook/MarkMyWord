@@ -923,24 +923,63 @@ class LetterTileSprite : SKSpriteNode {
                 horizontalString = leftString.stringByAppendingString(rightString)
             
             
-                
-                if (( mmwGameScene.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkPartialWordMatch(horizontalString)) == false) {
-                    validHorizontalPartialWord = false
-                    self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback2("Horizontal \(horizontalString)-> Not a valid partial word !!! testForValidWordsAtDropSpot LetterTileSprite")
-                    print ( "Horizontal L:\(leftString) R:\(rightString) H:\(horizontalString)-> INVALID horizontal partial word !!! testForValidWordsAtDropSpot  LetterTileSprite.swift" )
+            
+            
+            
+            if (( mmwGameScene.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkPartialWordMatch(horizontalString)) == false) {
+                validHorizontalPartialWord = false
+                self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback2("Horizontal \(horizontalString)-> Not a valid partial word !!! testForValidWordsAtDropSpot LetterTileSprite")
+                print ( "Horizontal L:\(leftString) R:\(rightString) H:\(horizontalString)-> INVALID horizontal partial word !!! testForValidWordsAtDropSpot  LetterTileSprite.swift" )
+            }
+            else {
+                validHorizontalPartialWord = true
+                if (( mmwGameScene.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkWholeWordMatch(horizontalString)) == true) {
+                    validHorizontalWholeWord = true
+                    self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback2("Horizontal \(horizontalString)-> VALID whole word !!! testForValidWordsAtDropSpot LetterTileSprite")
+                    print ( "Horizontal L:\(leftString) R:\(rightString) H:\(horizontalString)-> VALID horizontal whole word !!! testForValidWordsAtDropSpot  LetterTileSprite.swift" )
                 }
                 else {
-                    validHorizontalPartialWord = true
-                    if (( mmwGameScene.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkWholeWordMatch(horizontalString)) == true) {
-                        validHorizontalWholeWord = true
-                        self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback2("Horizontal \(horizontalString)-> VALID whole word !!! testForValidWordsAtDropSpot LetterTileSprite")
-                        print ( "Horizontal L:\(leftString) R:\(rightString) H:\(horizontalString)-> VALID horizontal whole word !!! testForValidWordsAtDropSpot  LetterTileSprite.swift" )
-                    }
-                    else {
-                        self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback2("Horizontal \(horizontalString)-> VALID partial word !!! testForValidWordsAtDropSpot LetterTileSprite")
-                        print ( "Horizontal L:\(leftString) R:\(rightString) H:\(horizontalString)-> VALID horizontal partial word !!! testForValidWordsAtDropSpot  LetterTileSprite.swift" )
-                    }
+                    self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback2("Horizontal \(horizontalString)-> VALID partial word !!! testForValidWordsAtDropSpot LetterTileSprite")
+                    print ( "Horizontal L:\(leftString) R:\(rightString) H:\(horizontalString)-> VALID horizontal partial word !!! testForValidWordsAtDropSpot  LetterTileSprite.swift" )
                 }
+            }
+
+            
+            
+            
+            
+            
+            
+                
+//                if (( mmwGameScene.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkPartialWordMatch(horizontalString)) == false) {
+//                    validHorizontalPartialWord = false
+//                    self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback2("Horizontal \(horizontalString)-> Not a valid partial word !!! testForValidWordsAtDropSpot LetterTileSprite")
+//                    print ( "Horizontal L:\(leftString) R:\(rightString) H:\(horizontalString)-> INVALID horizontal partial word !!! testForValidWordsAtDropSpot  LetterTileSprite.swift" )
+//                }
+//                else {
+//                    validHorizontalPartialWord = true
+//                    if (( mmwGameScene.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkWholeWordMatch(horizontalString)) == true) {
+//                        //&&  horizontalString.characters.count >= mmwGameSceneViewController.minWordSize {
+//                        validHorizontalWholeWord = true
+//                        self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback2("Horizontal \(horizontalString)-> VALID whole word !!! testForValidWordsAtDropSpot LetterTileSprite")
+//                        print ( "Horizontal L:\(leftString) R:\(rightString) H:\(horizontalString)-> VALID horizontal whole word !!! testForValidWordsAtDropSpot  LetterTileSprite.swift" )
+//                    }
+////                    else if (( mmwGameScene.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkWholeWordMatch(horizontalString)) == true) &&  horizontalString.characters.count < mmwGameSceneViewController.minWordSize {
+////                        validHorizontalWholeWord = false
+////                        self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback2("Horizontal \(horizontalString)-> VALID whole word BUT too short!!! testForValidWordsAtDropSpot LetterTileSprite")
+////                        print ( "Horizontal L:\(leftString) R:\(rightString) H:\(horizontalString)-> VALID horizontal whole word BUT too short!!! testForValidWordsAtDropSpot  LetterTileSprite.swift" )
+////                    }
+//                    else {
+//                        self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback2("Horizontal \(horizontalString)-> VALID partial word BUT too short!!! testForValidWordsAtDropSpot LetterTileSprite")
+//                        print ( "Horizontal L:\(leftString) R:\(rightString) H:\(horizontalString)-> VALID horizontal partial word !!! testForValidWordsAtDropSpot  LetterTileSprite.swift" )
+//                    }
+//                }
+            
+            
+            
+            
+            
+            
             
                 stringToAdd = ""
                 foundLockedTile = false
@@ -984,30 +1023,92 @@ class LetterTileSprite : SKSpriteNode {
                     currentCheckYGridNum++
                 }
             
+//            downString = self.tileText.stringByAppendingString(stringToAdd)
+//            verticalString = upString.stringByAppendingString(stringToAdd)
+//            
+//            if mmwGameScene.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkPartialWordMatch(verticalString) == false {
+//                // updates GUI for feedback on horizonal partial word
+//                validVerticalPartialWord = false
+//                validVerticalWholeWord = false
+//                self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback2("\(verticalString)-> Not a valid partial word !!! testForValidWordsAtDropSpot LetterTileSprite")
+//                print ( "Vertical \(verticalString)-> INVALID horizontal partial word !!! testForValidPartialWordsAtDropSpot  LetterTIleSprite.swift" )
+//            }
+//                
+//            else {
+//                validVerticalPartialWord = true
+//                self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback2("Vertical \(verticalString)-> VALID partial word !!! testForValidWordsAtDropSpot LetterTileSprite")
+//                print ( "\(verticalString) -> VALID vartical partial word !!! testForValidWordsAtDropSpot  LetterTileSprite.swift"  )
+//            }
+            
                 downString = stringToAdd
                 verticalString = upString.stringByAppendingString(downString)
 
-                if mmwGameScene.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkPartialWordMatch(verticalString) == false {
-                    // updates GUI for feedback on horizonal partial word
-                    validVerticalPartialWord = false
-                    validVerticalWholeWord = false
-                    self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback("\(verticalString)-> Not a valid partial word !!! testForValidWordsAtDropSpot LetterTileSprite")
-                    print ( "Vertical U:'\(upString)' D:'\(downString)' V:'\(verticalString)'-> INVALID horizontal partial word !!! testForValidPartialWordsAtDropSpot  LetterTIleSprite.swift" )
+            
+            
+            
+            
+            
+            
+            if mmwGameScene.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkPartialWordMatch(verticalString) == false {
+                // updates GUI for feedback on horizonal partial word
+                validVerticalPartialWord = false
+                validVerticalWholeWord = false
+                self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback("\(verticalString)-> Not a valid partial word !!! testForValidWordsAtDropSpot LetterTileSprite")
+                print ( "Vertical U:'\(upString)' D:'\(downString)' V:'\(verticalString)'-> INVALID horizontal partial word !!! testForValidPartialWordsAtDropSpot  LetterTIleSprite.swift" )
+            }
+                
+            else {
+                validVerticalPartialWord = true
+                if mmwGameScene.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkWholeWordMatch(verticalString) == true {
+                    self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback("Vertical \(verticalString)-> VALID whole word !!! testForValidWordsAtDropSpot LetterTileSprite")
+                    print ( "Vertical U:'\(upString)' D:'\(downString)' V:'\(verticalString)'-> VALID vertical whole word !!! testForValidWordsAtDropSpot  LetterTileSprite.swift"  )
                 }
-                    
                 else {
-                    validVerticalPartialWord = true
-                    if mmwGameScene.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkWholeWordMatch(verticalString) == true {
-                        self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback("Vertical \(verticalString)-> VALID whole word !!! testForValidWordsAtDropSpot LetterTileSprite")
-                        print ( "Vertical U:'\(upString)' D:'\(downString)' V:'\(verticalString)'-> VALID vertical whole word !!! testForValidWordsAtDropSpot  LetterTileSprite.swift"  )
-                    }
-                    else {
-                        self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback("Vertical \(verticalString)-> VALID partial word !!! testForValidWordsAtDropSpot LetterTileSprite")
-                        print ( "Vertical U:'\(upString)' D:'\(downString)' V:'\(verticalString)'-> VALID vartical partial word !!! testForValidWordsAtDropSpot  LetterTileSprite.swift"  )
-                    }
-                    
-
+                    self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback("Vertical \(verticalString)-> VALID partial word !!! testForValidWordsAtDropSpot LetterTileSprite")
+                    print ( "Vertical U:'\(upString)' D:'\(downString)' V:'\(verticalString)'-> VALID vartical partial word !!! testForValidWordsAtDropSpot  LetterTileSprite.swift"  )
                 }
+                
+                
+            }
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+//                if mmwGameScene.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkPartialWordMatch(verticalString) == false {
+//                    // updates GUI for feedback on horizonal partial word
+//                    validVerticalPartialWord = false
+//                    validVerticalWholeWord = false
+//                    self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback("\(verticalString)-> Not a valid partial word !!! testForValidWordsAtDropSpot LetterTileSprite")
+//                    print ( "Vertical U:'\(upString)' D:'\(downString)' V:'\(verticalString)'-> INVALID horizontal partial word !!! testForValidPartialWordsAtDropSpot  LetterTIleSprite.swift" )
+//                }
+//                    
+//                else {
+//                    validVerticalPartialWord = true
+//                    
+//                    if mmwGameScene.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkWholeWordMatch(verticalString) == true {
+//                        validVerticalWholeWord = true
+//                        self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback("Vertical \(verticalString)-> VALID whole word !!! testForValidWordsAtDropSpot LetterTileSprite")
+//                        print ( "Vertical U:'\(upString)' D:'\(downString)' V:'\(verticalString)'-> VALID vertical whole word !!! testForValidWordsAtDropSpot  LetterTileSprite.swift"  )
+//                    }
+////                    else if mmwGameScene.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkWholeWordMatch(verticalString) == true &&  horizontalString.characters.count < mmwGameSceneViewController.minWordSize {
+////                        self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback("Vertical \(verticalString)-> VALID whole word BUT too short!!! testForValidWordsAtDropSpot LetterTileSprite")
+////                        print ( "Vertical U:'\(upString)' D:'\(downString)' V:'\(verticalString)'-> VALID vertical whole word BUT too short!!! testForValidWordsAtDropSpot  LetterTileSprite.swift"  )
+////                    }
+//                        
+//                    else {
+//                        self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback("Vertical \(verticalString)-> VALID partial word !!! testForValidWordsAtDropSpot LetterTileSprite")
+//                        print ( "Vertical U:'\(upString)' D:'\(downString)' V:'\(verticalString)'-> VALID vartical partial word BUT too short!!! testForValidWordsAtDropSpot  LetterTileSprite.swift"  )
+//                    }
+//                }
         }
         
         if !isAI {  // BAD DROP BY PLAYER ! placeholder skip allow AI place invalid letter in valid spot
@@ -1035,7 +1136,7 @@ class LetterTileSprite : SKSpriteNode {
             
         else {   // IsAI is true
             if (horizontalString.characters.count > 1 && !validHorizontalPartialWord) ||
-                (verticalString.characters.count > 1 && !validVerticalPartialWord ) {
+                 (verticalString.characters.count > 1 && !validVerticalPartialWord ) {
                     //print("AI : No valid partial word: - 5 points LetterTileSprite")
                     print ( "AI : Horizontal \(horizontalString) && Vertical \(verticalString) -> NOT valid partial words - 5 points !!! testForValidWordsAtDropSpot LetterTileSprite.swift" )
                     return (validHorizontalPartialWord, validVerticalPartialWord, validHorizontalWholeWord, validVerticalWholeWord)
@@ -1568,13 +1669,9 @@ class LetterTileSprite : SKSpriteNode {
         else {
             print ( "\(horizontalString) is NOT a valid word string (horizontal) updateAIWordsAtDropSpot LetterTileSprite" )
         }
-        
-        
-        
+
         /////////////////////////////
-        
-        
-        
+
         // UP
         currentCheckXGridNum = tileXGridDestination
         currentCheckYGridNum = tileYGridDestination
@@ -1646,8 +1743,7 @@ class LetterTileSprite : SKSpriteNode {
         else {
             print ( "\(verticalString) is NOT a valid word string (vertical) updateAIWordsAtDropSpot LetterTileSprite" )
         }
-        
-        
+ 
         /////////////////////////////
         
 
@@ -1668,9 +1764,10 @@ class LetterTileSprite : SKSpriteNode {
         // set basic placeholder tile settings to fit in void in grid - home grid and x and y values
         let replacementPlaceholderTile : MMWTile = MMWTile()
         tileSpriteParent.gridHome?.grid2DArr[tileSpriteParent.gridX][tileSpriteParent.gridY] = replacementPlaceholderTile
-        tileSpriteParent.gridHome = self.tileSpriteParent.gridEnd
-        tileSpriteParent.gridX = self.tileSpriteParent.gridXEnd
-        tileSpriteParent.gridY = self.tileSpriteParent.gridYEnd
+        
+//        tileSpriteParent.gridHome = self.tileSpriteParent.gridEnd
+//        tileSpriteParent.gridX = self.tileSpriteParent.gridXEnd
+//        tileSpriteParent.gridY = self.tileSpriteParent.gridYEnd
 
         self.tileSpriteParent.gridHome?.mmwGameScene.newTilesButtonOff() // placed tile on board so now can only pass turn
     }
@@ -1718,8 +1815,13 @@ class LetterTileSprite : SKSpriteNode {
                         }
 
                         
-                        delay(tileNum*0.5) {
+                        delay(tileNum*2) {
                             tile.tileSprite.showTileScoreTextToGridHome (1, pointsForTile: pointsForTile )
+                            
+                            tile.gridHome = tile.gridEnd
+                            tile.gridX = tile.gridXEnd
+                            tile.gridY = tile.gridYEnd
+                            
                             tile.tileSprite.letterLabel.fontColor = tileColors[self.tileSpriteParent.tileOwner.rawValue]
                             print("#POINTS for locking tile: \(pointsForTile) : \(self.tileText) :  Player : \(self.mmwGameScene.mmwGameSceneViewController.playerArray[tile.tileOwner.rawValue - 1])) ")
                             tile.mmwGameScene?.explosion(tile.tileSprite.position)
@@ -1731,6 +1833,10 @@ class LetterTileSprite : SKSpriteNode {
                                 tile.tileSprite.color = UIColor.grayColor()
                             }
                          }
+                        
+//                        tile.gridHome = tile.gridEnd
+//                        tile.gridX = tile.gridXEnd
+//                        tile.gridY = tile.gridYEnd
 
                     }
                     //else if wordLen >= self.mmwGameSceneViewController.minWordSize && tileWordState.validHorizontalPartialWord {
@@ -1738,62 +1844,81 @@ class LetterTileSprite : SKSpriteNode {
                      //   let pointsForTile = wordLen * 2     // + wordLen points for each unlocked letter to tile owner // SCORE
                      //   self.adjustPlayerPoints(pointsForTile, player: (self.mmwGameScene.mmwGameSceneViewController.playerArray[tile.tileOwner.rawValue - 1]) )
                     //}
-
+                    
+//                    tile.gridHome = tile.gridEnd
+//                    tile.gridX = tile.gridXEnd
+//                    tile.gridY = tile.gridYEnd
                 }
                 pointsForTile = 0
                 ++tileNum
             }
-
-            // + 5 * wordLen points for making a new complete word // SCORE  // display points awarded animation (for completing whole word)
-            if tileSpriteParent.tileState == TileState.PlayedMadeWord {
-                //tileSpriteParent.mmwGameScene?.explosion(tileSpriteParent.tileSprite.position)
-                tileSpriteParent.tileSprite.letterLabel.fontColor = tileColors[self.tileSpriteParent.tileOwner.rawValue]
-                
-                //let tileWordState = self.testForValidWordsAtDropSpot(self.tileSpriteParent.gridXEnd, tileSnapResultsYGrid: self.tileSpriteParent.gridYEnd, isAI: true)
-                var pointsForCompletingWord = 0
-                if tileSpriteParent.tileState == TileState.PlayedMadeWord && tileSpriteParent.playedMadeWord == PlayedMadeWord.Vertical {
-                    self.color = UIColor.grayColor()
-                    pointsForCompletingWord = tileArrToScoreVertical.count * 5
-                    print("#POINTS for completing word VERTICAL : \(pointsForCompletingWord) : \(self.tileText) ")
-                }
-                if tileSpriteParent.tileState == TileState.PlayedMadeWord && tileSpriteParent.playedMadeWord == PlayedMadeWord.Horizontal {
-                    self.color = UIColor.grayColor()
-                    pointsForCompletingWord = tileArrToScoreHorizontal.count * 5
-                    print("#POINTS for completing word HORIZONTAL : \(pointsForCompletingWord) : \(self.tileText) ")
-                }
-                    
-                    
-                else if tileSpriteParent.tileState == TileState.PlayedMadeWord && tileSpriteParent.playedMadeWord == PlayedMadeWord.Both {
-                    self.color = UIColor.blackColor()
-                    pointsForCompletingWord = ( (tileArrToScoreVertical.count * 5) + (tileArrToScoreHorizontal.count * 5) )
-                    print("#POINTS for completing word BOTH : \(pointsForCompletingWord) : \(self.tileText) ")
-                    tileSpriteParent.tileState = TileState.Locked
-                }
-            
-                let delay = SKAction.waitForDuration( Double(3) )
-                self.runAction( delay ) {
-                    //run code here after delay secs
-                    if wordLen >= self.mmwGameSceneViewController.minWordSize {
-                        self.showWordScoreTextToGridHome(pointsForCompletingWord, isHorizontalScore: true)      // doesn't actually use value, already set in setting letterScore.2 above
-                        self.adjustPlayerPoints(pointsForCompletingWord, player: (self.mmwGameScene.mmwGameSceneViewController.playerArray[self.tileSpriteParent.tileOwner.rawValue - 1]) )
-                        print("#POINTS for completing word: \(pointsForCompletingWord) : \(self.tileText) ")
-                    }
-                    
-                 }
-            }
             numPasses++
         }
+        
+        // + 5 * wordLen points for making a new complete word // SCORE  // display points awarded animation (for completing whole word)
+        if tileSpriteParent.tileState == TileState.PlayedMadeWord {
+            //tileSpriteParent.mmwGameScene?.explosion(tileSpriteParent.tileSprite.position)
+            tileSpriteParent.tileSprite.letterLabel.fontColor = tileColors[self.tileSpriteParent.tileOwner.rawValue]
+            
+            //let tileWordState = self.testForValidWordsAtDropSpot(self.tileSpriteParent.gridXEnd, tileSnapResultsYGrid: self.tileSpriteParent.gridYEnd, isAI: true)
+            var pointsForCompletingWord = 0
+            if tileSpriteParent.tileState == TileState.PlayedMadeWord && tileSpriteParent.playedMadeWord == PlayedMadeWord.Vertical {
+                self.color = UIColor.grayColor()
+                pointsForCompletingWord = tileArrToScoreVertical.count * 5
+                print("+POINTS for completing word VERTICAL : \(pointsForCompletingWord) : \(self.tileText) ")
+                tileSpriteParent.tileState = TileState.Locked
+            }
+            
+            if tileSpriteParent.tileState == TileState.PlayedMadeWord && tileSpriteParent.playedMadeWord == PlayedMadeWord.Horizontal {
+                self.color = UIColor.grayColor()
+                pointsForCompletingWord = tileArrToScoreHorizontal.count * 5
+                print("+POINTS for completing word HORIZONTAL : \(pointsForCompletingWord) : \(self.tileText) ")
+                tileSpriteParent.tileState = TileState.Locked
+            }
+                
+            else if tileSpriteParent.tileState == TileState.PlayedMadeWord && tileSpriteParent.playedMadeWord == PlayedMadeWord.Both {
+                self.color = UIColor.blackColor()
+                pointsForCompletingWord = ( (tileArrToScoreVertical.count * 5) + (tileArrToScoreHorizontal.count * 5) )
+                print("+POINTS for completing word BOTH : \(pointsForCompletingWord) : \(self.tileText) ")
+                tileSpriteParent.tileState = TileState.Locked
+            }
+            
+            let delay = SKAction.waitForDuration(3.0)
+            self.runAction( delay ) {
+                //run code here after delay secs
+                //if wordLen >= self.mmwGameSceneViewController.minWordSize {
+                    self.showWordScoreTextToGridHome(pointsForCompletingWord, isHorizontalScore: true)      // doesn't actually use value, already set in setting letterScore.2 above
+                    self.adjustPlayerPoints(pointsForCompletingWord, player: (self.mmwGameScene.mmwGameSceneViewController.playerArray[self.tileSpriteParent.tileOwner.rawValue - 1]) )
+                    print("#POINTS for completing word: \(pointsForCompletingWord) : \(self.tileText) ")
+                
+                self.tileSpriteParent.gridHome = self.tileSpriteParent.gridEnd
+                self.tileSpriteParent.gridX = self.tileSpriteParent.gridXEnd
+                self.tileSpriteParent.gridY = self.tileSpriteParent.gridYEnd
+                //}
+            }
+            
+
+        }
+
         for tile in tileArrToScoreHorizontal {                                                                        // Lock all tiles in locked word tile array
             if tile.tileState == TileState.Played || tile.tileState == TileState.PlayedMadeWord  {
                 tile.tileState = TileState.Locked
             }
+//            tile.gridHome = tile.gridEnd
+//            tile.gridX = tile.gridXEnd
+//            tile.gridY = tile.gridYEnd
         }
         
         for tile in tileArrToScoreVertical {                                                                        // Lock all tiles in locked word tile array
             if tile.tileState == TileState.Played || tile.tileState == TileState.PlayedMadeWord  {
                 tile.tileState = TileState.Locked
             }
+//                tile.gridHome = tile.gridEnd
+//                tile.gridX = tile.gridXEnd
+//                tile.gridY = tile.gridYEnd
+            //}
         }
+        
         return 0
     }
 
@@ -1825,4 +1950,3 @@ class LetterTileSprite : SKSpriteNode {
 //        }
     }
 }
-    
