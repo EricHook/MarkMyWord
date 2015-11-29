@@ -237,9 +237,11 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
         
         // Placeholder for AI play
         let playBtnPlay = SKSpriteNode(imageNamed: "PlayButton.png")
-        playBtnPlay.position = CGPoint(x: viewSize.width * 0.9228, y: viewSize.height * 0.04)
+        playBtnPlay.position = CGPoint(x: viewSize.width * 0.0, y: viewSize.height * 0.00)
+        playBtnPlay.anchorPoint = CGPointMake(0, 0)
         playBtnPlay.name = "playBtnPlay"
         playBtnPlay.zPosition = 100
+        playBtnPlay.size = CGSizeMake(40.0, 40.0)
         playBtnPlay.anchorPoint = CGPointMake(0, 0)
         self.addChild(playBtnPlay)
         newTilesButton.userInteractionEnabled = true
