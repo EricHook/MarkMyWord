@@ -23,7 +23,7 @@ class Grid {
     var gridNumSquaresXMin : Int = 3
     var gridNumSquaresYMin : Int = 2
 
-    var grid2DArr = [[MMWTile]]()
+   var grid2DArr = [[MMWTile]]()
     var gridName : String = ""
     var gridPlayer : Player? = nil
     var gridNum : Int = 0
@@ -227,7 +227,7 @@ class Grid {
     
     /// func convert2DGridToArray (tileGrid : [[MMWTile]] ) () -> [MMWTile]
     /// converts a 2D player tile grid to a MMWTIle array
-    func convert2DGridToArray (tileGrid : [[MMWTile]]) -> [MMWTile] {
+    func convert2DGridToArray (tileGrid : [[MMWTile]]) -> [MMWTile]? {
         var tileArr = [MMWTile]()
         for tileRow in tileGrid {
             for tile in tileRow {

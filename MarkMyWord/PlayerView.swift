@@ -171,20 +171,15 @@ class PlayerView: SKSpriteNode {
         self.playerTileCover.hidden = true
         self.playerGridGlow.hidden = false
         mmwGameScene.bottomDisplayLabel.text =  ("\(mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerName ), place letters")
-        let playerGrid = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid! 
+        
+        let playerGrid = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid!
         playerGrid.makeTilesInGridInteractive(true)
-        for tileColumn in playerGrid.grid2DArr {
-            for tile in tileColumn {
-                tile.tileSprite.userInteractionEnabled = true
-                tile.tileSprite.isMovable = true
-            }
-        }
     }
     
     func playerViewEndTurn () {
         self.playerNameLabel.fontColor =  FontHUDBlack
         self.playerScoreLabel.fontColor = FontHUDBlack
-        changePlayerScoreDisplay()
+        //changePlayerScoreDisplay()
         self.playerTileCover.hidden = false
         self.playerGridGlow.hidden = true
         mmwGameScene.topDisplayLabel.text = ("Great Job, \(self.playerNameLabel.text)!!!")
@@ -193,12 +188,6 @@ class PlayerView: SKSpriteNode {
         
         let playerGrid = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid!  // .grid2DArr
         playerGrid.makeTilesInGridInteractive(false)
-//        for tileColumn in playerGrid {
-//            for tile in tileColumn {
-//                tile.tileSprite.userInteractionEnabled = false
-//                tile.tileSprite.isMovable = false
-//            }
-//        }   
     }
     
     required init?(coder aDecoder: NSCoder) {

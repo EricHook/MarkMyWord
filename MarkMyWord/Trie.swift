@@ -316,4 +316,6 @@ extension Trie {
     public var count: Int {
         return children.values.reduce(endHere ? 1 : 0) { $0 + $1.count }
     }
+
+    
 }

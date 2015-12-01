@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B80327FF1C0CD22E0002665F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B80327FE1C0CD22E0002665F /* CoreData.framework */; };
 		B808A42E1B9A0C000070A1A6 /* Trie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B808A42D1B9A0C000070A1A6 /* Trie.swift */; };
 		B820241F1B65BFD0004E413A /* StreamReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B820241E1B65BFD0004E413A /* StreamReader.swift */; };
 		B82786151B05585D00916E20 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82786141B05585D00916E20 /* Player.swift */; };
@@ -16,6 +17,9 @@
 		B84738DA1C0A5305003B05BA /* player01.png in Resources */ = {isa = PBXBuildFile; fileRef = B84738D91C0A5305003B05BA /* player01.png */; };
 		B84738DD1C0A5E47003B05BA /* player03.png in Resources */ = {isa = PBXBuildFile; fileRef = B84738DB1C0A5E47003B05BA /* player03.png */; };
 		B84738DE1C0A5E47003B05BA /* player04.png in Resources */ = {isa = PBXBuildFile; fileRef = B84738DC1C0A5E47003B05BA /* player04.png */; };
+		B84738E31C0A9EF3003B05BA /* WordList8to10LetterNoDup.txt in Resources */ = {isa = PBXBuildFile; fileRef = B84738E01C0A9EF3003B05BA /* WordList8to10LetterNoDup.txt */; };
+		B84738E41C0A9EF3003B05BA /* WordList6to7LetterNoDup.txt in Resources */ = {isa = PBXBuildFile; fileRef = B84738E11C0A9EF3003B05BA /* WordList6to7LetterNoDup.txt */; };
+		B84738E61C0B80FD003B05BA /* WordList11to16LetterNoDup.txt in Resources */ = {isa = PBXBuildFile; fileRef = B84738E51C0B80FD003B05BA /* WordList11to16LetterNoDup.txt */; };
 		B84EBE971BE14700008B6B12 /* WordList1to3LetterNoDup.txt in Resources */ = {isa = PBXBuildFile; fileRef = B84EBE951BE14700008B6B12 /* WordList1to3LetterNoDup.txt */; };
 		B84EBE981BE14700008B6B12 /* WordList4LetterNoDup.txt in Resources */ = {isa = PBXBuildFile; fileRef = B84EBE961BE14700008B6B12 /* WordList4LetterNoDup.txt */; };
 		B86530651BB7114F00A6A471 /* TrieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86530641BB7114F00A6A471 /* TrieTests.swift */; };
@@ -79,6 +83,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B80327FE1C0CD22E0002665F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B808A42D1B9A0C000070A1A6 /* Trie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trie.swift; sourceTree = "<group>"; };
 		B812D01E1BEAFE5100058683 /* 30Showdown.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = 30Showdown.m4a; sourceTree = "<group>"; };
 		B820241E1B65BFD0004E413A /* StreamReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamReader.swift; sourceTree = "<group>"; };
@@ -89,6 +94,9 @@
 		B84738D91C0A5305003B05BA /* player01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player01.png; sourceTree = "<group>"; };
 		B84738DB1C0A5E47003B05BA /* player03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player03.png; sourceTree = "<group>"; };
 		B84738DC1C0A5E47003B05BA /* player04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player04.png; sourceTree = "<group>"; };
+		B84738E01C0A9EF3003B05BA /* WordList8to10LetterNoDup.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WordList8to10LetterNoDup.txt; sourceTree = "<group>"; };
+		B84738E11C0A9EF3003B05BA /* WordList6to7LetterNoDup.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WordList6to7LetterNoDup.txt; sourceTree = "<group>"; };
+		B84738E51C0B80FD003B05BA /* WordList11to16LetterNoDup.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WordList11to16LetterNoDup.txt; sourceTree = "<group>"; };
 		B84EBE951BE14700008B6B12 /* WordList1to3LetterNoDup.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WordList1to3LetterNoDup.txt; sourceTree = "<group>"; };
 		B84EBE961BE14700008B6B12 /* WordList4LetterNoDup.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WordList4LetterNoDup.txt; sourceTree = "<group>"; };
 		B86530641BB7114F00A6A471 /* TrieTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrieTests.swift; sourceTree = "<group>"; };
@@ -153,6 +161,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B80327FF1C0CD22E0002665F /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +263,9 @@
 				B84EBE961BE14700008B6B12 /* WordList4LetterNoDup.txt */,
 				B8361E381BE2AAC1000CEB0E /* WordList5LetterNoDup.txt */,
 				B88118DB1BEAA32A003E74E5 /* WordList6LetterNoDup.txt */,
+				B84738E11C0A9EF3003B05BA /* WordList6to7LetterNoDup.txt */,
+				B84738E01C0A9EF3003B05BA /* WordList8to10LetterNoDup.txt */,
+				B84738E51C0B80FD003B05BA /* WordList11to16LetterNoDup.txt */,
 				B82D49391B908C5600607595 /* WM */,
 				B88118DA1BEA90AA003E74E5 /* H WordLists */,
 				B879D8F01BDDCE4E0088A5A4 /* enable1WordListMod.txt */,
@@ -326,6 +338,7 @@
 		B8CCE1931AD8C13500882391 = {
 			isa = PBXGroup;
 			children = (
+				B80327FE1C0CD22E0002665F /* CoreData.framework */,
 				B8CCE19E1AD8C13500882391 /* MarkMyWord */,
 				B8CCE1B81AD8C13500882391 /* MarkMyWordTests */,
 				B8CCE19D1AD8C13500882391 /* Products */,
@@ -616,12 +629,14 @@
 				B88A58581BEAD859003E0957 /* MeyamaSplashScreen_iPad.jpg in Resources */,
 				B84738D81C0A482C003B05BA /* PlayerBG02Island.png in Resources */,
 				B8CCE1B01AD8C13500882391 /* LaunchScreen.xib in Resources */,
+				B84738E31C0A9EF3003B05BA /* WordList8to10LetterNoDup.txt in Resources */,
 				B8CCE1AD1AD8C13500882391 /* Images.xcassets in Resources */,
 				B88A585D1BEAD859003E0957 /* PassButton.png in Resources */,
 				B88A585B1BEAD859003E0957 /* NewTilesButton.png in Resources */,
 				B8FFF25F1BE96E2E006D2010 /* spark.png in Resources */,
 				B88A585E1BEAD859003E0957 /* PauseButton.png in Resources */,
 				B84738DD1C0A5E47003B05BA /* player03.png in Resources */,
+				B84738E61C0B80FD003B05BA /* WordList11to16LetterNoDup.txt in Resources */,
 				B88A58571BEAD859003E0957 /* MarkMyWordBGCleaniPad@2x.png in Resources */,
 				B88A585C1BEAD859003E0957 /* OptionsButton.png in Resources */,
 				B88A58671BEAD978003E0957 /* player02.png in Resources */,
@@ -646,6 +661,7 @@
 				B88A58701BEADA6F003E0957 /* TileShadow90x90.png in Resources */,
 				B88A58531BEAD859003E0957 /* 37Bronk.mp3 in Resources */,
 				B88A58561BEAD859003E0957 /* 1023.WAV in Resources */,
+				B84738E41C0A9EF3003B05BA /* WordList6to7LetterNoDup.txt in Resources */,
 				B88A585F1BEAD859003E0957 /* PlayButton.png in Resources */,
 				B84738DA1C0A5305003B05BA /* player01.png in Resources */,
 			);
@@ -762,7 +778,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -801,7 +817,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -818,7 +834,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MarkMyWord/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hookstudios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -837,7 +853,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MarkMyWord/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hookstudios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

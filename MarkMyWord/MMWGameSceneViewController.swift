@@ -11,6 +11,8 @@ import UIKit
 import SpriteKit
 import CoreMotion
 
+import CoreData
+
 extension StreamReader : SequenceType {
     func generate() -> AnyGenerator<String> {
         return anyGenerator {
@@ -36,14 +38,14 @@ class MMWGameSceneViewController {
     var player3 : Player = Player(_playerID: 3, _playerName: "Charlie", _playerColor: 3)
     var player4 : Player = Player(_playerID: 4, _playerName: "Dan", _playerColor: 4)
     var playerArray : [Player]! // array of all players 0-3 for easier iteration of player turns
-    var wordsLoaded1to3 = false
-    var wordsLoaded4 = false
-    var wordsLoaded5 = false
-    var wordsLoaded6 = false
-    var wordsLoaded7 = false
-    var wordsLoaded8 = false
-    var wordsLoaded9 = false
-    var wordsLoaded10Plus = false
+    var wordsLoaded1to3     = false
+    var wordsLoaded4        = false
+    var wordsLoaded5        = false
+    var wordsLoaded6        = false
+    var wordsLoaded7        = false
+    var wordsLoaded8        = false
+    var wordsLoaded9        = false
+    var wordsLoaded10Plus   = false
 
     var wordArray : [String] = [""]
     var wordArrayMod : [String.CharacterView] = ["".characters]
@@ -434,7 +436,7 @@ class MMWGameSceneViewController {
             tileArrayNumber = 0
         }
         print("After remove tiles: letterTileArray.count: \(letterTileArray.count)" )
-            return tilesToBoard
+        return tilesToBoard
     }
 
 //func checkUndealtTilesForWord (wordToCheck: String, inout letterTileArray: [MMWTile]) -> [MMWTile]? {
@@ -550,23 +552,24 @@ class MMWGameSceneViewController {
     
     
     func placeWord (player: Player, startLocX: Int, startLocY: Int, direction: Character, wordToPlace: [MMWTile]){
-        var tileToPlace = self.tilesPlayable[0]
-        tileToPlace.tileSprite.color = tileColors[player.playerID]
-        tileToPlace.tileSprite.tileLocation = CGPoint(x: 200, y: 200)
-        tileToPlace.gridHome = mmwGameScene.mmwBoardGrid
-        tileToPlace.gridEnd = mmwGameScene.mmwBoardGrid
-        tileToPlace.tileGrid = mmwGameScene.mmwBoardGrid
-        tileToPlace.gridX = startLocX
-        tileToPlace.gridXEnd = startLocX
-        tileToPlace.gridY = startLocY
-        tileToPlace.gridYEnd = startLocY
+        weak var tileToPlace = self.tilesPlayable[0]
+        tileToPlace!.tileSprite.color = tileColors[player.playerID]
+        tileToPlace!.tileSprite.tileLocation = CGPoint(x: 200, y: 200)
+        tileToPlace!.gridHome = mmwGameScene.mmwBoardGrid
+        tileToPlace!.gridEnd = mmwGameScene.mmwBoardGrid
+        tileToPlace!.tileGrid = mmwGameScene.mmwBoardGrid
+        tileToPlace!.gridX = startLocX
+        tileToPlace!.gridXEnd = startLocX
+        tileToPlace!.gridY = startLocY
+        tileToPlace!.gridYEnd = startLocY
         
-        setTileOwner(&tileToPlace, player: player)
-        tileToPlace.tileSprite.tileLocation = tileToPlace.gridHome!.sendToGridSquare(tileToPlace.gridX, squareY: tileToPlace.gridY)
-        tileToPlace.tileState = TileState.Played
-        tileToPlace.gridHome?.grid2DArr[tileToPlace.gridX][tileToPlace.gridY] = tileToPlace
-        tileToPlace.tileSprite.zPosition = 11
-        tileToPlace.tileSprite.hidden = false
+        setTileOwner(&tileToPlace!, player: player)
+        tileToPlace!.tileSprite.tileLocation = tileToPlace!.gridHome!.sendToGridSquare(tileToPlace!.gridX, squareY: tileToPlace!.gridY)
+        tileToPlace!.tileState = TileState.Played
+        tileToPlace!.gridHome?.grid2DArr[tileToPlace!.gridX][tileToPlace!.gridY] = tileToPlace!
+        tileToPlace!.tileSprite.zPosition = 11
+        tileToPlace!.tileSprite.hidden = false
+        
     }
 
  
@@ -600,18 +603,99 @@ class MMWGameSceneViewController {
         } 
     }
 
-    
+ 
     func loadWords() {
         
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-        dispatch_async(dispatch_get_global_queue(priority, 0), { ()->() in
+        
+//        let qualityOfServiceClass = QOS_CLASS_BACKGROUND
+//        let backgroundQueue = dispatch_get_global_queue(qualityOfServiceClass, 0)
+//        dispatch_async(backgroundQueue, {
+//            print("This is run on the background queue")
+//            
+//            //dispatch_async(dispatch_get_main_queue()) {
+//                
+//                //self.buildWordArray("WordList1to3LetterNoDup")
+//                self.buildTrie( self.buildWordArray("WordList1to3LetterNoDup") )
+//                self.wordsLoaded1to3 = true
+//                print("buildTrie() 1-3")
+//                print("Currently dispatched asynchronously 1-3")
+//                print("I got dispatched1!")
+//                
+//            //}
+//            
+//            //dispatch_async(dispatch_get_main_queue()) {
+//                
+//                //self.buildWordArray("WordList4LetterNoDup")
+//                self.insertTrie(self.buildWordArray("WordList4LetterNoDup") )
+//                self.wordsLoaded4 = true
+//                print("insertTrie() 4")
+//                print("Currently dispatched asynchronously 4")
+//                print("I got dispatched2!")
+//            //}
+//            
+//            //dispatch_async(dispatch_get_main_queue()) {
+//                
+//                //self.buildWordArray("WordList5LetterNoDup")
+//                self.insertTrie(self.buildWordArray("WordList5LetterNoDup") )
+//                self.wordsLoaded5 = true
+//                print("insertTrie() 5")
+//                print("Currently dispatched asynchronously 5")
+//                //print("hello from UI thread executed as dispatch 2")
+//                print("I got dispatched3!")
+//            //}
+//            
+//            //dispatch_async(dispatch_get_main_queue()) {
+//                
+//                //self.buildWordArray("WordList6LetterNoDup")
+//                self.insertTrie(self.buildWordArray("WordList6LetterNoDup") )
+//                self.wordsLoaded6 = true
+//                print("insertTrie() 6")
+//                print("Currently dispatched asynchronously 6")
+//                
+//                print("I got dispatched4!")
+//            //}
+//            
+//            dispatch_async(dispatch_get_main_queue()) {
+//                
+//                //self.buildWordArray("WordList6LetterNoDup")
+//                self.insertTrie(self.buildWordArray("WordList6to7LetterNoDup") )
+//                self.wordsLoaded7 = true
+//                print("insertTrie() 6 to 7")
+//                print("Currently dispatched asynchronously 7")
+//                print("I got dispatched5!")
+//                
+//            }
+//            
+//            dispatch_async(dispatch_get_main_queue()) {
+//                
+//                //self.buildWordArray("WordList6LetterNoDup")
+//                self.insertTrie(self.buildWordArray("WordList8to10LetterNoDup") )
+//                self.wordsLoaded8 = true
+//                print("insertTrie() 8to10")
+//                print("Currently dispatched asynchronously 8to10")
+//                print("I got dispatched6!")
+//                
+//            }
+//
+//            
+//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                print("This is run on the main queue, after the previous code in outer block")
+//            })
+//        })
+        
 
+        
+        //let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        let priority = DISPATCH_QUEUE_PRIORITY_HIGH
+        
+        dispatch_async(dispatch_get_global_queue(priority, 0), { ()->() in
+            
             print("gcd hello")
             print("hello from UI thread executed as dispatch 1")
             print("Currently dispatched asynchronously 0")
-
+            
             //self.buildWordArray("WordList1to3LetterNoDup")
-            self.buildTrie( self.buildWordArray("WordList1to3LetterNoDup") )
+            self.buildTrie(self.buildWordArray("WordList1to3LetterNoDup") )
             self.wordsLoaded1to3 = true
             print("buildTrie() 1-3")
             print("Currently dispatched asynchronously 1-3")
@@ -634,17 +718,52 @@ class MMWGameSceneViewController {
             self.wordsLoaded6 = true
             print("insertTrie() 6")
             print("Currently dispatched asynchronously 6")
-            
-            
-            dispatch_async(dispatch_get_main_queue(), {
-                
-                print("hello from UI thread executed as dispatch")
 
+            /////////////////////////
+            
+            //self.buildWordArray("WordList6to7LetterNoDup")
+            self.insertTrie(self.buildWordArray("WordList6to7LetterNoDup") )
+            self.wordsLoaded7 = true
+            print("insertTrie() 6 to 7")
+            print("Currently dispatched asynchronously 7")
+            
+            //self.buildWordArray("WordList6LetterNoDup")
+            self.insertTrie(self.buildWordArray("WordList8to10LetterNoDup") )
+            self.wordsLoaded8 = true
+            print("insertTrie() 8to10")
+            print("Currently dispatched asynchronously 8to10")
+            
+            ////////////////////////
+
+            //self.buildWordArray("WordList11to16LetterNoDup")
+            self.insertTrie(self.buildWordArray("WordList11to16LetterNoDup") )
+            self.wordsLoaded9 = true
+            print("insertTrie() 11to16")
+            print("Currently dispatched asynchronously 11to16")
+ 
+//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { ()->() in
+//
+//                })
+  
+            dispatch_async(dispatch_get_main_queue(), {
+
+                print("hello from UI thread executed as dispatch")
+                
             })
         })
-
+        
         print("hello from UI thread")
+        
 
+        
+
+
+        
+        
+        
+        
+        
+        
 //        dispatch_async(dispatch_get_main_queue()) {
 //            print("Currently dispatched asynchronously 0")
 //            
