@@ -915,9 +915,10 @@ class LetterTileSprite : SKSpriteNode {
                     stringToAdd = stringToAdd.stringByAppendingString(letterToAdd)
                     if mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileSnapResultsYGrid].tileState == TileState.Locked {
                         foundLockedTile = true
-                    hasLockedPotentialWord = true
+                        hasLockedPotentialWord = true
                     }
-                    possibleWordTilesHorizontal.append(mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileSnapResultsYGrid])
+                    
+                    
                     currentCheckXGridNum++
                 }
             
@@ -930,6 +931,12 @@ class LetterTileSprite : SKSpriteNode {
             
             if (( mmwGameScene.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkPartialWordMatch(horizontalString)) == false) {
                 validHorizontalPartialWord = false
+                
+                
+                validHorizontalWholeWord = false
+                
+                
+                
                 self.tileSpriteParent.gridHome?.mmwGameScene.updatePartialWordFeedback2("Horizontal \(horizontalString)-> Not a valid partial word !!! testForValidWordsAtDropSpot LetterTileSprite")
                 print ( "Horizontal L:\(leftString) R:\(rightString) H:\(horizontalString)-> INVALID horizontal partial word !!! testForValidWordsAtDropSpot  LetterTileSprite.swift" )
             }
@@ -1022,6 +1029,17 @@ class LetterTileSprite : SKSpriteNode {
                         foundLockedTile = true
                         hasLockedPotentialWord = true
                     }
+                    
+                    
+                    
+                    
+                    possibleWordTilesVertical.append(mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum + 1])
+                    
+                    
+                    
+                    
+                    
+                    
                     currentCheckYGridNum++
                 }
             
@@ -1347,12 +1365,23 @@ class LetterTileSprite : SKSpriteNode {
         // set value of snap results grid location to the MMWTile if valid location
         self.tileSpriteParent.gridEnd? = self.tileSpriteParent.gridEnd!
         self.tileSpriteParent.gridEnd?.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid] = self.tileSpriteParent
+        
+        
+        
+        
+        
+        self.tileSpriteParent.gridXTest = self.tileSpriteParent.gridX
+        self.tileSpriteParent.gridYTest = self.tileSpriteParent.gridY
 
         self.tileSpriteParent.gridXEnd = tileSnapResultsXGrid
         self.tileSpriteParent.gridYEnd = tileSnapResultsYGrid
         
-        self.tileSpriteParent.gridXTest = tileSnapResultsXGrid
-        self.tileSpriteParent.gridYTest = tileSnapResultsYGrid
+//        self.tileSpriteParent.gridXTest = tileSnapResultsXGrid
+//        self.tileSpriteParent.gridYTest = tileSnapResultsYGrid
+        
+        self.tileSpriteParent.gridX = self.tileSpriteParent.gridXEnd
+        self.tileSpriteParent.gridY = self.tileSpriteParent.gridYEnd
+        
 
         // move tile to snap point
         self.position.x = (CGFloat)(tileSnapResultsCalculateX + 23.75)  //adjusts 22.5 for tile center in middle of tile
@@ -1756,7 +1785,29 @@ class LetterTileSprite : SKSpriteNode {
         self.tileSpriteParent.gridYEnd = tileYGridDestination
 
         self.playTileToBoardGrid(0)  // animation to move to position on board and set Grid, x and y values for tile at tile End Position
+        
+        
+        
+        
+        
+        
+//        var madeValidWord = false
+//        if self.tileSpriteParent.tileState == TileState.PlayedMadeWord {
+//            madeValidWord = true
+//        }
+//        
+//        let tileLocation = mmwGameScene.mmwBoardGrid.sendToGridSquare(self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridYEnd)
+//        //self.updateWordsAtDropSpot( self.tileSpriteParent.gridXEnd, tileSnapResultsYGrid: self.tileSpriteParent.gridYEnd, touchX: Float(tileLocation.x), touchY: Float(tileLocation.y) )
+//        
+//        self.updateAIWordsAtDropSpot(self.tileSpriteParent.gridXEnd, tileYGridDestination: self.tileSpriteParent.gridYEnd, madeValidWord: madeValidWord)
+        
 
+        
+        
+        
+        
+        
+        
         if self.tileSpriteParent.tileState == TileState.PlayedMadeWord  {
             delay(0.25 * Double(possibleWordTilesHorizontal.count)) {
                 self.scoreTilesInArr(possibleWordTilesHorizontal, tileArrToScoreVertical: possibleWordTilesVertical, wordStringHorizontal: horizontalString, wordStringVertical: verticalString)
@@ -1795,6 +1846,7 @@ class LetterTileSprite : SKSpriteNode {
             
             tileNum = 0.0
             
+            //tileArrToScore = tileArrToScore.reverse()
             // + 2*wordLen points for locking a tile // SCORE  // display points awarded animation (for locked tile)
             for tile in tileArrToScore {
                 let tileWordState = tile.tileSprite.testForValidWordsAtDropSpot(tile.gridXEnd, tileSnapResultsYGrid: tile.gridYEnd, isAI: true)
