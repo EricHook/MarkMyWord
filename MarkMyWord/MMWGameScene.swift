@@ -1435,6 +1435,8 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
             gridTestX = gridXSpot // reset test spot as it may have been moved to right in code below
             gridTestY = gridYSpot
             ////////////////////
+  
+            
         }
         return (false, validWholeWordAILetterPlayArr)
     }
@@ -1635,9 +1637,7 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
                                 testString = self.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileText // get letter at start tile
                                 
                                 
-                                
-                                
-                                
+
                                 return (false, validWholeWordAILetterPlayArr)
                                 //break
                             }

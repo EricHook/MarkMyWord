@@ -16,9 +16,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
+    func demo () {
+        
+        let itemNames = ["Apples", "Milk", "Bread", "Cheese", "Sausages", "Butter", "Orange Juice", "Cereal", "Coffee", "Eggs", "Tomatoes", "Fish"]
+        
+        for itemName in itemNames {
+            
+            let item:Item = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: CDHelper.shared.context) as! Item
+            item.name = itemName
+            print("Inserted New Managed Object for '\(item.name)'")
+        }
+        //CDHelper.saveSharedContext()
+    }
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         print("AppDelegate > application ...")
+        
+        
+        CDHelper.shared
+        
+        
         return true
     }
 
@@ -31,6 +49,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+        CDHelper.saveSharedContext()
+        
+        
         print("AppDelegate > application ...")
     }
 
@@ -41,11 +63,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
+        demo()
+        
+        
         print("AppDelegate > applicationDidBecomeActive ...")
     }
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        
+        CDHelper.saveSharedContext()
+        
+        
         print("AppDelegate > applicationWillTerminate...")
     }
     

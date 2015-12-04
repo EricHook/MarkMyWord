@@ -390,7 +390,7 @@ class LetterTileSprite : SKSpriteNode {
                     
                     
                     
-                    updateWordsAtDropSpot(tileSnapResultsXGrid, tileSnapResultsYGrid: tileSnapResultsYGrid, touchX: Float(tileSnapTouch.x), touchY: Float(tileSnapTouch.y)) ()
+                    updateWordsAtDropSpot(Float(tileSnapTouch.x), touchY: Float(tileSnapTouch.y)) () // tileSnapResultsXGrid, tileSnapResultsYGrid: tileSnapResultsYGrid,  touchX: 
                 }
             }
             print("tile drop = \(tileSnapResultsXGrid), \(tileSnapResultsYGrid)")
@@ -1176,7 +1176,7 @@ class LetterTileSprite : SKSpriteNode {
     /// -Parameters: tileSnapResultsXGrid: Int, tileSnapResultsYGrid: Int, touchX: Float, touchY: Float
     /// -Returns: none
     /// used to test when a whole or partial word play exists at drop spot & updates tile data on successful play
-    func updateWordsAtDropSpot (tileSnapResultsXGrid: Int, tileSnapResultsYGrid: Int, touchX: Float, touchY: Float) () {
+    func updateWordsAtDropSpot (touchX: Float, touchY: Float) () {  // tileSnapResultsXGrid: Int, tileSnapResultsYGrid: Int,
         
         let tileSnapResults = mmwGameScene.mmwBoardGrid.getGridSquare(touchX, locY: touchY)
         let tileSnapResultsCalculateX = tileSnapResults.GridSquareUpperLeftCornerX
@@ -1347,14 +1347,9 @@ class LetterTileSprite : SKSpriteNode {
         if tileSpriteParent.tileState == TileState.PlayedMadeWord {
             scoreTilesInArr(possibleWordTilesHorizontal, tileArrToScoreVertical: possibleWordTilesVertical, wordStringHorizontal: horizontalString, wordStringVertical: verticalString)
         }
-        
-        
+    
         //////////////////
-        
-        
-        
-        
-        
+
         // set basic placeholder tile settings to fit in void in grid - home grid and x and y values
         let replacementPlaceholderTile : MMWTile = MMWTile()
         replacementPlaceholderTile.gridHome = self.tileSpriteParent.gridHome
@@ -1365,11 +1360,7 @@ class LetterTileSprite : SKSpriteNode {
         // set value of snap results grid location to the MMWTile if valid location
         self.tileSpriteParent.gridEnd? = self.tileSpriteParent.gridEnd!
         self.tileSpriteParent.gridEnd?.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid] = self.tileSpriteParent
-        
-        
-        
-        
-        
+
         self.tileSpriteParent.gridXTest = self.tileSpriteParent.gridX
         self.tileSpriteParent.gridYTest = self.tileSpriteParent.gridY
 
@@ -1379,8 +1370,8 @@ class LetterTileSprite : SKSpriteNode {
 //        self.tileSpriteParent.gridXTest = tileSnapResultsXGrid
 //        self.tileSpriteParent.gridYTest = tileSnapResultsYGrid
         
-        self.tileSpriteParent.gridX = self.tileSpriteParent.gridXEnd
-        self.tileSpriteParent.gridY = self.tileSpriteParent.gridYEnd
+//        self.tileSpriteParent.gridX = self.tileSpriteParent.gridXEnd
+//        self.tileSpriteParent.gridY = self.tileSpriteParent.gridYEnd
         
 
         // move tile to snap point

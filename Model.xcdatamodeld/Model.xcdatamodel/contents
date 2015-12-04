@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15B42" minimumToolsVersion="Xcode 7.0">
+    <entity name="GameState" representedClassName=".GameState" syncable="YES">
+        <attribute name="playerTurn" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="Item" representedClassName=".Item" syncable="YES">
+        <attribute name="collected" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="listed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photoData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="quantity" optional="YES" attributeType="Float" syncable="YES"/>
+    </entity>
+    <entity name="TrieData" representedClassName=".TrieData" syncable="YES">
+        <attribute name="prebuiltTrie" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="trieNumber" optional="YES" attributeType="Integer 16" defaultValueString="16" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="TrieData" positionX="-9" positionY="120" width="128" height="73"/>
+        <element name="GameState" positionX="-18" positionY="27" width="128" height="58"/>
+        <element name="Item" positionX="27" positionY="126" width="128" height="120"/>
+    </elements>
+</model>
