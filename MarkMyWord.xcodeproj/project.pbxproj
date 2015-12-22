@@ -32,15 +32,12 @@
 		B84EBE981BE14700008B6B12 /* WordList4LetterNoDup.txt in Resources */ = {isa = PBXBuildFile; fileRef = B84EBE961BE14700008B6B12 /* WordList4LetterNoDup.txt */; };
 		B86530651BB7114F00A6A471 /* TrieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86530641BB7114F00A6A471 /* TrieTests.swift */; };
 		B8713D7B1C1BB15C00A26886 /* WordListChopped.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8713D7A1C1BB15C00A26886 /* WordListChopped.txt */; };
-		B879D8F11BDDCE4E0088A5A4 /* enable1WordListMod.txt in Resources */ = {isa = PBXBuildFile; fileRef = B879D8F01BDDCE4E0088A5A4 /* enable1WordListMod.txt */; };
 		B88118DC1BEAA32A003E74E5 /* WordList6LetterNoDup.txt in Resources */ = {isa = PBXBuildFile; fileRef = B88118DB1BEAA32A003E74E5 /* WordList6LetterNoDup.txt */; };
 		B88A58531BEAD859003E0957 /* 37Bronk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B88A58461BEAD859003E0957 /* 37Bronk.mp3 */; };
 		B88A58541BEAD859003E0957 /* 1003.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B88A58471BEAD859003E0957 /* 1003.WAV */; };
 		B88A58551BEAD859003E0957 /* 1007.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B88A58481BEAD859003E0957 /* 1007.WAV */; };
 		B88A58561BEAD859003E0957 /* 1023.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B88A58491BEAD859003E0957 /* 1023.WAV */; };
 		B88A58571BEAD859003E0957 /* MarkMyWordBGCleaniPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A584A1BEAD859003E0957 /* MarkMyWordBGCleaniPad@2x.png */; };
-		B88A58581BEAD859003E0957 /* MeyamaSplashScreen_iPad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B88A584B1BEAD859003E0957 /* MeyamaSplashScreen_iPad.jpg */; };
-		B88A58591BEAD859003E0957 /* MeyamaSplashScreen_iPad@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B88A584C1BEAD859003E0957 /* MeyamaSplashScreen_iPad@2x.jpg */; };
 		B88A585A1BEAD859003E0957 /* MMWOptionsScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A584D1BEAD859003E0957 /* MMWOptionsScreen.png */; };
 		B88A585B1BEAD859003E0957 /* NewTilesButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A584E1BEAD859003E0957 /* NewTilesButton.png */; };
 		B88A585C1BEAD859003E0957 /* OptionsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A584F1BEAD859003E0957 /* OptionsButton.png */; };
@@ -123,15 +120,12 @@
 		B84EBE961BE14700008B6B12 /* WordList4LetterNoDup.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WordList4LetterNoDup.txt; sourceTree = "<group>"; };
 		B86530641BB7114F00A6A471 /* TrieTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrieTests.swift; sourceTree = "<group>"; };
 		B8713D7A1C1BB15C00A26886 /* WordListChopped.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WordListChopped.txt; sourceTree = "<group>"; };
-		B879D8F01BDDCE4E0088A5A4 /* enable1WordListMod.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = enable1WordListMod.txt; sourceTree = "<group>"; };
 		B88118DB1BEAA32A003E74E5 /* WordList6LetterNoDup.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WordList6LetterNoDup.txt; sourceTree = "<group>"; };
 		B88A58461BEAD859003E0957 /* 37Bronk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 37Bronk.mp3; sourceTree = "<group>"; };
 		B88A58471BEAD859003E0957 /* 1003.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1003.WAV; sourceTree = "<group>"; };
 		B88A58481BEAD859003E0957 /* 1007.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1007.WAV; sourceTree = "<group>"; };
 		B88A58491BEAD859003E0957 /* 1023.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1023.WAV; sourceTree = "<group>"; };
 		B88A584A1BEAD859003E0957 /* MarkMyWordBGCleaniPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MarkMyWordBGCleaniPad@2x.png"; sourceTree = "<group>"; };
-		B88A584B1BEAD859003E0957 /* MeyamaSplashScreen_iPad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MeyamaSplashScreen_iPad.jpg; sourceTree = "<group>"; };
-		B88A584C1BEAD859003E0957 /* MeyamaSplashScreen_iPad@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MeyamaSplashScreen_iPad@2x.jpg"; sourceTree = "<group>"; };
 		B88A584D1BEAD859003E0957 /* MMWOptionsScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MMWOptionsScreen.png; sourceTree = "<group>"; };
 		B88A584E1BEAD859003E0957 /* NewTilesButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewTilesButton.png; sourceTree = "<group>"; };
 		B88A584F1BEAD859003E0957 /* OptionsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OptionsButton.png; sourceTree = "<group>"; };
@@ -318,7 +312,6 @@
 				B8713D7A1C1BB15C00A26886 /* WordListChopped.txt */,
 				B82D49391B908C5600607595 /* WM */,
 				B88118DA1BEA90AA003E74E5 /* H WordLists */,
-				B879D8F01BDDCE4E0088A5A4 /* enable1WordListMod.txt */,
 			);
 			name = WordLists;
 			sourceTree = "<group>";
@@ -362,8 +355,6 @@
 				B8D130E21AFD44A100865982 /* MeyamaSplashScreen_iPad.jpg */,
 				B8D130E31AFD44A100865982 /* MeyamaSplashScreen_iPad@2x.jpg */,
 				B88A584A1BEAD859003E0957 /* MarkMyWordBGCleaniPad@2x.png */,
-				B88A584B1BEAD859003E0957 /* MeyamaSplashScreen_iPad.jpg */,
-				B88A584C1BEAD859003E0957 /* MeyamaSplashScreen_iPad@2x.jpg */,
 				B88A584D1BEAD859003E0957 /* MMWOptionsScreen.png */,
 			);
 			name = backgrounds;
@@ -691,7 +682,6 @@
 				B8FB37741C28F79F00C68434 /* Tile3D@2x .png in Resources */,
 				B88A586C1BEADA46003E0957 /* Tile3DGlow.png in Resources */,
 				B88A58611BEAD951003E0957 /* PlayerBG.png in Resources */,
-				B88A58581BEAD859003E0957 /* MeyamaSplashScreen_iPad.jpg in Resources */,
 				B84738D81C0A482C003B05BA /* PlayerBG02Island.png in Resources */,
 				B8713D7B1C1BB15C00A26886 /* WordListChopped.txt in Resources */,
 				B8CCE1B01AD8C13500882391 /* LaunchScreen.xib in Resources */,
@@ -710,13 +700,11 @@
 				B8361E391BE2AAC1000CEB0E /* WordList5LetterNoDup.txt in Resources */,
 				B8FFF25E1BE96E2E006D2010 /* MagicParticle.sks in Resources */,
 				B88A58541BEAD859003E0957 /* 1003.WAV in Resources */,
-				B88A58591BEAD859003E0957 /* MeyamaSplashScreen_iPad@2x.jpg in Resources */,
 				B84EBE971BE14700008B6B12 /* WordList1to3LetterNoDup.txt in Resources */,
 				B88A58641BEAD969003E0957 /* MMWPlayerTilesGrid.png in Resources */,
 				B8B2CACC1ADADD9100C9DEE7 /* 5-LetterWords.txt in Resources */,
 				B84738D41C0A3F20003B05BA /* tileCover.png in Resources */,
 				B8CCE1A41AD8C13500882391 /* GameScene.sks in Resources */,
-				B879D8F11BDDCE4E0088A5A4 /* enable1WordListMod.txt in Resources */,
 				B8FB376D1C28661500C68434 /* BongoSized.png in Resources */,
 				B88A58551BEAD859003E0957 /* 1007.WAV in Resources */,
 				B88A585A1BEAD859003E0957 /* MMWOptionsScreen.png in Resources */,

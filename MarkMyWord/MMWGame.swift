@@ -19,31 +19,31 @@ class MMWGame {
     var mmwGameSceneViewController : MMWGameSceneViewController?
     var screenSize : CGSize?
     
+    
     init () {
-        
-        
+ 
     }
+    
     
     func setMainMenuScene (mainMenuScene : MainMenuScene) {
         self.mainMenuScene = mainMenuScene
         screenSize = mainMenuScene.viewSize
     }
     
+    
     func setMMWGameScene (mmwGameScene : MMWGameScene) {
         self.mmwGameScene = mmwGameScene
     }
+    
     
     func setMMWGameScene (mmwGameSceneViewController : MMWGameSceneViewController) {
         self.mmwGameSceneViewController = mmwGameSceneViewController
     }
     
+    
     func setScreenSize (screenSize : CGSize) {
         self.screenSize = screenSize
     }
-    
-    
-    
-    
 }
 
 //class MMWGame {

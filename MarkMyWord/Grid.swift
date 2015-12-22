@@ -23,13 +23,14 @@ class Grid {
     var gridNumSquaresXMin : Int = 3
     var gridNumSquaresYMin : Int = 2
 
-   var grid2DArr = [[MMWTile]]()
+    var grid2DArr = [[MMWTile]]()
     var gridName : String = ""
     var gridPlayer : Player? = nil
     var gridNum : Int = 0
     
     var mmwGameScene : MMWGameScene
 
+    
     init (gridUpperLeftX: Double, gridUpperLeftY : Double, gridSquareSizeX : Double, gridSquareSizeY : Double, gridNumSquaresX : Int, gridNumSquaresY : Int, gridName : String, mmwGameScene: MMWGameScene){
         self.gridUpperLeftX = gridUpperLeftX
         self.gridUpperLeftY = gridUpperLeftY
@@ -42,9 +43,11 @@ class Grid {
         grid2DArr = [[MMWTile]](count: gridNumSquaresX, repeatedValue: [MMWTile](count: gridNumSquaresY, repeatedValue: MMWTile() ))
     }
     
+    
     func setGridPlayer (player : Player) {
         self.gridPlayer = player
     }
+    
     
     func numLetterTilesInGrid () -> Int {
         var numLetterTiles = 0
@@ -57,6 +60,7 @@ class Grid {
         }
         return numLetterTiles
     }
+    
     
     func getArrayLetterTilesInGrid () -> [MMWTile] {
         var letterTilesInGrid = [MMWTile]()
@@ -86,6 +90,7 @@ class Grid {
 //        return letterTilesInGrid
 //    }
     
+    
     func getArrayLockedLetterTilesInGrid () -> [MMWTile] {
         var letterTilesInGrid = [MMWTile]()
         var randomizedTilesInGrid = [MMWTile]() 
@@ -108,6 +113,7 @@ class Grid {
         return randomizedTilesInGrid
     }
     
+    
     func makeTilesInGridInteractive (isInteractive : Bool) {
         for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
             for x in 0...(self.gridNumSquaresX - 1) {
@@ -115,6 +121,7 @@ class Grid {
             }
         }
     }
+    
     
     func getGridSquare (locX: Float, locY: Float) -> (GridSquareX: Int, GridSquareY: Int, GridSquareUpperLeftCornerX: Double, GridSquareUpperLeftCornerY: Double) {
         let locYmod = locY + Float((mmwGame.screenSize!).height) * 0.0455729167 // 35 (adj for flipped coordinates)
@@ -147,6 +154,7 @@ class Grid {
 //        return tilePosition
 //    }
     
+    
     // given a grid and x, y func returns a CGPoint to place sprite
     class func sendToGridSquare (grid: Grid, squareX: Int, squareY: Int) -> (CGPoint) {
         let tilePositionX = grid.gridUpperLeftX + Double((mmwGame.screenSize!).width * 0.023193359375) + ( Double(squareX) * grid.gridSquareSizeX )
@@ -155,6 +163,7 @@ class Grid {
         let tilePosition = CGPoint( x: tilePositionX, y: tilePositionY )
         return tilePosition
     }
+    
     
     // given a grid and x, y func returns a CGPoint to place sprite
     func sendToGridSquare (squareX: Int, squareY: Int) -> (CGPoint) {
@@ -168,16 +177,19 @@ class Grid {
 //        grid2DArr[xGrid].insert(tileToAdd, atIndex: [yGrid][xGrid])  // (tileToAdd, atIndex: xGrid)
 //    }
     
+    
     class func tileAtGridSquare (grid: Grid, squareX: Int, squareY: Int) -> (MMWTile?) {
         let tile : MMWTile? = (grid.grid2DArr[squareY][squareX] as MMWTile)
         return tile
     }
+    
     
     func tileAtGridSquare (squareX: Int, squareY: Int) -> (MMWTile?) {
         let tile : MMWTile? = (self.grid2DArr[squareY][squareX] as MMWTile)
         return tile
     }
  
+    
     func dealGridFromArrayRandom (inout arrayIn: [MMWTile], var numTilesToDeal: Int, playerNum: Int, clearGrid: Bool) {
         print("<Grid> fillGridFromArray(arrayIn: [MMWTile], gridToFill: Grid) \(self.gridName) ")
 
@@ -362,8 +374,7 @@ class Grid {
         }
     }
     
-    
-    
+
     func stringFromGridLetters () -> String {
         var stringFromGrid2DArr = ""
         for x in 0...(self.gridNumSquaresX - 1) {   // fill letter tiles
@@ -373,6 +384,7 @@ class Grid {
         }
         return stringFromGrid2DArr
     }
+    
     
     func getTileWithLetter(letterToFind : String) -> MMWTile? {
         var tileToReturn = MMWTile()
@@ -388,9 +400,4 @@ class Grid {
         }
         return tileToReturn
     }
-    
-    
-    
-    
-    
 }

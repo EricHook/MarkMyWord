@@ -86,7 +86,12 @@ class LetterTileSprite : SKSpriteNode {
 //        }
         
         //let myCGSize = CGSizeMake(47.5, 47.5)
-        let tileSize = CGSizeMake(mmwGame.screenSize!.width * 0.04638671875 , mmwGame.screenSize!.height * 0.06184895833)
+        var tileSize = CGSizeMake(mmwGame.screenSize!.width * 0.04638671875 , mmwGame.screenSize!.height * 0.06184895833)
+        
+        if (mmwGame.screenSize?.height == 1024) {
+            tileSize.height *= 0.75
+            tileSize.width *= 0.75
+        }
         
         
         super.init(texture: frontTexture, color: UIColorAppleBlue, size: tileSize)
@@ -346,7 +351,8 @@ class LetterTileSprite : SKSpriteNode {
             let tileSnapTouch = (touch as UITouch).locationInView(scene!.view)
 
             // IF NOT VALID DROP LOCATION ON BOARD, RETURN TILE TO PLAYER
-            if (tileSnapTouch.x <= 160 || tileSnapTouch.x >= 860) {
+            //if (tileSnapTouch.x <= 160 || tileSnapTouch.x >= 860) {
+            if (tileSnapTouch.x <= (mmwGame.screenSize?.width)! * 0.15625 || tileSnapTouch.x >= (mmwGame.screenSize?.width)! * 0.83984375) {
                 print("Tried drop tile outside game board touchesEnded")
                 returnTileToGridHome()
                 return
@@ -1385,8 +1391,8 @@ class LetterTileSprite : SKSpriteNode {
         
 
         // move tile to snap point
-        self.position.x = (CGFloat)(tileSnapResultsCalculateX + 23.75)  //adjusts 22.5 for tile center in middle of tile
-        self.position.y = 768 - (CGFloat)(tileSnapResultsCalculateY + 8.25) //38 adjusts for tile center and for board not in exact middle when flipping coords
+        self.position.x = CGFloat(tileSnapResultsCalculateX)  + ( CGFloat((mmwGame.screenSize?.height)!) * CGFloat(0.023193359375))  //adjusts 23.75 for tile center in middle of tile
+        self.position.y = CGFloat((mmwGame.screenSize?.height)!) - ( CGFloat(tileSnapResultsCalculateY) + ( CGFloat((mmwGame.screenSize?.height)!) * 0.0107421875) ) //38 adjusts for tile center and for board not in exact middle when flipping coords
         
         if tileSpriteParent.tileState == TileState.PlayedMadeWord {
             tileSpriteParent.tileState = TileState.Locked // if put on valid board location set TileState to played if NOT already locked

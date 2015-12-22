@@ -32,12 +32,12 @@ class MMWGameSceneViewController {
     var playerTurn :  Int = 1
     var minWordSize = 3
     var secondsPerTurn = 30
-    var player0 : Player = Player(_playerID: 0, _playerName: "AI", _playerColor: 0) // used to add initial word ownership
-    var player1 : Player = Player(_playerID: 1, _playerName: "Abe", _playerColor: 1)
-    var player2 : Player = Player(_playerID: 2, _playerName: "Bart", _playerColor: 2)
+    var player0 : Player = Player(_playerID: 0, _playerName: "AI",      _playerColor: 0) // used to add initial word ownership
+    var player1 : Player = Player(_playerID: 1, _playerName: "Abe",     _playerColor: 1)
+    var player2 : Player = Player(_playerID: 2, _playerName: "Bart",    _playerColor: 2)
     // player 3 and 4 objects created but only used in 3 or 4 player games
     var player3 : Player = Player(_playerID: 3, _playerName: "Charlie", _playerColor: 3)
-    var player4 : Player = Player(_playerID: 4, _playerName: "Dan", _playerColor: 4)
+    var player4 : Player = Player(_playerID: 4, _playerName: "Dan",     _playerColor: 4)
     var playerArray : [Player]! // array of all players 0-3 for easier iteration of player turns
     var wordsLoaded1to3     = false
     var wordsLoaded4        = false

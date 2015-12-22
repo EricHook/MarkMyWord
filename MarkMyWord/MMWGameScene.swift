@@ -574,8 +574,8 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
                 
                 
                 
-                let numLettersToPlayMin = 4
-                let numLettersToPlayMax = 6
+                let numLettersToPlayMin = 2
+                let numLettersToPlayMax = 3
                 let permutationsToPlay : Set<String> = self.permuteLetters(playerTilesLettersArr, minStringLen: numLettersToPlayMin, maxStringLen: numLettersToPlayMax)
                 
                 
