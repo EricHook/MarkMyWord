@@ -18,25 +18,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func demo () {
         
+        let request = NSFetchRequest(entityName: "Item")
+        do {
+            try CDHelper.shared.context.executeFetchRequest(request)
+        }
+        catch {
+            print("!!! Error in AppDeligate Demo() CDHelper.shared.context.executeFetchRequest(request)")
+        }
+        
         let itemNames = ["Apples", "Milk", "Bread", "Cheese", "Sausages", "Butter", "Orange Juice", "Cereal", "Coffee", "Eggs", "Tomatoes", "Fish"]
         
         for itemName in itemNames {
-            
             let item:Item = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: CDHelper.shared.context) as! Item
             item.name = itemName
             print("Inserted New Managed Object for '\(item.name)'")
         }
-        //CDHelper.saveSharedContext()
+        
+        CDHelper.saveSharedContext()
+
     }
+    
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         print("AppDelegate > application ...")
-        
-        
+
         CDHelper.shared
-        
-        
+
         return true
     }
 
@@ -51,8 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
         CDHelper.saveSharedContext()
-        
-        
+
         print("AppDelegate > application ...")
     }
 
@@ -64,9 +71,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
-        demo()
-        
-        
+        //demo()
+
         print("AppDelegate > applicationDidBecomeActive ...")
     }
 
@@ -74,8 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         
         CDHelper.saveSharedContext()
-        
-        
+
         print("AppDelegate > applicationWillTerminate...")
     }
     
@@ -156,8 +161,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
-
-
 }
 

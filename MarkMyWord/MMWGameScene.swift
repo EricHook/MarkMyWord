@@ -26,7 +26,7 @@ struct validAILetterPlay {
     var madeValidWord = false
 }
 
-class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
+class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
     
     var mmwGameSceneViewController : MMWGameSceneViewController!
     
@@ -48,22 +48,22 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
     var player4View : PlayerView!
     
     var timeRemainingLabel  = SKLabelNode(fontNamed: FontHUDName)
-    private var secondsLeft: Int = 30
+    private var secondsLeft = 30
     var tilesRemainingLabel = SKLabelNode(fontNamed: FontHUDName)
     var topDisplayLabel     = SKLabelNode(fontNamed: FontHUDName)
     var topDisplayLabel2    = SKLabelNode(fontNamed: FontHUDName)
-    var bottomDisplayLabel    = SKLabelNode(fontNamed: FontHUDName)
+    var bottomDisplayLabel  = SKLabelNode(fontNamed: FontHUDName)
     
-    let playButton = SKSpriteNode(imageNamed: "PlayButton.png")
+    let playButton     = SKSpriteNode(imageNamed: "PlayButton.png")
     var newTilesButton = SKSpriteNode(imageNamed: "NewTilesButton.png")
-    let passButton = SKSpriteNode(imageNamed: "PassButton.png")
-    let pauseButton = SKSpriteNode(imageNamed: "PauseButton.png")
-    let optionsButton = SKSpriteNode(imageNamed: "OptionsButton.png")
+    let passButton     = SKSpriteNode(imageNamed: "PassButton.png")
+    let pauseButton    = SKSpriteNode(imageNamed: "PauseButton.png")
+    let optionsButton  = SKSpriteNode(imageNamed: "OptionsButton.png")
     
     var placeholderTexture : SKTexture = SKTexture(imageNamed: "TileBackTest90x90")
     
-    let actionSound = SKAction.playSoundFileNamed("1007.WAV", waitForCompletion: true)
-    let dealTilesSound = SKAction.playSoundFileNamed("1003.WAV", waitForCompletion: true)
+    let actionSound      = SKAction.playSoundFileNamed("1007.WAV", waitForCompletion: true)
+    let dealTilesSound   = SKAction.playSoundFileNamed("1003.WAV", waitForCompletion: true)
     let destroyTileSound = SKAction.playSoundFileNamed("1003.WAV", waitForCompletion: true)
     
     //let backgroundMusic = SKAction.playSoundFileNamed("30Showdown.m4a", waitForCompletion: true)
@@ -97,40 +97,44 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
     }
     
     func setGrids () {
-        self.mmwBoardGrid = Grid(gridUpperLeftX: 156, gridUpperLeftY: (67), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 15, gridNumSquaresY: 15, gridName: "mmwBoardGrid", mmwGameScene: self)
+//        self.mmwBoardGrid = Grid(gridUpperLeftX: 156, gridUpperLeftY: (67), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 15, gridNumSquaresY: 15, gridName: "mmwBoardGrid", mmwGameScene: self)
+        
+        self.mmwBoardGrid = Grid(gridUpperLeftX: Double(viewSize.width * 0.15234375), gridUpperLeftY: Double(viewSize.height * 0.0872395833), gridSquareSizeX: Double(viewSize.width * 0.04638772), gridSquareSizeY: Double(viewSize.width * 0.04638772), gridNumSquaresX: 15, gridNumSquaresY: 15, gridName: "mmwBoardGrid", mmwGameScene: self)
+        
+        
         
         if mmwGameSceneViewController.numPlayers == 2 {
-            self.mmwPlayer1Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.45830), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer1Grid", mmwGameScene: self) //y 304
+            self.mmwPlayer1Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.45830), gridSquareSizeX: Double(viewSize.width * 0.04638772), gridSquareSizeY: Double(viewSize.width * 0.04638772), gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer1Grid", mmwGameScene: self) //y 304
             self.mmwPlayer1Grid.setGridPlayer(mmwGameSceneViewController.player1)
             
-            self.mmwPlayer2Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.45830), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer2Grid", mmwGameScene: self)
+            self.mmwPlayer2Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.45830), gridSquareSizeX: Double(viewSize.width * 0.04638772), gridSquareSizeY: Double(viewSize.width * 0.04638772), gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer2Grid", mmwGameScene: self)
             self.mmwPlayer2Grid.setGridPlayer(mmwGameSceneViewController.player2)
         }
         
         if mmwGameSceneViewController.numPlayers == 3 {
-            self.mmwPlayer1Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.45830), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer1Grid", mmwGameScene: self) // 0.4583
+            self.mmwPlayer1Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.45830), gridSquareSizeX: Double(viewSize.width * 0.04638772), gridSquareSizeY: Double(viewSize.width * 0.04638772), gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer1Grid", mmwGameScene: self) // 0.4583
             self.mmwPlayer1Grid.setGridPlayer(mmwGameSceneViewController.player1)
             
-            self.mmwPlayer2Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.273), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer2Grid", mmwGameScene: self)
+            self.mmwPlayer2Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.273), gridSquareSizeX: Double(viewSize.width * 0.04638772), gridSquareSizeY: Double(viewSize.width * 0.04638772), gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer2Grid", mmwGameScene: self)
             self.mmwPlayer2Grid.setGridPlayer(mmwGameSceneViewController.player2)
             
-            self.mmwPlayer3Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.706), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer3Grid", mmwGameScene: self)
+            self.mmwPlayer3Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.706), gridSquareSizeX: Double(viewSize.width * 0.04638772), gridSquareSizeY: Double(viewSize.width * 0.04638772), gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer3Grid", mmwGameScene: self)
             self.mmwPlayer3Grid.setGridPlayer(mmwGameSceneViewController.player3)
         }
         
         if mmwGameSceneViewController.numPlayers == 4 {
-            self.mmwPlayer1Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.273), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer1Grid", mmwGameScene: self) // 0.4583
+            self.mmwPlayer1Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.273), gridSquareSizeX: Double(viewSize.width * 0.04638772), gridSquareSizeY: Double(viewSize.width * 0.04638772), gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer1Grid", mmwGameScene: self) // 0.4583
             self.mmwPlayer1Grid.setGridPlayer(mmwGameSceneViewController.player1)
             
-            self.mmwPlayer2Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.273), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer2Grid", mmwGameScene: self)
+            self.mmwPlayer2Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.273), gridSquareSizeX: Double(viewSize.width * 0.04638772), gridSquareSizeY: Double(viewSize.width * 0.04638772), gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer2Grid", mmwGameScene: self)
             self.mmwPlayer2Grid.setGridPlayer(mmwGameSceneViewController.player2)
             
             
-            self.mmwPlayer3Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.706), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer3Grid", mmwGameScene: self)
+            self.mmwPlayer3Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.706), gridSquareSizeX: Double(viewSize.width * 0.04638772), gridSquareSizeY: Double(viewSize.width * 0.04638772), gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer3Grid", mmwGameScene: self)
             self.mmwPlayer3Grid.setGridPlayer(mmwGameSceneViewController.player3)
             
             
-            self.mmwPlayer4Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.706), gridSquareSizeX: 47.5, gridSquareSizeY: 47.5, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer4Grid", mmwGameScene: self)
+            self.mmwPlayer4Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.706), gridSquareSizeX: Double(viewSize.width * 0.04638772), gridSquareSizeY: Double(viewSize.width * 0.04638772), gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer4Grid", mmwGameScene: self)
             self.mmwPlayer4Grid.setGridPlayer(mmwGameSceneViewController.player4)
         }
     }
@@ -180,26 +184,26 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
         topDisplayHUD("Welcome to Mark My Word") // ("Turn: Player 1, Special Letter Bonus In Effect, 2x Point Bonus")
         topDisplayHUD2("topDisplayHUD2")
         
-        playButton.position = CGPoint(x: viewSize.width * 0.5, y: viewSize.height * 0.5)
+        playButton.position = CGPoint(x: (viewSize.width * 0.5), y: (viewSize.height * 0.5) )
         playButton.name = "playButton"
         self.addChild(playButton)
         
-        newTilesButton.position = CGPoint(x: viewSize.width * 0.0751, y: viewSize.height * 0.102)
+        newTilesButton.position = CGPoint(x: (viewSize.width * 0.0751), y: (viewSize.height * 0.102) )
         newTilesButton.name = "newTilesButton"
         newTilesButton.userInteractionEnabled = true
         self.addChild(newTilesButton)
         
-        passButton.position = CGPoint(x: viewSize.width * 0.0752, y: viewSize.height * 0.04)
+        passButton.position = CGPoint(x: (viewSize.width * 0.0752), y: (viewSize.height * 0.04) )
         passButton.name = "passButton"
         passButton.userInteractionEnabled = true
         self.addChild(passButton)
         
-        pauseButton.position = CGPoint(x: viewSize.width * 0.9228, y: viewSize.height * 0.102)
+        pauseButton.position = CGPoint(x: (viewSize.width * 0.9228), y: (viewSize.height * 0.102) )
         pauseButton.name = "pauseButton"
         pauseButton.userInteractionEnabled = true
         self.addChild(pauseButton)
         
-        optionsButton.position = CGPoint(x: viewSize.width * 0.9228, y: viewSize.height * 0.04)
+        optionsButton.position = CGPoint(x: (viewSize.width * 0.9228), y: (viewSize.height * 0.04) )
         optionsButton.name = "optionsButton"
         optionsButton.userInteractionEnabled = true
         self.addChild(optionsButton)
@@ -218,7 +222,7 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
         optionsLayerNode.position = CGPoint(x: size.width/2.0, y: size.height/2.0)
         optionsLayerNode.userInteractionEnabled = false
         optionsLayerNode.zPosition = 100
-        optionsLayerNode.size = CGSize(width: viewSize.width * 0.9,  height: viewSize.height * 0.8)
+        optionsLayerNode.size = CGSize(width: (viewSize.width * 0.9),  height: (viewSize.height * 0.8) )
         optionsLayerNode.alpha = 0.75
         optionsLayerNode.hidden = true
         self.addChild(optionsLayerNode)
@@ -337,7 +341,7 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
         topDisplayLabel.zPosition = 1
         topDisplayLabel.text = "\(message)"
         topDisplayLabel.fontSize = FontHUDSize
-        topDisplayLabel.position = CGPointMake(size.width/2.0, 753.0) // CGPointMake(size.width/2.0, 753.0) // 1 of 2 top lines
+        topDisplayLabel.position = CGPointMake(size.width/2.0, self.size.height * 0.98046875) // CGPointMake(size.width/2.0, 753.0) // 1 of 2 top lines
         topDisplayLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
         addChild(topDisplayLabel)
         return topDisplayLabel
@@ -347,7 +351,7 @@ class MMWGameScene: SKScene { // , SKPhysicsContactDelegate {
         topDisplayLabel2.zPosition = 1
         topDisplayLabel2.text = message
         topDisplayLabel2.fontSize = FontHUDSize
-        topDisplayLabel2.position = CGPointMake(size.width/2.0, 735.0) // 2 of 2 top lines
+        topDisplayLabel2.position = CGPointMake(size.width/2.0, (self.size.height * 0.95703125) )// 2 of 2 top lines CGPointMake(size.width/2.0, 735.0)
         topDisplayLabel2.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
         addChild(topDisplayLabel2)
         return topDisplayLabel2

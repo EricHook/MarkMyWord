@@ -323,6 +323,10 @@ class MMWTileBuilder {
             tile.tileSprite.mmwGameSceneViewController = self.mmwGameSceneViewController
             tile.mmwGameScene = self.mmwGameScene
             tile.tileSprite.mmwGameScene = self.mmwGameScene
+            
+            tile.tileSprite.xScale = (mmwGameSceneViewController!.viewSize.width)/1024
+            tile.tileSprite.yScale = (mmwGameSceneViewController!.viewSize.width)/1024
+            //self.size( Double(mmwGameScene.viewSize.width)/1024 )
         }
     }
     

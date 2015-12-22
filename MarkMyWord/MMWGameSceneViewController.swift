@@ -21,6 +21,7 @@ extension StreamReader : SequenceType {
     }
 }
 
+
 class MMWGameSceneViewController {
     
     var mmwGameScene: MMWGameScene!
@@ -305,6 +306,7 @@ class MMWGameSceneViewController {
 //       }
 //        return false
 //    }
+    
     
 //    func checkPartialWordMatch(wordToCheck: String) -> Bool {
 //        //let wordToReturn : String
@@ -706,40 +708,69 @@ class MMWGameSceneViewController {
             print("insertTrie() 4")
             print("Currently dispatched asynchronously 4")
             
-            //self.buildWordArray("WordList5LetterNoDup")
-            self.insertTrie(self.buildWordArray("WordList5LetterNoDup") )
-            self.wordsLoaded5 = true
-            print("insertTrie() 5")
-            print("Currently dispatched asynchronously 5")
-            //print("hello from UI thread executed as dispatch 2")
-            
-            //self.buildWordArray("WordList6LetterNoDup")
-            self.insertTrie(self.buildWordArray("WordList6LetterNoDup") )
-            self.wordsLoaded6 = true
-            print("insertTrie() 6")
-            print("Currently dispatched asynchronously 6")
-
-            /////////////////////////
-            
-            //self.buildWordArray("WordList6to7LetterNoDup")
-            self.insertTrie(self.buildWordArray("WordList6to7LetterNoDup") )
-            self.wordsLoaded7 = true
-            print("insertTrie() 6 to 7")
-            print("Currently dispatched asynchronously 7")
-            
-            //self.buildWordArray("WordList6LetterNoDup")
-            self.insertTrie(self.buildWordArray("WordList8to10LetterNoDup") )
-            self.wordsLoaded8 = true
-            print("insertTrie() 8to10")
-            print("Currently dispatched asynchronously 8to10")
+//            //self.buildWordArray("WordList5LetterNoDup")
+//            self.insertTrie(self.buildWordArray("WordList5LetterNoDup") )
+//            self.wordsLoaded5 = true
+//            print("insertTrie() 5")
+//            print("Currently dispatched asynchronously 5")
+//            //print("hello from UI thread executed as dispatch 2")
+//            
+//            //self.buildWordArray("WordList6LetterNoDup")
+//            self.insertTrie(self.buildWordArray("WordList6LetterNoDup") )
+//            self.wordsLoaded6 = true
+//            print("insertTrie() 6")
+//            print("Currently dispatched asynchronously 6")
+//
+//            /////////////////////////
+//            
+//            //self.buildWordArray("WordList6to7LetterNoDup")
+//            self.insertTrie(self.buildWordArray("WordList6to7LetterNoDup") )
+//            self.wordsLoaded7 = true
+//            print("insertTrie() 6 to 7")
+//            print("Currently dispatched asynchronously 7")
+//            
+//            //self.buildWordArray("WordList6LetterNoDup")
+//            self.insertTrie(self.buildWordArray("WordList8to10LetterNoDup") )
+//            self.wordsLoaded8 = true
+//            print("insertTrie() 8to10")
+//            print("Currently dispatched asynchronously 8to10")
             
             ////////////////////////
 
-            //self.buildWordArray("WordList11to16LetterNoDup")
-            self.insertTrie(self.buildWordArray("WordList11to16LetterNoDup") )
-            self.wordsLoaded9 = true
-            print("insertTrie() 11to16")
-            print("Currently dispatched asynchronously 11to16")
+//            //self.buildWordArray("WordList11to16LetterNoDup")
+//            self.insertTrie(self.buildWordArray("WordList11to16LetterNoDup") )
+//            self.wordsLoaded9 = true
+//            print("insertTrie() 11to16")
+//            print("Currently dispatched asynchronously 11to16")
+            
+            
+            
+            
+            
+            
+//            //??? INSERT SAVED TREI HERE ???
+//            //aCoder.encodeObject(name, forKey: PropertyKey.nameKey)
+//            
+//            let trieData: TrieData = NSEntityDescription.insertNewObjectForEntityForName("TrieData", inManagedObjectContext: CDHelper.shared.context) as! TrieData
+//
+//
+//            //store you class object into NSUserDefaults.
+//            let theData = NSKeyedArchiver.archivedDataWithRootObject(trieData)
+//            NSUserDefaults().setObject(theData, forKey: "theData")
+//            print(theData)
+//            
+//            //get your object from NSUserDefaults.
+//            if let loadedData = NSUserDefaults().dataForKey("theData") {
+//                
+//                if let loadedData = NSKeyedUnarchiver.unarchiveObjectWithData(loadedData) as? NSData {
+//                    
+//                    trieData.prebuiltTrie = loadedData
+//                }
+//            }
+
+                
+                    
+                    
  
 //            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { ()->() in
 //
@@ -754,16 +785,84 @@ class MMWGameSceneViewController {
         
         print("hello from UI thread")
         
+        
+//        // ??? INSERT SAVED TREI HERE ???
+////        let item: Item = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: CDHelper.shared.context) as! Item
+////        item.name = itemName
+////        print("Inserted New Managed Object for '\(item.name)'")
+////        CDHelper.saveSharedContext()
+//
+//        
+//        
+//        //var wordTrie : Trie<Character>?
+//        
+//        
+//         //??? INSERT SAVED TREI HERE ???
+//        
+//                let trieData: TrieData = NSEntityDescription.insertNewObjectForEntityForName("TrieData", inManagedObjectContext: CDHelper.shared.context) as! TrieData
+//        //let theTrie = NSData(      (wordTrie)
+//        
+//        
+//        //store you class object into NSUserDefaults.
+//        let theData = NSKeyedArchiver.archivedDataWithRootObject(trieData)
+//        NSUserDefaults().setObject(theData, forKey: "theData")
+//        
+//        //get your object from NSUserDefaults.
+//        if let loadedData = NSUserDefaults().dataForKey("theData") {
+//            
+//            if let loadedData = NSKeyedUnarchiver.unarchiveObjectWithData(loadedData) as? NSData {
+//                
+//                trieData.prebuiltTrie = loadedData
+//        
+////                trieData.prebuiltTrie
+////                loadedPerson[0].name   //"Leo"
+////                loadedPerson[0].age    //45
+//            }
+//        }
+//        
+////        var theData : NSData = NSData(wordTrie)
+////                trieData.prebuiltTrie = wordTrie
+////                //print("Inserted New Managed Object for '\(item.name)'")
+////                CDHelper.saveSharedContext()
+    
+    }
+}
 
-        
 
 
-        
-        
-        
-        
-        
-        
+//func saveTrei(trieData: Trie<TrieElement>) {
+//    //1
+//    let appDelegate =
+//    UIApplication.sharedApplication().delegate as! AppDelegate
+//    
+//    let managedContext = appDelegate.managedObjectContext
+//    
+//    //2
+//    let trieEntity =  NSEntityDescription.entityForName("Person",
+//        inManagedObjectContext:managedContext)
+//    
+//    let person = NSManagedObject(entity: entity!,
+//        insertIntoManagedObjectContext: managedContext)
+//    
+//    //3
+//    person.setValue(name, forKey: "name")
+//    
+//    //4
+//    do {
+//        try managedContext.save()
+//        //5
+//        people.append(person)
+//    } catch let error as NSError  {
+//        print("Could not save \(error), \(error.userInfo)")
+//    }
+//}
+
+
+
+
+
+
+
 //        dispatch_async(dispatch_get_main_queue()) {
 //            print("Currently dispatched asynchronously 0")
 //            
@@ -829,7 +928,9 @@ class MMWGameSceneViewController {
 //        if dispatch_semaphore_wait(semaphore, timeout) != 0 { // 3
 //            print("semaphore timed out")
 //        }
-    }
+    
+    
+//    }
 
 
 
@@ -938,8 +1039,8 @@ class MMWGameSceneViewController {
 //        // Release any cached data, images, etc that aren't in use.
 //    }
     
-    
-}
+//    
+//}
 
 
 

@@ -15,5 +15,6 @@ import CoreData
 extension TrieData {
 
     @NSManaged var prebuiltTrie: NSData?
-
+    @NSManaged var quantity: NSNumber?
+    
 }

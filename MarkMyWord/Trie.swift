@@ -6,6 +6,8 @@ A Trie is a set-like data structure. It stores *sequences* of hashable elements,
 Lookup, insertion, and deletion are all *O(n)*, where *n* is the length of the sequence.
 */
 
+import Foundation
+
 public struct Trie<TrieElement : Hashable> {
     private var children: [TrieElement:Trie<TrieElement>]
     private var endHere : Bool

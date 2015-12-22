@@ -16,29 +16,33 @@ import SpriteKit
 ///     - nope: none
 class LetterTileSprite : SKSpriteNode {
     
-    var mmwGameSceneViewController : MMWGameSceneViewController! = nil
-    var mmwGameScene : MMWGameScene! = nil
-    var tileSpriteParent : MMWTile! = nil
+    var mmwGameSceneViewController  : MMWGameSceneViewController! = nil
+    var mmwGameScene                : MMWGameScene! = nil
+    var tileSpriteParent            : MMWTile! = nil
     
     let letterLabel = SKLabelNode(fontNamed: FontHUDName)
-    var isMovable : Bool = true
-    var faceUp : Bool = true
-    var hasShadow : Bool = false
-    var tileText = ""
+    var isMovable   = true
+    var faceUp      = true
+    var hasShadow   = false
+    var tileText    = ""
+
 
 //    var tileScore1 : SKLabelNode = SKLabelNode()
 //    var tileScore2 : SKLabelNode = SKLabelNode()
 //    var tileScore3 : SKLabelNode = SKLabelNode()
- 
-    var frontTexture : SKTexture? = SKTexture(imageNamed: "Tile3D95x")
-    var backTexture : SKTexture? = SKTexture(imageNamed: "Tile3D95xBack") // "TileBackTest90x90")
-    //var glowTexture : SKTexture = SKTexture(imageNamed: "Tile3D90xGLOW")
-    var largeTexture : SKTexture?
-    var largeTextureFilename : String = "Tile3D95x"
-    var tileShadow : SKSpriteNode = SKSpriteNode(texture: SKTexture(imageNamed: "TileShadow90x90"), color: UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.00), size: CGSizeMake(50.0, 50.0))
-    var tileGlow : SKSpriteNode = SKSpriteNode(texture: SKTexture(imageNamed: "Tile3D100xGLOW"), color: UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.00), size: CGSizeMake(50.0, 50.0))
+    
+    var frontTexture    = SKTexture(imageNamed: "Tile3D")
+    var backTexture     = SKTexture(imageNamed: "Tile3DBack")
+    //var glowTexture   : SKTexture = SKTexture(imageNamed: "Tile3D90xGLOW")
+    var largeTexture    : SKTexture?
+    var largeTextureFilename = "Tile3D"
+    var tileShadow : SKSpriteNode = SKSpriteNode(texture: SKTexture(imageNamed: "TileShadow"), color: UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.00), size: CGSize(width: 50.0, height: 50.0) )  // 50.0
+    var tileGlow : SKSpriteNode = SKSpriteNode(texture: SKTexture(imageNamed: "Tile3DGlow"), color: UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.00), size: CGSize(width: 50.0, height: 50.0) )  // 50.0
+    
+    //Double(viewSize.width * 0.04638772)
+    
     var tileLocation : CGPoint = CGPointMake(0, 0)
-    var enlarged = false
+    var enlarged      = false
     var savedPosition = CGPointZero
     var hasLockedPotentialWord = false
 
@@ -54,9 +58,9 @@ class LetterTileSprite : SKSpriteNode {
     
 //    let TileColors : [UIColor] = [UIColor.blackColor(), UIColorAppleBlue, UIColorAppleRed, UIColorAppleYellow, UIColorApplePurple, UIColorAppleGreen, UIColorAppleOrange, UIColorGray ]
 
-    let actionSound = SKAction.playSoundFileNamed("1007.WAV", waitForCompletion: true)
-    let actionSound2 = SKAction.playSoundFileNamed("1007.WAV", waitForCompletion: true)
-    let dealTilesSound = SKAction.playSoundFileNamed("1003.WAV", waitForCompletion: true)
+    let actionSound      = SKAction.playSoundFileNamed("1007.WAV", waitForCompletion: true)
+    let actionSound2     = SKAction.playSoundFileNamed("1007.WAV", waitForCompletion: true)
+    let dealTilesSound   = SKAction.playSoundFileNamed("1003.WAV", waitForCompletion: true)
     let destroyTileSound = SKAction.playSoundFileNamed("1003.WAV", waitForCompletion: true)  // problem with 1023.wav ???
     
     required init(coder aDecoder: NSCoder) {
@@ -81,8 +85,11 @@ class LetterTileSprite : SKSpriteNode {
 //                largeTextureFilename = "Tile3D95x"
 //        }
         
-        let myCGSize = CGSizeMake(47.5, 47.5)
-        super.init(texture: frontTexture, color: UIColorAppleBlue, size: myCGSize)
+        //let myCGSize = CGSizeMake(47.5, 47.5)
+        let tileSize = CGSizeMake(mmwGame.screenSize!.width * 0.04638671875 , mmwGame.screenSize!.height * 0.06184895833)
+        
+        
+        super.init(texture: frontTexture, color: UIColorAppleBlue, size: tileSize)
         // call designated initializer on super
         //super.init(texture: frontTexture, color: UIColorAppleBlue, size: myCGSize ) // frontTexture.size())
         
@@ -95,7 +102,7 @@ class LetterTileSprite : SKSpriteNode {
         self.color = withColor
         self.colorBlendFactor = 1.0
         self.zPosition = 0
-
+        
         tileShadow.alpha = 0.35
         tileShadow.position = CGPointMake(-5, -5)
         tileShadow.zPosition = self.zPosition - 1
@@ -136,6 +143,7 @@ class LetterTileSprite : SKSpriteNode {
         
     }
 
+    
     func flip() {
         if faceUp {
             self.texture = self.backTexture
@@ -152,10 +160,12 @@ class LetterTileSprite : SKSpriteNode {
         }
     }
     
+    
     func centerTileToSquare(tile : LetterTileSprite) {
         tile.position.x += 23.75  // 22.5?
         tile.position.y += 23.75  // 22.5?
     }
+    
     
     func lockTile () {
         let textColor = self.color
@@ -164,6 +174,7 @@ class LetterTileSprite : SKSpriteNode {
         self.userInteractionEnabled = false
     }
 
+    
     func enlarge() {
         if enlarged {
             let slide = SKAction.moveTo(savedPosition, duration:0.3)
@@ -210,6 +221,7 @@ class LetterTileSprite : SKSpriteNode {
         scoreText.position = CGPointMake(0.0, 0.0)
         return scoreText
     }
+    
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesBegan(touches, withEvent: event)
@@ -282,8 +294,7 @@ class LetterTileSprite : SKSpriteNode {
 //        <#code#>
 //    }
 
-    
-    
+
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesMoved(touches, withEvent: event)
         
@@ -315,6 +326,7 @@ class LetterTileSprite : SKSpriteNode {
             }
         }
     }
+    
     
     /// touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
     /// - Returns: nothing
@@ -370,7 +382,6 @@ class LetterTileSprite : SKSpriteNode {
                 let validWordTestAtDropSpot = testForValidWordsAtDropSpot(tileSnapResultsXGrid, tileSnapResultsYGrid: tileSnapResultsYGrid, isAI: false)
                 
                 
-                
                 ///////////////////////
                 
                 
@@ -384,13 +395,11 @@ class LetterTileSprite : SKSpriteNode {
                     
 //                    gameGrid!.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid] = self.tileSpriteParent
                     
+               
+                ////////////////////
                     
                     
-                 ////////////////////
-                    
-                    
-                    
-                    updateWordsAtDropSpot(Float(tileSnapTouch.x), touchY: Float(tileSnapTouch.y)) () // tileSnapResultsXGrid, tileSnapResultsYGrid: tileSnapResultsYGrid,  touchX: 
+                updateWordsAtDropSpot(Float(tileSnapTouch.x), touchY: Float(tileSnapTouch.y)) () // tileSnapResultsXGrid, tileSnapResultsYGrid: tileSnapResultsYGrid,  touchX:
                 }
             }
             print("tile drop = \(tileSnapResultsXGrid), \(tileSnapResultsYGrid)")
@@ -550,6 +559,7 @@ class LetterTileSprite : SKSpriteNode {
 //                self.tileSpriteParent.gridY = self.tileSpriteParent.gridYEnd
    
     }
+    
     
     /// showWordScoreTextToGridHome() sends tile to return postition, with scaling effects and removes glow from tile and from all tiles on board
     /// - Returns: nothing

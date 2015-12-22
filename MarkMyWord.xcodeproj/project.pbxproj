@@ -31,6 +31,7 @@
 		B84EBE971BE14700008B6B12 /* WordList1to3LetterNoDup.txt in Resources */ = {isa = PBXBuildFile; fileRef = B84EBE951BE14700008B6B12 /* WordList1to3LetterNoDup.txt */; };
 		B84EBE981BE14700008B6B12 /* WordList4LetterNoDup.txt in Resources */ = {isa = PBXBuildFile; fileRef = B84EBE961BE14700008B6B12 /* WordList4LetterNoDup.txt */; };
 		B86530651BB7114F00A6A471 /* TrieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86530641BB7114F00A6A471 /* TrieTests.swift */; };
+		B8713D7B1C1BB15C00A26886 /* WordListChopped.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8713D7A1C1BB15C00A26886 /* WordListChopped.txt */; };
 		B879D8F11BDDCE4E0088A5A4 /* enable1WordListMod.txt in Resources */ = {isa = PBXBuildFile; fileRef = B879D8F01BDDCE4E0088A5A4 /* enable1WordListMod.txt */; };
 		B88118DC1BEAA32A003E74E5 /* WordList6LetterNoDup.txt in Resources */ = {isa = PBXBuildFile; fileRef = B88118DB1BEAA32A003E74E5 /* WordList6LetterNoDup.txt */; };
 		B88A58531BEAD859003E0957 /* 37Bronk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B88A58461BEAD859003E0957 /* 37Bronk.mp3 */; };
@@ -50,10 +51,9 @@
 		B88A58641BEAD969003E0957 /* MMWPlayerTilesGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A58621BEAD969003E0957 /* MMWPlayerTilesGrid.png */; };
 		B88A58651BEAD969003E0957 /* MMWPlayerTilesPlaque.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A58631BEAD969003E0957 /* MMWPlayerTilesPlaque.png */; };
 		B88A58671BEAD978003E0957 /* player02.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A58661BEAD978003E0957 /* player02.png */; };
-		B88A586A1BEAD9D5003E0957 /* Tile3D95x.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A58691BEAD9D5003E0957 /* Tile3D95x.png */; };
-		B88A586C1BEADA46003E0957 /* Tile3D100xGLOW.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A586B1BEADA46003E0957 /* Tile3D100xGLOW.png */; };
-		B88A586E1BEADA57003E0957 /* Tile3D95xBack.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A586D1BEADA57003E0957 /* Tile3D95xBack.png */; };
-		B88A58701BEADA6F003E0957 /* TileShadow90x90.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A586F1BEADA6F003E0957 /* TileShadow90x90.png */; };
+		B88A586C1BEADA46003E0957 /* Tile3DGlow.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A586B1BEADA46003E0957 /* Tile3DGlow.png */; };
+		B88A586E1BEADA57003E0957 /* Tile3DBack.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A586D1BEADA57003E0957 /* Tile3DBack.png */; };
+		B88A58701BEADA6F003E0957 /* TileShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A586F1BEADA6F003E0957 /* TileShadow.png */; };
 		B8A455161AF15A1400C0D83B /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A455141AF15A1400C0D83B /* MainMenuScene.swift */; };
 		B8A455171AF15A1400C0D83B /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A455151AF15A1400C0D83B /* GameViewController.swift */; };
 		B8AA6C081B2A481600DEAC41 /* MMWTileBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA6C071B2A481600DEAC41 /* MMWTileBuilder.swift */; };
@@ -76,6 +76,12 @@
 		B8FA8FA21AE9DC93007CF07C /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FA8FA11AE9DC93007CF07C /* GameData.swift */; };
 		B8FA8FA71AE9DD7F007CF07C /* particle.png in Resources */ = {isa = PBXBuildFile; fileRef = B8FA8FA61AE9DD7F007CF07C /* particle.png */; };
 		B8FA8FA91AE9DDB5007CF07C /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FA8FA81AE9DDB5007CF07C /* Config.swift */; };
+		B8FB376B1C28622F00C68434 /* BongoTest.png in Resources */ = {isa = PBXBuildFile; fileRef = B8FB376A1C28622F00C68434 /* BongoTest.png */; };
+		B8FB376D1C28661500C68434 /* BongoSized.png in Resources */ = {isa = PBXBuildFile; fileRef = B8FB376C1C28661500C68434 /* BongoSized.png */; };
+		B8FB376F1C28D56700C68434 /* codeSnippets in Resources */ = {isa = PBXBuildFile; fileRef = B8FB376E1C28D56700C68434 /* codeSnippets */; };
+		B8FB37741C28F79F00C68434 /* Tile3D@2x .png in Resources */ = {isa = PBXBuildFile; fileRef = B8FB37721C28F79E00C68434 /* Tile3D@2x .png */; };
+		B8FB37751C28F79F00C68434 /* Tile3D@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8FB37731C28F79F00C68434 /* Tile3D@3x.png */; };
+		B8FB37771C28F7CC00C68434 /* Tile3D.png in Resources */ = {isa = PBXBuildFile; fileRef = B8FB37761C28F7CC00C68434 /* Tile3D.png */; };
 		B8FFF25E1BE96E2E006D2010 /* MagicParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = B8FFF25C1BE96E2E006D2010 /* MagicParticle.sks */; };
 		B8FFF25F1BE96E2E006D2010 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = B8FFF25D1BE96E2E006D2010 /* spark.png */; };
 /* End PBXBuildFile section */
@@ -116,6 +122,7 @@
 		B84EBE951BE14700008B6B12 /* WordList1to3LetterNoDup.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WordList1to3LetterNoDup.txt; sourceTree = "<group>"; };
 		B84EBE961BE14700008B6B12 /* WordList4LetterNoDup.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WordList4LetterNoDup.txt; sourceTree = "<group>"; };
 		B86530641BB7114F00A6A471 /* TrieTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrieTests.swift; sourceTree = "<group>"; };
+		B8713D7A1C1BB15C00A26886 /* WordListChopped.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WordListChopped.txt; sourceTree = "<group>"; };
 		B879D8F01BDDCE4E0088A5A4 /* enable1WordListMod.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = enable1WordListMod.txt; sourceTree = "<group>"; };
 		B88118DB1BEAA32A003E74E5 /* WordList6LetterNoDup.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WordList6LetterNoDup.txt; sourceTree = "<group>"; };
 		B88A58461BEAD859003E0957 /* 37Bronk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 37Bronk.mp3; sourceTree = "<group>"; };
@@ -135,16 +142,16 @@
 		B88A58621BEAD969003E0957 /* MMWPlayerTilesGrid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MMWPlayerTilesGrid.png; sourceTree = "<group>"; };
 		B88A58631BEAD969003E0957 /* MMWPlayerTilesPlaque.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MMWPlayerTilesPlaque.png; sourceTree = "<group>"; };
 		B88A58661BEAD978003E0957 /* player02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player02.png; sourceTree = "<group>"; };
-		B88A58691BEAD9D5003E0957 /* Tile3D95x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tile3D95x.png; sourceTree = "<group>"; };
-		B88A586B1BEADA46003E0957 /* Tile3D100xGLOW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tile3D100xGLOW.png; sourceTree = "<group>"; };
-		B88A586D1BEADA57003E0957 /* Tile3D95xBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tile3D95xBack.png; sourceTree = "<group>"; };
-		B88A586F1BEADA6F003E0957 /* TileShadow90x90.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileShadow90x90.png; sourceTree = "<group>"; };
+		B88A586B1BEADA46003E0957 /* Tile3DGlow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tile3DGlow.png; sourceTree = "<group>"; };
+		B88A586D1BEADA57003E0957 /* Tile3DBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tile3DBack.png; sourceTree = "<group>"; };
+		B88A586F1BEADA6F003E0957 /* TileShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileShadow.png; sourceTree = "<group>"; };
 		B8A455141AF15A1400C0D83B /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		B8A455151AF15A1400C0D83B /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		B8AA6C071B2A481600DEAC41 /* MMWTileBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMWTileBuilder.swift; sourceTree = "<group>"; };
 		B8B2CA871ADADD9000C9DEE7 /* 5-LetterWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "5-LetterWords.txt"; sourceTree = "<group>"; };
 		B8B49DBA1AF1AF610086154C /* MMWResultsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMWResultsScene.swift; sourceTree = "<group>"; };
 		B8B5E1E91BB707FC00AD876E /* TrieElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrieElement.swift; sourceTree = "<group>"; };
+		B8B5F2CB1C208538005B768C /* data.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = data.dat; sourceTree = "<group>"; };
 		B8C14EF01AF27E5100E640C0 /* LetterTileSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterTileSprite.swift; sourceTree = "<group>"; };
 		B8CB742E1AF9260400AE5F40 /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		B8CCE19C1AD8C13500882391 /* MarkMyWord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarkMyWord.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,6 +175,12 @@
 		B8FA8FA51AE9DD70007CF07C /* Comic_Andy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Comic_Andy.ttf; sourceTree = "<group>"; };
 		B8FA8FA61AE9DD7F007CF07C /* particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = particle.png; sourceTree = "<group>"; };
 		B8FA8FA81AE9DDB5007CF07C /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		B8FB376A1C28622F00C68434 /* BongoTest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BongoTest.png; sourceTree = "<group>"; };
+		B8FB376C1C28661500C68434 /* BongoSized.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BongoSized.png; sourceTree = "<group>"; };
+		B8FB376E1C28D56700C68434 /* codeSnippets */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = codeSnippets; sourceTree = "<group>"; };
+		B8FB37721C28F79E00C68434 /* Tile3D@2x .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tile3D@2x .png"; sourceTree = "<group>"; };
+		B8FB37731C28F79F00C68434 /* Tile3D@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tile3D@3x.png"; sourceTree = "<group>"; };
+		B8FB37761C28F7CC00C68434 /* Tile3D.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tile3D.png; sourceTree = "<group>"; };
 		B8FFF25C1BE96E2E006D2010 /* MagicParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MagicParticle.sks; sourceTree = "<group>"; };
 		B8FFF25D1BE96E2E006D2010 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -275,10 +288,12 @@
 		B88A58681BEAD9CA003E0957 /* tiles */ = {
 			isa = PBXGroup;
 			children = (
-				B88A58691BEAD9D5003E0957 /* Tile3D95x.png */,
-				B88A586D1BEADA57003E0957 /* Tile3D95xBack.png */,
-				B88A586F1BEADA6F003E0957 /* TileShadow90x90.png */,
-				B88A586B1BEADA46003E0957 /* Tile3D100xGLOW.png */,
+				B8FB37761C28F7CC00C68434 /* Tile3D.png */,
+				B8FB37721C28F79E00C68434 /* Tile3D@2x .png */,
+				B8FB37731C28F79F00C68434 /* Tile3D@3x.png */,
+				B88A586D1BEADA57003E0957 /* Tile3DBack.png */,
+				B88A586F1BEADA6F003E0957 /* TileShadow.png */,
+				B88A586B1BEADA46003E0957 /* Tile3DGlow.png */,
 			);
 			name = tiles;
 			sourceTree = "<group>";
@@ -300,6 +315,7 @@
 				B84738E11C0A9EF3003B05BA /* WordList6to7LetterNoDup.txt */,
 				B84738E01C0A9EF3003B05BA /* WordList8to10LetterNoDup.txt */,
 				B84738E51C0B80FD003B05BA /* WordList11to16LetterNoDup.txt */,
+				B8713D7A1C1BB15C00A26886 /* WordListChopped.txt */,
 				B82D49391B908C5600607595 /* WM */,
 				B88118DA1BEA90AA003E74E5 /* H WordLists */,
 				B879D8F01BDDCE4E0088A5A4 /* enable1WordListMod.txt */,
@@ -397,6 +413,7 @@
 		B8CCE19E1AD8C13500882391 /* MarkMyWord */ = {
 			isa = PBXGroup;
 			children = (
+				B8B5F2CB1C208538005B768C /* data.dat */,
 				B81CF13A1C12205E00F5261D /* GenericCoreDataClasses */,
 				B81CF1391C12203900F5261D /* DataModel */,
 				B8DA7EC41AE136CA003FE2C6 /* Assets */,
@@ -475,6 +492,7 @@
 			children = (
 				B8A455151AF15A1400C0D83B /* GameViewController.swift */,
 				B8CCE1A71AD8C13500882391 /* MMWGameSceneViewController.swift */,
+				B8FB376E1C28D56700C68434 /* codeSnippets */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -497,6 +515,8 @@
 		B8DA7EC51AE136D3003FE2C6 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B8FB376A1C28622F00C68434 /* BongoTest.png */,
+				B8FB376C1C28661500C68434 /* BongoSized.png */,
 				B88A58681BEAD9CA003E0957 /* tiles */,
 				B8B5BCBB1B44BA4200AC1A69 /* temp */,
 				B8B5BCB21B44B9EE00AC1A69 /* buttons */,
@@ -664,18 +684,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8FB37751C28F79F00C68434 /* Tile3D@3x.png in Resources */,
 				B88A58651BEAD969003E0957 /* MMWPlayerTilesPlaque.png in Resources */,
+				B8FB37771C28F7CC00C68434 /* Tile3D.png in Resources */,
 				B88118DC1BEAA32A003E74E5 /* WordList6LetterNoDup.txt in Resources */,
-				B88A586C1BEADA46003E0957 /* Tile3D100xGLOW.png in Resources */,
+				B8FB37741C28F79F00C68434 /* Tile3D@2x .png in Resources */,
+				B88A586C1BEADA46003E0957 /* Tile3DGlow.png in Resources */,
 				B88A58611BEAD951003E0957 /* PlayerBG.png in Resources */,
 				B88A58581BEAD859003E0957 /* MeyamaSplashScreen_iPad.jpg in Resources */,
 				B84738D81C0A482C003B05BA /* PlayerBG02Island.png in Resources */,
+				B8713D7B1C1BB15C00A26886 /* WordListChopped.txt in Resources */,
 				B8CCE1B01AD8C13500882391 /* LaunchScreen.xib in Resources */,
 				B84738E31C0A9EF3003B05BA /* WordList8to10LetterNoDup.txt in Resources */,
 				B8CCE1AD1AD8C13500882391 /* Images.xcassets in Resources */,
 				B88A585D1BEAD859003E0957 /* PassButton.png in Resources */,
 				B88A585B1BEAD859003E0957 /* NewTilesButton.png in Resources */,
 				B8FFF25F1BE96E2E006D2010 /* spark.png in Resources */,
+				B8FB376B1C28622F00C68434 /* BongoTest.png in Resources */,
 				B88A585E1BEAD859003E0957 /* PauseButton.png in Resources */,
 				B84738DD1C0A5E47003B05BA /* player03.png in Resources */,
 				B84738E61C0B80FD003B05BA /* WordList11to16LetterNoDup.txt in Resources */,
@@ -692,16 +717,17 @@
 				B84738D41C0A3F20003B05BA /* tileCover.png in Resources */,
 				B8CCE1A41AD8C13500882391 /* GameScene.sks in Resources */,
 				B879D8F11BDDCE4E0088A5A4 /* enable1WordListMod.txt in Resources */,
+				B8FB376D1C28661500C68434 /* BongoSized.png in Resources */,
 				B88A58551BEAD859003E0957 /* 1007.WAV in Resources */,
-				B88A586A1BEAD9D5003E0957 /* Tile3D95x.png in Resources */,
 				B88A585A1BEAD859003E0957 /* MMWOptionsScreen.png in Resources */,
 				B8FA8FA71AE9DD7F007CF07C /* particle.png in Resources */,
 				B84738DE1C0A5E47003B05BA /* player04.png in Resources */,
 				B84EBE981BE14700008B6B12 /* WordList4LetterNoDup.txt in Resources */,
 				B8CCE1AB1AD8C13500882391 /* Main.storyboard in Resources */,
-				B88A586E1BEADA57003E0957 /* Tile3D95xBack.png in Resources */,
-				B88A58701BEADA6F003E0957 /* TileShadow90x90.png in Resources */,
+				B88A586E1BEADA57003E0957 /* Tile3DBack.png in Resources */,
+				B88A58701BEADA6F003E0957 /* TileShadow.png in Resources */,
 				B88A58531BEAD859003E0957 /* 37Bronk.mp3 in Resources */,
+				B8FB376F1C28D56700C68434 /* codeSnippets in Resources */,
 				B88A58561BEAD859003E0957 /* 1023.WAV in Resources */,
 				B84738E41C0A9EF3003B05BA /* WordList6to7LetterNoDup.txt in Resources */,
 				B88A585F1BEAD859003E0957 /* PlayButton.png in Resources */,

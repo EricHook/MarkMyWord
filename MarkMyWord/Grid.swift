@@ -11,14 +11,14 @@ import SpriteKit
 
 class Grid {
     
-    var gridUpperLeftX : Double = 1.0
-    var gridUpperLeftY : Double = 1.0
+    var gridUpperLeftX : Double = 0.0
+    var gridUpperLeftY : Double = 0.0
     
-    var gridSquareSizeX : Double = 1.0
-    var gridSquareSizeY : Double = 1.0
+    var gridSquareSizeX : Double = 0.0
+    var gridSquareSizeY : Double = 0.0
     
-    var gridNumSquaresX : Int = 1
-    var gridNumSquaresY : Int = 1
+    var gridNumSquaresX : Int = 0
+    var gridNumSquaresY : Int = 0
     
     var gridNumSquaresXMin : Int = 3
     var gridNumSquaresYMin : Int = 2
@@ -117,7 +117,7 @@ class Grid {
     }
     
     func getGridSquare (locX: Float, locY: Float) -> (GridSquareX: Int, GridSquareY: Int, GridSquareUpperLeftCornerX: Double, GridSquareUpperLeftCornerY: Double) {
-        let locYmod = locY + 35// (adj for flipped coordinates)
+        let locYmod = locY + Float((mmwGame.screenSize!).height) * 0.0455729167 // 35 (adj for flipped coordinates)
         var GridSquareX : Int = 0
         var GridSquareY : Int = 0
         var GridSquareUpperLeftCornerX : Double = 0.0
@@ -131,10 +131,10 @@ class Grid {
         
         //print("<Grid> TEST Grid square[]: x[\(GridSquareX)], y[\(GridSquareY)] and UL corner: x\(GridSquareUpperLeftCornerX), y\(GridSquareUpperLeftCornerY), click: \(locX), locY: \(locY), locYmod: \(locYmod)")
         
-        if GridSquareX < 0 { GridSquareX = 0}
-        if GridSquareX > 14 { GridSquareX = 14}
-        if GridSquareY < 0 { GridSquareY = 0}
-        if GridSquareY > 14 { GridSquareY = 14}
+        if GridSquareX < 0  { GridSquareX = 0  }
+        if GridSquareX > 14 { GridSquareX = 14 }
+        if GridSquareY < 0  { GridSquareY = 0  }
+        if GridSquareY > 14 { GridSquareY = 14 }
             
         return (GridSquareX, GridSquareY, GridSquareUpperLeftCornerX, GridSquareUpperLeftCornerY)
     }
@@ -149,16 +149,17 @@ class Grid {
     
     // given a grid and x, y func returns a CGPoint to place sprite
     class func sendToGridSquare (grid: Grid, squareX: Int, squareY: Int) -> (CGPoint) {
-        let tilePositionX = grid.gridUpperLeftX + 23.75 + ( Double(squareX) * grid.gridSquareSizeX )
-        let tilePositionY = 768 - grid.gridUpperLeftY - ( Double(squareY) * grid.gridSquareSizeY ) + 7
+        let tilePositionX = grid.gridUpperLeftX + Double((mmwGame.screenSize!).width * 0.023193359375) + ( Double(squareX) * grid.gridSquareSizeX )
+        //let tilePositionX = grid.gridUpperLeftX + 23.75 + ( Double(squareX) * grid.gridSquareSizeX )
+        let tilePositionY = Double((mmwGame.screenSize!).height) - grid.gridUpperLeftY - ( Double(squareY) * grid.gridSquareSizeY ) + (Double((mmwGame.screenSize!).height) * 0.0091145833)
         let tilePosition = CGPoint( x: tilePositionX, y: tilePositionY )
         return tilePosition
     }
     
     // given a grid and x, y func returns a CGPoint to place sprite
     func sendToGridSquare (squareX: Int, squareY: Int) -> (CGPoint) {
-        let tilePositionX = self.gridUpperLeftX + 23.75 + ( Double(squareX) * self.gridSquareSizeX )
-        let tilePositionY = 768 - self.gridUpperLeftY - ( Double(squareY) * self.gridSquareSizeY ) + 7
+        let tilePositionX = self.gridUpperLeftX + Double((mmwGame.screenSize!).width * 0.023193359375) + ( Double(squareX) * self.gridSquareSizeX )
+        let tilePositionY = Double((mmwGame.screenSize!).height) - self.gridUpperLeftY - ( Double(squareY) * self.gridSquareSizeY ) + (Double((mmwGame.screenSize!).height) * 0.0091145833)
         let tilePosition = CGPoint( x: tilePositionX, y: tilePositionY )
         return tilePosition
     }

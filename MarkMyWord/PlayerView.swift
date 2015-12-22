@@ -33,7 +33,7 @@ class PlayerView: SKSpriteNode {
     var playerTex            : SKTexture!
     
     let tileCoverTex         = SKTexture(imageNamed: "tileCover.png")
-    let playerGridGlowTex    = SKTexture(imageNamed: "Tile3D100xGLOW")
+    let playerGridGlowTex    = SKTexture(imageNamed: "Tile3DGlow")
     
     //var playerGridGlowTex    : SKSpriteNode = SKSpriteNode(texture: SKTexture(imageNamed: "Tile3D100xGLOW"), color: UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.00), size: CGSizeMake(50.0, 50.0))
     
@@ -59,7 +59,9 @@ class PlayerView: SKSpriteNode {
         
         let playerNumber = mmwPlayer.playerID
         
-        let playerTexName = ( "player0\(playerNumber).png" )
+        //let playerTexName = ( "player0\(playerNumber).png" )
+        
+        let playerTexName = ( "BongoSized.png" )
         playerTex = SKTexture(imageNamed: playerTexName)
         
         playerColor =  gameColors[mmwPlayer.playerColor]
@@ -89,7 +91,7 @@ class PlayerView: SKSpriteNode {
 //        playerBG.alpha = 1.0
 //        addChild(playerBG)
         
-        playerTex = SKTexture(imageNamed: "orangePlayer.png")
+        //playerTex = SKTexture(imageNamed: "orangePlayer.png")
         
         playerSprite.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         playerSprite.position = CGPoint(x: size.width/2.0, y: 150.0)  // 337.0)
@@ -150,20 +152,27 @@ class PlayerView: SKSpriteNode {
 
     }
     
+    
     func setPlayerGameSceneAndController (mmwGameScene: MMWGameScene, mmwGameSceneViewController: MMWGameSceneViewController) {
         self.mmwGameScene = mmwGameScene
         self.mmwGameSceneViewController = mmwGameSceneViewController
+        
+        self.xScale = (mmwGame.screenSize!.width)/1024
+        self.yScale = (mmwGame.screenSize!.height)/768
     }
+    
     
     func changePlayerScoreDisplay () {
         let score = mmwPlayer.playerScore
         self.playerScoreLabel.text = String(score)
     }
     
+    
     func changePlayerScoreDisplay (score: Int) {
         mmwPlayer.playerScore = score
         self.playerScoreLabel.text = String(score)
     }
+    
     
     func playerViewBeginTurn () {
         self.playerNameLabel.fontColor = UIColor.whiteColor()
@@ -175,6 +184,7 @@ class PlayerView: SKSpriteNode {
         let playerGrid = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid!
         playerGrid.makeTilesInGridInteractive(true)
     }
+    
     
     func playerViewEndTurn () {
         self.playerNameLabel.fontColor =  FontHUDBlack
@@ -189,6 +199,7 @@ class PlayerView: SKSpriteNode {
         let playerGrid = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid!  // .grid2DArr
         playerGrid.makeTilesInGridInteractive(false)
     }
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

@@ -46,22 +46,22 @@ class MMWTile {
     var gridLocation: GridLocation = GridLocation.Undealt
     var gridLocationEnd: GridLocation = GridLocation.Undealt
     var gridHome: Grid? = nil
-    var gridEnd: Grid? = nil
+    var gridEnd: Grid?  = nil
     var gridTest: Grid? = nil
     var gridX: Int = -1
     var gridY: Int = -1
-    var gridXEnd: Int = -1
-    var gridYEnd: Int = -1
+    var gridXEnd: Int  = -1
+    var gridYEnd: Int  = -1
     var gridXTest: Int = -1
     var gridYTest: Int = -1
 
     var tileText: String = "?"
     var undealt = true
     var tileState: TileState = TileState.Undealt
-    var playedMadeWord = PlayedMadeWord.None
+    var playedMadeWord       = PlayedMadeWord.None
     var tileOwner: TileOwner = TileOwner.None
-    var tileGrid: Grid? = nil
-    var description = ""
+    var tileGrid: Grid?      = nil
+    var description          = ""
     
     var playableSpotsEachDirection : (left: Int, right: Int, up: Int, down: Int) = (0, 0, 0, 0)
 
@@ -79,7 +79,7 @@ class MMWTile {
         description = "!"
         self.tileState = TileState.Undealt
         self.tileOwner = TileOwner.None
-        self.tileSprite  = LetterTileSprite(tileStyle: LetterTileSprite.TileStyle.basic, withChar: tileText, withColor: UIColorGray, atPoint: CGPointMake(0.5, 0.5))
+        self.tileSprite  = LetterTileSprite(tileStyle: LetterTileSprite.TileStyle.basic, withChar: tileText, withColor: UIColorGray, atPoint: CGPointMake(0.0, 0.0))
         self.tileSprite.position = CGPoint(x: 0.0, y: 0.0)
         self.tileSprite.zPosition = 1
         self.tileSprite.tileSpriteParent = self
