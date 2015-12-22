@@ -36,8 +36,7 @@ class PlayerView: SKSpriteNode {
     let playerGridGlowTex    = SKTexture(imageNamed: "Tile3DGlow")
     
     //var playerGridGlowTex    : SKSpriteNode = SKSpriteNode(texture: SKTexture(imageNamed: "Tile3D100xGLOW"), color: UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.00), size: CGSizeMake(50.0, 50.0))
-    
-    
+
     let playerColor       : UIColor!
     let playerSprite      : SKSpriteNode!
     let playerTileGrid    : SKSpriteNode!
@@ -49,7 +48,6 @@ class PlayerView: SKSpriteNode {
     //let playerBG : SKSpriteNode
     //        let playerBGTall : SKSpriteNode = SKSpriteNode(texture: playerBGTallTex, color: SKColor.whiteColor(), size: CGSizeMake(playerBGTallTex.size().width/2, playerBGTallTex.size().height/2) )
     //        let playerBG : SKSpriteNode = SKSpriteNode(texture: playerBGTex, color: SKColor.whiteColor(), size: CGSizeMake(playerBGTex.size().width/2, playerBGTex.size().height/2) )
-
 
     let playerScore : Int = 0
     
