@@ -56,6 +56,9 @@ class MMWGameSceneViewController {
 
     var wordTrie : Trie<Character>?
 
+    var wordSet : WordSet?
+    let wordSetPrecomputedSize : Int = 1253231;
+   
     init (size: CGSize) {
         viewSize = size
         tileCollection = MMWTileBuilder()
@@ -81,7 +84,9 @@ class MMWGameSceneViewController {
         tileCollection.mmwGameScene = self.mmwGameScene
         tileCollection.setViewControllerAndScene(self)
 
-        loadWords()  //  send off threads to get sections of word list to build array and trei
+        loadWordSet()
+        
+        //loadWords()  //  send off threads to get sections of word list to build array and trei
 
 //        buildWordArray("WordList1to3LetterNoDup")
 //        buildTrie( buildWordArray("WordList1to3LetterNoDup") )
@@ -115,6 +120,17 @@ class MMWGameSceneViewController {
         }
     }
     
+    
+    func loadWordSet() {
+        do {
+            if let path = NSBundle.mainBundle().pathForResource("WordListChopped", ofType: "txt") {
+                wordSet = WordSet(filePath: path, precomputedSize: wordSetPrecomputedSize)
+                try wordSet?.load()
+            }
+        } catch {
+            // alert message to user here
+        }
+    }
     
     func makeTwoPlayers () {
         player1.setPlayerTilesGrid(&mmwGameScene.mmwPlayer1Grid!)
@@ -260,9 +276,16 @@ class MMWGameSceneViewController {
     /// given a string, convert to lowercase, check for partial word in Trei (e.g. exists without trailing '!' character)
     func checkPartialWordMatch(var wordToCheck: String) -> Bool {
         wordToCheck = wordToCheck.lowercaseString
-        if wordTrie!.contains("\(wordToCheck)".characters){
+        
+        
+        //if wordTrie!.contains("\(wordToCheck)".characters){
+        //    return true
+        //}
+        
+        if (wordSet!.contains(wordToCheck)) {
             return true
         }
+        
         return false
     }
     
@@ -271,9 +294,15 @@ class MMWGameSceneViewController {
     /// given a string, convert to lowercase, check for whole word in Trei (e.g. exists withtrailing '!' character)
     func checkWholeWordMatch(var wordToCheck: String) -> Bool {
         wordToCheck = wordToCheck.lowercaseString
-        if wordTrie!.contains("\(wordToCheck)!".characters){ // whole words have ! at end of string
+        
+        if (wordSet!.contains(wordToCheck + "!")) {
             return true
         }
+        
+        //if wordTrie!.contains("\(wordToCheck)!".characters){ // whole words have ! at end of string
+        //    return true
+        //}
+        
         return false
     }
     
