@@ -11,12 +11,12 @@ import SpriteKit
 
 class Player {
     
-    var playerID : Int = 0
-    var playerName : String = ""
-    var playerScore : Int = 0
-    var doIt : Bool = false
-    var didIt : Bool = false
-    var playerColor : Int = 0
+    var playerID    = 0
+    var playerName  = ""
+    var playerScore = 0
+    var doIt        = false
+    var didIt       = false
+    var playerColor = 0
     
     var playerLetterTiles : [MMWTile]! = nil
     var playerLetterGrid: Grid! = nil
