@@ -40,6 +40,25 @@ class GameViewController : UIViewController {
         mmwGame.setMainMenuScene(menuScene)
         mmwGame.setScreenSize(view.bounds.size)
         
+        print(mmwGame.screenSize?.width)
+        
+        switch Int((mmwGame.screenSize?.width)!) {
+            
+            case 1024: // [1024x768]
+                mmwGame.setDeviceType(MMWGame.DeviceType.iPad)
+            case 2048: //  [2048 x 1536]
+                mmwGame.setDeviceType(MMWGame.DeviceType.iPadRetina)
+            case 1366: // [2732 x 2048] --> Width 1366!
+                mmwGame.setDeviceType(MMWGame.DeviceType.iPadPro)
+            case 2732: // [2732 x 2048]
+                mmwGame.setDeviceType(MMWGame.DeviceType.iPhone6)
+            case 736: // [2732 x 2048]
+               mmwGame.setDeviceType(MMWGame.DeviceType.iPhone6Plus)
+            default:
+                mmwGame.setDeviceType(MMWGame.DeviceType.iPad)
+        }
+        
+        
     //    if let scene1 = GameScene.unarchiveFromFile("GameScene") as? GameScene {
             // Configure the view.
             
@@ -49,6 +68,8 @@ class GameViewController : UIViewController {
         
         /* Sprite Kit applies additional optimizations to improve rendering performance */
         skView.ignoresSiblingOrder = true
+        
+        
         
         /* Set the scale mode to scale to fit the window */
         menuScene.scaleMode = .AspectFill

@@ -26,7 +26,6 @@ class LetterTileSprite : SKSpriteNode {
     var hasShadow   = false
     var tileText    = ""
 
-
 //    var tileScore1 : SKLabelNode = SKLabelNode()
 //    var tileScore2 : SKLabelNode = SKLabelNode()
 //    var tileScore3 : SKLabelNode = SKLabelNode()
@@ -85,13 +84,26 @@ class LetterTileSprite : SKSpriteNode {
 //                largeTextureFilename = "Tile3D95x"
 //        }
         
-        //let myCGSize = CGSizeMake(47.5, 47.5)
-        var tileSize = CGSizeMake(mmwGame.screenSize!.width * 0.04638671875 , mmwGame.screenSize!.height * 0.06184895833)
+
         
-        if (mmwGame.screenSize?.height == 1024) {
-            tileSize.height *= 0.75
-            tileSize.width *= 0.75
-        }
+        
+//        if (mmwGame.screenSize?.height == 1024) {
+//            tileSize.height *= 0.75
+//            tileSize.width *= 0.75
+//        }
+        
+//        if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
+////            tileSize.height *= 0.75
+////            tileSize.width *= 0.75
+//                frontTexture = SKTexture(imageNamed: "Tile3D@iPadPro.png")
+//        }
+        
+        //let myCGSize = CGSizeMake(47.5, 47.5)
+        let tileSize = CGSizeMake(47.5, 47.5)
+        //let tileSize = frontTexture.size()/3
+//        var tileSize = CGSizeMake(mmwGame.screenSize!.width * 0.04638671875 , mmwGame.screenSize!.height * 0.06184895833)
+//        var tileSize = CGSizeMake(frontTexture.size(), <#T##height: CGFloat##CGFloat#>)
+        
         
         
         super.init(texture: frontTexture, color: UIColorAppleBlue, size: tileSize)
@@ -167,8 +179,8 @@ class LetterTileSprite : SKSpriteNode {
     
     
     func centerTileToSquare(tile : LetterTileSprite) {
-        tile.position.x += 23.75  // 22.5?
-        tile.position.y += 23.75  // 22.5?
+        tile.position.x += (mmwGame.screenSize?.width)! * 0.023193359375  // 23.75 22.5?
+        tile.position.y += (mmwGame.screenSize?.width)! * 0.03094479167  // 23.75 22.5?
     }
     
     
@@ -247,11 +259,17 @@ class LetterTileSprite : SKSpriteNode {
             zPosition = 90
             //tileShadow.zPosition = self.zPosition - 1
             
-            let liftUp = SKAction.scaleTo(1.2, duration: 0.1)
-            runAction(liftUp, withKey: "pickup")
-            tileShadow.zPosition = self.zPosition - 1
-            tileShadow.hidden = false
+            
+            
+            
+//            let liftUp = SKAction.scaleTo(1.2, duration: 0.1)
+//            runAction(liftUp, withKey: "pickup")
+//            tileShadow.zPosition = self.zPosition - 1
+//            tileShadow.hidden = false
 
+            
+            
+            
             //let location = touch.locationInNode(scene!)
             // mark home grid and x and y grid locations at start of drag
 //            let gameGrid = (scene as! MMWGameScene).getSnapGrid(location)
@@ -319,15 +337,19 @@ class LetterTileSprite : SKSpriteNode {
             let tileSnapTouch = (touch as UITouch).locationInView(scene!.view)
             
             // IF VALID DROP LOCATION
-            if (tileSnapTouch.x > 160 && tileSnapTouch.x < 860) && (tileSnapTouch.y > 50 && tileSnapTouch.y < 747) { // checks that drag location within game grid boundaries
+            //if (tileSnapTouch.x > 160 && tileSnapTouch.x < 860) && (tileSnapTouch.y > 50 && tileSnapTouch.y < 747) { // checks that drag location within game grid boundaries    ??           314,76/157,38   xx  1732,1492/866, 746
+            if (tileSnapTouch.x > (mmwGame.screenSize?.width)! * 0.153320 && tileSnapTouch.x < (mmwGame.screenSize?.width)! * 0.84553) && (tileSnapTouch.y > (mmwGame.screenSize?.height)! * 0.04947917 && tileSnapTouch.y < (mmwGame.screenSize?.height)! * 0.97135416) { // checks that drag location within game grid boundaries
                 
                 let gameGrid = (scene as! MMWGameScene).getSnapGrid(tileSnapTouch)
                 let tileSnapResults = gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y)) // gets grid x, y on tile drag
                 
                 let tileSnapResultsXGrid = tileSnapResults.GridSquareX
                 let tileSnapResultsYGrid = tileSnapResults.GridSquareY
-                
+                print("touch: \(tileSnapTouch.x), \(tileSnapTouch.y) /  \(tileSnapResultsXGrid), \(tileSnapResultsYGrid)  \(mmwGameScene.getSnapGrid(tileSnapTouch)?.gridName)")
                 checkForValidWordsOnTileDrag(tileSnapResultsXGrid, gridYSpot: tileSnapResultsYGrid, IsAI: false)
+            }
+            else {
+                removeBoardTileHighlights ()
             }
         }
     }
@@ -342,22 +364,33 @@ class LetterTileSprite : SKSpriteNode {
         if enlarged { return }
         //var location = touch.locationInNode(self)
         
+        print( (mmwGame.screenSize?.width)! )
+        
         for touch in (touches as Set<UITouch>) {
             zPosition = 10
-            let dropDown = SKAction.scaleTo(1.0, duration: 0.1)
-            runAction(dropDown, withKey: "drop")
+//            let dropDown = SKAction.scaleTo(1.0, duration: 0.1)
+//            runAction(dropDown, withKey: "drop")
             tileShadow.hidden = true
             
             let tileSnapTouch = (touch as UITouch).locationInView(scene!.view)
 
             // IF NOT VALID DROP LOCATION ON BOARD, RETURN TILE TO PLAYER
+            
             //if (tileSnapTouch.x <= 160 || tileSnapTouch.x >= 860) {
-            if (tileSnapTouch.x <= (mmwGame.screenSize?.width)! * 0.15625 || tileSnapTouch.x >= (mmwGame.screenSize?.width)! * 0.83984375) {
-                print("Tried drop tile outside game board touchesEnded")
-                returnTileToGridHome()
-                return
+//            if (tileSnapTouch.x <= (mmwGame.screenSize?.width)! * 0.15625 || tileSnapTouch.x >= (mmwGame.screenSize?.width)! * 0.83984375) {
+//                print("Tried drop tile outside game board touchesEnded")
+//                returnTileToGridHome()
+//                return
+//            }
+            
+            if (tileSnapTouch.x <= (mmwGame.screenSize?.width)! * 0.153320 || tileSnapTouch.x >= (mmwGame.screenSize?.width)! * 0.84553) || (tileSnapTouch.y <= (mmwGame.screenSize?.height)! * 0.04947917 || tileSnapTouch.y >= (mmwGame.screenSize?.height)! * 0.97135416) {
+                    print("Tried drop tile outside game board touchesEnded")
+                    returnTileToGridHome()
+                    return
+                
             }
             
+
             let gameGrid = (scene as! MMWGameScene).getSnapGrid(tileSnapTouch)
             let tileSnapResults = gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y))
             let tileSnapResultsXGrid = tileSnapResults.GridSquareX
@@ -413,7 +446,7 @@ class LetterTileSprite : SKSpriteNode {
 
         mmwGameSceneViewController.resetConsequtivePasses()
         mmwGameSceneViewController.lettersPlayedInTurn += 1
-        print("letters playedInTurn = \(mmwGameSceneViewController.lettersPlayedInTurn)")
+        print("letters playedInTurn = \(mmwGameSceneViewController.lettersPlayedInTurn) ViewSize: \(mmwGameScene.viewSize.width)")
         
         // Change turns if player has no letter tiles remaining
         let letterTilesRemaining = self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.playerArray[(self.tileSpriteParent.tileBuilder?.mmwGameSceneViewController!.playerTurn)! - 1].playerLetterGrid.numLetterTilesInGrid()
@@ -428,11 +461,23 @@ class LetterTileSprite : SKSpriteNode {
     /// - Parameters:
     ///     - none: nothing
     func returnTileToGridHome () {
+        let scaleUp : SKAction!
+        let scaleDown : SKAction!
         self.zPosition = 25
         let returnPosition = Grid.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: self.tileSpriteParent.gridX, squareY: self.tileSpriteParent.gridY)
         let slide = SKAction.moveTo(returnPosition, duration:0.3)
-        let scaleUp = SKAction.scaleTo(1.5, duration:0.15)
-        let scaleDown = SKAction.scaleTo(1.0, duration:0.15)
+        //let scaleUp = SKAction.scaleTo(1.5, duration:0.15)
+        //let scaleDown = SKAction.scaleTo(1.0, duration:0.15)
+        
+        if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
+            scaleUp = SKAction.scaleTo(2.0, duration:0.15)
+            scaleDown = SKAction.scaleTo(1.33, duration:0.15)
+        }
+        else {
+            scaleUp = SKAction.scaleTo(1.5, duration:0.15)
+            scaleDown = SKAction.scaleTo(1.00,  duration:0.15)
+        }
+
         runAction(SKAction.group([slide, scaleUp, scaleDown]))
         self.tileGlow.hidden = true
         removeBoardTileHighlights ()
@@ -445,13 +490,25 @@ class LetterTileSprite : SKSpriteNode {
     /// - Parameters: pauseDuration: Double
     ///     -
     func playTileToBoardGrid (pauseDuration: Double) {
-
+        let scaleUp : SKAction!
+        let scaleDown : SKAction!
         self.zPosition = 100
         let boardPosition = Grid.sendToGridSquare(self.mmwGameScene.mmwBoardGrid, squareX: self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridYEnd)
         
         let slide = SKAction.moveTo(boardPosition, duration:0.8)
-        let scaleUp = SKAction.scaleTo(1.5, duration:0.4)
-        let scaleDown = SKAction.scaleTo(1.0, duration:0.4)
+        
+        //let scaleUp = SKAction.scaleTo(1.33, duration:0.4)
+        //let scaleDown = SKAction.scaleTo(1.33, duration:0.4)
+        
+        if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
+            scaleUp = SKAction.scaleTo(2.0, duration:0.4)
+            scaleDown = SKAction.scaleTo(1.33, duration:0.4)
+        }
+        else {
+            scaleUp = SKAction.scaleTo(1.5, duration:0.4)
+            scaleDown = SKAction.scaleTo(1.00, duration:0.4)
+        }
+
         let pauseSlide = SKAction.sequence([slide])
         let scaleUpDown = SKAction.sequence([scaleUp, scaleDown, self.actionSound2, ])
         self.runAction(SKAction.group([pauseSlide, scaleUpDown]))
@@ -693,7 +750,7 @@ class LetterTileSprite : SKSpriteNode {
         var hasValidLockedTile = false
         
         removeBoardTileHighlights()
-        print("checkForValidWords \(gridXSpot),\(gridXSpot), \(IsAI)")
+        print("checkForValidWords \(gridXSpot),\(gridYSpot), \(IsAI)")
         
         if mmwGameScene.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileType != TileType.Letter {
             print("checkForValidWords")
@@ -1078,12 +1135,7 @@ class LetterTileSprite : SKSpriteNode {
             
                 downString = stringToAdd
                 verticalString = upString.stringByAppendingString(downString)
-
-            
-            
-            
-            
-            
+      
             
             if mmwGameScene.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkPartialWordMatch(verticalString) == false {
                 // updates GUI for feedback on horizonal partial word
@@ -1196,7 +1248,7 @@ class LetterTileSprite : SKSpriteNode {
         
         let tileSnapResults = mmwGameScene.mmwBoardGrid.getGridSquare(touchX, locY: touchY)
         let tileSnapResultsCalculateX = tileSnapResults.GridSquareUpperLeftCornerX
-        let tileSnapResultsCalculateY = tileSnapResults.GridSquareUpperLeftCornerY - 15.5 // -15.5 on y touch point adjusts snapping too high to lower square
+        let tileSnapResultsCalculateY = tileSnapResults.GridSquareUpperLeftCornerY - Double((mmwGame.screenSize?.height)! * 0.02018229167) // -15.5 on y touch point adjusts snapping too high to lower square
         let tileSnapResultsXGrid = tileSnapResults.GridSquareX
         let tileSnapResultsYGrid = tileSnapResults.GridSquareY
         let tileAtDropSpot : MMWTile = (mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][tileSnapResultsYGrid]) // ERROR IF DRAG TOO FAR RIGHT _ INDEX OUT OF RANGE !!! ///////////
@@ -1391,7 +1443,7 @@ class LetterTileSprite : SKSpriteNode {
         
 
         // move tile to snap point
-        self.position.x = CGFloat(tileSnapResultsCalculateX)  + ( CGFloat((mmwGame.screenSize?.height)!) * CGFloat(0.023193359375))  //adjusts 23.75 for tile center in middle of tile
+        self.position.x = CGFloat(tileSnapResultsCalculateX)  + ( CGFloat((mmwGame.screenSize?.width)!) * CGFloat(0.023193359375))  //adjusts 23.75 for tile center in middle of tile
         self.position.y = CGFloat((mmwGame.screenSize?.height)!) - ( CGFloat(tileSnapResultsCalculateY) + ( CGFloat((mmwGame.screenSize?.height)!) * 0.0107421875) ) //38 adjusts for tile center and for board not in exact middle when flipping coords
         
         if tileSpriteParent.tileState == TileState.PlayedMadeWord {

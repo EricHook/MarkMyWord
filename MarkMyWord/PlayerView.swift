@@ -68,7 +68,7 @@ class PlayerView: SKSpriteNode {
         playerTilesPlaque = SKSpriteNode(texture: playerTilesPlaqueTex, color: playerColor, size: CGSizeMake(playerTilesPlaqueTex.size().width/2, playerTilesPlaqueTex.size().height/2) )
         playerTileCover = SKSpriteNode(texture: tileCoverTex,   color: UIColorGray, size: CGSizeMake( ( (tileCoverTex.size().width/2) + 2), ((tileCoverTex.size().height/2) + 2) ) )
         
-        playerGridGlow = SKSpriteNode (texture: playerGridGlowTex, color: SKColor.whiteColor(), size: CGSizeMake( ( (tileCoverTex.size().width/2) + 14), ((tileCoverTex.size().height/2) + 20) ) )
+        playerGridGlow = SKSpriteNode (texture: playerGridGlowTex, color: SKColor.whiteColor(), size: CGSizeMake( ( (tileCoverTex.size().width/2) + 12), ((tileCoverTex.size().height/2) + 18) ) )
         
         super.init(texture: playerBGTex, color: UIColorAppleBlue, size: CGSizeMake( playerBGTex.size().width/2 , playerBGTex.size().height/2) ) // (309/2, 1319/2) )
         self.zPosition = -100
@@ -155,7 +155,8 @@ class PlayerView: SKSpriteNode {
         self.mmwGameScene = mmwGameScene
         self.mmwGameSceneViewController = mmwGameSceneViewController
         
-        self.xScale = (mmwGame.screenSize!.width)/1024
+        //self.xScale = (mmwGame.screenSize!.width)/1024
+        self.xScale = (mmwGame.screenSize!.height)/768
         self.yScale = (mmwGame.screenSize!.height)/768
     }
     

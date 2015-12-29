@@ -12,14 +12,21 @@ import SpriteKit
 
 var mmwGame = MMWGame()
 
+
+
 class MMWGame {
     
     var mainMenuScene : MainMenuScene?
     var mmwGameScene : MMWGameScene?
     var mmwGameSceneViewController : MMWGameSceneViewController?
     var screenSize : CGSize?
+    var deviceType: DeviceType?
     
+    enum DeviceType : Int {
+        case iPad = 0, iPadRetina, iPadPro, iPhone6, iPhone6Plus
+    }
     
+
     init () {
  
     }
@@ -43,6 +50,10 @@ class MMWGame {
     
     func setScreenSize (screenSize : CGSize) {
         self.screenSize = screenSize
+    }
+    
+    func setDeviceType (deviceType : DeviceType) {
+        self.deviceType = deviceType
     }
 }
 

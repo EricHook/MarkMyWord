@@ -313,7 +313,14 @@ class MMWTileBuilder {
             tile.tileState = TileState.Undealt
             tile.tileOwner = TileOwner.None
             tile.tileBuilder = self
+            
+
+            
         }
+        
+
+        
+        
     }
     
     func setViewControllerAndScene (mmwGameSceneController: MMWGameSceneViewController) {
@@ -327,6 +334,19 @@ class MMWTileBuilder {
             tile.tileSprite.xScale = (mmwGameSceneViewController!.viewSize.width)/1024
             tile.tileSprite.yScale = (mmwGameSceneViewController!.viewSize.width)/1024
             //self.size( Double(mmwGameScene.viewSize.width)/1024 )
+            
+//            if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
+//                //gameGrid = SKSpriteNode(imageNamed: "GameGrid@iPadPro.png")
+//                tile.tileSprite.xScale *= 1.33
+//                tile.tileSprite.yScale *= 1.33
+//            }
+            
+            if mmwGame.deviceType == MMWGame.DeviceType.iPhone6Plus {
+                //gameGrid = SKSpriteNode(imageNamed: "GameGrid@iPadPro.png")
+                tile.tileSprite.xScale *= 0.75
+                tile.tileSprite.yScale *= 0.75
+                //FontHUD = FontHUDiPhone
+            }
         }
     }
     

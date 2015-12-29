@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 //// UI Constants /////////////////////////////////
-let ScreenWidth = UIScreen.mainScreen().bounds.size.width
-let ScreenHeight = UIScreen.mainScreen().bounds.size.height
+let screenWidth  = UIScreen.mainScreen().bounds.size.width
+let screenHeight = UIScreen.mainScreen().bounds.size.height
 
 // Random number generator /////////////////////
 func randomNumber(minX minX:UInt32, maxX:UInt32) -> Int {
@@ -24,27 +24,38 @@ let TileMargin: CGFloat = 20.0
 //// Fonts ///////////////////////////////////////
 //let FontHUD = UIFont(name:"comic andy", size: 62.0)!
 //let FontHUDBig = UIFont(name:"comic andy", size:120.0)!
-let FontHUD = UIFont(name:"HelveticaNeue-Bold", size: 18.0)!
-let FontHUDName = "HelveticaNeue-Bold"
-let FontHUDSize : CGFloat = 18.0
 
-let FontHUDBig = UIFont(name:"HelveticaNeue-Bold", size:120.0)!
+let FontHUDName = "HelveticaNeue-Bold"
+
+var FontHUDSize : CGFloat = 18.0
+var FontHUD = UIFont(name:"HelveticaNeue-Bold", size: 18.0)
+
+let FontHUDiPhoneSize = 12.0
+let FontHUDiPhone = UIFont(name:"HelveticaNeue-Bold", size: 12.0)
+
+
 let FontHUDBigName = "HelveticaNeue-Bold"
+
 let FontHUDBigSize : CGFloat = 120.0
+var FontHUDBig = UIFont(name:"HelveticaNeue-Bold", size:120.0)
+
+let FontHUDBigiPhoneiPhone = 80.0
+let FontHUDBigiPhone = UIFont(name:"HelveticaNeue-Bold", size:80.0)
+
+
 
 //// Colors //////////////////////////////////////
-let FontHUDWhite = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-let FontHUDRed = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
-let FontHUDBlack = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
-
+let FontHUDWhite        = UIColor(red: 1.0,    green: 1.0,    blue: 1.0,    alpha: 1.0)
+let FontHUDRed          = UIColor(red: 1.0,    green: 0.0,    blue: 0.0,    alpha: 1.0)
+let FontHUDBlack        = UIColor(red: 0.0,    green: 0.0,    blue: 0.0,    alpha: 1.0)
 ////Original Apple Colors
-let UIColorGray = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0)
-let UIColorAppleBlue = UIColor(red: 0.0, green: 0.6133, blue: 0.8594, alpha: 1.0)
-let UIColorAppleRed = UIColor(red: 0.875, green: 0.2266, blue: 0.2422, alpha: 1.0)
-let UIColorApplePurple = UIColor(red: 0.5859, green: 0.2383, blue: 0.5898, alpha: 1.0)
-let UIColorAppleGreen = UIColor(red: 0.3828, green: 0.7305, blue: 0.2773, alpha: 1.0)
-let UIColorAppleOrange = UIColor(red: 0.9609, green: 0.5117, blue: 0.125, alpha: 1.0)
-let UIColorAppleYellow = UIColor(red: 0.9609, green: 0.5117, blue: 0.125, alpha: 1.0)
+let UIColorGray         = UIColor(red: 0.5,    green: 0.5,    blue: 0.5,    alpha: 1.0)
+let UIColorAppleBlue    = UIColor(red: 0.0,    green: 0.6133, blue: 0.8594, alpha: 1.0)
+let UIColorAppleRed     = UIColor(red: 0.875,  green: 0.2266, blue: 0.2422, alpha: 1.0)
+let UIColorApplePurple  = UIColor(red: 0.5859, green: 0.2383, blue: 0.5898, alpha: 1.0)
+let UIColorAppleGreen   = UIColor(red: 0.3828, green: 0.7305, blue: 0.2773, alpha: 1.0)
+let UIColorAppleOrange  = UIColor(red: 0.9609, green: 0.5117, blue: 0.125,  alpha: 1.0)
+let UIColorAppleYellow  = UIColor(red: 0.9609, green: 0.5117, blue: 0.125,  alpha: 1.0)
 
 //let UIColorGray = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0)
 //let UIColorAppleGreen = UIColor(red: 27/256, green: 168/256, blue: 14/256, alpha: 1.0)

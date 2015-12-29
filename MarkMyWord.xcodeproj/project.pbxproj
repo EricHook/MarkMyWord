@@ -69,6 +69,14 @@
 		B8CCE1BC1AD8C13500882391 /* MarkMyWordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CCE1BB1AD8C13500882391 /* MarkMyWordTests.swift */; };
 		B8D130E71AFD635500865982 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D130E61AFD635500865982 /* PlayerView.swift */; };
 		B8D789281B0C3A0300C3DC36 /* MMWGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D789271B0C3A0300C3DC36 /* MMWGame.swift */; };
+		B8DFE1561C29F288009FB8ED /* OptionsButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DFE1541C29F288009FB8ED /* OptionsButton@2x.png */; };
+		B8DFE1571C29F288009FB8ED /* OptionsButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DFE1551C29F288009FB8ED /* OptionsButton@3x.png */; };
+		B8DFE1591C2A0BEE009FB8ED /* GameGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DFE1581C2A0BEE009FB8ED /* GameGrid.png */; };
+		B8DFE15C1C2A0E60009FB8ED /* GameGrid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DFE15A1C2A0E60009FB8ED /* GameGrid@2x.png */; };
+		B8DFE15D1C2A0E60009FB8ED /* GameGrid@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DFE15B1C2A0E60009FB8ED /* GameGrid@3x.png */; };
+		B8DFE15F1C2A11A5009FB8ED /* MarkMyWordBGCleaniPad.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DFE15E1C2A11A5009FB8ED /* MarkMyWordBGCleaniPad.png */; };
+		B8DFE1611C2B0DE9009FB8ED /* Tile3D@iPadPro.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DFE1601C2B0DE9009FB8ED /* Tile3D@iPadPro.png */; };
+		B8DFE1631C2B377D009FB8ED /* GameGrid@iPadPro.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DFE1621C2B377D009FB8ED /* GameGrid@iPadPro.png */; };
 		B8E874E61AE17E0000763849 /* MMWTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E874E51AE17E0000763849 /* MMWTile.swift */; };
 		B8FA8FA21AE9DC93007CF07C /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FA8FA11AE9DC93007CF07C /* GameData.swift */; };
 		B8FA8FA71AE9DD7F007CF07C /* particle.png in Resources */ = {isa = PBXBuildFile; fileRef = B8FA8FA61AE9DD7F007CF07C /* particle.png */; };
@@ -76,7 +84,7 @@
 		B8FB376B1C28622F00C68434 /* BongoTest.png in Resources */ = {isa = PBXBuildFile; fileRef = B8FB376A1C28622F00C68434 /* BongoTest.png */; };
 		B8FB376D1C28661500C68434 /* BongoSized.png in Resources */ = {isa = PBXBuildFile; fileRef = B8FB376C1C28661500C68434 /* BongoSized.png */; };
 		B8FB376F1C28D56700C68434 /* codeSnippets in Resources */ = {isa = PBXBuildFile; fileRef = B8FB376E1C28D56700C68434 /* codeSnippets */; };
-		B8FB37741C28F79F00C68434 /* Tile3D@2x .png in Resources */ = {isa = PBXBuildFile; fileRef = B8FB37721C28F79E00C68434 /* Tile3D@2x .png */; };
+		B8FB37741C28F79F00C68434 /* Tile3D@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8FB37721C28F79E00C68434 /* Tile3D@2x.png */; };
 		B8FB37751C28F79F00C68434 /* Tile3D@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8FB37731C28F79F00C68434 /* Tile3D@3x.png */; };
 		B8FB37771C28F7CC00C68434 /* Tile3D.png in Resources */ = {isa = PBXBuildFile; fileRef = B8FB37761C28F7CC00C68434 /* Tile3D.png */; };
 		B8FFF25E1BE96E2E006D2010 /* MagicParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = B8FFF25C1BE96E2E006D2010 /* MagicParticle.sks */; };
@@ -164,6 +172,14 @@
 		B8D130E31AFD44A100865982 /* MeyamaSplashScreen_iPad@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MeyamaSplashScreen_iPad@2x.jpg"; sourceTree = "<group>"; };
 		B8D130E61AFD635500865982 /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		B8D789271B0C3A0300C3DC36 /* MMWGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMWGame.swift; sourceTree = "<group>"; };
+		B8DFE1541C29F288009FB8ED /* OptionsButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OptionsButton@2x.png"; sourceTree = "<group>"; };
+		B8DFE1551C29F288009FB8ED /* OptionsButton@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OptionsButton@3x.png"; sourceTree = "<group>"; };
+		B8DFE1581C2A0BEE009FB8ED /* GameGrid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameGrid.png; sourceTree = "<group>"; };
+		B8DFE15A1C2A0E60009FB8ED /* GameGrid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GameGrid@2x.png"; sourceTree = "<group>"; };
+		B8DFE15B1C2A0E60009FB8ED /* GameGrid@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GameGrid@3x.png"; sourceTree = "<group>"; };
+		B8DFE15E1C2A11A5009FB8ED /* MarkMyWordBGCleaniPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MarkMyWordBGCleaniPad.png; sourceTree = "<group>"; };
+		B8DFE1601C2B0DE9009FB8ED /* Tile3D@iPadPro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tile3D@iPadPro.png"; sourceTree = "<group>"; };
+		B8DFE1621C2B377D009FB8ED /* GameGrid@iPadPro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GameGrid@iPadPro.png"; sourceTree = "<group>"; };
 		B8E874E51AE17E0000763849 /* MMWTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMWTile.swift; sourceTree = "<group>"; };
 		B8FA8FA11AE9DC93007CF07C /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
 		B8FA8FA51AE9DD70007CF07C /* Comic_Andy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Comic_Andy.ttf; sourceTree = "<group>"; };
@@ -172,7 +188,7 @@
 		B8FB376A1C28622F00C68434 /* BongoTest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BongoTest.png; sourceTree = "<group>"; };
 		B8FB376C1C28661500C68434 /* BongoSized.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BongoSized.png; sourceTree = "<group>"; };
 		B8FB376E1C28D56700C68434 /* codeSnippets */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = codeSnippets; sourceTree = "<group>"; };
-		B8FB37721C28F79E00C68434 /* Tile3D@2x .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tile3D@2x .png"; sourceTree = "<group>"; };
+		B8FB37721C28F79E00C68434 /* Tile3D@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tile3D@2x.png"; sourceTree = "<group>"; };
 		B8FB37731C28F79F00C68434 /* Tile3D@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tile3D@3x.png"; sourceTree = "<group>"; };
 		B8FB37761C28F7CC00C68434 /* Tile3D.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tile3D.png; sourceTree = "<group>"; };
 		B8FFF25C1BE96E2E006D2010 /* MagicParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MagicParticle.sks; sourceTree = "<group>"; };
@@ -283,8 +299,9 @@
 			isa = PBXGroup;
 			children = (
 				B8FB37761C28F7CC00C68434 /* Tile3D.png */,
-				B8FB37721C28F79E00C68434 /* Tile3D@2x .png */,
+				B8FB37721C28F79E00C68434 /* Tile3D@2x.png */,
 				B8FB37731C28F79F00C68434 /* Tile3D@3x.png */,
+				B8DFE1601C2B0DE9009FB8ED /* Tile3D@iPadPro.png */,
 				B88A586D1BEADA57003E0957 /* Tile3DBack.png */,
 				B88A586F1BEADA6F003E0957 /* TileShadow.png */,
 				B88A586B1BEADA46003E0957 /* Tile3DGlow.png */,
@@ -321,6 +338,8 @@
 			children = (
 				B88A584E1BEAD859003E0957 /* NewTilesButton.png */,
 				B88A584F1BEAD859003E0957 /* OptionsButton.png */,
+				B8DFE1541C29F288009FB8ED /* OptionsButton@2x.png */,
+				B8DFE1551C29F288009FB8ED /* OptionsButton@3x.png */,
 				B88A58501BEAD859003E0957 /* PassButton.png */,
 				B88A58511BEAD859003E0957 /* PauseButton.png */,
 				B88A58521BEAD859003E0957 /* PlayButton.png */,
@@ -352,8 +371,13 @@
 		B8C900681B01203A00C72745 /* backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				B8DFE1581C2A0BEE009FB8ED /* GameGrid.png */,
+				B8DFE1621C2B377D009FB8ED /* GameGrid@iPadPro.png */,
+				B8DFE15A1C2A0E60009FB8ED /* GameGrid@2x.png */,
+				B8DFE15B1C2A0E60009FB8ED /* GameGrid@3x.png */,
 				B8D130E21AFD44A100865982 /* MeyamaSplashScreen_iPad.jpg */,
 				B8D130E31AFD44A100865982 /* MeyamaSplashScreen_iPad@2x.jpg */,
+				B8DFE15E1C2A11A5009FB8ED /* MarkMyWordBGCleaniPad.png */,
 				B88A584A1BEAD859003E0957 /* MarkMyWordBGCleaniPad@2x.png */,
 				B88A584D1BEAD859003E0957 /* MMWOptionsScreen.png */,
 			);
@@ -678,8 +702,10 @@
 				B8FB37751C28F79F00C68434 /* Tile3D@3x.png in Resources */,
 				B88A58651BEAD969003E0957 /* MMWPlayerTilesPlaque.png in Resources */,
 				B8FB37771C28F7CC00C68434 /* Tile3D.png in Resources */,
+				B8DFE1561C29F288009FB8ED /* OptionsButton@2x.png in Resources */,
 				B88118DC1BEAA32A003E74E5 /* WordList6LetterNoDup.txt in Resources */,
-				B8FB37741C28F79F00C68434 /* Tile3D@2x .png in Resources */,
+				B8FB37741C28F79F00C68434 /* Tile3D@2x.png in Resources */,
+				B8DFE1631C2B377D009FB8ED /* GameGrid@iPadPro.png in Resources */,
 				B88A586C1BEADA46003E0957 /* Tile3DGlow.png in Resources */,
 				B88A58611BEAD951003E0957 /* PlayerBG.png in Resources */,
 				B84738D81C0A482C003B05BA /* PlayerBG02Island.png in Resources */,
@@ -688,7 +714,12 @@
 				B84738E31C0A9EF3003B05BA /* WordList8to10LetterNoDup.txt in Resources */,
 				B8CCE1AD1AD8C13500882391 /* Images.xcassets in Resources */,
 				B88A585D1BEAD859003E0957 /* PassButton.png in Resources */,
+				B8DFE1571C29F288009FB8ED /* OptionsButton@3x.png in Resources */,
+				B8DFE15D1C2A0E60009FB8ED /* GameGrid@3x.png in Resources */,
+				B8DFE1591C2A0BEE009FB8ED /* GameGrid.png in Resources */,
 				B88A585B1BEAD859003E0957 /* NewTilesButton.png in Resources */,
+				B8DFE15F1C2A11A5009FB8ED /* MarkMyWordBGCleaniPad.png in Resources */,
+				B8DFE15C1C2A0E60009FB8ED /* GameGrid@2x.png in Resources */,
 				B8FFF25F1BE96E2E006D2010 /* spark.png in Resources */,
 				B8FB376B1C28622F00C68434 /* BongoTest.png in Resources */,
 				B88A585E1BEAD859003E0957 /* PauseButton.png in Resources */,
@@ -714,6 +745,7 @@
 				B8CCE1AB1AD8C13500882391 /* Main.storyboard in Resources */,
 				B88A586E1BEADA57003E0957 /* Tile3DBack.png in Resources */,
 				B88A58701BEADA6F003E0957 /* TileShadow.png in Resources */,
+				B8DFE1611C2B0DE9009FB8ED /* Tile3D@iPadPro.png in Resources */,
 				B88A58531BEAD859003E0957 /* 37Bronk.mp3 in Resources */,
 				B8FB376F1C28D56700C68434 /* codeSnippets in Resources */,
 				B88A58561BEAD859003E0957 /* 1023.WAV in Resources */,
@@ -842,7 +874,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -881,7 +913,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -904,7 +936,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -922,7 +954,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hookstudios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
