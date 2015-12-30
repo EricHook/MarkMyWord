@@ -23,7 +23,7 @@ class MMWGame {
     var deviceType: DeviceType?
     
     enum DeviceType : Int {
-        case iPad = 0, iPadRetina, iPadPro, iPhone6, iPhone6Plus
+        case iPad = 0, iPadRetina, iPadPro, iPhone5, iPhone6, iPhone6Plus
     }
     
 

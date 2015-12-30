@@ -62,13 +62,13 @@ class PlayerView: SKSpriteNode {
         let playerTexName = ( "BongoSized.png" )
         playerTex = SKTexture(imageNamed: playerTexName)
         
-        playerColor =  gameColors[mmwPlayer.playerColor]
-        playerSprite = SKSpriteNode(texture: playerTex, color: playerColor, size: CGSizeMake(playerTex.size().width/2, playerTex.size().height/2) )
-        playerTileGrid = SKSpriteNode(texture: playerTileGridTex, color: playerColor, size: CGSizeMake(playerTileGridTex.size().width/2, playerTileGridTex.size().height/2) )
+        playerColor       =  gameColors[mmwPlayer.playerColor]
+        playerSprite      = SKSpriteNode(texture: playerTex, color: playerColor, size: CGSizeMake(playerTex.size().width/2, playerTex.size().height/2) )
+        playerTileGrid    = SKSpriteNode(texture: playerTileGridTex, color: playerColor, size: CGSizeMake(playerTileGridTex.size().width/2, playerTileGridTex.size().height/2) )
         playerTilesPlaque = SKSpriteNode(texture: playerTilesPlaqueTex, color: playerColor, size: CGSizeMake(playerTilesPlaqueTex.size().width/2, playerTilesPlaqueTex.size().height/2) )
-        playerTileCover = SKSpriteNode(texture: tileCoverTex,   color: UIColorGray, size: CGSizeMake( ( (tileCoverTex.size().width/2) + 2), ((tileCoverTex.size().height/2) + 2) ) )
+        playerTileCover  = SKSpriteNode(texture: tileCoverTex,   color: UIColorGray, size: CGSizeMake( ( (tileCoverTex.size().width/2) + 2), ((tileCoverTex.size().height/2) + 2) ) )
         
-        playerGridGlow = SKSpriteNode (texture: playerGridGlowTex, color: SKColor.whiteColor(), size: CGSizeMake( ( (tileCoverTex.size().width/2) + 12), ((tileCoverTex.size().height/2) + 18) ) )
+        playerGridGlow   = SKSpriteNode (texture: playerGridGlowTex, color: SKColor.whiteColor(), size: CGSizeMake( ( (tileCoverTex.size().width/2) + 12), ((tileCoverTex.size().height/2) + 18) ) )
         
         super.init(texture: playerBGTex, color: UIColorAppleBlue, size: CGSizeMake( playerBGTex.size().width/2 , playerBGTex.size().height/2) ) // (309/2, 1319/2) )
         self.zPosition = -100

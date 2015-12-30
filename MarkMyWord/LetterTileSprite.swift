@@ -338,7 +338,9 @@ class LetterTileSprite : SKSpriteNode {
             
             // IF VALID DROP LOCATION
             //if (tileSnapTouch.x > 160 && tileSnapTouch.x < 860) && (tileSnapTouch.y > 50 && tileSnapTouch.y < 747) { // checks that drag location within game grid boundaries    ??           314,76/157,38   xx  1732,1492/866, 746
+            
             if (tileSnapTouch.x > (mmwGame.screenSize?.width)! * 0.153320 && tileSnapTouch.x < (mmwGame.screenSize?.width)! * 0.84553) && (tileSnapTouch.y > (mmwGame.screenSize?.height)! * 0.04947917 && tileSnapTouch.y < (mmwGame.screenSize?.height)! * 0.97135416) { // checks that drag location within game grid boundaries
+                
                 
                 let gameGrid = (scene as! MMWGameScene).getSnapGrid(tileSnapTouch)
                 let tileSnapResults = gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y)) // gets grid x, y on tile drag
@@ -469,13 +471,21 @@ class LetterTileSprite : SKSpriteNode {
         //let scaleUp = SKAction.scaleTo(1.5, duration:0.15)
         //let scaleDown = SKAction.scaleTo(1.0, duration:0.15)
         
-        if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
+        if mmwGame.deviceType == MMWGame.DeviceType.iPhone5 {
+            scaleUp = SKAction.scaleTo(1.0, duration:0.15)
+            scaleDown = SKAction.scaleTo(0.42, duration:0.15)
+        }
+        else if mmwGame.deviceType == MMWGame.DeviceType.iPhone6Plus {
+            scaleUp = SKAction.scaleTo(1.0, duration:0.15)
+            scaleDown = SKAction.scaleTo(0.5, duration:0.15)
+        }
+        else if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
             scaleUp = SKAction.scaleTo(2.0, duration:0.15)
             scaleDown = SKAction.scaleTo(1.33, duration:0.15)
         }
         else {
             scaleUp = SKAction.scaleTo(1.5, duration:0.15)
-            scaleDown = SKAction.scaleTo(1.00,  duration:0.15)
+            scaleDown = SKAction.scaleTo(1.0,  duration:0.15)
         }
 
         runAction(SKAction.group([slide, scaleUp, scaleDown]))
@@ -500,11 +510,19 @@ class LetterTileSprite : SKSpriteNode {
         //let scaleUp = SKAction.scaleTo(1.33, duration:0.4)
         //let scaleDown = SKAction.scaleTo(1.33, duration:0.4)
         
-        if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
+        if mmwGame.deviceType == MMWGame.DeviceType.iPhone5 {
+            scaleUp = SKAction.scaleTo(1.0, duration:0.4)
+            scaleDown = SKAction.scaleTo(0.42, duration:0.4)
+        }
+        else if mmwGame.deviceType == MMWGame.DeviceType.iPhone6Plus {
+            scaleUp = SKAction.scaleTo(1.0, duration:0.4)
+            scaleDown = SKAction.scaleTo(0.51, duration:0.4)
+        }
+        else if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
             scaleUp = SKAction.scaleTo(2.0, duration:0.4)
             scaleDown = SKAction.scaleTo(1.33, duration:0.4)
         }
-        else {
+        else { // iPad device
             scaleUp = SKAction.scaleTo(1.5, duration:0.4)
             scaleDown = SKAction.scaleTo(1.00, duration:0.4)
         }

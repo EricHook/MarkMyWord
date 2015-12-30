@@ -341,7 +341,14 @@ class MMWTileBuilder {
 //                tile.tileSprite.yScale *= 1.33
 //            }
             
-            if mmwGame.deviceType == MMWGame.DeviceType.iPhone6Plus {
+//            if mmwGame.deviceType == MMWGame.DeviceType.iPhone5 {
+//                //gameGrid = SKSpriteNode(imageNamed: "GameGrid@iPadPro.png")
+//                tile.tileSprite.xScale *= 0.5
+//                tile.tileSprite.yScale *= 0.5
+//                //FontHUD = FontHUDiPhone
+//            }
+            
+            if mmwGame.deviceType == MMWGame.DeviceType.iPhone6Plus || mmwGame.deviceType == MMWGame.DeviceType.iPhone5 {
                 //gameGrid = SKSpriteNode(imageNamed: "GameGrid@iPadPro.png")
                 tile.tileSprite.xScale *= 0.75
                 tile.tileSprite.yScale *= 0.75

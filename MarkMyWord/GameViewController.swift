@@ -50,6 +50,8 @@ class GameViewController : UIViewController {
                 mmwGame.setDeviceType(MMWGame.DeviceType.iPadRetina)
             case 1366: // [2732 x 2048] --> Width 1366!
                 mmwGame.setDeviceType(MMWGame.DeviceType.iPadPro)
+            case 568: // [568.0, 320.0]
+                mmwGame.setDeviceType(MMWGame.DeviceType.iPhone5)
             case 2732: // [2732 x 2048]
                 mmwGame.setDeviceType(MMWGame.DeviceType.iPhone6)
             case 736: // [2732 x 2048]
