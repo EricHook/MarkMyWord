@@ -37,8 +37,8 @@ enum TileOwner: Int {
 }
 
 class MMWTile {
-    var mmwGameSceneViewController : MMWGameSceneViewController?
-    var mmwGameScene : MMWGameScene?
+//    var mmwGameSceneViewController = mmwGame.mmwGameSceneViewController? // : MMWGameSceneViewController?
+//    var mmwGameScene = mmwGame.mmwGameScene?  // : MMWGameScene?
     var tileSprite : LetterTileSprite!
     var tileBuilder : MMWTileBuilder? = nil
     var tileType: TileType = TileType.Unknown
@@ -83,8 +83,8 @@ class MMWTile {
         self.tileSprite.position = CGPoint(x: 0.0, y: 0.0)
         self.tileSprite.zPosition = 1
         self.tileSprite.tileSpriteParent = self
-        self.tileSprite.mmwGameSceneViewController = self.mmwGameSceneViewController
-        self.tileSprite.mmwGameScene = self.mmwGameScene
+//        self.tileSprite.mmwGameSceneViewController = mmwGame.mmwGameSceneViewController!
+//        self.tileSprite.mmwGameScene = mmwGame.mmwGameScene!
         self.tileSprite.hidden = true
         self.tileSprite.userInteractionEnabled = false
         tileSprite.alpha = 0.3
@@ -104,8 +104,8 @@ class MMWTile {
         self.tileSprite.position = CGPoint(x: 0.0, y: 0.0)
         self.tileSprite.zPosition = 1
         self.tileSprite.tileSpriteParent = self
-        self.tileSprite.mmwGameSceneViewController = self.mmwGameSceneViewController
-        self.tileSprite.mmwGameScene = self.mmwGameScene
+//        self.tileSprite.mmwGameSceneViewController = mmwGame.mmwGameSceneViewController!
+//        self.tileSprite.mmwGameScene = mmwGame.mmwGameScene!
         self.tileSprite.hidden = true
         self.tileSprite.userInteractionEnabled = false
     }

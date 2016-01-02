@@ -24,29 +24,21 @@ extension StreamReader : SequenceType {
 
 class MMWGameSceneViewController {
     
-    var mmwGameScene: MMWGameScene!
-    var viewSize : CGSize!
-    var tileCollection : MMWTileBuilder
-    var tilesPlayable : [MMWTile]
-    var numPlayers : Int = 4
-    var playerTurn :  Int = 1
+    //var mmwGameScene: MMWGameScene!
+    var viewSize = screenSize
+    var tileCollection = MMWTileBuilder() // : MMWTileBuilder
+    var tilesPlayable = [MMWTile]()
+    var numPlayers   = 4
+    var playerTurn   = 1
     var minWordSize = 3
     var secondsPerTurn = 30
-    var player0 : Player = Player(_playerID: 0, _playerName: "AI",      _playerColor: 0) // used to add initial word ownership
-    var player1 : Player = Player(_playerID: 1, _playerName: "Abe",     _playerColor: 1)
-    var player2 : Player = Player(_playerID: 2, _playerName: "Bart",    _playerColor: 2)
+    var player0 : Player = Player(_playerID: 0, _playerName: "AI",          _playerColor: 0) // used to add initial word ownership
+    var player1 : Player = Player(_playerID: 1, _playerName: "Player 1",    _playerColor: 1)
+    var player2 : Player = Player(_playerID: 2, _playerName: "Bart",        _playerColor: 2)
     // player 3 and 4 objects created but only used in 3 or 4 player games
-    var player3 : Player = Player(_playerID: 3, _playerName: "Charlie", _playerColor: 3)
-    var player4 : Player = Player(_playerID: 4, _playerName: "Dan",     _playerColor: 4)
+    var player3 : Player = Player(_playerID: 3, _playerName: "Charlie",     _playerColor: 3)
+    var player4 : Player = Player(_playerID: 4, _playerName: "Dan",         _playerColor: 4)
     var playerArray : [Player]! // array of all players 0-3 for easier iteration of player turns
-    var wordsLoaded1to3     = false
-    var wordsLoaded4        = false
-    var wordsLoaded5        = false
-    var wordsLoaded6        = false
-    var wordsLoaded7        = false
-    var wordsLoaded8        = false
-    var wordsLoaded9        = false
-    var wordsLoaded10Plus   = false
 
     var wordArray : [String] = [""]
     var wordArrayMod : [String.CharacterView] = ["".characters]
@@ -54,16 +46,24 @@ class MMWGameSceneViewController {
     var consecutivePasses = 0
     var lettersPlayedInTurn = 0
 
-    var wordTrie : Trie<Character>?
+    //var wordTrie : Trie<Character>?
 
     var wordSet : WordSet?
     let wordSetPrecomputedSize : Int = 1253231;
    
     init (size: CGSize) {
-        viewSize = size
-        tileCollection = MMWTileBuilder()
-        mmwGameScene = MMWGameScene(size: viewSize)
- 
+        //viewSize = size
+
+    }
+    
+    func setUpGame () {
+      
+        //mmwGameScene = MMWGameScene(size: viewSize)
+    
+        //mmwGameScene.setViewController(self)
+
+        //tileCollection = MMWTileBuilder()
+        
         if numPlayers == 2 {
             playerArray  = [player1, player2]
         }
@@ -75,40 +75,43 @@ class MMWGameSceneViewController {
         }
         
         tilesPlayable = tileCollection.mmwTileArray
-        mmwGameScene.setViewController(self)
+        
+        //mmwGame.mmwGameSceneViewController = self
+        //mmwGame.mmwGameScene = mmwGameScene
+        
         mmwGameScene.setGrids() // sets tile grid positions, size of square, number of squares and position on screen for each grid possible
         mmwGameScene.buildGameView()
         setUpPlayers() // add player to view, match player to grid, fill grid with starter tiles and colorize to player color
         
-        tileCollection.mmwGameSceneViewController = self
-        tileCollection.mmwGameScene = self.mmwGameScene
-        tileCollection.setViewControllerAndScene(self)
-
+        //tileCollection.mmwGameSceneViewController = self
+        //tileCollection.mmwGameScene = self.mmwGameScene
+        //tileCollection.setViewControllerAndScene(self)
+        
         loadWordSet()
         
         //loadWords()  //  send off threads to get sections of word list to build array and trei
-
-//        buildWordArray("WordList1to3LetterNoDup")
-//        buildTrie( buildWordArray("WordList1to3LetterNoDup") )
-//        print("buildTrie() 1-3")
-//        
-//        buildWordArray("WordList4LetterNoDup")
-//        insertTrie( buildWordArray("WordList4LetterNoDup") )
-//        print("insertTrie() 4")
-//        
-//        buildWordArray("WordList5LetterNoDup")
-//        insertTrie( buildWordArray("WordList5LetterNoDup") )
-//        print("insertTrie() 5")
-//        
-//        buildWordArray("WordList6LetterNoDup")
-//        insertTrie( buildWordArray("WordList6LetterNoDup") )
-//        print("insertTrie() 6")
-
+        
+        //        buildWordArray("WordList1to3LetterNoDup")
+        //        buildTrie( buildWordArray("WordList1to3LetterNoDup") )
+        //        print("buildTrie() 1-3")
+        //
+        //        buildWordArray("WordList4LetterNoDup")
+        //        insertTrie( buildWordArray("WordList4LetterNoDup") )
+        //        print("insertTrie() 4")
+        //
+        //        buildWordArray("WordList5LetterNoDup")
+        //        insertTrie( buildWordArray("WordList5LetterNoDup") )
+        //        print("insertTrie() 5")
+        //
+        //        buildWordArray("WordList6LetterNoDup")
+        //        insertTrie( buildWordArray("WordList6LetterNoDup") )
+        //        print("insertTrie() 6")
+        
     }
     
     
     func setUpPlayers () {
-        mmwGameScene.setViewController(self)
+        //mmwGameScene.setViewController(self)
         if numPlayers == 2 {
             makeTwoPlayers()
         }
@@ -135,11 +138,11 @@ class MMWGameSceneViewController {
     func makeTwoPlayers () {
         player1.setPlayerTilesGrid(&mmwGameScene.mmwPlayer1Grid!)
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer1Grid!)
-        player1.setPlayerView(mmwGameScene.player1View, mmwGameScene: self.mmwGameScene, mmwGameSceneViewController: self)
+        player1.setPlayerView(mmwGameScene.player1View, mmwGameScene: mmwGameScene, mmwGameSceneViewController: mmwGameSceneViewController)
         
         player2.setPlayerTilesGrid(&mmwGameScene.mmwPlayer2Grid!)
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer2Grid!)
-        player2.setPlayerView(mmwGameScene.player2View, mmwGameScene: self.mmwGameScene, mmwGameSceneViewController: self)
+        player2.setPlayerView(mmwGameScene.player2View, mmwGameScene: mmwGameScene, mmwGameSceneViewController: mmwGameSceneViewController)
         
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwBoardGrid!)
     }
@@ -150,7 +153,7 @@ class MMWGameSceneViewController {
         
         player3.setPlayerTilesGrid(&mmwGameScene.mmwPlayer3Grid!)
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer3Grid!)
-        player3.setPlayerView(mmwGameScene.player3View, mmwGameScene: self.mmwGameScene, mmwGameSceneViewController: self)
+        player3.setPlayerView(mmwGameScene.player3View, mmwGameScene: mmwGameScene, mmwGameSceneViewController: mmwGameSceneViewController)
     }
     
     
@@ -159,7 +162,7 @@ class MMWGameSceneViewController {
 
         player4.setPlayerTilesGrid(&mmwGameScene.mmwPlayer4Grid!)
         tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer4Grid!)
-        player4.setPlayerView(mmwGameScene.player4View, mmwGameScene: self.mmwGameScene, mmwGameSceneViewController: self)
+        player4.setPlayerView(mmwGameScene.player4View, mmwGameScene: mmwGameScene, mmwGameSceneViewController: mmwGameSceneViewController)
     }
     
     
@@ -224,39 +227,39 @@ class MMWGameSceneViewController {
     }
     
     
-    func buildWordArray(wordList : String) -> [String] {
-        // read the file
-        wordArray = [""]  // clear wordArray so can add new chuncks of wordList
-        
-        if let aStreamReader = StreamReader(file: wordList) { // "/Users/erichook/Desktop/testSmallUTF8.txt") {
-            
-            while let line = aStreamReader.nextLine() {
-                wordArray.append(line)
-            }
-            aStreamReader.close()
-            print("FINISHED buildWordArray() with \(wordList)")
-        }
-        return wordArray
-    }
-    
-    
-    func buildTrie(stringArray: [String]) {
-        wordArrayMod = stringArray.map{$0.characters}
-        wordTrie = Trie(wordArrayMod)
-    }
-    
-    
-    func insertTrie(stringArray: [String]) {
-        wordArrayMod = stringArray.map{$0.characters}
-        print("InsertTrie store.count START: + \(wordTrie!.count) ")
-//        print("InsertTrie store.contains jo: + \(wordTrie!.completions("jo".characters).count)")
-//        let stringTest = "jox"
-//        wordTrie!.insert(stringTest.characters) //    (wordArrayMod.map{$0.characters})
-        for word in wordArray {
-            wordTrie!.insert(word.characters)
-        }
-        print("FINISHED InsertTrie()")
-    }
+//    func buildWordArray(wordList : String) -> [String] {
+//        // read the file
+//        wordArray = [""]  // clear wordArray so can add new chuncks of wordList
+//        
+//        if let aStreamReader = StreamReader(file: wordList) { // "/Users/erichook/Desktop/testSmallUTF8.txt") {
+//            
+//            while let line = aStreamReader.nextLine() {
+//                wordArray.append(line)
+//            }
+//            aStreamReader.close()
+//            print("FINISHED buildWordArray() with \(wordList)")
+//        }
+//        return wordArray
+//    }
+//    
+//    
+//    func buildTrie(stringArray: [String]) {
+//        wordArrayMod = stringArray.map{$0.characters}
+//        wordTrie = Trie(wordArrayMod)
+//    }
+//    
+//    
+//    func insertTrie(stringArray: [String]) {
+//        wordArrayMod = stringArray.map{$0.characters}
+//        print("InsertTrie store.count START: + \(wordTrie!.count) ")
+////        print("InsertTrie store.contains jo: + \(wordTrie!.completions("jo".characters).count)")
+////        let stringTest = "jox"
+////        wordTrie!.insert(stringTest.characters) //    (wordArrayMod.map{$0.characters})
+//        for word in wordArray {
+//            wordTrie!.insert(word.characters)
+//        }
+//        print("FINISHED InsertTrie()")
+//    }
 
     
     /// func stringFromTileArr (tileArr: [MMWTile]) -> String
@@ -276,8 +279,7 @@ class MMWGameSceneViewController {
     /// given a string, convert to lowercase, check for partial word in Trei (e.g. exists without trailing '!' character)
     func checkPartialWordMatch(var wordToCheck: String) -> Bool {
         wordToCheck = wordToCheck.lowercaseString
-        
-        
+
         //if wordTrie!.contains("\(wordToCheck)".characters){
         //    return true
         //}
@@ -306,13 +308,13 @@ class MMWGameSceneViewController {
         return false
     }
     
-    func AIPlayTiles (player: Player) {
-        for tileColumn in self.tileCollection.mmwBoardTile2DArray! {
-            for tile in tileColumn {
-                print(" \(tile.tileOwner.hashValue) ")
-            }
-        }
-    }
+//    func AIPlayTiles (player: Player) {
+//        for tileColumn in self.tileCollection.mmwBoardTile2DArray! {
+//            for tile in tileColumn {
+//                print(" \(tile.tileOwner.hashValue) ")
+//            }
+//        }
+//    }
 
     
 //    func checkWholeWordMatch(wordToCheck: String) -> Bool {
@@ -630,7 +632,7 @@ class MMWGameSceneViewController {
         
         mmwGameScene.updateGridInScene(mmwGameScene.mmwBoardGrid)
         if player.playerLetterGrid != nil {
-            self.mmwGameScene.updateGridInScene(player.playerLetterGrid)
+            mmwGameScene.updateGridInScene(player.playerLetterGrid)
         } 
     }
 
@@ -716,103 +718,103 @@ class MMWGameSceneViewController {
         
 
         
-        //let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-        let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-        
-        dispatch_async(dispatch_get_global_queue(priority, 0), { ()->() in
-            
-            print("gcd hello")
-            print("hello from UI thread executed as dispatch 1")
-            print("Currently dispatched asynchronously 0")
-            
-            //self.buildWordArray("WordList1to3LetterNoDup")
-            self.buildTrie(self.buildWordArray("WordList1to3LetterNoDup") )
-            self.wordsLoaded1to3 = true
-            print("buildTrie() 1-3")
-            print("Currently dispatched asynchronously 1-3")
-            
-            //self.buildWordArray("WordList4LetterNoDup")
-            self.insertTrie(self.buildWordArray("WordList4LetterNoDup") )
-            self.wordsLoaded4 = true
-            print("insertTrie() 4")
-            print("Currently dispatched asynchronously 4")
-            
-//            //self.buildWordArray("WordList5LetterNoDup")
-//            self.insertTrie(self.buildWordArray("WordList5LetterNoDup") )
-//            self.wordsLoaded5 = true
-//            print("insertTrie() 5")
-//            print("Currently dispatched asynchronously 5")
-//            //print("hello from UI thread executed as dispatch 2")
+//        //let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+//        let priority = DISPATCH_QUEUE_PRIORITY_HIGH
+//        
+//        dispatch_async(dispatch_get_global_queue(priority, 0), { ()->() in
 //            
-//            //self.buildWordArray("WordList6LetterNoDup")
-//            self.insertTrie(self.buildWordArray("WordList6LetterNoDup") )
-//            self.wordsLoaded6 = true
-//            print("insertTrie() 6")
-//            print("Currently dispatched asynchronously 6")
+//            print("gcd hello")
+//            print("hello from UI thread executed as dispatch 1")
+//            print("Currently dispatched asynchronously 0")
+//            
+//            //self.buildWordArray("WordList1to3LetterNoDup")
+//            self.buildTrie(self.buildWordArray("WordList1to3LetterNoDup") )
+//            self.wordsLoaded1to3 = true
+//            print("buildTrie() 1-3")
+//            print("Currently dispatched asynchronously 1-3")
+//            
+//            //self.buildWordArray("WordList4LetterNoDup")
+//            self.insertTrie(self.buildWordArray("WordList4LetterNoDup") )
+//            self.wordsLoaded4 = true
+//            print("insertTrie() 4")
+//            print("Currently dispatched asynchronously 4")
+//            
+////            //self.buildWordArray("WordList5LetterNoDup")
+////            self.insertTrie(self.buildWordArray("WordList5LetterNoDup") )
+////            self.wordsLoaded5 = true
+////            print("insertTrie() 5")
+////            print("Currently dispatched asynchronously 5")
+////            //print("hello from UI thread executed as dispatch 2")
+////            
+////            //self.buildWordArray("WordList6LetterNoDup")
+////            self.insertTrie(self.buildWordArray("WordList6LetterNoDup") )
+////            self.wordsLoaded6 = true
+////            print("insertTrie() 6")
+////            print("Currently dispatched asynchronously 6")
+////
+////            /////////////////////////
+////            
+////            //self.buildWordArray("WordList6to7LetterNoDup")
+////            self.insertTrie(self.buildWordArray("WordList6to7LetterNoDup") )
+////            self.wordsLoaded7 = true
+////            print("insertTrie() 6 to 7")
+////            print("Currently dispatched asynchronously 7")
+////            
+////            //self.buildWordArray("WordList6LetterNoDup")
+////            self.insertTrie(self.buildWordArray("WordList8to10LetterNoDup") )
+////            self.wordsLoaded8 = true
+////            print("insertTrie() 8to10")
+////            print("Currently dispatched asynchronously 8to10")
+//            
+//            ////////////////////////
 //
-//            /////////////////////////
+////            //self.buildWordArray("WordList11to16LetterNoDup")
+////            self.insertTrie(self.buildWordArray("WordList11to16LetterNoDup") )
+////            self.wordsLoaded9 = true
+////            print("insertTrie() 11to16")
+////            print("Currently dispatched asynchronously 11to16")
 //            
-//            //self.buildWordArray("WordList6to7LetterNoDup")
-//            self.insertTrie(self.buildWordArray("WordList6to7LetterNoDup") )
-//            self.wordsLoaded7 = true
-//            print("insertTrie() 6 to 7")
-//            print("Currently dispatched asynchronously 7")
 //            
-//            //self.buildWordArray("WordList6LetterNoDup")
-//            self.insertTrie(self.buildWordArray("WordList8to10LetterNoDup") )
-//            self.wordsLoaded8 = true
-//            print("insertTrie() 8to10")
-//            print("Currently dispatched asynchronously 8to10")
-            
-            ////////////////////////
-
-//            //self.buildWordArray("WordList11to16LetterNoDup")
-//            self.insertTrie(self.buildWordArray("WordList11to16LetterNoDup") )
-//            self.wordsLoaded9 = true
-//            print("insertTrie() 11to16")
-//            print("Currently dispatched asynchronously 11to16")
-            
-            
-            
-            
-            
-            
-//            //??? INSERT SAVED TREI HERE ???
-//            //aCoder.encodeObject(name, forKey: PropertyKey.nameKey)
 //            
-//            let trieData: TrieData = NSEntityDescription.insertNewObjectForEntityForName("TrieData", inManagedObjectContext: CDHelper.shared.context) as! TrieData
+//            
+//            
+//            
+////            //??? INSERT SAVED TREI HERE ???
+////            //aCoder.encodeObject(name, forKey: PropertyKey.nameKey)
+////            
+////            let trieData: TrieData = NSEntityDescription.insertNewObjectForEntityForName("TrieData", inManagedObjectContext: CDHelper.shared.context) as! TrieData
+////
+////
+////            //store you class object into NSUserDefaults.
+////            let theData = NSKeyedArchiver.archivedDataWithRootObject(trieData)
+////            NSUserDefaults().setObject(theData, forKey: "theData")
+////            print(theData)
+////            
+////            //get your object from NSUserDefaults.
+////            if let loadedData = NSUserDefaults().dataForKey("theData") {
+////                
+////                if let loadedData = NSKeyedUnarchiver.unarchiveObjectWithData(loadedData) as? NSData {
+////                    
+////                    trieData.prebuiltTrie = loadedData
+////                }
+////            }
 //
-//
-//            //store you class object into NSUserDefaults.
-//            let theData = NSKeyedArchiver.archivedDataWithRootObject(trieData)
-//            NSUserDefaults().setObject(theData, forKey: "theData")
-//            print(theData)
-//            
-//            //get your object from NSUserDefaults.
-//            if let loadedData = NSUserDefaults().dataForKey("theData") {
 //                
-//                if let loadedData = NSKeyedUnarchiver.unarchiveObjectWithData(loadedData) as? NSData {
 //                    
-//                    trieData.prebuiltTrie = loadedData
-//                }
-//            }
-
-                
-                    
-                    
- 
-//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { ()->() in
+//                    
+// 
+////            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { ()->() in
+////
+////                })
+//  
+//            dispatch_async(dispatch_get_main_queue(), {
 //
-//                })
-  
-            dispatch_async(dispatch_get_main_queue(), {
-
-                print("hello from UI thread executed as dispatch")
-                
-            })
-        })
-        
-        print("hello from UI thread")
+//                print("hello from UI thread executed as dispatch")
+//                
+//            })
+//        })
+//        
+//        print("hello from UI thread")
         
         
 //        // ??? INSERT SAVED TREI HERE ???

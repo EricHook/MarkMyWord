@@ -26,14 +26,15 @@ struct validAILetterPlay {
     var madeValidWord = false
 }
 
+
 class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
 
-    var mmwGameSceneViewController : MMWGameSceneViewController!
+    //var mmwGameSceneViewController : MMWGameSceneViewController!
     
-    var viewSize : CGSize!
-    var backgroundNode : SKSpriteNode = SKSpriteNode( imageNamed: "MarkMyWordBGCleaniPad.png" ) // ( imageNamed: ("MarkMyWordBGCleaniPad@2x.png" ) "MarkMyWordBGCleaniPhone@3x.png" )
-    var optionsLayerNode  : SKSpriteNode = SKSpriteNode(imageNamed: "MMWOptionsScreen.jpg")
-    var foregroundNode : SKSpriteNode = SKSpriteNode()
+    var viewSize         : CGSize!
+    var backgroundNode   : SKSpriteNode = SKSpriteNode( imageNamed: "MarkMyWordBGCleaniPad.png" ) // ( imageNamed: ("MarkMyWordBGCleaniPad@2x.png" ) "MarkMyWordBGCleaniPhone@3x.png" )
+    var optionsLayerNode : SKSpriteNode = SKSpriteNode(imageNamed: "MMWOptionsScreen.png")
+    var foregroundNode   : SKSpriteNode = SKSpriteNode()
     
     var mmwBoardGrid: Grid!
     
@@ -62,6 +63,8 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
     let pauseButton    = SKSpriteNode(imageNamed: "PauseButton.png")
     let optionsButton  = SKSpriteNode(imageNamed: "OptionsButton.png")
     var gameGrid       = SKSpriteNode(imageNamed: "GameGrid.png")
+
+    let smallSquare    = SKSpriteNode(imageNamed: "SmallSquare.png")
     
     var placeholderTexture : SKTexture = SKTexture(imageNamed: "TileBackTest90x90")
     
@@ -88,11 +91,13 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
     override init(size: CGSize) {
         super.init(size: size)
         viewSize = size
+        
     }
     
-    func setViewController (mmwGameSceneController: MMWGameSceneViewController) {
-        self.mmwGameSceneViewController = mmwGameSceneController
-    }
+//    func setViewController (mmwGameSceneController: MMWGameSceneViewController) {
+//        //self.mmwGameSceneViewController = mmwGameSceneController
+//        self.mmwGameSceneViewController = mmwGame.mmwGameSceneViewController
+//    }
     
     func resetPassCounter () {
         mmwGameSceneViewController.consecutivePasses = 0
@@ -226,25 +231,24 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
         addChild(backgroundNode)
 
         player1View = addPlayerView(1, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player1))
-        player1View.setPlayerGameSceneAndController(self, mmwGameSceneViewController: self.mmwGameSceneViewController)
+        //player1View.setPlayerGameSceneAndController(self, mmwGameSceneViewController: self.mmwGameSceneViewController)
         playerViewArr.append(player1View)
         
         //player1View.anchorPoint = CGPointMake(0,0)
         player2View = addPlayerView(2, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player2))
-        player2View.setPlayerGameSceneAndController(self, mmwGameSceneViewController: self.mmwGameSceneViewController)
+        //player2View.setPlayerGameSceneAndController(self, mmwGameSceneViewController: self.mmwGameSceneViewController)
         playerViewArr.append(player2View)
         if mmwGameSceneViewController.numPlayers > 2 {
             player3View = addPlayerView(3, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player3))
-            player3View.setPlayerGameSceneAndController(self, mmwGameSceneViewController: self.mmwGameSceneViewController)
+            //player3View.setPlayerGameSceneAndController(self, mmwGameSceneViewController: self.mmwGameSceneViewController)
             playerViewArr.append(player3View)
         }
         if mmwGameSceneViewController.numPlayers > 3 {
             player4View = addPlayerView(4, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player4))
-            player4View.setPlayerGameSceneAndController(self, mmwGameSceneViewController: self.mmwGameSceneViewController)
+            //player4View.setPlayerGameSceneAndController(self, mmwGameSceneViewController: self.mmwGameSceneViewController)
             playerViewArr.append(player4View)
         }
-        
-        
+
         addChild(foregroundNode) // generic SKNode to separate foreground elements from background
         
         backgroundNode.zPosition = -50
@@ -331,8 +335,7 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
         playButton.position = CGPoint(x: (viewSize.width * 0.5), y: (viewSize.height * 0.5) )
         playButton.name = "playButton"
         self.addChild(playButton)
-        
-        
+
         newTilesButton.position = CGPoint(x: (viewSize.width * 0.0751), y: (viewSize.height * 0.102) )
         newTilesButton.name = "newTilesButton"
         newTilesButton.userInteractionEnabled = true
@@ -353,6 +356,26 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
         optionsButton.userInteractionEnabled = true
         self.addChild(optionsButton)
         
+        
+        
+        
+//        smallSquare.position = CGPoint(x: (viewSize.width * 0.5), y: (viewSize.height * 0.5) )
+//        smallSquare.size = CGSize(width: (viewSize.width * 0.2),  height: (viewSize.height * 0.2) )
+//        smallSquare.color = UIColorAppleYellow
+//        smallSquare.name = "smallSquare"
+//        smallSquare.userInteractionEnabled = false
+//        //smallSquare.hidden = true
+//        self.addChild(smallSquare)
+        
+//        smallSquareNode.name = "SmallSquare"
+//        smallSquareNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+//        smallSquareNode.position = CGPoint(x: size.width/2.0, y: size.height/2.0)
+//        smallSquareNode.userInteractionEnabled = false
+//        smallSquareNode.zPosition = 100
+//        smallSquareNode.size = CGSize(width: (viewSize.width * 0.2),  height: (viewSize.height * 0.2) )
+//        smallSquareNode.alpha = 0.95
+//        smallSquareNode.hidden = true
+//        self.addChild(smallSquareNode)
 
         
         // ADD ALL TILES to Scene - they start as invisible
@@ -365,26 +388,28 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
         }
         
         optionsLayerNode.name = "optionsLayerNode"
-        optionsLayerNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+        optionsLayerNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         optionsLayerNode.position = CGPoint(x: size.width/2.0, y: size.height/2.0)
         optionsLayerNode.userInteractionEnabled = false
         optionsLayerNode.zPosition = 100
-        optionsLayerNode.size = CGSize(width: (viewSize.width * 0.9),  height: (viewSize.height * 0.8) )
-        optionsLayerNode.alpha = 0.75
+        optionsLayerNode.size = CGSize(width: (viewSize.width * 1.0),  height: (viewSize.height * 1.0) )
+        optionsLayerNode.alpha = 0.95
         optionsLayerNode.hidden = true
         self.addChild(optionsLayerNode)
         
-        // Placeholder for dictionary data loading progress display
-        let playBtnTEMP = SKSpriteNode(imageNamed: "PlayButton.png")
-        playBtnTEMP.position = CGPoint(x: viewSize.width/4, y: viewSize.height/6)
-        self.addChild(playBtnTEMP)
-        playBtnTEMP.name = "playBtnTEMP"
-        playBtnTEMP.zPosition = 100
-        playBtnTEMP.anchorPoint = CGPointMake(0, 0)
-        let scaleHoriz = SKAction.scaleXTo(2, duration: 3.0)
-        let loadingAnim = SKAction.group([scaleHoriz])
-        let loadingAnimSequence = SKAction.sequence([loadingAnim, SKAction.removeFromParent()])
-        playBtnTEMP.runAction(loadingAnimSequence)
+
+        
+//        // Placeholder for dictionary data loading progress display
+//        let playBtnTEMP = SKSpriteNode(imageNamed: "PlayButton.png")
+//        playBtnTEMP.position = CGPoint(x: viewSize.width/4, y: viewSize.height/6)
+//        self.addChild(playBtnTEMP)
+//        playBtnTEMP.name = "playBtnTEMP"
+//        playBtnTEMP.zPosition = 100
+//        playBtnTEMP.anchorPoint = CGPointMake(0, 0)
+//        let scaleHoriz = SKAction.scaleXTo(2, duration: 3.0)
+//        let loadingAnim = SKAction.group([scaleHoriz])
+//        let loadingAnimSequence = SKAction.sequence([loadingAnim, SKAction.removeFromParent()])
+//        playBtnTEMP.runAction(loadingAnimSequence)
         
         // Placeholder for AI play
         let playBtnPlay = SKSpriteNode(imageNamed: "PlayButton.png")
@@ -396,15 +421,32 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
         playBtnPlay.anchorPoint = CGPointMake(0, 0)
         self.addChild(playBtnPlay)
         newTilesButton.userInteractionEnabled = true
+        
+        
+        
+        
+//        var logoFrame = CGRectMake(0,0,118,40)
+//        self.addChild(logoFrame)
+        
+//        var imageView = UIImageView(frame: logoFrame)
+//        imageView.image = UIImage(named:"Logo")
+//        self.view!.addSubview(imageView)
+        
+        
+        
+        //need to draw a rectangle here
     }
     
     func showAllGridTiles (gridToDisplay: Grid) {
         runAction(dealTilesSound)
         for x in 0...gridToDisplay.gridNumSquaresX - 1 {   // fill Player 1 letter tiles : 2 in y and 3 in x
             for y in 0...gridToDisplay.gridNumSquaresY - 1 {
-                let tileAdded : MMWTile = gridToDisplay.grid2DArr[x][y] // tileBuilder.mmwPlayer1LetterTileArray[tileArrSelectedTile]
-                tileAdded.tileSprite.hidden = false
-                tileAdded.tileSprite.position = Grid.sendToGridSquare(gridToDisplay, squareX: x, squareY: y)
+//                let tileAdded : MMWTile = gridToDisplay.grid2DArr[x][y] // tileBuilder.mmwPlayer1LetterTileArray[tileArrSelectedTile]
+//                tileAdded.tileSprite.hidden = false
+//                tileAdded.tileSprite.position = Grid.sendToGridSquare(gridToDisplay, squareX: x, squareY: y)
+                //let tileAdded : MMWTile = gridToDisplay.grid2DArr[x][y] // tileBuilder.mmwPlayer1LetterTileArray[tileArrSelectedTile]
+                gridToDisplay.grid2DArr[x][y].tileSprite.hidden = false
+                gridToDisplay.grid2DArr[x][y].tileSprite.position = Grid.sendToGridSquare(gridToDisplay, squareX: x, squareY: y)
             }
         }
     }
@@ -599,7 +641,7 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
         if userInteractionEnabled {
             print(">>> PLAY BUTTON PRESSED >>>")
             
-            var starterWord0 = "DAREOITSHE"
+            var starterWord0 = mmwGameSceneViewController.getRandomWord()
             mmwGameSceneViewController.checkTilesForWord(starterWord0, letterTileArray: mmwGameSceneViewController.tileCollection.mmwTileArray)
             var starterWord0TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord0, letterTileArray: &mmwGameSceneViewController.tileCollection.mmwTileArray)
             
@@ -630,30 +672,31 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
             
             // SENDS RANDOM WORD(S) TO CENTER OF BOARD // half of the time Horizontal and the rest Vertical
             
-            /////////////////////////////////////////////////////
+//            /////////////////////////////////////////////////////
+//            
+//            mmwGameSceneViewController.sendWordToBoard(&starterWord1TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 2, yStartSquare: 2, IsHorizonal: false, player: mmwGameSceneViewController.player0)
+//            mmwGameSceneViewController.sendWordToBoard(&starterWord2TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 4, yStartSquare: 3, IsHorizonal: false, player: mmwGameSceneViewController.player0)
+//            mmwGameSceneViewController.sendWordToBoard(&starterWord3TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 6, yStartSquare: 5, IsHorizonal: true, player: mmwGameSceneViewController.player0)
+//            mmwGameSceneViewController.sendWordToBoard(&starterWord4TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 2, yStartSquare: 14, IsHorizonal: true, player: mmwGameSceneViewController.player0)
+//            
+//            /////////////////////////////////////////////////////
             
-            mmwGameSceneViewController.sendWordToBoard(&starterWord1TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 2, yStartSquare: 2, IsHorizonal: false, player: mmwGameSceneViewController.player0)
-            mmwGameSceneViewController.sendWordToBoard(&starterWord2TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 4, yStartSquare: 3, IsHorizonal: false, player: mmwGameSceneViewController.player0)
-            mmwGameSceneViewController.sendWordToBoard(&starterWord3TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 6, yStartSquare: 5, IsHorizonal: true, player: mmwGameSceneViewController.player0)
-            mmwGameSceneViewController.sendWordToBoard(&starterWord4TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 2, yStartSquare: 14, IsHorizonal: true, player: mmwGameSceneViewController.player0)
-            
-            /////////////////////////////////////////////////////
-            
-            if arc4random_uniform(100) > 100 { // VERTICAL  !!!!!!!!! CURRENTLY SET SO ALWAYS VERTICAL
-                //                mmwGameSceneViewController.sendWordToBoard(&starterWord1TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 2, yStartSquare: 2, IsHorizonal: false, player: mmwGameSceneViewController.player0)
-                //                mmwGameSceneViewController.sendWordToBoard(&starterWord2TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 4, yStartSquare: 3, IsHorizonal: false, player: mmwGameSceneViewController.player0)
-                //                mmwGameSceneViewController.sendWordToBoard(&starterWord3TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 6, yStartSquare: 5, IsHorizonal: false, player: mmwGameSceneViewController.player0)
-                //                mmwGameSceneViewController.sendWordToBoard(&starterWord4TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 14, yStartSquare: 2, IsHorizonal: false, player: mmwGameSceneViewController.player0)
+            if arc4random_uniform(100) > 50 { // VERTICAL  !!!!!!!!! CURRENTLY SET SO ALWAYS VERTICAL
+                mmwGameSceneViewController.sendWordToBoard(&starterWord1TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 3, yStartSquare: 2, IsHorizonal: false, player: mmwGameSceneViewController.player0)
+                mmwGameSceneViewController.sendWordToBoard(&starterWord2TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 11, yStartSquare: 2, IsHorizonal: false, player: mmwGameSceneViewController.player0)
+                mmwGameSceneViewController.sendWordToBoard(&starterWord3TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 7, yStartSquare: 8, IsHorizonal: false, player: mmwGameSceneViewController.player0)
+//                mmwGameSceneViewController.sendWordToBoard(&starterWord4TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 14, yStartSquare: 2, IsHorizonal: false, player: mmwGameSceneViewController.player0)
             }
                 
             else { // HORIZONTAL
                 
-                mmwGameSceneViewController.sendWordToBoard(&starterWord0TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 3, yStartSquare: 1, IsHorizonal: true, player: mmwGameSceneViewController.player0)
+                mmwGameSceneViewController.sendWordToBoard(&starterWord0TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 2, yStartSquare: 3, IsHorizonal: true, player: mmwGameSceneViewController.player0)
                 
-                //                mmwGameSceneViewController.sendWordToBoard(&starterWord1TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 2, yStartSquare: 2, IsHorizonal: true, player: mmwGameSceneViewController.player0)
-                //                mmwGameSceneViewController.sendWordToBoard(&starterWord2TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 4, yStartSquare: 3, IsHorizonal: true, player: mmwGameSceneViewController.player0)
-                //                mmwGameSceneViewController.sendWordToBoard(&starterWord3TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 6, yStartSquare: 5, IsHorizonal: true, player: mmwGameSceneViewController.player0)
-                //                mmwGameSceneViewController.sendWordToBoard(&starterWord4TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 2, yStartSquare: 14, IsHorizonal: true, player: mmwGameSceneViewController.player0)
+                mmwGameSceneViewController.sendWordToBoard(&starterWord1TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 8, yStartSquare: 7, IsHorizonal: true, player: mmwGameSceneViewController.player0)
+                mmwGameSceneViewController.sendWordToBoard(&starterWord2TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 2, yStartSquare: 11, IsHorizonal: true, player: mmwGameSceneViewController.player0)
+                
+                //mmwGameSceneViewController.sendWordToBoard(&starterWord3TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 6, yStartSquare: 10, IsHorizonal: true, player: mmwGameSceneViewController.player0)
+                //mmwGameSceneViewController.sendWordToBoard(&starterWord4TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 2, yStartSquare: 14, IsHorizonal: true, player: mmwGameSceneViewController.player0)
             }
             
             mmwPlayer1Grid.dealGridFromArrayRandom(&mmwGameSceneViewController.tileCollection.mmwTileArray, numTilesToDeal: 6, playerNum: 1, clearGrid: false)
@@ -691,10 +734,8 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
         func playAILetters() {
             let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
             dispatch_async(dispatch_get_global_queue(priority, 0), { ()->() in
-            
-                print("gcd hello playBtnPlay playAILetters")
-                print("hello from playBtnPlay playAILetters thread executed as dispatch 1")
-                print("Currently dispatched asynchronously 0 playBtnPlay playAILetters")
+                
+                print("Currently dispatched thread asynchronously 0 playBtnPlay playAILetters")
             
                 //get tile from current player
                 //print("Player tiles to play \(self.mmwGameSceneViewController.playerArray[self.mmwGameSceneViewController.playerTurn - 1].playerLetterGrid ) ")
@@ -707,28 +748,19 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
                 //var validWordPlays    : [[validAILetterPlay]] = [[validAILetterPlay]]()
                 var numLockedTilesSearched = 0
                 var checkForValidWordsAISearchedTRUE = 0
-                
-                
-                
-                
-                let playerLetterTilesArr = self.mmwGameSceneViewController.playerArray[self.mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.getArrayLetterTilesInGrid() // num of tilesToPlay 0 to numTiles in player grid
+
+                let playerLetterTilesArr = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.getArrayLetterTilesInGrid() // num of tilesToPlay 0 to numTiles in player grid
                 var playerTilesLettersArr : [String] = [String]()  // the playerTilesArr in corresponding Letter array
                 
                 for tile in playerLetterTilesArr {                    // prints out letters in player tiles
                     print("\(tile.tileText) ", terminator: "")
                     playerTilesLettersArr.append(tile.tileText) // adds letters in player tiles to playerTilesLettersArr[]
-                };                                  print("")      // to add a return on last letter
-                
-                
-                
-                
-                
-                let numLettersToPlayMin = 2
-                let numLettersToPlayMax = 3
+                };  print("")      // to add a return on last letter
+ 
+                let numLettersToPlayMin = 1
+                let numLettersToPlayMax = 6
                 let permutationsToPlay : Set<String> = self.permuteLetters(playerTilesLettersArr, minStringLen: numLettersToPlayMin, maxStringLen: numLettersToPlayMax)
-                
-                
-                
+
                 for lockedTile in lockedTilesArr {
                     numLockedTilesSearched++
                     print("looking at tile \(lockedTile.gridXEnd), \(lockedTile.gridYEnd)" )
@@ -740,7 +772,7 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
                 print("numLockedTilesSearched : \(numLockedTilesSearched++), checkForValidWordsAISearchedTRUE : \(checkForValidWordsAISearchedTRUE) playBtnPlay loadWords() mmwGameScene")
 
                 // Change turns if player has no letter tiles remaining
-                let letterTilesRemaining = self.mmwGameSceneViewController.playerArray[(self.mmwGameSceneViewController.playerTurn) - 1].playerLetterGrid.numLetterTilesInGrid()
+                let letterTilesRemaining = mmwGameSceneViewController.playerArray[(mmwGameSceneViewController.playerTurn) - 1].playerLetterGrid.numLetterTilesInGrid()
                 if letterTilesRemaining <= 0 {
                     self.changePlayerTurn()
                 }
@@ -752,18 +784,13 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
             })
             
             print("hello from playBtnPlay playAILetters thread")
-        
-            
         }
         
         //mmwGameSceneViewController.playerArray[self.mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.getArrayLetterTilesInGrid()
-        
-        
+
         playAILetters()
-        
-        
+
         mmwGameSceneViewController.resetConsequtivePasses()
-        
     }
     
     
@@ -993,20 +1020,20 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
         if userInteractionEnabled {
             runAction(actionSound)
             stopTimer()
-            print("mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray)")
-            mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray)
-            print("mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwTileArray)")
-            mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwTileArray)
-            
-            mmwPlayer1Grid.printGrid()
-            mmwPlayer2Grid.printGrid()
-            if mmwGameSceneViewController.numPlayers > 2 {
-                mmwPlayer3Grid.printGrid()
-            }
-            if mmwGameSceneViewController.numPlayers > 3 {
-                mmwPlayer4Grid.printGrid()
-            }
-            mmwBoardGrid.printGrid()
+//            print("mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray)")
+//            mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray)
+//            print("mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwTileArray)")
+//            mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwTileArray)
+//            
+//            mmwPlayer1Grid.printGrid()
+//            mmwPlayer2Grid.printGrid()
+//            if mmwGameSceneViewController.numPlayers > 2 {
+//                mmwPlayer3Grid.printGrid()
+//            }
+//            if mmwGameSceneViewController.numPlayers > 3 {
+//                mmwPlayer4Grid.printGrid()
+//            }
+//            mmwBoardGrid.printGrid()
             optionsLayerNode.hidden = false  // pop up graphic ... click to hide
         }
     }
@@ -1318,7 +1345,7 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
         var tileArrayToPlay : [MMWTile] = [MMWTile]()
         var gridTestX = gridXSpot
         var gridTestY = gridYSpot
-        var lockedBoardTilesArr = mmwGameSceneViewController.mmwGameScene.mmwBoardGrid.getArrayLetterTilesInGrid() // start at locked and move L/R and Up/Down
+        var lockedBoardTilesArr = mmwGameScene.mmwBoardGrid.getArrayLetterTilesInGrid() // start at locked and move L/R and Up/Down
         var playerLetterTilesGrid = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid // num of tilesToPlay 0 to numTiles in player grid
         
         
@@ -1469,13 +1496,13 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
                         //print("Added permutation letter: \(existingLetterToAdd) : testString \(testString) ")
                     }
                     
-                    if (self.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkPartialWordMatch(testString) == true ) {
+                    if (mmwGameSceneViewController.checkPartialWordMatch(testString) == true ) {
                         
                         validPartialAILetterPlayArr = currentPossibleAILetterPlayArr
                         //                        allValidPartialWordTilePlayArr.append(validPartialWordTilePlayArr)
                         foundHorizontalPartialWordsNumber++
                         
-                        if (self.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkWholeWordMatch(testString) == true ) && testString.characters.count > 2 {
+                        if (mmwGameSceneViewController.checkWholeWordMatch(testString) == true ) && testString.characters.count > 2 {
                             // update existing placeholder data to reflect that tile made word
                             
                             currentTestAILetterPlay.partOfWord = testString
@@ -1557,7 +1584,7 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
                                         
                                         var letterTilePlayable : MMWTile
                                         
-                                        letterTilePlayable  = self.mmwGameSceneViewController.playerArray[self.mmwGameSceneViewController.playerTurn-1].playerLetterGrid.getTileWithLetter(letter.tileSpriteLetter)!
+                                        letterTilePlayable  = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid.getTileWithLetter(letter.tileSpriteLetter)!
                                         
                                         if letter.madeValidWord == true {
                                             letterTilePlayable.tileState = TileState.PlayedMadeWord
@@ -1573,7 +1600,7 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
                                 // isValidHorizontalWholeWord = true // !!! might have complete word with more letters to play
                             }
                             
-                            if (self.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkWholeWordMatch(testString) == true ) && testString.characters.count > 2 && placedTiles > 0 { // && playerLettersToTestRight.characters.count == 0 {
+                            if (mmwGameSceneViewController.checkWholeWordMatch(testString) == true ) && testString.characters.count > 2 && placedTiles > 0 { // && playerLettersToTestRight.characters.count == 0 {
                                 return (isValidHorizontalWholeWord, validWholeWordAILetterPlayArr)
                             }
                             
@@ -1624,7 +1651,7 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
         var tileArrayToPlay : [MMWTile] = [MMWTile]()
         var gridTestX = gridXSpot
         var gridTestY = gridYSpot
-        var lockedBoardTilesArr = mmwGameSceneViewController.mmwGameScene.mmwBoardGrid.getArrayLetterTilesInGrid() // start at locked and move L/R and Up/Down
+        var lockedBoardTilesArr = mmwGameScene.mmwBoardGrid.getArrayLetterTilesInGrid() // start at locked and move L/R and Up/Down
         var playerLetterTilesGrid = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid // num of tilesToPlay 0 to numTiles in player grid
 
         ///////////////// VERTICAL
@@ -1783,13 +1810,13 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
                         //print("Added permutation letter: \(existingLetterToAdd) : testString \(testString) ")
                     }
                     
-                    if (self.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkPartialWordMatch(testString) == true ) {
+                    if (mmwGameSceneViewController.checkPartialWordMatch(testString) == true ) {
                         
                         validPartialAILetterPlayArr = currentPossibleAILetterPlayArr
                         //                        allValidPartialWordTilePlayArr.append(validPartialWordTilePlayArr)
                         foundVerticalPartialWordsNumber++
                         
-                        if (self.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkWholeWordMatch(testString) == true ) && testString.characters.count > 2 {
+                        if (mmwGameSceneViewController.checkWholeWordMatch(testString) == true ) && testString.characters.count > 2 {
                             // update existing placeholder data to reflect that tile made word
                             currentTestAILetterPlay.madeValidWord = true
                             currentTestAILetterPlay.partOfWord = testString
@@ -1866,7 +1893,7 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
                                         
                                         var letterTilePlayable : MMWTile
                                         
-                                        letterTilePlayable  = self.mmwGameSceneViewController.playerArray[self.mmwGameSceneViewController.playerTurn-1].playerLetterGrid.getTileWithLetter(letter.tileSpriteLetter)!
+                                        letterTilePlayable  = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid.getTileWithLetter(letter.tileSpriteLetter)!
                                         
                                         if letter.madeValidWord == true {
                                             letterTilePlayable.tileState = TileState.PlayedMadeWord
@@ -1882,7 +1909,7 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
                                 // isValidHorizontalWholeWord = true // !!! might have complete word with more letters to play
                             }
                             
-                            if (self.mmwBoardGrid.mmwGameScene.mmwGameSceneViewController.checkWholeWordMatch(testString) == true ) && testString.characters.count > 2 && placedTiles > 0 { // && playerLettersToTestRight.characters.count == 0 {
+                            if (mmwGameSceneViewController.checkWholeWordMatch(testString) == true ) && testString.characters.count > 2 && placedTiles > 0 { // && playerLettersToTestRight.characters.count == 0 {
                                 return (isValidVerticalWholeWord, validWholeWordAILetterPlayArr)
                             }
                         }

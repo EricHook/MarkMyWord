@@ -124,7 +124,7 @@ class Grid {
     
     
     func getGridSquare (locX: Float, locY: Float) -> (GridSquareX: Int, GridSquareY: Int, GridSquareUpperLeftCornerX: Double, GridSquareUpperLeftCornerY: Double) {
-        let locYmod = locY + Float((mmwGame.screenSize!).height) * 0.0455729167 // 35 (adj for flipped coordinates)
+        let locYmod = locY + Float((screenSize!).height) * 0.0455729167 // 35 (adj for flipped coordinates)
         var GridSquareX : Int = 0
         var GridSquareY : Int = 0
         var GridSquareUpperLeftCornerX : Double = 0.0
@@ -157,9 +157,9 @@ class Grid {
     
     // given a grid and x, y func returns a CGPoint to place sprite
     class func sendToGridSquare (grid: Grid, squareX: Int, squareY: Int) -> (CGPoint) {
-        let tilePositionX = grid.gridUpperLeftX + Double((mmwGame.screenSize!).width * 0.0232) + ( Double(squareX) * grid.gridSquareSizeX )
+        let tilePositionX = grid.gridUpperLeftX + Double((screenSize!).width * 0.0232) + ( Double(squareX) * grid.gridSquareSizeX )
         //let tilePositionX = grid.gridUpperLeftX + 23.75 + ( Double(squareX) * grid.gridSquareSizeX )
-        let tilePositionY = Double((mmwGame.screenSize!).height) - grid.gridUpperLeftY - ( Double(squareY) * grid.gridSquareSizeY ) + (Double((mmwGame.screenSize!).height) * 0.009)
+        let tilePositionY = Double((screenSize!).height) - grid.gridUpperLeftY - ( Double(squareY) * grid.gridSquareSizeY ) + (Double((screenSize!).height) * 0.009)
         let tilePosition = CGPoint( x: tilePositionX, y: tilePositionY )
         return tilePosition
     }
@@ -167,8 +167,8 @@ class Grid {
     
     // given a grid and x, y func returns a CGPoint to place sprite
     func sendToGridSquare (squareX: Int, squareY: Int) -> (CGPoint) {
-        let tilePositionX = self.gridUpperLeftX + Double((mmwGame.screenSize!).width * 0.0232) + ( Double(squareX) * self.gridSquareSizeX )
-        let tilePositionY = Double((mmwGame.screenSize!).height) - self.gridUpperLeftY - ( Double(squareY) * self.gridSquareSizeY ) + (Double((mmwGame.screenSize!).height) * 0.009)
+        let tilePositionX = self.gridUpperLeftX + Double((screenSize!).width * 0.0232) + ( Double(squareX) * self.gridSquareSizeX )
+        let tilePositionY = Double((screenSize!).height) - self.gridUpperLeftY - ( Double(squareY) * self.gridSquareSizeY ) + (Double((screenSize!).height) * 0.009)
         let tilePosition = CGPoint( x: tilePositionX, y: tilePositionY )
         return tilePosition
     }
@@ -195,19 +195,19 @@ class Grid {
 
         for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
             for x in 0...(self.gridNumSquaresX - 1) {
-                mmwGameScene.mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray.append(self.grid2DArr[x][y])
+                mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray.append(self.grid2DArr[x][y])
                 self.grid2DArr[x][y].tileSprite.hidden = true
                 if arrayIn.count > 0 {
                     
                     if clearGrid {
-                        mmwGameScene.mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray.append(self.grid2DArr[x][y])
+                        mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray.append(self.grid2DArr[x][y])
                         self.grid2DArr[x][y].tileSprite.hidden = true
                         self.grid2DArr[x][y] = MMWTile()
                     }
 
                     if numTilesToDeal > 0  && self.grid2DArr[x][y].tileText == "!"  {
                         
-                        mmwGameScene.mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray.append(self.grid2DArr[x][y])
+                        mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray.append(self.grid2DArr[x][y])
                         self.grid2DArr[x][y].tileSprite.hidden = true
  
                         let numTiles : UInt32 = UInt32(arrayIn.count)

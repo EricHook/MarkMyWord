@@ -8,19 +8,29 @@
 
 import SpriteKit
 
+
+var mmwGameScene : MMWGameScene = MMWGameScene(size: screenSize!)
+
 class MainMenuScene: SKScene {
 
     var currentScene : SKScene?
-    var mmwGameSceneViewController : MMWGameSceneViewController!
+
+    
+    
+    //var mmwGameSceneViewController : MMWGameSceneViewController!
     var viewSize:CGSize!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        size = viewSize
     }
     
     override init(size: CGSize) {
         super.init(size: size)
         //mmwGameSceneViewController = MMWGameSceneViewController(size: size)
+        
+        
+//        mmwGameScene = MMWGameScene(size: screenSize!)
     }
     
 
@@ -68,7 +78,10 @@ class MainMenuScene: SKScene {
         playBtn.name = "playBtn"
         playBtn.zPosition = 100
         
-                
+        
+        //presentMMWScene()
+        //mmwGameSceneViewController = createMMWSceneController()
+        //presentMMWScene()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -78,7 +91,11 @@ class MainMenuScene: SKScene {
             let _node:SKNode = self.nodeAtPoint(location)
             if(_node.name == "playBtn"){
                 print("going to mmw scene") //create MMW controller
-                mmwGameSceneViewController = createMMWSceneController()
+                
+                
+                //mmwGameSceneViewController = createMMWSceneController()
+                
+                
                 // mmwGameSceneViewController.mmwGameScene.setViewController(mmwGameSceneViewController)
                 presentMMWScene()
                 // mmwGameScene.scaleMode = SKSceneScaleMode.ResizeFill
@@ -102,10 +119,10 @@ class MainMenuScene: SKScene {
 //        print("presentMenuScene")
 //    }
     
-    func createMMWSceneController() -> MMWGameSceneViewController {
-        mmwGameSceneViewController = MMWGameSceneViewController(size: size)
-        return mmwGameSceneViewController
-    }
+//    func createMMWSceneController() -> MMWGameSceneViewController {
+//        mmwGameSceneViewController = MMWGameSceneViewController(size: size)
+//        return mmwGameSceneViewController
+//    }
     
     func presentMMWScene() -> MMWGameScene {
         let transition = SKTransition.crossFadeWithDuration(0.5)
@@ -113,9 +130,10 @@ class MainMenuScene: SKScene {
 //        transitionToScene = mmwGameSceneViewController.mmwGameScene
 //        currentScene = mmwGameScene
 //        mmwGameScene.scaleMode = .AspectFill
-        view?.presentScene(mmwGameSceneViewController.mmwGameScene, transition: transition)
+        view?.presentScene(mmwGameScene, transition: transition)
         print("presentMMWScene")
-        return mmwGameSceneViewController.mmwGameScene
+        mmwGameSceneViewController.setUpGame()
+        return mmwGameScene
     }
 
     override func update(currentTime: CFTimeInterval) {

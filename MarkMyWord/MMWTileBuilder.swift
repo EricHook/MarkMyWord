@@ -12,8 +12,8 @@ import SpriteKit
 
 class MMWTileBuilder {
     
-    var mmwGameSceneViewController : MMWGameSceneViewController?
-    var mmwGameScene: MMWGameScene?
+//    var mmwGameSceneViewController : MMWGameSceneViewController?
+//    var mmwGameScene: MMWGameScene?
     
     var mmwTileArray = [MMWTile]()
     
@@ -324,15 +324,15 @@ class MMWTileBuilder {
     }
     
     func setViewControllerAndScene (mmwGameSceneController: MMWGameSceneViewController) {
-        self.mmwGameSceneViewController = mmwGameSceneController
+        //self.mmwGameSceneViewController = mmwGameSceneController
         for tile in mmwTileArray {
-            tile.mmwGameSceneViewController = self.mmwGameSceneViewController
-            tile.tileSprite.mmwGameSceneViewController = self.mmwGameSceneViewController
-            tile.mmwGameScene = self.mmwGameScene
-            tile.tileSprite.mmwGameScene = self.mmwGameScene
+//            tile.mmwGameSceneViewController = self.mmwGameSceneViewController
+//            tile.tileSprite.mmwGameSceneViewController = self.mmwGameSceneViewController
+//            tile.mmwGameScene = self.mmwGameScene
+//            tile.tileSprite.mmwGameScene = self.mmwGameScene
             
-            tile.tileSprite.xScale = (mmwGameSceneViewController!.viewSize.width)/1024
-            tile.tileSprite.yScale = (mmwGameSceneViewController!.viewSize.width)/1024
+            tile.tileSprite.xScale = (screenSize!.width)/1024
+            tile.tileSprite.yScale = (screenSize!.width)/1024
             //self.size( Double(mmwGameScene.viewSize.width)/1024 )
             
 //            if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {

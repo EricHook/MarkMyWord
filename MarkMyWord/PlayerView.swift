@@ -15,8 +15,8 @@ class PlayerView: SKSpriteNode {
     var playerScoreLabel = SKLabelNode(fontNamed: FontHUDName)
     var mmwPlayer : Player!
     
-    var mmwGameSceneViewController : MMWGameSceneViewController!
-    var mmwGameScene : MMWGameScene!
+    //var mmwGameSceneViewController : MMWGameSceneViewController!
+    //var mmwGameScene : MMWGameScene!
     
     //        let playerBGTallTex : SKTexture = SKTexture(imageNamed: "PlayerBGTEST309x1320TestFull.jpg")
     //let playerBGTex          = SKTexture(imageNamed: "PlayerBG")
@@ -147,18 +147,17 @@ class PlayerView: SKSpriteNode {
         playerGridGlow.zPosition = 2
         playerGridGlow.hidden = true
         addChild(playerGridGlow)
-
     }
     
     
-    func setPlayerGameSceneAndController (mmwGameScene: MMWGameScene, mmwGameSceneViewController: MMWGameSceneViewController) {
-        self.mmwGameScene = mmwGameScene
-        self.mmwGameSceneViewController = mmwGameSceneViewController
-        
-        //self.xScale = (mmwGame.screenSize!.width)/1024
-        self.xScale = (mmwGame.screenSize!.height)/768
-        self.yScale = (mmwGame.screenSize!.height)/768
-    }
+//    func setPlayerGameSceneAndController (mmwGameScene: MMWGameScene, mmwGameSceneViewController: MMWGameSceneViewController) {
+//        //self.mmwGameScene = mmwGameScene
+//        //self.mmwGameSceneViewController = mmwGameSceneViewController
+//        
+//        //self.xScale = (mmwGame.screenSize!.width)/1024
+//        self.xScale = (screenSize!.height)/768
+//        self.yScale = (screenSize!.height)/768
+//    }
     
     
     func changePlayerScoreDisplay () {
