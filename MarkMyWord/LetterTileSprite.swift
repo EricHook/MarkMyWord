@@ -41,8 +41,6 @@ class LetterTileSprite : SKSpriteNode {
     var tileShadow : SKSpriteNode = SKSpriteNode(texture: SKTexture(imageNamed: "TileShadow"), color: UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.00), size: CGSize(width: screenSize!.width * 0.048828 , height: screenSize!.height * 0.06510417) )  // 50.0
     var tileGlow : SKSpriteNode = SKSpriteNode(texture: SKTexture(imageNamed: "Tile3DGlow"), color: UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.00), size: CGSize(width: screenSize!.width * 0.048828 , height: screenSize!.height * 0.06510417) )  // 50.0
     
-    
-    
     //Double(viewSize.width * 0.04638772)
     
     var tileLocation : CGPoint = CGPointMake(0, 0)
@@ -62,10 +60,10 @@ class LetterTileSprite : SKSpriteNode {
     
 //    let TileColors : [UIColor] = [UIColor.blackColor(), UIColorAppleBlue, UIColorAppleRed, UIColorAppleYellow, UIColorApplePurple, UIColorAppleGreen, UIColorAppleOrange, UIColorGray ]
 
-    let actionSound      = SKAction.playSoundFileNamed("1007.WAV", waitForCompletion: true)
-    let actionSound2     = SKAction.playSoundFileNamed("1007.WAV", waitForCompletion: true)
-    let dealTilesSound   = SKAction.playSoundFileNamed("1003.WAV", waitForCompletion: true)
-    let destroyTileSound = SKAction.playSoundFileNamed("1003.WAV", waitForCompletion: true)  // problem with 1023.wav ???
+//    let actionSound      = SKAction.playSoundFileNamed("1007.WAV", waitForCompletion: true)
+//    let actionSound2     = SKAction.playSoundFileNamed("1007.WAV", waitForCompletion: true)
+//    let dealTilesSound   = SKAction.playSoundFileNamed("1003.WAV", waitForCompletion: true)
+//    let destroyTileSound = SKAction.playSoundFileNamed("1003.WAV", waitForCompletion: true)  // problem with 1023.wav ???
     
     required init(coder aDecoder: NSCoder) {
         fatalError("NSCoding not supported")
@@ -135,7 +133,7 @@ class LetterTileSprite : SKSpriteNode {
         tileGlow.alpha = 1.0
         tileGlow.color = UIColorAppleRed
         tileGlow.position = CGPointMake(0, 0)
-        tileGlow.zPosition = 95 // self.zPosition + 1
+        tileGlow.zPosition = self.zPosition + 1
         tileGlow.hidden = true
         tileGlow.name = "glowName"
         tileGlow.hidden = true
@@ -501,7 +499,7 @@ class LetterTileSprite : SKSpriteNode {
         runAction(SKAction.group([slide, scaleUp, scaleDown]))
         self.tileGlow.hidden = true
         removeBoardTileHighlights ()
-        runAction(actionSound2)
+        //runAction(actionSound2)
     }
     
     
@@ -510,15 +508,16 @@ class LetterTileSprite : SKSpriteNode {
     /// - Parameters: pauseDuration: Double
     ///     -
     func playTileToBoardGrid (pauseDuration: Double) {
-        let scaleUp : SKAction!
-        let scaleDown : SKAction!
+//        let scaleUp : SKAction!
+//        let scaleDown : SKAction!
         self.zPosition = 100
         let boardPosition = Grid.sendToGridSquare(mmwGameScene.mmwBoardGrid, squareX: self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridYEnd)
         
         let slide = SKAction.moveTo(boardPosition, duration:0.8)
         
-        //let scaleUp = SKAction.scaleTo(1.33, duration:0.4)
-        //let scaleDown = SKAction.scaleTo(1.33, duration:0.4)
+        var scaleUp   = SKAction.scaleTo(1.33, duration:0.4)
+        var scaleDown = SKAction.scaleTo(1.33, duration:0.4)
+        
         
         if mmwGame.deviceType == MMWGame.DeviceType.iPhone5 {
             scaleUp = SKAction.scaleTo(1.0, duration:0.4)
@@ -529,8 +528,8 @@ class LetterTileSprite : SKSpriteNode {
             scaleDown = SKAction.scaleTo(0.51, duration:0.4)
         }
         else if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
-            scaleUp = SKAction.scaleTo(2.0, duration:0.4)
-            scaleDown = SKAction.scaleTo(1.33, duration:0.4)
+            scaleUp = SKAction.scaleTo(1.5, duration:0.4)
+            scaleDown = SKAction.scaleTo(1.00, duration:0.4)
         }
         else { // iPad device
             scaleUp = SKAction.scaleTo(1.5, duration:0.4)
@@ -538,7 +537,7 @@ class LetterTileSprite : SKSpriteNode {
         }
 
         let pauseSlide = SKAction.sequence([slide])
-        let scaleUpDown = SKAction.sequence([scaleUp, scaleDown, self.actionSound2, ])
+        let scaleUpDown = SKAction.sequence([scaleUp, scaleDown])  // , self.actionSound2, ])
         self.runAction(SKAction.group([pauseSlide, scaleUpDown]))
         
         // save original tile info for animations
@@ -734,7 +733,7 @@ class LetterTileSprite : SKSpriteNode {
         let animScale = SKAction.sequence([scaleUp, scaleDown, hide])
         tileScore.runAction(SKAction.group([fadeIn, animPart1, fadeOut, animScale]) )
         
-        runAction(actionSound)
+        //runAction(actionSound)
         
         mmwGameScene.explosion(endPosition)
     }
@@ -1231,7 +1230,7 @@ class LetterTileSprite : SKSpriteNode {
             // if horizontal OR vertical invalid partial word > 1 letter (itself) then return tile, invalid play
             if (horizontalString.characters.count > 1 && !validHorizontalPartialWord) ||
                 (verticalString.characters.count > 1 && !validVerticalPartialWord ) {
-                    runAction(actionSound)
+                    //runAction(actionSound)
                     
                     // -5 points for non-partial word // SCORE
                     mmwGameSceneViewController.playerArray[(mmwGameSceneViewController.playerTurn) - 1].playerScore -= 5

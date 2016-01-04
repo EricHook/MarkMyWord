@@ -28,12 +28,24 @@ extension SKNode {
     }
 }
 
-
-
 var mmwGameSceneViewController = MMWGameSceneViewController(size: screenSize!)
 
-
 class GameViewController : UIViewController {
+    
+    @IBOutlet weak var menuView: UIView?
+    @IBOutlet weak var playButton: UIButton?
+    
+    @IBAction func likedThis(sender: UIButton) {
+        //Hide the menu view
+        menuView!.hidden = true
+        
+        //instantiate and present the scene on the main view
+        let scene = MMWGameScene(size: view.bounds.size)
+        let skView = self.view as! SKView
+        skView.presentScene(scene)
+    }
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,6 +89,8 @@ class GameViewController : UIViewController {
 
         /* Set the scale mode to scale to fit the window */
         menuScene.scaleMode = .AspectFill
+        
+        
 
         skView.presentScene(menuScene)
 

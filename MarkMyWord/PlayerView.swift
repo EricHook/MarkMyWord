@@ -33,7 +33,7 @@ class PlayerView: SKSpriteNode {
     var playerTex            : SKTexture!
     
     let tileCoverTex         = SKTexture(imageNamed: "tileCover.png")
-    let playerGridGlowTex    = SKTexture(imageNamed: "Tile3DGlow")
+    let playerGridGlowTex    = SKTexture(imageNamed: "playerGridGlowTex.png")
     
     //var playerGridGlowTex    : SKSpriteNode = SKSpriteNode(texture: SKTexture(imageNamed: "Tile3D100xGLOW"), color: UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.00), size: CGSizeMake(50.0, 50.0))
 
@@ -63,16 +63,31 @@ class PlayerView: SKSpriteNode {
         playerTex = SKTexture(imageNamed: playerTexName)
         
         playerColor       =  gameColors[mmwPlayer.playerColor]
-        playerSprite      = SKSpriteNode(texture: playerTex, color: playerColor, size: CGSizeMake(playerTex.size().width/2, playerTex.size().height/2) )
-        playerTileGrid    = SKSpriteNode(texture: playerTileGridTex, color: playerColor, size: CGSizeMake(playerTileGridTex.size().width/2, playerTileGridTex.size().height/2) )
-        playerTilesPlaque = SKSpriteNode(texture: playerTilesPlaqueTex, color: playerColor, size: CGSizeMake(playerTilesPlaqueTex.size().width/2, playerTilesPlaqueTex.size().height/2) )
-        playerTileCover  = SKSpriteNode(texture: tileCoverTex,   color: UIColorGray, size: CGSizeMake( ( (tileCoverTex.size().width/2) + 2), ((tileCoverTex.size().height/2) + 2) ) )
+        playerSprite      = SKSpriteNode(texture: playerTex, color: playerColor, size: CGSizeMake(playerTex.size().width, playerTex.size().height) )
+        playerTileGrid    = SKSpriteNode(texture: playerTileGridTex, color: playerColor, size: CGSizeMake(playerTileGridTex.size().width, playerTileGridTex.size().height) )
+        playerTilesPlaque = SKSpriteNode(texture: playerTilesPlaqueTex, color: playerColor, size: CGSizeMake(playerTilesPlaqueTex.size().width, playerTilesPlaqueTex.size().height) )
+        playerTileCover  = SKSpriteNode(texture: tileCoverTex,   color: UIColorGray, size: CGSizeMake( ( (tileCoverTex.size().width) + 2), ((tileCoverTex.size().height) + 2) ) )
         
-        playerGridGlow   = SKSpriteNode (texture: playerGridGlowTex, color: SKColor.whiteColor(), size: CGSizeMake( ( (tileCoverTex.size().width/2) + 12), ((tileCoverTex.size().height/2) + 18) ) )
+        playerGridGlow   = SKSpriteNode (texture: playerGridGlowTex, color: SKColor.whiteColor(), size: CGSizeMake( ( (playerGridGlowTex.size().width)), ((playerGridGlowTex.size().height)) ) )
         
-        super.init(texture: playerBGTex, color: UIColorAppleBlue, size: CGSizeMake( playerBGTex.size().width/2 , playerBGTex.size().height/2) ) // (309/2, 1319/2) )
+        if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
+            super.init(texture: playerBGTex, color: UIColorAppleBlue, size: CGSizeMake( playerBGTex.size().width * 1.33 , playerBGTex.size().height * 1.33) ) // (309/2, 1319/2) )
+        }
+        else{
+            super.init(texture: playerBGTex, color: UIColorAppleBlue, size: CGSizeMake( playerBGTex.size().width , playerBGTex.size().height) ) // (309/2, 1319/2) )
+        }
+        
         self.zPosition = -100
         self.anchorPoint = CGPointMake(0, 0)
+        
+        let playerGraphics = [playerSprite, playerTileGrid, playerTilesPlaque, playerTileCover, playerGridGlow]
+        
+        for graphic in playerGraphics {
+            if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
+                graphic.size.width *= 1.33
+                graphic.size.height *= 1.33
+            }
+        }
         
         //self.zPosition = -111
 //        playerBGTall.anchorPoint = CGPoint(x: 0.0, y: 0.0)
@@ -92,7 +107,7 @@ class PlayerView: SKSpriteNode {
         //playerTex = SKTexture(imageNamed: "orangePlayer.png")
         
         playerSprite.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-        playerSprite.position = CGPoint(x: size.width/2.0, y: 150.0)  // 337.0)
+        playerSprite.position = CGPoint(x: size.width/2.0, y: self.frame.height * 0.4)  // 337.0)
         playerSprite.userInteractionEnabled = false
         //yellowPlayerSprite.colorBlendFactor = CGFloat(1.0)
         playerSprite.alpha = 1.0
@@ -116,7 +131,7 @@ class PlayerView: SKSpriteNode {
         addChild(playerScoreLabel)
 
         playerTileGrid.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-        playerTileGrid.position = CGPoint(x: size.width/2.0, y: 7.0)  // 337.0)
+        playerTileGrid.position = CGPoint(x: size.width/2.0, y: screenHeight*0.0091146)  // 337.0)  // y 7
         playerTileGrid.userInteractionEnabled = false
         playerTileGrid.colorBlendFactor = CGFloat(1.0)
         playerTileGrid.alpha = 0.75
@@ -124,7 +139,7 @@ class PlayerView: SKSpriteNode {
         addChild(playerTileGrid)
 
         playerTilesPlaque.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-        playerTilesPlaque.position = CGPoint(x: size.width/2.0, y: 152.0) // 482.0)
+        playerTilesPlaque.position = CGPoint(x: size.width/2.0, y: self.frame.height * 0.46) // 482.0)  y 152
         playerTilesPlaque.userInteractionEnabled = false
         playerTilesPlaque.colorBlendFactor = CGFloat(1.0)
         playerTilesPlaque.alpha = 0.75
@@ -132,15 +147,15 @@ class PlayerView: SKSpriteNode {
         addChild(playerTilesPlaque)
         
         playerTileCover.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-        playerTileCover.position = CGPoint(x: (size.width/2.0), y: 9.0) // 482.0)
+        playerTileCover.position = CGPoint(x: size.width/2.0, y: screenHeight*0.010 ) // 482.0)
         playerTileCover.userInteractionEnabled = false
         playerTileCover.colorBlendFactor = CGFloat(1.0)
         playerTileCover.alpha = 0.5
         playerTileCover.zPosition = 99
         addChild(playerTileCover)
         
-        playerGridGlow.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        playerGridGlow.position = CGPoint(x: (size.width/2.0), y: (size.width/2.0) + 20 ) // 482.0)
+        playerGridGlow.anchorPoint = CGPoint(x: 0.0, y: 0.0)
+        playerGridGlow.position = CGPoint(x: 0, y: 0) // 482.0)
         playerGridGlow.userInteractionEnabled = false
         playerGridGlow.colorBlendFactor = CGFloat(1.0)
         playerGridGlow.alpha = 0.9

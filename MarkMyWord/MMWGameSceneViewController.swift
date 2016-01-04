@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import SpriteKit
 import CoreMotion
-
 import CoreData
 
 extension StreamReader : SequenceType {
@@ -22,15 +21,15 @@ extension StreamReader : SequenceType {
 }
 
 
-class MMWGameSceneViewController {
+class MMWGameSceneViewController  {
     
     //var mmwGameScene: MMWGameScene!
     var viewSize = screenSize
     var tileCollection = MMWTileBuilder() // : MMWTileBuilder
     var tilesPlayable = [MMWTile]()
-    var numPlayers   = 4
+    var numPlayers   = 2
     var playerTurn   = 1
-    var minWordSize = 3
+    var minWordSize  = 3
     var secondsPerTurn = 30
     var player0 : Player = Player(_playerID: 0, _playerName: "AI",          _playerColor: 0) // used to add initial word ownership
     var player1 : Player = Player(_playerID: 1, _playerName: "Player 1",    _playerColor: 1)
@@ -45,6 +44,8 @@ class MMWGameSceneViewController {
     
     var consecutivePasses = 0
     var lettersPlayedInTurn = 0
+    
+    //var timer : NSTimer!
 
     //var wordTrie : Trie<Character>?
 
@@ -53,10 +54,13 @@ class MMWGameSceneViewController {
    
     init (size: CGSize) {
         //viewSize = size
-
+        //timer = NSTimer.scheduledTimerWithTimeInterval(1, target:mmwGameScene, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
     }
     
     func setUpGame () {
+        
+        
+        //timer = NSTimer.scheduledTimerWithTimeInterval(1, target:mmwGameScene, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
       
         //mmwGameScene = MMWGameScene(size: viewSize)
     
