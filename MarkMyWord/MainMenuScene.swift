@@ -27,10 +27,6 @@ class MainMenuScene: SKScene {
     
     override init(size: CGSize) {
         super.init(size: size)
-        //mmwGameSceneViewController = MMWGameSceneViewController(size: size)
-        
-        
-//        mmwGameScene = MMWGameScene(size: screenSize!)
     }
     
 
@@ -66,7 +62,7 @@ class MainMenuScene: SKScene {
         self.addChild(backgroundNode)
         
         let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Main Game Menu" // scene is: \(scene?.description)"
+        myLabel.text = "MainMenuScene" // scene is: \(scene?.description)"
         myLabel.fontSize = 65;
         myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y: (CGRectGetMidY(self.frame) - 50) )
         self.addChild(myLabel)
@@ -82,6 +78,8 @@ class MainMenuScene: SKScene {
         //presentMMWScene()
         //mmwGameSceneViewController = createMMWSceneController()
         //presentMMWScene()
+        
+//              NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentView", name: "showController", object: nil)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

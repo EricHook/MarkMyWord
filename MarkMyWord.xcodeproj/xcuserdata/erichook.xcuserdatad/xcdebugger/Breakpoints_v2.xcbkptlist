@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameSceneViewController.swift"
-            timestampString = "473491080.854364"
+            timestampString = "473583943.9212"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "279"
-            endingLineNumber = "279"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
             landmarkName = "MMWGameSceneViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "473501323.026479"
+            timestampString = "473575530.171938"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1706"
-            endingLineNumber = "1706"
+            startingLineNumber = "1704"
+            endingLineNumber = "1704"
             landmarkName = "checkForValidWordsAIVertical(_:gridYSpot:permutationsToPlay:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "473501323.026479"
+            timestampString = "473575530.171938"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1351"
-            endingLineNumber = "1351"
+            startingLineNumber = "1349"
+            endingLineNumber = "1349"
             landmarkName = "checkForValidWordsAI(_:gridYSpot:numLettersToPlayMin:numLettersToPlayMax:permutationsToPlay:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "473501323.026479"
+            timestampString = "473575530.171938"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1945"
-            endingLineNumber = "1945"
+            startingLineNumber = "1943"
+            endingLineNumber = "1943"
             landmarkName = "checkForValidWordsAIVertical(_:gridYSpot:permutationsToPlay:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "473501323.026479"
+            timestampString = "473575530.171938"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1770"
-            endingLineNumber = "1770"
+            startingLineNumber = "1768"
+            endingLineNumber = "1768"
             landmarkName = "checkForValidWordsAIVertical(_:gridYSpot:permutationsToPlay:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "473501323.026479"
+            timestampString = "473575530.171938"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1902"
-            endingLineNumber = "1902"
+            startingLineNumber = "1900"
+            endingLineNumber = "1900"
             landmarkName = "checkForValidWordsAIVertical(_:gridYSpot:permutationsToPlay:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "473501323.026479"
+            timestampString = "473575530.171938"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1893"
-            endingLineNumber = "1893"
+            startingLineNumber = "1891"
+            endingLineNumber = "1891"
             landmarkName = "checkForValidWordsAIVertical(_:gridYSpot:permutationsToPlay:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "473501323.026479"
+            timestampString = "473575530.171938"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1881"
-            endingLineNumber = "1881"
+            startingLineNumber = "1879"
+            endingLineNumber = "1879"
             landmarkName = "checkForValidWordsAIVertical(_:gridYSpot:permutationsToPlay:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "473501323.026479"
+            timestampString = "473575530.171938"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1560"
-            endingLineNumber = "1560"
+            startingLineNumber = "1558"
+            endingLineNumber = "1558"
             landmarkName = "checkForValidWordsAIHorizontal(_:gridYSpot:permutationsToPlay:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -314,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MainMenuScene.swift"
-            timestampString = "473454868.703715"
+            timestampString = "473565484.953493"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "presentMMWScene()"
             landmarkType = "5">
          </BreakpointContent>
@@ -330,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "473501323.026479"
+            timestampString = "473575530.171938"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "230"
-            endingLineNumber = "230"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
             landmarkName = "buildGameView()"
             landmarkType = "5">
          </BreakpointContent>
@@ -346,11 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MainMenuScene.swift"
-            timestampString = "473454868.703715"
+            timestampString = "473565484.953493"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
             landmarkName = "presentMMWScene()"
             landmarkType = "5">
          </BreakpointContent>
@@ -362,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MainMenuScene.swift"
-            timestampString = "473454868.703715"
+            timestampString = "473565484.953493"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "didMoveToView(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -378,11 +378,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameSceneViewController.swift"
-            timestampString = "473491080.854364"
+            timestampString = "473583943.9212"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "setUpGame()"
             landmarkType = "5">
          </BreakpointContent>

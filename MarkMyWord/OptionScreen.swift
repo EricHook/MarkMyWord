@@ -32,9 +32,6 @@ class OptionScreen: SKSpriteNode {
         else {
             super.init(texture: gameGridTex, color: UIColorAppleBlue, size: CGSizeMake( gameGridTex.size().width , gameGridTex.size().height) ) // (309/2, 1319/2) )
         }
-
-//        self.zPosition = -100
-//        self.anchorPoint = CGPointMake(0, 0)
         
         let gameGridNode = SKSpriteNode(texture: gameGridTex, color: SKColor.whiteColor(), size: CGSizeMake(gameGridTex.size().width/2, gameGridTex.size().height/2) )
         let OptButtonWordLength2Node = SKSpriteNode(texture: OptButtonWordLength2Tex, color: SKColor.whiteColor(), size: CGSizeMake(OptButtonWordLength2Tex.size().width/2, OptButtonWordLength2Tex.size().height/2) )

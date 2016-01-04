@@ -37,8 +37,6 @@ enum TileOwner: Int {
 }
 
 class MMWTile {
-//    var mmwGameSceneViewController = mmwGame.mmwGameSceneViewController? // : MMWGameSceneViewController?
-//    var mmwGameScene = mmwGame.mmwGameScene?  // : MMWGameScene?
     var tileSprite : LetterTileSprite!
     var tileBuilder : MMWTileBuilder? = nil
     var tileType: TileType = TileType.Unknown

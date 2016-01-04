@@ -50,7 +50,7 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
     var player4View : PlayerView!
     var playerViewArr = [PlayerView]()
     
-    var optionScreenView = OptionScreen()
+    //var optionScreenView = OptionScreen()
     
     private var secondsLeft = 30
     var timeRemainingLabel  = SKLabelNode(fontNamed: FontHUDName)
@@ -92,8 +92,6 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-        
-
     }
     
     override init(size: CGSize) {
@@ -272,15 +270,15 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
             playerViewArr.append(player4View)
         }
         
-        //userInteractionEnabled = true
-        // add backgroundNode
-        optionScreenView.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        optionScreenView.position = CGPoint(x: size.width/2.0, y: size.width/2.0)
-        optionScreenView.userInteractionEnabled = false
-        optionScreenView.zPosition = 50
-        optionScreenView.size.height = viewSize.height/2;
-        optionScreenView.size.width  = viewSize.width/2;
-        addChild(optionScreenView)
+//        //userInteractionEnabled = true
+//        // add backgroundNode
+//        optionScreenView.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+//        optionScreenView.position = CGPoint(x: size.width/2.0, y: size.width/2.0)
+//        optionScreenView.userInteractionEnabled = false
+//        optionScreenView.zPosition = 50
+//        optionScreenView.size.height = viewSize.height/2;
+//        optionScreenView.size.width  = viewSize.width/2;
+//        addChild(optionScreenView)
 
         
         addChild(foregroundNode) // generic SKNode to separate foreground elements from background
@@ -432,15 +430,15 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
             self.addChild(tile.tileSprite)
         }
         
-        optionsLayerNode.name = "optionsLayerNode"
-        optionsLayerNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        optionsLayerNode.position = CGPoint(x: size.width/2.0, y: size.height/2.0)
-        optionsLayerNode.userInteractionEnabled = false
-        optionsLayerNode.zPosition = 100
-        optionsLayerNode.size = CGSize(width: (viewSize.width * 1.0),  height: (viewSize.height * 1.0) )
-        optionsLayerNode.alpha = 0.95
-        optionsLayerNode.hidden = true
-        self.addChild(optionsLayerNode)
+//        optionsLayerNode.name = "optionsLayerNode"
+//        optionsLayerNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+//        optionsLayerNode.position = CGPoint(x: size.width/2.0, y: size.height/2.0)
+//        optionsLayerNode.userInteractionEnabled = false
+//        optionsLayerNode.zPosition = 100
+//        optionsLayerNode.size = CGSize(width: (viewSize.width * 1.0),  height: (viewSize.height * 1.0) )
+//        optionsLayerNode.alpha = 0.95
+//        optionsLayerNode.hidden = true
+//        self.addChild(optionsLayerNode)
         
 
         
@@ -601,7 +599,7 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
                 playerView.position = CGPointMake(0, self.size.height * 0.3853 ) // PS coordinates is Y: 1390, convert and flip .. x , 295.5
             }
             if playerNum == 2 {
-                playerView.position = CGPointMake(self.size.width * 0.84912109375, self.size.height * 0.3853 ) // PS coordinates is Y: 1390, convert and flip , x , 295.5
+                playerView.position = CGPointMake(self.size.width * 0.8495, self.size.height * 0.3853 ) // PS coordinates is Y: 1390, convert and flip , x , 295.5
             }
         }
         
@@ -610,10 +608,10 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
                 playerView.position = CGPointMake(0, self.size.height * 0.38 ) // PS coordinates is Y: 1390, convert and flip .. x , 295.5
             }
             if playerNum == 2 {
-                playerView.position = CGPointMake(viewSize.width * 0.8491, viewSize.height * 0.574 ) // PS coordinates is Y: 1390, convert and flip
+                playerView.position = CGPointMake(viewSize.width * 0.8495, viewSize.height * 0.574 ) // PS coordinates is Y: 1390, convert and flip
             }
             if playerNum == 3 {
-                playerView.position = CGPointMake(viewSize.width * 0.8491,  viewSize.height * 0.140 ) // PS coordinates is Y: 1390, convert and flip
+                playerView.position = CGPointMake(viewSize.width * 0.8495,  viewSize.height * 0.140 ) // PS coordinates is Y: 1390, convert and flip
             }
         }
         
@@ -622,10 +620,10 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
                 playerView.position = CGPointMake( 0,  viewSize.height * 0.574 ) // PS coordinates is Y: 1390, convert and flip
             }
             if playerNum == 2 {
-                playerView.position = CGPointMake(viewSize.width * 0.8491, viewSize.height * 0.574 ) // PS coordinates is Y: 1390, convert and flip
+                playerView.position = CGPointMake(viewSize.width * 0.8495, viewSize.height * 0.574 ) // PS coordinates is Y: 1390, convert and flip  // 0.8491
             }
             if playerNum == 3 {
-                playerView.position = CGPointMake(viewSize.width * 0.8491,  viewSize.height * 0.141 ) // PS coordinates is Y: 1390, convert and flip
+                playerView.position = CGPointMake(viewSize.width * 0.8495,  viewSize.height * 0.141 ) // PS coordinates is Y: 1390, convert and flip
             }
             if playerNum == 4 {
                 playerView.position = CGPointMake(0, viewSize.height * 0.141 ) // PS coordinates is Y: 1390, convert and flip

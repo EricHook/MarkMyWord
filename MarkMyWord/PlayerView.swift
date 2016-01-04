@@ -131,7 +131,7 @@ class PlayerView: SKSpriteNode {
         addChild(playerScoreLabel)
 
         playerTileGrid.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-        playerTileGrid.position = CGPoint(x: size.width/2.0, y: screenHeight*0.0091146)  // 337.0)  // y 7
+        playerTileGrid.position = CGPoint(x: size.width/2.0, y: screenHeight*0.0692)  // 337.0)  // y 7
         playerTileGrid.userInteractionEnabled = false
         playerTileGrid.colorBlendFactor = CGFloat(1.0)
         playerTileGrid.alpha = 0.75
@@ -147,9 +147,10 @@ class PlayerView: SKSpriteNode {
         addChild(playerTilesPlaque)
         
         playerTileCover.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-        playerTileCover.position = CGPoint(x: size.width/2.0, y: screenHeight*0.010 ) // 482.0)
+        playerTileCover.position = CGPoint(x: size.width/2.0, y: screenHeight*0.070 ) // 482.0)
         playerTileCover.userInteractionEnabled = false
         playerTileCover.colorBlendFactor = CGFloat(1.0)
+        playerTileCover.size.height = playerTileCover.size.height * 0.75
         playerTileCover.alpha = 0.5
         playerTileCover.zPosition = 99
         addChild(playerTileCover)

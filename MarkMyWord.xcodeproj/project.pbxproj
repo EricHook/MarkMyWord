@@ -47,6 +47,7 @@
 		B84738DE1C0A5E47003B05BA /* player04.png in Resources */ = {isa = PBXBuildFile; fileRef = B84738DC1C0A5E47003B05BA /* player04.png */; };
 		B86530651BB7114F00A6A471 /* TrieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86530641BB7114F00A6A471 /* TrieTests.swift */; };
 		B8713D7B1C1BB15C00A26886 /* WordListChopped.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8713D7A1C1BB15C00A26886 /* WordListChopped.txt */; };
+		B881A5A31C3A0329005BFE27 /* optionScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B881A5A21C3A0329005BFE27 /* optionScreen.xib */; };
 		B88A58531BEAD859003E0957 /* 37Bronk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B88A58461BEAD859003E0957 /* 37Bronk.mp3 */; };
 		B88A58541BEAD859003E0957 /* 1003.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B88A58471BEAD859003E0957 /* 1003.WAV */; };
 		B88A58551BEAD859003E0957 /* 1007.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B88A58481BEAD859003E0957 /* 1007.WAV */; };
@@ -160,6 +161,7 @@
 		B84738DC1C0A5E47003B05BA /* player04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player04.png; sourceTree = "<group>"; };
 		B86530641BB7114F00A6A471 /* TrieTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrieTests.swift; sourceTree = "<group>"; };
 		B8713D7A1C1BB15C00A26886 /* WordListChopped.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WordListChopped.txt; sourceTree = "<group>"; };
+		B881A5A21C3A0329005BFE27 /* optionScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = optionScreen.xib; sourceTree = "<group>"; };
 		B88A58461BEAD859003E0957 /* 37Bronk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 37Bronk.mp3; sourceTree = "<group>"; };
 		B88A58471BEAD859003E0957 /* 1003.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1003.WAV; sourceTree = "<group>"; };
 		B88A58481BEAD859003E0957 /* 1007.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1007.WAV; sourceTree = "<group>"; };
@@ -556,6 +558,7 @@
 				B8D130E61AFD635500865982 /* PlayerView.swift */,
 				B822CF0B1C390DA80043905E /* OptionScreen.swift */,
 				B8C14EF01AF27E5100E640C0 /* LetterTileSprite.swift */,
+				B881A5A21C3A0329005BFE27 /* optionScreen.xib */,
 				B88A58441BEAD089003E0957 /* Effects */,
 			);
 			name = Views;
@@ -784,6 +787,7 @@
 				B8DFE1571C29F288009FB8ED /* OptionsButton@3x.png in Resources */,
 				B8DFE15D1C2A0E60009FB8ED /* GameGrid@3x.png in Resources */,
 				B8DFE1591C2A0BEE009FB8ED /* GameGrid.png in Resources */,
+				B881A5A31C3A0329005BFE27 /* optionScreen.xib in Resources */,
 				B88A585B1BEAD859003E0957 /* NewTilesButton.png in Resources */,
 				B8DFE15F1C2A11A5009FB8ED /* MarkMyWordBGCleaniPad.png in Resources */,
 				B822CEF71C388F530043905E /* MMWPlayerTilesPlaque.png in Resources */,

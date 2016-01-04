@@ -90,7 +90,10 @@ class GameViewController : UIViewController {
         /* Set the scale mode to scale to fit the window */
         menuScene.scaleMode = .AspectFill
         
-        
+/////////////////
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentView", name: "showController", object: nil)
+/////////////////////////////////
+
 
         skView.presentScene(menuScene)
 

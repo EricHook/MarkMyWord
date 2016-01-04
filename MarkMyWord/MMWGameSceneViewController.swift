@@ -22,8 +22,7 @@ extension StreamReader : SequenceType {
 
 
 class MMWGameSceneViewController  {
-    
-    //var mmwGameScene: MMWGameScene!
+
     var viewSize = screenSize
     var tileCollection = MMWTileBuilder() // : MMWTileBuilder
     var tilesPlayable = [MMWTile]()
