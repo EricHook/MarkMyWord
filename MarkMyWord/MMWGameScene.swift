@@ -37,6 +37,7 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
     var foregroundNode   : SKSpriteNode = SKSpriteNode()
     
     var mmwBoardGrid: Grid!
+
     
     var mmwPlayer1Grid : Grid!
     var mmwPlayer2Grid : Grid!
@@ -52,8 +53,13 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
     
     //var optionScreenView = OptionScreen()
     
+    
+    //var timer = NSTimer()
+    private var timer : NSTimer?
+    //private var timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
     private var secondsLeft = 30
     var timeRemainingLabel  = SKLabelNode(fontNamed: FontHUDName)
+    
     
     var tilesRemainingLabel = SKLabelNode(fontNamed: FontHUDName)
     var topDisplayLabel     = SKLabelNode(fontNamed: FontHUDName)
@@ -71,18 +77,104 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
     
     var placeholderTexture : SKTexture = SKTexture(imageNamed: "TileBackTest90x90")
     
-//    let actionSound      = SKAction.playSoundFileNamed("1007.WAV", waitForCompletion: true)
-//    let dealTilesSound   = SKAction.playSoundFileNamed("1003.WAV", waitForCompletion: true)
-//    let destroyTileSound = SKAction.playSoundFileNamed("1003.WAV", waitForCompletion: true)
-    
+    let actionSound      = SKAction.playSoundFileNamed("1007.WAV", waitForCompletion: true)
+    let dealTilesSound   = SKAction.playSoundFileNamed("1003.WAV", waitForCompletion: true)
+    let destroyTileSound = SKAction.playSoundFileNamed("1003.WAV", waitForCompletion: true)
     //let backgroundMusic = SKAction.playSoundFileNamed("30Showdown.m4a", waitForCompletion: true)
-    
-    //private var timer : NSTimer?
-    //private var timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
-    
+
     private var isPaused: Bool = false
     
     var foundValidWordOnTurn = false
+    
+    
+    
+    
+//    @IBOutlet var statusLabelAlert : UILabel?
+//    
+//    var alertTest = UIAlertView()
+//    alertTest.  .delegate = self   //set the delegate of alertView
+//    
+//    @IBAction func alertButton(sender : AnyObject) {
+//        
+//        alertTest.message = "Select one!"
+//        alertTest.addButtonWithTitle("1st")
+//        alertTest.addButtonWithTitle("2nd")
+//        alertTest.addButtonWithTitle("3rd")
+//        alertTest.title = "Test Alert"
+//        alertTest.show()
+//        
+//    }
+//    func alertView(alertView: UIAlertView!, clickedButtonAtIndex buttonIndex: Int){
+//        switch buttonIndex{
+//        case 0:
+//            statusLabelAlert!.text = "1st"
+//        case 1:
+//            statusLabelAlert!.text = "2nd"
+//        case 2:
+//            statusLabelAlert!.text = "3rd"
+//        default:
+//            statusLabelAlert!.text = "error"
+//        }
+//        
+//    }
+    
+//    @IBOutlet var statusLabelAlert : UILabel!
+//    var alertTest = UIAlertView()
+//    @IBAction func alertButton(sender : AnyObject)
+//    {
+//        alertTest.delegate = self
+//        alertTest.message = "Select one!"
+//        alertTest.addButtonWithTitle("1st")
+//        alertTest.addButtonWithTitle("2nd")
+//        alertTest.addButtonWithTitle("3rd")
+//        alertTest.title = "Test Alert"
+//        alertTest.show()
+//        
+//    }
+//    
+//    func alertView(alertView: UIAlertView!, clickedButtonAtIndex buttonIndex: Int)
+//    {
+//        switch buttonIndex
+//        {
+//        case 0:
+//            statusLabelAlert.text = "1st"
+//        case 1:
+//            statusLabelAlert.text = "2nd"
+//        case 2:
+//            statusLabelAlert.text = "3rd"
+//        default:
+//            statusLabelAlert.text = "error"
+//        }
+//    }
+    
+//    @IBOutlet var statusLabelAlert : UILabel!
+//    
+//    @IBAction func alertButton(sender : AnyObject) {
+//        
+//        let alert = UIAlertController(title: "Alert", message: "This is an Alert", preferredStyle: UIAlertControllerStyle.Alert)
+//        
+//        alert.addAction(UIAlertAction(title: "1st", style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
+//            self.statusLabelAlert.text = "1st"
+//        }))
+//        
+//        alert.addAction(UIAlertAction(title: "2nd", style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
+//            self.statusLabelAlert.text = "2nd"
+//        }))
+//        
+//        //presentViewController(alert, animated: true, completion: nil)
+//        
+//    }
+    
+    
+
+//func buttonAction(sender:UIButton!)
+//{
+//    print("Button tapped")
+//}
+    
+    
+    
+    
     
     enum MMWErrorType: ErrorType {
         case MMWError
@@ -97,8 +189,20 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
     override init(size: CGSize) {
         
         super.init(size: size)
-        //timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
+//        timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
         viewSize = size
+        
+//        let button   = UIButton(type: UIButtonType.System) as UIButton
+//        button.frame = CGRectMake(100, 100, 100, 50)
+//        button.backgroundColor = UIColor.greenColor()
+//        button.setTitle("Test Button", forState: UIControlState.Normal)
+//        button.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+//        
+//        self.view?.addSubview(button)
+        
+        
+        
+        
     }
     
 //    func setViewController (mmwGameSceneController: MMWGameSceneViewController) {
@@ -121,7 +225,7 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
             gridSquareSize = Double(viewSize.width * 0.04638772)
         }
         else if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
-            gridSquareSize = Double(viewSize.width * 0.04625)
+            gridSquareSize = Double(viewSize.width * 0.0463)
         }
         
         var gridBoardUpperLeftX : Double!
@@ -177,43 +281,43 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
 
         playerGridArray = [Grid]()
         if mmwGameSceneViewController.numPlayers == 2 {
-            self.mmwPlayer1Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.45830), gridSquareSizeX: gridSquareSize, gridSquareSizeY: gridSquareSize, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer1Grid", mmwGameScene: self) //y 304
+            self.mmwPlayer1Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.4581), gridSquareSizeX: gridSquareSize, gridSquareSizeY: gridSquareSize, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer1Grid", mmwGameScene: self) //y 304
             self.mmwPlayer1Grid.setGridPlayer(mmwGameSceneViewController.player1)
             playerGridArray.append(self.mmwPlayer1Grid)
             
-            self.mmwPlayer2Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.45830), gridSquareSizeX: gridSquareSize, gridSquareSizeY: gridSquareSize, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer2Grid", mmwGameScene: self)
+            self.mmwPlayer2Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.4581), gridSquareSizeX: gridSquareSize, gridSquareSizeY: gridSquareSize, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer2Grid", mmwGameScene: self)
             self.mmwPlayer2Grid.setGridPlayer(mmwGameSceneViewController.player2)
             playerGridArray.append(self.mmwPlayer2Grid)
         }
         
         if mmwGameSceneViewController.numPlayers == 3 {
-            self.mmwPlayer1Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.45830), gridSquareSizeX: gridSquareSize, gridSquareSizeY: gridSquareSize, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer1Grid", mmwGameScene: self) // 0.4583
+            self.mmwPlayer1Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.4581), gridSquareSizeX: gridSquareSize, gridSquareSizeY: gridSquareSize, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer1Grid", mmwGameScene: self) // 0.4583
             self.mmwPlayer1Grid.setGridPlayer(mmwGameSceneViewController.player1)
             playerGridArray.append(self.mmwPlayer1Grid)
             
-            self.mmwPlayer2Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.273), gridSquareSizeX: gridSquareSize, gridSquareSizeY: gridSquareSize, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer2Grid", mmwGameScene: self)
+            self.mmwPlayer2Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.2727), gridSquareSizeX: gridSquareSize, gridSquareSizeY: gridSquareSize, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer2Grid", mmwGameScene: self)
             self.mmwPlayer2Grid.setGridPlayer(mmwGameSceneViewController.player2)
             playerGridArray.append(self.mmwPlayer2Grid)
             
-            self.mmwPlayer3Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.706), gridSquareSizeX: gridSquareSize, gridSquareSizeY: gridSquareSize, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer3Grid", mmwGameScene: self)
+            self.mmwPlayer3Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.7057), gridSquareSizeX: gridSquareSize, gridSquareSizeY: gridSquareSize, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer3Grid", mmwGameScene: self)
             self.mmwPlayer3Grid.setGridPlayer(mmwGameSceneViewController.player3)
             playerGridArray.append(self.mmwPlayer3Grid)
         }
         
         if mmwGameSceneViewController.numPlayers == 4 {    // y - .004
-            self.mmwPlayer1Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.269), gridSquareSizeX: gridSquareSize, gridSquareSizeY: gridSquareSize, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer1Grid", mmwGameScene: self) // 0.4583
+            self.mmwPlayer1Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.2687), gridSquareSizeX: gridSquareSize, gridSquareSizeY: gridSquareSize, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer1Grid", mmwGameScene: self) // 0.4583
             self.mmwPlayer1Grid.setGridPlayer(mmwGameSceneViewController.player1)
             playerGridArray.append(self.mmwPlayer1Grid)
             
-            self.mmwPlayer2Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.269), gridSquareSizeX: gridSquareSize, gridSquareSizeY: gridSquareSize, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer2Grid", mmwGameScene: self)
+            self.mmwPlayer2Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.2687), gridSquareSizeX: gridSquareSize, gridSquareSizeY: gridSquareSize, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer2Grid", mmwGameScene: self)
             self.mmwPlayer2Grid.setGridPlayer(mmwGameSceneViewController.player2)
             playerGridArray.append(self.mmwPlayer2Grid)
 
-            self.mmwPlayer3Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.702), gridSquareSizeX: gridSquareSize, gridSquareSizeY: gridSquareSize, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer3Grid", mmwGameScene: self)
+            self.mmwPlayer3Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.8550), gridUpperLeftY: Double(viewSize.height * 0.7017), gridSquareSizeX: gridSquareSize, gridSquareSizeY: gridSquareSize, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer3Grid", mmwGameScene: self)
             self.mmwPlayer3Grid.setGridPlayer(mmwGameSceneViewController.player3)
             playerGridArray.append(self.mmwPlayer3Grid)
             
-            self.mmwPlayer4Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.702), gridSquareSizeX: gridSquareSize, gridSquareSizeY: gridSquareSize, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer4Grid", mmwGameScene: self)
+            self.mmwPlayer4Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.7017), gridSquareSizeX: gridSquareSize, gridSquareSizeY: gridSquareSize, gridNumSquaresX: 3, gridNumSquaresY: 3, gridName: "mmwPlayer4Grid", mmwGameScene: self)
             self.mmwPlayer4Grid.setGridPlayer(mmwGameSceneViewController.player4)
             playerGridArray.append(self.mmwPlayer4Grid)
         }
@@ -270,8 +374,8 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
             playerViewArr.append(player4View)
         }
         
-//        //userInteractionEnabled = true
-//        // add backgroundNode
+        //userInteractionEnabled = true
+        // add backgroundNode
 //        optionScreenView.anchorPoint = CGPoint(x: 0.5, y: 0.5)
 //        optionScreenView.position = CGPoint(x: size.width/2.0, y: size.width/2.0)
 //        optionScreenView.userInteractionEnabled = false
@@ -325,11 +429,13 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
         gameGrid.zPosition = -49
         gameGrid.alpha     = 0.1
         
-        self.addChild(gameGrid)
+        //self.addChild(gameGrid)
         
         tilesRemainingHUD(mmwGameSceneViewController.tileCollection.mmwTileArray.count) // default test number to tiles remaining
         
+        
         timeRemainingLabel.text = "Timer: 00"
+        
         
         bottomDisplayHUD("Begin ... ")
         
@@ -430,15 +536,15 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
             self.addChild(tile.tileSprite)
         }
         
-//        optionsLayerNode.name = "optionsLayerNode"
-//        optionsLayerNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-//        optionsLayerNode.position = CGPoint(x: size.width/2.0, y: size.height/2.0)
-//        optionsLayerNode.userInteractionEnabled = false
-//        optionsLayerNode.zPosition = 100
-//        optionsLayerNode.size = CGSize(width: (viewSize.width * 1.0),  height: (viewSize.height * 1.0) )
-//        optionsLayerNode.alpha = 0.95
-//        optionsLayerNode.hidden = true
-//        self.addChild(optionsLayerNode)
+        optionsLayerNode.name = "optionsLayerNode"
+        optionsLayerNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        optionsLayerNode.position = CGPoint(x: size.width/2.0, y: size.height/2.0)
+        optionsLayerNode.userInteractionEnabled = false
+        optionsLayerNode.zPosition = 100
+        optionsLayerNode.size = CGSize(width: (viewSize.width * 1.0),  height: (viewSize.height * 1.0) )
+        optionsLayerNode.alpha = 0.95
+        optionsLayerNode.hidden = true
+        self.addChild(optionsLayerNode)
         
 
         
@@ -464,6 +570,19 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
         playBtnPlay.anchorPoint = CGPointMake(0, 0)
         self.addChild(playBtnPlay)
         newTilesButton.userInteractionEnabled = true
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
         
 
 //        var logoFrame = CGRectMake(0,0,118,40)
@@ -512,11 +631,6 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
     
     
     func timeRemainingHUD (timeAmount: Int)  -> SKLabelNode {
-        
-        
-//        timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
-        
-        
         timeRemainingLabel.zPosition = 1
         timeRemainingLabel.text =  "Timer: \( String(secondsLeft) ) " // "Timer: \(timeAmount)"
         timeRemainingLabel.fontSize = FontHUDSize
@@ -524,32 +638,34 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
         timeRemainingLabel.position = CGPointMake(size.width * 0.77, size.height * 0.006)
         timeRemainingLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 1)!
         addChild(timeRemainingLabel)
+        
+        startTimer(timeAmount)
         return timeRemainingLabel
     }
     
-//    func updateCounter() {
-//        timeRemainingLabel.fontColor = SKColor(red: 1, green: 1, blue: 1, alpha: 1) // counter starts white color
-//        timeRemainingLabel.text = "Timer: \( String(secondsLeft) ) " // String(counter--)
-//        
-//        if secondsLeft <= 10 && secondsLeft > 5 {
-//            timeRemainingLabel.text =  "Timer: \( String(secondsLeft) ) "
-//            let countdownSmall = SKAction.playSoundFileNamed("1007.WAV", waitForCompletion: true)
-//            timeRemainingLabel.fontColor = SKColor(red: 0, green: 1, blue: 1, alpha: 1) // counter turns orange color
-//            runAction(SKAction.sequence( [countdownSmall]) )
-//        }
-//        if secondsLeft <= 5 {
-//            timeRemainingLabel.text =  "Timer: \( String(secondsLeft) ) "
-//            let countdownBig = SKAction.playSoundFileNamed("1003.WAV", waitForCompletion: true)
-//            runAction(SKAction.sequence( [countdownBig]) )
-//            timeRemainingLabel.fontColor = SKColor(red: 1, green: 0, blue: 0, alpha: 1) // counter turns red color
-//            if secondsLeft <= 0 {
-//                //runAction(actionSound)   // play turn over sound
-//                timeRemainingLabel.text = ("Timer: 0")
-//                changePlayerTurn()
-//            }
-//        }
-//        --secondsLeft
-//    }
+    func updateCounter() {
+        timeRemainingLabel.fontColor = SKColor(red: 1, green: 1, blue: 1, alpha: 1) // counter starts white color
+        timeRemainingLabel.text = "Timer: \( String(secondsLeft) ) " // String(counter--)
+        
+        if secondsLeft <= 10 && secondsLeft > 5 {
+            timeRemainingLabel.text =  "Timer: \( String(secondsLeft) ) "
+            let countdownSmall = SKAction.playSoundFileNamed("1007.WAV", waitForCompletion: true)
+            timeRemainingLabel.fontColor = SKColor(red: 0, green: 1, blue: 1, alpha: 1) // counter turns orange color
+            runAction(SKAction.sequence( [countdownSmall]) )
+        }
+        if secondsLeft <= 5 {
+            timeRemainingLabel.text =  "Timer: \( String(secondsLeft) ) "
+            let countdownBig = SKAction.playSoundFileNamed("1003.WAV", waitForCompletion: true)
+            runAction(SKAction.sequence( [countdownBig]) )
+            timeRemainingLabel.fontColor = SKColor(red: 1, green: 0, blue: 0, alpha: 1) // counter turns red color
+            if secondsLeft <= 0 {
+                //runAction(actionSound)   // play turn over sound
+                timeRemainingLabel.text = ("Timer: 0")
+                changePlayerTurn()
+            }
+        }
+        --secondsLeft
+    }
     
     func tilesRemainingHUD (tilesLeft : Int) -> SKLabelNode {
         tilesRemainingLabel.zPosition = 1
@@ -672,9 +788,9 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
                 optionsButton (_node)
             }
             
-//            if(_node.name == "pauseButton"){
-//                pauseButton (_node)
-//            }
+            if(_node.name == "pauseButton"){
+                pauseButton (_node)
+            }
             
             if(_node.name == "playBtnPlay"){
                 playBtnPlay (_node)
@@ -769,9 +885,9 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
             passButton.userInteractionEnabled = false
             pauseButton.userInteractionEnabled = false
             optionsButton.userInteractionEnabled = false
+
+            timeRemainingHUD(mmwGameSceneViewController.secondsPerTurn)  // default set to standard time remaining
             
-            
-//            timeRemainingHUD(mmwGameSceneViewController.secondsPerTurn)  // default set to standard time remaining
         }
     }
     
@@ -1064,12 +1180,21 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
     
     
     func optionsButton (optionsButtonNode: SKNode) {
-        if userInteractionEnabled {
-            //runAction(actionSound)
+        
+        print("option button pressed")
+
+        
+        let transition = SKTransition.crossFadeWithDuration(0.2)
+        view?.presentScene(mmwOptionScreen, transition: transition)
+        print("mmwResultsScene")
+
+        //optionsLayerNode.hidden = false  // pop up graphic ... click to hide//if userInteractionEnabled {
+            
+        //runAction(actionSound)
             
             
-//            stopTimer()
-            
+            stopTimer()
+        
             
 //            print("mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray)")
 //            mmwGameSceneViewController.tileCollection.displayTileArrayValues(mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray)
@@ -1085,38 +1210,39 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
 //                mmwPlayer4Grid.printGrid()
 //            }
 //            mmwBoardGrid.printGrid()
-            optionsLayerNode.hidden = false  // pop up graphic ... click to hide
+            
+        
+        //}
+    }
+    
+    
+    func pauseButton (pauseButtonNode : SKNode) {
+        if userInteractionEnabled {
+            //runAction(actionSound)
+            if !isPaused {
+                stopTimer()
+            }
+            else {
+                startTimer(secondsLeft)
+            }
         }
     }
     
     
-//    func pauseButton (pauseButtonNode : SKNode) {
-//        if userInteractionEnabled {
-//            //runAction(actionSound)
-//            if !isPaused {
-//                stopTimer()
-//            }
-//            else {
-//                startTimer(secondsLeft)
-//            }
-//        }
-//    }
+    func startTimer(seconds: Int) {
+        //runAction(actionSound)
+        isPaused = false
+        pauseButton.texture = SKTexture(imageNamed: "PauseButton.png")
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
+
+    }
     
     
-//    func startTimer(seconds: Int) {
-//        //runAction(actionSound)
-//        isPaused = false
-//        pauseButton.texture = SKTexture(imageNamed: "PauseButton.png")
-//        
-////        timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
-//    }
-//    
-//    
-//    func stopTimer() {
-//        isPaused = true
-//        pauseButton.texture = SKTexture(imageNamed: "PlayButton.png")
-////        timer!.invalidate()
-//    }
+    func stopTimer() {
+        isPaused = true
+        pauseButton.texture = SKTexture(imageNamed: "PlayButton.png")
+        timer!.invalidate()
+    }
     
     
     func explosion(pos: CGPoint) {
@@ -1124,9 +1250,9 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
         emitterNode?.zPosition = 100
         emitterNode!.particlePosition = pos
         self.addChild(emitterNode!)
-        // Don't forget to remove the emitter node after the explosion
-        self.runAction(SKAction.waitForDuration(2), completion: { emitterNode!.removeFromParent() })
+        // Don't forget to remove emitter node after explosion
         runAction(SKAction.playSoundFileNamed("1003.wav", waitForCompletion: false))
+        self.runAction(SKAction.waitForDuration(2), completion: { emitterNode!.removeFromParent() })
     }
     
     
@@ -1169,10 +1295,10 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
             mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerView.playerViewBeginTurn()
         }
         
-//        secondsLeft = mmwGameSceneViewController.secondsPerTurn
-//        if isPaused == true {
-//            startTimer(secondsLeft)
-//        }
+        secondsLeft = mmwGameSceneViewController.secondsPerTurn
+        if isPaused == true {
+            startTimer(secondsLeft)
+        }
         
         mmwGameSceneViewController.lettersPlayedInTurn = 0
 
@@ -1242,9 +1368,9 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
     }
     
     
-    override func update(currentTime: NSTimeInterval) {
-        //runAction(actionSound)
-    }
+//    override func update(currentTime: NSTimeInterval) {
+//        //runAction(actionSound)
+//    }
     
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -2017,12 +2143,12 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
     }
     
     
-    func presentMenuScene() {
+    func presentResultsScene() {
         let transition = SKTransition.crossFadeWithDuration(0.5)
-        let menuScene = MenuScene(size: size,
+        let mmwResultsScene = MMWResultsScene(size: size,
             gameResult: true,
             score: 123)
-        view?.presentScene(menuScene, transition: transition)
+        view?.presentScene(mmwResultsScene, transition: transition)
     }
 }
 

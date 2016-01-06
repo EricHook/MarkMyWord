@@ -8,15 +8,14 @@
 
 import SpriteKit
 
-
+var mmwOptionScreen = MMWOptionScreen(size: screenSize!)
 var mmwGameScene : MMWGameScene = MMWGameScene(size: screenSize!)
+var mmwResultsScene : MMWResultsScene = MMWResultsScene(size: screenSize!, gameResult: false, score: 25)
 
 class MainMenuScene: SKScene {
 
     var currentScene : SKScene?
 
-    
-    
     //var mmwGameSceneViewController : MMWGameSceneViewController!
     var viewSize:CGSize!
     
@@ -96,7 +95,9 @@ class MainMenuScene: SKScene {
                 
                 // mmwGameSceneViewController.mmwGameScene.setViewController(mmwGameSceneViewController)
                 presentMMWScene()
+                
                 // mmwGameScene.scaleMode = SKSceneScaleMode.ResizeFill
+                
                 if userInteractionEnabled {
                     let actionSound = SKAction.playSoundFileNamed("37Bronk.mp3", waitForCompletion: true)
                     runAction(actionSound)

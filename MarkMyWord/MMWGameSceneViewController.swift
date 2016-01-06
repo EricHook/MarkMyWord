@@ -21,12 +21,12 @@ extension StreamReader : SequenceType {
 }
 
 
-class MMWGameSceneViewController  {
+class MMWGameSceneViewController : UIViewController {
 
     var viewSize = screenSize
     var tileCollection = MMWTileBuilder() // : MMWTileBuilder
     var tilesPlayable = [MMWTile]()
-    var numPlayers   = 2
+    var numPlayers   = 4
     var playerTurn   = 1
     var minWordSize  = 3
     var secondsPerTurn = 30
@@ -50,11 +50,22 @@ class MMWGameSceneViewController  {
 
     var wordSet : WordSet?
     let wordSetPrecomputedSize : Int = 1253231;
-   
-    init (size: CGSize) {
-        //viewSize = size
-        //timer = NSTimer.scheduledTimerWithTimeInterval(1, target:mmwGameScene, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
+    
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//    
+//    init () {
+//        //super.init(aDecoder)
+//        //viewSize = size
+//        //timer = NSTimer.scheduledTimerWithTimeInterval(1, target:mmwGameScene, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
+//    }
+
+ 
     
     func setUpGame () {
         

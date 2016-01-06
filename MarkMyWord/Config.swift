@@ -33,6 +33,8 @@ var FontHUD = UIFont(name:"HelveticaNeue-Bold", size: 16.0)
 let FontHUDiPhoneSize = 12.0
 let FontHUDiPhone = UIFont(name:"HelveticaNeue-Bold", size: 12.0)
 
+let fontLetterTileSize = 40
+
 
 let FontHUDBigName = "HelveticaNeue-Bold"
 

@@ -20,13 +20,13 @@ class PlayerView: SKSpriteNode {
     
     //        let playerBGTallTex : SKTexture = SKTexture(imageNamed: "PlayerBGTEST309x1320TestFull.jpg")
     //let playerBGTex          = SKTexture(imageNamed: "PlayerBG")
-    let playerBGTex          = SKTexture(imageNamed: "PlayerBG02Island")
+    let playerBGTex          = SKTexture(imageNamed: "PlayerBG.png")
     let playerTileGridTex    = SKTexture(imageNamed: "MMWPlayerTilesGrid")
     
     let playerTilesPlaqueTex = SKTexture(imageNamed: "MMWPlayerTilesPlaque")
 
-    var playerTex01          = SKTexture(imageNamed: "redPlayer.png")
-    var playerTex02          = SKTexture(imageNamed: "bluePlayer.png")
+    var playerTex01          = SKTexture(imageNamed: "AvatarShadowMale.png")
+    var playerTex02          = SKTexture(imageNamed: "BongoSized.png")
     var playerTex03          = SKTexture(imageNamed: "orangePlayer.png")
     var playerTex04          = SKTexture(imageNamed: "greenPlayer.png")
 
@@ -44,6 +44,7 @@ class PlayerView: SKSpriteNode {
     
     let playerGridGlow    : SKSpriteNode!
     let playerTileCover   : SKSpriteNode!
+    let playerTileBacking   : SKSpriteNode!
     
     //let playerBG : SKSpriteNode
     //        let playerBGTall : SKSpriteNode = SKSpriteNode(texture: playerBGTallTex, color: SKColor.whiteColor(), size: CGSizeMake(playerBGTallTex.size().width/2, playerBGTallTex.size().height/2) )
@@ -57,18 +58,37 @@ class PlayerView: SKSpriteNode {
         
         let playerNumber = mmwPlayer.playerID
         
+        if playerNumber == 1 {
+            playerTex = SKTexture(imageNamed: "AvatarShadowMale.png")
+        }
+        else if playerNumber == 2 {
+            playerTex = SKTexture(imageNamed: "BongoSized.png")
+        }
+        else if playerNumber == 3 {
+            playerTex = SKTexture(imageNamed: "BongoSized.png")
+        }
+        else if playerNumber == 4 {
+            playerTex = SKTexture(imageNamed: "BongoSized.png")
+        }
+        else {
+            playerTex = SKTexture(imageNamed: "AvatarShadowMale.png")
+        }
         //let playerTexName = ( "player0\(playerNumber).png" )
-        
-        let playerTexName = ( "BongoSized.png" )
-        playerTex = SKTexture(imageNamed: playerTexName)
+        //playerTex = SKTexture(imageNamed: playerTexName)
         
         playerColor       =  gameColors[mmwPlayer.playerColor]
-        playerSprite      = SKSpriteNode(texture: playerTex, color: playerColor, size: CGSizeMake(playerTex.size().width, playerTex.size().height) )
+        
+        //playerSprite      = SKSpriteNode(texture: playerTex, color: playerColor, size: CGSizeMake(playerTex.size().width, playerTex.size().height) )
+        playerSprite      = SKSpriteNode(texture: playerTex, color: playerColor, size: CGSizeMake(100, 100) )
+        playerSprite.colorBlendFactor = 1.0
+        
         playerTileGrid    = SKSpriteNode(texture: playerTileGridTex, color: playerColor, size: CGSizeMake(playerTileGridTex.size().width, playerTileGridTex.size().height) )
         playerTilesPlaque = SKSpriteNode(texture: playerTilesPlaqueTex, color: playerColor, size: CGSizeMake(playerTilesPlaqueTex.size().width, playerTilesPlaqueTex.size().height) )
         playerTileCover  = SKSpriteNode(texture: tileCoverTex,   color: UIColorGray, size: CGSizeMake( ( (tileCoverTex.size().width) + 2), ((tileCoverTex.size().height) + 2) ) )
+        playerTileBacking  = SKSpriteNode(texture: tileCoverTex,   color: UIColorGray, size: CGSizeMake( ( (tileCoverTex.size().width) + 2), ((tileCoverTex.size().height) + 2) ) )
         
         playerGridGlow   = SKSpriteNode (texture: playerGridGlowTex, color: SKColor.whiteColor(), size: CGSizeMake( ( (playerGridGlowTex.size().width)), ((playerGridGlowTex.size().height)) ) )
+
         
         if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
             super.init(texture: playerBGTex, color: UIColorAppleBlue, size: CGSizeMake( playerBGTex.size().width * 1.33 , playerBGTex.size().height * 1.33) ) // (309/2, 1319/2) )
@@ -76,8 +96,17 @@ class PlayerView: SKSpriteNode {
         else{
             super.init(texture: playerBGTex, color: UIColorAppleBlue, size: CGSizeMake( playerBGTex.size().width , playerBGTex.size().height) ) // (309/2, 1319/2) )
         }
+
         
-        self.zPosition = -100
+        
+//        if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
+//            super.init(texture: playerTileGridTex, color: UIColorAppleBlue, size: CGSizeMake( playerBGTex.size().width * 1.33 , playerBGTex.size().height * 1.33) ) // (309/2, 1319/2) )
+//        }
+//        else{
+//            super.init(texture: playerTileGridTex, color: UIColorAppleBlue, size: CGSizeMake( playerBGTex.size().width , playerBGTex.size().height) ) // (309/2, 1319/2) )
+//        }
+        
+        self.zPosition = -90
         self.anchorPoint = CGPointMake(0, 0)
         
         let playerGraphics = [playerSprite, playerTileGrid, playerTilesPlaque, playerTileCover, playerGridGlow]
@@ -107,18 +136,18 @@ class PlayerView: SKSpriteNode {
         //playerTex = SKTexture(imageNamed: "orangePlayer.png")
         
         playerSprite.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-        playerSprite.position = CGPoint(x: size.width/2.0, y: self.frame.height * 0.4)  // 337.0)
+        playerSprite.position = CGPoint(x: size.width/2.0, y: self.frame.height * 0.58)  // 337.0)
         playerSprite.userInteractionEnabled = false
         //yellowPlayerSprite.colorBlendFactor = CGFloat(1.0)
         playerSprite.alpha = 1.0
-        playerSprite.zPosition = 1
+        playerSprite.zPosition = -1
         addChild(playerSprite)
 
         playerNameLabel = SKLabelNode(fontNamed: FontHUDName) // SKLabelNode(fontNamed:"Chalkduster")
         playerNameLabel.text = mmwPlayer.playerName
         playerNameLabel.fontSize = 17
         playerNameLabel.fontColor =  FontHUDBlack
-        playerNameLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y: self.frame.height * 0.521) // CGRectGetMidY(self.frame) + 10 ) // 171)
+        playerNameLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y: self.frame.height * 0.531) // CGRectGetMidY(self.frame) + 10 ) // 171)
         playerNameLabel.zPosition = 3
         addChild(playerNameLabel)
         
@@ -126,43 +155,53 @@ class PlayerView: SKSpriteNode {
         playerScoreLabel.text = String(playerScore)
         playerScoreLabel.fontSize = 17
         playerScoreLabel.fontColor =  FontHUDBlack
-        playerScoreLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y: self.frame.height * 0.47 ) // CGRectGetMidY(self.frame) - 6 ) // 154)
+        playerScoreLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y: self.frame.height * 0.48 ) // CGRectGetMidY(self.frame) - 6 ) // 154)
         playerScoreLabel.zPosition = 3
         addChild(playerScoreLabel)
 
         playerTileGrid.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-        playerTileGrid.position = CGPoint(x: size.width/2.0, y: screenHeight*0.0692)  // 337.0)  // y 7
+        playerTileGrid.position = CGPoint(x: size.width/2.0, y: screenHeight*0.071)  // 337.0)  // y 7
         playerTileGrid.userInteractionEnabled = false
         playerTileGrid.colorBlendFactor = CGFloat(1.0)
-        playerTileGrid.alpha = 0.75
-        playerTileGrid.zPosition = 2
+        playerTileGrid.alpha = 1.0
+        playerTileGrid.zPosition = 0
         addChild(playerTileGrid)
 
         playerTilesPlaque.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-        playerTilesPlaque.position = CGPoint(x: size.width/2.0, y: self.frame.height * 0.46) // 482.0)  y 152
+        playerTilesPlaque.position = CGPoint(x: size.width/2.0, y: self.frame.height * 0.469) // 482.0)  y 152
         playerTilesPlaque.userInteractionEnabled = false
         playerTilesPlaque.colorBlendFactor = CGFloat(1.0)
-        playerTilesPlaque.alpha = 0.75
+        playerTilesPlaque.alpha = 1.0
         playerTilesPlaque.zPosition = 2
         addChild(playerTilesPlaque)
         
         playerTileCover.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-        playerTileCover.position = CGPoint(x: size.width/2.0, y: screenHeight*0.070 ) // 482.0)
+        playerTileCover.position = CGPoint(x: size.width/2.0 , y: screenHeight*0.070 ) // 482.0)
         playerTileCover.userInteractionEnabled = false
         playerTileCover.colorBlendFactor = CGFloat(1.0)
         playerTileCover.size.height = playerTileCover.size.height * 0.75
-        playerTileCover.alpha = 0.5
-        playerTileCover.zPosition = 99
+        playerTileCover.size.width = playerTileCover.size.width + 2
+        playerTileCover.alpha = 0.6
+        playerTileCover.zPosition = 10
         addChild(playerTileCover)
         
-        playerGridGlow.anchorPoint = CGPoint(x: 0.0, y: 0.0)
-        playerGridGlow.position = CGPoint(x: 0, y: 0) // 482.0)
-        playerGridGlow.userInteractionEnabled = false
-        playerGridGlow.colorBlendFactor = CGFloat(1.0)
-        playerGridGlow.alpha = 0.9
-        playerGridGlow.zPosition = 2
-        playerGridGlow.hidden = true
-        addChild(playerGridGlow)
+        playerTileBacking.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+        playerTileBacking.position = CGPoint(x: size.width/2.0, y: screenHeight*0.071 ) // 482.0)
+        playerTileBacking.userInteractionEnabled = false
+        playerTileBacking.colorBlendFactor = CGFloat(1.0)
+        playerTileBacking.size.height = playerTileCover.size.height * 0.75
+        playerTileBacking.alpha = 1.0
+        playerTileBacking.zPosition = -5
+        addChild(playerTileBacking)
+        
+//        playerGridGlow.anchorPoint = CGPoint(x: 0.0, y: 0.0)
+//        playerGridGlow.position = CGPoint(x: 0, y: 0) // 482.0)
+//        playerGridGlow.userInteractionEnabled = false
+//        playerGridGlow.colorBlendFactor = CGFloat(1.0)
+//        playerGridGlow.alpha = 0.9
+//        playerGridGlow.zPosition = 2
+//        playerGridGlow.hidden = true
+//        addChild(playerGridGlow)
     }
     
     

@@ -28,22 +28,22 @@ extension SKNode {
     }
 }
 
-var mmwGameSceneViewController = MMWGameSceneViewController(size: screenSize!)
+var mmwGameSceneViewController = MMWGameSceneViewController()
 
 class GameViewController : UIViewController {
     
     @IBOutlet weak var menuView: UIView?
     @IBOutlet weak var playButton: UIButton?
     
-    @IBAction func likedThis(sender: UIButton) {
-        //Hide the menu view
-        menuView!.hidden = true
-        
-        //instantiate and present the scene on the main view
-        let scene = MMWGameScene(size: view.bounds.size)
-        let skView = self.view as! SKView
-        skView.presentScene(scene)
-    }
+//    @IBAction func likedThis(sender: UIButton) {
+//        //Hide the menu view
+//        menuView!.hidden = true
+//        
+//        //instantiate and present the scene on the main view
+//        let scene = MMWGameScene(size: view.bounds.size)
+//        let skView = self.view as! SKView
+//        skView.presentScene(scene)
+//    }
     
     
 
@@ -51,12 +51,12 @@ class GameViewController : UIViewController {
         super.viewDidLoad()
         print("in GameViewController viewDidLoad 1")
         screenSize = view.bounds.size
-        let menuScene = MainMenuScene(size: view.bounds.size)
+        let mainMenuScene = MainMenuScene(size: screenSize!)
         
 //        mmwGame.setMainMenuScene(menuScene)
 //        mmwGame.setScreenSize(view.bounds.size)
         
-        print(screenSize!.width)
+
         
         switch Int(screenSize!.width) {
             
@@ -76,6 +76,8 @@ class GameViewController : UIViewController {
                 mmwGame.setDeviceType(MMWGame.DeviceType.iPad)
         }
         
+        print("Screen width:\(screenSize!.width) , device type: \(mmwGame.deviceType) ")
+        
         
     //    if let scene1 = GameScene.unarchiveFromFile("GameScene") as? GameScene {
             // Configure the view.
@@ -88,14 +90,13 @@ class GameViewController : UIViewController {
         skView.ignoresSiblingOrder = true
 
         /* Set the scale mode to scale to fit the window */
-        menuScene.scaleMode = .AspectFill
+        mainMenuScene.scaleMode = .AspectFill
         
 /////////////////
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentView", name: "showController", object: nil)
 /////////////////////////////////
 
-
-        skView.presentScene(menuScene)
+        skView.presentScene(mainMenuScene)
 
     }
     

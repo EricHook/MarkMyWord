@@ -35,6 +35,7 @@ class LetterTileSprite : SKSpriteNode {
     //var glowTexture   : SKTexture = SKTexture(imageNamed: "Tile3D90xGLOW")
     var largeTexture    : SKTexture?
     var largeTextureFilename = "Tile3D"
+    
 //    var tileShadow : SKSpriteNode = SKSpriteNode(texture: SKTexture(imageNamed: "TileShadow"), color: UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.00), size: CGSize(width: 50.0, height: 50.0) )  // 50.0
 //    var tileGlow : SKSpriteNode = SKSpriteNode(texture: SKTexture(imageNamed: "Tile3DGlow"), color: UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.00), size: CGSize(width: 50.0, height: 50.0) )  // 50.0
     
@@ -95,17 +96,26 @@ class LetterTileSprite : SKSpriteNode {
 //            tileSize.width *= 0.75
 //        }
         
-//        if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
-////            tileSize.height *= 0.75
-////            tileSize.width *= 0.75
-//                frontTexture = SKTexture(imageNamed: "Tile3D@iPadPro.png")
-//        }
+        if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
+//            tileSize.height *= 0.75
+//            tileSize.width *= 0.75
+                frontTexture = SKTexture(imageNamed: "Tile3D@iPadPro.png")
+        }
         
         //let myCGSize = CGSizeMake(47.5, 47.5)
         //let tileSize = CGSizeMake(47.5, 47.5)
         //let tileSize = frontTexture.size()/3
-        var tileSize = CGSizeMake(screenSize!.width * 0.04638671875 , screenSize!.height * 0.06184895833)
-//        var tileSize = CGSizeMake(frontTexture.size(), <#T##height: CGFloat##CGFloat#>)
+        
+//        let tileSize = CGSizeMake(screenSize!.width * 0.04638671875 , screenSize!.height * 0.06184895833)
+        //let tileSize = CGSizeMake(screenSize!.width * 0.046 , screenSize!.height * 0.061)
+        
+        var tileSize = CGSizeMake(frontTexture.size().width/2, frontTexture.size().height/2)
+        
+        if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
+                        tileSize.height *= 0.88
+                        tileSize.width *= 0.88
+            frontTexture = SKTexture(imageNamed: "Tile3D@iPadPro.png")
+        }
         
         
         
@@ -121,11 +131,11 @@ class LetterTileSprite : SKSpriteNode {
         self.anchorPoint = CGPointMake(0.5, 0.5)
         self.color = withColor
         self.colorBlendFactor = 1.0
-        self.zPosition = 0
+        self.zPosition = 2
         
         tileShadow.alpha = 0.35
         tileShadow.position = CGPointMake(-5, -5)
-        tileShadow.zPosition = self.zPosition - 1
+        tileShadow.zPosition = 1
         tileShadow.hidden = true
         tileShadow.name = "tileShadowName"
         self.addChild(tileShadow)
@@ -140,13 +150,20 @@ class LetterTileSprite : SKSpriteNode {
         self.addChild(tileGlow)
 
         letterLabel.text = withChar
-        letterLabel.fontSize = 40 // FontHUDSize
         letterLabel.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.98)
         letterLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
-        letterLabel.position = CGPointMake(0, -14)
+        letterLabel.position = CGPointMake(0, -15)
         letterLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
         letterLabel.zPosition = self.zPosition + 1
+        
+        letterLabel.fontSize = 40 // FontHUDSize
+        if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
+            letterLabel.fontSize = 50
+            letterLabel.position = CGPointMake(0, -18)
+
+        }
         self.addChild(letterLabel)
+        
         centerTileToSquare(self)
         
 //        // add 'bomb' detail to lower left corner of tiles
@@ -184,6 +201,8 @@ class LetterTileSprite : SKSpriteNode {
     func centerTileToSquare(tile : LetterTileSprite) {
         tile.position.x += (size.width) * 0.023193359375  // 23.75 22.5?
         tile.position.y += (size.width) * 0.03094479167  // 23.75 22.5?
+//        tile.position.x += (size.width) * 0.0225  // 23.75 22.5?
+//        tile.position.y += (size.width) * 0.020  // 23.75 22.5?
     }
     
     
@@ -259,16 +278,18 @@ class LetterTileSprite : SKSpriteNode {
 //            }
 //            if enlarged { return }
             
-            zPosition = 90
-            tileShadow.zPosition = self.zPosition - 1
+            self.zPosition = 10
+            tileShadow.zPosition = -1
+            tileShadow.hidden = false
+            print ("Z pos: \(self.zPosition)  ,  \(tileShadow.zPosition) ")
             
             
             
             
             let liftUp = SKAction.scaleTo(1.5, duration: 0.1)
             runAction(liftUp, withKey: "pickup")
-            //tileShadow.zPosition = self.zPosition - 1
-            tileShadow.hidden = false
+            //tileShadow.zPosition = 10
+
 
             
             
@@ -324,8 +345,8 @@ class LetterTileSprite : SKSpriteNode {
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesMoved(touches, withEvent: event)
         
-        zPosition = 90
-        tileShadow.zPosition = 0
+        self.zPosition = 10
+        tileShadow.zPosition = -1
         
         if enlarged { return }
         
@@ -373,10 +394,10 @@ class LetterTileSprite : SKSpriteNode {
         if enlarged { return }
         //var location = touch.locationInNode(self)
         
-        print( (size.width) )
+        //print( (size.width) )
         
         for touch in (touches as Set<UITouch>) {
-            zPosition = 10
+            zPosition = 3
             let dropDown = SKAction.scaleTo(1.0, duration: 0.1)
             runAction(dropDown, withKey: "drop")
             tileShadow.zPosition = self.zPosition - 1
@@ -489,7 +510,7 @@ class LetterTileSprite : SKSpriteNode {
         }
         else if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
             scaleUp = SKAction.scaleTo(2.0, duration:0.15)
-            scaleDown = SKAction.scaleTo(1.33, duration:0.15)
+            scaleDown = SKAction.scaleTo(1.00, duration:0.15)
         }
         else {
             scaleUp = SKAction.scaleTo(1.5, duration:0.15)

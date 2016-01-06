@@ -9,7 +9,27 @@
 import Foundation
 import SpriteKit
 
-class MenuScene: SKScene {
+class MMWResultsScene: SKScene {
+    
+//    override func viewDidLoad() {
+//    
+//        super.viewDidLoad()
+    
+//        let button   = UIButton(type: UIButtonType.System) as UIButton
+//        button.frame = CGRectMake(100, 100, 100, 50)
+//        button.backgroundColor = UIColor.greenColor()
+//        button.setTitle("Test Button", forState: UIControlState.Normal)
+//        button.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+//        
+//        self.view.addSubview(button)
+//    }
+    
+    func buttonAction(sender:UIButton!)
+    {
+        print("Button tapped")
+    }
+    
+    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -60,21 +80,45 @@ class MenuScene: SKScene {
         tryAgainTextNodeLine2.position = CGPointMake(size.width / 2.0,
             tryAgainTextNodeLine1.position.y - 40.0)
         addChild(tryAgainTextNodeLine2)
+        
+        
+        
+//        let button   = UIButton(type: UIButtonType.System) as UIButton
+//        button.frame = CGRectMake(100, 100, 100, 50)
+//        button.backgroundColor = UIColor.greenColor()
+//        button.setTitle("Test Button", forState: UIControlState.Normal)
+//        button.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+//        
+//        var uiView : UIV
+//        addChild(button)
+//        //self.view!.addSubview(button)
     }
     
-//    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-//        /* Called when a touch begins */
-//        //        if userInteractionEnabled {
-//        //            let actionSound = SKAction.playSoundFileNamed("37Bronk.mp3", waitForCompletion: true)
-//        //            runAction(actionSound)
-//        for _ in (touches as Set<UITouch>) {
-//            //let location = touch.locationInNode(self)
-//            //let touchedNode = nodeAtPoint(location)
-//            
-//            playMMWScene()
-//        }
-//        //        }
-//    }
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        /* Called when a touch begins */
+        //        if userInteractionEnabled {
+        //            let actionSound = SKAction.playSoundFileNamed("37Bronk.mp3", waitForCompletion: true)
+        //            runAction(actionSound)
+        for _ in (touches as Set<UITouch>) {
+            //let location = touch.locationInNode(self)
+            //let touchedNode = nodeAtPoint(location)
+            
+            //playMMWScene()
+            
+            print("results scene touched")
+            
+            let transition = SKTransition.crossFadeWithDuration(0.5)
+            //        //mmwGameScene = MMWGameScene(size: size)
+            //        transitionToScene = mmwGameSceneViewController.mmwGameScene
+            //        currentScene = mmwGameScene
+            //        mmwGameScene.scaleMode = .AspectFill
+            view?.presentScene(mmwGameScene, transition: transition)
+            print("mmwGameScene")
+            
+            
+        }
+        //        }
+    }
     
 //    func playMMWScene() {
 //        let transition = SKTransition.crossFadeWithDuration(2.0)

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B80057561C3B4B7900185769 /* AvatarShadowMale.png in Resources */ = {isa = PBXBuildFile; fileRef = B80057551C3B4B7900185769 /* AvatarShadowMale.png */; };
+		B80057591C3C8D2D00185769 /* OptionsUISceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80057571C3C8D2D00185769 /* OptionsUISceneViewController.swift */; };
+		B800575A1C3C8D2D00185769 /* OptionsUISceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B80057581C3C8D2D00185769 /* OptionsUISceneViewController.xib */; };
+		B800575C1C3C8D8900185769 /* OptionsUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B800575B1C3C8D8900185769 /* OptionsUIView.swift */; };
 		B80327FF1C0CD22E0002665F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B80327FE1C0CD22E0002665F /* CoreData.framework */; };
 		B808A42E1B9A0C000070A1A6 /* Trie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B808A42D1B9A0C000070A1A6 /* Trie.swift */; };
 		B81CF1381C12203500F5261D /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B81CF1361C12203400F5261D /* Model.xcdatamodeld */; };
@@ -38,7 +42,7 @@
 		B822CF081C390D0C0043905E /* OptButtonWordLength2Boxed.png in Resources */ = {isa = PBXBuildFile; fileRef = B822CF041C390D0C0043905E /* OptButtonWordLength2Boxed.png */; };
 		B822CF091C390D0C0043905E /* OptButtonWordLength3.png in Resources */ = {isa = PBXBuildFile; fileRef = B822CF051C390D0C0043905E /* OptButtonWordLength3.png */; };
 		B822CF0A1C390D0C0043905E /* OptButtonWordLength3Boxed.png in Resources */ = {isa = PBXBuildFile; fileRef = B822CF061C390D0C0043905E /* OptButtonWordLength3Boxed.png */; };
-		B822CF0C1C390DA80043905E /* OptionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B822CF0B1C390DA80043905E /* OptionScreen.swift */; };
+		B822CF0C1C390DA80043905E /* MMWOptionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B822CF0B1C390DA80043905E /* MMWOptionScreen.swift */; };
 		B82786151B05585D00916E20 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82786141B05585D00916E20 /* Player.swift */; };
 		B84738D41C0A3F20003B05BA /* tileCover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B84738D31C0A3F20003B05BA /* tileCover@2x.png */; };
 		B84738D81C0A482C003B05BA /* PlayerBG02Island@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B84738D71C0A482C003B05BA /* PlayerBG02Island@2x.png */; };
@@ -120,6 +124,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B80057551C3B4B7900185769 /* AvatarShadowMale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AvatarShadowMale.png; sourceTree = "<group>"; };
+		B80057571C3C8D2D00185769 /* OptionsUISceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsUISceneViewController.swift; sourceTree = "<group>"; };
+		B80057581C3C8D2D00185769 /* OptionsUISceneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OptionsUISceneViewController.xib; sourceTree = "<group>"; };
+		B800575B1C3C8D8900185769 /* OptionsUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsUIView.swift; sourceTree = "<group>"; };
 		B80327FE1C0CD22E0002665F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B808A42D1B9A0C000070A1A6 /* Trie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trie.swift; sourceTree = "<group>"; };
 		B812D01E1BEAFE5100058683 /* 30Showdown.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = 30Showdown.m4a; sourceTree = "<group>"; };
@@ -152,7 +160,7 @@
 		B822CF041C390D0C0043905E /* OptButtonWordLength2Boxed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OptButtonWordLength2Boxed.png; sourceTree = "<group>"; };
 		B822CF051C390D0C0043905E /* OptButtonWordLength3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OptButtonWordLength3.png; sourceTree = "<group>"; };
 		B822CF061C390D0C0043905E /* OptButtonWordLength3Boxed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OptButtonWordLength3Boxed.png; sourceTree = "<group>"; };
-		B822CF0B1C390DA80043905E /* OptionScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionScreen.swift; sourceTree = "<group>"; };
+		B822CF0B1C390DA80043905E /* MMWOptionScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMWOptionScreen.swift; sourceTree = "<group>"; };
 		B82786141B05585D00916E20 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		B84738D31C0A3F20003B05BA /* tileCover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tileCover@2x.png"; sourceTree = "<group>"; };
 		B84738D71C0A482C003B05BA /* PlayerBG02Island@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlayerBG02Island@2x.png"; sourceTree = "<group>"; };
@@ -340,6 +348,10 @@
 				B8A455141AF15A1400C0D83B /* MainMenuScene.swift */,
 				B8CCE1A51AD8C13500882391 /* MMWGameScene.swift */,
 				B8B49DBA1AF1AF610086154C /* MMWResultsScene.swift */,
+				B822CF0B1C390DA80043905E /* MMWOptionScreen.swift */,
+				B80057571C3C8D2D00185769 /* OptionsUISceneViewController.swift */,
+				B800575B1C3C8D8900185769 /* OptionsUIView.swift */,
+				B80057581C3C8D2D00185769 /* OptionsUISceneViewController.xib */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -438,6 +450,7 @@
 		B8C900771B01404500C72745 /* player */ = {
 			isa = PBXGroup;
 			children = (
+				B80057551C3B4B7900185769 /* AvatarShadowMale.png */,
 				B822CEFA1C3892640043905E /* playerGridGlowTex.png */,
 				B822CEFB1C3892640043905E /* playerGridGlowTex@2x.png */,
 				B822CEFC1C3892640043905E /* playerGridGlowTex@3x.png */,
@@ -494,11 +507,12 @@
 				B8DA7EC41AE136CA003FE2C6 /* Assets */,
 				B8DA7EC01AE1369F003FE2C6 /* Classes */,
 				B8CCE1A11AD8C13500882391 /* AppDelegate.swift */,
+				B881A5A21C3A0329005BFE27 /* optionScreen.xib */,
 				B8CCE1A91AD8C13500882391 /* Main.storyboard */,
+				B8CCE1AE1AD8C13500882391 /* LaunchScreen.xib */,
 				B8D789271B0C3A0300C3DC36 /* MMWGame.swift */,
 				B8CCE1A31AD8C13500882391 /* GameScene.sks */,
 				B8CCE1AC1AD8C13500882391 /* Images.xcassets */,
-				B8CCE1AE1AD8C13500882391 /* LaunchScreen.xib */,
 				B8CCE19F1AD8C13500882391 /* Supporting Files */,
 			);
 			path = MarkMyWord;
@@ -556,9 +570,7 @@
 			children = (
 				B88A58451BEAD0AA003E0957 /* Scenes */,
 				B8D130E61AFD635500865982 /* PlayerView.swift */,
-				B822CF0B1C390DA80043905E /* OptionScreen.swift */,
 				B8C14EF01AF27E5100E640C0 /* LetterTileSprite.swift */,
-				B881A5A21C3A0329005BFE27 /* optionScreen.xib */,
 				B88A58441BEAD089003E0957 /* Effects */,
 			);
 			name = Views;
@@ -785,6 +797,7 @@
 				B88A585D1BEAD859003E0957 /* PassButton.png in Resources */,
 				B822CF081C390D0C0043905E /* OptButtonWordLength2Boxed.png in Resources */,
 				B8DFE1571C29F288009FB8ED /* OptionsButton@3x.png in Resources */,
+				B800575A1C3C8D2D00185769 /* OptionsUISceneViewController.xib in Resources */,
 				B8DFE15D1C2A0E60009FB8ED /* GameGrid@3x.png in Resources */,
 				B8DFE1591C2A0BEE009FB8ED /* GameGrid.png in Resources */,
 				B881A5A31C3A0329005BFE27 /* optionScreen.xib in Resources */,
@@ -793,6 +806,7 @@
 				B822CEF71C388F530043905E /* MMWPlayerTilesPlaque.png in Resources */,
 				B8DFE15C1C2A0E60009FB8ED /* GameGrid@2x.png in Resources */,
 				B822CEFF1C3892640043905E /* playerGridGlowTex@3x.png in Resources */,
+				B80057561C3B4B7900185769 /* AvatarShadowMale.png in Resources */,
 				B8FFF25F1BE96E2E006D2010 /* spark.png in Resources */,
 				B822CEFE1C3892640043905E /* playerGridGlowTex@2x.png in Resources */,
 				B88A585E1BEAD859003E0957 /* PauseButton.png in Resources */,
@@ -852,10 +866,12 @@
 				B8CB742F1AF9260400AE5F40 /* Grid.swift in Sources */,
 				B8CCE1A61AD8C13500882391 /* MMWGameScene.swift in Sources */,
 				B8AA6C081B2A481600DEAC41 /* MMWTileBuilder.swift in Sources */,
+				B800575C1C3C8D8900185769 /* OptionsUIView.swift in Sources */,
 				B82786151B05585D00916E20 /* Player.swift in Sources */,
-				B822CF0C1C390DA80043905E /* OptionScreen.swift in Sources */,
+				B822CF0C1C390DA80043905E /* MMWOptionScreen.swift in Sources */,
 				B8F3F2191C33665F00A38BB7 /* WordSetError.swift in Sources */,
 				B8E874E61AE17E0000763849 /* MMWTile.swift in Sources */,
+				B80057591C3C8D2D00185769 /* OptionsUISceneViewController.swift in Sources */,
 				B81CF1501C123D5C00F5261D /* TrieData+CoreDataProperties.swift in Sources */,
 				B81CF1511C123D5C00F5261D /* TrieData.swift in Sources */,
 				B8C14EF11AF27E5100E640C0 /* LetterTileSprite.swift in Sources */,
