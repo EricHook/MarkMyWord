@@ -20,7 +20,15 @@ class MMWOptionScreen: SKScene {
 //    let OptButtonWordLength3BoxedTex = SKTexture(imageNamed: "OptButtonWordLength3Boxed.png")
     
     var currentScene : SKScene?
-    var uiOptions : UIView?
+
+    var inputText:UITextField?
+    var keyboardOpen:Bool = false
+    var keyboardClosingWillSaveToKey:String = ""
+    var keyboardType:UIKeyboardType = UIKeyboardType.Alphabet
+    var keyboardAppearance:UIKeyboardAppearance = UIKeyboardAppearance.Default
+    
+    var defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    
     
     //var mmwGameSceneViewController : MMWGameSceneViewController!
     var viewSize:CGSize!
@@ -39,8 +47,7 @@ class MMWOptionScreen: SKScene {
         /* Setup your scene here */
         
         viewSize = view.bounds.size
-        
-        uiOptions = UIView()
+
         
         print("view size MenuScene: \(viewSize)")
         
@@ -62,7 +69,7 @@ class MMWOptionScreen: SKScene {
         //        self.addChild(backgroundNode)
         
         // add BG
-        let backgroundNode = SKSpriteNode(imageNamed: "MarkMyWordBGCleaniPad@2x.png")
+        let backgroundNode = SKSpriteNode(imageNamed: "MMWOptionsScreen.png")
         //backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         backgroundNode.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
         backgroundNode.userInteractionEnabled = false
@@ -77,12 +84,14 @@ class MMWOptionScreen: SKScene {
         myLabel.zPosition = 100
         
         let playBtn = SKSpriteNode(imageNamed: "PlayButton.png")
-        playBtn.position = CGPoint(x: viewSize.width/2, y: viewSize.height/3)
+        playBtn.position = CGPoint(x: viewSize.width/2, y: viewSize.height/8)
+        playBtn.size = CGSize.init(width: 100, height: 50)
         self.addChild(playBtn)
         playBtn.name = "playBtn"
         playBtn.zPosition = 100
         
-        //self.add(uiOptions)
+        //openKeyboardToSaveValue("Player")
+
         
         
         //presentMMWScene()
@@ -99,7 +108,7 @@ class MMWOptionScreen: SKScene {
             let _node:SKNode = self.nodeAtPoint(location)
             if(_node.name == "playBtn"){
                 print("going to mmw scene") //create MMW controller
-                
+                gameViewController.ViewOptionsUI.alpha = 0.0
                 
                 //mmwGameSceneViewController = createMMWSceneController()
                 
@@ -149,5 +158,12 @@ class MMWOptionScreen: SKScene {
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
+    
+//    func openKeyboardToSaveValue(value:String){
+//        if keyboardOpen == false {
+//            keyboardOpen = true
+//            keyboardClosingWillSaveToKey =
+//        }
+//    }
 }
 

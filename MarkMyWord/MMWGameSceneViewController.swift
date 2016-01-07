@@ -53,6 +53,7 @@ class MMWGameSceneViewController : UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
     }
     
 //    required init?(coder aDecoder: NSCoder) {
@@ -68,7 +69,9 @@ class MMWGameSceneViewController : UIViewController {
  
     
     func setUpGame () {
-        
+        print("Button??")
+        gameViewController.buttonAction()
+
         
         //timer = NSTimer.scheduledTimerWithTimeInterval(1, target:mmwGameScene, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
       

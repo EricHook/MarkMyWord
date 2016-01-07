@@ -80,7 +80,7 @@ class PlayerView: SKSpriteNode {
         
         //playerSprite      = SKSpriteNode(texture: playerTex, color: playerColor, size: CGSizeMake(playerTex.size().width, playerTex.size().height) )
         playerSprite      = SKSpriteNode(texture: playerTex, color: playerColor, size: CGSizeMake(100, 100) )
-        playerSprite.colorBlendFactor = 1.0
+        //playerSprite.colorBlendFactor = 1.0
         
         playerTileGrid    = SKSpriteNode(texture: playerTileGridTex, color: playerColor, size: CGSizeMake(playerTileGridTex.size().width, playerTileGridTex.size().height) )
         playerTilesPlaque = SKSpriteNode(texture: playerTilesPlaqueTex, color: playerColor, size: CGSizeMake(playerTilesPlaqueTex.size().width, playerTilesPlaqueTex.size().height) )
@@ -165,6 +165,7 @@ class PlayerView: SKSpriteNode {
         playerTileGrid.colorBlendFactor = CGFloat(1.0)
         playerTileGrid.alpha = 1.0
         playerTileGrid.zPosition = 0
+        playerTileGrid.xScale = 1.01
         addChild(playerTileGrid)
 
         playerTilesPlaque.anchorPoint = CGPoint(x: 0.5, y: 0.0)
@@ -173,6 +174,7 @@ class PlayerView: SKSpriteNode {
         playerTilesPlaque.colorBlendFactor = CGFloat(1.0)
         playerTilesPlaque.alpha = 1.0
         playerTilesPlaque.zPosition = 2
+        playerTilesPlaque.xScale = 1.01
         addChild(playerTilesPlaque)
         
         playerTileCover.anchorPoint = CGPoint(x: 0.5, y: 0.0)

@@ -39,7 +39,7 @@ class MMWResultsScene: SKScene {
         
         super.init(size: size)
         
-        let backgroundNode = SKSpriteNode(imageNamed: "bg_blank")
+        let backgroundNode = SKSpriteNode(imageNamed: "MMWBG.png")
         backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         backgroundNode.position = CGPointMake(size.width / 2.0, 0)
         addChild(backgroundNode)

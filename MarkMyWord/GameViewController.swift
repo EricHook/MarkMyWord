@@ -30,10 +30,20 @@ extension SKNode {
 
 var mmwGameSceneViewController = MMWGameSceneViewController()
 
+var gameViewController = GameViewController()
+
 class GameViewController : UIViewController {
+    
+    weak var parentController: GameViewController?
     
     @IBOutlet weak var menuView: UIView?
     @IBOutlet weak var playButton: UIButton?
+    
+    
+    
+    @IBOutlet weak var ViewOptionsUI: UIView!
+    
+    
     
 //    @IBAction func likedThis(sender: UIButton) {
 //        //Hide the menu view
@@ -45,7 +55,7 @@ class GameViewController : UIViewController {
 //        skView.presentScene(scene)
 //    }
     
-    
+    let button   = UIButton(type: UIButtonType.System) as UIButton
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,12 +105,67 @@ class GameViewController : UIViewController {
 /////////////////
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentView", name: "showController", object: nil)
 /////////////////////////////////
+        
+        //scene.parentController = self
 
         skView.presentScene(mainMenuScene)
+        
+        
+        
+        
+//        let controller = (self.view.window?.rootViewController)! as! GameViewController //   .view?.window?.rootViewController as! GameViewController
+//        controller.buttonAction()
+        
+
+        
+        
+        var cornerView = UIView()
+        
+        self.view.insertSubview(cornerView, atIndex: 2)
+        
+        button.frame = CGRectMake(100, 100, 100, 50)
+        button.backgroundColor = UIColor.greenColor()
+        button.setTitle("Test Button", forState: UIControlState.Normal)
+        button.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        cornerView.addSubview(button)
+        
+        
+        gameViewController = self as GameViewController
+        gameViewController.buttonAction()
+        
+        //self.view.addSubview(cornerView)
+        
+        
+
+    }
+
+    
+    
+    func buttonAction(sender:UIButton!)
+    {
+        print("Manual Button tapped")
+        
+    }
+    
+    func buttonAction()
+    {
+        print("TEST Manual Button tapped")
+        
+    }
+    
+    @IBOutlet weak var testSwitch: UISegmentedControl!
+
+    @IBAction func testSwitch(sender: AnyObject) {
+        print("test worked")
+        button.enabled = false
+        button.hidden = true
+        //testSwitch.tintColor = UIColorApplePurple
+        
 
     }
     
-
+    
     override func shouldAutorotate() -> Bool {
         return true
     }
