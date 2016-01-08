@@ -22,27 +22,155 @@ extension SKNode {
             
             archiver.finishDecoding()
             return scene1
-        } else {
-            return nil
         }
+        return nil
     }
 }
 
-var mmwGameSceneViewController = MMWGameSceneViewController()
+var mmwGameSceneViewController : MMWGameSceneViewController! = MMWGameSceneViewController()
 
-var gameViewController = GameViewController()
+var gameViewController : GameViewController! = GameViewController()
 
 class GameViewController : UIViewController {
     
-    weak var parentController: GameViewController?
+    //weak var parentController: GameViewController?
     
-    @IBOutlet weak var menuView: UIView?
-    @IBOutlet weak var playButton: UIButton?
+    //@IBOutlet weak var menuView: UIView?
+    //@IBOutlet weak var playButton: UIButton?
     
     
+    
+    @IBOutlet var GameViewControllerUI: SKView!
     
     @IBOutlet weak var ViewOptionsUI: UIView!
+    @IBOutlet weak var ViewAllOptionsUI: UIView!
+
+    @IBOutlet weak var ViewPlayer1UI: UIView!
+    @IBOutlet weak var ViewPlayer2UI: UIView!
+    @IBOutlet weak var ViewPlayer3UI: UIView!
+    @IBOutlet weak var ViewPlayer4UI: UIView!
+    @IBOutlet weak var numberPlayersUI: UISegmentedControl!
     
+    @IBOutlet weak var secondPerTurnSwitchOutlet: UISegmentedControl!
+    
+    @IBAction func secondsPerTurnAction(sender: AnyObject) {
+        switch (sender.selectedSegmentIndex){
+        case 0:
+            mmwGameSceneViewController.secondsPerTurn = 20
+            print("secondsPerTurn = 20")
+        case 1:
+            mmwGameSceneViewController.secondsPerTurn = 30
+            print("secondsPerTurn = 30")
+        case 2:
+            mmwGameSceneViewController.secondsPerTurn = 45
+            print("secondsPerTurn = 45")
+        case 3:
+            mmwGameSceneViewController.secondsPerTurn = 60
+            print("secondsPerTurn = 60")
+        case 4:
+            mmwGameSceneViewController.secondsPerTurn = 999
+            print("secondsPerTurn = 999")
+        default:
+            break;
+        }
+    }
+
+    @IBOutlet weak var audioSettingOutlet: UISegmentedControl!
+    
+    @IBAction func audioSettingAction(sender: AnyObject) {
+        switch (sender.selectedSegmentIndex){
+        case 0:
+            mmwGameSceneViewController.audioOn = false
+            print("audio turned to off")
+            
+        case 1:
+            mmwGameSceneViewController.audioOn = false
+            print("audio turned to on")
+        default:
+            break;
+        }
+    }
+    
+    
+    @IBOutlet weak var minWordLengthSwitchOutlet: UISegmentedControl!
+    
+    
+    @IBAction func minWordLengthSwitchAction(sender: AnyObject) {
+        switch (sender.selectedSegmentIndex){
+        case 0:
+            mmwGameSceneViewController.minWordSize = 2
+            print("minWordSize set to 2")
+        case 1:
+            mmwGameSceneViewController.minWordSize = 3
+            print("minWordSize set to 3")
+        case 2:
+            mmwGameSceneViewController.minWordSize = 3
+            print("minWordSize set to 4")
+        default:
+            break;
+        }
+    }
+    
+    @IBOutlet weak var numPlayersSwitchOutlet: UISegmentedControl!
+
+    @IBAction func numPlayersSwitchAction(sender: AnyObject) {
+        switch (sender.selectedSegmentIndex){
+        case 0:
+            mmwGameSceneViewController.numPlayers = 2
+            print("numPlayers 2")
+            ViewPlayer3UI.alpha = 0.5
+            ViewPlayer3UI.userInteractionEnabled = false
+            ViewPlayer4UI.alpha = 0.5
+            ViewPlayer4UI.userInteractionEnabled = false
+        case 1:
+            mmwGameSceneViewController.numPlayers = 3
+            print("numPlayers 3")
+            ViewPlayer3UI.alpha = 1.0
+            ViewPlayer3UI.userInteractionEnabled = true
+            ViewPlayer4UI.alpha = 0.5
+            ViewPlayer4UI.userInteractionEnabled = false
+        case 2:
+            mmwGameSceneViewController.numPlayers = 4
+            print("numPlayers 4")
+            ViewPlayer3UI.alpha = 1.0
+            ViewPlayer3UI.userInteractionEnabled = true
+            ViewPlayer4UI.alpha = 1.0
+            ViewPlayer4UI.userInteractionEnabled = true
+        default:
+            break;
+        }
+    }
+
+    
+    
+    
+//    @IBAction func numberPlayersUI(sender: AnyObject) {
+//        switch (sender.selectedSegmentIndex){
+//        case 0:
+//            mmwGameSceneViewController.numPlayers = 2
+//            print("numPlayers 2")
+//            ViewPlayer3UI.alpha = 0.5
+//            ViewPlayer3UI.userInteractionEnabled = false
+//            ViewPlayer4UI.alpha = 0.5
+//            ViewPlayer4UI.userInteractionEnabled = false
+//        case 1:
+//            mmwGameSceneViewController.numPlayers = 3
+//            print("numPlayers 3")
+//            ViewPlayer3UI.alpha = 1.0
+//            ViewPlayer3UI.userInteractionEnabled = true
+//            ViewPlayer4UI.alpha = 0.5
+//            ViewPlayer4UI.userInteractionEnabled = false
+//        case 2:
+//            mmwGameSceneViewController.numPlayers = 4
+//            print("numPlayers 4")
+//            ViewPlayer3UI.alpha = 1.0
+//            ViewPlayer3UI.userInteractionEnabled = true
+//            ViewPlayer4UI.alpha = 1.0
+//            ViewPlayer4UI.userInteractionEnabled = true
+//        default:
+//            break;
+//        }
+//    }
     
     
 //    @IBAction func likedThis(sender: UIButton) {
@@ -59,17 +187,11 @@ class GameViewController : UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("in GameViewController viewDidLoad 1")
+        print("in GameViewController viewDidLoad")
         screenSize = view.bounds.size
         let mainMenuScene = MainMenuScene(size: screenSize!)
         
-//        mmwGame.setMainMenuScene(menuScene)
-//        mmwGame.setScreenSize(view.bounds.size)
-        
-
-        
         switch Int(screenSize!.width) {
-            
             case 1024: // [1024x768]
                 mmwGame.setDeviceType(MMWGame.DeviceType.iPad)
             case 2048: //  [2048 x 1536]
@@ -84,13 +206,8 @@ class GameViewController : UIViewController {
                mmwGame.setDeviceType(MMWGame.DeviceType.iPhone6Plus)
             default:
                 mmwGame.setDeviceType(MMWGame.DeviceType.iPad)
+            print("Screen width:\(screenSize!.width) , device type: \(mmwGame.deviceType) ")
         }
-        
-        print("Screen width:\(screenSize!.width) , device type: \(mmwGame.deviceType) ")
-        
-        
-    //    if let scene1 = GameScene.unarchiveFromFile("GameScene") as? GameScene {
-            // Configure the view.
             
         let skView = self.view as! SKView
         skView.showsFPS = true
@@ -109,26 +226,19 @@ class GameViewController : UIViewController {
         //scene.parentController = self
 
         skView.presentScene(mainMenuScene)
-        
-        
-        
-        
-//        let controller = (self.view.window?.rootViewController)! as! GameViewController //   .view?.window?.rootViewController as! GameViewController
-//        controller.buttonAction()
-        
 
         
+
+        //var cornerView = UIView()
         
-        var cornerView = UIView()
+        //self.view.insertSubview(cornerView, atIndex: 2)
         
-        self.view.insertSubview(cornerView, atIndex: 2)
+//        button.frame = CGRectMake(100, 100, 100, 50)
+//        button.backgroundColor = UIColor.greenColor()
+//        button.setTitle("Test Button", forState: UIControlState.Normal)
+//        button.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
         
-        button.frame = CGRectMake(100, 100, 100, 50)
-        button.backgroundColor = UIColor.greenColor()
-        button.setTitle("Test Button", forState: UIControlState.Normal)
-        button.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        cornerView.addSubview(button)
+        //cornerView.addSubview(button)
         
         
         gameViewController = self as GameViewController
@@ -154,17 +264,64 @@ class GameViewController : UIViewController {
         
     }
     
-    @IBOutlet weak var testSwitch: UISegmentedControl!
+    
+    @IBOutlet weak var OptionsSwitchOutlet: UISegmentedControl!
+    
+    
+    @IBAction func OptionsSwitchAction(sender: AnyObject) {
+        
+        if sender.selectedSegmentIndex == 2 {
+            print("stats selected")
+        }
 
-    @IBAction func testSwitch(sender: AnyObject) {
-        print("test worked")
+        switch (self.OptionsSwitchOutlet.selectedSegmentIndex){
+        case 0:
+            print("stats 0 Options selected")
+            ViewOptionsUI.hidden = false
+            ViewOptionsUI.userInteractionEnabled = true
+        case 1:
+            print("stats 1 Rules selected")
+            self.ViewOptionsUI.hidden = true
+        case 2:
+            print("stats 2 Stats selected")
+
+            self.ViewOptionsUI.hidden = true
+            self.ViewOptionsUI.alpha = 1.0
+            toStatView.sendActionsForControlEvents(.TouchUpInside)
+
+        default:
+            break;
+        }
+        
+        print("testSwitch worked")
         button.enabled = false
         button.hidden = true
         //testSwitch.tintColor = UIColorApplePurple
-        
 
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+//    @IBAction func OptionsSwitchAction(sender: AnyObject) {
+//        
+//       //    }
+  
+    
+    @IBOutlet weak var toStatView: UIButton!
+    
+    @IBAction func toStatView(sender: AnyObject) {
+       
+            
+//            selectedSegmentIndex  .sendActionsForControlEvents(.TouchUpInside)
+    }
     
     override func shouldAutorotate() -> Bool {
         return true

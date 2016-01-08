@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		B80057561C3B4B7900185769 /* AvatarShadowMale.png in Resources */ = {isa = PBXBuildFile; fileRef = B80057551C3B4B7900185769 /* AvatarShadowMale.png */; };
 		B80057591C3C8D2D00185769 /* OptionsUISceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80057571C3C8D2D00185769 /* OptionsUISceneViewController.swift */; };
-		B800575A1C3C8D2D00185769 /* OptionsUISceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B80057581C3C8D2D00185769 /* OptionsUISceneViewController.xib */; };
 		B800575C1C3C8D8900185769 /* OptionsUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B800575B1C3C8D8900185769 /* OptionsUIView.swift */; };
 		B800575E1C3D7E4600185769 /* MMWBG.png in Resources */ = {isa = PBXBuildFile; fileRef = B800575D1C3D7E4600185769 /* MMWBG.png */; };
 		B80057601C3D827500185769 /* MMWOptionsScreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B800575F1C3D827500185769 /* MMWOptionsScreen@2x.png */; };
 		B80327FF1C0CD22E0002665F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B80327FE1C0CD22E0002665F /* CoreData.framework */; };
+		B80757221C3ED01600E59EF4 /* MMWResumeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B80757211C3ED01600E59EF4 /* MMWResumeButton@2x.png */; };
 		B808A42E1B9A0C000070A1A6 /* Trie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B808A42D1B9A0C000070A1A6 /* Trie.swift */; };
 		B81CF1381C12203500F5261D /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B81CF1361C12203400F5261D /* Model.xcdatamodeld */; };
 		B81CF13C1C12207A00F5261D /* CDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81CF13B1C12207A00F5261D /* CDHelper.swift */; };
@@ -128,11 +128,11 @@
 /* Begin PBXFileReference section */
 		B80057551C3B4B7900185769 /* AvatarShadowMale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AvatarShadowMale.png; sourceTree = "<group>"; };
 		B80057571C3C8D2D00185769 /* OptionsUISceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsUISceneViewController.swift; sourceTree = "<group>"; };
-		B80057581C3C8D2D00185769 /* OptionsUISceneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OptionsUISceneViewController.xib; sourceTree = "<group>"; };
 		B800575B1C3C8D8900185769 /* OptionsUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsUIView.swift; sourceTree = "<group>"; };
 		B800575D1C3D7E4600185769 /* MMWBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MMWBG.png; sourceTree = "<group>"; };
 		B800575F1C3D827500185769 /* MMWOptionsScreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MMWOptionsScreen@2x.png"; sourceTree = "<group>"; };
 		B80327FE1C0CD22E0002665F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B80757211C3ED01600E59EF4 /* MMWResumeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MMWResumeButton@2x.png"; sourceTree = "<group>"; };
 		B808A42D1B9A0C000070A1A6 /* Trie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trie.swift; sourceTree = "<group>"; };
 		B812D01E1BEAFE5100058683 /* 30Showdown.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = 30Showdown.m4a; sourceTree = "<group>"; };
 		B81CF1371C12203400F5261D /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -349,13 +349,15 @@
 		B88A58451BEAD0AA003E0957 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				B8CCE1AE1AD8C13500882391 /* LaunchScreen.xib */,
+				B8CCE1A91AD8C13500882391 /* Main.storyboard */,
+				B881A5A21C3A0329005BFE27 /* optionScreen.xib */,
 				B8A455141AF15A1400C0D83B /* MainMenuScene.swift */,
 				B8CCE1A51AD8C13500882391 /* MMWGameScene.swift */,
-				B8B49DBA1AF1AF610086154C /* MMWResultsScene.swift */,
 				B822CF0B1C390DA80043905E /* MMWOptionScreen.swift */,
+				B8B49DBA1AF1AF610086154C /* MMWResultsScene.swift */,
 				B80057571C3C8D2D00185769 /* OptionsUISceneViewController.swift */,
 				B800575B1C3C8D8900185769 /* OptionsUIView.swift */,
-				B80057581C3C8D2D00185769 /* OptionsUISceneViewController.xib */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -408,6 +410,7 @@
 				B88A58511BEAD859003E0957 /* PauseButton.png */,
 				B822CEE21C38864D0043905E /* PauseButton@2x.png */,
 				B822CEE31C38864D0043905E /* PauseButton@3x.png */,
+				B80757211C3ED01600E59EF4 /* MMWResumeButton@2x.png */,
 				B88A58521BEAD859003E0957 /* PlayButton.png */,
 			);
 			name = buttons;
@@ -513,10 +516,6 @@
 				B8DA7EC41AE136CA003FE2C6 /* Assets */,
 				B8DA7EC01AE1369F003FE2C6 /* Classes */,
 				B8CCE1A11AD8C13500882391 /* AppDelegate.swift */,
-				B881A5A21C3A0329005BFE27 /* optionScreen.xib */,
-				B8CCE1A91AD8C13500882391 /* Main.storyboard */,
-				B8CCE1AE1AD8C13500882391 /* LaunchScreen.xib */,
-				B8D789271B0C3A0300C3DC36 /* MMWGame.swift */,
 				B8CCE1A31AD8C13500882391 /* GameScene.sks */,
 				B8CCE1AC1AD8C13500882391 /* Images.xcassets */,
 				B8CCE19F1AD8C13500882391 /* Supporting Files */,
@@ -585,6 +584,7 @@
 		B8DA7EC31AE136BC003FE2C6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B8D789271B0C3A0300C3DC36 /* MMWGame.swift */,
 				B8A455151AF15A1400C0D83B /* GameViewController.swift */,
 				B8CCE1A71AD8C13500882391 /* MMWGameSceneViewController.swift */,
 				B8FB376E1C28D56700C68434 /* codeSnippets */,
@@ -788,6 +788,7 @@
 				B88A58651BEAD969003E0957 /* MMWPlayerTilesPlaque@2x.png in Resources */,
 				B89719CF1C34E1D6005BE647 /* gridHighlightHorizontal.png in Resources */,
 				B8FB37771C28F7CC00C68434 /* Tile3D.png in Resources */,
+				B80757221C3ED01600E59EF4 /* MMWResumeButton@2x.png in Resources */,
 				B8DFE1561C29F288009FB8ED /* OptionsButton@2x.png in Resources */,
 				B89719D11C34F687005BE647 /* SmallSquare.png in Resources */,
 				B800575E1C3D7E4600185769 /* MMWBG.png in Resources */,
@@ -807,7 +808,6 @@
 				B88A585D1BEAD859003E0957 /* PassButton.png in Resources */,
 				B822CF081C390D0C0043905E /* OptButtonWordLength2Boxed.png in Resources */,
 				B8DFE1571C29F288009FB8ED /* OptionsButton@3x.png in Resources */,
-				B800575A1C3C8D2D00185769 /* OptionsUISceneViewController.xib in Resources */,
 				B8DFE15D1C2A0E60009FB8ED /* GameGrid@3x.png in Resources */,
 				B8DFE1591C2A0BEE009FB8ED /* GameGrid.png in Resources */,
 				B881A5A31C3A0329005BFE27 /* optionScreen.xib in Resources */,

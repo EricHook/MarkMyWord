@@ -8,16 +8,15 @@
 
 import SpriteKit
 
-var mmwOptionScreen = MMWOptionScreen(size: screenSize!)
-var mmwGameScene : MMWGameScene = MMWGameScene(size: screenSize!)
-var mmwResultsScene : MMWResultsScene = MMWResultsScene(size: screenSize!, gameResult: false, score: 25)
+var mmwOptionScreen : MMWOptionScreen! = MMWOptionScreen(size: screenSize!)
+var mmwGameScene : MMWGameScene! = MMWGameScene(size: screenSize!)
+var mmwResultsScene : MMWResultsScene! = MMWResultsScene(size: screenSize!, gameResult: false, score: 25)
 
 class MainMenuScene: SKScene {
 
-    var currentScene : SKScene?
-
-    //var mmwGameSceneViewController : MMWGameSceneViewController!
-    var viewSize:CGSize!
+//    var currentScene : SKScene?
+//    var viewSize:CGSize!
+    var viewSize = screenSize!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -31,27 +30,10 @@ class MainMenuScene: SKScene {
 
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        
-        viewSize = view.bounds.size
-        print("view size MenuScene: \(viewSize)")
 
-//        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-//            viewSize.height *= 2
-//            viewSize.width *= 2
-//        }
-//        print("view size MenuScene mod: \(viewSize)")
-        
-//        let BG = SKSpriteNode(imageNamed: "MeyamaSplashScreen_iPad.jpg")
-//        BG.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
-//        self.addChild(BG)
-        
-//        // add BG
-//        let backgroundNode = SKSpriteNode(imageNamed: "MeyamaMathMenuScreenBG_1024x768.png")
-//        //backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-//        backgroundNode.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
-//        backgroundNode.userInteractionEnabled = false
-//        self.addChild(backgroundNode)
-        
+        screenSize = view.bounds.size
+        print("view size MenuScene: \(screenSize)")
+
         // add BG
         let backgroundNode = SKSpriteNode(imageNamed: "MarkMyWordBGCleaniPad@2x.png")
         //backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
@@ -72,13 +54,7 @@ class MainMenuScene: SKScene {
         self.addChild(playBtn)
         playBtn.name = "playBtn"
         playBtn.zPosition = 100
-        
-        
-        //presentMMWScene()
-        //mmwGameSceneViewController = createMMWSceneController()
-        //presentMMWScene()
-        
-//              NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentView", name: "showController", object: nil)
+
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -88,26 +64,14 @@ class MainMenuScene: SKScene {
             let _node:SKNode = self.nodeAtPoint(location)
             if(_node.name == "playBtn"){
                 print("going to mmw scene") //create MMW controller
-                
-                
-                //mmwGameSceneViewController = createMMWSceneController()
-                
-                
-                // mmwGameSceneViewController.mmwGameScene.setViewController(mmwGameSceneViewController)
+
                 presentMMWScene()
                 
-                // mmwGameScene.scaleMode = SKSceneScaleMode.ResizeFill
-                
-                if userInteractionEnabled {
+                if mmwGameSceneViewController.audioOn == true {
                     let actionSound = SKAction.playSoundFileNamed("37Bronk.mp3", waitForCompletion: true)
                     runAction(actionSound)
                 }
             }
-//            if ( location.x < viewSize.width/2){
-//                print("[GamePlayScene] touchedLeftSide ")
-//            } else if(location.x > viewSize.width/2){
-//                print("[GamePlayScene] touchedRightSide ")
-//            }
         }
     }
 
@@ -124,12 +88,9 @@ class MainMenuScene: SKScene {
 //    }
     
     func presentMMWScene() -> MMWGameScene {
-        let transition = SKTransition.crossFadeWithDuration(0.5)
-//        //mmwGameScene = MMWGameScene(size: size)
-//        transitionToScene = mmwGameSceneViewController.mmwGameScene
-//        currentScene = mmwGameScene
-//        mmwGameScene.scaleMode = .AspectFill
-        view?.presentScene(mmwGameScene, transition: transition)
+//        let transition = SKTransition.crossFadeWithDuration(0.01)
+//        view?.presentScene(mmwGameScene, transition: transition)
+        view?.presentScene(mmwGameScene)
         print("presentMMWScene")
         mmwGameSceneViewController.setUpGame()
         return mmwGameScene

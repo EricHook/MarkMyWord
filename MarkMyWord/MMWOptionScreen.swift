@@ -76,19 +76,38 @@ class MMWOptionScreen: SKScene {
         backgroundNode.size = self.frame.size;
         self.addChild(backgroundNode)
         
-        let myLabel = SKLabelNode(fontNamed: "")
-        myLabel.text = "Option Screen" // scene is: \(scene?.description)"
-        myLabel.fontSize = 65;
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y: (CGRectGetMidY(self.frame) - 50) )
-        self.addChild(myLabel)
-        myLabel.zPosition = 100
+//        let myLabel = SKLabelNode(fontNamed: "")
+//        myLabel.text = "Option Screen" // scene is: \(scene?.description)"
+//        myLabel.fontSize = 65;
+//        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y: (CGRectGetMidY(self.frame) - 50) )
+//        self.addChild(myLabel)
+//        myLabel.zPosition = 100
         
         let playBtn = SKSpriteNode(imageNamed: "PlayButton.png")
-        playBtn.position = CGPoint(x: viewSize.width/2, y: viewSize.height/8)
+        playBtn.position = CGPoint(x: viewSize.width/2, y: viewSize.height/10)
         playBtn.size = CGSize.init(width: 100, height: 50)
         self.addChild(playBtn)
         playBtn.name = "playBtn"
         playBtn.zPosition = 100
+        
+        
+        delay(0.1){
+            //gameViewController.buttonAction()
+            // update controllers to reflect current game data
+            gameViewController.numPlayersSwitchOutlet.selectedSegmentIndex = mmwGameSceneViewController.numPlayers - 2
+            gameViewController.minWordLengthSwitchOutlet.selectedSegmentIndex = mmwGameSceneViewController.minWordSize - 2
+             
+            gameViewController.ViewAllOptionsUI.hidden = false
+            
+            //gameViewController.GameViewControllerUI.hidden = false   //ViewOptionsUI.hidden = false
+            //gameViewController.ViewOptionsUI.alpha = 1.0
+            
+        }
+        
+        
+       
+        
+        
         
         //openKeyboardToSaveValue("Player")
 
@@ -101,33 +120,62 @@ class MMWOptionScreen: SKScene {
         //              NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentView", name: "showController", object: nil)
     }
     
+    func returnToGameScene () {
+        print("going to mmw scene") //create MMW controller
+        //presentMMWScene()
+        
+        gameViewController.ViewAllOptionsUI.hidden = true
+        mmwGameScene.startTimer()
+        view?.presentScene(mmwGameScene)
+    }
+    
+    func newGameScene () {
+        print("going to NEW mmw scene") //create MMW controller
+        mmwGameScene = nil
+        mmwGameScene = MMWGameScene(size: screenSize!)
+        mmwGameSceneViewController = nil
+        mmwGameSceneViewController = MMWGameSceneViewController()
+
+        
+        mmwGameSceneViewController.setUpGame()
+        gameViewController.buttonAction()
+
+        
+        view?.presentScene(mmwGameScene)
+
+        print("presentMMWScene")
+
+        //mmwGameScene.buildGameView()
+
+        
+        
+        
+    }
+    
+    
+    
+    func buttonAction(sender:UIButton!)
+    {
+        print("Manual Button tapped")
+        
+    }
+    
+    func buttonAction()
+    {
+        print("TEST Manual Button tapped")
+    }
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
             let _node:SKNode = self.nodeAtPoint(location)
             if(_node.name == "playBtn"){
-                print("going to mmw scene") //create MMW controller
-                gameViewController.ViewOptionsUI.alpha = 0.0
                 
-                //mmwGameSceneViewController = createMMWSceneController()
+                //returnToGameScene()
                 
-                
-                // mmwGameSceneViewController.mmwGameScene.setViewController(mmwGameSceneViewController)
-                presentMMWScene()
-                
-                // mmwGameScene.scaleMode = SKSceneScaleMode.ResizeFill
-                
-                if userInteractionEnabled {
-                    let actionSound = SKAction.playSoundFileNamed("37Bronk.mp3", waitForCompletion: true)
-                    runAction(actionSound)
-                }
+                newGameScene()
             }
-            //            if ( location.x < viewSize.width/2){
-            //                print("[GamePlayScene] touchedLeftSide ")
-            //            } else if(location.x > viewSize.width/2){
-            //                print("[GamePlayScene] touchedRightSide ")
-            //            }
         }
     }
     
@@ -143,17 +191,13 @@ class MMWOptionScreen: SKScene {
     //        return mmwGameSceneViewController
     //    }
     
-    func presentMMWScene(){
-        let transition = SKTransition.crossFadeWithDuration(0.5)
-        //        //mmwGameScene = MMWGameScene(size: size)
-        //        transitionToScene = mmwGameSceneViewController.mmwGameScene
-        //        currentScene = mmwGameScene
-        //        mmwGameScene.scaleMode = .AspectFill
-        view?.presentScene(mmwGameScene, transition: transition)
-//        print("presentMMWScene")
-//        mmwGameSceneViewController.setUpGame()
-//        return mmwGameScene
-    }
+
+    
+//    func presentMMWScene(){
+//        gameViewController.ViewAllOptionsUI.hidden = true
+//
+//        view?.presentScene(mmwGameScene)
+//    }
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */

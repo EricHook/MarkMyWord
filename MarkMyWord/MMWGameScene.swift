@@ -330,7 +330,7 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
     
     func buildGameView () {
         
-        gameViewController.ViewOptionsUI.alpha = 0.0
+        gameViewController.ViewAllOptionsUI.hidden = true
         
         backgroundColor = SKColor(red: 0.5, green: 0.0, blue: 0.0, alpha: 0.5)
         if mmwGame.deviceType == MMWGame.DeviceType.iPhone5 {
@@ -634,15 +634,23 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
     
     func timeRemainingHUD (timeAmount: Int)  -> SKLabelNode {
         timeRemainingLabel.zPosition = 1
-        timeRemainingLabel.text =  "Timer: \( String(secondsLeft) ) " // "Timer: \(timeAmount)"
+
         timeRemainingLabel.fontSize = FontHUDSize
         timeRemainingLabel.fontColor = FontHUDWhite
         timeRemainingLabel.position = CGPointMake(size.width * 0.77, size.height * 0.004)
         timeRemainingLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 1)!
-        addChild(timeRemainingLabel)
         
-        startTimer(timeAmount)
+        if mmwGameSceneViewController.timerIsOn {
+            timeRemainingLabel.text =  "Timer: \( String(secondsLeft) ) " // "Timer: \(timeAmount)"
+            startTimer(timeAmount)
+        }
+        else {
+            timeRemainingLabel.text =  "Timer: OFF"
+            
+        }
+        addChild(timeRemainingLabel)
         return timeRemainingLabel
+        
     }
     
     func updateCounter() {
@@ -1186,8 +1194,9 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
         print("option button pressed")
 
         
-        let transition = SKTransition.crossFadeWithDuration(0.2)
-        view?.presentScene(mmwOptionScreen, transition: transition)
+//        let transition = SKTransition.  .crossFadeWithDuration(0.2)
+//        view?.presentScene(mmwOptionScreen, transition: transition)
+        view?.presentScene(mmwOptionScreen)
         print("mmwResultsScene")
 
         //optionsLayerNode.hidden = false  // pop up graphic ... click to hide//if userInteractionEnabled {
@@ -1196,9 +1205,7 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
             
             
         stopTimer()
-        
-        gameViewController.buttonAction()
-        gameViewController.ViewOptionsUI.alpha = 1.0
+
         
         
         //viewOptions.alpha = 1.0
@@ -1237,17 +1244,27 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
     
     
     func startTimer(seconds: Int) {
+         if mmwGameSceneViewController.timerIsOn == true {
+            //runAction(actionSound)
+            isPaused = false
+            pauseButton.texture = SKTexture(imageNamed: "PauseButton.png")
+            timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
+        }
+    }
+    
+    func startTimer() {
         //runAction(actionSound)
-        isPaused = false
-        pauseButton.texture = SKTexture(imageNamed: "PauseButton.png")
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
-
+        if mmwGameSceneViewController.timerIsOn == true {
+            isPaused = false
+            pauseButton.texture = SKTexture(imageNamed: "PauseButton.png")
+            timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
+        }
     }
     
     
     func stopTimer() {
         isPaused = true
-        pauseButton.texture = SKTexture(imageNamed: "PlayButton.png")
+        pauseButton.texture = SKTexture(imageNamed: "MMWResumeButton.png")
         timer!.invalidate()
     }
     

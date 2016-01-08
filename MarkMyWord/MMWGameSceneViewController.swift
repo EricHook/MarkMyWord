@@ -26,10 +26,13 @@ class MMWGameSceneViewController : UIViewController {
     var viewSize = screenSize
     var tileCollection = MMWTileBuilder() // : MMWTileBuilder
     var tilesPlayable = [MMWTile]()
-    var numPlayers   = 4
+    var numPlayers   = 2
     var playerTurn   = 1
     var minWordSize  = 3
+    var audioOn = true
+    
     var secondsPerTurn = 30
+    var timerIsOn = true
     var player0 : Player = Player(_playerID: 0, _playerName: "AI",          _playerColor: 0) // used to add initial word ownership
     var player1 : Player = Player(_playerID: 1, _playerName: "Player 1",    _playerColor: 1)
     var player2 : Player = Player(_playerID: 2, _playerName: "Bart",        _playerColor: 2)
@@ -50,6 +53,11 @@ class MMWGameSceneViewController : UIViewController {
 
     var wordSet : WordSet?
     let wordSetPrecomputedSize : Int = 1253231;
+    
+    enum timerValue : Int {
+        case Zero = 0, Twenty = 1
+    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +77,8 @@ class MMWGameSceneViewController : UIViewController {
  
     
     func setUpGame () {
+        
+        
         print("Button??")
         gameViewController.buttonAction()
 
@@ -96,7 +106,7 @@ class MMWGameSceneViewController : UIViewController {
         //mmwGame.mmwGameSceneViewController = self
         //mmwGame.mmwGameScene = mmwGameScene
         
-        mmwGameScene.setGrids() // sets tile grid positions, size of square, number of squares and position on screen for each grid possible
+        mmwGameScene.setGrids() // sets tile grid positions, size square, number squares and position on screen for each grid possible
         mmwGameScene.buildGameView()
         setUpPlayers() // add player to view, match player to grid, fill grid with starter tiles and colorize to player color
         
