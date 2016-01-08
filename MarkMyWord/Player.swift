@@ -14,8 +14,8 @@ class Player {
     var playerID    = 0
     var playerName  = ""
     var playerScore = 0
-    var doIt        = false
-    var didIt       = false
+    //var doIt        = false
+    //var didIt       = false
     var playerColor = 0
     
     var playerLetterTiles : [MMWTile]! = nil
@@ -26,8 +26,8 @@ class Player {
     //var playerSpecialTiles : [MMWTile]! = nil
     //var playerLetterTilesPlayed : [MMWTile]? = nil
 
-    var mmwGameSceneViewController : MMWGameSceneViewController!
-    var mmwGameScene : MMWGameScene!
+//    var mmwGameSceneViewController : MMWGameSceneViewController!
+//    var mmwGameScene : MMWGameScene!
     
     init (_playerID : Int, _playerName : String, _playerColor : Int) {
         playerColor = _playerColor
@@ -43,9 +43,9 @@ class Player {
         self.playerLetterGrid = playerTilesGrid
     }
     
-    func setPlayerView (playerView: PlayerView, mmwGameScene: MMWGameScene, mmwGameSceneViewController: MMWGameSceneViewController) {
+    func setPlayerView (playerView: PlayerView) {
         self.playerView = playerView
-        self.mmwGameScene = mmwGameScene
-        self.mmwGameSceneViewController = mmwGameSceneViewController
+//        self.mmwGameScene = mmwGameScene
+//        self.mmwGameSceneViewController = mmwGameSceneViewController
     }
 }

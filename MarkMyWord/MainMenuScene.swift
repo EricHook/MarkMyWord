@@ -22,7 +22,7 @@ class MainMenuScene: SKScene {
         super.init(coder: aDecoder)
         size = viewSize
     }
-    
+
     override init(size: CGSize) {
         super.init(size: size)
     }
@@ -30,6 +30,7 @@ class MainMenuScene: SKScene {
 
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
+        
 
         screenSize = view.bounds.size
         print("view size MenuScene: \(screenSize)")
@@ -54,7 +55,6 @@ class MainMenuScene: SKScene {
         self.addChild(playBtn)
         playBtn.name = "playBtn"
         playBtn.zPosition = 100
-
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

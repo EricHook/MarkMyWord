@@ -38,7 +38,7 @@ enum TileOwner: Int {
 
 class MMWTile {
     var tileSprite : LetterTileSprite!
-    var tileBuilder : MMWTileBuilder? = nil
+    //var tileBuilder : MMWTileBuilder? = nil
     var tileType: TileType = TileType.Unknown
     var spritename: SpriteName = SpriteName.Blank
     var gridLocation: GridLocation = GridLocation.Undealt
@@ -67,6 +67,33 @@ class MMWTile {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func resetTileValues () {
+        //tileSprite : LetterTileSprite!
+        //tileBuilder = nil
+        //tileType = TileType.Unknown
+        //spritename = SpriteName.Blank
+        self.gridLocation = GridLocation.Undealt
+        gridLocationEnd = GridLocation.Undealt
+        gridHome = nil
+        gridEnd = nil
+        gridTest = nil
+        gridX = -1
+        gridY = -1
+        gridXEnd = -1
+        gridYEnd = -1
+        gridXTest = -1
+        gridYTest = -1
+        
+        tileText = "?"
+        undealt = true
+        tileState = TileState.Undealt
+        playedMadeWord = PlayedMadeWord.None
+        tileOwner = TileOwner.None
+        tileGrid = nil
+        description = ""
+
+    }
+    
     init () {  // creates blank placeholder tile
         self.tileType = TileType.Placeholder
         self.spritename = SpriteName.Blank
@@ -81,8 +108,6 @@ class MMWTile {
         self.tileSprite.position = CGPoint(x: 0.0, y: 0.0)
         self.tileSprite.zPosition = 1
         self.tileSprite.tileSpriteParent = self
-//        self.tileSprite.mmwGameSceneViewController = mmwGame.mmwGameSceneViewController!
-//        self.tileSprite.mmwGameScene = mmwGame.mmwGameScene!
         self.tileSprite.hidden = true
         self.tileSprite.userInteractionEnabled = false
         tileSprite.alpha = 0.3
@@ -102,23 +127,7 @@ class MMWTile {
         self.tileSprite.position = CGPoint(x: 0.0, y: 0.0)
         self.tileSprite.zPosition = 1
         self.tileSprite.tileSpriteParent = self
-//        self.tileSprite.mmwGameSceneViewController = mmwGame.mmwGameSceneViewController!
-//        self.tileSprite.mmwGameScene = mmwGame.mmwGameScene!
         self.tileSprite.hidden = true
         self.tileSprite.userInteractionEnabled = false
     }
-    
-    
-    
-//    func setViewController (mmwGameSceneController: MMWGameSceneViewController) {
-//        self.mmwGameSceneViewController = mmwGameSceneController
-//    }
-
-//    static func randomTileType() -> TileType {
-//        return TileType(rawValue: Int(arc4random_uniform(4)) + 1)!
-//    }
-    
-//    func updateTileGrid () {
-//        self.gridEnd?.addToGridArray(self, xGrid: self.gridXEnd, yGrid: self.gridYEnd)
-//    }
 }

@@ -28,8 +28,7 @@ extension SKNode {
 }
 
 var mmwGameSceneViewController : MMWGameSceneViewController! = MMWGameSceneViewController()
-
-var gameViewController : GameViewController! = GameViewController()
+weak var gameViewController : GameViewController! = GameViewController()
 
 class GameViewController : UIViewController {
     
@@ -111,6 +110,26 @@ class GameViewController : UIViewController {
         }
     }
     
+    
+    @IBOutlet weak var numStarterWordsSwitchOutlet: UIView!
+    
+    
+    @IBAction func numStarterWordsSwitchAction(sender: AnyObject) {
+        switch (sender.selectedSegmentIndex){
+        case 0:
+            mmwGameSceneViewController.numStarterWords = 1
+            print("numStarterWords = 1")
+        case 1:
+            mmwGameSceneViewController.numStarterWords = 2
+            print("numStarterWords = 2")
+        case 2:
+            mmwGameSceneViewController.numStarterWords = 3
+            print("numStarterWords = 3")
+        default:
+        break;
+        }
+    }
+
     @IBOutlet weak var numPlayersSwitchOutlet: UISegmentedControl!
 
     @IBAction func numPlayersSwitchAction(sender: AnyObject) {

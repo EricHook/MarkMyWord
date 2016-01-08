@@ -28,10 +28,10 @@ class Grid {
     var gridPlayer : Player? = nil
     var gridNum : Int = 0
     
-    var mmwGameScene : MMWGameScene
+//    var mmwGameScene : MMWGameScene
 
     
-    init (gridUpperLeftX: Double, gridUpperLeftY : Double, gridSquareSizeX : Double, gridSquareSizeY : Double, gridNumSquaresX : Int, gridNumSquaresY : Int, gridName : String, mmwGameScene: MMWGameScene){
+    init (gridUpperLeftX: Double, gridUpperLeftY : Double, gridSquareSizeX : Double, gridSquareSizeY : Double, gridNumSquaresX : Int, gridNumSquaresY : Int, gridName : String){
         self.gridUpperLeftX = gridUpperLeftX
         self.gridUpperLeftY = gridUpperLeftY
         self.gridSquareSizeX = gridSquareSizeX
@@ -39,7 +39,7 @@ class Grid {
         self.gridNumSquaresX = gridNumSquaresX
         self.gridNumSquaresY = gridNumSquaresY
         self.gridName = gridName
-        self.mmwGameScene = mmwGameScene
+        //self.mmwGameScene = mmwGameScene
         grid2DArr = [[MMWTile]](count: gridNumSquaresX, repeatedValue: [MMWTile](count: gridNumSquaresY, repeatedValue: MMWTile() ))
     }
     
@@ -195,19 +195,19 @@ class Grid {
 
         for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
             for x in 0...(self.gridNumSquaresX - 1) {
-                mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray.append(self.grid2DArr[x][y])
+                tileCollection!.mmwDiscardedTileArray.append(self.grid2DArr[x][y])
                 self.grid2DArr[x][y].tileSprite.hidden = true
                 if arrayIn.count > 0 {
                     
                     if clearGrid {
-                        mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray.append(self.grid2DArr[x][y])
+                        tileCollection!.mmwDiscardedTileArray.append(self.grid2DArr[x][y])
                         self.grid2DArr[x][y].tileSprite.hidden = true
                         self.grid2DArr[x][y] = MMWTile()
                     }
 
                     if numTilesToDeal > 0  && self.grid2DArr[x][y].tileText == "!"  {
                         
-                        mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray.append(self.grid2DArr[x][y])
+                        tileCollection!.mmwDiscardedTileArray.append(self.grid2DArr[x][y])
                         self.grid2DArr[x][y].tileSprite.hidden = true
  
                         let numTiles : UInt32 = UInt32(arrayIn.count)

@@ -177,24 +177,28 @@ class PlayerView: SKSpriteNode {
         playerTilesPlaque.xScale = 1.01
         addChild(playerTilesPlaque)
         
-        playerTileCover.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-        playerTileCover.position = CGPoint(x: size.width/2.0 , y: screenHeight*0.070 ) // 482.0)
-        playerTileCover.userInteractionEnabled = false
-        playerTileCover.colorBlendFactor = CGFloat(1.0)
-        playerTileCover.size.height = playerTileCover.size.height * 0.75
-        playerTileCover.size.width = playerTileCover.size.width + 2
-        playerTileCover.alpha = 0.6
-        playerTileCover.zPosition = 10
-        addChild(playerTileCover)
         
-        playerTileBacking.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-        playerTileBacking.position = CGPoint(x: size.width/2.0, y: screenHeight*0.071 ) // 482.0)
-        playerTileBacking.userInteractionEnabled = false
-        playerTileBacking.colorBlendFactor = CGFloat(1.0)
-        playerTileBacking.size.height = playerTileCover.size.height * 0.75
-        playerTileBacking.alpha = 1.0
-        playerTileBacking.zPosition = -5
-        addChild(playerTileBacking)
+        
+//        playerTileCover.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+//        playerTileCover.position = CGPoint(x: size.width/2.0 , y: screenHeight*0.070 ) // 482.0)
+//        playerTileCover.userInteractionEnabled = false
+//        playerTileCover.colorBlendFactor = CGFloat(1.0)
+//        playerTileCover.size.height = playerTileCover.size.height * 0.75
+//        playerTileCover.size.width = playerTileCover.size.width + 2
+//        playerTileCover.alpha = 0.6
+//        playerTileCover.zPosition = 10
+//        addChild(playerTileCover)
+        
+        
+        
+//        playerTileBacking.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+//        playerTileBacking.position = CGPoint(x: size.width/2.0, y: screenHeight*0.071 ) // 482.0)
+//        playerTileBacking.userInteractionEnabled = false
+//        playerTileBacking.colorBlendFactor = CGFloat(1.0)
+//        playerTileBacking.size.height = playerTileCover.size.height * 0.75
+//        playerTileBacking.alpha = 1.0
+//        playerTileBacking.zPosition = -5
+//        addChild(playerTileBacking)
         
 //        playerGridGlow.anchorPoint = CGPoint(x: 0.0, y: 0.0)
 //        playerGridGlow.position = CGPoint(x: 0, y: 0) // 482.0)
@@ -234,9 +238,11 @@ class PlayerView: SKSpriteNode {
         self.playerScoreLabel.fontColor = UIColor.whiteColor()
         self.playerTileCover.hidden = true
         self.playerGridGlow.hidden = false
+        
         mmwGameScene.bottomDisplayLabel.text =  ("\(mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerName ), place letters")
         
         let playerGrid = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid!
+        
         playerGrid.makeTilesInGridInteractive(true)
     }
     

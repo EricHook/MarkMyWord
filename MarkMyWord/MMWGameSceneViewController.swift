@@ -24,13 +24,13 @@ extension StreamReader : SequenceType {
 class MMWGameSceneViewController : UIViewController {
 
     var viewSize = screenSize
-    var tileCollection = MMWTileBuilder() // : MMWTileBuilder
+    // var tileCollection : MMWTileBuilder? = MMWTileBuilder() // : MMWTileBuilder
     var tilesPlayable = [MMWTile]()
     var numPlayers   = 2
     var playerTurn   = 1
+    var numStarterWords = 2
     var minWordSize  = 3
     var audioOn = true
-    
     var secondsPerTurn = 30
     var timerIsOn = true
     var player0 : Player = Player(_playerID: 0, _playerName: "AI",          _playerColor: 0) // used to add initial word ownership
@@ -39,8 +39,8 @@ class MMWGameSceneViewController : UIViewController {
     // player 3 and 4 objects created but only used in 3 or 4 player games
     var player3 : Player = Player(_playerID: 3, _playerName: "Charlie",     _playerColor: 3)
     var player4 : Player = Player(_playerID: 4, _playerName: "Dan",         _playerColor: 4)
-    var playerArray : [Player]! // array of all players 0-3 for easier iteration of player turns
-
+    var playerArray : [Player]!
+    
     var wordArray : [String] = [""]
     var wordArrayMod : [String.CharacterView] = ["".characters]
     
@@ -48,20 +48,18 @@ class MMWGameSceneViewController : UIViewController {
     var lettersPlayedInTurn = 0
     
     //var timer : NSTimer!
-
     //var wordTrie : Trie<Character>?
 
     var wordSet : WordSet?
     let wordSetPrecomputedSize : Int = 1253231;
     
-    enum timerValue : Int {
-        case Zero = 0, Twenty = 1
-    }
+//    enum timerValue : Int {
+//        case Zero = 0, Twenty = 1
+//    }
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
 //    required init?(coder aDecoder: NSCoder) {
@@ -77,77 +75,72 @@ class MMWGameSceneViewController : UIViewController {
  
     
     func setUpGame () {
-        
-        
+
         print("Button??")
         gameViewController.buttonAction()
-
         
-        //timer = NSTimer.scheduledTimerWithTimeInterval(1, target:mmwGameScene, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
-      
-        //mmwGameScene = MMWGameScene(size: viewSize)
-    
-        //mmwGameScene.setViewController(self)
-
-        //tileCollection = MMWTileBuilder()
+        playerArray = [player1, player2, player3, player4]// array of all players 0-3 for easier iteration of player turns
         
-        if numPlayers == 2 {
-            playerArray  = [player1, player2]
-        }
-        if numPlayers == 3 {
-            playerArray  = [player1, player2, player3]
-        }
-        if numPlayers == 4 {
-            playerArray  = [player1, player2, player3, player4]
-        }
+//        if numPlayers == 2 {
+//            playerArray  = [player1, player2]
+//        }
+//        if numPlayers == 3 {
+//            playerArray  = [player1, player2, player3]
+//        }
+//        if numPlayers == 4 {
+//            playerArray  = [player1, player2, player3, player4]
+//        }
         
-        tilesPlayable = tileCollection.mmwTileArray
-        
-        //mmwGame.mmwGameSceneViewController = self
-        //mmwGame.mmwGameScene = mmwGameScene
-        
+        tilesPlayable = tileCollection!.mmwTileArray
         mmwGameScene.setGrids() // sets tile grid positions, size square, number squares and position on screen for each grid possible
         mmwGameScene.buildGameView()
         setUpPlayers() // add player to view, match player to grid, fill grid with starter tiles and colorize to player color
         
-        //tileCollection.mmwGameSceneViewController = self
-        //tileCollection.mmwGameScene = self.mmwGameScene
-        //tileCollection.setViewControllerAndScene(self)
-        
         loadWordSet()
+    }
+    
+    func resetGame () {
         
-        //loadWords()  //  send off threads to get sections of word list to build array and trei
+        print("resetGame Button?? gameViewController.buttonAction()")
+        gameViewController.buttonAction()
         
-        //        buildWordArray("WordList1to3LetterNoDup")
-        //        buildTrie( buildWordArray("WordList1to3LetterNoDup") )
-        //        print("buildTrie() 1-3")
-        //
-        //        buildWordArray("WordList4LetterNoDup")
-        //        insertTrie( buildWordArray("WordList4LetterNoDup") )
-        //        print("insertTrie() 4")
-        //
-        //        buildWordArray("WordList5LetterNoDup")
-        //        insertTrie( buildWordArray("WordList5LetterNoDup") )
-        //        print("insertTrie() 5")
-        //
-        //        buildWordArray("WordList6LetterNoDup")
-        //        insertTrie( buildWordArray("WordList6LetterNoDup") )
-        //        print("insertTrie() 6")
+//        if numPlayers == 2 {
+//            playerArray  = [player1, player2]
+//        }
+//        if numPlayers == 3 {
+//            playerArray  = [player1, player2, player3]
+//        }
+//        if numPlayers == 4 {
+//            playerArray  = [player1, player2, player3, player4]
+//        }
+        
+        //playerArray  = [player1, player2, player3, player4]
+        
+        //tileCollection = MMWTileBuilder()
+        
+//        mmwGameSceneViewController.tileCollection?.returnTilesToStartArray()
+//        
+//        mmwGameSceneViewController.tileCollection? = MMWTileBuilder()
+        
+        
+        //tilesPlayable = tileCollection!.mmwTileArray
+
+        mmwGameScene.resetGameView()
+        
+        //setUpPlayers() // add player to view, match player to grid, fill grid with starter tiles and colorize to player color
         
     }
     
     
     func setUpPlayers () {
-        //mmwGameScene.setViewController(self)
-        if numPlayers == 2 {
-            makeTwoPlayers()
-        }
-        if numPlayers == 3 {
-            makeThreePlayers()
-        }  
-        if numPlayers == 4 {
-            makeFourPlayers()
-        }
+        player1.setPlayerTilesGrid(&mmwGameScene.mmwPlayer1Grid!)
+        player1.setPlayerView(mmwGameScene.player1View)
+        player2.setPlayerTilesGrid(&mmwGameScene.mmwPlayer2Grid!)
+        player2.setPlayerView(mmwGameScene.player2View)
+        player3.setPlayerTilesGrid(&mmwGameScene.mmwPlayer3Grid!)
+        player3.setPlayerView(mmwGameScene.player3View)
+        player4.setPlayerTilesGrid(&mmwGameScene.mmwPlayer4Grid!)
+        player4.setPlayerView(mmwGameScene.player4View)
     }
     
     
@@ -162,35 +155,6 @@ class MMWGameSceneViewController : UIViewController {
         }
     }
     
-    func makeTwoPlayers () {
-        player1.setPlayerTilesGrid(&mmwGameScene.mmwPlayer1Grid!)
-        tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer1Grid!)
-        player1.setPlayerView(mmwGameScene.player1View, mmwGameScene: mmwGameScene, mmwGameSceneViewController: mmwGameSceneViewController)
-        
-        player2.setPlayerTilesGrid(&mmwGameScene.mmwPlayer2Grid!)
-        tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer2Grid!)
-        player2.setPlayerView(mmwGameScene.player2View, mmwGameScene: mmwGameScene, mmwGameSceneViewController: mmwGameSceneViewController)
-        
-        tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwBoardGrid!)
-    }
-    
-    
-    func makeThreePlayers () {
-        makeTwoPlayers()
-        
-        player3.setPlayerTilesGrid(&mmwGameScene.mmwPlayer3Grid!)
-        tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer3Grid!)
-        player3.setPlayerView(mmwGameScene.player3View, mmwGameScene: mmwGameScene, mmwGameSceneViewController: mmwGameSceneViewController)
-    }
-    
-    
-    func makeFourPlayers () {
-        makeThreePlayers()
-
-        player4.setPlayerTilesGrid(&mmwGameScene.mmwPlayer4Grid!)
-        tileCollection.fillGridWithBlankTiles(&mmwGameScene.mmwPlayer4Grid!)
-        player4.setPlayerView(mmwGameScene.player4View, mmwGameScene: mmwGameScene, mmwGameSceneViewController: mmwGameSceneViewController)
-    }
     
     
     func setTileOwner (inout tileToSet: MMWTile, player: Player) {
@@ -580,20 +544,34 @@ class MMWGameSceneViewController : UIViewController {
         letterToPlace.gridYEnd = ySquare
         letterToPlace.tileState = TileState.Played  // if put on valid board location set TileState to played
         
+        // recycle placeholder tile
+//        let replacementPlaceholderTile : MMWTile = mmwGameSceneViewController.tileCollection?.mmwBlankTileArray.append(gridToPlaceLetter.grid2DArr[xSquare][ySquare]) as MMWTile
+        
         // set basic placeholder tile settings to fit in void in grid - home grid and x and y values
-        let replacementPlaceholderTile : MMWTile = MMWTile()
-        replacementPlaceholderTile.gridHome = letterToPlace.gridHome
-        replacementPlaceholderTile.gridX = letterToPlace.gridX
-        replacementPlaceholderTile.gridY = letterToPlace.gridY
-        letterToPlace.gridHome?.grid2DArr[letterToPlace.gridX][letterToPlace.gridY] = replacementPlaceholderTile
+        
+        // fill in emptied slot in tile grid with blank
+        //let replacementPlaceholderTile : MMWTile = MMWTile()
+        
+        
+//        let replacementPlaceholderTile = mmwGameSceneViewController.tileCollection?.mmwBlankTileArray.popLast()
+        
+        
+//        replacementPlaceholderTile!.gridHome = letterToPlace.gridHome
+//        replacementPlaceholderTile!.gridX = letterToPlace.gridX
+//        replacementPlaceholderTile!.gridY = letterToPlace.gridY
+//        letterToPlace.gridHome?.grid2DArr[letterToPlace.gridX][letterToPlace.gridY] = replacementPlaceholderTile!
+        
+//        mmwGameSceneViewController.tileCollection?.mmwBlankTileArray.append(gridToPlaceLetter.grid2DArr[xSquare][ySquare])
         
         // set value of snap results grid location to the MMWTile if valid location
+        
         letterToPlace.gridHome? = letterToPlace.gridEnd!
+        
         letterToPlace.gridHome?.grid2DArr[xSquare][ySquare] = letterToPlace
         letterToPlace.gridX = xSquare
         letterToPlace.gridY = ySquare
+        
         // move tile to snap point
-        //let tileSnapResults = gameGrid.getGridSquare(Float(xSquare), locY: Float(ySquare))
         let tileLocation = Grid.sendToGridSquare(gridToPlaceLetter, squareX: xSquare, squareY: ySquare)
         let tileLocX = tileLocation.x
         let tileLocY = tileLocation.y

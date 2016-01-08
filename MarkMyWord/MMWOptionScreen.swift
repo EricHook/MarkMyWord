@@ -28,14 +28,12 @@ class MMWOptionScreen: SKScene {
     var keyboardAppearance:UIKeyboardAppearance = UIKeyboardAppearance.Default
     
     var defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-    
-    
-    //var mmwGameSceneViewController : MMWGameSceneViewController!
-    var viewSize:CGSize!
+
+    //var viewSize:CGSize!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        size = viewSize
+        size = screenSize!
     }
     
     override init(size: CGSize) {
@@ -46,10 +44,9 @@ class MMWOptionScreen: SKScene {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
-        viewSize = view.bounds.size
+        //viewSize = view.bounds.size
 
-        
-        print("view size MenuScene: \(viewSize)")
+        print("view size MenuScene: \(screenSize)")
         
         //        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
         //            viewSize.height *= 2
@@ -71,7 +68,7 @@ class MMWOptionScreen: SKScene {
         // add BG
         let backgroundNode = SKSpriteNode(imageNamed: "MMWOptionsScreen.png")
         //backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-        backgroundNode.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
+        backgroundNode.position = CGPoint(x: screenSize!.width/2, y: screenSize!.height/2)
         backgroundNode.userInteractionEnabled = false
         backgroundNode.size = self.frame.size;
         self.addChild(backgroundNode)
@@ -84,7 +81,7 @@ class MMWOptionScreen: SKScene {
 //        myLabel.zPosition = 100
         
         let playBtn = SKSpriteNode(imageNamed: "PlayButton.png")
-        playBtn.position = CGPoint(x: viewSize.width/2, y: viewSize.height/10)
+        playBtn.position = CGPoint(x: screenSize!.width/2, y: screenSize!.height/10)
         playBtn.size = CGSize.init(width: 100, height: 50)
         self.addChild(playBtn)
         playBtn.name = "playBtn"
@@ -131,38 +128,38 @@ class MMWOptionScreen: SKScene {
     
     func newGameScene () {
         print("going to NEW mmw scene") //create MMW controller
-        mmwGameScene = nil
-        mmwGameScene = MMWGameScene(size: screenSize!)
-        mmwGameSceneViewController = nil
-        mmwGameSceneViewController = MMWGameSceneViewController()
-
         
-        mmwGameSceneViewController.setUpGame()
-        gameViewController.buttonAction()
+//        mmwGameScene = nil
+//        mmwGameScene = MMWGameScene(size: screenSize!)
+//        mmwGameSceneViewController = nil
+//        mmwGameSceneViewController = MMWGameSceneViewController()
+        
+//        mmwGameSceneViewController.tileCollection = nil
+//        mmwGameSceneViewController.tileCollection = MMWTileBuilder()
+        
+//        for tile in (mmwGameSceneViewController.tileCollection?.mmwPlayer2LetterTile2DArray)! {
+//            tile.
+//        }
 
+        mmwGameSceneViewController.resetGame()
+        gameViewController.buttonAction() // test for functionality
         
         view?.presentScene(mmwGameScene)
 
+        
+        
         print("presentMMWScene")
-
-        //mmwGameScene.buildGameView()
-
-        
-        
-        
     }
-    
-    
+
     
     func buttonAction(sender:UIButton!)
     {
-        print("Manual Button tapped")
-        
+        print("Manual Button tapped sender:UIButton!")
     }
     
     func buttonAction()
     {
-        print("TEST Manual Button tapped")
+        print("TEST Manual Button tapped ()")
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

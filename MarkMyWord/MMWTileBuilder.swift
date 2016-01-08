@@ -10,23 +10,34 @@ import Foundation
 import UIKit
 import SpriteKit
 
+
+var tileCollection : MMWTileBuilder? = MMWTileBuilder() // : MMWTileBuilder
+
 class MMWTileBuilder {
-    
-//    var mmwGameSceneViewController : MMWGameSceneViewController?
-//    var mmwGameScene: MMWGameScene?
-    
+
     var mmwTileArray = [MMWTile]()
     
-    var mmwTileArrayTemp = [MMWTile]()
+    //var mmwTileArrayTemp = [MMWTile]()
 
     var mmwDiscardedTileArray = [MMWTile]()
     
-    var mmwPlayer1LetterTile2DArray : [[MMWTile]]?
-    var mmwPlayer2LetterTile2DArray : [[MMWTile]]?
-    var mmwPlayer3LetterTile2DArray : [[MMWTile]]?
-    var mmwPlayer4LetterTile2DArray : [[MMWTile]]?
+    //var mmwBlankTileArray = [MMWTile]()
     
-    var mmwBoardTile2DArray : [[MMWTile]]?
+    var mmwPlayer1LetterTile2DArray : [[MMWTile?]]?
+    var mmwPlayer2LetterTile2DArray : [[MMWTile?]]?
+    var mmwPlayer3LetterTile2DArray : [[MMWTile?]]?
+    var mmwPlayer4LetterTile2DArray : [[MMWTile?]]?
+    
+    var mmwBoardTile2DArray : [[MMWTile?]]?
+    var arr = [3,4,5]
+
+    func returnTilesToStartArray () {
+//        for tileRow in mmwPlayer2LetterTile2DArray! {
+//            for tile in tileRow {
+//                tile?.resetTileValues()
+//            }
+//        }
+    }
 
     var tileA1 : MMWTile = MMWTile(letterString: "A")
     var tileA2 : MMWTile = MMWTile(letterString: "A")
@@ -175,8 +186,6 @@ class MMWTileBuilder {
 
     
     init () {
-        
-        //self.mmwGameSceneViewController = mmwGameSceneViewController
 
         mmwTileArray.append(tileA1) 
         mmwTileArray.append(tileA2)
@@ -312,50 +321,19 @@ class MMWTileBuilder {
         for tile in mmwTileArray {
             tile.tileState = TileState.Undealt
             tile.tileOwner = TileOwner.None
-            tile.tileBuilder = self
-            
-
-            
-        }
-        
-
-        
-        
-    }
-    
-    func setViewControllerAndScene (mmwGameSceneController: MMWGameSceneViewController) {
-        //self.mmwGameSceneViewController = mmwGameSceneController
-        for tile in mmwTileArray {
-//            tile.mmwGameSceneViewController = self.mmwGameSceneViewController
-//            tile.tileSprite.mmwGameSceneViewController = self.mmwGameSceneViewController
-//            tile.mmwGameScene = self.mmwGameScene
-//            tile.tileSprite.mmwGameScene = self.mmwGameScene
-            
+            //tile.tileBuilder = self
             tile.tileSprite.xScale = (screenSize!.width)/1024
             tile.tileSprite.yScale = (screenSize!.width)/1024
-            //self.size( Double(mmwGameScene.viewSize.width)/1024 )
-            
-//            if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
-//                //gameGrid = SKSpriteNode(imageNamed: "GameGrid@iPadPro.png")
-//                tile.tileSprite.xScale *= 1.33
-//                tile.tileSprite.yScale *= 1.33
-//            }
-            
-//            if mmwGame.deviceType == MMWGame.DeviceType.iPhone5 {
-//                //gameGrid = SKSpriteNode(imageNamed: "GameGrid@iPadPro.png")
-//                tile.tileSprite.xScale *= 0.5
-//                tile.tileSprite.yScale *= 0.5
-//                //FontHUD = FontHUDiPhone
-//            }
-            
-            if mmwGame.deviceType == MMWGame.DeviceType.iPhone6Plus || mmwGame.deviceType == MMWGame.DeviceType.iPhone5 {
-                //gameGrid = SKSpriteNode(imageNamed: "GameGrid@iPadPro.png")
-                tile.tileSprite.xScale *= 0.75
-                tile.tileSprite.yScale *= 0.75
-                //FontHUD = FontHUDiPhone
-            }
         }
+        
+//        for _ in 0..<250 {
+//            mmwBlankTileArray.append(MMWTile())
+//        }
     }
+    
+//    func setViewControllerAndScene (mmwGameSceneController: MMWGameSceneViewController) {
+//   
+//    }
     
     func displayTileArrayValues (tileArray: [MMWTile]) {
         print("\nMMWTileBuilder.displayTileArrayValues (tileArray: [MMWTile]) ... \(self)")
@@ -409,19 +387,19 @@ class MMWTileBuilder {
         }
     }
     
-    func fillGridWithBlankTiles (inout gridToFill: Grid) {
-        let gridNumSquaresX = gridToFill.gridNumSquaresX
-        let gridNumSquaresY = gridToFill.gridNumSquaresY
-        for y in 0...(gridNumSquaresY - 1) {   // fill letter tiles
-            for x in 0...(gridNumSquaresX - 1) {
-                let newTile = MMWTile()
-                gridToFill.grid2DArr[x][y] = newTile
-                newTile.gridHome = gridToFill
-                newTile.gridX = x
-                newTile.gridXEnd = x
-                newTile.gridY = y
-                newTile.gridYEnd = y
-            }
-        }
-    }
+//    func fillGridWithBlankTiles (inout gridToFill: Grid) {
+//        let gridNumSquaresX = gridToFill.gridNumSquaresX
+//        let gridNumSquaresY = gridToFill.gridNumSquaresY
+//        for y in 0...(gridNumSquaresY - 1) {   // fill letter tiles
+//            for x in 0...(gridNumSquaresX - 1) {
+//                let newTile = mmwBlankTileArray.popLast() // MMWTile()
+//                gridToFill.grid2DArr[x][y] = newTile!
+//                newTile!.gridHome = gridToFill
+//                newTile!.gridX = x
+//                newTile!.gridXEnd = x
+//                newTile!.gridY = y
+//                newTile!.gridYEnd = y
+//            }
+//        }
+//    }
 }
