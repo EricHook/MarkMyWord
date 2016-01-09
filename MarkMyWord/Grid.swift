@@ -200,9 +200,11 @@ class Grid {
                 if arrayIn.count > 0 {
                     
                     if clearGrid {
-                        tileCollection!.mmwDiscardedTileArray.append(self.grid2DArr[x][y])
-                        self.grid2DArr[x][y].tileSprite.hidden = true
-                        self.grid2DArr[x][y] = MMWTile()
+                        //if self.grid2DArr[x][y].tileText != "!" {
+                            tileCollection!.mmwDiscardedTileArray.append(self.grid2DArr[x][y])
+                            self.grid2DArr[x][y].tileSprite.hidden = true
+                            self.grid2DArr[x][y] = MMWTile()
+                        //}
                     }
 
                     if numTilesToDeal > 0  && self.grid2DArr[x][y].tileText == "!"  {
@@ -218,13 +220,17 @@ class Grid {
                         dealtTile.tileState = TileState(rawValue: playerNum)!
                         self.grid2DArr[x][y] = dealtTile
                         arrayIn.removeAtIndex( Int(randomTileNumber) )
+                        
                         dealtTile.tileSprite.color =  gameColors[playerNum]
+                        
                         dealtTile.gridX = x
                         dealtTile.gridY = y
                         dealtTile.gridHome = self
+                        
                         dealtTile.gridXTest = x
                         dealtTile.gridYTest = y
                         dealtTile.gridTest = self
+                        
                         dealtTile.tileSprite.isMovable = true
                         dealtTile.tileSprite.userInteractionEnabled = false
                     }
@@ -259,9 +265,6 @@ class Grid {
 //                mmwGameScene.mmwGameSceneViewController.tileCollection.mmwDiscardedTileArray.append(self.grid2DArr[x][y])
 //                self.grid2DArr[x][y].tileSprite.hidden = true
         if arrayIn.count > 0 {
-//                    if numTilesToDeal > 0 {
-//                        let numTiles : UInt32 = UInt32(arrayIn.count)
-//                        let randomTileNumber = arc4random_uniform(numTiles) // select random tile in FROM array
                 let dealtTile : MMWTile = arrayIn[Int(tileArrayLocation)]
                 
                 dealtTile.tileOwner = TileOwner(rawValue: playerNum)!
@@ -270,10 +273,10 @@ class Grid {
                 self.grid2DArr[squareX][squareY] = dealtTile
                 arrayIn.removeAtIndex( Int(tileArrayLocation) )
                 dealtTile.tileSprite.color =  gameColors[playerNum]
+            
                 dealtTile.gridX = squareX
                 dealtTile.gridY = squareY
                 dealtTile.gridHome = self
-//                        numTilesToDeal--
         }
         else {
             print("No More Tiles To Deal ... ")

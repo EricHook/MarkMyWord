@@ -28,7 +28,7 @@ extension SKNode {
 }
 
 var mmwGameSceneViewController : MMWGameSceneViewController! = MMWGameSceneViewController()
-weak var gameViewController : GameViewController! = GameViewController()
+var gameViewController : GameViewController! = GameViewController()
 
 class GameViewController : UIViewController {
     

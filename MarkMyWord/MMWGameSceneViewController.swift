@@ -26,6 +26,7 @@ class MMWGameSceneViewController : UIViewController {
     var viewSize = screenSize
     // var tileCollection : MMWTileBuilder? = MMWTileBuilder() // : MMWTileBuilder
     var tilesPlayable = [MMWTile]()
+    //let tilesPlayableOriginal = [MMWTile]
     var numPlayers   = 2
     var playerTurn   = 1
     var numStarterWords = 2
@@ -92,6 +93,7 @@ class MMWGameSceneViewController : UIViewController {
 //        }
         
         tilesPlayable = tileCollection!.mmwTileArray
+        //tilesPlayableRAW = tilesPlayable
         mmwGameScene.setGrids() // sets tile grid positions, size square, number squares and position on screen for each grid possible
         mmwGameScene.buildGameView()
         setUpPlayers() // add player to view, match player to grid, fill grid with starter tiles and colorize to player color
@@ -121,8 +123,8 @@ class MMWGameSceneViewController : UIViewController {
 //        mmwGameSceneViewController.tileCollection?.returnTilesToStartArray()
 //        
 //        mmwGameSceneViewController.tileCollection? = MMWTileBuilder()
-        
-        
+
+        //tilesPlayable = MMWTileBuilder().mmwTileArray
         //tilesPlayable = tileCollection!.mmwTileArray
 
         mmwGameScene.resetGameView()
@@ -566,10 +568,11 @@ class MMWGameSceneViewController : UIViewController {
         // set value of snap results grid location to the MMWTile if valid location
         
         letterToPlace.gridHome? = letterToPlace.gridEnd!
-        
-        letterToPlace.gridHome?.grid2DArr[xSquare][ySquare] = letterToPlace
         letterToPlace.gridX = xSquare
         letterToPlace.gridY = ySquare
+        
+        letterToPlace.gridHome?.grid2DArr[xSquare][ySquare] = letterToPlace
+
         
         // move tile to snap point
         let tileLocation = Grid.sendToGridSquare(gridToPlaceLetter, squareX: xSquare, squareY: ySquare)
@@ -584,9 +587,9 @@ class MMWGameSceneViewController : UIViewController {
     }
     
     
-    func dealTestLetters () {
-        //dealLetter(&<#T##letterToPlace: MMWTile##MMWTile#>, gridToPlaceLetter: <#T##Grid#>, xSquare: <#T##Int#>, ySquare: <#T##Int#>)
-    }
+//    func dealTestLetters () {
+//        //dealLetter(&<#T##letterToPlace: MMWTile##MMWTile#>, gridToPlaceLetter: <#T##Grid#>, xSquare: <#T##Int#>, ySquare: <#T##Int#>)
+//    }
     
     
     func placeWord (player: Player, startLocX: Int, startLocY: Int, direction: Character, wordToPlace: [MMWTile]){
@@ -607,7 +610,6 @@ class MMWGameSceneViewController : UIViewController {
         tileToPlace!.gridHome?.grid2DArr[tileToPlace!.gridX][tileToPlace!.gridY] = tileToPlace!
         tileToPlace!.tileSprite.zPosition = 11
         tileToPlace!.tileSprite.hidden = false
-        
     }
 
  
@@ -643,8 +645,6 @@ class MMWGameSceneViewController : UIViewController {
 
  
     func loadWords() {
-        
-        
 //        let qualityOfServiceClass = QOS_CLASS_BACKGROUND
 //        let backgroundQueue = dispatch_get_global_queue(qualityOfServiceClass, 0)
 //        dispatch_async(backgroundQueue, {

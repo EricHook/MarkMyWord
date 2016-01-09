@@ -142,13 +142,16 @@ class MMWOptionScreen: SKScene {
 //        }
 
         mmwGameSceneViewController.resetGame()
+        mmwGameScene.startGame()
+        
+        
         gameViewController.buttonAction() // test for functionality
         
         view?.presentScene(mmwGameScene)
 
         
         
-        print("presentMMWScene")
+
     }
 
     
