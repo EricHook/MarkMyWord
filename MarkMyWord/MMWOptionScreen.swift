@@ -149,9 +149,6 @@ class MMWOptionScreen: SKScene {
         
         view?.presentScene(mmwGameScene)
 
-        
-        
-
     }
 
     
