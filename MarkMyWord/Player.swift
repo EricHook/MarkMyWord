@@ -12,15 +12,21 @@ import SpriteKit
 class Player {
     
     var playerID    = 0
-    var playerName  = ""
+    var playerName  = "Player"
     var playerScore = 0
     //var doIt        = false
     //var didIt       = false
     var playerColor = 0
+    var playerSkillLevel = 1
+    var isHuman = true
+    var playerImageNum = 0
     
-    var playerLetterTiles : [MMWTile]! = nil
+    enum playerSkillLevel : Int {
+        case low = 0, mid = 1, high = 2
+    }
+
+    //var playerLetterTiles : [MMWTile]! = nil
     var playerLetterGrid: Grid! = nil
-    
     var playerView : PlayerView! = nil
     
     //var playerSpecialTiles : [MMWTile]! = nil
@@ -35,9 +41,9 @@ class Player {
         playerName = _playerName
     }
     
-    func setPlayerTilesArray (inout playerTiles: [MMWTile]) {
-        self.playerLetterTiles = playerTiles
-    }
+//    func setPlayerTilesArray (inout playerTiles: [MMWTile]) {
+//        self.playerLetterTiles = playerTiles
+//    }
     
     func setPlayerTilesGrid (inout playerTilesGrid: Grid) {
         self.playerLetterGrid = playerTilesGrid

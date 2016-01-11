@@ -59,6 +59,9 @@
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="BongoSized.png" translatesAutoresizingMaskIntoConstraints="NO" id="nPl-7S-LhR">
                                                         <rect key="frame" x="60" y="78" width="67" height="67"/>
+                                                        <accessibility key="accessibilityConfiguration">
+                                                            <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                                        </accessibility>
                                                     </imageView>
                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="HDZ-F4-ppR">
                                                         <rect key="frame" x="48" y="145" width="94" height="29"/>
@@ -80,6 +83,9 @@
                                                             <segment title="human"/>
                                                         </segments>
                                                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <connections>
+                                                            <action selector="isHumanPlayer2Action:" destination="BV1-FR-VrT" eventType="valueChanged" id="vr7-uw-fnt"/>
+                                                        </connections>
                                                     </segmentedControl>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Player 2" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M3c-pi-u9t">
                                                         <rect key="frame" x="48" y="8" width="94" height="30"/>
@@ -127,6 +133,9 @@
                                                             <segment title="human"/>
                                                         </segments>
                                                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <connections>
+                                                            <action selector="isHumanPlayer3Action:" destination="BV1-FR-VrT" eventType="valueChanged" id="5MC-RG-La7"/>
+                                                        </connections>
                                                     </segmentedControl>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="skill level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xW4-vA-tG5">
                                                         <rect key="frame" x="58" y="215" width="58" height="21"/>
@@ -141,10 +150,16 @@
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tsw-7H-Vfy">
                                                 <rect key="frame" x="141" y="592" width="107" height="30"/>
                                                 <state key="normal" title="start new game"/>
+                                                <connections>
+                                                    <action selector="startNewGameButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="G72-Ig-sue"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOF-Gn-kq7">
                                                 <rect key="frame" x="326" y="592" width="102" height="30"/>
                                                 <state key="normal" title="return to game"/>
+                                                <connections>
+                                                    <action selector="returnToGameButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="VKm-r8-xfz"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xdh-rv-FLa">
                                                 <rect key="frame" x="512" y="592" width="45" height="30"/>
@@ -183,6 +198,9 @@
                                                             <segment title="human"/>
                                                         </segments>
                                                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <connections>
+                                                            <action selector="isHumanPlayer4Action:" destination="BV1-FR-VrT" eventType="valueChanged" id="lN6-93-uQi"/>
+                                                        </connections>
                                                     </segmentedControl>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Player 4" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0ej-dc-Dm7">
                                                         <rect key="frame" x="40" y="8" width="94" height="30"/>
@@ -222,17 +240,6 @@
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="JIq-uB-ciZ">
-                                                <rect key="frame" x="325" y="156" width="180" height="29"/>
-                                                <segments>
-                                                    <segment title="2"/>
-                                                    <segment title="3"/>
-                                                    <segment title="4"/>
-                                                </segments>
-                                                <connections>
-                                                    <action selector="minWordLengthSwitchAction:" destination="BV1-FR-VrT" eventType="valueChanged" id="3eA-1F-VfM"/>
-                                                </connections>
-                                            </segmentedControl>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="seconds per turn:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIl-oo-DtS">
                                                 <rect key="frame" x="126" y="77" width="135" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -282,8 +289,18 @@
                                                     <segment title="3"/>
                                                 </segments>
                                                 <connections>
-                                                    <action selector="minWordLengthSwitchAction:" destination="BV1-FR-VrT" eventType="valueChanged" id="29W-fG-cj6"/>
-                                                    <action selector="numStarterWordsSwitchAction:" destination="BV1-FR-VrT" eventType="valueChanged" id="KKx-ON-i7n"/>
+                                                    <action selector="numStarterWordsSwitchAction:" destination="BV1-FR-VrT" eventType="valueChanged" id="I9K-eD-ifo"/>
+                                                </connections>
+                                            </segmentedControl>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="JIq-uB-ciZ">
+                                                <rect key="frame" x="325" y="156" width="180" height="29"/>
+                                                <segments>
+                                                    <segment title="2"/>
+                                                    <segment title="3"/>
+                                                    <segment title="4"/>
+                                                </segments>
+                                                <connections>
+                                                    <action selector="minWordLengthSwitchAction:" destination="BV1-FR-VrT" eventType="valueChanged" id="3eA-1F-VfM"/>
                                                 </connections>
                                             </segmentedControl>
                                         </subviews>
@@ -307,9 +324,14 @@
                         <outlet property="ViewPlayer3UI" destination="Iai-zq-20q" id="CWg-5V-ai7"/>
                         <outlet property="ViewPlayer4UI" destination="3qF-ym-6Gm" id="0aW-sB-9Ap"/>
                         <outlet property="audioSettingOutlet" destination="r3t-0e-OMa" id="N9S-ik-dcU"/>
+                        <outlet property="isHumanPlayer3Outlet" destination="0Ae-aA-bya" id="coB-4v-sNK"/>
+                        <outlet property="isHumanPlayer4Outlet" destination="56l-dQ-RG0" id="g8Z-u2-U5w"/>
                         <outlet property="minWordLengthSwitchOutlet" destination="JIq-uB-ciZ" id="wuw-BZ-hfq"/>
                         <outlet property="numPlayersSwitchOutlet" destination="2Fh-YX-ONY" id="KGm-nb-qaA"/>
-                        <outlet property="numStarterWordsSwitchOutlet" destination="kvZ-ZC-q1r" id="cy3-H0-sPf"/>
+                        <outlet property="numStarterWordsSwitchOutlet" destination="sMJ-dZ-c0b" id="Q89-ke-xjL"/>
+                        <outlet property="player2ImageOutlet" destination="nPl-7S-LhR" id="uVx-Q7-chZ"/>
+                        <outlet property="player3ImageOutlet" destination="uSM-A3-PiP" id="Lfx-ez-Rq0"/>
+                        <outlet property="player4ImageOutlet" destination="DjD-Kz-HSF" id="34e-wc-RDG"/>
                         <outlet property="secondPerTurnSwitchOutlet" destination="MWV-lc-QH3" id="MD3-na-F2A"/>
                         <outlet property="toStatView" destination="Ivf-B6-O6g" id="uSc-Fv-Vot"/>
                     </connections>

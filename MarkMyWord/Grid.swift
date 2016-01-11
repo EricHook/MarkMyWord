@@ -27,10 +27,7 @@ class Grid {
     var gridName : String = ""
     var gridPlayer : Player? = nil
     var gridNum : Int = 0
-    
-//    var mmwGameScene : MMWGameScene
 
-    
     init (gridUpperLeftX: Double, gridUpperLeftY : Double, gridSquareSizeX : Double, gridSquareSizeY : Double, gridNumSquaresX : Int, gridNumSquaresY : Int, gridName : String){
         self.gridUpperLeftX = gridUpperLeftX
         self.gridUpperLeftY = gridUpperLeftY
@@ -39,7 +36,6 @@ class Grid {
         self.gridNumSquaresX = gridNumSquaresX
         self.gridNumSquaresY = gridNumSquaresY
         self.gridName = gridName
-        //self.mmwGameScene = mmwGameScene
         grid2DArr = [[MMWTile]](count: gridNumSquaresX, repeatedValue: [MMWTile](count: gridNumSquaresY, repeatedValue: MMWTile() ))
     }
     

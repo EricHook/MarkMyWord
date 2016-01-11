@@ -20,6 +20,11 @@ extension StreamReader : SequenceType {
     }
 }
 
+struct GameSceneSettings {
+    
+    
+}
+
 
 class MMWGameSceneViewController : UIViewController {
 
@@ -30,10 +35,10 @@ class MMWGameSceneViewController : UIViewController {
     var numPlayers   = 2
     var playerTurn   = 1
     var numStarterWords = 2
-    var minWordSize  = 3
+    var minWordSize  = 4
     var audioOn = true
-    var secondsPerTurn = 30
-    var timerIsOn = true
+    var secondsPerTurn = 999
+    var timerIsOn = false
     var player0 : Player = Player(_playerID: 0, _playerName: "AI",          _playerColor: 0) // used to add initial word ownership
     var player1 : Player = Player(_playerID: 1, _playerName: "Player 1",    _playerColor: 1)
     var player2 : Player = Player(_playerID: 2, _playerName: "Bart",        _playerColor: 2)
@@ -41,9 +46,10 @@ class MMWGameSceneViewController : UIViewController {
     var player3 : Player = Player(_playerID: 3, _playerName: "Charlie",     _playerColor: 3)
     var player4 : Player = Player(_playerID: 4, _playerName: "Dan",         _playerColor: 4)
     var playerArray : [Player]!
+
     
-    var wordArray : [String] = [""]
-    var wordArrayMod : [String.CharacterView] = ["".characters]
+//    var wordArray : [String] = [""]
+//    var wordArrayMod : [String.CharacterView] = ["".characters]
     
     var consecutivePasses = 0
     var lettersPlayedInTurn = 0
@@ -53,13 +59,12 @@ class MMWGameSceneViewController : UIViewController {
 
     var wordSet : WordSet?
     let wordSetPrecomputedSize : Int = 1253231;
-    
-//    enum timerValue : Int {
-//        case Zero = 0, Twenty = 1
-//    }
-
 
     override func viewDidLoad() {
+        print("---   in viewDidLoad mmwGameSceneViewController")
+        print("before MMWGameSceneViewController viewDidLoad() setUpGame() ")
+        setUpGame()
+        print("after MMWGameSceneViewController viewDidLoad() setUpGame() ")
         super.viewDidLoad()
     }
     
@@ -76,9 +81,8 @@ class MMWGameSceneViewController : UIViewController {
  
     
     func setUpGame () {
-
-        print("Button??")
-        gameViewController.buttonAction()
+        print("---   in setUpGame mmwGameSceneViewController")
+        loadWordSet()
         
         playerArray = [player1, player2, player3, player4]// array of all players 0-3 for easier iteration of player turns
         
@@ -98,43 +102,44 @@ class MMWGameSceneViewController : UIViewController {
         mmwGameScene.buildGameView()
         setUpPlayers() // add player to view, match player to grid, fill grid with starter tiles and colorize to player color
         
-        loadWordSet()
+
     }
     
-    func resetGame () {
-        
-        print("resetGame Button?? gameViewController.buttonAction()")
-        gameViewController.buttonAction()
-        
-//        if numPlayers == 2 {
-//            playerArray  = [player1, player2]
-//        }
-//        if numPlayers == 3 {
-//            playerArray  = [player1, player2, player3]
-//        }
-//        if numPlayers == 4 {
-//            playerArray  = [player1, player2, player3, player4]
-//        }
-        
-        //playerArray  = [player1, player2, player3, player4]
-        
-        //tileCollection = MMWTileBuilder()
-        
-//        mmwGameSceneViewController.tileCollection?.returnTilesToStartArray()
+//    func resetGame () {
 //        
-//        mmwGameSceneViewController.tileCollection? = MMWTileBuilder()
-
-        //tilesPlayable = MMWTileBuilder().mmwTileArray
-        //tilesPlayable = tileCollection!.mmwTileArray
-
-        mmwGameScene.resetGameView()
-        
-        //setUpPlayers() // add player to view, match player to grid, fill grid with starter tiles and colorize to player color
-        
-    }
+//        print("resetGame Button?? gameViewController.buttonAction()")
+//        //gameViewController.buttonAction()
+//        
+////        if numPlayers == 2 {
+////            playerArray  = [player1, player2]
+////        }
+////        if numPlayers == 3 {
+////            playerArray  = [player1, player2, player3]
+////        }
+////        if numPlayers == 4 {
+////            playerArray  = [player1, player2, player3, player4]
+////        }
+//        
+//        //playerArray  = [player1, player2, player3, player4]
+//        
+//        //tileCollection = MMWTileBuilder()
+//        
+////        mmwGameSceneViewController.tileCollection?.returnTilesToStartArray()
+////        
+////        mmwGameSceneViewController.tileCollection? = MMWTileBuilder()
+//
+//        //tilesPlayable = MMWTileBuilder().mmwTileArray
+//        //tilesPlayable = tileCollection!.mmwTileArray
+//
+//        mmwGameScene.resetGameView()
+//        
+//        //setUpPlayers() // add player to view, match player to grid, fill grid with starter tiles and colorize to player color
+//        
+//    }
     
     
     func setUpPlayers () {
+        print("---   in setUpPlayers mmwGameSceneViewController")
         player1.setPlayerTilesGrid(&mmwGameScene.mmwPlayer1Grid!)
         player1.setPlayerView(mmwGameScene.player1View)
         player2.setPlayerTilesGrid(&mmwGameScene.mmwPlayer2Grid!)
@@ -147,6 +152,7 @@ class MMWGameSceneViewController : UIViewController {
     
     
     func loadWordSet() {
+        print("---   in loadWordSet mmwGameSceneViewController")
         do {
             if let path = NSBundle.mainBundle().pathForResource("WordListChopped", ofType: "txt") {
                 wordSet = WordSet(filePath: path, precomputedSize: wordSetPrecomputedSize)
@@ -157,8 +163,7 @@ class MMWGameSceneViewController : UIViewController {
         }
     }
     
-    
-    
+
     func setTileOwner (inout tileToSet: MMWTile, player: Player) {
         if player.playerID == 1 {
             tileToSet.tileOwner = TileOwner.Player1
@@ -198,9 +203,7 @@ class MMWGameSceneViewController : UIViewController {
             }
             
             let randomWordNum = Int(arc4random_uniform((UInt32(numLines-1))) )
-            
             var lineNumber = 0
-            
             aStreamReader.rewind()  // goback and get word selected on random line number
             
             while let line = aStreamReader.nextLine() {

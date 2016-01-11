@@ -65,10 +65,10 @@ class PlayerView: SKSpriteNode {
             playerTex = SKTexture(imageNamed: "BongoSized.png")
         }
         else if playerNumber == 3 {
-            playerTex = SKTexture(imageNamed: "BongoSized.png")
+            playerTex = SKTexture(imageNamed: "orangePlayer.png")
         }
         else if playerNumber == 4 {
-            playerTex = SKTexture(imageNamed: "BongoSized.png")
+            playerTex = SKTexture(imageNamed: "AvatarShadowMale.png")
         }
         else {
             playerTex = SKTexture(imageNamed: "AvatarShadowMale.png")
@@ -179,15 +179,15 @@ class PlayerView: SKSpriteNode {
         
         
         
-//        playerTileCover.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-//        playerTileCover.position = CGPoint(x: size.width/2.0 , y: screenHeight*0.070 ) // 482.0)
-//        playerTileCover.userInteractionEnabled = false
-//        playerTileCover.colorBlendFactor = CGFloat(1.0)
-//        playerTileCover.size.height = playerTileCover.size.height * 0.75
-//        playerTileCover.size.width = playerTileCover.size.width + 2
-//        playerTileCover.alpha = 0.6
-//        playerTileCover.zPosition = 10
-//        addChild(playerTileCover)
+        playerTileCover.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+        playerTileCover.position = CGPoint(x: size.width/2.0 , y: screenHeight*0.070 ) // 482.0)
+        playerTileCover.userInteractionEnabled = false
+        playerTileCover.colorBlendFactor = CGFloat(1.0)
+        playerTileCover.size.height = playerTileCover.size.height * 0.75
+        playerTileCover.size.width = playerTileCover.size.width + 2
+        playerTileCover.alpha = 0.6
+        playerTileCover.zPosition = 10
+        addChild(playerTileCover)
         
         
         

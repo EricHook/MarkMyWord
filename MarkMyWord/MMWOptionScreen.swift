@@ -45,6 +45,8 @@ class MMWOptionScreen: SKScene {
         /* Setup your scene here */
         
         //viewSize = view.bounds.size
+        
+        gameViewController.updateGameSettings()
 
         print("view size MenuScene: \(screenSize)")
         
@@ -91,43 +93,99 @@ class MMWOptionScreen: SKScene {
         delay(0.1){
             //gameViewController.buttonAction()
             // update controllers to reflect current game data
-            gameViewController.numPlayersSwitchOutlet.selectedSegmentIndex = mmwGameSceneViewController.numPlayers - 2
-            gameViewController.minWordLengthSwitchOutlet.selectedSegmentIndex = mmwGameSceneViewController.minWordSize - 2
-             
-            gameViewController.ViewAllOptionsUI.hidden = false
             
-            //gameViewController.GameViewControllerUI.hidden = false   //ViewOptionsUI.hidden = false
-            //gameViewController.ViewOptionsUI.alpha = 1.0
-            
-        }
-        
-        
-       
-        
-        
-        
-        //openKeyboardToSaveValue("Player")
+            // seconds per turn UI
+            switch (mmwGameSceneViewController.secondsPerTurn) {
+            case 20:
+                gameViewController.secondPerTurnSwitchOutlet.selectedSegmentIndex = 0
+                print("UI secondsPerTurn = 20")
+            case 30:
+                gameViewController.secondPerTurnSwitchOutlet.selectedSegmentIndex = 1
+                print("UI secondsPerTurn = 30")
+            case 45:
+                gameViewController.secondPerTurnSwitchOutlet.selectedSegmentIndex = 2
+                print("UI secondsPerTurn = 45")
+            case 60:
+                gameViewController.secondPerTurnSwitchOutlet.selectedSegmentIndex = 3
+                print("UI secondsPerTurn = 60")
+            case 999:
+                gameViewController.secondPerTurnSwitchOutlet.selectedSegmentIndex = 4
+                print("UI secondsPerTurn = 999 / OFF")
+            default:
+                break;
+            }
 
-        
-        
+            // audio UI
+            if mmwGameSceneViewController.audioOn == true {
+                gameViewController.audioSettingOutlet.selectedSegmentIndex = 1
+            }
+            else {
+                gameViewController.audioSettingOutlet.selectedSegmentIndex = 0
+            }
+            print("UI audioOn = \(mmwGameSceneViewController.audioOn)")
+
+            // minWordSize UI
+            gameViewController.minWordLengthSwitchOutlet.selectedSegmentIndex = mmwGameSceneViewController.minWordSize - 2
+            print("UI minWordSize = \(mmwGameSceneViewController.minWordSize)")
+            
+            // number starter words UI
+            gameViewController.numStarterWordsSwitchOutlet.selectedSegmentIndex = mmwGameSceneViewController.numStarterWords - 1
+            print("UI numStarterWords = \(mmwGameSceneViewController.numStarterWords)")
+            
+            // number of players UI
+            gameViewController.numPlayersSwitchOutlet.selectedSegmentIndex = mmwGameSceneViewController.numPlayers - 2
+            switch (mmwGameSceneViewController.numPlayers - 2){
+            case 0:
+                mmwGameSceneViewController.numPlayers = 2
+                print("UI numPlayers 2")
+                gameViewController.ViewPlayer3UI.alpha = 0.5
+                gameViewController.ViewPlayer3UI.userInteractionEnabled = false
+                gameViewController.ViewPlayer4UI.alpha = 0.5
+                gameViewController.ViewPlayer4UI.userInteractionEnabled = false
+            case 1:
+                mmwGameSceneViewController.numPlayers = 3
+                print("UI numPlayers 3")
+                gameViewController.ViewPlayer3UI.alpha = 1.0
+                gameViewController.ViewPlayer3UI.userInteractionEnabled = true
+                gameViewController.ViewPlayer4UI.alpha = 0.5
+                gameViewController.ViewPlayer4UI.userInteractionEnabled = false
+            case 2:
+                mmwGameSceneViewController.numPlayers = 4
+                print("UI numPlayers 4")
+                gameViewController.ViewPlayer3UI.alpha = 1.0
+                gameViewController.ViewPlayer3UI.userInteractionEnabled = true
+                gameViewController.ViewPlayer4UI.alpha = 1.0
+                gameViewController.ViewPlayer4UI.userInteractionEnabled = true
+            default:
+                break;
+            }
+        }
+
+        gameViewController.ViewAllOptionsUI.hidden = false
+
+        //gameViewController.GameViewControllerUI.hidden = false   //ViewOptionsUI.hidden = false
+
+        //openKeyboardToSaveValue("Player")
         //presentMMWScene()
         //mmwGameSceneViewController = createMMWSceneController()
         //presentMMWScene()
         
-        //              NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentView", name: "showController", object: nil)
+        // NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentView", name: "showController", object: nil)
     }
     
     func returnToGameScene () {
-        print("going to mmw scene") //create MMW controller
+        print("return to mmw scene") //create MMW controller
         //presentMMWScene()
         
         gameViewController.ViewAllOptionsUI.hidden = true
-        mmwGameScene.startTimer()
+        if mmwGameSceneViewController.timerIsOn {
+            mmwGameScene.startTimer()
+        }
         view?.presentScene(mmwGameScene)
     }
     
     func newGameScene () {
-        print("going to NEW mmw scene") //create MMW controller
+        print("going to NEW mmw scene from mmwOptionScreen") //create MMW controller
         
 //        mmwGameScene = nil
 //        mmwGameScene = MMWGameScene(size: screenSize!)
@@ -140,39 +198,41 @@ class MMWOptionScreen: SKScene {
 //        for tile in (mmwGameSceneViewController.tileCollection?.mmwPlayer2LetterTile2DArray)! {
 //            tile.
 //        }
-
-        mmwGameSceneViewController.resetGame()
+        gameViewController.ViewAllOptionsUI.hidden = true
+        
+        
+        mmwGameScene.resetGameView()
+        //mmwGameSceneViewController.resetGame()
         mmwGameScene.startGame()
-        
-        
-        gameViewController.buttonAction() // test for functionality
+
+       //gameViewController.buttonAction() // test for functionality
         
         view?.presentScene(mmwGameScene)
 
     }
 
     
-    func buttonAction(sender:UIButton!)
-    {
-        print("Manual Button tapped sender:UIButton!")
-    }
-    
-    func buttonAction()
-    {
-        print("TEST Manual Button tapped ()")
-    }
+//    func buttonAction(sender:UIButton!)
+//    {
+//        print("Manual Button tapped sender:UIButton!")
+//    }
+//    
+//    func buttonAction()
+//    {
+//        print("TEST Manual Button tapped ()")
+//    }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
             let _node:SKNode = self.nodeAtPoint(location)
-            if(_node.name == "playBtn"){
-                
-                //returnToGameScene()
-                
-                newGameScene()
-            }
+//            if(_node.name == "playBtn"){
+//                
+//                //returnToGameScene()
+//                
+//                newGameScene()
+//            }
         }
     }
     

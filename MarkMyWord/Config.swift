@@ -86,7 +86,7 @@ let UIColorAppleYellow  = UIColor(red: 0.9609, green: 0.5117, blue: 0.125,  alph
 //let UIColorApplePurple = UIColor(red: 169/256, green: 33/256, blue: 237/256, alpha: 1.0)
 //let UIColorAppleYellow = UIColor(colorLiteralRed: 252/256, green: 217/256, blue: 0/256, alpha: 1.0)
 
-let gameColors :  [UIColor] = [UIColorGray, UIColorAppleBlue, UIColorAppleRed, UIColorAppleGreen, UIColorApplePurple, UIColorAppleOrange]
+let gameColors :  [UIColor] = [UIColorGray, UIColorAppleBlue, UIColorAppleOrange, UIColorAppleRed, UIColorApplePurple, UIColorAppleGreen,  ]
 let tileColors :  [UIColor] = gameColors
 //let gameColors :  [UIColor] = [UIColorGray, UIColorAppleBlue, UIColorAppleRed, UIColorApplePurple,  UIColorAppleGreen, UIColorAppleYellow, UIColorAppleOrange]
 

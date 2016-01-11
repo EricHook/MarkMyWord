@@ -371,6 +371,26 @@ class MMWTileBuilder {
     }
     
     /// send/move num Tiles from one tile array to another tile array
+    func resetAllTiles() {
+        for tile in self.mmwDiscardedTileArray {
+            if tile.tileType == TileType.Letter {
+                tile.tileSprite.alpha = 0.2
+                mmwDiscardedTileArray.removeFirst()
+                mmwTileArray.append(tile)
+            }
+        }
+        
+        for tileRow in self.mmwBoardTile2DArray! {
+            for tile in tileRow {
+                if tile!.tileType == TileType.Letter {
+                    mmwTileArray.append(tile!)
+                    tile!.tileSprite.alpha = 0.2
+                }
+            }
+        }
+    }
+    
+    /// send/move num Tiles from one tile array to another tile array
     func updateTiles(inout tilesFrom: [MMWTile], inout tilesTo: [MMWTile], var numTilesGet: Int, changeColorTo: Int) {
         let originalTilesGet = numTilesGet
         while numTilesGet > 0 {
