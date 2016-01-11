@@ -69,7 +69,6 @@ class MMWOptionScreen: SKScene {
         
         // add BG
         let backgroundNode = SKSpriteNode(imageNamed: "MMWOptionsScreen.png")
-        //backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         backgroundNode.position = CGPoint(x: screenSize!.width/2, y: screenSize!.height/2)
         backgroundNode.userInteractionEnabled = false
         backgroundNode.size = self.frame.size;

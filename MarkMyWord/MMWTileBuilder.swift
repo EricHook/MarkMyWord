@@ -17,11 +17,11 @@ class MMWTileBuilder {
 
     var mmwTileArray = [MMWTile]()
     
-    //var mmwTileArrayTemp = [MMWTile]()
+    var mmwTileArrayPlaceholder = [MMWTile]()
 
     var mmwDiscardedTileArray = [MMWTile]()
     
-    //var mmwBlankTileArray = [MMWTile]()
+    var mmwBlankTileArray = [MMWTile]()
     
     var mmwPlayer1LetterTile2DArray : [[MMWTile?]]?
     var mmwPlayer2LetterTile2DArray : [[MMWTile?]]?
@@ -326,6 +326,10 @@ class MMWTileBuilder {
             tile.tileSprite.yScale = (screenSize!.width)/1024
         }
         
+        for _ in 0..<500 {
+            mmwTileArrayPlaceholder.append(MMWTile())
+        }
+        
 //        for _ in 0..<250 {
 //            mmwBlankTileArray.append(MMWTile())
 //        }
@@ -336,7 +340,7 @@ class MMWTileBuilder {
 //    }
     
     func displayTileArrayValues (tileArray: [MMWTile]) {
-        print("\nMMWTileBuilder.displayTileArrayValues (tileArray: [MMWTile]) ... \(self)")
+        print("\nMMWTileBuilder.displayTileArrayValues (tileArray: [MMWTile]) ... \(tileArray) count:\(tileArray.count)")
         for tile in tileArray {
             print("\(tile.tileText)")
         }
@@ -372,22 +376,57 @@ class MMWTileBuilder {
     
     /// send/move num Tiles from one tile array to another tile array
     func resetAllTiles() {
-        for tile in self.mmwDiscardedTileArray {
-            if tile.tileType == TileType.Letter {
-                tile.tileSprite.alpha = 0.2
-                mmwDiscardedTileArray.removeFirst()
-                mmwTileArray.append(tile)
-            }
-        }
+        self.mmwDiscardedTileArray.removeAll()
         
-        for tileRow in self.mmwBoardTile2DArray! {
-            for tile in tileRow {
-                if tile!.tileType == TileType.Letter {
-                    mmwTileArray.append(tile!)
-                    tile!.tileSprite.alpha = 0.2
+        let gameGrids = [mmwGameScene.mmwBoardGrid, mmwGameScene.mmwPlayer1Grid, mmwGameScene.mmwPlayer2Grid, mmwGameScene.mmwPlayer3Grid, mmwGameScene.mmwPlayer4Grid  ]
+        
+        for grid in gameGrids {
+            for tileRow in 0..<grid.grid2DArr.count {  //self.mmwBoardTile2DArray! {
+                for tileCol in 0..<grid.grid2DArr[tileRow].count {
+                    var tile = grid.grid2DArr[tileRow][tileCol]
+                    if tile.tileType == TileType.Letter {
+                        tile.tileSprite.alpha = 0.2
+                        tile.tileSprite.position = CGPoint(x: 900, y: 700)
+                        mmwTileArray.append(tile)
+                        grid.grid2DArr[tileRow][tileCol] = self.mmwTileArrayPlaceholder.removeFirst()
+                    }
+            
                 }
             }
         }
+        
+        for tile in self.mmwDiscardedTileArray {
+            if tile.tileType == TileType.Placeholder {
+                tile.tileSprite.alpha = 0.2
+                mmwDiscardedTileArray.removeFirst()
+                tileCollection?.mmwTileArrayPlaceholder.append(tile)
+            }
+            if tile.tileType == TileType.Letter {
+                tile.tileSprite.alpha = 0.2
+                mmwDiscardedTileArray.removeFirst()
+                tileCollection?.mmwTileArray.append(tile)
+            }
+            
+        }
+
+
+        
+//        for tile in self.mmwDiscardedTileArray {
+//            //        }
+//        
+//        
+//        for tileRow in mmwGameScene.mmwBoardGrid.grid2DArr {  //self.mmwBoardTile2DArray! {
+//            for tile in tileRow {
+//                if tile.tileType == TileType.Letter {
+//                    tile.tileSprite.position = CGPoint(x: 800, y: 700)
+//                    tile.tileSprite.alpha = 0.2
+//                    mmwTileArray.append(tile)
+//                    mmwGameScene.mmwBoardGrid.grid2DArr[tile.gridX][tile.gridY] = (tileCollection?.mmwTileArrayPlaceholder.removeFirst())!
+//                }
+//            }
+//            
+//            mmwGameScene.mmwBoardGrid.grid2DArr.removeAll()
+//        }
     }
     
     /// send/move num Tiles from one tile array to another tile array

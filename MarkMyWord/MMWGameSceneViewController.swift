@@ -46,7 +46,6 @@ class MMWGameSceneViewController : UIViewController {
     var player3 : Player = Player(_playerID: 3, _playerName: "Charlie",     _playerColor: 3)
     var player4 : Player = Player(_playerID: 4, _playerName: "Dan",         _playerColor: 4)
     var playerArray : [Player]!
-
     
 //    var wordArray : [String] = [""]
 //    var wordArrayMod : [String.CharacterView] = ["".characters]
@@ -85,17 +84,7 @@ class MMWGameSceneViewController : UIViewController {
         loadWordSet()
         
         playerArray = [player1, player2, player3, player4]// array of all players 0-3 for easier iteration of player turns
-        
-//        if numPlayers == 2 {
-//            playerArray  = [player1, player2]
-//        }
-//        if numPlayers == 3 {
-//            playerArray  = [player1, player2, player3]
-//        }
-//        if numPlayers == 4 {
-//            playerArray  = [player1, player2, player3, player4]
-//        }
-        
+
         tilesPlayable = tileCollection!.mmwTileArray
         //tilesPlayableRAW = tilesPlayable
         mmwGameScene.setGrids() // sets tile grid positions, size square, number squares and position on screen for each grid possible
@@ -630,6 +619,9 @@ class MMWGameSceneViewController : UIViewController {
             tileInWord.gridXEnd = xLoc
             tileInWord.gridY = yLoc
             tileInWord.gridYEnd = yLoc
+            
+            tileCollection?.mmwTileArrayPlaceholder.append(mmwGameScene.mmwBoardGrid.grid2DArr[xLoc][yLoc])
+            
             tileInWord.gridHome?.grid2DArr[xLoc][yLoc] = tileInWord
             tileInWord.tileState = TileState.Played
             tileInWord.tileSprite.zPosition = 0

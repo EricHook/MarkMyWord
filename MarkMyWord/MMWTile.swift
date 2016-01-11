@@ -72,6 +72,16 @@ class MMWTile {
         //tileBuilder = nil
         //tileType = TileType.Unknown
         //spritename = SpriteName.Blank
+        
+        gridHome?.grid2DArr[gridX][gridY] = MMWTile()
+        
+        if tileType == TileType.Letter {
+            tileCollection?.mmwTileArray.append(self)
+        }
+        if tileType == TileType.Blank {
+            tileCollection?.mmwTileArrayPlaceholder.append(self)
+        }
+        
         self.gridLocation = GridLocation.Undealt
         gridLocationEnd = GridLocation.Undealt
         gridHome = nil
@@ -83,8 +93,10 @@ class MMWTile {
         gridYEnd = -1
         gridXTest = -1
         gridYTest = -1
+     
+        tileSprite.position = CGPoint (x: 50, y: 50)
         
-        tileText = "?"
+        //tileText = "?"
         undealt = true
         tileState = TileState.Undealt
         playedMadeWord = PlayedMadeWord.None

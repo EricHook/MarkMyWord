@@ -113,7 +113,7 @@ class MMWResultsScene: SKScene {
             //        currentScene = mmwGameScene
             //        mmwGameScene.scaleMode = .AspectFill
             view?.presentScene(mmwGameScene, transition: transition)
-            print("mmwGameScene")
+            print("mmwResultsScene presentScene mmwGameScene")
             
             
         }

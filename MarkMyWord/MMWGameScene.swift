@@ -522,9 +522,18 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
         playBtnPlay.name = "playBtnPlay"
         playBtnPlay.zPosition = 100
         playBtnPlay.size = CGSizeMake(40.0, 40.0)
-        playBtnPlay.anchorPoint = CGPointMake(0, 0)
         self.addChild(playBtnPlay)
         newTilesButton.userInteractionEnabled = true
+        
+        // Placeholder for Test Code
+        let testPlayButton = SKSpriteNode(imageNamed: "PlayButton.png")
+        testPlayButton.position = CGPoint(x: viewSize.width * 0.0, y: viewSize.height * 1.0)
+        //testPlayButton.position = CGPoint(x: 50, y: 50)
+        testPlayButton.anchorPoint = CGPointMake(0, 1)
+        testPlayButton.name = "testPlayButton"
+        testPlayButton.zPosition = 100
+        testPlayButton.size = CGSizeMake(40.0, 40.0)
+        self.addChild(testPlayButton)
         
         
         //        var logoFrame = CGRectMake(0,0,118,40)
@@ -819,6 +828,9 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
             if(_node.name == "playBtnPlay"){
                 playBtnPlay (_node)
             }
+            if(_node.name == "testPlayButton"){
+                testPlayButton ()
+            }
         }
     }
     
@@ -977,6 +989,24 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
         
         //timeRemainingHUD(mmwGameSceneViewController.secondsPerTurn)  // default set to         standard time remaining
 //        timeRemainingLabel.text = String("Timer: \(mmwGameSceneViewController.secondsPerTurn)")
+    }
+    
+    func testPlayButton () {
+        var row = 0
+        var col = 0
+        for tileRow in mmwGameScene.mmwPlayer1Grid.grid2DArr {
+            for tile in tileRow {
+                print("Tile \(tile.tileSprite.tileText) \(row), \(col) ")
+                tile.tileSprite.tileText = "X"
+                //tile.tileSprite.hidden = true
+                tile.resetTileValues()
+                col++
+            }
+            row++
+            col = 0
+        }
+        
+        print("testPlayButton ()")
     }
     
     
@@ -1426,7 +1456,6 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
             newTilesButtonOn()
             tilesRemainingLabel.text = "Tiles Left: \(tileCollection!.mmwTileArray.count)"
         }
-            
         else {
             newTilesButtonOff()
             tilesRemainingLabel.text = "Tiles Left: None"
@@ -1446,10 +1475,13 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
             mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerView.playerViewBeginTurn()
         }
         
-        secondsLeft = mmwGameSceneViewController.secondsPerTurn
-        if isPaused == true {
-            startTimer(secondsLeft)
+        if mmwGameSceneViewController.timerIsOn {
+            secondsLeft = mmwGameSceneViewController.secondsPerTurn
+            if isPaused == true {
+                startTimer(secondsLeft)
+            }
         }
+
         
         mmwGameSceneViewController.lettersPlayedInTurn = 0
         

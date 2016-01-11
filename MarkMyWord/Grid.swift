@@ -191,8 +191,15 @@ class Grid {
 
         for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
             for x in 0...(self.gridNumSquaresX - 1) {
-                tileCollection!.mmwDiscardedTileArray.append(self.grid2DArr[x][y])
-                self.grid2DArr[x][y].tileSprite.hidden = true
+                
+//                if clearGrid == true {
+//                    tileCollection!.mmwDiscardedTileArray.append(self.grid2DArr[x][y])
+//                    self.grid2DArr[x][y].tileSprite.hidden = true
+//                }
+
+                
+                
+                
                 if arrayIn.count > 0 {
                     
                     if clearGrid {
