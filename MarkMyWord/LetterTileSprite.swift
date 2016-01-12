@@ -370,7 +370,7 @@ class LetterTileSprite : SKSpriteNode {
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesMoved(touches, withEvent: event)
         
-        self.zPosition = 10
+        self.zPosition = 90
         tileShadow.zPosition = -1
         
         if enlarged { return }
@@ -496,8 +496,7 @@ class LetterTileSprite : SKSpriteNode {
                     
                     
                     ////////////////////
-                    
-                    
+    
                     updateWordsAtDropSpot(Float(tileSnapTouch.x), touchY: Float(tileSnapTouch.y)) () // tileSnapResultsXGrid, tileSnapResultsYGrid: tileSnapResultsYGrid,  touchX:
                 }
             }
@@ -522,6 +521,9 @@ class LetterTileSprite : SKSpriteNode {
     ///     - none: nothing
     func returnTileToGridHome () {
 
+        mmwGameScene.animationsActive(true)
+        var animationTime = 0.0
+        
         self.zPosition = 25
         
         var returnPosition = CGPoint(x: 0, y: 0)
@@ -561,6 +563,10 @@ class LetterTileSprite : SKSpriteNode {
         self.tileGlow.hidden = true
         removeBoardTileHighlights ()
         //runAction(actionSound2)
+        
+        delay(animationTime + 15.0){
+            mmwGameScene.animationsActive(false)
+        }
     }
     
     
@@ -575,7 +581,7 @@ class LetterTileSprite : SKSpriteNode {
         mmwGameScene.animationsActive(true)
         var animationTime = 0.0
         
-        self.zPosition = 99
+        self.zPosition = 25
         //self.letterLabel.zPosition = 101
         delay(1.00) {
             self.zPosition = 5
@@ -616,8 +622,7 @@ class LetterTileSprite : SKSpriteNode {
         self.runAction(SKAction.group([slide, scaleUpDown]))
         
         
-        self.zPosition = 1
-        self.letterLabel.zPosition = 2
+
         
         // save original tile info for animations
         self.tileSpriteParent.gridTest = self.tileSpriteParent.gridHome
@@ -636,8 +641,7 @@ class LetterTileSprite : SKSpriteNode {
         //delay(0.25) {
         //    self.zPosition = 5
         //}
-        self.zPosition = 5
-        self.letterLabel.zPosition = 6
+    
         
         
         //        func playTile() {
@@ -686,7 +690,7 @@ class LetterTileSprite : SKSpriteNode {
         //        CATransaction.commit()
         
         
-        delay(animationTime + 0.5){
+        delay(animationTime + 15.0){
             mmwGameScene.animationsActive(false)
         }
 
@@ -699,6 +703,9 @@ class LetterTileSprite : SKSpriteNode {
     /// - Parameters:
     ///     - none: nothing
     func showTileScoreTextToGridHome (delaySec: Int, pointsForTile: Int ) {
+        
+        mmwGameScene.animationsActive(true)
+        var animationTime = 0.0
         
         var tileScore = SKLabelNode()
         tileScore = self.createLetterScoreText ( CGPointMake(0.0, 0.0) , endLocation: CGPointMake(0.0, 0.0), textColor: gameColors[self.tileSpriteParent.tileOwner.rawValue], displayText: String(pointsForTile) )
@@ -741,7 +748,9 @@ class LetterTileSprite : SKSpriteNode {
         
         tileScore.runAction(SKAction.group([slide, tileEffects]) )
         
-        
+        delay(animationTime + 15.0){
+            mmwGameScene.animationsActive(false)
+        }
         
         //self.runAction(self.actionSound2)
         
@@ -759,6 +768,9 @@ class LetterTileSprite : SKSpriteNode {
     /// - Parameters:
     ///     - none: nothing
     func showWordScoreTextToGridHome (number: Int, isHorizontalScore: Bool) {
+        
+//        mmwGameScene.animationsActive(true)
+//        var animationTime = 0.0
         
         var tileScore = SKLabelNode()
         
@@ -799,8 +811,8 @@ class LetterTileSprite : SKSpriteNode {
         let changeInY : CGFloat = -(endPosition.y - homePosition.y)
         let returnPosition = CGPointMake(changeInX, changeInY)
         
-        let delay = SKAction.waitForDuration( Double(0.5) )
-        self.runAction( delay ) {  //  !! Delay for show word score text set here
+        let waitTime = SKAction.waitForDuration( Double(0.5) )
+        self.runAction( waitTime ) {  //  !! Delay for show word score text set here
             
             let unhide = SKAction.unhide()
             let slide = SKAction.moveTo(returnPosition, duration:1.5)
@@ -816,7 +828,12 @@ class LetterTileSprite : SKSpriteNode {
             tileScore.runAction(SKAction.group([fadeIn, animPart1, fadeOut, animScale]) )
             
             mmwGameScene.explosion(endPosition)
+
             //self.runAction(self.actionSound)
+        }
+        
+        delay(15.0) {  // animationTime + 
+            mmwGameScene.animationsActive(false)
         }
     }
     
@@ -827,7 +844,8 @@ class LetterTileSprite : SKSpriteNode {
     ///     - number: the value to send to home grid
     func showNegativeScoreTextToGridHome (number: Int) {
         
-        
+        mmwGameScene.animationsActive(true)
+        var animationTime = 0.0
         
         var homePosition = CGPoint(x: 0, y: 0)
         if (self.tileSpriteParent.gridX != -1) {
@@ -854,8 +872,8 @@ class LetterTileSprite : SKSpriteNode {
         negPlayScore.position = self.position
         let returnPosition = homePosition
 
-        let delay = SKAction.waitForDuration( Double(0.0) )
-        self.runAction( delay ) {  //  !! Delay for show word score text set here
+        let waitTime = SKAction.waitForDuration( Double(0.0) )
+        self.runAction( waitTime ) {  //  !! Delay for show word score text set here
         let slide = SKAction.moveTo(returnPosition, duration:1.0)
         let scaleUp = SKAction.scaleTo(2.0, duration:0.75)
         let scaleDown = SKAction.scaleTo(0.5, duration:0.25)
@@ -869,6 +887,10 @@ class LetterTileSprite : SKSpriteNode {
         negPlayScore.runAction(SKAction.group([fadeIn, animPart1, fadeOut, animScale]) )
 
         mmwGameScene.explosion(endPosition)
+        }
+        
+        delay(15.0){  // animationTime +
+            mmwGameScene.animationsActive(false)
         }
     }
     
@@ -2068,6 +2090,10 @@ class LetterTileSprite : SKSpriteNode {
     /// counts tile in up/down or left/right tile array and adds points for unlocked tiles and complete word and kicks off points awarded animations
     func scoreTilesInArr (tileArrToScoreHorizontal: [MMWTile], tileArrToScoreVertical: [MMWTile], wordStringHorizontal: String, wordStringVertical: String) -> Int {
         //tileArrToScore = tileArrToScore.reverse()
+        
+        mmwGameScene.animationsActive(true)
+        var animationTime = 0.0
+        
         var numPasses = 0
         var tileArrToScore = tileArrToScoreHorizontal
         var tileNum = 0
@@ -2115,7 +2141,7 @@ class LetterTileSprite : SKSpriteNode {
                         if tile.tileState == TileState.PlayedMadeWord  {
                             delayTime += 0.25
                         }
-                        
+                        animationTime += delayTime
                         
                         delay(delayTime) {
                             tile.tileSprite.showTileScoreTextToGridHome (1, pointsForTile: pointsForTile )
@@ -2176,8 +2202,10 @@ class LetterTileSprite : SKSpriteNode {
                 tileSpriteParent.tileState = TileState.Locked
             }
             
-            let delay = SKAction.waitForDuration( delayTime + 0.8 )
-            self.runAction( delay ) {
+            let waitTime = SKAction.waitForDuration( delayTime + 0.8 )
+            animationTime += 0.8
+            
+            self.runAction( waitTime ) {
                 
                 //run code here after delay secs
                 //if wordLen >= self.mmwGameSceneViewController.minWordSize {
@@ -2220,6 +2248,10 @@ class LetterTileSprite : SKSpriteNode {
             //                tile.gridX = tile.gridXEnd
             //                tile.gridY = tile.gridYEnd
             //}
+        }
+        
+        delay( 15.0) {  // animationTime +=
+            mmwGameScene.animationsActive(false)
         }
         
         return 0

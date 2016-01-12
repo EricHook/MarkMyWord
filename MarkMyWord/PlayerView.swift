@@ -186,7 +186,7 @@ class PlayerView: SKSpriteNode {
         playerTileCover.size.height = playerTileCover.size.height * 0.75
         playerTileCover.size.width = playerTileCover.size.width + 2
         playerTileCover.alpha = 0.6
-        playerTileCover.zPosition = 10
+        playerTileCover.zPosition = 50
         addChild(playerTileCover)
         
         

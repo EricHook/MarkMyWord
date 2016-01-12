@@ -2990,7 +2990,7 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
         topDisplayLabel.text = "Welcome to Mark My Word"
         topDisplayLabel2.text =  ""
 
-        
+
 
         
 ////        // ADD ALL TILES to Scene - they start as invisible
@@ -3547,15 +3547,12 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
                         numLettersToPlayMax = 3
                 }
                 if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerSkillLevel == 1 {
-                        numLettersToPlayMax = 5
+                        numLettersToPlayMax = 4
                 }
                 if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerSkillLevel == 2 {
                         numLettersToPlayMax = 6
                 }
-                
-                
-                
-                
+
                 
                 let permutationsToPlay : Set<String> = self.permuteLetters(playerTilesLettersArr, minStringLen: numLettersToPlayMin, maxStringLen: numLettersToPlayMax)
                 
@@ -3811,10 +3808,12 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
     func animationsActive (isActive: Bool) {
         if isActive {
             optionsButton.alpha = 0.5
+            optionsButton.userInteractionEnabled = true
             
         }
         else {
             optionsButton.alpha = 1.0
+             optionsButton.userInteractionEnabled = false
 
         }
     }

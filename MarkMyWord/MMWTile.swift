@@ -95,6 +95,23 @@ class MMWTile {
         gridYTest = -1
      
         tileSprite.position = CGPoint (x: 50, y: 50)
+        tileSprite.zPosition = 2
+        tileSprite.letterLabel.zPosition = 3
+        
+        var tileSize = CGSize(width: 47 , height: 47)
+        tileSprite.size = tileSize
+        if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
+            tileSprite.size.width *= CGFloat(1.33)
+            tileSprite.size.height *= CGFloat(1.33)
+            tileSprite.tileShadow.xScale *= 0.75
+            tileSprite.tileShadow.yScale *= 0.75
+            tileSprite.tileGlow.xScale *= 0.75
+            tileSprite.tileGlow.yScale *= 0.75
+        }
+
+        
+        
+        tileSprite.letterLabel.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.98)
         
         //tileText = "?"
         undealt = true
