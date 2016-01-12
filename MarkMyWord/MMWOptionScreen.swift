@@ -27,7 +27,15 @@ class MMWOptionScreen: SKScene {
     var keyboardType:UIKeyboardType = UIKeyboardType.Alphabet
     var keyboardAppearance:UIKeyboardAppearance = UIKeyboardAppearance.Default
     
+//    var backgroundNode : SKSpriteNode
+//    var newGameSpriteNode : SKSpriteNode
+    var backgroundNode = SKSpriteNode(imageNamed: "MMWOptionsScreen.png")
+    var newGameSpriteNode = SKSpriteNode(imageNamed: "NewGameScreen.png")
+    
+    
     var defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    
+
 
     //var viewSize:CGSize!
     
@@ -38,6 +46,40 @@ class MMWOptionScreen: SKScene {
     
     override init(size: CGSize) {
         super.init(size: size)
+        
+        
+//        var backgroundNode = SKSpriteNode(imageNamed: "MMWOptionsScreen.png")
+//        var newGameSpriteNode = SKSpriteNode(imageNamed: "NewGameScreen.png")
+        // add BG
+        backgroundNode.position = CGPoint(x: screenSize!.width/2, y: screenSize!.height/2)
+        backgroundNode.userInteractionEnabled = false
+        backgroundNode.size = self.frame.size;
+        self.addChild(backgroundNode)
+        
+        newGameSpriteNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+        newGameSpriteNode.position = CGPoint(x: size.width/2.0, y: 0.0)
+        newGameSpriteNode.userInteractionEnabled = false
+        newGameSpriteNode.hidden = true
+        newGameSpriteNode.zPosition = 100
+        newGameSpriteNode.size.height = screenSize!.height
+        newGameSpriteNode.size.width  = screenSize!.width
+        newGameSpriteNode.alpha = 0.75
+        addChild(newGameSpriteNode)
+        
+        //        let myLabel = SKLabelNode(fontNamed: "")
+        //        myLabel.text = "Option Screen" // scene is: \(scene?.description)"
+        //        myLabel.fontSize = 65;
+        //        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y: (CGRectGetMidY(self.frame) - 50) )
+        //        self.addChild(myLabel)
+        //        myLabel.zPosition = 100
+        
+        let playBtn = SKSpriteNode(imageNamed: "PlayButton.png")
+        playBtn.position = CGPoint(x: screenSize!.width/2, y: screenSize!.height/10)
+        playBtn.size = CGSize.init(width: 100, height: 50)
+        self.addChild(playBtn)
+        playBtn.name = "playBtn"
+        playBtn.zPosition = 98
+        
     }
     
     
@@ -67,26 +109,37 @@ class MMWOptionScreen: SKScene {
         //        backgroundNode.userInteractionEnabled = false
         //        self.addChild(backgroundNode)
         
-        // add BG
-        let backgroundNode = SKSpriteNode(imageNamed: "MMWOptionsScreen.png")
-        backgroundNode.position = CGPoint(x: screenSize!.width/2, y: screenSize!.height/2)
-        backgroundNode.userInteractionEnabled = false
-        backgroundNode.size = self.frame.size;
-        self.addChild(backgroundNode)
         
-//        let myLabel = SKLabelNode(fontNamed: "")
-//        myLabel.text = "Option Screen" // scene is: \(scene?.description)"
-//        myLabel.fontSize = 65;
-//        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y: (CGRectGetMidY(self.frame) - 50) )
-//        self.addChild(myLabel)
-//        myLabel.zPosition = 100
-        
-        let playBtn = SKSpriteNode(imageNamed: "PlayButton.png")
-        playBtn.position = CGPoint(x: screenSize!.width/2, y: screenSize!.height/10)
-        playBtn.size = CGSize.init(width: 100, height: 50)
-        self.addChild(playBtn)
-        playBtn.name = "playBtn"
-        playBtn.zPosition = 100
+//        var backgroundNode = SKSpriteNode(imageNamed: "MMWOptionsScreen.png")
+//        var newGameSpriteNode = SKSpriteNode(imageNamed: "NewGameScreen.png")
+//        // add BG
+//        backgroundNode.position = CGPoint(x: screenSize!.width/2, y: screenSize!.height/2)
+//        backgroundNode.userInteractionEnabled = false
+//        backgroundNode.size = self.frame.size;
+//        self.addChild(backgroundNode)
+//        
+//        newGameSpriteNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+//        newGameSpriteNode.position = CGPoint(x: size.width/2.0, y: 0.0)
+//        newGameSpriteNode.userInteractionEnabled = false
+//        newGameSpriteNode.hidden = true
+//        newGameSpriteNode.zPosition = 100
+//        newGameSpriteNode.size.height = screenSize!.height
+//        newGameSpriteNode.size.width  = screenSize!.width
+//        addChild(newGameSpriteNode)
+//        
+////        let myLabel = SKLabelNode(fontNamed: "")
+////        myLabel.text = "Option Screen" // scene is: \(scene?.description)"
+////        myLabel.fontSize = 65;
+////        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y: (CGRectGetMidY(self.frame) - 50) )
+////        self.addChild(myLabel)
+////        myLabel.zPosition = 100
+//        
+//        let playBtn = SKSpriteNode(imageNamed: "PlayButton.png")
+//        playBtn.position = CGPoint(x: screenSize!.width/2, y: screenSize!.height/10)
+//        playBtn.size = CGSize.init(width: 100, height: 50)
+//        self.addChild(playBtn)
+//        playBtn.name = "playBtn"
+//        playBtn.zPosition = 100
         
         
         delay(0.1){
@@ -197,18 +250,58 @@ class MMWOptionScreen: SKScene {
 //        for tile in (mmwGameSceneViewController.tileCollection?.mmwPlayer2LetterTile2DArray)! {
 //            tile.
 //        }
+        
         gameViewController.ViewAllOptionsUI.hidden = true
+        
+        //delay(<#T##delay: Double##Double#>, closure: <#T##() -> ()#>)
+        
+//        while mmwGameScene.animationsTimedOut == false {
+//            print ("...")
+//        }
+        
+        
+        
+        if mmwGameScene.animationsTimedOut == true {
+        print("animaitions ready")
+        } else { print("animaitions NOT ready") }
         
         
         mmwGameScene.resetGameView()
         //mmwGameSceneViewController.resetGame()
         mmwGameScene.startGame()
-
-       //gameViewController.buttonAction() // test for functionality
         
-        view?.presentScene(mmwGameScene)
+        
 
-    }
+        
+//        print(">>>>>>>>>>>>>>>>>>>>  self.view?.presentScene(mmwGameScene) PRE")
+//    
+//        self.view?.presentScene(mmwGameScene)
+//    
+//        print(">>>>>>>>>>>>>>>>>>>>  self.view?.presentScene(mmwGameScene) POST")
+        
+//        mmwGameScene.resetGameView()
+//        //mmwGameSceneViewController.resetGame()
+//        mmwGameScene.startGame()
+        
+        //gameViewController.buttonAction() // test for functionality
+        
+        delay (10) {
+            gameViewController.ViewAllOptionsUI.hidden = true
+            self.view?.presentScene(mmwGameScene)
+            
+            mmwGameScene.resetGameView()
+            //mmwGameSceneViewController.resetGame()
+            mmwGameScene.startGame()
+
+        }
+        
+        
+        
+        
+            
+        }
+        
+
 
     
 //    func buttonAction(sender:UIButton!)

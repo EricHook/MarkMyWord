@@ -96,11 +96,11 @@ class LetterTileSprite : SKSpriteNode {
         //            tileSize.width *= 0.75
         //        }
         
-        if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
-            //            tileSize.height *= 0.75
-            //            tileSize.width *= 0.75
-            frontTexture = SKTexture(imageNamed: "Tile3D@iPadPro.png")
-        }
+//        if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
+//            //            tileSize.height *= 0.75
+//            //            tileSize.width *= 0.75
+//            frontTexture = SKTexture(imageNamed: "Tile3D@iPadPro.png")
+//        }
         
         //let myCGSize = CGSizeMake(47.5, 47.5)
         //let tileSize = CGSizeMake(47.5, 47.5)
@@ -109,15 +109,24 @@ class LetterTileSprite : SKSpriteNode {
         //        let tileSize = CGSizeMake(screenSize!.width * 0.04638671875 , screenSize!.height * 0.06184895833)
         //let tileSize = CGSizeMake(screenSize!.width * 0.046 , screenSize!.height * 0.061)
         
-        var tileSize = CGSizeMake(frontTexture.size().width/2, frontTexture.size().height/2)
+        //var tileSize = CGSizeMake(frontTexture.size().width/2, frontTexture.size().height/2)
         
+        
+        
+//        if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
+//            tileSize.height *= 0.88
+//            tileSize.width *= 0.88
+//            frontTexture = SKTexture(imageNamed: "Tile3D@iPadPro.png")
+//        }
         if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
-            tileSize.height *= 0.88
-            tileSize.width *= 0.88
-            frontTexture = SKTexture(imageNamed: "Tile3D@iPadPro.png")
+            tileShadow.xScale *= 0.75
+            tileShadow.yScale *= 0.75
+            tileGlow.xScale *= 0.75
+            tileGlow.yScale *= 0.75
         }
-        
-        
+   
+            
+         let   tileSize = CGSize(width: 47 , height: 47)  // 50.0
         
         super.init(texture: frontTexture, color: UIColorAppleBlue, size: tileSize)
         // call designated initializer on super
@@ -152,14 +161,13 @@ class LetterTileSprite : SKSpriteNode {
         letterLabel.text = withChar
         letterLabel.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.98)
         letterLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
-        letterLabel.position = CGPointMake(0, -15)
         letterLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
-        letterLabel.zPosition = self.zPosition + 1
-        
-        letterLabel.fontSize = 40 // FontHUDSize
+        letterLabel.zPosition = 3
+        letterLabel.position = CGPointMake(0, -15)
+        letterLabel.fontSize = 35 // FontHUDSize
         if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
-            letterLabel.fontSize = 50
-            letterLabel.position = CGPointMake(0, -18)
+            letterLabel.fontSize = 40
+            letterLabel.position = CGPointMake(0, -15)
             
         }
         self.addChild(letterLabel)
@@ -216,8 +224,15 @@ class LetterTileSprite : SKSpriteNode {
     
     func enlarge() {
         if enlarged {
-            let slide = SKAction.moveTo(savedPosition, duration:0.3)
-            let scaleDown = SKAction.scaleTo(1.0, duration:0.3)
+            var slide = SKAction.moveTo(savedPosition, duration:0.0)
+            var scaleDown = SKAction.scaleTo(1.0, duration:0.0)
+            
+            if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
+                slide = SKAction.moveTo(savedPosition, duration:0.3)
+                scaleDown = SKAction.scaleTo(1.0, duration:0.3)
+            }
+
+          
             //texture = backTexture
             runAction(SKAction.group([slide, scaleDown])) {
                 self.enlarged = false
@@ -239,8 +254,14 @@ class LetterTileSprite : SKSpriteNode {
             let newPosition = CGPointMake(CGRectGetMidX(parent!.frame), CGRectGetMidY(parent!.frame))
             removeAllActions()
             
-            let slide = SKAction.moveTo(newPosition, duration:0.3)
-            let scaleUp = SKAction.scaleTo(5.0, duration:0.3)
+            var slide = SKAction.moveTo(newPosition, duration:0.0)
+            var scaleUp = SKAction.scaleTo(5.0, duration:0.0)
+            if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
+                slide = SKAction.moveTo(newPosition, duration:0.3)
+                scaleUp = SKAction.scaleTo(5.0, duration:0.3)
+            }
+            
+
             runAction(SKAction.group([slide, scaleUp]))
             
             self.lockTile()
@@ -283,10 +304,14 @@ class LetterTileSprite : SKSpriteNode {
             tileShadow.hidden = false
             print ("Z pos: \(self.zPosition)  ,  \(tileShadow.zPosition) ")
             
+
+            var liftUp = SKAction.scaleTo(1.5, duration: 0.1)
+            if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
+                liftUp = SKAction.scaleTo(2.0, duration: 0.1)
+            }
             
-            
-            
-            let liftUp = SKAction.scaleTo(1.5, duration: 0.1)
+                
+                
             runAction(liftUp, withKey: "pickup")
             //tileShadow.zPosition = 10
             
@@ -398,7 +423,11 @@ class LetterTileSprite : SKSpriteNode {
         
         for touch in (touches as Set<UITouch>) {
             zPosition = 3
-            let dropDown = SKAction.scaleTo(1.0, duration: 0.1)
+        var dropDown = SKAction.scaleTo(1.0, duration: 0.1)
+            if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
+                dropDown = SKAction.scaleTo(1.33, duration: 0.1)
+            }
+  
             runAction(dropDown, withKey: "drop")
             tileShadow.zPosition = self.zPosition - 1
             tileShadow.hidden = true
@@ -492,32 +521,43 @@ class LetterTileSprite : SKSpriteNode {
     /// - Parameters:
     ///     - none: nothing
     func returnTileToGridHome () {
-        let scaleUp : SKAction!
-        let scaleDown : SKAction!
+
         self.zPosition = 25
-        let returnPosition = Grid.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: self.tileSpriteParent.gridX, squareY: self.tileSpriteParent.gridY)
-        let slide = SKAction.moveTo(returnPosition, duration:0.3)
-        //let scaleUp = SKAction.scaleTo(1.5, duration:0.15)
-        //let scaleDown = SKAction.scaleTo(1.0, duration:0.15)
         
-        if mmwGame.deviceType == MMWGame.DeviceType.iPhone5 {
-            scaleUp = SKAction.scaleTo(1.0, duration:0.15)
-            scaleDown = SKAction.scaleTo(0.42, duration:0.15)
-        }
-        else if mmwGame.deviceType == MMWGame.DeviceType.iPhone6Plus {
-            scaleUp = SKAction.scaleTo(1.0, duration:0.15)
-            scaleDown = SKAction.scaleTo(0.5, duration:0.15)
-        }
-        else if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
-            scaleUp = SKAction.scaleTo(2.0, duration:0.15)
-            scaleDown = SKAction.scaleTo(1.00, duration:0.15)
-        }
-        else {
-            scaleUp = SKAction.scaleTo(1.5, duration:0.15)
-            scaleDown = SKAction.scaleTo(1.0,  duration:0.15)
+        var returnPosition = CGPoint(x: 0, y: 0)
+        if (self.tileSpriteParent.gridX != -1) {
+            returnPosition = Grid.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: self.tileSpriteParent.gridX, squareY: self.tileSpriteParent.gridY)
         }
         
-        runAction(SKAction.group([slide, scaleUp, scaleDown]))
+        
+        
+            let slide = SKAction.moveTo(returnPosition, duration:0.5)
+            var scaleUp = SKAction.scaleTo(1.5, duration:0.25)
+            var scaleDown = SKAction.scaleTo(1.00, duration:0.25)
+        
+        
+//            if mmwGame.deviceType == MMWGame.DeviceType.iPhone5 {
+//                scaleUp = SKAction.scaleTo(1.0, duration:0.15)
+//                scaleDown = SKAction.scaleTo(0.42, duration:0.15)
+//            }
+//            else if mmwGame.deviceType == MMWGame.DeviceType.iPhone6Plus {
+//                scaleUp = SKAction.scaleTo(1.0, duration:0.15)
+//                scaleDown = SKAction.scaleTo(0.5, duration:0.15)
+//            }
+            if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
+                scaleUp = SKAction.scaleTo(2.5, duration:0.25)
+                scaleDown = SKAction.scaleTo(1.33, duration:0.25)
+            }
+//            else {
+//                scaleUp = SKAction.scaleTo(1.5, duration:0.15)
+//                scaleDown = SKAction.scaleTo(1.0,  duration:0.15)
+//            }
+        
+            runAction(SKAction.group([slide, scaleUp, scaleDown]))
+        
+        
+        
+    
         self.tileGlow.hidden = true
         removeBoardTileHighlights ()
         //runAction(actionSound2)
@@ -527,39 +567,57 @@ class LetterTileSprite : SKSpriteNode {
     /// playTileToBoardGrid (pauseDuration: Double)
     /// - Returns: nothing
     /// - Parameters: pauseDuration: Double
-    ///     -
+    ///
     func playTileToBoardGrid (pauseDuration: Double) {
         //        let scaleUp : SKAction!
         //        let scaleDown : SKAction!
-        self.zPosition = 100
-        let boardPosition = Grid.sendToGridSquare(mmwGameScene.mmwBoardGrid, squareX: self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridYEnd)
         
-        let slide = SKAction.moveTo(boardPosition, duration:0.8)
+        mmwGameScene.animationsActive(true)
+        var animationTime = 0.0
         
-        var scaleUp   = SKAction.scaleTo(1.33, duration:0.4)
-        var scaleDown = SKAction.scaleTo(1.33, duration:0.4)
-        
-        
-        if mmwGame.deviceType == MMWGame.DeviceType.iPhone5 {
-            scaleUp = SKAction.scaleTo(1.0, duration:0.4)
-            scaleDown = SKAction.scaleTo(0.42, duration:0.4)
-        }
-        else if mmwGame.deviceType == MMWGame.DeviceType.iPhone6Plus {
-            scaleUp = SKAction.scaleTo(1.0, duration:0.4)
-            scaleDown = SKAction.scaleTo(0.51, duration:0.4)
-        }
-        else if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
-            scaleUp = SKAction.scaleTo(1.5, duration:0.4)
-            scaleDown = SKAction.scaleTo(1.00, duration:0.4)
-        }
-        else { // iPad device
-            scaleUp = SKAction.scaleTo(1.5, duration:0.4)
-            scaleDown = SKAction.scaleTo(1.00, duration:0.4)
+        self.zPosition = 99
+        //self.letterLabel.zPosition = 101
+        delay(1.00) {
+            self.zPosition = 5
+            self.letterLabel.zPosition = 6
         }
         
-        let pauseSlide = SKAction.sequence([slide])
+        var boardPosition = CGPoint(x: 0, y: 0)
+        if (self.tileSpriteParent.gridX != -1) {
+            boardPosition = Grid.sendToGridSquare(mmwGameScene.mmwBoardGrid, squareX: self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridYEnd)
+        }
+        //let boardPosition = Grid.sendToGridSquare(mmwGameScene.mmwBoardGrid, squareX: self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridYEnd)
+        
+        let slide = SKAction.moveTo(boardPosition, duration: 0.75)
+        var scaleUp   = SKAction.scaleTo(1.5, duration:0.4)
+        var scaleDown = SKAction.scaleTo(1.00, duration:0.3)
+        animationTime += 0.75
+        
+        
+//        if mmwGame.deviceType == MMWGame.DeviceType.iPhone5 {
+//            scaleUp = SKAction.scaleTo(1.0, duration:0.25)
+//            scaleDown = SKAction.scaleTo(0.42, duration:0.25)
+//        }
+//        else if mmwGame.deviceType == MMWGame.DeviceType.iPhone6Plus {
+//            scaleUp = SKAction.scaleTo(1.0, duration:0.1)
+//            scaleDown = SKAction.scaleTo(0.51, duration:0.1)
+//        }
+        if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
+            scaleUp = SKAction.scaleTo(2.5, duration:0.4)
+            scaleDown = SKAction.scaleTo(1.33, duration:0.3)
+        }
+//        else { // iPad device
+//            scaleUp = SKAction.scaleTo(1.5, duration:0.1)
+//            scaleDown = SKAction.scaleTo(1.00, duration:0.1)
+//        }
+        
+        //let pauseSlide = SKAction.sequence([slide])
         let scaleUpDown = SKAction.sequence([scaleUp, scaleDown])  // , self.actionSound2, ])
-        self.runAction(SKAction.group([pauseSlide, scaleUpDown]))
+        self.runAction(SKAction.group([slide, scaleUpDown]))
+        
+        
+        self.zPosition = 1
+        self.letterLabel.zPosition = 2
         
         // save original tile info for animations
         self.tileSpriteParent.gridTest = self.tileSpriteParent.gridHome
@@ -575,9 +633,11 @@ class LetterTileSprite : SKSpriteNode {
         self.userInteractionEnabled = false
         self.tileGlow.hidden = true
         self.removeBoardTileHighlights ()
-        delay(1.0) {
-            self.zPosition = 5
-        }
+        //delay(0.25) {
+        //    self.zPosition = 5
+        //}
+        self.zPosition = 5
+        self.letterLabel.zPosition = 6
         
         
         //        func playTile() {
@@ -625,6 +685,12 @@ class LetterTileSprite : SKSpriteNode {
         
         //        CATransaction.commit()
         
+        
+        delay(animationTime + 0.5){
+            mmwGameScene.animationsActive(false)
+        }
+
+        
     }
     
     
@@ -642,9 +708,21 @@ class LetterTileSprite : SKSpriteNode {
         tileScore.fontSize = 45
         tileScore.fontName = FontHUDName
         
-        let homePosition = Grid.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: self.tileSpriteParent.gridX, squareY: self.tileSpriteParent.gridY)
-        //let homePosition = Grid.sendToGridSquare(self.tileSpriteParent.gridTest!, squareX: self.tileSpriteParent.gridXTest, squareY: self.tileSpriteParent.gridYTest)
-        let endPosition  = Grid.sendToGridSquare(self.tileSpriteParent.gridEnd!, squareX: self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridYEnd)
+        
+        var homePosition = CGPoint(x: 0, y: 0)
+        if (self.tileSpriteParent.gridX != -1) {
+            homePosition = Grid.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: self.tileSpriteParent.gridX, squareY: self.tileSpriteParent.gridY)
+        }
+        var endPosition = CGPoint(x: 0, y: 0)
+        if (self.tileSpriteParent.gridX != -1) {
+            endPosition  = Grid.sendToGridSquare(self.tileSpriteParent.gridEnd!, squareX: self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridYEnd)
+        }
+
+//        let homePosition = Grid.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: self.tileSpriteParent.gridX, squareY: self.tileSpriteParent.gridY)
+//        //let homePosition = Grid.sendToGridSquare(self.tileSpriteParent.gridTest!, squareX: self.tileSpriteParent.gridXTest, squareY: self.tileSpriteParent.gridYTest)
+//        let endPosition  = Grid.sendToGridSquare(self.tileSpriteParent.gridEnd!, squareX: self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridYEnd)
+        
+        
         
         //self.mmwGameScene.mmwGameSceneViewController.playerArray[tile.tileOwner.rawValue - 1])
         
@@ -654,12 +732,13 @@ class LetterTileSprite : SKSpriteNode {
         let slide     = SKAction.moveTo(returnPosition, duration:1.0)
         let scaleUp   = SKAction.scaleTo(1.5, duration:0.5)
         let scaleDown = SKAction.scaleTo(0.66, duration:0.5)
-        let fadeIn    = SKAction.fadeInWithDuration(1.0)
-        let fadeOut   = SKAction.fadeOutWithDuration(1.0)
+        let fadeIn    = SKAction.fadeInWithDuration(0.8)
+        let fadeOut   = SKAction.fadeOutWithDuration(0.2)
         let animPart1 = SKAction.group([fadeIn, scaleUp])
         let animPart2 = SKAction.group([fadeOut, scaleDown])
         let removeText = SKAction.removeFromParent()
         let tileEffects = SKAction.sequence([animPart1, animPart2, removeText])
+        
         tileScore.runAction(SKAction.group([slide, tileEffects]) )
         
         
@@ -685,26 +764,42 @@ class LetterTileSprite : SKSpriteNode {
         
         tileScore = createLetterScoreText (CGPointMake(0.0, 0.0), endLocation: CGPointMake(0.0, 0.0), textColor: gameColors[self.tileSpriteParent.tileOwner.rawValue], displayText: String("") )
         tileScore.fontColor = gameColors[self.tileSpriteParent.tileOwner.rawValue]
-        tileScore.fontSize = 65
+        tileScore.fontSize = 75
         tileScore.fontName = FontHUDName
         tileScore.text = (String(number) )
-        tileScore.zPosition = 75
+        tileScore.zPosition = 95
         
-        let endPosition = Grid.sendToGridSquare(self.tileSpriteParent.gridEnd!, squareX: self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridYEnd)
-        var homePosition = endPosition
-        if isHorizontalScore == true {
-            homePosition = Grid.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: self.tileSpriteParent.gridX, squareY: self.tileSpriteParent.gridX)
+        
+        var endPosition = CGPoint(x: 0, y: 0)
+        var homePosition = CGPoint(x: 0, y: 0)
+        if (self.tileSpriteParent.gridX != -1) {
+            endPosition = Grid.sendToGridSquare(self.tileSpriteParent.gridEnd!, squareX: self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridYEnd)
+            homePosition = endPosition
+            
+            if isHorizontalScore == true {
+                homePosition = Grid.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: self.tileSpriteParent.gridX, squareY: self.tileSpriteParent.gridX)
+            }
+            else {
+                homePosition = Grid.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: 0, squareY: 0)
+            }
+
         }
-        else {
-            homePosition = Grid.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: 0, squareY: 0)
-        }
-        
-        
+
+        //let endPosition = Grid.sendToGridSquare(self.tileSpriteParent.gridEnd!, squareX: self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridYEnd)
+        //var homePosition = endPosition
+
+//        if isHorizontalScore == true {
+//            homePosition = Grid.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: self.tileSpriteParent.gridX, squareY: self.tileSpriteParent.gridX)
+//        }
+//        else {
+//            homePosition = Grid.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: 0, squareY: 0)
+//        }
+
         let changeInX : CGFloat = -(endPosition.x - homePosition.x)
         let changeInY : CGFloat = -(endPosition.y - homePosition.y)
         let returnPosition = CGPointMake(changeInX, changeInY)
         
-        let delay = SKAction.waitForDuration( Double(0.0) )
+        let delay = SKAction.waitForDuration( Double(0.5) )
         self.runAction( delay ) {  //  !! Delay for show word score text set here
             
             let unhide = SKAction.unhide()
@@ -731,9 +826,21 @@ class LetterTileSprite : SKSpriteNode {
     /// - Parameters:
     ///     - number: the value to send to home grid
     func showNegativeScoreTextToGridHome (number: Int) {
+        
+        
+        
+        var homePosition = CGPoint(x: 0, y: 0)
+        if (self.tileSpriteParent.gridX != -1) {
+            homePosition = Grid.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: self.tileSpriteParent.gridX, squareY: self.tileSpriteParent.gridY)
+        }
+        var endPosition = CGPoint(x: 0, y: 0)
+        if (self.tileSpriteParent.gridX != -1) {
+            endPosition = self.position
+        }
+        
 
-        let homePosition = Grid.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: self.tileSpriteParent.gridX, squareY: self.tileSpriteParent.gridY)
-        let endPosition = self.position
+//        let homePosition = Grid.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: self.tileSpriteParent.gridX, squareY: self.tileSpriteParent.gridY)
+//        let endPosition = self.position
 
         let negPlayScore = SKLabelNode() // = createLetterScoreText (self.position, endLocation: homePosition, textColor: gameColors[self.tileSpriteParent.tileOwner.rawValue], displayText: String(number) )
 
@@ -749,9 +856,9 @@ class LetterTileSprite : SKSpriteNode {
 
         let delay = SKAction.waitForDuration( Double(0.0) )
         self.runAction( delay ) {  //  !! Delay for show word score text set here
-        let slide = SKAction.moveTo(returnPosition, duration:1.5)
+        let slide = SKAction.moveTo(returnPosition, duration:1.0)
         let scaleUp = SKAction.scaleTo(2.0, duration:0.75)
-        let scaleDown = SKAction.scaleTo(0.5, duration:0.75)
+        let scaleDown = SKAction.scaleTo(0.5, duration:0.25)
         let fadeIn = SKAction.fadeInWithDuration(0.75)
         let fadeOut = SKAction.fadeOutWithDuration(0.75)
         let remove = SKAction.removeFromParent()
@@ -1938,7 +2045,7 @@ class LetterTileSprite : SKSpriteNode {
 
         
         if self.tileSpriteParent.tileState == TileState.PlayedMadeWord  {
-            delay(0.5 * Double(possibleWordTilesHorizontal.count)) {
+            delay(0.25 * Double(possibleWordTilesHorizontal.count)) {
                 self.scoreTilesInArr(possibleWordTilesHorizontal, tileArrToScoreVertical: possibleWordTilesVertical, wordStringHorizontal: horizontalString, wordStringVertical: verticalString)
             }
         }
@@ -1979,7 +2086,8 @@ class LetterTileSprite : SKSpriteNode {
             for tile in tileArrToScore {
 //                let tileWordState = tile.tileSprite.testForValidWordsAtDropSpot(tile.gridXEnd, tileSnapResultsYGrid: tile.gridYEnd, isAI: true, isAIScoringPass: true)
                 var pointsForTile = 0
-                
+                tile.tileSprite.zPosition = 1
+                tile.tileSprite.letterLabel.zPosition = 2
 
                 
                 //                if numPasses == 0 {
@@ -2002,7 +2110,10 @@ class LetterTileSprite : SKSpriteNode {
                         self.adjustPlayerPoints(pointsForTile, player: (mmwGameSceneViewController.playerArray[tile.tileOwner.rawValue - 1]) )
                         if tile.tileState == TileState.Played  {
                             tile.tileState = TileState.Locked
-                            delayTime += 0.8
+                            delayTime += 0.25
+                        }
+                        if tile.tileState == TileState.PlayedMadeWord  {
+                            delayTime += 0.25
                         }
                         
                         
@@ -2072,8 +2183,7 @@ class LetterTileSprite : SKSpriteNode {
                 //if wordLen >= self.mmwGameSceneViewController.minWordSize {
                 self.showWordScoreTextToGridHome(pointsForCompletingWord, isHorizontalScore: true)      // doesn't actually use value, already set in setting letterScore.2 above
                 self.tileSpriteParent.tileSprite.letterLabel.fontColor = tileColors[self.tileSpriteParent.tileOwner.rawValue]
-                
-                
+
                 self.color = UIColor.blackColor()
                 
 //                if self.tileSpriteParent.playedMadeWord == PlayedMadeWord.Horizontal || self.tileSpriteParent.playedMadeWord == PlayedMadeWord.Vertical {

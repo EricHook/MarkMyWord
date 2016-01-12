@@ -62,6 +62,7 @@ class MainMenuScene: SKScene {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
             let _node:SKNode = self.nodeAtPoint(location)
+            
             if(_node.name == "playBtn"){
                 print("going to mmw scene") //create MMW controller
 

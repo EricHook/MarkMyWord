@@ -84,9 +84,9 @@ class MMWTile {
         
         self.gridLocation = GridLocation.Undealt
         gridLocationEnd = GridLocation.Undealt
-        gridHome = nil
-        gridEnd = nil
-        gridTest = nil
+        gridHome = mmwGameScene.mmwBoardGrid
+        gridEnd = mmwGameScene.mmwBoardGrid
+        gridTest = mmwGameScene.mmwBoardGrid
         gridX = -1
         gridY = -1
         gridXEnd = -1
@@ -103,6 +103,9 @@ class MMWTile {
         tileOwner = TileOwner.None
         tileGrid = nil
         description = ""
+        
+        tileSprite.color = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.00)
+        tileSprite.letterLabel.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.98)
 
     }
     

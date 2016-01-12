@@ -252,10 +252,10 @@ class PlayerView: SKSpriteNode {
         self.playerScoreLabel.fontColor = FontHUDBlack
         //changePlayerScoreDisplay()
         self.playerTileCover.hidden = false
-        self.playerGridGlow.hidden = true
-        mmwGameScene.topDisplayLabel.text = ("Great Job, \(self.playerNameLabel.text)!!!")
-        mmwGameScene.topDisplayLabel2.text = ("You rock!!!")
-        mmwGameScene.bottomDisplayLabel.text = ("Word Feedback ...")
+        //self.playerGridGlow.hidden = true
+//        mmwGameScene.topDisplayLabel.text = ("Great Job, \(self.playerNameLabel.text)!!!")
+//        mmwGameScene.topDisplayLabel2.text = ("You rock!!!")
+//        mmwGameScene.bottomDisplayLabel.text = ("Word Feedback ...")
         
         let playerGrid = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid!  // .grid2DArr
         playerGrid.makeTilesInGridInteractive(false)
