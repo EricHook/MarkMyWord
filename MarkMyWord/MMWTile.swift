@@ -68,11 +68,7 @@ class MMWTile {
     }
     
     func resetTileValues () {
-        //tileSprite : LetterTileSprite!
-        //tileBuilder = nil
-        //tileType = TileType.Unknown
-        //spritename = SpriteName.Blank
-        
+        self.tileSprite.removeActionForKey("tileAction")
         gridHome?.grid2DArr[gridX][gridY] = MMWTile()
         
         if tileType == TileType.Letter {
@@ -98,7 +94,7 @@ class MMWTile {
         tileSprite.zPosition = 2
         tileSprite.letterLabel.zPosition = 3
         
-        var tileSize = CGSize(width: 47 , height: 47)
+        let tileSize = CGSize(width: 47 , height: 47)
         tileSprite.size = tileSize
         if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
             tileSprite.size.width *= CGFloat(1.33)
@@ -109,21 +105,15 @@ class MMWTile {
             tileSprite.tileGlow.yScale *= 0.75
         }
 
-        
-        
         tileSprite.letterLabel.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.98)
-        
-        //tileText = "?"
+        tileSprite.color = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.00)
+
         undealt = true
         tileState = TileState.Undealt
         playedMadeWord = PlayedMadeWord.None
         tileOwner = TileOwner.None
         tileGrid = nil
         description = ""
-        
-        tileSprite.color = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.00)
-        tileSprite.letterLabel.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.98)
-
     }
     
     init () {  // creates blank placeholder tile

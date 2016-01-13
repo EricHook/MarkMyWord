@@ -238,70 +238,18 @@ class MMWOptionScreen: SKScene {
     
     func newGameScene () {
         print("going to NEW mmw scene from mmwOptionScreen") //create MMW controller
-        
-//        mmwGameScene = nil
-//        mmwGameScene = MMWGameScene(size: screenSize!)
-//        mmwGameSceneViewController = nil
-//        mmwGameSceneViewController = MMWGameSceneViewController()
-        
-//        mmwGameSceneViewController.tileCollection = nil
-//        mmwGameSceneViewController.tileCollection = MMWTileBuilder()
-        
-//        for tile in (mmwGameSceneViewController.tileCollection?.mmwPlayer2LetterTile2DArray)! {
-//            tile.
-//        }
-        
         gameViewController.ViewAllOptionsUI.hidden = true
         
-        //delay(<#T##delay: Double##Double#>, closure: <#T##() -> ()#>)
-        
-//        while mmwGameScene.animationsTimedOut == false {
-//            print ("...")
-//        }
-        
-        
-        
-        if mmwGameScene.animationsTimedOut == true {
-        print("animaitions ready")
-        } else { print("animaitions NOT ready") }
-        
-        
-        mmwGameScene.resetGameView()
-        //mmwGameSceneViewController.resetGame()
-        mmwGameScene.startGame()
-        
-        
-
-        
-//        print(">>>>>>>>>>>>>>>>>>>>  self.view?.presentScene(mmwGameScene) PRE")
-//    
-//        self.view?.presentScene(mmwGameScene)
-//    
-//        print(">>>>>>>>>>>>>>>>>>>>  self.view?.presentScene(mmwGameScene) POST")
-        
-//        mmwGameScene.resetGameView()
-//        //mmwGameSceneViewController.resetGame()
-//        mmwGameScene.startGame()
-        
-        //gameViewController.buttonAction() // test for functionality
-        
-        delay (10) {
+        delay (0) {
             gameViewController.ViewAllOptionsUI.hidden = true
             self.view?.presentScene(mmwGameScene)
-            
-            mmwGameScene.resetGameView()
+
+            //mmwGameScene.resetGameView()   // includes tileCollection?.resetAllTiles()
             //mmwGameSceneViewController.resetGame()
-            mmwGameScene.startGame()
-
-        }
-        
-        
-        
-        
+            mmwGameScene.startGame()  // set grids, starter words, ...
             
         }
-        
-
+    }
 
     
 //    func buttonAction(sender:UIButton!)
@@ -328,23 +276,19 @@ class MMWOptionScreen: SKScene {
         }
     }
     
-    //    func presentMenuScene() {
-    //        let transition = SKTransition.crossFadeWithDuration(2.0)
-    //        let menuScene = MenuScene(size: size, gameResult: true, score: 123)
-    //        view?.presentScene(menuScene, transition: transition)
-    //        print("presentMenuScene")
-    //    }
-    
-    //    func createMMWSceneController() -> MMWGameSceneViewController {
-    //        mmwGameSceneViewController = MMWGameSceneViewController(size: size)
-    //        return mmwGameSceneViewController
-    //    }
-    
+//    func presentMenuScene() {
+//        let transition = SKTransition.crossFadeWithDuration(2.0)
+//        let menuScene = MenuScene(size: size, gameResult: true, score: 123)
+//        view?.presentScene(menuScene, transition: transition)
+//        print("presentMenuScene")
+//    }
 
-    
+//    func createMMWSceneController() -> MMWGameSceneViewController {
+//        mmwGameSceneViewController = MMWGameSceneViewController(size: size)
+//        return mmwGameSceneViewController
+//    }
 //    func presentMMWScene(){
 //        gameViewController.ViewAllOptionsUI.hidden = true
-//
 //        view?.presentScene(mmwGameScene)
 //    }
     

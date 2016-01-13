@@ -670,48 +670,41 @@ class MMWTileBuilder {
     func resetAllTiles() {
 
         let gameGrids = [mmwGameScene.mmwBoardGrid, mmwGameScene.mmwPlayer1Grid, mmwGameScene.mmwPlayer2Grid, mmwGameScene.mmwPlayer3Grid, mmwGameScene.mmwPlayer4Grid  ]
-        
+        // remove all actions from tiles e.g. moving, scaling, etc
         for grid in gameGrids {
             // move letter tiles back to mmwTileArray and replace with placeholder tiles
             for tileRow in 0..<grid.grid2DArr.count {  //self.mmwBoardTile2DArray! {
                 for tileCol in 0..<grid.grid2DArr[tileRow].count {
                     let tile = grid.grid2DArr[tileRow][tileCol]
                     if tile.tileType == TileType.Letter {
-                        
                         tile.tileSprite.removeAllActions()
-                        
-                        
-                        //mmwTileArray.append(tile)
+                    }
+                }
+            }
+        }
+        // reset tiles for all letters eg grid, zposition, scale, etc
+        for grid in gameGrids {
+            // move letter tiles back to mmwTileArray and replace with placeholder tiles
+            for tileRow in 0..<grid.grid2DArr.count {  //self.mmwBoardTile2DArray! {
+                for tileCol in 0..<grid.grid2DArr[tileRow].count {
+                    let tile = grid.grid2DArr[tileRow][tileCol]
+                    if tile.tileType == TileType.Letter {
                         grid.grid2DArr[tileRow][tileCol] = self.mmwTileArrayPlaceholder.removeFirst()
-                        
                         tile.resetTileValues()
                     }
                 }
             }
         }
-        
         // return letter tiles and placeholders to respective arrays
         for tile in self.mmwDiscardedTileArray {
             if tile.tileType == TileType.Placeholder {
-
                 tileCollection?.mmwTileArrayPlaceholder.append(mmwDiscardedTileArray.removeFirst())
-                
-                //tile.resetTileValues()
             }
             if tile.tileType == TileType.Letter {
-                
-                
-                mmwDiscardedTileArray.removeFirst()
-                tileCollection?.mmwTileArray.append(tile)
-                
+                tileCollection?.mmwTileArray.append(mmwDiscardedTileArray.removeFirst())
                 tile.resetTileValues()
             }
-            
         }
-        
-        //getNewLetterTiles()
-        
-        
     }
     
     /// send/move num Tiles from one tile array to another tile array
