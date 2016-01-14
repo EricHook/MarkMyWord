@@ -206,7 +206,7 @@ class Grid {
                         //if self.grid2DArr[x][y].tileText != "!" {
                             tileCollection!.mmwDiscardedTileArray.append(self.grid2DArr[x][y])
                             self.grid2DArr[x][y].tileSprite.hidden = true
-                            self.grid2DArr[x][y] = MMWTile()
+                            self.grid2DArr[x][y] = (tileCollection?.mmwTileArrayPlaceholder.removeFirst())!
                         //}
                     }
 

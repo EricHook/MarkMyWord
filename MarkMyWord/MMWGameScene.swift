@@ -3366,6 +3366,8 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
         
         print("---   in resetGameView mmwGameScene")
         gameViewController.ViewAllOptionsUI.hidden = true
+        
+        tileCollection!.resetAllTiles()
 
         // update locations and visibility of player views
         player1View = updatePlayerView(1, playerView: player1View)
@@ -3388,8 +3390,6 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
         bottomDisplayLabel.text =  "Begin ... "
         topDisplayLabel.text = "Welcome to Mark My Word"
         topDisplayLabel2.text =  ""
-        
-        tileCollection!.resetAllTiles()
 
         mmwGameScene.setGrids() // sets tile grid positions, size square, number squares and position on screen for each grid possible
         
@@ -3439,6 +3439,8 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
             player.playerView!.playerViewEndTurn()
         }
         player1View.playerViewBeginTurn()
+        
+        animationsActive(false)
     }
     
     func testPlayButton () {
@@ -3463,11 +3465,13 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
     func playBtnPlay (playButtonPlayNode: SKNode) {
         
         func playAILetters() {
-            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-            dispatch_async(dispatch_get_global_queue(priority, 0), { ()->() in
-                
-                print("Currently dispatched thread asynchronously 0 playBtnPlay playAILetters")
-                
+            
+            
+//            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+//            dispatch_async(dispatch_get_global_queue(priority, 0), { ()->() in
+//                
+//                print("Currently dispatched thread asynchronously 0 playBtnPlay playAILetters")
+            
                 //get tile from current player
                 //print("Player tiles to play \(self.mmwGameSceneViewController.playerArray[self.mmwGameSceneViewController.playerTurn - 1].playerLetterGrid ) ")
                 //self.mmwGameSceneViewController.playerArray[self.mmwGameSceneViewController.playerTurn-1].playerLetterGrid.printGrid()
@@ -3515,8 +3519,34 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
                     
                     
                     ////////////////////////
+ 
                     
-                    if (self.checkForValidWordsAI(lockedTile.gridXEnd, gridYSpot: lockedTile.gridYEnd, permutationsToPlay: permutationsToPlay).hasValidWord) == true {
+                    if (self.checkForValidWordsAI(lockedTile.gridXEnd, gridYSpot: lockedTile.gridYEnd, permutationsToPlay: permutationsToPlay, lookHorizontal: true).hasValidWord) == true {
+                        
+                        mmwGameScene.animationsActive(true)
+                        
+                        delay(12.0){  // animationTime +
+                            mmwGameScene.animationsActive(false)
+                        }
+                        
+                        checkForValidWordsAISearchedTRUE++
+                        break
+                    }
+                        
+                    else if (self.checkForValidWordsAI(lockedTile.gridXEnd, gridYSpot: lockedTile.gridYEnd, permutationsToPlay: permutationsToPlay, lookHorizontal: false).hasValidWord) == true {
+                        
+                        mmwGameScene.animationsActive(true)
+                        
+                        delay(12.0){  // animationTime +
+                            mmwGameScene.animationsActive(false)
+                        }
+                        
+                        checkForValidWordsAISearchedTRUE++
+                        break
+                    }
+                }
+                
+
                         
 //                        if (self.checkForValidWordsAI(lockedTile.gridXEnd, gridYSpot: lockedTile.gridYEnd, numLettersToPlayMin: numLettersToPlayMin, numLettersToPlayMax: numLettersToPlayMax, permutationsToPlay: permutationsToPlay).hasValidWord) == true {
                         
@@ -3524,9 +3554,8 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
                             
                             
                             
-                        checkForValidWordsAISearchedTRUE++
-                        break
-                    }
+                    
+                    //}
                     // check for playable partial word (if low AI or no valid word)
                     
 //                    if (self.checkForValidWordsAI(lockedTile.gridXEnd, gridYSpot: lockedTile.gridYEnd, numLettersToPlayMin: numLettersToPlayMin, numLettersToPlayMax: numLettersToPlayMax, permutationsToPlay: permutationsToPlay).   .hasValidWord) == true  {
@@ -3535,7 +3564,7 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
 //                    }
                     
                     
-                }
+                //}
                 print("numLockedTilesSearched : \(numLockedTilesSearched++), checkForValidWordsAISearchedTRUE : \(checkForValidWordsAISearchedTRUE) playBtnPlay loadWords() mmwGameScene")
                 
                 // Change turns if player has no letter tiles remaining
@@ -3543,12 +3572,18 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
                 if letterTilesRemaining <= 0 {
                     self.changePlayerTurn()
                 }
+            
+            
 
-                dispatch_async(dispatch_get_main_queue(), {
-                    print("hello from playBtnPlay playAILetters thread executed as dispatch")
-                })
-            })
-            print("hello from playBtnPlay playAILetters thread")
+//                dispatch_async(dispatch_get_main_queue(), {
+//                    print("hello from playBtnPlay playAILetters thread executed as dispatch")
+//                })
+//            })
+//            print("hello from playBtnPlay playAILetters thread")
+            
+            
+            
+            
         }
         
         //mmwGameSceneViewController.playerArray[self.mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.getArrayLetterTilesInGrid()
@@ -3754,9 +3789,6 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
             
             //runAction(actionSound)
             
-            //            for tile in mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.grid2DArr {
-            //            }
-            
             mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.dealGridFromArrayRandom(&tileCollection!.mmwTileArray, numTilesToDeal: 6, playerNum: (mmwGameSceneViewController.playerTurn), clearGrid: true)
             
             showTilesInSquares(tileCollection!) // 'deals' player tiles and shows demo tiles on board for testing
@@ -3771,12 +3803,10 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
         if isActive {
             optionsButton.alpha = 0.5
             optionsButton.userInteractionEnabled = true
-            
         }
         else {
             optionsButton.alpha = 1.0
              optionsButton.userInteractionEnabled = false
-
         }
     }
     
@@ -3784,19 +3814,15 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
         var readyToRestart  = false
         
         print("options button pressed")
-        
-        
-        //        let transition = SKTransition.  .crossFadeWithDuration(0.2)
-        //        view?.presentScene(mmwOptionScreen, transition: transition)
+
         view?.presentScene(mmwOptionScreen)
         
         print("back to  mmwGameScene from optionsButton")
-        
 
-        delay (5) {
-            print ("!!!!!!!!!!!!!!!!!!!!!!!!  delay 15 optionsButton DELAY ready to restart")
+        delay (0) {
+            print ("!!!!!!!!!!!!!!!!!!!!!!!!  delay 0 optionsButton DELAY ready to restart")
             readyToRestart = true
-            self.animationsTimedOut = true
+            //self.animationsTimedOut = true
 
         }
         
@@ -4199,383 +4225,74 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
     }
     
     
-    func checkForValidWordsAI (gridXSpot: Int, gridYSpot: Int, permutationsToPlay : Set<String>) -> (hasValidWord: Bool, validAILetterPlayArr: [validAILetterPlay]) {  // might have to check if numLettersToPlay more than player tile letters ???
-        //var validPartialAILetterPlayArr    : [validAILetterPlay] = [validAILetterPlay]()
-        var validWholeWordAILetterPlayArr  : [validAILetterPlay] = [validAILetterPlay]()
-        var hasValidWord = false
-        
-        //        let playerLetterTilesArr = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.getArrayLetterTilesInGrid() // num of tilesToPlay 0 to numTiles in player grid
-        //        var playerTilesLettersArr : [String] = [String]()  // the playerTilesArr in corresponding Letter array
-        //
-        //        for tile in playerLetterTilesArr {                    // prints out letters in player tiles
-        //            print("\(tile.tileText) ", terminator: "")
-        //            playerTilesLettersArr.append(tile.tileText) // adds letters in player tiles to playerTilesLettersArr[]
-        //        };                                  print("")      // to add a return on last letter
-        
-        //let permutationsToPlay : Set<String> = permuteLetters(playerTilesLettersArr, minStringLen: numLettersToPlayMin, maxStringLen: numLettersToPlayMax)
-        //print(permutationsToPlay)
-        
-        if arc4random_uniform(10) < 5 {  // determines whether looks H or V for word first
-            print("LOOKING HORIZONTAL FOR SPOTS! checkForValidWordsAI mmwGameScene")
-            let checkForWordResults = checkForValidWordsAIHorizontal (gridXSpot, gridYSpot: gridYSpot, permutationsToPlay: permutationsToPlay)
-            hasValidWord = checkForWordResults.hasValidWord
-            validWholeWordAILetterPlayArr = checkForWordResults.validAILetterPlayArr
-            if hasValidWord == true {
-                return (hasValidWord,  validWholeWordAILetterPlayArr)
-            }
-            else {
-                print("NO HORIZONTAL >>> NOW LOOKING VERTICAL FOR SPOTS!  checkForValidWordsAI mmwGameScene")
-                let checkForWordResults = checkForValidWordsAIVertical (gridXSpot, gridYSpot: gridYSpot, permutationsToPlay: permutationsToPlay)
-                hasValidWord = checkForWordResults.hasValidWord
-                validWholeWordAILetterPlayArr = checkForWordResults.validAILetterPlayArr
-                if hasValidWord == true {
-                    return (hasValidWord,  validWholeWordAILetterPlayArr)
-                }
-            }
-            
-        }
-        else {
-            print("LOOKING VERTICAL FOR SPOTS!  checkForValidWordsAI mmwGameScene")
-            let checkForWordResults = checkForValidWordsAIVertical (gridXSpot, gridYSpot: gridYSpot, permutationsToPlay: permutationsToPlay)
-            hasValidWord = checkForWordResults.hasValidWord
-            validWholeWordAILetterPlayArr = checkForWordResults.validAILetterPlayArr
-            if hasValidWord == true {
-                return (hasValidWord,  validWholeWordAILetterPlayArr)
-            }
-            else {
-                print("NO VERTICAL >>> LOOKING HORIZONTAL FOR SPOTS! checkForValidWordsAI mmwGameScene")
-                let checkForWordResults = checkForValidWordsAIHorizontal (gridXSpot, gridYSpot: gridYSpot, permutationsToPlay: permutationsToPlay)
-                hasValidWord = checkForWordResults.hasValidWord
-                validWholeWordAILetterPlayArr = checkForWordResults.validAILetterPlayArr
-                if hasValidWord == true {
-                    return (hasValidWord,  validWholeWordAILetterPlayArr)
-                }
-            }
-            
-        }
-        return (false, validWholeWordAILetterPlayArr)
-    }
     
-    
-//    //////////////////////////////////
+//    ///////////////////
 //    
-//    func checkForValidWordsAI (gridXSpot: Int, gridYSpot: Int, permutationsToPlay : Set<String>) -> (hasValidWord: Bool, validAILetterPlayArr: [validAILetterPlay], isHorizontalWord: Bool) {
-// 
-//        ////////////  TEST FOR ADJACENT TILE PARTIAL WORDS
-//        var tileArrayToPlay : [MMWTile] = [MMWTile]()
-//        var gridTestX = gridXSpot
-//        var gridTestY = gridYSpot
-//        var lockedBoardTilesArr = mmwGameScene.mmwBoardGrid.getArrayLetterTilesInGrid() // start at locked and move L/R and Up/Down
-//        var playerLetterTilesGrid = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid // num of tilesToPlay 0 to numTiles in player grid
-//        
-//        ///////////////// HORIZONTAL && VERTICAL
-//        var currentTestAILetterPlay        = validAILetterPlay()
-//        var currentPossibleAILetterPlayArr = [validAILetterPlay]()
-//        var validPartialAILetterPlayArr    : [validAILetterPlay] = [validAILetterPlay]()
+//    
+//    func checkForValidWordsAI (gridXSpot: Int, gridYSpot: Int, permutationsToPlay : Set<String>) -> (hasValidWord: Bool, validAILetterPlayArr: [validAILetterPlay]) {  // might have to check if numLettersToPlay more than player tile letters ???
+//        //var validPartialAILetterPlayArr    : [validAILetterPlay] = [validAILetterPlay]()
 //        var validWholeWordAILetterPlayArr  : [validAILetterPlay] = [validAILetterPlay]()
-//        var foundPartialWordsNumber : Int = 0
-//        var foundWholeWordsNumber   : Int = 0
-//        var placedTiles = 0
-//        var existingPlayedTiles = 0
-//        var wordString = ""               // mmwGameSceneViewController.mmwGameScene.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].letterString
+//        var hasValidWord = false
 //        
-//        let openTileLocations = calculateOpenTileLocations(gridXSpot, gridYStart: gridYSpot)
+//        //        let playerLetterTilesArr = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.getArrayLetterTilesInGrid() // num of tilesToPlay 0 to numTiles in player grid
+//        //        var playerTilesLettersArr : [String] = [String]()  // the playerTilesArr in corresponding Letter array
+//        //
+//        //        for tile in playerLetterTilesArr {                    // prints out letters in player tiles
+//        //            print("\(tile.tileText) ", terminator: "")
+//        //            playerTilesLettersArr.append(tile.tileText) // adds letters in player tiles to playerTilesLettersArr[]
+//        //        };                                  print("")      // to add a return on last letter
 //        
-//        let numEmptyLetterSpotsLeft  = openTileLocations.leftOpenTileLocations  // from 0 to num player tiles PLUS existing tiles MINUS numLettersRight AND more than grid x = 0
-//        let numEmptyLetterSpotsRight = openTileLocations.rightOpenTileLocations // from 0 to num player tiles PLUS existing tiles MINUS numLettersLeft  AND more than grid x = 0
-//        let numEmptyLetterSpotsUp    = openTileLocations.upOpenTileLocations  // from 0 to num player tiles PLUS existing tiles MINUS numLettersRight AND more than grid x = 0
-//        let numEmptyLetterSpotsDown  = openTileLocations.downOpenTileLocations // from 0 to num player tiles PLUS existing tiles MINUS numLettersLeft  AND more than grid x = 0
+//        //let permutationsToPlay : Set<String> = permuteLetters(playerTilesLettersArr, minStringLen: numLettersToPlayMin, maxStringLen: numLettersToPlayMax)
+//        //print(permutationsToPlay)
 //        
-//        let numEmptyLetterSpotsLeftOrUp     = numEmptyLetterSpotsLeft  // from 0 to num player tiles PLUS existing tiles MINUS numLettersRight AND more than grid x = 0
-//        let numEmptyLetterSpotsRightOrDown  = numEmptyLetterSpotsRight // from 0 to num player tiles PLUS existing tiles MINUS numLettersLeft  AND more than grid x = 0
-//        
-//        
-//        var numTilesToPlayLeftOrUpMaxComplete  = 0 //(availableTiles.count <= numEmptyLetterSpotsLeft)  ? availableTiles.count : numEmptyLetterSpotsLeft // # tiles to play Left : 0 to < playerTilesArr && < numEmptyLetterSpotsLeft
-//        var numTilesToPlayRightOrDownMaxComplete = 0 //(availableTiles.count <= numEmptyLetterSpotsRight) ? availableTiles.count : numEmptyLetterSpotsRight // # tiles to play Left : 0 to < playerTilesArr && < numEmptyLetterSpotsLeft
-//        
-//        var testString = self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText // string starts with letter at valid locked tile location
-//        var shiftLeftOrUp = numTilesToPlayLeftOrUpMaxComplete
-//        var shiftRightOrDown = 0
-//        var playerLettersToTest      = ""
-//        var playerLettersToTestLeftOrUp  = ""
-//        var playerLettersToTestRightOrDown = ""
-//        
-//        var foundWholeWord = false
-//        
-//        
-//        // check horizontal pass +- x , gridToTest X
-//        var passNumber = 0
-//        var isHorizontalWord = true
-//        var gridToTest = gridTestX
-//        var gridNotToTest = gridTestY
-//        if passNumber == 0 { // horizontal pass == 0 , vertical pass == 1
-//            isHorizontalWord = true
+//        if arc4random_uniform(10) < 5 {  // determines whether looks H or V for word first
+//            print("LOOKING HORIZONTAL FOR SPOTS! checkForValidWordsAI mmwGameScene")
+//            let checkForWordResults = checkForValidWordsAIHorizontal (gridXSpot, gridYSpot: gridYSpot, permutationsToPlay: permutationsToPlay)
+//            hasValidWord = checkForWordResults.hasValidWord
+//            validWholeWordAILetterPlayArr = checkForWordResults.validAILetterPlayArr
+//            if hasValidWord == true {
+//                return (hasValidWord,  validWholeWordAILetterPlayArr)
+//            }
+//            else {
+//                print("NO HORIZONTAL >>> NOW LOOKING VERTICAL FOR SPOTS!  checkForValidWordsAI mmwGameScene")
+//                let checkForWordResults = checkForValidWordsAIVertical (gridXSpot, gridYSpot: gridYSpot, permutationsToPlay: permutationsToPlay)
+//                hasValidWord = checkForWordResults.hasValidWord
+//                validWholeWordAILetterPlayArr = checkForWordResults.validAILetterPlayArr
+//                if hasValidWord == true {
+//                    return (hasValidWord,  validWholeWordAILetterPlayArr)
+//                }
+//            }
 //            
 //        }
 //        else {
-//            isHorizontalWord = false
-//            var gridToTest = gridTestY
-//            var gridToTestOther = gridTestX
-//        }
-//        
-//        for playerLetters in permutationsToPlay {  // get all permutations of player letters based on number
-//            
-//            //            if self.secondsLeft < 5 { break }
-//            
-//            var lettersPlayedInPermutation = 0
-//            
-//            numTilesToPlayLeftOrUpMaxComplete =  (numEmptyLetterSpotsLeft  <= playerLetters.characters.count) ?  numEmptyLetterSpotsLeftOrUp  : playerLetters.characters.count
-//            numTilesToPlayRightOrDownMaxComplete = (numEmptyLetterSpotsRight <= playerLetters.characters.count) ?  numEmptyLetterSpotsRightOrDown : playerLetters.characters.count
-//            
-//            shiftLeftOrUp = numTilesToPlayLeftOrUpMaxComplete
-//            shiftRightOrDown = 0
-//            
-//            for shiftToRightOrDown in 0..<playerLetters.characters.count {
-//                
-//                while shiftRightOrDown <= numTilesToPlayRightOrDownMaxComplete {
-//                    playerLettersToTest        = playerLetters                      // Strings of letters in Player Tile 2D Array
-//                    playerLettersToTestLeftOrUp    = playerLetters                      // Strings of letters to play LEFT of base location
-//                    playerLettersToTestRightOrDown   = playerLetters                      // Strings of letters to play RIGHT of base location
-//                    var numTilesToPlayLeftOrUpMax  = numTilesToPlayLeftOrUpMaxComplete      // most possible tile slots to left of base location
-//                    var numTilesToPlayRightOrDownMax = numTilesToPlayRightOrDownMaxComplete     // most possible tile slots to right of base location
-//                    
-//                    shiftRightOrDown +=  (playerLettersToTestLeftOrUp.characters.count - numTilesToPlayLeftOrUpMax)
-//                    
-//                    if playerLettersToTestLeftOrUp.characters.count > 0 && shiftRightOrDown <= playerLetters.characters.count {
-//                        let rangeLeftOrUp : Range! = playerLettersToTestLeftOrUp.endIndex.advancedBy(-shiftRightOrDown)..<playerLettersToTestLeftOrUp.endIndex
-//                        playerLettersToTestLeftOrUp.removeRange(rangeLeftOrUp)  // make copy of letters to manipulate and remove from
-//                    }
-//                    if playerLettersToTestRightOrDown.characters.count > 0 && shiftRightOrDown <= playerLetters.characters.count {
-//                        let rangeRightOrDown : Range! = playerLettersToTestRightOrDown.startIndex..<playerLettersToTestRightOrDown.endIndex.advancedBy(-shiftRightOrDown)
-//                        playerLettersToTestRightOrDown.removeRange(rangeRightOrDown)  // make copy of letters to manipulate and remove from
-//                    }
-//                    // CHECK LEFT  /  OR UP
-//                    gridTestX = gridXSpot // reset test spot as it may have been moved to right in code below
-//                    gridTestY = gridYSpot
-//                    
-//                    while playerLettersToTestLeftOrUp.characters.count > (0) && playerLettersToTestLeftOrUp.characters.count <= numTilesToPlayLeftOrUpMax {
-//                        if (gridToTest>=1 && gridToTest<=14) && self.mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileType != TileType.Letter {
-//                            --numTilesToPlayLeftOrUpMax
-//                            let permutationLeftOrUpLastLetter = String( playerLettersToTestLeftOrUp.removeAtIndex(playerLettersToTestLeftOrUp.endIndex.predecessor()) )
-//                            
-//                            currentTestAILetterPlay.tileSpriteLetter = permutationLeftOrUpLastLetter
-//                            currentTestAILetterPlay.gridXEnd = gridTestX-1
-//                            currentTestAILetterPlay.gridYEnd = gridTestY
-//                            currentPossibleAILetterPlayArr.append(currentTestAILetterPlay)
-//                            lettersPlayedInPermutation++
-//                            testString = permutationLeftOrUpLastLetter + testString
-//                            if (gridToTest>=1) {--gridToTest}
-//                            
-//                            while gridTestX>=1 && self.mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileType == TileType.Letter {
-//                                let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileText)
-//                                testString = existingLetterToAdd + testString
-//                                if (gridToTest>=1) {--gridToTest}
-//                            }
-//                        }
-//                            
-//                        else {
-//                            while gridTestX>=1 && self.mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileType == TileType.Letter {
-//                                let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileText)
-//                                testString = existingLetterToAdd + testString
-//                                
-//                                if (gridToTest>=1) {--gridToTest}
-//                            }
-//                        }
-//                    }
-//                    // grab left letters if only right letters on full right shift
-//                    if gridToTest >= 1 &&  self.mmwBoardGrid.grid2DArr[gridToTest-1][gridTestY].tileType == TileType.Letter { // && playerLettersToTestLeft.characters.count == (0) {
-//                        gridToTest = gridXSpot // reset test spot as it was moved to left in code above
-//                        gridTestY = gridYSpot
-//                        
-//                        while gridTestX>=1 && self.mmwBoardGrid.grid2DArr[gridToTest-1][gridTestY].tileType == TileType.Letter {
-//                            let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridToTest-1][gridTestY].tileText)
-//                            testString = existingLetterToAdd + testString
-//                            --gridToTest
-//                        }
-//                    }
-//                    
-//                    // CHECK RIGHT / OR DOWN // grab existing letters to right even if no shift right characters to test
-//                    gridToTest = gridXSpot // reset test spot as it was moved to left in code above
-//                    gridTestY = gridYSpot
-//                    while gridToTest<14 && self.mmwBoardGrid.grid2DArr[gridToTest+1][gridTestY].tileType == TileType.Letter {
-//                        let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridToTest+1][gridTestY].tileText)
-//                        //print("Added existing letter: \(self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText) ")
-//                        testString = testString + existingLetterToAdd
-//                        ++gridToTest
-//                    }
-//                    
-//                    while playerLettersToTestRightOrDown.characters.count > 0 && playerLettersToTestRightOrDown.characters.count <= numTilesToPlayRightOrDownMax {
-//                        if self.mmwBoardGrid.grid2DArr[gridTestX+1][gridTestY].tileType != TileType.Letter { // if NOT a letter then play a letter
-//                            let permutationRightOrDownFirstLetter = String(playerLettersToTestRightOrDown.removeAtIndex(playerLettersToTestRightOrDown.startIndex))
-//                            --numTilesToPlayRightOrDownMax
-//                            
-//                            lettersPlayedInPermutation++
-//                            currentTestAILetterPlay.tileSpriteLetter = permutationRightOrDownFirstLetter
-//                            currentTestAILetterPlay.gridXEnd = gridToTest+1
-//                            currentTestAILetterPlay.gridYEnd = gridTestY
-//                            
-//                            currentPossibleAILetterPlayArr.append(currentTestAILetterPlay)
-//                            lettersPlayedInPermutation++
-//                            
-//                            testString = testString + permutationRightOrDownFirstLetter
-//                            ++gridTestX
-//                            // if IS a letter then add a letter(s)
-//                            while gridTestX<14 && gridTestY<14 && self.mmwBoardGrid.grid2DArr[gridToTest+1][gridTestY].tileType == TileType.Letter {
-//                                let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridToTest+1][gridTestY].tileText)
-//                                //print("Added existing letter: \(mmwBoardGrid.grid2DArr[gridTestX+1][gridTestY].tileText) ")
-//                                testString = testString + existingLetterToAdd
-//                                ++gridToTest
-//                                //print (testString)
-//                            }
-//                        }
-//                            
-//                        else {
-//                            while self.mmwBoardGrid.grid2DArr[gridToTest+1][gridTestY].tileType == TileType.Letter {
-//                                let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridToTest+1][gridTestY].tileText)      //   ????? + 1 ???
-//                                //print("Added existing letter: \(self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText) ")
-//                                testString = testString + existingLetterToAdd
-//                                ++gridToTest
-//                            }
-//                        }
-//                    }
-//                    
-//                    if (mmwGameSceneViewController.checkPartialWordMatch(testString) == true ) {
-//                        
-//                        validPartialAILetterPlayArr = currentPossibleAILetterPlayArr
-//                        //                        allValidPartialWordTilePlayArr.append(validPartialWordTilePlayArr)
-//                        foundPartialWordsNumber++
-//                        
-//                        if (mmwGameSceneViewController.checkWholeWordMatch(testString) == true ) && testString.characters.count > mmwGameSceneViewController.minWordSize {
-//                            // update existing placeholder data to reflect that tile made word
-//                            
-//                            currentTestAILetterPlay.partOfWord = testString
-//                            
-//                            if validPartialAILetterPlayArr.count > 0 {
-//                                
-//                                if validPartialAILetterPlayArr[0].gridXEnd == -1 {
-//                                    validPartialAILetterPlayArr.removeFirst()
-//                                }
-//                            }
-//                                
-//                            else {
-//                                
-//                                testString = self.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileText // get letter at start tile
-//                                
-//                                return (false, validWholeWordAILetterPlayArr, true)
-//                                //break
-//                            }
-//                            
-//                            currentTestAILetterPlay.madeValidWord = true
-//                            
-//                            /////////////////
-//                            
-//                            print("H!!! mmwGameSceneViewController.checkWholeWordMatch(testString) == true \(testString) && testString.characters.count > mmwGameSceneViewController.minWordSize  Now TRY to play FROM checkForValidWordsAI mmwGameScene" )
-//                            
-//                            validWholeWordAILetterPlayArr = validPartialAILetterPlayArr
-//                            
-//                            //                            allValidWholeWordTilePlayArr.append(validWholeWordTilePlayArr)
-//                            //                            print("!!! allValidWholeWordTilePlayArr \(allValidWholeWordTilePlayArr)  checkForValidWordsAI mmwGameScene" )
-//                            foundWholeWordsNumber++
-//                            //////////////////////////////////////////
-//                            print("H Trying to play: \(testString) at \(gridXSpot), \(gridYSpot) validWholeWordAILetterPlayArr.count: \(validWholeWordAILetterPlayArr.count)")
-//                            
-//                            var isValidWholeWord = true
-//                            //var isValidPartialWord = false
-//                            for letterTilePlaceholder in validWholeWordAILetterPlayArr {
-//                                print("H getting letter \(letterTilePlaceholder.tileSpriteLetter),  \(letterTilePlaceholder.gridXEnd),  \(letterTilePlaceholder.gridYEnd),  \(letterTilePlaceholder.madeValidWord),  \(letterTilePlaceholder.partOfWord)")
-//                                let letterTileTest = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid.getTileWithLetter(letterTilePlaceholder.tileSpriteLetter)
-//                                let validWordTestAtDropSpot = letterTileTest?.tileSprite.testForValidPlayAtDropSpot(letterTilePlaceholder.gridXEnd, tileSnapResultsYGrid: letterTilePlaceholder.gridYEnd, isAI: true, isAIScoringPass: true)
-//                                
-//                                if validWordTestAtDropSpot!.validPartialHorizontalWord == false || validWordTestAtDropSpot!.validPartialVerticalWord == false {
-//                                    //isValidPartialWord = false
-//                                    
-//                                    
-//                                    testString = self.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileText // get letter at start tile
-//
-//                                    isValidWholeWord = false
-//                                    break
-//                                }
-//                                print("H ...for var letterTilePlaceholder ... in validWholeWordAILetterPlayArr { \(letterTilePlaceholder.tileSpriteLetter) -  \(letterTilePlaceholder.gridXEnd), \(letterTilePlaceholder.gridYEnd) -> \(letterTilePlaceholder.partOfWord) checkForValidWordsAI mmwGameScene ")
-//                            }
-//                            
-//                            if isValidWholeWord == true && testString.characters.count > mmwGameSceneViewController.minWordSize  {
-//                                print("H Found word : \(testString) and now getting tiles and playing letters")
-//                                //validWordPlays.append(word)
-//                                var numLetters = 0.0
-//                                for var letter in validWholeWordAILetterPlayArr {
-//                                    letter.partOfWord = testString
-//                                    // !!! having some problems with 2 of same letter. sometimes only 1 will show on board (didn't work out of delay so trying inside delay)
-//                                    
-//                                    let delayForNextTile : Double = Double(1.0 * numLetters)
-//                                    
-//                                    delay(delayForNextTile) {
-//                                        
-//                                        var letterTilePlayable : MMWTile
-//                                        
-//                                        letterTilePlayable  = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid.getTileWithLetter(letter.tileSpriteLetter)!
-//                                        
-//                                        if letter.madeValidWord == true {
-//                                            letterTilePlayable.tileState = TileState.PlayedMadeWord
-//                                        } else {
-//                                            letterTilePlayable.tileState = TileState.Played
-//                                        }
-//                                        print("H updating letterTilePlayable.tileSprite.updateAIWordsAtDropSpot \(letter.tileSpriteLetter), \(letter.gridXEnd), \(letter.gridYEnd), \(letter.partOfWord), \(letterTilePlayable.tileState)  checkForValidWordsAI mmwGameScene")
-//                                        letterTilePlayable.tileSprite.updateAIWordsAtDropSpot(letter.gridXEnd, tileYGridDestination: letter.gridYEnd, madeValidWord: letter.madeValidWord)
-//                                    }
-//                                    placedTiles++
-//                                    numLetters++
-//                                }
-//                                // isValidHorizontalWholeWord = true // !!! might have complete word with more letters to play
-//                            }
-//                            
-//                            if (mmwGameSceneViewController.checkWholeWordMatch(testString) == true ) && testString.characters.count > mmwGameSceneViewController.minWordSize && placedTiles > 0 { // && playerLettersToTestRight.characters.count == 0 {
-//                                return (isValidWholeWord, validWholeWordAILetterPlayArr, isHorizontalWord)
-//                                
-//                                
-//                                
-//                            }
-//                            else {
-//                                break
-//                            }
-//                        }
-//                    }
-//                        
-//                    else {
-//                        //print("NOT Horizontal partial Word Match! \(testString) checkForValidWordsAI mmwGameScene" )
-//                    }
-//                    currentTestAILetterPlay = validAILetterPlay()
-//                    currentPossibleAILetterPlayArr  = [validAILetterPlay()]
-//                    
-//                    validPartialAILetterPlayArr = [validAILetterPlay()]
-//                    validWholeWordAILetterPlayArr = [validAILetterPlay()]
-//                    
-//                    lettersPlayedInPermutation = 0
-//                    tileArrayToPlay = [MMWTile]()
-//                    testString = self.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileText // get letter at start tile
-//                    shiftLeftOrUp--
-//                    shiftRightOrDown++
+//            print("LOOKING VERTICAL FOR SPOTS!  checkForValidWordsAI mmwGameScene")
+//            let checkForWordResults = checkForValidWordsAIVertical (gridXSpot, gridYSpot: gridYSpot, permutationsToPlay: permutationsToPlay)
+//            hasValidWord = checkForWordResults.hasValidWord
+//            validWholeWordAILetterPlayArr = checkForWordResults.validAILetterPlayArr
+//            if hasValidWord == true {
+//                return (hasValidWord,  validWholeWordAILetterPlayArr)
+//            }
+//            else {
+//                print("NO VERTICAL >>> LOOKING HORIZONTAL FOR SPOTS! checkForValidWordsAI mmwGameScene")
+//                let checkForWordResults = checkForValidWordsAIHorizontal (gridXSpot, gridYSpot: gridYSpot, permutationsToPlay: permutationsToPlay)
+//                hasValidWord = checkForWordResults.hasValidWord
+//                validWholeWordAILetterPlayArr = checkForWordResults.validAILetterPlayArr
+//                if hasValidWord == true {
+//                    return (hasValidWord,  validWholeWordAILetterPlayArr)
 //                }
 //            }
-//            /////////////////////
-//            gridToTest = gridXSpot // reset test spot as it may have been moved to right in code below
-//            gridTestY = gridYSpot
-//            ////////////////////
-//            
 //            
 //        }
-//        return (false, validWholeWordAILetterPlayArr, isHorizontalWord)
+//        return (false, validWholeWordAILetterPlayArr)
 //    }
-//
-//    
-//    
-//    //////
     
     
+    //////////////////////////////////
     
-    func checkForValidWordsAIHorizontal (gridXSpot: Int, gridYSpot: Int, permutationsToPlay : Set<String>) -> (hasValidWord: Bool, validAILetterPlayArr: [validAILetterPlay]) {
-
-        // check horizontal pass 1 x =
-
+    func checkForValidWordsAI (gridXSpot: Int, gridYSpot: Int, permutationsToPlay : Set<String>, lookHorizontal : Bool) -> (hasValidWord: Bool, validAILetterPlayArr: [validAILetterPlay], isHorizontalWord: Bool) {
+        
+        
+ 
         ////////////  TEST FOR ADJACENT TILE PARTIAL WORDS
         var tileArrayToPlay : [MMWTile] = [MMWTile]()
         var gridTestX = gridXSpot
@@ -4583,214 +4300,342 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
         var lockedBoardTilesArr = mmwGameScene.mmwBoardGrid.getArrayLetterTilesInGrid() // start at locked and move L/R and Up/Down
         var playerLetterTilesGrid = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid // num of tilesToPlay 0 to numTiles in player grid
         
-        
-        ///////////////// HORIZONTAL
+        ///////////////// HORIZONTAL && VERTICAL
         var currentTestAILetterPlay        = validAILetterPlay()
         var currentPossibleAILetterPlayArr = [validAILetterPlay]()
         var validPartialAILetterPlayArr    : [validAILetterPlay] = [validAILetterPlay]()
         var validWholeWordAILetterPlayArr  : [validAILetterPlay] = [validAILetterPlay]()
-        var foundHorizontalPartialWordsNumber : Int = 0
-        var foundHorizontalWholeWordsNumber   : Int = 0
+
+        
+        var allFoundPartialWordPlays = [[[validAILetterPlay]()]]
+        var allFoundWholeWordPlays   = [[[validAILetterPlay]()]]
+        
+        
+        var foundPartialWordsNumber : Int = 0
+        var foundWholeWordsNumber   : Int = 0
         var placedTiles = 0
         var existingPlayedTiles = 0
-        var horizontalString = ""               // mmwGameSceneViewController.mmwGameScene.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].letterString
+        var wordString = ""               // mmwGameSceneViewController.mmwGameScene.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].letterString
         
         let openTileLocations = calculateOpenTileLocations(gridXSpot, gridYStart: gridYSpot)
         
         let numEmptyLetterSpotsLeft  = openTileLocations.leftOpenTileLocations  // from 0 to num player tiles PLUS existing tiles MINUS numLettersRight AND more than grid x = 0
         let numEmptyLetterSpotsRight = openTileLocations.rightOpenTileLocations // from 0 to num player tiles PLUS existing tiles MINUS numLettersLeft  AND more than grid x = 0
+        let numEmptyLetterSpotsUp    = openTileLocations.upOpenTileLocations  // from 0 to num player tiles PLUS existing tiles MINUS numLettersRight AND more than grid x = 0
+        let numEmptyLetterSpotsDown  = openTileLocations.downOpenTileLocations // from 0 to num player tiles PLUS existing tiles MINUS numLettersLeft  AND more than grid x = 0
         
-        var numTilesToPlayLeftMaxComplete  = 0 //(availableTiles.count <= numEmptyLetterSpotsLeft)  ? availableTiles.count : numEmptyLetterSpotsLeft // # tiles to play Left : 0 to < playerTilesArr && < numEmptyLetterSpotsLeft
-        var numTilesToPlayRightMaxComplete = 0 //(availableTiles.count <= numEmptyLetterSpotsRight) ? availableTiles.count : numEmptyLetterSpotsRight // # tiles to play Left : 0 to < playerTilesArr && < numEmptyLetterSpotsLeft
+        let numEmptyLetterSpotsLeftOrUp     = numEmptyLetterSpotsLeft  // from 0 to num player tiles PLUS existing tiles MINUS numLettersRight AND more than grid x = 0
+        let numEmptyLetterSpotsRightOrDown  = numEmptyLetterSpotsRight // from 0 to num player tiles PLUS existing tiles MINUS numLettersLeft  AND more than grid x = 0
+        
+        
+        var numTilesToPlayLeftOrUpMaxComplete  = 0 //(availableTiles.count <= numEmptyLetterSpotsLeft)  ? availableTiles.count : numEmptyLetterSpotsLeft // # tiles to play Left : 0 to < playerTilesArr && < numEmptyLetterSpotsLeft
+        var numTilesToPlayRightOrDownMaxComplete = 0 //(availableTiles.count <= numEmptyLetterSpotsRight) ? availableTiles.count : numEmptyLetterSpotsRight // # tiles to play Left : 0 to < playerTilesArr && < numEmptyLetterSpotsLeft
         
         var testString = self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText // string starts with letter at valid locked tile location
-        var shiftLeft = numTilesToPlayLeftMaxComplete
-        var shiftRight = 0
+        var shiftLeftOrUp = numTilesToPlayLeftOrUpMaxComplete
+        var shiftRightOrDown = 0
         var playerLettersToTest      = ""
-        var playerLettersToTestLeft  = ""
-        var playerLettersToTestRight = ""
+        var playerLettersToTestLeftOrUp  = ""
+        var playerLettersToTestRightOrDown = ""
         
-        var foundWholeHorizontalWord = false
+        var foundWholeWord = false
+
         
-        for playerLetters in permutationsToPlay {  // get all permutations of player letters based on number
-            let numberOfPermutations : UInt32 = UInt32(permutationsToPlay.count)
-            var permutationNumber  : UInt32 = UInt32(0)
-            //            if self.secondsLeft < 5 { break }
+        // check horizontal pass +- x , gridToTest X
+        var passNumber = 0
+        if lookHorizontal == false { passNumber = 1 }
+        
+        var isHorizontalWord = true
+//        var backLetterXValue = gridTestX  // gridXSpotValue
+//        var backLetterYValue = gridTestY  // gridYSpotValue
+//        var forwardLetterXValue = gridTestX + 1
+//        var forwardLetterYValue = gridTestY
+        var gridValueToCheck = gridTestX
+
+        if passNumber == 1 { // horizontal pass == 0 , vertical pass == 1
+            isHorizontalWord = false
+            
+//            backLetterXValue = gridTestX // gridXSpotValue
+//            backLetterYValue = gridTestY - 1  // gridYSpotValue
+//
+//            forwardLetterXValue = gridTestX
+//            forwardLetterYValue = gridTestY - 1
+            
+            gridValueToCheck = gridTestY
+        }
+        
+        var gridToTest = gridTestX
+        var tileShiftXLeftOrUp = -1
+        var tileShiftYLeftOrUp = 0
+        var tileShiftXRightOrDown = 1
+        var tileShiftYRightOrDown = 0
+    
+        if passNumber == 1 {
+            gridToTest = gridTestY
+            tileShiftXLeftOrUp = 0
+            tileShiftYLeftOrUp = -1
+            tileShiftXRightOrDown = 0
+            tileShiftYRightOrDown = 1
+        }
+        
+        
+
+        for playerLetters in permutationsToPlay {  // get all permutations of player letters based on number  //  if self.secondsLeft < 5 { break }
             
             var lettersPlayedInPermutation = 0
-            numTilesToPlayLeftMaxComplete =  (numEmptyLetterSpotsLeft  <= playerLetters.characters.count) ?  numEmptyLetterSpotsLeft  : playerLetters.characters.count
-            numTilesToPlayRightMaxComplete = (numEmptyLetterSpotsRight <= playerLetters.characters.count) ?  numEmptyLetterSpotsRight : playerLetters.characters.count
-            shiftLeft = numTilesToPlayLeftMaxComplete
-            shiftRight = 0
             
-            for shiftToRight in 0..<playerLetters.characters.count {
+            numTilesToPlayLeftOrUpMaxComplete    = (numEmptyLetterSpotsLeft  <= playerLetters.characters.count) ? numEmptyLetterSpotsLeftOrUp  : playerLetters.characters.count
+            numTilesToPlayRightOrDownMaxComplete = (numEmptyLetterSpotsRight <= playerLetters.characters.count) ? numEmptyLetterSpotsRightOrDown : playerLetters.characters.count
+            
+            shiftLeftOrUp = numTilesToPlayLeftOrUpMaxComplete
+            shiftRightOrDown = 0
+            
+            for shiftToRightOrDown in 0..<playerLetters.characters.count {
                 
-                while shiftRight <= numTilesToPlayRightMaxComplete {
-                    playerLettersToTest        = playerLetters                      // Strings of letters in Player Tile 2D Array
-                    playerLettersToTestLeft    = playerLetters                      // Strings of letters to play LEFT of base location
-                    playerLettersToTestRight   = playerLetters                      // Strings of letters to play RIGHT of base location
-                    var numTilesToPlayLeftMax  = numTilesToPlayLeftMaxComplete      // most possible tile slots to left of base location
-                    var numTilesToPlayRightMax = numTilesToPlayRightMaxComplete     // most possible tile slots to right of base location
+                while shiftRightOrDown <= numTilesToPlayRightOrDownMaxComplete {
+                    playerLettersToTest            = playerLetters                      // Strings of letters in Player Tile 2D Array
+                    playerLettersToTestLeftOrUp    = playerLetters                      // Strings of letters to play LEFT of base location
+                    playerLettersToTestRightOrDown = playerLetters                      // Strings of letters to play RIGHT of base location
+                    var numTilesToPlayLeftOrUpMax  = numTilesToPlayLeftOrUpMaxComplete      // most possible tile slots to left of base location
+                    var numTilesToPlayRightOrDownMax = numTilesToPlayRightOrDownMaxComplete     // most possible tile slots to right of base location
                     
-                    shiftRight +=  (playerLettersToTestLeft.characters.count - numTilesToPlayLeftMax)
+                    shiftRightOrDown +=  (playerLettersToTestLeftOrUp.characters.count - numTilesToPlayLeftOrUpMax)
                     
-                    if playerLettersToTestLeft.characters.count > 0 && shiftRight <= playerLetters.characters.count {
-                        let rangeLeft : Range! = playerLettersToTestLeft.endIndex.advancedBy(-shiftRight)..<playerLettersToTestLeft.endIndex
-                        playerLettersToTestLeft.removeRange(rangeLeft)  // make copy of letters to manipulate and remove from
+                    if playerLettersToTestLeftOrUp.characters.count > 0 && shiftRightOrDown <= playerLetters.characters.count {
+                        let rangeLeftOrUp : Range! = playerLettersToTestLeftOrUp.endIndex.advancedBy(-shiftRightOrDown)..<playerLettersToTestLeftOrUp.endIndex
+                        playerLettersToTestLeftOrUp.removeRange(rangeLeftOrUp)  // make copy of letters to manipulate and remove from
                     }
-                    if playerLettersToTestRight.characters.count > 0 && shiftRight <= playerLetters.characters.count {
-                        let rangeRight : Range! = playerLettersToTestRight.startIndex..<playerLettersToTestRight.endIndex.advancedBy(-shiftRight)
-                        playerLettersToTestRight.removeRange(rangeRight)  // make copy of letters to manipulate and remove from
+                    if playerLettersToTestRightOrDown.characters.count > 0 && shiftRightOrDown <= playerLetters.characters.count {
+                        let rangeRightOrDown : Range! = playerLettersToTestRightOrDown.startIndex..<playerLettersToTestRightOrDown.endIndex.advancedBy(-shiftRightOrDown)
+                        playerLettersToTestRightOrDown.removeRange(rangeRightOrDown)  // make copy of letters to manipulate and remove from
                     }
-                    // CHECK LEFT
-                    gridTestX = gridXSpot // reset test spot as it may have been moved to right in code below
+                    // CHECK LEFT  /  OR UP
+                    
+                    gridTestX = gridXSpot // reset test spot as it may have been moved to right or down in code below
                     gridTestY = gridYSpot
-                    
-                    while playerLettersToTestLeft.characters.count > (0) && playerLettersToTestLeft.characters.count <= numTilesToPlayLeftMax {
-                        if (gridTestX>=1 && gridTestX<=14) && self.mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileType != TileType.Letter {
-                            --numTilesToPlayLeftMax
-                            let permutationLeftLastLetter = String( playerLettersToTestLeft.removeAtIndex(playerLettersToTestLeft.endIndex.predecessor()) )
+                    gridToTest = gridXSpot
+                    if passNumber == 1  {
+                        gridToTest = gridYSpot
+                    }
+
+                    while playerLettersToTestLeftOrUp.characters.count > (0) && playerLettersToTestLeftOrUp.characters.count <= numTilesToPlayLeftOrUpMax {
+
+                        if (gridToTest>=1 && gridToTest<=14) && self.mmwBoardGrid.grid2DArr[gridTestX + tileShiftXLeftOrUp][gridTestY + tileShiftYLeftOrUp].tileType != TileType.Letter {
+
+                            --numTilesToPlayLeftOrUpMax
+                            let permutationLeftOrUpLastLetter = String( playerLettersToTestLeftOrUp.removeAtIndex(playerLettersToTestLeftOrUp.endIndex.predecessor()) )
                             
-                            currentTestAILetterPlay.tileSpriteLetter = permutationLeftLastLetter
-                            currentTestAILetterPlay.gridXEnd = gridTestX-1
-                            currentTestAILetterPlay.gridYEnd = gridTestY
+                            currentTestAILetterPlay.tileSpriteLetter = permutationLeftOrUpLastLetter
+
+                            currentTestAILetterPlay.gridXEnd = gridTestX + tileShiftXLeftOrUp
+                            currentTestAILetterPlay.gridYEnd = gridTestY + tileShiftYLeftOrUp
+
                             currentPossibleAILetterPlayArr.append(currentTestAILetterPlay)
                             lettersPlayedInPermutation++
-                            testString = permutationLeftLastLetter + testString
-                            if (gridTestX>=1) {--gridTestX}
+                            testString = permutationLeftOrUpLastLetter + testString
                             
-                            while gridTestX>=1 && self.mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileType == TileType.Letter {
-                                let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileText)
+                            if (gridToTest>=1) {
+                                
+                                --gridToTest
+                                if passNumber == 0 {
+                                    --gridTestX
+                                }
+                                if passNumber == 1 {
+                                    --gridTestY
+                                }
+                            }
+                            
+                            while gridToTest>=1 && self.mmwBoardGrid.grid2DArr[gridTestX + tileShiftXLeftOrUp][gridTestY + tileShiftYLeftOrUp].tileType == TileType.Letter {
+                                let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX + tileShiftXLeftOrUp][gridTestY + tileShiftYLeftOrUp].tileText)
                                 testString = existingLetterToAdd + testString
-                                if (gridTestX>=1) {--gridTestX}
+                                
+                                if (gridToTest>=1) {
+                                    --gridToTest
+                                    if passNumber == 0 {
+                                        --gridTestX
+                                    }
+                                    if passNumber == 1 {
+                                        --gridTestY
+                                    }
+                                }
                             }
                         }
                             
                         else {
-                            while gridTestX>=1 && self.mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileType == TileType.Letter {
-                                let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileText)
+                            while gridToTest>=1 && self.mmwBoardGrid.grid2DArr[gridTestX + tileShiftXLeftOrUp][gridTestY + tileShiftYLeftOrUp].tileType == TileType.Letter {
+                                let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX + tileShiftXLeftOrUp][gridTestY + tileShiftYLeftOrUp].tileText)
                                 testString = existingLetterToAdd + testString
                                 
-                                if (gridTestX>=1) {--gridTestX}
+                                if (gridToTest>=1) {
+                                    --gridToTest
+                                    if passNumber == 0 {
+                                        --gridTestX
+                                    }
+                                    if passNumber == 1 {
+                                        --gridTestY
+                                    }
+                                }
                             }
                         }
                     }
+                    
                     // grab left letters if only right letters on full right shift
-                    if gridTestX >= 1 &&  self.mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileType == TileType.Letter { // && playerLettersToTestLeft.characters.count == (0) {
+                    if gridToTest >= 1 &&  self.mmwBoardGrid.grid2DArr[gridTestX + tileShiftXLeftOrUp][gridTestY + tileShiftYLeftOrUp].tileType == TileType.Letter { // && playerLettersToTestLeft.characters.count == (0) {
                         gridTestX = gridXSpot // reset test spot as it was moved to left in code above
                         gridTestY = gridYSpot
                         
-                        while gridTestX>=1 && self.mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileType == TileType.Letter {
-                            let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileText)
+                        gridToTest = gridXSpot
+                        if passNumber == 1  {
+                            gridToTest = gridYSpot
+                        }
+
+                        while gridToTest>=1 && self.mmwBoardGrid.grid2DArr[gridTestX + tileShiftXLeftOrUp][gridTestY + tileShiftYLeftOrUp].tileType == TileType.Letter {
+                            let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX + tileShiftXLeftOrUp][gridTestY + tileShiftYLeftOrUp].tileText)
                             testString = existingLetterToAdd + testString
-                            --gridTestX
+                            --gridToTest
+                            if passNumber == 0 {
+                                --gridTestX
+                            }
+                            if passNumber == 1 {
+                                --gridTestY
+                            }
                         }
                     }
+
                     
-                    // CHECK RIGHT // grab existing letters to right even if no shift right characters to test
+                    // CHECK RIGHT / OR DOWN // grab existing letters to right even if no shift right characters to test
                     gridTestX = gridXSpot // reset test spot as it was moved to left in code above
                     gridTestY = gridYSpot
-                    while gridTestX<14 && self.mmwBoardGrid.grid2DArr[gridTestX+1][gridTestY].tileType == TileType.Letter {
-                        let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX+1][gridTestY].tileText)
+                    gridToTest = gridXSpot
+                    if passNumber == 1  {
+                        gridToTest = gridYSpot
+                    }
+
+                    while gridToTest<14 && self.mmwBoardGrid.grid2DArr[gridTestX + tileShiftXRightOrDown][gridTestY + tileShiftYRightOrDown].tileType == TileType.Letter {
+                        let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX + tileShiftXRightOrDown][gridTestY + tileShiftYRightOrDown].tileText)
                         //print("Added existing letter: \(self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText) ")
                         testString = testString + existingLetterToAdd
-                        ++gridTestX
+                        ++gridToTest
+                        if passNumber == 0 {
+                            ++gridTestX
+                        }
+                        if passNumber == 1 {
+                            ++gridTestY
+                        }
                     }
-                    
-                    while playerLettersToTestRight.characters.count > 0 && playerLettersToTestRight.characters.count <= numTilesToPlayRightMax {
-                        if self.mmwBoardGrid.grid2DArr[gridTestX+1][gridTestY].tileType != TileType.Letter { // if NOT a letter then play a letter
-                            let permutationRightFirstLetter = String(playerLettersToTestRight.removeAtIndex(playerLettersToTestRight.startIndex))
-                            --numTilesToPlayRightMax
+                    //////////  added && gridToTest<14 ????? to fix prible with y array going to 14 adding 1 and going off grid
+                    while playerLettersToTestRightOrDown.characters.count > 0 && playerLettersToTestRightOrDown.characters.count <= numTilesToPlayRightOrDownMax && gridToTest<14{
+                        if self.mmwBoardGrid.grid2DArr[gridTestX + tileShiftXRightOrDown][gridTestY + tileShiftYRightOrDown].tileType != TileType.Letter { // if NOT a letter then play a letter
+                            let permutationRightOrDownFirstLetter = String(playerLettersToTestRightOrDown.removeAtIndex(playerLettersToTestRightOrDown.startIndex))
+                            --numTilesToPlayRightOrDownMax
                             
                             lettersPlayedInPermutation++
-                            currentTestAILetterPlay.tileSpriteLetter = permutationRightFirstLetter
-                            currentTestAILetterPlay.gridXEnd = gridTestX+1
-                            currentTestAILetterPlay.gridYEnd = gridTestY
+                            currentTestAILetterPlay.tileSpriteLetter = permutationRightOrDownFirstLetter
+                            currentTestAILetterPlay.gridXEnd = gridTestX + tileShiftXRightOrDown
+                            currentTestAILetterPlay.gridYEnd = gridTestY + tileShiftYRightOrDown
                             
                             currentPossibleAILetterPlayArr.append(currentTestAILetterPlay)
                             lettersPlayedInPermutation++
                             
-                            testString = testString + permutationRightFirstLetter
-                            ++gridTestX
+                            testString = testString + permutationRightOrDownFirstLetter
+                            ++gridToTest
+                            if passNumber == 0 {
+                                ++gridTestX
+                            }
+                            if passNumber == 1 {
+                                ++gridTestY
+                            }
+
                             // if IS a letter then add a letter(s)
-                            while gridTestX<14 && gridTestY<14 && self.mmwBoardGrid.grid2DArr[gridTestX+1][gridTestY].tileType == TileType.Letter {
-                                let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX+1][gridTestY].tileText)
+                            while gridTestX<14 && gridTestY<14 && self.mmwBoardGrid.grid2DArr[gridTestX + tileShiftXRightOrDown][gridTestY + tileShiftYRightOrDown].tileType == TileType.Letter {
+                                let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX + tileShiftXRightOrDown][gridTestY + tileShiftYRightOrDown].tileText)
                                 //print("Added existing letter: \(mmwBoardGrid.grid2DArr[gridTestX+1][gridTestY].tileText) ")
                                 testString = testString + existingLetterToAdd
-                                ++gridTestX
+                                
+                                ++gridToTest
+                                if passNumber == 0 {
+                                    ++gridTestX
+                                }
+                                if passNumber == 1 {
+                                    ++gridTestY
+                                }
                                 //print (testString)
                             }
                         }
                             
                         else {
-                            while self.mmwBoardGrid.grid2DArr[gridTestX+1][gridTestY].tileType == TileType.Letter {
-                                let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX+1][gridTestY].tileText)      //   ????? + 1 ???
+                            while self.mmwBoardGrid.grid2DArr[gridTestX + tileShiftXRightOrDown][gridTestY + tileShiftYRightOrDown].tileType == TileType.Letter {
+                                let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX + tileShiftXRightOrDown][gridTestY + tileShiftYRightOrDown].tileText)      //   ????? + 1 ???
                                 //print("Added existing letter: \(self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText) ")
                                 testString = testString + existingLetterToAdd
-                                ++gridTestX
+                                ++gridToTest
+                                if passNumber == 0 {
+                                    ++gridTestX
+                                }
+                                if passNumber == 1 {
+                                    ++gridTestY
+                                }
                             }
                         }
                     }
                     
                     if (mmwGameSceneViewController.checkPartialWordMatch(testString) == true ) {
-                        var isValidPartialWord = true
-                        
-                        print("checkAIValidHoriz \(testString), \(mmwGameSceneViewController.checkPartialWordMatch(testString)) ")
                         
                         validPartialAILetterPlayArr = currentPossibleAILetterPlayArr
                         //                        allValidPartialWordTilePlayArr.append(validPartialWordTilePlayArr)
-                        foundHorizontalPartialWordsNumber++
-
+                        foundPartialWordsNumber++
+                        
                         if (mmwGameSceneViewController.checkWholeWordMatch(testString) == true ) && testString.characters.count > mmwGameSceneViewController.minWordSize {
                             // update existing placeholder data to reflect that tile made word
-
+                            
                             currentTestAILetterPlay.partOfWord = testString
                             
                             if validPartialAILetterPlayArr.count > 0 {
+                                
                                 if validPartialAILetterPlayArr[0].gridXEnd == -1 {
                                     validPartialAILetterPlayArr.removeFirst()
                                 }
                             }
                                 
                             else {
+                                
                                 testString = self.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileText // get letter at start tile
-                                return (false, validWholeWordAILetterPlayArr)
+                                
+                                return (false, validWholeWordAILetterPlayArr, true)
                                 //break
                             }
-
-                            currentTestAILetterPlay.madeValidWord = true
-
-                            /////////////////
                             
-                            print("H!!! mmwGameSceneViewController.checkWholeWordMatch(testString) == true \(testString) && testString.characters.count > mmwGameSceneViewController.minWordSize  Now TRY to play FROM checkForValidWordsAI mmwGameScene" )
+                            currentTestAILetterPlay.madeValidWord = true
                             
                             validWholeWordAILetterPlayArr = validPartialAILetterPlayArr
                             
                             //                            allValidWholeWordTilePlayArr.append(validWholeWordTilePlayArr)
                             //                            print("!!! allValidWholeWordTilePlayArr \(allValidWholeWordTilePlayArr)  checkForValidWordsAI mmwGameScene" )
-                            foundHorizontalWholeWordsNumber++
+                            foundWholeWordsNumber++
                             //////////////////////////////////////////
                             print("H Trying to play: \(testString) at \(gridXSpot), \(gridYSpot) validWholeWordAILetterPlayArr.count: \(validWholeWordAILetterPlayArr.count)")
                             
-                            var isValidHorizontalWholeWord = true
+                            var isValidWholeWord = true
                             //var isValidPartialWord = false
                             for letterTilePlaceholder in validWholeWordAILetterPlayArr {
                                 print("H getting letter \(letterTilePlaceholder.tileSpriteLetter),  \(letterTilePlaceholder.gridXEnd),  \(letterTilePlaceholder.gridYEnd),  \(letterTilePlaceholder.madeValidWord),  \(letterTilePlaceholder.partOfWord)")
                                 let letterTileTest = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid.getTileWithLetter(letterTilePlaceholder.tileSpriteLetter)
+                                
                                 let validWordTestAtDropSpot = letterTileTest?.tileSprite.testForValidWordsAtDropSpot(letterTilePlaceholder.gridXEnd, tileSnapResultsYGrid: letterTilePlaceholder.gridYEnd, isAI: true, isAIScoringPass: true)
+//                                let validWordTestAtDropSpot = letterTileTest?.tileSprite.testForValidPlayAtDropSpot(letterTilePlaceholder.gridXEnd, tileSnapResultsYGrid: letterTilePlaceholder.gridYEnd, isAI: true, isAIScoringPass: true)
                                 
                                 if validWordTestAtDropSpot!.validHorizontalPartialWord == false || validWordTestAtDropSpot!.validVerticalPartialWord == false {
                                     //isValidPartialWord = false
-  
+
                                     testString = self.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileText // get letter at start tile
 
-                                    isValidHorizontalWholeWord = false
+                                    isValidWholeWord = false
                                     break
                                 }
                                 print("H ...for var letterTilePlaceholder ... in validWholeWordAILetterPlayArr { \(letterTilePlaceholder.tileSpriteLetter) -  \(letterTilePlaceholder.gridXEnd), \(letterTilePlaceholder.gridYEnd) -> \(letterTilePlaceholder.partOfWord) checkForValidWordsAI mmwGameScene ")
                             }
                             
-                            if isValidHorizontalWholeWord == true && testString.characters.count > mmwGameSceneViewController.minWordSize  {
+                            if isValidWholeWord == true && testString.characters.count > mmwGameSceneViewController.minWordSize  {
                                 print("H Found word : \(testString) and now getting tiles and playing letters")
                                 //validWordPlays.append(word)
                                 var numLetters = 0.0
@@ -4819,163 +4664,24 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
                                 }
                                 // isValidHorizontalWholeWord = true // !!! might have complete word with more letters to play
                             }
-
+                            
                             if (mmwGameSceneViewController.checkWholeWordMatch(testString) == true ) && testString.characters.count > mmwGameSceneViewController.minWordSize && placedTiles > 0 { // && playerLettersToTestRight.characters.count == 0 {
-                                return (isValidHorizontalWholeWord, validWholeWordAILetterPlayArr)
+                                return (isValidWholeWord, validWholeWordAILetterPlayArr, isHorizontalWord)
+                                
+                                
+                                
                             }
-
                             else {
                                 break
                             }
-                            
-                            
-                            
-                        
-                            
-                            
-                        //}
-                            
-                            
-                            
-                            
-//                            //////////////////////////////
-//                            
-//                            
-//                            
-//                            
-//                            
-//                            
-//                            else if ( (arc4random_uniform(numberOfPermutations) > permutationNumber  )   && (mmwGameSceneViewController.checkPartialWordMatch(testString) == true ) && testString.characters.count > 2 ) {  // * (permutationNumber/numberOfPermutations) * UInt32(1244.55)
-//                                // update existing placeholder data to reflect that tile made word
-//                                
-//                                currentTestAILetterPlay.partOfWord = testString
-//                                
-//                                if validPartialAILetterPlayArr.count > 0 {
-//                                    
-//                                    if validPartialAILetterPlayArr[0].gridXEnd == -1 {
-//                                        validPartialAILetterPlayArr.removeFirst()
-//                                    }
-//                                }
-//                                    
-//                                else {
-//                                    
-//                                    testString = self.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileText // get letter at start tile
-//                                    
-//                                    return (true, validPartialAILetterPlayArr)
-//                                    //break
-//                                }
-//                                
-//                                currentTestAILetterPlay.madeValidWord = true
-//                                
-//                                /////////////////
-//                                
-//                                print("H!!! mmwGameSceneViewController.checkWholeWordMatch(testString) == true \(testString) && testString.characters.count > mmwGameSceneViewController.minWordSize  Now TRY to play FROM checkForValidWordsAI mmwGameScene" )
-//                                
-//                                //validWholeWordAILetterPlayArr = validPartialAILetterPlayArr
-//                                
-//                                //                            allValidWholeWordTilePlayArr.append(validWholeWordTilePlayArr)
-//                                //                            print("!!! allValidWholeWordTilePlayArr \(allValidWholeWordTilePlayArr)  checkForValidWordsAI mmwGameScene" )
-//                                foundHorizontalWholeWordsNumber++
-//                                //////////////////////////////////////////
-//                                print("H Trying to play: \(testString) at \(gridXSpot), \(gridYSpot) validWholeWordAILetterPlayArr.count: \(validWholeWordAILetterPlayArr.count)")
-//                                
-//                                var isValidHorizontalWholeWord = true
-//                                //var isValidPartialWord = false
-//                                for letterTilePlaceholder in validPartialAILetterPlayArr {
-//                                    print("H getting letter \(letterTilePlaceholder.tileSpriteLetter),  \(letterTilePlaceholder.gridXEnd),  \(letterTilePlaceholder.gridYEnd),  \(letterTilePlaceholder.madeValidWord),  \(letterTilePlaceholder.partOfWord)")
-//                                    let letterTileTest = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid.getTileWithLetter(letterTilePlaceholder.tileSpriteLetter)
-//                                    let validWordTestAtDropSpot = letterTileTest?.tileSprite.testForValidWordsAtDropSpot(letterTilePlaceholder.gridXEnd, tileSnapResultsYGrid: letterTilePlaceholder.gridYEnd, isAI: true, isAIScoringPass: true)
-//                                    
-//                                    if validWordTestAtDropSpot!.validHorizontalPartialWord == false || validWordTestAtDropSpot!.validVerticalPartialWord == false {
-//                                        //isValidPartialWord = false
-//                                        
-//                                        testString = self.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileText // get letter at start tile
-//                                        
-//                                        isValidHorizontalWholeWord = false
-//                                        break
-//                                    }
-//                                    print("H ...for var letterTilePlaceholder ... in validWholeWordAILetterPlayArr { \(letterTilePlaceholder.tileSpriteLetter) -  \(letterTilePlaceholder.gridXEnd), \(letterTilePlaceholder.gridYEnd) -> \(letterTilePlaceholder.partOfWord) checkForValidWordsAI mmwGameScene ")
-//                                }
-//                                
-//                                if isValidPartialWord == true && testString.characters.count > 2 {
-//                                    print("H Found word : \(testString) and now getting tiles and playing letters")
-//                                    //validWordPlays.append(word)
-//                                    var numLetters = 0.0
-//                                    for var letter in validPartialAILetterPlayArr {
-//                                        letter.partOfWord = testString
-//                                        // !!! having some problems with 2 of same letter. sometimes only 1 will show on board (didn't work out of delay so trying inside delay)
-//                                        
-//                                        let delayForNextTile : Double = Double(1.0 * numLetters)
-//                                        
-//                                        delay(delayForNextTile) {
-//                                            
-//                                            var letterTilePlayable : MMWTile
-//                                            
-//                                            letterTilePlayable  = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid.getTileWithLetter(letter.tileSpriteLetter)!
-//                                            
-//                                            if letter.madeValidWord == true {
-//                                                letterTilePlayable.tileState = TileState.PlayedMadeWord
-//                                            } else {
-//                                                letterTilePlayable.tileState = TileState.Played
-//                                            }
-//                                            print("H updating letterTilePlayable.tileSprite.updateAIWordsAtDropSpot \(letter.tileSpriteLetter), \(letter.gridXEnd), \(letter.gridYEnd), \(letter.partOfWord), \(letterTilePlayable.tileState)  checkForValidWordsAI mmwGameScene")
-//                                            letterTilePlayable.tileSprite.updateAIWordsAtDropSpot(letter.gridXEnd, tileYGridDestination: letter.gridYEnd, madeValidWord: letter.madeValidWord)
-//                                        }
-//                                        placedTiles++
-//                                        numLetters++
-//                                    }
-//                                    // isValidHorizontalWholeWord = true // !!! might have complete word with more letters to play
-//                                }
-//                                
-//                                if (mmwGameSceneViewController.checkPartialWordMatch(testString) == true ) && testString.characters.count > 2 && placedTiles > 0 { // && playerLettersToTestRight.characters.count == 0 {
-//                                    return (isValidPartialWord, validPartialAILetterPlayArr)
-//                                }
-//                                    
-//                                else {
-//                                    break
-//                                }
-//                           
-//
-//                            
-//                                
-//                                //////////////////////
-                    
-                    
-                                
-                                
-                                
                         }
+                    }
                         
+                    else {
+                        // didn't find partial word - look other direction //print("NOT Horizontal partial Word Match! \(testString) checkForValidWordsAI mmwGameScene" )
                         
-                            
-   
-                            
-//                        else {
-//                            
-//                            //is partial word match but not whole word
-//                            
-//                            currentTestAILetterPlay.partOfWord = testString
-//                            
-//                            if validPartialAILetterPlayArr.count > 0 {
-//                                
-//                                if validPartialAILetterPlayArr[0].gridXEnd == -1 {
-//                                    validPartialAILetterPlayArr.removeFirst()
-//                                }
-//                                
-//                                return (false, validPartialAILetterPlayArr)
-//                                
-//                            }
-//                            else {
-//                                testString = self.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileText // get letter at start tile
-//                                return (false, validPartialAILetterPlayArr)
-//                                //break
-//                            }
-////                            currentTestAILetterPlay.madeValidWord = true
-////                            return (true, validPartialAILetterPlayArr)
-//                        }
                         
                     }
-
                     currentTestAILetterPlay = validAILetterPlay()
                     currentPossibleAILetterPlayArr  = [validAILetterPlay()]
                     
@@ -4985,8 +4691,8 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
                     lettersPlayedInPermutation = 0
                     tileArrayToPlay = [MMWTile]()
                     testString = self.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileText // get letter at start tile
-                    shiftLeft--
-                    shiftRight++
+                    shiftLeftOrUp--
+                    shiftRightOrDown++
                 }
             }
             /////////////////////
@@ -4994,348 +4700,240 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
             gridTestY = gridYSpot
             ////////////////////
             
-            permutationNumber++
+            
         }
-        return (false, validWholeWordAILetterPlayArr)
+        return (false, validWholeWordAILetterPlayArr, isHorizontalWord)
     }
+
     
-
-    func checkForValidWordsAIVertical (gridXSpot: Int, gridYSpot: Int, permutationsToPlay : Set<String>) -> (hasValidWord: Bool, validAILetterPlayArr: [validAILetterPlay]) {
-        ////////////  TEST FOR ADJACENT TILE PARTIAL WORDS
-        var numberOfPermutations = UInt32(permutationsToPlay.count)
-        var permutationNumber = UInt32(0)
-        
-        var tileArrayToPlay : [MMWTile] = [MMWTile]()
-        var gridTestX = gridXSpot
-        var gridTestY = gridYSpot
-        var lockedBoardTilesArr = mmwGameScene.mmwBoardGrid.getArrayLetterTilesInGrid() // start at locked and move L/R and Up/Down
-        var playerLetterTilesGrid = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid // num of tilesToPlay 0 to numTiles in player grid
-        
-        ///////////////// VERTICAL
-        var currentTestAILetterPlay        = validAILetterPlay()
-        var currentPossibleAILetterPlayArr = [validAILetterPlay]()
-        var validPartialAILetterPlayArr    : [validAILetterPlay] = [validAILetterPlay]()
-        var validWholeWordAILetterPlayArr  : [validAILetterPlay] = [validAILetterPlay]()
-        var foundVerticalPartialWordsNumber : Int = 0
-        var foundVerticalWholeWordsNumber   : Int = 0
-        var placedTiles = 0
-        var existingPlayedTiles = 0
-        var verticalString = ""               // mmwGameSceneViewController.mmwGameScene.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].letterString
-        
-        let openTileLocations = calculateOpenTileLocations(gridXSpot, gridYStart: gridYSpot)
-        
-        let numEmptyLetterSpotsUp  = openTileLocations.upOpenTileLocations  // from 0 to num player tiles PLUS existing tiles MINUS numLettersRight AND more than grid x = 0
-        let numEmptyLetterSpotsDown = openTileLocations.downOpenTileLocations // from 0 to num player tiles PLUS existing tiles MINUS numLettersLeft  AND more than grid x = 0
-        
-        var numTilesToPlayUpMaxComplete  = 0 // (availableTiles.count <= numEmptyLetterSpotsUp)  ? availableTiles.count : numEmptyLetterSpotsUp // # tiles to play Left : 0 to < playerTilesArr && < numEmptyLetterSpotsLeft
-        var numTilesToPlayDownMaxComplete = 0 // (availableTiles.count <= numEmptyLetterSpotsDown) ? availableTiles.count : numEmptyLetterSpotsDown // # tiles to play Left : 0 to < playerTilesArr && < numEmptyLetterSpotsLeft
-        
-        var testString = self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText // string starts with letter at valid locked tile location
-        var shiftUp = numTilesToPlayUpMaxComplete
-        var shiftDown = 0
-        var playerLettersToTest     = ""
-        var playerLettersToTestUp   = ""
-        var playerLettersToTestDown = ""
-        
-        var foundWholeVerticalWord = false
-        
-        for playerLetters in permutationsToPlay {  // get all permutations of player letters based on number
-            
-            //            if self.secondsLeft < 5 { break }      // so doesn't try to play tiles on player turn change
-            
-            var lettersPlayedInPermutation = 0
-            numTilesToPlayUpMaxComplete  =  (numEmptyLetterSpotsUp   <= playerLetters.characters.count) ?  numEmptyLetterSpotsUp  : playerLetters.characters.count
-            numTilesToPlayDownMaxComplete = (numEmptyLetterSpotsDown <= playerLetters.characters.count) ?  numEmptyLetterSpotsDown : playerLetters.characters.count
-            shiftUp = numTilesToPlayUpMaxComplete
-            shiftDown = 0
-            
-            for shiftToDown in 0..<playerLetters.characters.count {
-                
-                //                shiftDown +=  (playerLettersToTestUp.characters.count - numTilesToPlayUpMaxComplete)
-                //                playerLettersToTest       = playerLetters                    // Strings of letters in Player Tile 2D Array
-                //                playerLettersToTestUp     = playerLetters                    // Strings of letters to play LEFT of base location
-                //                playerLettersToTestDown   = playerLetters                    // Strings of letters to play RIGHT of base location
-                //                var numTilesToPlayUpMax   = numTilesToPlayUpMaxComplete      // most possible tile slots to left of base location
-                //                var numTilesToPlayDownMax = numTilesToPlayDownMaxComplete    // most possible tile slots to right of base location
-                
-                while shiftDown <= numTilesToPlayDownMaxComplete {
-                    
-                    playerLettersToTest       = playerLetters                    // Strings of letters in Player Tile 2D Array
-                    playerLettersToTestUp     = playerLetters                    // Strings of letters to play LEFT of base location
-                    playerLettersToTestDown   = playerLetters                    // Strings of letters to play RIGHT of base location
-                    var numTilesToPlayUpMax   = numTilesToPlayUpMaxComplete      // most possible tile slots to left of base location
-                    var numTilesToPlayDownMax = numTilesToPlayDownMaxComplete    // most possible tile slots to right of base location
-                    
-                    shiftDown +=  (playerLettersToTestUp.characters.count - numTilesToPlayUpMax)
-                    
-                    if playerLettersToTestUp.characters.count > 0 && shiftDown <= playerLetters.characters.count {
-                        let rangeUp : Range! = playerLettersToTestUp.endIndex.advancedBy(-shiftDown)..<playerLettersToTestUp.endIndex
-                        playerLettersToTestUp.removeRange(rangeUp)  // make copy of letters to manipulate and remove from
-                    }
-                    if playerLettersToTestDown.characters.count > 0 && shiftDown <= playerLetters.characters.count {
-                        let rangeDown : Range! = playerLettersToTestDown.startIndex..<playerLettersToTestDown.endIndex.advancedBy(-shiftDown)
-                        playerLettersToTestDown.removeRange(rangeDown)  // make copy of letters to manipulate and remove from
-                    }
-                    // CHECK UP
-                    gridTestX = gridXSpot // reset test spot as it may have been moved to right in code below
-                    gridTestY = gridYSpot
-                    
-                    while playerLettersToTestUp.characters.count > (0) && playerLettersToTestUp.characters.count <= numTilesToPlayUpMax {
-                        if (gridTestY>=1 && gridTestY<=14) && self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY-1].tileType != TileType.Letter {
-                            --numTilesToPlayUpMax
-                            let permutationUpLastLetter = String( playerLettersToTestUp.removeAtIndex(playerLettersToTestUp.endIndex.predecessor()) )
-                            
-                            currentTestAILetterPlay.tileSpriteLetter = permutationUpLastLetter
-                            currentTestAILetterPlay.gridXEnd = gridTestX
-                            currentTestAILetterPlay.gridYEnd = gridTestY-1
-                            currentPossibleAILetterPlayArr.append(currentTestAILetterPlay)
-                            lettersPlayedInPermutation++
-                            testString = permutationUpLastLetter + testString
-                            if (gridTestY>=1) {--gridTestY}
-                            
-                            while gridTestY>=1 && self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY-1].tileType == TileType.Letter {
-                                let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX][gridTestY-1].tileText)
-                                testString = existingLetterToAdd + testString
-                                if (gridTestY>=1) {--gridTestY}
-                            }
-                        }
-                            
-                        else {
-                            while gridTestY>=1 && self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY-1].tileType == TileType.Letter {
-                                let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX][gridTestY-1].tileText)
-                                testString = existingLetterToAdd + testString
-                                
-                                if (gridTestY>=1) {--gridTestY}
-                            }
-                        }
-                    }
-                    // grab up letters if only right letters on full down shift
-                    if gridTestY >= 1 &&  self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY-1].tileType == TileType.Letter { // && playerLettersToTestUp.characters.count == (0) {
-                        gridTestX = gridXSpot // reset test spot as it was moved to Up in code above
-                        gridTestY = gridYSpot
-                        
-                        while gridTestY>=1 && self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY-1].tileType == TileType.Letter {
-                            let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX][gridTestY-1].tileText)
-                            testString = existingLetterToAdd + testString
-                            --gridTestY
-                        }
-                    }
-                    
-                    /////////////////
-                    // CHECK DOWN // grab existing letters to right even if no shift right characters to test
-                    gridTestX = gridXSpot // reset test spot as it was moved up in code above
-                    gridTestY = gridYSpot
-                    while gridTestY<14 && self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY+1].tileType == TileType.Letter {
-                        let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX][gridTestY+1].tileText)
-                        //print("Added existing letter: \(self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText) ")
-                        testString = testString + existingLetterToAdd
-                        ++gridTestY
-                    }
-                    
-                    while playerLettersToTestDown.characters.count > 0 && playerLettersToTestDown.characters.count <= numTilesToPlayDownMax {
-                        if self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY+1].tileType != TileType.Letter { // if NOT a letter then play a letter
-                            let permutationDownFirstLetter = String(playerLettersToTestDown.removeAtIndex(playerLettersToTestDown.startIndex))
-                            --numTilesToPlayDownMax
-                            
-                            lettersPlayedInPermutation++
-                            currentTestAILetterPlay.tileSpriteLetter = permutationDownFirstLetter
-                            currentTestAILetterPlay.gridXEnd = gridTestX
-                            currentTestAILetterPlay.gridYEnd = gridTestY+1
-                            
-                            currentPossibleAILetterPlayArr.append(currentTestAILetterPlay)
-                            lettersPlayedInPermutation++
-                            
-                            testString = testString + permutationDownFirstLetter
-                            ++gridTestY
-                            // if IS a letter then add a letter(s)
-                            while gridTestX<14 && gridTestY<14 && self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY+1].tileType == TileType.Letter {
-                                let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX][gridTestY+1].tileText)
-                                //print("Added existing letter: \(mmwBoardGrid.grid2DArr[gridTestX+1][gridTestY].tileText) ")
-                                testString = testString + existingLetterToAdd
-                                ++gridTestY
-                                //print (testString)
-                            }
-                        }
-                            
-                        else {
-                            while self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY+1].tileType == TileType.Letter {
-                                let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX][gridTestY+1].tileText)        // ???????????  Y+1  ???? no there before
-                                //print("Added existing letter: \(self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText) ")
-                                testString = testString + existingLetterToAdd
-                                ++gridTestY
-                            }
-                        }
-                        //print("Added permutation letter: \(existingLetterToAdd) : testString \(testString) ")
-                    }
-                    
-                    var foundVerticalPartialWordsNumber = 0
-                    if (mmwGameSceneViewController.checkPartialWordMatch(testString) == true ) {
-                        
-                        validPartialAILetterPlayArr = currentPossibleAILetterPlayArr
-                        //                        allValidPartialWordTilePlayArr.append(validPartialWordTilePlayArr)
-                        foundVerticalPartialWordsNumber++
-                        
-                        if (mmwGameSceneViewController.checkWholeWordMatch(testString) == true ) && testString.characters.count > mmwGameSceneViewController.minWordSize {
-                            // update existing placeholder data to reflect that tile made word
-                            currentTestAILetterPlay.madeValidWord = true
-                            currentTestAILetterPlay.partOfWord = testString
-                            
-                            if validPartialAILetterPlayArr.count > 0 {
-                                
-                                if validPartialAILetterPlayArr[0].gridYEnd == -1 {
-                                    validPartialAILetterPlayArr.removeFirst()
-                                }
-                            }
-                                //                            if validPartialAILetterPlayArr.count == 1 && validPartialAILetterPlayArr[0].gridYEnd == -1 {
-                                //                                return (false, validWholeWordAILetterPlayArr)
-                                //                            }
-                                
-                                
-                            else {
-                                
-  
-                                testString = self.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileText // get letter at start tile
-                                
-
-                                return (false, validWholeWordAILetterPlayArr)
-                                //break
-                            }
-                            
-                            print("V!!! mmwGameSceneViewController.checkWholeWordMatch(testString) == true \(testString) && testString.characters.count > mmwGameSceneViewController.minWordSize  Now TRY to play FROM checkForValidWordsAI mmwGameScene" )
-                            
-                            validWholeWordAILetterPlayArr = validPartialAILetterPlayArr
-                            
-                            //                            allValidWholeWordTilePlayArr.append(validWholeWordTilePlayArr)
-                            //                            print("!!! allValidWholeWordTilePlayArr \(allValidWholeWordTilePlayArr)  checkForValidWordsAI mmwGameScene" )
-                            foundVerticalPartialWordsNumber++
-                            //////////////////////////////////////////
-                            print("V Trying to play: \(testString) at \(gridXSpot), \(gridYSpot) validWholeWordAILetterPlayArr.count: \(validWholeWordAILetterPlayArr.count)")
-                            
-                            var isValidVerticalWholeWord = true
-                            //var isValidPartialWord = false
-                            for letterTilePlaceholder in validWholeWordAILetterPlayArr {
-                                print("V getting letter \(letterTilePlaceholder.tileSpriteLetter),  \(letterTilePlaceholder.gridXEnd),  \(letterTilePlaceholder.gridYEnd),  \(letterTilePlaceholder.madeValidWord),  \(letterTilePlaceholder.partOfWord)")
-                                let letterTileTest = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid.getTileWithLetter(letterTilePlaceholder.tileSpriteLetter)
-                                let validWordTestAtDropSpot = letterTileTest?.tileSprite.testForValidWordsAtDropSpot(letterTilePlaceholder.gridXEnd, tileSnapResultsYGrid: letterTilePlaceholder.gridYEnd, isAI: true, isAIScoringPass: true)
-                                
-                                if validWordTestAtDropSpot!.validHorizontalPartialWord == false || validWordTestAtDropSpot!.validVerticalPartialWord == false {
-                                    //isValidPartialWord = false
-                                    isValidVerticalWholeWord = false
-                                    
-                                    testString = self.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileText // get letter at start tile
-                                    
-                                    break
-                                }
-                                print("V...for var letterTilePlaceholder ... in validWholeWordAILetterPlayArr VERTICAL { \(letterTilePlaceholder.tileSpriteLetter) -  \(letterTilePlaceholder.gridXEnd), \(letterTilePlaceholder.gridYEnd) -> \(letterTilePlaceholder.partOfWord) checkForValidWordsAI mmwGameScene ")
-                            }
-                            
-                            if isValidVerticalWholeWord == true && testString.characters.count > mmwGameSceneViewController.minWordSize  {
-                                print("VFound word : \(testString) VERTICAL and now getting tiles and playing letters")
-                                //validWordPlays.append(word)
-                                
-                                var numLetters = 0.0
-                                for var letter in validWholeWordAILetterPlayArr {
-                                    letter.partOfWord = testString
-                                    // !!! having some problems with 2 of same letter. sometimes only 1 will show on board (didn't work out of delay so trying inside delay)
-                                    
-                                    let delayForNextTile : Double = Double(1.0 * numLetters)
-                                    delay(delayForNextTile) {
-                                        
-                                        var letterTilePlayable : MMWTile
-                                        
-                                        letterTilePlayable  = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid.getTileWithLetter(letter.tileSpriteLetter)!
-                                        
-                                        if letter.madeValidWord == true {
-                                            letterTilePlayable.tileState = TileState.PlayedMadeWord
-                                        } else {
-                                            letterTilePlayable.tileState = TileState.Played
-                                        }
-                                        print("V updating letterTilePlayable.tileSprite.updateAIWordsAtDropSpot VERTICAL \(letter.tileSpriteLetter), \(letter.gridXEnd), \(letter.gridYEnd), \(letter.partOfWord), \(letterTilePlayable.tileState)  checkForValidWordsAI mmwGameScene")
-                                        letterTilePlayable.tileSprite.updateAIWordsAtDropSpot(letter.gridXEnd, tileYGridDestination: letter.gridYEnd, madeValidWord: letter.madeValidWord)
-                                    }
-                                    placedTiles++
-                                    numLetters++
-                                }
-                                // isValidHorizontalWholeWord = true // !!! might have complete word with more letters to play
-                            }
-                            
-                            if (mmwGameSceneViewController.checkWholeWordMatch(testString) == true ) && testString.characters.count > mmwGameSceneViewController.minWordSize && placedTiles > 0 { // && playerLettersToTestRight.characters.count == 0 {
-                                return (isValidVerticalWholeWord, validWholeWordAILetterPlayArr)
-                            }
-                            
-                            
-                            
-                        } //////////////
-                        
-                        
-       
-                                
-                        
-//                        /////////////////////////////////
-//                        
-//                                
-//                                
-//                                
-//                        
-//                        
-//                        
-//                        else if ( (arc4random_uniform(numberOfPermutations) > permutationNumber  )   && (mmwGameSceneViewController.checkPartialWordMatch(testString) == true ) && testString.characters.count > 2 ) {  // * (permutationNumber/numberOfPermutations) * UInt32(1244.55)
-//                            // update existing placeholder data to reflect that tile made word
+    
+//    //////
+//    
+//    
+//    
+//    func checkForValidWordsAIHorizontal (gridXSpot: Int, gridYSpot: Int, permutationsToPlay : Set<String>) -> (hasValidWord: Bool, validAILetterPlayArr: [validAILetterPlay]) {
+//
+//        // check horizontal pass 1 x =
+//
+//        ////////////  TEST FOR ADJACENT TILE PARTIAL WORDS
+//        var tileArrayToPlay : [MMWTile] = [MMWTile]()
+//        var gridTestX = gridXSpot
+//        var gridTestY = gridYSpot
+//        var lockedBoardTilesArr = mmwGameScene.mmwBoardGrid.getArrayLetterTilesInGrid() // start at locked and move L/R and Up/Down
+//        var playerLetterTilesGrid = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid // num of tilesToPlay 0 to numTiles in player grid
+//        
+//        
+//        ///////////////// HORIZONTAL
+//        var currentTestAILetterPlay        = validAILetterPlay()
+//        var currentPossibleAILetterPlayArr = [validAILetterPlay]()
+//        var validPartialAILetterPlayArr    : [validAILetterPlay] = [validAILetterPlay]()
+//        var validWholeWordAILetterPlayArr  : [validAILetterPlay] = [validAILetterPlay]()
+//        var foundHorizontalPartialWordsNumber : Int = 0
+//        var foundHorizontalWholeWordsNumber   : Int = 0
+//
+//        
+//        
+//        var placedTiles = 0
+//        var existingPlayedTiles = 0
+//        var horizontalString = ""               // mmwGameSceneViewController.mmwGameScene.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].letterString
+//        
+//        let openTileLocations = calculateOpenTileLocations(gridXSpot, gridYStart: gridYSpot)
+//        
+//        let numEmptyLetterSpotsLeft  = openTileLocations.leftOpenTileLocations  // from 0 to num player tiles PLUS existing tiles MINUS numLettersRight AND more than grid x = 0
+//        let numEmptyLetterSpotsRight = openTileLocations.rightOpenTileLocations // from 0 to num player tiles PLUS existing tiles MINUS numLettersLeft  AND more than grid x = 0
+//        
+//        var numTilesToPlayLeftMaxComplete  = 0 //(availableTiles.count <= numEmptyLetterSpotsLeft)  ? availableTiles.count : numEmptyLetterSpotsLeft // # tiles to play Left : 0 to < playerTilesArr && < numEmptyLetterSpotsLeft
+//        var numTilesToPlayRightMaxComplete = 0 //(availableTiles.count <= numEmptyLetterSpotsRight) ? availableTiles.count : numEmptyLetterSpotsRight // # tiles to play Left : 0 to < playerTilesArr && < numEmptyLetterSpotsLeft
+//        
+//        var testString = self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText // string starts with letter at valid locked tile location
+//        var shiftLeft = numTilesToPlayLeftMaxComplete
+//        var shiftRight = 0
+//        var playerLettersToTest      = ""
+//        var playerLettersToTestLeft  = ""
+//        var playerLettersToTestRight = ""
+//        
+//        var foundWholeHorizontalWord = false
+//        
+//        for playerLetters in permutationsToPlay {  // get all permutations of player letters based on number
+//            let numberOfPermutations : UInt32 = UInt32(permutationsToPlay.count)
+//            var permutationNumber  : UInt32 = UInt32(0)
+//            //            if self.secondsLeft < 5 { break }
+//            
+//            var lettersPlayedInPermutation = 0
+//            numTilesToPlayLeftMaxComplete =  (numEmptyLetterSpotsLeft  <= playerLetters.characters.count) ?  numEmptyLetterSpotsLeft  : playerLetters.characters.count
+//            numTilesToPlayRightMaxComplete = (numEmptyLetterSpotsRight <= playerLetters.characters.count) ?  numEmptyLetterSpotsRight : playerLetters.characters.count
+//            shiftLeft = numTilesToPlayLeftMaxComplete
+//            shiftRight = 0
+//            
+//            for shiftToRight in 0..<playerLetters.characters.count {
+//                
+//                while shiftRight <= numTilesToPlayRightMaxComplete {
+//                    playerLettersToTest        = playerLetters                      // Strings of letters in Player Tile 2D Array
+//                    playerLettersToTestLeft    = playerLetters                      // Strings of letters to play LEFT of base location
+//                    playerLettersToTestRight   = playerLetters                      // Strings of letters to play RIGHT of base location
+//                    var numTilesToPlayLeftMax  = numTilesToPlayLeftMaxComplete      // most possible tile slots to left of base location
+//                    var numTilesToPlayRightMax = numTilesToPlayRightMaxComplete     // most possible tile slots to right of base location
+//                    
+//                    shiftRight +=  (playerLettersToTestLeft.characters.count - numTilesToPlayLeftMax)
+//                    
+//                    if playerLettersToTestLeft.characters.count > 0 && shiftRight <= playerLetters.characters.count {
+//                        let rangeLeft : Range! = playerLettersToTestLeft.endIndex.advancedBy(-shiftRight)..<playerLettersToTestLeft.endIndex
+//                        playerLettersToTestLeft.removeRange(rangeLeft)  // make copy of letters to manipulate and remove from
+//                    }
+//                    if playerLettersToTestRight.characters.count > 0 && shiftRight <= playerLetters.characters.count {
+//                        let rangeRight : Range! = playerLettersToTestRight.startIndex..<playerLettersToTestRight.endIndex.advancedBy(-shiftRight)
+//                        playerLettersToTestRight.removeRange(rangeRight)  // make copy of letters to manipulate and remove from
+//                    }
+//                    // CHECK LEFT
+//                    gridTestX = gridXSpot // reset test spot as it may have been moved to right in code below
+//                    gridTestY = gridYSpot
+//                    
+//                    while playerLettersToTestLeft.characters.count > (0) && playerLettersToTestLeft.characters.count <= numTilesToPlayLeftMax {
+//                        if (gridTestX>=1 && gridTestX<=14) && self.mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileType != TileType.Letter {
+//                            --numTilesToPlayLeftMax
+//                            let permutationLeftLastLetter = String( playerLettersToTestLeft.removeAtIndex(playerLettersToTestLeft.endIndex.predecessor()) )
 //                            
+//                            currentTestAILetterPlay.tileSpriteLetter = permutationLeftLastLetter
+//                            currentTestAILetterPlay.gridXEnd = gridTestX-1
+//                            currentTestAILetterPlay.gridYEnd = gridTestY
+//                            currentPossibleAILetterPlayArr.append(currentTestAILetterPlay)
+//                            lettersPlayedInPermutation++
+//                            testString = permutationLeftLastLetter + testString
+//                            if (gridTestX>=1) { --gridTestX }
+//                            
+//                            while gridTestX>=1 && self.mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileType == TileType.Letter {
+//                                let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileText)
+//                                testString = existingLetterToAdd + testString
+//                                if (gridTestX>=1) { --gridTestX }
+//                            }
+//                        }
+//                            
+//                        else {
+//                            while gridTestX>=1 && self.mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileType == TileType.Letter {
+//                                let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileText)
+//                                testString = existingLetterToAdd + testString
+//                                
+//                                if (gridTestX>=1) { --gridTestX }
+//                            }
+//                        }
+//                    }
+//                    // grab left letters if only right letters on full right shift
+//                    if gridTestX >= 1 &&  self.mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileType == TileType.Letter { // && playerLettersToTestLeft.characters.count == (0) {
+//                        gridTestX = gridXSpot // reset test spot as it was moved to left in code above
+//                        gridTestY = gridYSpot
+//                        
+//                        while gridTestX>=1 && self.mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileType == TileType.Letter {
+//                            let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX-1][gridTestY].tileText)
+//                            testString = existingLetterToAdd + testString
+//                            --gridTestX
+//                        }
+//                    }
+//                    
+//                    // CHECK RIGHT // grab existing letters to right even if no shift right characters to test
+//                    gridTestX = gridXSpot // reset test spot as it was moved to left in code above
+//                    gridTestY = gridYSpot
+//                    while gridTestX<14 && self.mmwBoardGrid.grid2DArr[gridTestX+1][gridTestY].tileType == TileType.Letter {
+//                        let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX+1][gridTestY].tileText)
+//                        //print("Added existing letter: \(self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText) ")
+//                        testString = testString + existingLetterToAdd
+//                        ++gridTestX
+//                    }
+//                    
+//                    while playerLettersToTestRight.characters.count > 0 && playerLettersToTestRight.characters.count <= numTilesToPlayRightMax {
+//                        if self.mmwBoardGrid.grid2DArr[gridTestX+1][gridTestY].tileType != TileType.Letter { // if NOT a letter then play a letter
+//                            let permutationRightFirstLetter = String(playerLettersToTestRight.removeAtIndex(playerLettersToTestRight.startIndex))
+//                            --numTilesToPlayRightMax
+//                            
+//                            lettersPlayedInPermutation++
+//                            currentTestAILetterPlay.tileSpriteLetter = permutationRightFirstLetter
+//                            currentTestAILetterPlay.gridXEnd = gridTestX+1
+//                            currentTestAILetterPlay.gridYEnd = gridTestY
+//                            
+//                            currentPossibleAILetterPlayArr.append(currentTestAILetterPlay)
+//                            lettersPlayedInPermutation++
+//                            
+//                            testString = testString + permutationRightFirstLetter
+//                            ++gridTestX
+//                            // if IS a letter then add a letter(s)
+//                            while gridTestX<14 && gridTestY<14 && self.mmwBoardGrid.grid2DArr[gridTestX+1][gridTestY].tileType == TileType.Letter {
+//                                let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX+1][gridTestY].tileText)
+//                                //print("Added existing letter: \(mmwBoardGrid.grid2DArr[gridTestX+1][gridTestY].tileText) ")
+//                                testString = testString + existingLetterToAdd
+//                                ++gridTestX
+//                                //print (testString)
+//                            }
+//                        }
+//                            
+//                        else {
+//                            while self.mmwBoardGrid.grid2DArr[gridTestX+1][gridTestY].tileType == TileType.Letter {
+//                                let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX+1][gridTestY].tileText)      //   ????? + 1 ???
+//                                //print("Added existing letter: \(self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText) ")
+//                                testString = testString + existingLetterToAdd
+//                                ++gridTestX
+//                            }
+//                        }
+//                    }
+//                    
+//                    if (mmwGameSceneViewController.checkPartialWordMatch(testString) == true ) {
+//                        var isValidPartialWord = true
+//                        
+//                        print("checkAIValidHoriz \(testString), \(mmwGameSceneViewController.checkPartialWordMatch(testString)) ")
+//                        
+//                        validPartialAILetterPlayArr = currentPossibleAILetterPlayArr
+//                        //                        allValidPartialWordTilePlayArr.append(validPartialWordTilePlayArr)
+//                        foundHorizontalPartialWordsNumber++
+//
+//                        if (mmwGameSceneViewController.checkWholeWordMatch(testString) == true ) && testString.characters.count > mmwGameSceneViewController.minWordSize {
+//                            // update existing placeholder data to reflect that tile made word
+//
 //                            currentTestAILetterPlay.partOfWord = testString
 //                            
 //                            if validPartialAILetterPlayArr.count > 0 {
-//                                
 //                                if validPartialAILetterPlayArr[0].gridXEnd == -1 {
 //                                    validPartialAILetterPlayArr.removeFirst()
 //                                }
 //                            }
 //                                
 //                            else {
-//                                
 //                                testString = self.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileText // get letter at start tile
-//                                
-//                                return (true, validPartialAILetterPlayArr)
+//                                return (false, validWholeWordAILetterPlayArr)
 //                                //break
 //                            }
-//                            
+//
 //                            currentTestAILetterPlay.madeValidWord = true
-//                            
+//
 //                            /////////////////
+////                            print("H!!! mmwGameSceneViewController.checkWholeWordMatch(testString) == true \(testString) && testString.characters.count > mmwGameSceneViewController.minWordSize  Now TRY to play FROM checkForValidWordsAI mmwGameScene" )
 //                            
-//                            print("H!!! mmwGameSceneViewController.checkWholeWordMatch(testString) == true \(testString) && testString.characters.count > mmwGameSceneViewController.minWordSize  Now TRY to play FROM checkForValidWordsAI mmwGameScene" )
-//                            
-//                            //validWholeWordAILetterPlayArr = validPartialAILetterPlayArr
+//                            validWholeWordAILetterPlayArr = validPartialAILetterPlayArr
 //                            
 //                            //                            allValidWholeWordTilePlayArr.append(validWholeWordTilePlayArr)
 //                            //                            print("!!! allValidWholeWordTilePlayArr \(allValidWholeWordTilePlayArr)  checkForValidWordsAI mmwGameScene" )
-//                            foundVerticalPartialWordsNumber++
+//                            foundHorizontalWholeWordsNumber++
 //                            //////////////////////////////////////////
-//                            print("H Trying to play: \(testString) at \(gridXSpot), \(gridYSpot) validWholeWordAILetterPlayArr.count: \(validWholeWordAILetterPlayArr.count)")
+////                            print("H Trying to play: \(testString) at \(gridXSpot), \(gridYSpot) validWholeWordAILetterPlayArr.count: \(validWholeWordAILetterPlayArr.count)")
 //                            
 //                            var isValidHorizontalWholeWord = true
 //                            //var isValidPartialWord = false
-//                            for letterTilePlaceholder in validPartialAILetterPlayArr {
+//                            for letterTilePlaceholder in validWholeWordAILetterPlayArr {
 //                                print("H getting letter \(letterTilePlaceholder.tileSpriteLetter),  \(letterTilePlaceholder.gridXEnd),  \(letterTilePlaceholder.gridYEnd),  \(letterTilePlaceholder.madeValidWord),  \(letterTilePlaceholder.partOfWord)")
 //                                let letterTileTest = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid.getTileWithLetter(letterTilePlaceholder.tileSpriteLetter)
 //                                let validWordTestAtDropSpot = letterTileTest?.tileSprite.testForValidWordsAtDropSpot(letterTilePlaceholder.gridXEnd, tileSnapResultsYGrid: letterTilePlaceholder.gridYEnd, isAI: true, isAIScoringPass: true)
 //                                
 //                                if validWordTestAtDropSpot!.validHorizontalPartialWord == false || validWordTestAtDropSpot!.validVerticalPartialWord == false {
 //                                    //isValidPartialWord = false
-//                                    
+//  
 //                                    testString = self.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileText // get letter at start tile
-//                                    
+//
 //                                    isValidHorizontalWholeWord = false
 //                                    break
 //                                }
-//                                print("H ...for var letterTilePlaceholder ... in validWholeWordAILetterPlayArr { \(letterTilePlaceholder.tileSpriteLetter) -  \(letterTilePlaceholder.gridXEnd), \(letterTilePlaceholder.gridYEnd) -> \(letterTilePlaceholder.partOfWord) checkForValidWordsAI mmwGameScene ")
 //                            }
 //                            
-//                            if isValidHorizontalWholeWord == true && testString.characters.count > 2 {
-//                                print("H Found word : \(testString) and now getting tiles and playing letters")
+//                            if isValidHorizontalWholeWord == true && testString.characters.count > mmwGameSceneViewController.minWordSize  {  // found word now getting tiles and playing letters
 //                                //validWordPlays.append(word)
 //                                var numLetters = 0.0
-//                                for var letter in validPartialAILetterPlayArr {
+//                                for var letter in validWholeWordAILetterPlayArr {
 //                                    letter.partOfWord = testString
 //                                    // !!! having some problems with 2 of same letter. sometimes only 1 will show on board (didn't work out of delay so trying inside delay)
 //                                    
@@ -5360,59 +4958,600 @@ class MMWGameScene : SKScene { // , SKPhysicsContactDelegate {
 //                                }
 //                                // isValidHorizontalWholeWord = true // !!! might have complete word with more letters to play
 //                            }
-//                            
-//                            if (mmwGameSceneViewController.checkPartialWordMatch(testString) == true ) && testString.characters.count > 2 && placedTiles > 0 { // && playerLettersToTestRight.characters.count == 0 {
-//                                return (isValidHorizontalWholeWord, validPartialAILetterPlayArr)
+//
+//                            if (mmwGameSceneViewController.checkWholeWordMatch(testString) == true ) && testString.characters.count > mmwGameSceneViewController.minWordSize && placedTiles > 0 { // && playerLettersToTestRight.characters.count == 0 {
+//                                return (isValidHorizontalWholeWord, validWholeWordAILetterPlayArr)
 //                            }
-//                                
+//
 //                            else {
 //                                break
 //                            }
+//                            
+//                            
+//                            
+//                        
+//                            
+//                            
+//                        //}
+//                            
+//                            
+//                            
+//                            
+////                            //////////////////////////////
+////                            
+////                            
+////                            
+////                            
+////                            
+////                            
+////                            else if ( (arc4random_uniform(numberOfPermutations) > permutationNumber  )   && (mmwGameSceneViewController.checkPartialWordMatch(testString) == true ) && testString.characters.count > 2 ) {  // * (permutationNumber/numberOfPermutations) * UInt32(1244.55)
+////                                // update existing placeholder data to reflect that tile made word
+////                                
+////                                currentTestAILetterPlay.partOfWord = testString
+////                                
+////                                if validPartialAILetterPlayArr.count > 0 {
+////                                    
+////                                    if validPartialAILetterPlayArr[0].gridXEnd == -1 {
+////                                        validPartialAILetterPlayArr.removeFirst()
+////                                    }
+////                                }
+////                                    
+////                                else {
+////                                    
+////                                    testString = self.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileText // get letter at start tile
+////                                    
+////                                    return (true, validPartialAILetterPlayArr)
+////                                    //break
+////                                }
+////                                
+////                                currentTestAILetterPlay.madeValidWord = true
+////                                
+////                                /////////////////
+////                                
+////                                print("H!!! mmwGameSceneViewController.checkWholeWordMatch(testString) == true \(testString) && testString.characters.count > mmwGameSceneViewController.minWordSize  Now TRY to play FROM checkForValidWordsAI mmwGameScene" )
+////                                
+////                                //validWholeWordAILetterPlayArr = validPartialAILetterPlayArr
+////                                
+////                                //                            allValidWholeWordTilePlayArr.append(validWholeWordTilePlayArr)
+////                                //                            print("!!! allValidWholeWordTilePlayArr \(allValidWholeWordTilePlayArr)  checkForValidWordsAI mmwGameScene" )
+////                                foundHorizontalWholeWordsNumber++
+////                                //////////////////////////////////////////
+////                                print("H Trying to play: \(testString) at \(gridXSpot), \(gridYSpot) validWholeWordAILetterPlayArr.count: \(validWholeWordAILetterPlayArr.count)")
+////                                
+////                                var isValidHorizontalWholeWord = true
+////                                //var isValidPartialWord = false
+////                                for letterTilePlaceholder in validPartialAILetterPlayArr {
+////                                    print("H getting letter \(letterTilePlaceholder.tileSpriteLetter),  \(letterTilePlaceholder.gridXEnd),  \(letterTilePlaceholder.gridYEnd),  \(letterTilePlaceholder.madeValidWord),  \(letterTilePlaceholder.partOfWord)")
+////                                    let letterTileTest = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid.getTileWithLetter(letterTilePlaceholder.tileSpriteLetter)
+////                                    let validWordTestAtDropSpot = letterTileTest?.tileSprite.testForValidWordsAtDropSpot(letterTilePlaceholder.gridXEnd, tileSnapResultsYGrid: letterTilePlaceholder.gridYEnd, isAI: true, isAIScoringPass: true)
+////                                    
+////                                    if validWordTestAtDropSpot!.validHorizontalPartialWord == false || validWordTestAtDropSpot!.validVerticalPartialWord == false {
+////                                        //isValidPartialWord = false
+////                                        
+////                                        testString = self.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileText // get letter at start tile
+////                                        
+////                                        isValidHorizontalWholeWord = false
+////                                        break
+////                                    }
+////                                    print("H ...for var letterTilePlaceholder ... in validWholeWordAILetterPlayArr { \(letterTilePlaceholder.tileSpriteLetter) -  \(letterTilePlaceholder.gridXEnd), \(letterTilePlaceholder.gridYEnd) -> \(letterTilePlaceholder.partOfWord) checkForValidWordsAI mmwGameScene ")
+////                                }
+////                                
+////                                if isValidPartialWord == true && testString.characters.count > 2 {
+////                                    print("H Found word : \(testString) and now getting tiles and playing letters")
+////                                    //validWordPlays.append(word)
+////                                    var numLetters = 0.0
+////                                    for var letter in validPartialAILetterPlayArr {
+////                                        letter.partOfWord = testString
+////                                        // !!! having some problems with 2 of same letter. sometimes only 1 will show on board (didn't work out of delay so trying inside delay)
+////                                        
+////                                        let delayForNextTile : Double = Double(1.0 * numLetters)
+////                                        
+////                                        delay(delayForNextTile) {
+////                                            
+////                                            var letterTilePlayable : MMWTile
+////                                            
+////                                            letterTilePlayable  = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid.getTileWithLetter(letter.tileSpriteLetter)!
+////                                            
+////                                            if letter.madeValidWord == true {
+////                                                letterTilePlayable.tileState = TileState.PlayedMadeWord
+////                                            } else {
+////                                                letterTilePlayable.tileState = TileState.Played
+////                                            }
+////                                            print("H updating letterTilePlayable.tileSprite.updateAIWordsAtDropSpot \(letter.tileSpriteLetter), \(letter.gridXEnd), \(letter.gridYEnd), \(letter.partOfWord), \(letterTilePlayable.tileState)  checkForValidWordsAI mmwGameScene")
+////                                            letterTilePlayable.tileSprite.updateAIWordsAtDropSpot(letter.gridXEnd, tileYGridDestination: letter.gridYEnd, madeValidWord: letter.madeValidWord)
+////                                        }
+////                                        placedTiles++
+////                                        numLetters++
+////                                    }
+////                                    // isValidHorizontalWholeWord = true // !!! might have complete word with more letters to play
+////                                }
+////                                
+////                                if (mmwGameSceneViewController.checkPartialWordMatch(testString) == true ) && testString.characters.count > 2 && placedTiles > 0 { // && playerLettersToTestRight.characters.count == 0 {
+////                                    return (isValidPartialWord, validPartialAILetterPlayArr)
+////                                }
+////                                    
+////                                else {
+////                                    break
+////                                }
+////                           
+////
+////                            
+////                                
+////                                //////////////////////
+//                    
+//                    
+//                                
+//                                
+//                                
 //                        }
-//                    }
-//                        
-//                        
-//                        
-//                        
 //                        
 //                        
 //                            
-//                            /////////////////////////////////
-                            
-                            
-                            
-                            
-                            
-                            
-                    }
-                        
-                    else {
-                        //print("NOT Horizontal partial Word Match! \(testString) checkForValidWordsAI mmwGameScene" )
-                    }
-                    
-                    // CHECK UP
-                    
-                    
-                    currentTestAILetterPlay = validAILetterPlay()
-                    currentPossibleAILetterPlayArr  = [validAILetterPlay()]
-                    
-                    validPartialAILetterPlayArr = [validAILetterPlay()]
-                    validWholeWordAILetterPlayArr = [validAILetterPlay()]
-                    
-                    lettersPlayedInPermutation = 0
-                    tileArrayToPlay = [MMWTile]()
-                    testString = self.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileText // get letter at start tile
-                    shiftUp--
-                    shiftDown++
-                }
-            }
-            gridTestX = gridXSpot // reset test spot as it may have been moved to right in code below
-            gridTestY = gridYSpot
-        }
-        return (false, validWholeWordAILetterPlayArr)
-    }
-    
-    ////////////////////////////////
+//   
+//                            
+////                        else {
+////                            
+////                            //is partial word match but not whole word
+////                            
+////                            currentTestAILetterPlay.partOfWord = testString
+////                            
+////                            if validPartialAILetterPlayArr.count > 0 {
+////                                
+////                                if validPartialAILetterPlayArr[0].gridXEnd == -1 {
+////                                    validPartialAILetterPlayArr.removeFirst()
+////                                }
+////                                
+////                                return (false, validPartialAILetterPlayArr)
+////                                
+////                            }
+////                            else {
+////                                testString = self.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileText // get letter at start tile
+////                                return (false, validPartialAILetterPlayArr)
+////                                //break
+////                            }
+//////                            currentTestAILetterPlay.madeValidWord = true
+//////                            return (true, validPartialAILetterPlayArr)
+////                        }
+//                        
+//                    }
+//
+//                    currentTestAILetterPlay = validAILetterPlay()
+//                    currentPossibleAILetterPlayArr  = [validAILetterPlay()]
+//                    
+//                    validPartialAILetterPlayArr = [validAILetterPlay()]
+//                    validWholeWordAILetterPlayArr = [validAILetterPlay()]
+//                    
+//                    lettersPlayedInPermutation = 0
+//                    tileArrayToPlay = [MMWTile]()
+//                    testString = self.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileText // get letter at start tile
+//                    shiftLeft--
+//                    shiftRight++
+//                }
+//            }
+//            /////////////////////
+//            gridTestX = gridXSpot // reset test spot as it may have been moved to right in code below
+//            gridTestY = gridYSpot
+//            ////////////////////
+//            
+//            permutationNumber++
+//        }
+//        return (false, validWholeWordAILetterPlayArr)
+//    }
+//    
+//
+//    func checkForValidWordsAIVertical (gridXSpot: Int, gridYSpot: Int, permutationsToPlay : Set<String>) -> (hasValidWord: Bool, validAILetterPlayArr: [validAILetterPlay]) {
+//        ////////////  TEST FOR ADJACENT TILE PARTIAL WORDS
+//        var numberOfPermutations = UInt32(permutationsToPlay.count)
+//        var permutationNumber = UInt32(0)
+//        
+//        var tileArrayToPlay : [MMWTile] = [MMWTile]()
+//        var gridTestX = gridXSpot
+//        var gridTestY = gridYSpot
+//        var lockedBoardTilesArr = mmwGameScene.mmwBoardGrid.getArrayLetterTilesInGrid() // start at locked and move L/R and Up/Down
+//        var playerLetterTilesGrid = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid // num of tilesToPlay 0 to numTiles in player grid
+//        
+//        ///////////////// VERTICAL
+//        var currentTestAILetterPlay        = validAILetterPlay()
+//        var currentPossibleAILetterPlayArr = [validAILetterPlay]()
+//        var validPartialAILetterPlayArr    : [validAILetterPlay] = [validAILetterPlay]()
+//        var validWholeWordAILetterPlayArr  : [validAILetterPlay] = [validAILetterPlay]()
+//        var foundVerticalPartialWordsNumber : Int = 0
+//        var foundVerticalWholeWordsNumber   : Int = 0
+//        var placedTiles = 0
+//        var existingPlayedTiles = 0
+//        var verticalString = ""               // mmwGameSceneViewController.mmwGameScene.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].letterString
+//        
+//        let openTileLocations = calculateOpenTileLocations(gridXSpot, gridYStart: gridYSpot)
+//        
+//        let numEmptyLetterSpotsUp  = openTileLocations.upOpenTileLocations  // from 0 to num player tiles PLUS existing tiles MINUS numLettersRight AND more than grid x = 0
+//        let numEmptyLetterSpotsDown = openTileLocations.downOpenTileLocations // from 0 to num player tiles PLUS existing tiles MINUS numLettersLeft  AND more than grid x = 0
+//        
+//        var numTilesToPlayUpMaxComplete  = 0 // (availableTiles.count <= numEmptyLetterSpotsUp)  ? availableTiles.count : numEmptyLetterSpotsUp // # tiles to play Left : 0 to < playerTilesArr && < numEmptyLetterSpotsLeft
+//        var numTilesToPlayDownMaxComplete = 0 // (availableTiles.count <= numEmptyLetterSpotsDown) ? availableTiles.count : numEmptyLetterSpotsDown // # tiles to play Left : 0 to < playerTilesArr && < numEmptyLetterSpotsLeft
+//        
+//        var testString = self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText // string starts with letter at valid locked tile location
+//        var shiftUp = numTilesToPlayUpMaxComplete
+//        var shiftDown = 0
+//        var playerLettersToTest     = ""
+//        var playerLettersToTestUp   = ""
+//        var playerLettersToTestDown = ""
+//        
+//        var foundWholeVerticalWord = false
+//        
+//        for playerLetters in permutationsToPlay {  // get all permutations of player letters based on number
+//            
+//            //            if self.secondsLeft < 5 { break }      // so doesn't try to play tiles on player turn change
+//            
+//            var lettersPlayedInPermutation = 0
+//            numTilesToPlayUpMaxComplete  =  (numEmptyLetterSpotsUp   <= playerLetters.characters.count) ?  numEmptyLetterSpotsUp  : playerLetters.characters.count
+//            numTilesToPlayDownMaxComplete = (numEmptyLetterSpotsDown <= playerLetters.characters.count) ?  numEmptyLetterSpotsDown : playerLetters.characters.count
+//            shiftUp = numTilesToPlayUpMaxComplete
+//            shiftDown = 0
+//            
+//            for shiftToDown in 0..<playerLetters.characters.count {
+//                
+//                //                shiftDown +=  (playerLettersToTestUp.characters.count - numTilesToPlayUpMaxComplete)
+//                //                playerLettersToTest       = playerLetters                    // Strings of letters in Player Tile 2D Array
+//                //                playerLettersToTestUp     = playerLetters                    // Strings of letters to play LEFT of base location
+//                //                playerLettersToTestDown   = playerLetters                    // Strings of letters to play RIGHT of base location
+//                //                var numTilesToPlayUpMax   = numTilesToPlayUpMaxComplete      // most possible tile slots to left of base location
+//                //                var numTilesToPlayDownMax = numTilesToPlayDownMaxComplete    // most possible tile slots to right of base location
+//                
+//                while shiftDown <= numTilesToPlayDownMaxComplete {
+//                    
+//                    playerLettersToTest       = playerLetters                    // Strings of letters in Player Tile 2D Array
+//                    playerLettersToTestUp     = playerLetters                    // Strings of letters to play LEFT of base location
+//                    playerLettersToTestDown   = playerLetters                    // Strings of letters to play RIGHT of base location
+//                    var numTilesToPlayUpMax   = numTilesToPlayUpMaxComplete      // most possible tile slots to left of base location
+//                    var numTilesToPlayDownMax = numTilesToPlayDownMaxComplete    // most possible tile slots to right of base location
+//                    
+//                    shiftDown +=  (playerLettersToTestUp.characters.count - numTilesToPlayUpMax)
+//                    
+//                    if playerLettersToTestUp.characters.count > 0 && shiftDown <= playerLetters.characters.count {
+//                        let rangeUp : Range! = playerLettersToTestUp.endIndex.advancedBy(-shiftDown)..<playerLettersToTestUp.endIndex
+//                        playerLettersToTestUp.removeRange(rangeUp)  // make copy of letters to manipulate and remove from
+//                    }
+//                    if playerLettersToTestDown.characters.count > 0 && shiftDown <= playerLetters.characters.count {
+//                        let rangeDown : Range! = playerLettersToTestDown.startIndex..<playerLettersToTestDown.endIndex.advancedBy(-shiftDown)
+//                        playerLettersToTestDown.removeRange(rangeDown)  // make copy of letters to manipulate and remove from
+//                    }
+//                    // CHECK UP
+//                    gridTestX = gridXSpot // reset test spot as it may have been moved to right in code below
+//                    gridTestY = gridYSpot
+//                    
+//                    while playerLettersToTestUp.characters.count > (0) && playerLettersToTestUp.characters.count <= numTilesToPlayUpMax {
+//                        if (gridTestY>=1 && gridTestY<=14) && self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY-1].tileType != TileType.Letter {
+//                            --numTilesToPlayUpMax
+//                            let permutationUpLastLetter = String( playerLettersToTestUp.removeAtIndex(playerLettersToTestUp.endIndex.predecessor()) )
+//                            
+//                            currentTestAILetterPlay.tileSpriteLetter = permutationUpLastLetter
+//                            currentTestAILetterPlay.gridXEnd = gridTestX
+//                            currentTestAILetterPlay.gridYEnd = gridTestY-1
+//                            currentPossibleAILetterPlayArr.append(currentTestAILetterPlay)
+//                            lettersPlayedInPermutation++
+//                            testString = permutationUpLastLetter + testString
+//                            if (gridTestY>=1) {--gridTestY}
+//                            
+//                            while gridTestY>=1 && self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY-1].tileType == TileType.Letter {
+//                                let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX][gridTestY-1].tileText)
+//                                testString = existingLetterToAdd + testString
+//                                if (gridTestY>=1) {--gridTestY}
+//                            }
+//                        }
+//                            
+//                        else {
+//                            while gridTestY>=1 && self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY-1].tileType == TileType.Letter {
+//                                let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX][gridTestY-1].tileText)
+//                                testString = existingLetterToAdd + testString
+//                                
+//                                if (gridTestY>=1) {--gridTestY}
+//                            }
+//                        }
+//                    }
+//                    // grab up letters if only right letters on full down shift
+//                    if gridTestY >= 1 &&  self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY-1].tileType == TileType.Letter { // && playerLettersToTestUp.characters.count == (0) {
+//                        gridTestX = gridXSpot // reset test spot as it was moved to Up in code above
+//                        gridTestY = gridYSpot
+//                        
+//                        while gridTestY>=1 && self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY-1].tileType == TileType.Letter {
+//                            let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX][gridTestY-1].tileText)
+//                            testString = existingLetterToAdd + testString
+//                            --gridTestY
+//                        }
+//                    }
+//                    
+//                    /////////////////
+//                    // CHECK DOWN // grab existing letters to right even if no shift right characters to test
+//                    gridTestX = gridXSpot // reset test spot as it was moved up in code above
+//                    gridTestY = gridYSpot
+//                    while gridTestY<14 && self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY+1].tileType == TileType.Letter {
+//                        let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX][gridTestY+1].tileText)
+//                        //print("Added existing letter: \(self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText) ")
+//                        testString = testString + existingLetterToAdd
+//                        ++gridTestY
+//                    }
+//                    
+//                    while playerLettersToTestDown.characters.count > 0 && playerLettersToTestDown.characters.count <= numTilesToPlayDownMax {
+//                        if self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY+1].tileType != TileType.Letter { // if NOT a letter then play a letter
+//                            let permutationDownFirstLetter = String(playerLettersToTestDown.removeAtIndex(playerLettersToTestDown.startIndex))
+//                            --numTilesToPlayDownMax
+//                            
+//                            lettersPlayedInPermutation++
+//                            currentTestAILetterPlay.tileSpriteLetter = permutationDownFirstLetter
+//                            currentTestAILetterPlay.gridXEnd = gridTestX
+//                            currentTestAILetterPlay.gridYEnd = gridTestY+1
+//                            
+//                            currentPossibleAILetterPlayArr.append(currentTestAILetterPlay)
+//                            lettersPlayedInPermutation++
+//                            
+//                            testString = testString + permutationDownFirstLetter
+//                            ++gridTestY
+//                            // if IS a letter then add a letter(s)
+//                            while gridTestX<14 && gridTestY<14 && self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY+1].tileType == TileType.Letter {
+//                                let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX][gridTestY+1].tileText)
+//                                //print("Added existing letter: \(mmwBoardGrid.grid2DArr[gridTestX+1][gridTestY].tileText) ")
+//                                testString = testString + existingLetterToAdd
+//                                ++gridTestY
+//                                //print (testString)
+//                            }
+//                        }
+//                            
+//                        else {
+//                            while self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY+1].tileType == TileType.Letter {
+//                                let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX][gridTestY+1].tileText)        // ???????????  Y+1  ???? no there before
+//                                //print("Added existing letter: \(self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText) ")
+//                                testString = testString + existingLetterToAdd
+//                                ++gridTestY
+//                            }
+//                        }
+//                        //print("Added permutation letter: \(existingLetterToAdd) : testString \(testString) ")
+//                    }
+//                    
+//                    var foundVerticalPartialWordsNumber = 0
+//                    if (mmwGameSceneViewController.checkPartialWordMatch(testString) == true ) {
+//                        
+//                        validPartialAILetterPlayArr = currentPossibleAILetterPlayArr
+//                        //                        allValidPartialWordTilePlayArr.append(validPartialWordTilePlayArr)
+//                        foundVerticalPartialWordsNumber++
+//                        
+//                        if (mmwGameSceneViewController.checkWholeWordMatch(testString) == true ) && testString.characters.count > mmwGameSceneViewController.minWordSize {
+//                            // update existing placeholder data to reflect that tile made word
+//                            currentTestAILetterPlay.madeValidWord = true
+//                            currentTestAILetterPlay.partOfWord = testString
+//                            
+//                            if validPartialAILetterPlayArr.count > 0 {
+//                                
+//                                if validPartialAILetterPlayArr[0].gridYEnd == -1 {
+//                                    validPartialAILetterPlayArr.removeFirst()
+//                                }
+//                            }
+//                                //                            if validPartialAILetterPlayArr.count == 1 && validPartialAILetterPlayArr[0].gridYEnd == -1 {
+//                                //                                return (false, validWholeWordAILetterPlayArr)
+//                                //                            }
+//                                
+//                                
+//                            else {
+//                                
+//  
+//                                testString = self.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileText // get letter at start tile
+//                                
+//
+//                                return (false, validWholeWordAILetterPlayArr)
+//                                //break
+//                            }
+//                            
+//                            print("V!!! mmwGameSceneViewController.checkWholeWordMatch(testString) == true \(testString) && testString.characters.count > mmwGameSceneViewController.minWordSize  Now TRY to play FROM checkForValidWordsAI mmwGameScene" )
+//                            
+//                            validWholeWordAILetterPlayArr = validPartialAILetterPlayArr
+//                            
+//                            //                            allValidWholeWordTilePlayArr.append(validWholeWordTilePlayArr)
+//                            //                            print("!!! allValidWholeWordTilePlayArr \(allValidWholeWordTilePlayArr)  checkForValidWordsAI mmwGameScene" )
+//                            foundVerticalPartialWordsNumber++
+//                            //////////////////////////////////////////
+//                            print("V Trying to play: \(testString) at \(gridXSpot), \(gridYSpot) validWholeWordAILetterPlayArr.count: \(validWholeWordAILetterPlayArr.count)")
+//                            
+//                            var isValidVerticalWholeWord = true
+//                            //var isValidPartialWord = false
+//                            for letterTilePlaceholder in validWholeWordAILetterPlayArr {
+//                                print("V getting letter \(letterTilePlaceholder.tileSpriteLetter),  \(letterTilePlaceholder.gridXEnd),  \(letterTilePlaceholder.gridYEnd),  \(letterTilePlaceholder.madeValidWord),  \(letterTilePlaceholder.partOfWord)")
+//                                let letterTileTest = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid.getTileWithLetter(letterTilePlaceholder.tileSpriteLetter)
+//                                let validWordTestAtDropSpot = letterTileTest?.tileSprite.testForValidWordsAtDropSpot(letterTilePlaceholder.gridXEnd, tileSnapResultsYGrid: letterTilePlaceholder.gridYEnd, isAI: true, isAIScoringPass: true)
+//                                
+//                                if validWordTestAtDropSpot!.validHorizontalPartialWord == false || validWordTestAtDropSpot!.validVerticalPartialWord == false {
+//                                    //isValidPartialWord = false
+//                                    isValidVerticalWholeWord = false
+//                                    
+//                                    testString = self.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileText // get letter at start tile
+//                                    
+//                                    break
+//                                }
+//                                print("V...for var letterTilePlaceholder ... in validWholeWordAILetterPlayArr VERTICAL { \(letterTilePlaceholder.tileSpriteLetter) -  \(letterTilePlaceholder.gridXEnd), \(letterTilePlaceholder.gridYEnd) -> \(letterTilePlaceholder.partOfWord) checkForValidWordsAI mmwGameScene ")
+//                            }
+//                            
+//                            if isValidVerticalWholeWord == true && testString.characters.count > mmwGameSceneViewController.minWordSize  {
+//                                print("VFound word : \(testString) VERTICAL and now getting tiles and playing letters")
+//                                //validWordPlays.append(word)
+//                                
+//                                var numLetters = 0.0
+//                                for var letter in validWholeWordAILetterPlayArr {
+//                                    letter.partOfWord = testString
+//                                    // !!! having some problems with 2 of same letter. sometimes only 1 will show on board (didn't work out of delay so trying inside delay)
+//                                    
+//                                    let delayForNextTile : Double = Double(1.0 * numLetters)
+//                                    delay(delayForNextTile) {
+//                                        
+//                                        var letterTilePlayable : MMWTile
+//                                        
+//                                        letterTilePlayable  = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid.getTileWithLetter(letter.tileSpriteLetter)!
+//                                        
+//                                        if letter.madeValidWord == true {
+//                                            letterTilePlayable.tileState = TileState.PlayedMadeWord
+//                                        } else {
+//                                            letterTilePlayable.tileState = TileState.Played
+//                                        }
+//                                        print("V updating letterTilePlayable.tileSprite.updateAIWordsAtDropSpot VERTICAL \(letter.tileSpriteLetter), \(letter.gridXEnd), \(letter.gridYEnd), \(letter.partOfWord), \(letterTilePlayable.tileState)  checkForValidWordsAI mmwGameScene")
+//                                        letterTilePlayable.tileSprite.updateAIWordsAtDropSpot(letter.gridXEnd, tileYGridDestination: letter.gridYEnd, madeValidWord: letter.madeValidWord)
+//                                    }
+//                                    placedTiles++
+//                                    numLetters++
+//                                }
+//                                // isValidHorizontalWholeWord = true // !!! might have complete word with more letters to play
+//                            }
+//                            
+//                            if (mmwGameSceneViewController.checkWholeWordMatch(testString) == true ) && testString.characters.count > mmwGameSceneViewController.minWordSize && placedTiles > 0 { // && playerLettersToTestRight.characters.count == 0 {
+//                                return (isValidVerticalWholeWord, validWholeWordAILetterPlayArr)
+//                            }
+//                            
+//                            
+//                            
+//                        } //////////////
+//                        
+//                        
+//       
+//                                
+//                        
+////                        /////////////////////////////////
+////                        
+////                                
+////                                
+////                                
+////                        
+////                        
+////                        
+////                        else if ( (arc4random_uniform(numberOfPermutations) > permutationNumber  )   && (mmwGameSceneViewController.checkPartialWordMatch(testString) == true ) && testString.characters.count > 2 ) {  // * (permutationNumber/numberOfPermutations) * UInt32(1244.55)
+////                            // update existing placeholder data to reflect that tile made word
+////                            
+////                            currentTestAILetterPlay.partOfWord = testString
+////                            
+////                            if validPartialAILetterPlayArr.count > 0 {
+////                                
+////                                if validPartialAILetterPlayArr[0].gridXEnd == -1 {
+////                                    validPartialAILetterPlayArr.removeFirst()
+////                                }
+////                            }
+////                                
+////                            else {
+////                                
+////                                testString = self.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileText // get letter at start tile
+////                                
+////                                return (true, validPartialAILetterPlayArr)
+////                                //break
+////                            }
+////                            
+////                            currentTestAILetterPlay.madeValidWord = true
+////                            
+////                            /////////////////
+////                            
+////                            print("H!!! mmwGameSceneViewController.checkWholeWordMatch(testString) == true \(testString) && testString.characters.count > mmwGameSceneViewController.minWordSize  Now TRY to play FROM checkForValidWordsAI mmwGameScene" )
+////                            
+////                            //validWholeWordAILetterPlayArr = validPartialAILetterPlayArr
+////                            
+////                            //                            allValidWholeWordTilePlayArr.append(validWholeWordTilePlayArr)
+////                            //                            print("!!! allValidWholeWordTilePlayArr \(allValidWholeWordTilePlayArr)  checkForValidWordsAI mmwGameScene" )
+////                            foundVerticalPartialWordsNumber++
+////                            //////////////////////////////////////////
+////                            print("H Trying to play: \(testString) at \(gridXSpot), \(gridYSpot) validWholeWordAILetterPlayArr.count: \(validWholeWordAILetterPlayArr.count)")
+////                            
+////                            var isValidHorizontalWholeWord = true
+////                            //var isValidPartialWord = false
+////                            for letterTilePlaceholder in validPartialAILetterPlayArr {
+////                                print("H getting letter \(letterTilePlaceholder.tileSpriteLetter),  \(letterTilePlaceholder.gridXEnd),  \(letterTilePlaceholder.gridYEnd),  \(letterTilePlaceholder.madeValidWord),  \(letterTilePlaceholder.partOfWord)")
+////                                let letterTileTest = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid.getTileWithLetter(letterTilePlaceholder.tileSpriteLetter)
+////                                let validWordTestAtDropSpot = letterTileTest?.tileSprite.testForValidWordsAtDropSpot(letterTilePlaceholder.gridXEnd, tileSnapResultsYGrid: letterTilePlaceholder.gridYEnd, isAI: true, isAIScoringPass: true)
+////                                
+////                                if validWordTestAtDropSpot!.validHorizontalPartialWord == false || validWordTestAtDropSpot!.validVerticalPartialWord == false {
+////                                    //isValidPartialWord = false
+////                                    
+////                                    testString = self.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileText // get letter at start tile
+////                                    
+////                                    isValidHorizontalWholeWord = false
+////                                    break
+////                                }
+////                                print("H ...for var letterTilePlaceholder ... in validWholeWordAILetterPlayArr { \(letterTilePlaceholder.tileSpriteLetter) -  \(letterTilePlaceholder.gridXEnd), \(letterTilePlaceholder.gridYEnd) -> \(letterTilePlaceholder.partOfWord) checkForValidWordsAI mmwGameScene ")
+////                            }
+////                            
+////                            if isValidHorizontalWholeWord == true && testString.characters.count > 2 {
+////                                print("H Found word : \(testString) and now getting tiles and playing letters")
+////                                //validWordPlays.append(word)
+////                                var numLetters = 0.0
+////                                for var letter in validPartialAILetterPlayArr {
+////                                    letter.partOfWord = testString
+////                                    // !!! having some problems with 2 of same letter. sometimes only 1 will show on board (didn't work out of delay so trying inside delay)
+////                                    
+////                                    let delayForNextTile : Double = Double(1.0 * numLetters)
+////                                    
+////                                    delay(delayForNextTile) {
+////                                        
+////                                        var letterTilePlayable : MMWTile
+////                                        
+////                                        letterTilePlayable  = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid.getTileWithLetter(letter.tileSpriteLetter)!
+////                                        
+////                                        if letter.madeValidWord == true {
+////                                            letterTilePlayable.tileState = TileState.PlayedMadeWord
+////                                        } else {
+////                                            letterTilePlayable.tileState = TileState.Played
+////                                        }
+////                                        print("H updating letterTilePlayable.tileSprite.updateAIWordsAtDropSpot \(letter.tileSpriteLetter), \(letter.gridXEnd), \(letter.gridYEnd), \(letter.partOfWord), \(letterTilePlayable.tileState)  checkForValidWordsAI mmwGameScene")
+////                                        letterTilePlayable.tileSprite.updateAIWordsAtDropSpot(letter.gridXEnd, tileYGridDestination: letter.gridYEnd, madeValidWord: letter.madeValidWord)
+////                                    }
+////                                    placedTiles++
+////                                    numLetters++
+////                                }
+////                                // isValidHorizontalWholeWord = true // !!! might have complete word with more letters to play
+////                            }
+////                            
+////                            if (mmwGameSceneViewController.checkPartialWordMatch(testString) == true ) && testString.characters.count > 2 && placedTiles > 0 { // && playerLettersToTestRight.characters.count == 0 {
+////                                return (isValidHorizontalWholeWord, validPartialAILetterPlayArr)
+////                            }
+////                                
+////                            else {
+////                                break
+////                            }
+////                        }
+////                    }
+////                        
+////                        
+////                        
+////                        
+////                        
+////                        
+////                            
+////                            /////////////////////////////////
+//                            
+//                            
+//                            
+//                            
+//                            
+//                            
+//                    }
+//                        
+//                    else {
+//                        //print("NOT Horizontal partial Word Match! \(testString) checkForValidWordsAI mmwGameScene" )
+//                    }
+//                    
+//                    // CHECK UP
+//                    
+//                    
+//                    currentTestAILetterPlay = validAILetterPlay()
+//                    currentPossibleAILetterPlayArr  = [validAILetterPlay()]
+//                    
+//                    validPartialAILetterPlayArr = [validAILetterPlay()]
+//                    validWholeWordAILetterPlayArr = [validAILetterPlay()]
+//                    
+//                    lettersPlayedInPermutation = 0
+//                    tileArrayToPlay = [MMWTile]()
+//                    testString = self.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileText // get letter at start tile
+//                    shiftUp--
+//                    shiftDown++
+//                }
+//            }
+//            gridTestX = gridXSpot // reset test spot as it may have been moved to right in code below
+//            gridTestY = gridYSpot
+//        }
+//        return (false, validWholeWordAILetterPlayArr)
+//    }
+//    
+//    ////////////////////////////////
     
     func permuteLetters(list: [String], minStringLen : Int, maxStringLen: Int) -> Set<String> {
         func permuteLetters(fromList: [String], toList: [String], minStringLen: Int, maxStringLen: Int, inout set: Set<String>) {

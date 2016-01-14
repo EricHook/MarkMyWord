@@ -53,13 +53,13 @@ class MMWTile {
     var gridXTest: Int = -1
     var gridYTest: Int = -1
 
-    var tileText: String = "?"
+    var tileText: String = "!"
     var undealt = true
     var tileState: TileState = TileState.Undealt
     var playedMadeWord       = PlayedMadeWord.None
     var tileOwner: TileOwner = TileOwner.None
     var tileGrid: Grid?      = nil
-    var description          = ""
+    var description          = "!"
     
     var playableSpotsEachDirection : (left: Int, right: Int, up: Int, down: Int) = (0, 0, 0, 0)
 
@@ -122,10 +122,10 @@ class MMWTile {
         //self.gridLocation = GridLocation[0]
         self.gridX = -1
         self.gridY = -1
-        self.tileText = "!"
-        description = "!"
-        self.tileState = TileState.Undealt
-        self.tileOwner = TileOwner.None
+        //self.tileText = "!"
+        //description = "!"
+        //self.tileState = TileState.Undealt
+        //self.tileOwner = TileOwner.None
         self.tileSprite  = LetterTileSprite(tileStyle: LetterTileSprite.TileStyle.basic, withChar: tileText, withColor: UIColorGray, atPoint: CGPointMake(0.0, 0.0))
         self.tileSprite.position = CGPoint(x: 0.0, y: 0.0)
         self.tileSprite.zPosition = 1
@@ -136,7 +136,7 @@ class MMWTile {
     }
     
     init (letterString : String) {
-        self.tileType = TileType.Unknown
+        self.tileType = TileType.Letter
         self.spritename = SpriteName.Letter
         self.gridLocation = GridLocation.Undealt
         self.gridX = 0
