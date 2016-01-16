@@ -36,7 +36,7 @@ class MMWGameSceneViewController : UIViewController {
     var numPlayers   = 2
     var playerTurn   = 1
     var numStarterWords = 2
-    var minWordSize  = 4
+    var minWordSize  = 2
     var audioOn = true
     var secondsPerTurn = 999
     var timerIsOn = false

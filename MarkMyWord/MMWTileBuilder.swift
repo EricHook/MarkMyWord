@@ -17,11 +17,11 @@ class MMWTileBuilder {
 
     var mmwTileArray = [MMWTile]()
     
-    var mmwTileArrayPlaceholder = [MMWTile]()
+    var mmwTileArrayPlaceholder = [MMWTile](count: 250, repeatedValue: MMWTile())
 
     var mmwDiscardedTileArray = [MMWTile]()
     
-    var mmwBlankTileArray = [MMWTile]()
+    //var mmwBlankTileArray = [MMWTile]()
     
     var mmwPlayer1LetterTile2DArray : [[MMWTile?]]?
     var mmwPlayer2LetterTile2DArray : [[MMWTile?]]?
@@ -31,13 +31,13 @@ class MMWTileBuilder {
     var mmwBoardTile2DArray : [[MMWTile?]]?
     var arr = [3,4,5]
 
-    func returnTilesToStartArray () {
-//        for tileRow in mmwPlayer2LetterTile2DArray! {
-//            for tile in tileRow {
-//                tile?.resetTileValues()
-//            }
-//        }
-    }
+//    func returnTilesToStartArray () {
+////        for tileRow in mmwPlayer2LetterTile2DArray! {
+////            for tile in tileRow {
+////                tile?.resetTileValues()
+////            }
+////        }
+//    }
     
 //    func makeNewLetterTiles () {
 //        tileA1 = MMWTile(letterString: "A")
@@ -475,9 +475,9 @@ class MMWTileBuilder {
             tile.tileSprite.yScale = (screenSize!.width)/1024
         }
         
-        for _ in 0..<500 {
-            mmwTileArrayPlaceholder.append(MMWTile())
-        }
+//        for _ in 0..<500 {
+//            mmwTileArrayPlaceholder.append(MMWTile())
+//        }
         
 //        for _ in 0..<250 {
 //            mmwBlankTileArray.append(MMWTile())
@@ -669,7 +669,7 @@ class MMWTileBuilder {
     /// send/move num Tiles from one tile array to another tile array
     func resetAllTiles() {
 
-        let gameGrids = [mmwGameScene.mmwBoardGrid, mmwGameScene.mmwPlayer1Grid, mmwGameScene.mmwPlayer2Grid, mmwGameScene.mmwPlayer3Grid, mmwGameScene.mmwPlayer4Grid  ]
+        let gameGrids = [ mmwGameScene.mmwBoardGrid, mmwGameScene.mmwPlayer1Grid, mmwGameScene.mmwPlayer2Grid, mmwGameScene.mmwPlayer3Grid, mmwGameScene.mmwPlayer4Grid ]
         // remove all actions from tiles e.g. moving, scaling, etc
         for grid in gameGrids {
             // move letter tiles back to mmwTileArray and replace with placeholder tiles
@@ -689,21 +689,35 @@ class MMWTileBuilder {
                 for tileCol in 0..<grid.grid2DArr[tileRow].count {
                     let tile = grid.grid2DArr[tileRow][tileCol]
                     if tile.tileType == TileType.Letter {
+                        
+//                        tileCollection?.mmwTileArray.append(tile)
                         grid.grid2DArr[tileRow][tileCol] = self.mmwTileArrayPlaceholder.removeFirst()
                         tile.resetTileValues()
+                        
                     }
+                    
+                    if tile.tileType == TileType.Placeholder {
+                        
+//                        mmwTileArrayPlaceholder.append(tile)
+//                        grid.grid2DArr[tileRow][tileCol] = self.mmwTileArrayPlaceholder.removeFirst()
+//                        tile.resetTileValues()
+                    }
+                    
                 }
             }
         }
         // return letter tiles and placeholders to respective arrays
         for tile in self.mmwDiscardedTileArray {
             if tile.tileType == TileType.Placeholder {
+                //tile.resetTileValues()
                 tileCollection?.mmwTileArrayPlaceholder.append(mmwDiscardedTileArray.removeFirst())
             }
             if tile.tileType == TileType.Letter {
+                //tile.resetTileValues()
                 tileCollection?.mmwTileArray.append(mmwDiscardedTileArray.removeFirst())
-                tile.resetTileValues()
+                
             }
+            tile.resetTileValues()
         }
     }
     

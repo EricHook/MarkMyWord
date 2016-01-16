@@ -69,7 +69,9 @@ class MMWTile {
     
     func resetTileValues () {
         self.tileSprite.removeActionForKey("tileAction")
-        gridHome?.grid2DArr[gridX][gridY] = MMWTile()
+        
+        //if gridHome?.grid2DArr[gridX][gridY] = MMWTile()
+        //gridHome?.grid2DArr[gridX][gridY] = MMWTile()
         
         if tileType == TileType.Letter {
             tileCollection?.mmwTileArray.append(self)
@@ -80,9 +82,9 @@ class MMWTile {
         
         self.gridLocation = GridLocation.Undealt
         gridLocationEnd = GridLocation.Undealt
-        gridHome = mmwGameScene.mmwBoardGrid
-        gridEnd = mmwGameScene.mmwBoardGrid
-        gridTest = mmwGameScene.mmwBoardGrid
+        gridHome = nil // mmwGameScene.mmwBoardGrid
+        gridEnd = nil //mmwGameScene.mmwBoardGrid
+        gridTest = nil //mmwGameScene.mmwBoardGrid
         gridX = -1
         gridY = -1
         gridXEnd = -1
@@ -93,6 +95,12 @@ class MMWTile {
         tileSprite.position = CGPoint (x: 50, y: 50)
         tileSprite.zPosition = 2
         tileSprite.letterLabel.zPosition = 3
+        undealt = true
+        tileState = TileState.Undealt
+        playedMadeWord = PlayedMadeWord.None
+        tileOwner = TileOwner.None
+        tileGrid = nil
+        description = ""
         
         let tileSize = CGSize(width: 47 , height: 47)
         tileSprite.size = tileSize
@@ -107,13 +115,6 @@ class MMWTile {
 
         tileSprite.letterLabel.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.98)
         tileSprite.color = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.00)
-
-        undealt = true
-        tileState = TileState.Undealt
-        playedMadeWord = PlayedMadeWord.None
-        tileOwner = TileOwner.None
-        tileGrid = nil
-        description = ""
     }
     
     init () {  // creates blank placeholder tile
