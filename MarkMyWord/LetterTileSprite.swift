@@ -1808,6 +1808,7 @@ class LetterTileSprite : SKSpriteNode {
         var tileArrToScore = tileArrToScoreHorizontal
         var tileNum = 0
         var delayTime = 0.0
+        var scoredMadeWordBoth = false
         
         while numPasses <= 1 {
             print("### ScoreTileInArray: \(numPasses)")
@@ -1887,11 +1888,13 @@ class LetterTileSprite : SKSpriteNode {
                 tileSpriteParent.tileState = TileState.Locked
             }
                 
-            else if tileSpriteParent.tileState == TileState.PlayedMadeWord && tileSpriteParent.playedMadeWord == PlayedMadeWord.Both {
+            // only score both on one direction rather than double score on horizontal AND vertical passes
+            else if tileSpriteParent.tileState == TileState.PlayedMadeWord && tileSpriteParent.playedMadeWord == PlayedMadeWord.Both && scoredMadeWordBoth == false {
                 //self.color = UIColor.blackColor()
                 pointsForCompletingWord = ( (tileArrToScoreVertical.count * 5) + (tileArrToScoreHorizontal.count * 5) )
                 print("+POINTS for completing word BOTH : \(pointsForCompletingWord) : \(self.tileText) ")
                 tileSpriteParent.tileState = TileState.Locked
+                scoredMadeWordBoth = true
             }
             
             let waitTime = SKAction.waitForDuration( delayTime + 0.8 )
