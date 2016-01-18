@@ -28,23 +28,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let itemNames = ["Apples", "Milk", "Bread", "Cheese", "Sausages", "Butter", "Orange Juice", "Cereal", "Coffee", "Eggs", "Tomatoes", "Fish", "Fish"]
         
+        //let mmwTile = MMWTile()
+        
         for itemName in itemNames {
             let item:Item = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: CDHelper.shared.context) as! Item
             item.name = itemName
             print("Inserted New Managed Object for '\(item.name)'")
         }
         
+//        let item:Item = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: CDHelper.shared.context) as! Item
+//        item.name = itemName
+//        print("Inserted New Managed Object for '\(item.name)'")
+        
+        
         CDHelper.saveSharedContext()
 
     }
     
+    func fetch () {
+        let model = CDHelper.shared.model
+        if let template = model.fetchRequestTemplateForName("Test"),
+            let request  = template.copy() as? NSFetchRequest {
+                
+                let sort = NSSortDescriptor(key: "name", ascending: true)
+                request.sortDescriptors = [sort]
+                
+                do {
+                    if let items = try CDHelper.shared.context.executeFetchRequest(request) as? [Item] {
+                        
+                        for item in items {
+                            if let name = item.name {
+                                print("Fetched Managed Object = '\(name)'")
+                            }
+                        }
+                    }
+                } catch {print("ERROR executing a fetch request: \(error)")}
+        } else {print("FAILED to prepare template")}
+    }
     
+
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         print("AppDelegate > application ...")
+        
         //demo()
         CDHelper.shared
-        //print(CDHelper.
+        fetch()
 
         return true
     }

@@ -24,11 +24,15 @@ class CDHelper : NSObject  {
         let urls = fm.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         return urls[urls.count-1] as NSURL
     }()
+
+    
     lazy var localStoreURL: NSURL = {
         let url = self.storesDirectory.URLByAppendingPathComponent("LocalStore.sqlite")
         print("localStoreURL = \(url)")
         return url
     }()
+    
+    
     lazy var modelURL: NSURL = {
         let bundle = NSBundle.mainBundle()
         if let url = bundle.URLForResource("Model", withExtension: "momd") {
@@ -82,7 +86,7 @@ class CDHelper : NSObject  {
         self.setupCoreData()
     }
     func setupCoreData() {
-        let theLocalStore = self.localStore
+        _ = self.localStore
     }
     
 
@@ -119,9 +123,7 @@ class CDHelper : NSObject  {
     
     class func saveSharedContext () {
         CDHelper.save(CDHelper.shared.context)
-    }
-    
-    
+    } 
 }
 
 

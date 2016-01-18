@@ -36,7 +36,7 @@ enum TileOwner: Int {
     case None = 0, Player1, Player2, Player3, Player4, Discard
 }
 
-class MMWTile {
+class MMWTile : NSObject, NSCoding {
     var tileSprite : LetterTileSprite!
     //var tileBuilder : MMWTileBuilder? = nil
     var tileType: TileType = TileType.Unknown
@@ -59,12 +59,26 @@ class MMWTile {
     var playedMadeWord       = PlayedMadeWord.None
     var tileOwner: TileOwner = TileOwner.None
     var tileGrid: Grid?      = nil
-    var description          = "!"
+    var describe          = "!"
     
     var playableSpotsEachDirection : (left: Int, right: Int, up: Int, down: Int) = (0, 0, 0, 0)
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+    
+    required convenience init?(coder aDecoder: NSCoder) {
+        //        let name = aDecoder.decodeObjectForKey(PropertyKey.nameKey) as! String
+        //
+        //        // Because photo is an optional property of Meal, use conditional cast.
+        //        let photo = aDecoder.decodeObjectForKey(PropertyKey.photoKey) as? UIImage
+        //
+        //        let rating = aDecoder.decodeIntegerForKey(PropertyKey.ratingKey)
+        //
+        //        // Must call designated initializer.
+//                self.init(name: name, photo: photo, rating: rating)
+        
+        self.init()
     }
     
     func resetTileValues () {
@@ -100,7 +114,7 @@ class MMWTile {
         playedMadeWord = PlayedMadeWord.None
         tileOwner = TileOwner.None
         tileGrid = nil
-        description = ""
+        describe = ""
         
         let tileSize = CGSize(width: 47 , height: 47)
         tileSprite.size = tileSize
@@ -117,7 +131,12 @@ class MMWTile {
         tileSprite.color = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.00)
     }
     
-    init () {  // creates blank placeholder tile
+
+    
+    override init () {  // creates blank placeholder tile
+        
+        super.init()
+
         self.tileType = TileType.Placeholder
         self.spritename = SpriteName.Blank
         //self.gridLocation = GridLocation[0]
@@ -137,13 +156,16 @@ class MMWTile {
     }
     
     init (letterString : String) {
+        
+        super.init()
+        
         self.tileType = TileType.Letter
         self.spritename = SpriteName.Letter
         self.gridLocation = GridLocation.Undealt
         self.gridX = 0
         self.gridY = 0
         self.tileText = letterString
-        description = "/(letterString)"
+        self.describe = "/(letterString)"
         self.tileState = TileState.Undealt
         self.tileOwner = TileOwner.None
         self.tileSprite  = LetterTileSprite(tileStyle: LetterTileSprite.TileStyle.basic, withChar: letterString, withColor: UIColor.blackColor(), atPoint: CGPointMake(0.0, 0.0))
@@ -153,4 +175,13 @@ class MMWTile {
         self.tileSprite.hidden = true
         self.tileSprite.userInteractionEnabled = false
     }
+    
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        //        aCoder.encodeObject(name, forKey: PropertyKey.nameKey)
+        //        aCoder.encodeObject(photo, forKey: PropertyKey.photoKey)
+        //        aCoder.encodeInteger(rating, forKey: PropertyKey.ratingKey)
+    }
+    
+
 }

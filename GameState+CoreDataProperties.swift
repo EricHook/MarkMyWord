@@ -16,5 +16,9 @@ extension GameState {
 
     @NSManaged var playerTurn: NSNumber?
     @NSManaged var numPlayers: NSNumber?
+    //@NSManaged var testTile: blob?
 
 }
+
+
+

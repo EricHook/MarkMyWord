@@ -669,6 +669,8 @@ class MMWTileBuilder {
     /// send/move num Tiles from one tile array to another tile array
     func resetAllTiles() {
 
+        LetterTileSprite.removeAllTileHighlights()
+        
         let gameGrids = [ mmwGameScene.mmwBoardGrid, mmwGameScene.mmwPlayer1Grid, mmwGameScene.mmwPlayer2Grid, mmwGameScene.mmwPlayer3Grid, mmwGameScene.mmwPlayer4Grid ]
         // remove all actions from tiles e.g. moving, scaling, etc
         for grid in gameGrids {
@@ -689,37 +691,29 @@ class MMWTileBuilder {
                 for tileCol in 0..<grid.grid2DArr[tileRow].count {
                     let tile = grid.grid2DArr[tileRow][tileCol]
                     if tile.tileType == TileType.Letter {
-                        
-//                        tileCollection?.mmwTileArray.append(tile)
                         grid.grid2DArr[tileRow][tileCol] = self.mmwTileArrayPlaceholder.removeFirst()
-                        tile.resetTileValues()
-                        
                     }
                     
                     if tile.tileType == TileType.Placeholder {
-                        
-//                        mmwTileArrayPlaceholder.append(tile)
-//                        grid.grid2DArr[tileRow][tileCol] = self.mmwTileArrayPlaceholder.removeFirst()
-//                        tile.resetTileValues()
+
                     }
-                    
+                    tile.resetTileValues()
                 }
             }
         }
+        
         // return letter tiles and placeholders to respective arrays
         for tile in self.mmwDiscardedTileArray {
             if tile.tileType == TileType.Placeholder {
-                //tile.resetTileValues()
                 tileCollection?.mmwTileArrayPlaceholder.append(mmwDiscardedTileArray.removeFirst())
             }
             if tile.tileType == TileType.Letter {
-                //tile.resetTileValues()
                 tileCollection?.mmwTileArray.append(mmwDiscardedTileArray.removeFirst())
-                
             }
             tile.resetTileValues()
         }
     }
+    
     
     /// send/move num Tiles from one tile array to another tile array
     func updateTiles(inout tilesFrom: [MMWTile], inout tilesTo: [MMWTile], var numTilesGet: Int, changeColorTo: Int) {
