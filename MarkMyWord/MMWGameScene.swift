@@ -80,7 +80,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     
     var foundValidWordOnTurn = false
     var animationsTimedOut = false
-
+    
     
     enum MMWErrorType: ErrorType {
         case MMWError
@@ -141,7 +141,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         }
         
         self.mmwBoardGrid = Grid(gridUpperLeftX: gridBoardUpperLeftX, gridUpperLeftY: gridBoardUpperLeftY, gridSquareSizeX: gridSquareSize, gridSquareSizeY: gridSquareSize, gridNumSquaresX: 15, gridNumSquaresY: 15, gridName: "mmwBoardGrid")
-
+        
         
         self.mmwPlayer1Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.272), gridSquareSizeX: gridSquareSize, gridSquareSizeY: gridSquareSize, gridNumSquaresX: 3, gridNumSquaresY: 2, gridName: "mmwPlayer1Grid")
         self.mmwPlayer1Grid.setGridPlayer(mmwGameSceneViewController.player1)
@@ -187,7 +187,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         userInteractionEnabled = true
         
         setGrids() // sets tile grid positions, size square, number squares and position on screen for each grid possible
-
+        
         //tileCollection = MMWTileBuilder()
         
         tileCollection!.resetAllTiles()
@@ -200,7 +200,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         //            tile.tileSprite.tileLocation = CGPoint(x: tileTempXLocation, y: 15 )
         //            self.addChild(tile.tileSprite)
         //        }
-
+        
         backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         backgroundNode.position = CGPoint(x: size.width/2.0, y: 0.0)
         backgroundNode.userInteractionEnabled = false
@@ -360,7 +360,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                 button.size.height = button.size.height * 1.1
             }
         }
-
+        
         // ADD ALL TILES to Scene - they start as invisible
         var tileTempXLocation = 0
         for tile in tileCollection!.mmwTileArray {
@@ -379,7 +379,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         optionsLayerNode.alpha = 0.95
         optionsLayerNode.hidden = true
         self.addChild(optionsLayerNode)
-
+        
         //        // Placeholder for dictionary data loading progress display
         //        let playBtnTEMP = SKSpriteNode(imageNamed: "PlayButton.png")
         //        playBtnTEMP.position = CGPoint(x: viewSize.width/4, y: viewSize.height/6)
@@ -436,10 +436,10 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         print("---   in resetGameView mmwGameScene")
         gameViewController.ViewAllOptionsUI.hidden = true
         //userInteractionEnabled = true
-
+        
         //tileCollection = nil
         //tileCollection!.resetAllTiles()
-
+        
         // update locations and visibility of player views
         player1View = updatePlayerView(1, playerView: player1View)
         
@@ -459,7 +459,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         bottomDisplayLabel.text =  "Begin ... "
         topDisplayLabel.text = "Welcome to Mark My Word"
         topDisplayLabel2.text =  ""
-
+        
         tileCollection!.resetAllTiles()
     }
     
@@ -595,7 +595,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         return topDisplayLabel2
     }
     
-
+    
     func updatePlayerView (playerNum : Int, playerView : PlayerView) -> PlayerView {
         print("---   in updatePlayerView mmwGameScene")
         if mmwGameSceneViewController.numPlayers == 2 { // if 2 one left and one right
@@ -921,14 +921,14 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     }
     
     func playAILetters() {
-
+        
         
         
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         dispatch_async(dispatch_get_global_queue(priority, 0), { ()->() in
-
+            
             print("Currently dispatched thread asynchronously 0 playBtnPlay playAILetters")
-
+            
             //get tile from current player
             //print("Player tiles to play \(self.mmwGameSceneViewController.playerArray[self.mmwGameSceneViewController.playerTurn - 1].playerLetterGrid ) ")
             //self.mmwGameSceneViewController.playerArray[self.mmwGameSceneViewController.playerTurn-1].playerLetterGrid.printGrid()
@@ -1047,7 +1047,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             if letterTilesRemaining <= 0 {
                 self.changePlayerTurn()
             }
-        
+            
             
             
             
@@ -1058,7 +1058,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         print("hello from playBtnPlay playAILetters thread")
         
     }
-
+    
     
     
     //        //get tile from current player
@@ -1077,7 +1077,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     //            }
     //        }
     //    }
-
+    
     //            for word in possibleWordPlays {
     //                print(word)
     //                var isValidWholeWord = true
@@ -1181,7 +1181,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     //            }
     //        }
     //    }
-
+    
     //        var dictionaryController = UIReferenceLibraryViewController.init(term: "test")
     //        var dictionary = UIReferenceLibraryViewController.dictionaryHasDefinitionForTerm("word")
     //        print( " UIReferenceLibraryViewController.dictionaryHasDefinitionForTerm(\"word\")  \(dictionary)")
@@ -1685,13 +1685,13 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         print("calculateOpenTileLocations (\(gridXStart), \(gridYStart)) : l:\(leftOpenTileLocations) r:\(rightOpenTileLocations) u:\(upOpenTileLocations) d:\(downOpenTileLocations)  calculateOpenTileLocations mmwGameScene" )
         return (leftOpenTileLocations, rightOpenTileLocations, upOpenTileLocations, downOpenTileLocations)
     }
-
+    
     //////////////////////////////////
     
     func checkForValidWordsAI (gridXSpot: Int, gridYSpot: Int, permutationsToPlay : Set<String>, lookHorizontal : Bool) -> (allFoundPartialWordPlaysAtLockedTile: [[validAILetterPlay]], allFoundWholeWordPlaysAtLockedTile: [[validAILetterPlay]] ) {
         
         var playersTurn = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1]
-
+        
         ////////////  TEST FOR ADJACENT TILE PARTIAL WORDS
         var tileArrayToPlay : [MMWTile] = [MMWTile]()
         var gridTestX = gridXSpot
@@ -1704,10 +1704,10 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         var currentPossibleAILetterPlayArr = [validAILetterPlay]()
         var validPartialAILetterPlayArr    : [validAILetterPlay] = [validAILetterPlay]()
         var validWholeWordAILetterPlayArr  : [validAILetterPlay] = [validAILetterPlay]()
-
+        
         var allFoundPartialWordPlaysAtLockedTile = [[validAILetterPlay]]()
         var allFoundWholeWordPlaysAtLockedTile   = [[validAILetterPlay]]()
-
+        
         var foundPartialWordsNumberAtLockedTile : Int = 0
         var foundWholeWordsNumberAtLockedTile   : Int = 0
         var placedTiles = 0
@@ -1731,24 +1731,24 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         var numTilesToPlayRightOrDownMaxComplete = 0 //(availableTiles.count <= numEmptyLetterSpotsRight) ? availableTiles.count : numEmptyLetterSpotsRight // # tiles to play Left : 0 to < playerTilesArr && < numEmptyLetterSpotsLeft
         
         var testString = self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText // string starts with letter at valid locked tile location
-
+        
         var playerLettersToTest      = ""
         var playerLettersToTestLeftOrUp  = ""
         var playerLettersToTestRightOrDown = ""
         
         var foundWholeWord = false
-  
+        
         // check horizontal pass +- x , gridToTest X
         var passNumber = 0
         if lookHorizontal == false { passNumber = 1 }
         
         var isHorizontalWord = true
-
+        
         var gridValueToCheck = gridTestX
         
         if passNumber == 1 { // horizontal pass == 0 , vertical pass == 1
             isHorizontalWord = false
-
+            
             gridValueToCheck = gridTestY
         }
         
@@ -1757,7 +1757,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         var tileShiftYLeftOrUp = 0
         var tileShiftXRightOrDown = 1
         var tileShiftYRightOrDown = 0
-
+        
         if passNumber == 1 {   // vertical pass
             gridToTest = gridTestY
             tileShiftXLeftOrUp = 0
@@ -1767,17 +1767,17 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             numEmptyLetterSpotsLeftOrUp    = numEmptyLetterSpotsUp  // from 0 to num player tiles PLUS existing tiles MINUS numLettersRight AND more than grid x = 0
             numEmptyLetterSpotsRightOrDown = numEmptyLetterSpotsDown
         }
-
+        
         for playerLetters in permutationsToPlay {  // get all permutations of player letters based on number  //  if self.secondsLeft < 5 { break }
-
+            
             var lettersPlayedInPermutation = 0
-
+            
             numTilesToPlayLeftOrUpMaxComplete    = (numEmptyLetterSpotsLeftOrUp  <= playerLetters.characters.count) ? numEmptyLetterSpotsLeftOrUp  : playerLetters.characters.count
             numTilesToPlayRightOrDownMaxComplete = (numEmptyLetterSpotsRightOrDown <= playerLetters.characters.count) ? numEmptyLetterSpotsRightOrDown : playerLetters.characters.count
             
             shiftLeftOrUp = numTilesToPlayLeftOrUpMaxComplete
             shiftRightOrDown = 0 // numTilesToPlayRightOrDownMaxComplete
-
+            
             for shiftToRightOrDown in 0..<playerLetters.characters.count {
                 
                 while shiftRightOrDown <= numTilesToPlayRightOrDownMaxComplete {
@@ -1848,7 +1848,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                                 
                             }
                         }
-                        
+                            
                             
                         else {
                             while gridToTest>=1 && self.mmwBoardGrid.grid2DArr[gridTestX + tileShiftXLeftOrUp][gridTestY + tileShiftYLeftOrUp].tileType == TileType.Letter {
@@ -1868,7 +1868,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                             }
                         }
                     }
-
+                    
                     
                     // grab left letters if only right letters on full right shift
                     if gridToTest >= 1 &&  self.mmwBoardGrid.grid2DArr[gridTestX + tileShiftXLeftOrUp][gridTestY + tileShiftYLeftOrUp].tileType == TileType.Letter { // && playerLettersToTestLeft.characters.count == (0) {
@@ -1892,8 +1892,8 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                             }
                         }
                     }
-
-
+                    
+                    
                     // CHECK RIGHT / OR DOWN // grab existing letters to right even if no shift right characters to test
                     gridTestX = gridXSpot // reset test spot as it was moved to left in code above
                     gridTestY = gridYSpot
@@ -1936,7 +1936,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                             if passNumber == 1 {
                                 ++gridTestY
                             }
-
+                            
                             // if IS a letter then add a letter(s)
                             while gridTestX<14 && gridTestY<14 && self.mmwBoardGrid.grid2DArr[gridTestX + tileShiftXRightOrDown][gridTestY + tileShiftYRightOrDown].tileType == TileType.Letter {
                                 let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX + tileShiftXRightOrDown][gridTestY + tileShiftYRightOrDown].tileText)
@@ -1969,32 +1969,46 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                             }
                         }
                     }
-
+                    
                     if (mmwGameSceneViewController.checkPartialWordMatch(testString) == true) { //&& LetterTileSprite.testLetterAtDropSpot(currentTestAILetterPlay.gridXEnd, tileSnapResultsYGrid: currentTestAILetterPlay.gridYEnd, letterToTest: currentTestAILetterPlay.tileSpriteLetter).validHorizontalPartialWord == true && LetterTileSprite.testLetterAtDropSpot(currentTestAILetterPlay.gridXEnd, tileSnapResultsYGrid: currentTestAILetterPlay.gridYEnd, letterToTest: currentTestAILetterPlay.tileSpriteLetter).validVerticalPartialWord == true ) {
-  
-                        validPartialAILetterPlayArr = currentPossibleAILetterPlayArr
-  
-                        if validPartialAILetterPlayArr.count > 0 {
-                            if validPartialAILetterPlayArr[0].gridXEnd == -1 {
-                            validPartialAILetterPlayArr.removeFirst()
+                        
+        
+                        
+                        if currentPossibleAILetterPlayArr.count > 0 {
+                            if currentPossibleAILetterPlayArr[0].gridXEnd == -1 {
+                                currentPossibleAILetterPlayArr.removeFirst()
                             }
                         }
 
-                        for tile in validPartialAILetterPlayArr {
-                            var isValidLetterAtDropSpot = LetterTileSprite.testLetterAtDropSpot(tile.gridXEnd, tileSnapResultsYGrid: tile.gridYEnd, letterToTest: tile.tileSpriteLetter)
+                        
+                        
+                        
+                        
+                        var allLettersPossibleWords = true
+                        
+                        var currentPossibleAILetterPlayArrIndex = 0
+                        for letterPlaceholder in currentPossibleAILetterPlayArr {
 
-                            if isValidLetterAtDropSpot.validHorizontalPartialWord == true && isValidLetterAtDropSpot.validVerticalPartialWord == true {
+                            let isValidCurrentLetterAtDropSpot = LetterTileSprite.testLetterAtDropSpot(letterPlaceholder.gridXEnd, tileSnapResultsYGrid: letterPlaceholder.gridYEnd, letterToTest: letterPlaceholder.tileSpriteLetter)
 
+                            if (isValidCurrentLetterAtDropSpot.validHorizontalPartialWord == false) || (isValidCurrentLetterAtDropSpot.validVerticalPartialWord == false) {
+                                allLettersPossibleWords = false
+                            }
+                            
+                            currentPossibleAILetterPlayArrIndex++
+                        
+                        }
+
+                        
+      
+                        
+                        
+                            if allLettersPossibleWords && currentPossibleAILetterPlayArr.count > 0 {
                                 
-                                //                        validPartialAILetterPlayArr = currentPossibleAILetterPlayArr
+                                validPartialAILetterPlayArr = currentPossibleAILetterPlayArr
+
                                 foundPartialWordsNumberAtLockedTile++
-                                
-                                //                        if validPartialAILetterPlayArr.count > 0 {
-                                //                            if validPartialAILetterPlayArr[0].gridXEnd == -1 {
-                                //                                validPartialAILetterPlayArr.removeFirst()
-                                //                            }
-                                //                        }
-                                
+   
                                 allFoundPartialWordPlaysAtLockedTile.append(validPartialAILetterPlayArr)
                                 
                                 if (mmwGameSceneViewController.checkWholeWordMatch(testString) == true ) && testString.characters.count >= (mmwGameSceneViewController.minWordSize) {
@@ -2020,12 +2034,12 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                                 break
                             }
                         }
-                    }
-
+                    
+                        
                     else {
                         //print("NOT partial Word Match! \(testString) checkForValidWordsAI mmwGameScene" )
                     }
-                
+                    
                     currentTestAILetterPlay = validAILetterPlay()
                     currentPossibleAILetterPlayArr  = [validAILetterPlay()]
                     
@@ -2037,7 +2051,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                     testString = self.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileText // get letter at start tile
                     shiftLeftOrUp--
                     shiftRightOrDown++
-
+                    
                     
                 }
             }
@@ -2056,7 +2070,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         if allFoundWholeWordPlaysAtLockedTile.count > 0 {
             if allFoundWholeWordPlaysAtLockedTile[0].count   == 0 { allFoundWholeWordPlaysAtLockedTile.removeFirst() }
         }
-    
+        
         return ( allFoundPartialWordPlaysAtLockedTile , allFoundWholeWordPlaysAtLockedTile )
     }
     
@@ -2088,9 +2102,9 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                 print("H updating letterTilePlayable.tileSprite.updateAIWordsAtDropSpot \(letter.tileSpriteLetter), \(letter.gridXEnd), \(letter.gridYEnd), \(letter.partOfWord), \(letterTilePlayable.tileState)  checkForValidWordsAI mmwGameScene")
                 letterTilePlayable.tileSprite.updateAIWordsAtDropSpot(letter.gridXEnd, tileYGridDestination: letter.gridYEnd, madeValidWord: letter.madeValidWord)
             }
-             placedTiles++
+            placedTiles++
             
-           
+            
             //numLetters++
         }
         return true

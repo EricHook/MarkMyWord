@@ -27,10 +27,11 @@ class MMWOptionScreen: SKScene {
     var keyboardType:UIKeyboardType = UIKeyboardType.Alphabet
     var keyboardAppearance:UIKeyboardAppearance = UIKeyboardAppearance.Default
     
-//    var backgroundNode : SKSpriteNode
+ //   var backgroundNode : SKSpriteNode
 //    var newGameSpriteNode : SKSpriteNode
     var backgroundNode = SKSpriteNode(imageNamed: "MMWOptionsScreen.png")
     var newGameSpriteNode = SKSpriteNode(imageNamed: "NewGameScreen.png")
+    var loadingIndicator = SKSpriteNode(imageNamed: "PlayButton.png")
     
     
     var defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -46,15 +47,13 @@ class MMWOptionScreen: SKScene {
     
     override init(size: CGSize) {
         super.init(size: size)
-        
-        
-//        var backgroundNode = SKSpriteNode(imageNamed: "MMWOptionsScreen.png")
-//        var newGameSpriteNode = SKSpriteNode(imageNamed: "NewGameScreen.png")
+
         // add BG
         backgroundNode.position = CGPoint(x: screenSize!.width/2, y: screenSize!.height/2)
         backgroundNode.userInteractionEnabled = false
         backgroundNode.size = self.frame.size;
         self.addChild(backgroundNode)
+
         
         newGameSpriteNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         newGameSpriteNode.position = CGPoint(x: size.width/2.0, y: 0.0)
@@ -66,6 +65,28 @@ class MMWOptionScreen: SKScene {
         newGameSpriteNode.alpha = 0.75
         addChild(newGameSpriteNode)
         
+        
+        
+        //        // Placeholder for dictionary data loading progress display
+        //        let playBtnTEMP = SKSpriteNode(imageNamed: "PlayButton.png")
+        //        playBtnTEMP.position = CGPoint(x: viewSize.width/4, y: viewSize.height/6)
+        //        self.addChild(playBtnTEMP)
+        //        playBtnTEMP.name = "playBtnTEMP"
+        //        playBtnTEMP.zPosition = 100
+        //        playBtnTEMP.anchorPoint = CGPointMake(0, 0)
+        //        let scaleHoriz = SKAction.scaleXTo(2, duration: 3.0)
+        //        let loadingAnim = SKAction.group([scaleHoriz])
+        //        let loadingAnimSequence = SKAction.sequence([loadingAnim, SKAction.removeFromParent()])
+        //        playBtnTEMP.runAction(loadingAnimSequence)
+        
+        
+//        loadingIndicator.position = CGPoint(x: screenSize!.width/2, y: screenSize!.height/10)
+//        loadingIndicator.size = CGSize.init(width: 100, height: 50)
+//        loadingIndicator.hidden = true
+//        loadingIndicator.name = "loadingBtn"
+//        loadingIndicator.zPosition = 100
+//        self.addChild(loadingIndicator)
+
         //        let myLabel = SKLabelNode(fontNamed: "")
         //        myLabel.text = "Option Screen" // scene is: \(scene?.description)"
         //        myLabel.fontSize = 65;
@@ -91,7 +112,8 @@ class MMWOptionScreen: SKScene {
         gameViewController.updateGameSettings()
 
         print("view size MenuScene: \(screenSize)")
-        
+        newGameSpriteNode.hidden = true
+
         //        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
         //            viewSize.height *= 2
         //            viewSize.width *= 2
@@ -111,13 +133,15 @@ class MMWOptionScreen: SKScene {
         
         
 //        var backgroundNode = SKSpriteNode(imageNamed: "MMWOptionsScreen.png")
-//        var newGameSpriteNode = SKSpriteNode(imageNamed: "NewGameScreen.png")
+
 //        // add BG
 //        backgroundNode.position = CGPoint(x: screenSize!.width/2, y: screenSize!.height/2)
 //        backgroundNode.userInteractionEnabled = false
 //        backgroundNode.size = self.frame.size;
 //        self.addChild(backgroundNode)
-//        
+        
+
+//
 //        newGameSpriteNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
 //        newGameSpriteNode.position = CGPoint(x: size.width/2.0, y: 0.0)
 //        newGameSpriteNode.userInteractionEnabled = false
@@ -133,13 +157,8 @@ class MMWOptionScreen: SKScene {
 ////        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y: (CGRectGetMidY(self.frame) - 50) )
 ////        self.addChild(myLabel)
 ////        myLabel.zPosition = 100
-//        
-//        let playBtn = SKSpriteNode(imageNamed: "PlayButton.png")
-//        playBtn.position = CGPoint(x: screenSize!.width/2, y: screenSize!.height/10)
-//        playBtn.size = CGSize.init(width: 100, height: 50)
-//        self.addChild(playBtn)
-//        playBtn.name = "playBtn"
-//        playBtn.zPosition = 100
+        
+        
         
         
         delay(0.1){
@@ -238,9 +257,28 @@ class MMWOptionScreen: SKScene {
     
     func newGameScene () {
         print("going to NEW mmw scene from mmwOptionScreen") //create MMW controller
-        gameViewController.ViewAllOptionsUI.hidden = true
         
-        delay (0) {
+        mmwGameScene.foundValidWordOnTurn = true
+        
+        let loadDelayTimeSecs = 20.0
+        
+        gameViewController.ViewAllOptionsUI.hidden = true
+        newGameSpriteNode.hidden = false
+        
+        loadingIndicator.position = CGPoint(x: screenSize!.width/2, y: screenSize!.height/5)
+        loadingIndicator.size = CGSize.init(width: 100, height: 50)
+        loadingIndicator.anchorPoint = CGPoint(x: 0, y: 0)
+        loadingIndicator.hidden = false
+        loadingIndicator.name = "loadingBtn"
+        loadingIndicator.zPosition = 100
+        self.addChild(loadingIndicator)
+        
+        let scaleHoriz = SKAction.scaleXTo(2, duration: loadDelayTimeSecs)
+        let loadingAnim = SKAction.group([scaleHoriz])
+        let loadingAnimSequence = SKAction.sequence([loadingAnim, SKAction.removeFromParent()])
+        loadingIndicator.runAction(loadingAnimSequence)
+        
+        delay (loadDelayTimeSecs) {
             gameViewController.ViewAllOptionsUI.hidden = true
             self.view?.presentScene(mmwGameScene)
 
