@@ -353,6 +353,8 @@ class LetterTileSprite : SKSpriteNode {
             }
   
             runAction(dropDown, withKey: "drop")
+            self.zPosition = 1
+            self.letterLabel.zPosition = 2
             tileShadow.zPosition = self.zPosition - 1
             tileShadow.hidden = true
             
@@ -439,6 +441,12 @@ class LetterTileSprite : SKSpriteNode {
         runAction(SKAction.group([slide, scaleUp, scaleDown]))
 
         self.tileGlow.hidden = true
+        delay(0.5) {
+            self.zPosition = 1
+            self.letterLabel.zPosition = 2
+        }
+        
+        
         LetterTileSprite.removeAllTileHighlights ()
         //runAction(actionSound2)
         
@@ -1943,10 +1951,10 @@ class LetterTileSprite : SKSpriteNode {
                         self.adjustPlayerPoints(pointsForTile, player: (mmwGameSceneViewController.playerArray[tile.tileOwner.rawValue - 1]) )
                         if tile.tileState == TileState.Played  {
                             tile.tileState = TileState.Locked
-                            delayTime += 0.25
+                            delayTime += 0.5
                         }
                         if tile.tileState == TileState.PlayedMadeWord  {
-                            delayTime += 0.25
+                            delayTime += 0.5
                         }
                         animationTime += delayTime
                         

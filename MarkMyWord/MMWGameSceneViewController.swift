@@ -38,16 +38,18 @@ class MMWGameSceneViewController : UIViewController {
     var numStarterWords = 1
     var minWordSize  = 3
     var audioOn = true
-    var secondsPerTurn = 999
-    var timerIsOn = false
+    var secondsPerTurn = 45
+    var timerIsOn = true
+
     var player0 : Player = Player(_playerID: 0, _playerName: "AI",          _playerColor: 0) // used to add initial word ownership
     var player1 : Player = Player(_playerID: 1, _playerName: "Player 1",    _playerColor: 1)
     var player2 : Player = Player(_playerID: 2, _playerName: "Bart",        _playerColor: 2)
     // player 3 and 4 objects created but only used in 3 or 4 player games
     var player3 : Player = Player(_playerID: 3, _playerName: "Charlie",     _playerColor: 3)
     var player4 : Player = Player(_playerID: 4, _playerName: "Dan",         _playerColor: 4)
-    var playerArray : [Player]!
     
+    var playerArray : [Player]!
+
     //    var wordArray : [String] = [""]
     //    var wordArrayMod : [String.CharacterView] = ["".characters]
     
@@ -75,7 +77,7 @@ class MMWGameSceneViewController : UIViewController {
     //
     //    init () {
     //        //super.init(aDecoder)
-    //        //viewSize = size
+    //        //viewSize = size/Users/erichook/Downloads/VSToolsForWindows1C.exe
     //        //timer = NSTimer.scheduledTimerWithTimeInterval(1, target:mmwGameScene, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
     //    }
     
@@ -89,20 +91,19 @@ class MMWGameSceneViewController : UIViewController {
 
         mmwGameScene.buildGameView()
         setUpPlayers() // add player to view, match player to grid, fill grid with starter tiles and colorize to player color
-
     }
     
     
     func setUpPlayers () {
         print("---   in setUpPlayers mmwGameSceneViewController")
         player1.setPlayerTilesGrid(&mmwGameScene.mmwPlayer1Grid!)
-        player1.setPlayerView(mmwGameScene.player1View)
+        player1.setPlayerView(&mmwGameScene.player1View!)
         player2.setPlayerTilesGrid(&mmwGameScene.mmwPlayer2Grid!)
-        player2.setPlayerView(mmwGameScene.player2View)
+        player2.setPlayerView(&mmwGameScene.player2View!)
         player3.setPlayerTilesGrid(&mmwGameScene.mmwPlayer3Grid!)
-        player3.setPlayerView(mmwGameScene.player3View)
+        player3.setPlayerView(&mmwGameScene.player3View!)
         player4.setPlayerTilesGrid(&mmwGameScene.mmwPlayer4Grid!)
-        player4.setPlayerView(mmwGameScene.player4View)
+        player4.setPlayerView(&mmwGameScene.player4View!)
     }
     
     

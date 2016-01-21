@@ -51,10 +51,10 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     var playerViewArr = [PlayerView]()
     
     //var timer = NSTimer()
-    private var timer : NSTimer?
+//    private var timer : NSTimer?
     //private var timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
-    private var secondsLeft = 30
-    var timeRemainingLabel  = SKLabelNode(fontNamed: FontHUDName)
+//    private var secondsLeft = mmwGameSceneViewController.secondsPerTurn
+//    var timeRemainingLabel  = SKLabelNode(fontNamed: FontHUDName)
     var tilesRemainingLabel = SKLabelNode(fontNamed: FontHUDName)
     var topDisplayLabel     = SKLabelNode(fontNamed: FontHUDName)
     var topDisplayLabel2    = SKLabelNode(fontNamed: FontHUDName)
@@ -63,7 +63,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     let playButton     = SKSpriteNode(imageNamed: "PlayButton.png")
     var newTilesButton = SKSpriteNode(imageNamed: "NewTilesButton.png")
     let passButton     = SKSpriteNode(imageNamed: "PassButton.png")
-    let pauseButton    = SKSpriteNode(imageNamed: "PauseButton.png")
+//    let pauseButton    = SKSpriteNode(imageNamed: "PauseButton.png")
     let optionsButton  = SKSpriteNode(imageNamed: "OptionsButton.png")
     var gameGrid       = SKSpriteNode(imageNamed: "GameGrid.png")
     //
@@ -89,7 +89,6 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     
     
     required init?(coder aDecoder: NSCoder) {
-        
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -205,36 +204,65 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         backgroundNode.position = CGPoint(x: size.width/2.0, y: 0.0)
         backgroundNode.userInteractionEnabled = false
         backgroundNode.zPosition = -100
-        backgroundNode.size.height = viewSize.height;
-        backgroundNode.size.width  = viewSize.width;
-        addChild(backgroundNode)
+        backgroundNode.size.height = viewSize.height
+        backgroundNode.size.width  = viewSize.width
+        if self.childNodeWithName("backgroundNode") == nil {
+            addChild(backgroundNode)
+        }
+        
         
         newGameSpriteNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         newGameSpriteNode.position = CGPoint(x: size.width/2.0, y: 0.0)
         newGameSpriteNode.userInteractionEnabled = false
         newGameSpriteNode.hidden = true
         newGameSpriteNode.zPosition = 100
-        newGameSpriteNode.size.height = viewSize.height;
-        newGameSpriteNode.size.width  = viewSize.width;
-        addChild(newGameSpriteNode)
+        newGameSpriteNode.size.height = viewSize.height
+        newGameSpriteNode.size.width  = viewSize.width
+        if self.childNodeWithName("newGameSpriteNode") == nil {
+            addChild(newGameSpriteNode)
+        }
         
         player1View = updatePlayerView(1, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player1))
         playerViewArr.append(player1View)
-        
+        player1View.hidden = false
+
+
         player2View = updatePlayerView(2, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player2))
         playerViewArr.append(player2View)
-        
+        player2View.hidden = false
+
         player3View = updatePlayerView(3, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player3))
         playerViewArr.append(player3View)
+
+        
+        if mmwGameSceneViewController.numPlayers > 2 {
+            player3View.hidden = false
+        } else {
+            player3View.hidden = true
+        }
         
         player4View = updatePlayerView(4, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player4))
         playerViewArr.append(player4View)
+        if mmwGameSceneViewController.numPlayers > 3 {
+            player4View.hidden = false
+        } else {
+            player4View.hidden = true
+        }
         
         for playerView in playerViewArr {
             playerView.zPosition = -1
             addChild(playerView)
-            playerView.hidden = false
         }
+
+        
+//        if mmwGameSceneViewController.playerArray[0].isHuman == false {
+//            mmwGameSceneViewController.playerArray[0].playerView.playerTex = SKTexture(imageNamed:gameViewController.meyamaImageArray[3])
+//        }
+//        else {
+//            mmwGameSceneViewController.playerArray[0].playerView.playerTex = SKTexture(imageNamed: gameViewController.playerImageArray[3])
+//        }
+        
+        
         
         //        playerViewArr.append(player2View)
         //        if mmwGameSceneViewController.numPlayers > 2 {
@@ -288,17 +316,17 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         //self.addChild(gameGrid)
         
         tilesRemainingHUD(tileCollection!.mmwTileArray.count)
-        timeRemainingLabel.text = "Timer: 00"
+        
+        //timeRemainingLabel.text = "Timer: 00"
         
         bottomDisplayHUD("Begin ... ")
         
-        timeRemainingHUD(mmwGameSceneViewController.secondsPerTurn)  // default set to         standard time remaining
-        isPaused = true
-        if (timer != nil) {
-            timer!.invalidate()
-        }
-        
-        
+//        timeRemainingHUD(mmwGameSceneViewController.secondsPerTurn)  // default set to         standard time remaining
+//        isPaused = true
+//        if (timer != nil) {
+//            timer!.invalidate()
+//        }
+
         topDisplayHUD("Welcome to Mark My Word") // ("Turn: Player 1, Special Letter Bonus In Effect, 2x Point Bonus")
         topDisplayHUD2("topDisplayHUD2")
         
@@ -316,17 +344,17 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         passButton.userInteractionEnabled = true
         self.addChild(passButton)
         
-        pauseButton.position = CGPoint(x: (viewSize.width * 0.9238), y: (viewSize.height * 0.125) ) // width old 0.9228
-        pauseButton.name = "pauseButton"
-        pauseButton.userInteractionEnabled = true
-        self.addChild(pauseButton)
+//        pauseButton.position = CGPoint(x: (viewSize.width * 0.9238), y: (viewSize.height * 0.125) ) // width old 0.9228
+//        pauseButton.name = "pauseButton"
+//        pauseButton.userInteractionEnabled = true
+//        self.addChild(pauseButton)
         
         optionsButton.position = CGPoint(x: (viewSize.width * 0.9238), y: (viewSize.height * 0.05) )
         optionsButton.name = "optionsButton"
         optionsButton.userInteractionEnabled = true
         self.addChild(optionsButton)
         
-        let buttonResizeArr = [playButton, newTilesButton, passButton, pauseButton, optionsButton]
+        let buttonResizeArr = [playButton, newTilesButton, passButton, optionsButton] // [playButton, newTilesButton, passButton, pauseButton, optionsButton]
         
         if mmwGame.deviceType == MMWGame.DeviceType.iPhone5 {
             for button in buttonResizeArr {
@@ -363,6 +391,11 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         
         // ADD ALL TILES to Scene - they start as invisible
         var tileTempXLocation = 0
+        
+        //if self.childNodeWithName("newGameSpriteNode") == nil {
+            //addChild(newGameSpriteNode)
+        //}
+        
         for tile in tileCollection!.mmwTileArray {
             tile.tileSprite.hidden = true
             tileTempXLocation += 40
@@ -378,6 +411,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         optionsLayerNode.size = CGSize(width: (viewSize.width * 1.0),  height: (viewSize.height * 1.0) )
         optionsLayerNode.alpha = 0.95
         optionsLayerNode.hidden = true
+ 
         self.addChild(optionsLayerNode)
         
         //        // Placeholder for dictionary data loading progress display
@@ -399,6 +433,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         playBtnPlay.name = "playBtnPlay"
         playBtnPlay.zPosition = 100
         playBtnPlay.size = CGSizeMake(40.0, 40.0)
+
         self.addChild(playBtnPlay)
         newTilesButton.userInteractionEnabled = true
         
@@ -410,6 +445,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         testPlayButton.name = "testPlayButton"
         testPlayButton.zPosition = 100
         testPlayButton.size = CGSizeMake(40.0, 40.0)
+    
         self.addChild(testPlayButton)
         
         
@@ -425,8 +461,8 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         newTilesButton.alpha = 0.5
         passButton.userInteractionEnabled = true
         passButton.alpha = 0.5
-        pauseButton.userInteractionEnabled = true
-        pauseButton.alpha = 0.5
+//        pauseButton.userInteractionEnabled = true
+//        pauseButton.alpha = 0.5
         optionsButton.userInteractionEnabled = true
         optionsButton.alpha = 0.5
     }
@@ -450,11 +486,30 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         player4View = updatePlayerView(4, playerView: player4View)
         
         
-        if mmwGameSceneViewController.timerIsOn == false {
-            timeRemainingLabel.text = "Timer: off"
-        } else {
-            timeRemainingLabel.text = "Timer: \(mmwGameSceneViewController.secondsPerTurn) "
+        
+        for playerView in playerViewArr {
+            var playerArrayNumber = 0
+            let isHuman = playerView.mmwPlayer.isHuman
+            let meyamaImageNumber = playerView.mmwPlayer.playerMeyamaNumber
+            let avatarImageNumber = playerView.mmwPlayer.playerAvatarNumber
+            
+            if  isHuman == false {
+                mmwGameSceneViewController.playerArray[playerArrayNumber].playerView.playerTex = SKTexture(imageNamed:gameViewController.meyamaImageArray[meyamaImageNumber])
+            }
+            else {
+                mmwGameSceneViewController.playerArray[playerArrayNumber].playerView.playerTex = SKTexture(imageNamed: gameViewController.playerImageArray[avatarImageNumber])
+            }
+            playerArrayNumber++
         }
+
+        
+        
+        
+//        if mmwGameSceneViewController.timerIsOn == false {
+//            timeRemainingLabel.text = "Timer: off"
+//        } else {
+//            timeRemainingLabel.text = "Timer: \(mmwGameSceneViewController.secondsPerTurn) "
+//        }
         
         bottomDisplayLabel.text =  "Begin ... "
         topDisplayLabel.text = "Welcome to Mark My Word"
@@ -505,53 +560,53 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     }
     
     
-    func timeRemainingHUD (timeAmount: Int)  -> SKLabelNode {
-        timeRemainingLabel.zPosition = 1
-        timeRemainingLabel.fontSize = FontHUDSize
-        timeRemainingLabel.fontColor = FontHUDWhite
-        timeRemainingLabel.position = CGPointMake(size.width * 0.76, size.height * 0.004)
-        timeRemainingLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 1)!
-        
-        if secondsLeft == 999 {
-            timeRemainingLabel.text =  "Timer: off"
-        }
-        else {
-            if mmwGameSceneViewController.timerIsOn {
-                timeRemainingLabel.text =  "Timer: \(String(secondsLeft)) " // "Timer: \(timeAmount)"
-                startTimer(timeAmount)
-            }
-            else {
-                timeRemainingLabel.text =  "Timer: off"
-            }
-        }
-        addChild(timeRemainingLabel)
-        return timeRemainingLabel
-    }
+//    func timeRemainingHUD (timeAmount: Int)  -> SKLabelNode {
+//        timeRemainingLabel.zPosition = 1
+//        timeRemainingLabel.fontSize = FontHUDSize
+//        timeRemainingLabel.fontColor = FontHUDWhite
+//        timeRemainingLabel.position = CGPointMake(size.width * 0.76, size.height * 0.004)
+//        timeRemainingLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 1)!
+//        
+////        if secondsLeft == 999 {
+////            timeRemainingLabel.text =  "Timer: off"
+////        }
+////        else {
+////            if mmwGameSceneViewController.timerIsOn {
+////                timeRemainingLabel.text =  "Timer: \(String(secondsLeft)) " // "Timer: \(timeAmount)"
+////                startTimer(timeAmount)
+////            }
+////            else {
+////                timeRemainingLabel.text =  "Timer: off"
+////            }
+////        }
+//        addChild(timeRemainingLabel)
+//        return timeRemainingLabel
+//    }
     
     func updateCounter() {
         if mmwGameSceneViewController.timerIsOn {
-            timeRemainingLabel.fontColor = SKColor(red: 1, green: 1, blue: 1, alpha: 1) // counter starts white color
-            timeRemainingLabel.text = "Timer: \(String(secondsLeft) ) " // String(counter--)
-            
-            //        if secondsLeft <= 10 && secondsLeft > 5 {
-            //            timeRemainingLabel.text =  "Timer: \( String(secondsLeft) ) "
-            //            let countdownSmall = SKAction.playSoundFileNamed("1007.WAV", waitForCompletion: true)
-            //            timeRemainingLabel.fontColor = SKColor(red: 0, green: 1, blue: 1, alpha: 1) // counter turns orange color
-            //            runAction(SKAction.sequence( [countdownSmall]) )
-            //        }
-            //        if secondsLeft <= 5 {
-            //            timeRemainingLabel.text =  "Timer: \( String(secondsLeft) ) "
-            //            let countdownBig = SKAction.playSoundFileNamed("1003.WAV", waitForCompletion: true)
-            //            runAction(SKAction.sequence( [countdownBig]) )
-            //            timeRemainingLabel.fontColor = SKColor(red: 1, green: 0, blue: 0, alpha: 1) // counter turns red color
-            //            if secondsLeft <= 0 {
-            //                //runAction(actionSound)   // play turn over sound
-            //                timeRemainingLabel.text = ("Timer: 0")
-            //                changePlayerTurn()
-            //            }
-            //        }
-            
-            --secondsLeft
+//            timeRemainingLabel.fontColor = SKColor(red: 1, green: 1, blue: 1, alpha: 1) // counter starts white color
+//            timeRemainingLabel.text = "Timer: \(String(secondsLeft) ) " // String(counter--)
+//            
+//                    if secondsLeft <= 10 && secondsLeft > 5 {
+//                        timeRemainingLabel.text =  "Timer: \( String(secondsLeft) ) "
+//                        let countdownSmall = SKAction.playSoundFileNamed("1007.WAV", waitForCompletion: true)
+//                        timeRemainingLabel.fontColor = SKColor(red: 0, green: 1, blue: 1, alpha: 1) // counter turns orange color
+//                        runAction(SKAction.sequence( [countdownSmall]) )
+//                    }
+//                    if secondsLeft <= 5 {
+//                        timeRemainingLabel.text =  "Timer: \( String(secondsLeft) ) "
+//                        let countdownBig = SKAction.playSoundFileNamed("1003.WAV", waitForCompletion: true)
+//                        runAction(SKAction.sequence( [countdownBig]) )
+//                        timeRemainingLabel.fontColor = SKColor(red: 1, green: 0, blue: 0, alpha: 1) // counter turns red color
+//                        if secondsLeft <= 0 {
+//                            //runAction(actionSound)   // play turn over sound
+//                            timeRemainingLabel.text = ("Timer: 0")
+//                            changePlayerTurn()
+//                        }
+//                    }
+//            
+//            --secondsLeft
         }
     }
     
@@ -603,10 +658,12 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                 playerView.position = CGPointMake(0, self.size.height * 0.3853 )
                 playerView.hidden = false
                 //playerView.playerViewBeginTurn()
+
             }
             if playerNum == 2 {
                 playerView.position = CGPointMake(self.size.width * 0.8495, self.size.height * 0.3853 )
                 playerView.hidden = false
+                
                 //playerView.playerViewEndTurn()
             }
         }
@@ -692,10 +749,10 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             if(_node.name == "optionsButton"){
                 optionsButton (_node)
             }
-            
-            if(_node.name == "pauseButton"){
-                pauseButton (_node)
-            }
+//            
+//            if(_node.name == "pauseButton"){
+//                pauseButton (_node)
+//            }
             
             if(_node.name == "playBtnPlay"){
                 playBtnPlay (_node)
@@ -825,15 +882,34 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         player3View = updatePlayerView(3, playerView: player3View)
         
         player4View = updatePlayerView(4, playerView: player4View)
+
         
+        // buttons inactive until "playButton" is pressed
+        newTilesButton.userInteractionEnabled = false
+        newTilesButton.alpha = 1
+        passButton.userInteractionEnabled = false
+        passButton.alpha = 1
+//        pauseButton.userInteractionEnabled = false
+//        pauseButton.alpha = 1
+        optionsButton.userInteractionEnabled = false
+        optionsButton.alpha = 1
+
         
-        if mmwGameSceneViewController.timerIsOn == false {
-            timeRemainingLabel.text = "Timer: off"
-        } else {
-            timeRemainingLabel.text = "Timer: \(mmwGameSceneViewController.secondsPerTurn) "
-            secondsLeft = mmwGameSceneViewController.secondsPerTurn
-            startTimer()
-        }
+//        if mmwGameSceneViewController.timerIsOn == false {
+//            secondsLeft = 999
+//            timeRemainingLabel.text = "Timer: off"
+//            pauseButton.userInteractionEnabled = false
+//            pauseButton.texture = SKTexture(imageNamed: "PauseButton.png")
+//            //pauseButton.texture = SKTexture(imageNamed: "MMWResumeButton.png")
+//            pauseButton.alpha = 0.4
+//            playButton.hidden = true
+//        } else {
+//            secondsLeft = mmwGameSceneViewController.secondsPerTurn
+//            timeRemainingLabel.text = "Timer: \(secondsLeft) "
+//            isPaused = false
+//            //pauseButton.texture = SKTexture(imageNamed: "MMWResumeButton.png")
+//            startTimer()
+//        }
         
         bottomDisplayLabel.text =  "Begin ... "
         topDisplayLabel.text = "Welcome to Mark My Word"
@@ -842,6 +918,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         mmwGameScene.setGrids() // sets tile grid positions, size square, number squares and position on screen for each grid possible
         
         mmwGameSceneViewController.setUpPlayers() // add player to view, match player to grid, fill grid with starter tiles and colorize to player color
+
         
         mmwGameSceneViewController.playerTurn = 1
         
@@ -870,17 +947,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         
         // set player turn to storing in mmwGameSceneViewController
         mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerView.playerViewBeginTurn()
-        
-        // buttons inactive until "playButton" is pressed
-        newTilesButton.userInteractionEnabled = false
-        newTilesButton.alpha = 1
-        passButton.userInteractionEnabled = false
-        passButton.alpha = 1
-        pauseButton.userInteractionEnabled = false
-        pauseButton.alpha = 1
-        optionsButton.userInteractionEnabled = false
-        optionsButton.alpha = 1
-        
+
         for player in mmwGameSceneViewController.playerArray {
             player.playerScore = 0
             player.playerView!.changePlayerScoreDisplay(player.playerScore)
@@ -889,6 +956,24 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         player1View.playerViewBeginTurn()
         
         animationsActive(false)
+        
+        
+        
+//        for playerView in playerViewArr {
+//            var playerArrayNumber = 0
+//            let isHuman = playerView.mmwPlayer.isHuman
+//            let meyamaImageNumber = playerView.mmwPlayer.playerMeyamaNumber
+//            let avatarImageNumber = playerView.mmwPlayer.playerAvatarNumber
+//            
+//            if  isHuman == false {
+//                mmwGameSceneViewController.playerArray[playerArrayNumber].playerView.playerTex = SKTexture(imageNamed:gameViewController.meyamaImageArray[meyamaImageNumber])
+//            }
+//            else {
+//                mmwGameSceneViewController.playerArray[playerArrayNumber].playerView.playerTex = SKTexture(imageNamed: gameViewController.playerImageArray[avatarImageNumber])
+//            }
+//            playerArrayNumber++
+//        }
+        
     }
     
     func testPlayButton () {
@@ -1297,7 +1382,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         //runAction(actionSound)
         
         
-        stopTimer()
+//        stopTimer()
         
         
         
@@ -1404,76 +1489,79 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     }
     
     
-    func pauseButton (pauseButtonNode : SKNode) {
-        if userInteractionEnabled {
-            //runAction(actionSound)
-            if !isPaused {
-                stopTimer()
-            }
-            else {
-                startTimer(secondsLeft)
-            }
-        }
-    }
+//    func pauseButton (pauseButtonNode : SKNode) {
+//        if userInteractionEnabled == true {
+//            //runAction(actionSound)
+//            if !isPaused {
+//                stopTimer()
+//            }
+//            else {
+//                startTimer(secondsLeft)
+//            }
+//        }
+//    }
     
     
-    func startTimer(seconds: Int) {
-        if mmwGameSceneViewController.secondsPerTurn  == 999 {
-            mmwGameSceneViewController.timerIsOn = false
-        } else {
-            mmwGameSceneViewController.timerIsOn = true
-        }
-        
-        if mmwGameSceneViewController.timerIsOn == false {
-            timeRemainingLabel.text = "Timer: off"
-            pauseButton.texture = SKTexture(imageNamed: "PauseButton.png")
-            pauseButton.alpha = 0.2
-        } else {
-            isPaused = false
-            pauseButton.texture = SKTexture(imageNamed: "PauseButton.png")
-            pauseButton.alpha = 1.0
-            timeRemainingLabel.text = "Timer: \(seconds)"
-            timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
-        }
-        
-        
-        //        if mmwGameSceneViewController.timerIsOn == true {
-        //            //runAction(actionSound)
-        //            isPaused = false
-        //            pauseButton.texture = SKTexture(imageNamed: "PauseButton.png")
-        //            timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
-        //        }
-    }
-    
-    func startTimer() {
-        //runAction(actionSound)
-        if mmwGameSceneViewController.secondsPerTurn  == 999 {
-            mmwGameSceneViewController.timerIsOn = false
-        } else {
-            mmwGameSceneViewController.timerIsOn = true
-        }
-        
-        if mmwGameSceneViewController.timerIsOn == false {
-            timeRemainingLabel.text = "Timer: off"
-            pauseButton.texture = SKTexture(imageNamed: "PauseButton.png")
-            pauseButton.alpha = 0.2
-        } else {
-            isPaused = false
-            pauseButton.texture = SKTexture(imageNamed: "PauseButton.png")
-            pauseButton.alpha = 1.0
-            timeRemainingLabel.text = "Timer: \(mmwGameSceneViewController.secondsPerTurn)"
-            timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
-        }
-    }
-    
-    
-    func stopTimer() {
-        isPaused = true
-        pauseButton.texture = SKTexture(imageNamed: "MMWResumeButton.png")
-        if (timer != nil) {
-            timer!.invalidate()
-        }
-    }
+//    func startTimer(seconds: Int) {
+//        if mmwGameSceneViewController.secondsPerTurn  == 999 {
+//            mmwGameSceneViewController.timerIsOn = false
+//        } else {
+//            mmwGameSceneViewController.timerIsOn = true
+//        }
+//        
+//        if mmwGameSceneViewController.timerIsOn == false {
+//            timeRemainingLabel.text = "Timer: off"
+//            pauseButton.texture = SKTexture(imageNamed: "PauseButton.png")
+//            pauseButton.alpha = 0.4
+//        } else {
+//            isPaused = false
+//            pauseButton.texture = SKTexture(imageNamed: "PauseButton.png")
+//            pauseButton.alpha = 1.0
+//            timeRemainingLabel.text = "Timer: \(seconds)"
+//            timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
+//        }
+//        
+//        
+//        //        if mmwGameSceneViewController.timerIsOn == true {
+//        //            //runAction(actionSound)
+//        //            isPaused = false
+//        //            pauseButton.texture = SKTexture(imageNamed: "PauseButton.png")
+//        //            timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
+//        //        }
+//    }
+//    
+//    func startTimer() {
+//        //runAction(actionSound)
+//        if mmwGameSceneViewController.secondsPerTurn  == 999 {
+//            mmwGameSceneViewController.timerIsOn = false
+//        } else {
+//            mmwGameSceneViewController.timerIsOn = true
+//        }
+//        
+//        if mmwGameSceneViewController.timerIsOn == false {
+//            timeRemainingLabel.text = "Timer: off"
+//            pauseButton.texture = SKTexture(imageNamed: "PauseButton.png")
+//            pauseButton.alpha = 0.4
+//        } else {
+//            isPaused = false
+//            pauseButton.texture = SKTexture(imageNamed: "PauseButton.png")
+//            pauseButton.alpha = 1.0
+//            //timeRemainingLabel.text = "Timer: \(mmwGameSceneViewController.secondsPerTurn)"
+//            timeRemainingLabel.text = "Timer: \(secondsLeft)"
+//            
+//            
+//            timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
+//        }
+//    }
+//    
+//    
+//    func stopTimer() {
+//        isPaused = true
+//        pauseButton.texture = SKTexture(imageNamed: "MMWResumeButton.png")
+//        if (timer != nil) {
+//            timer!.invalidate()
+//        }
+//    }
     
     
     func explosion(pos: CGPoint) {
@@ -1525,12 +1613,12 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerView.playerViewBeginTurn()
         }
         
-        if mmwGameSceneViewController.timerIsOn {
-            secondsLeft = mmwGameSceneViewController.secondsPerTurn
-            if isPaused == true {
-                startTimer(secondsLeft)
-            }
-        }
+//        if mmwGameSceneViewController.timerIsOn {
+//            secondsLeft = mmwGameSceneViewController.secondsPerTurn
+//            if isPaused == true {
+//                startTimer(secondsLeft)
+//            }
+//        }
         
         
         mmwGameSceneViewController.lettersPlayedInTurn = 0
@@ -1718,11 +1806,11 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         
         let numEmptyLetterSpotsLeft  = openTileLocations.leftOpenTileLocations  // from 0 to num player tiles PLUS existing tiles MINUS numLettersRight AND more than grid x = 0
         let numEmptyLetterSpotsRight = openTileLocations.rightOpenTileLocations // from 0 to num player tiles PLUS existing tiles MINUS numLettersLeft  AND more than grid x = 0
-        let numEmptyLetterSpotsUp    = openTileLocations.upOpenTileLocations  // from 0 to num player tiles PLUS existing tiles MINUS numLettersRight AND more than grid x = 0
-        let numEmptyLetterSpotsDown  = openTileLocations.downOpenTileLocations // from 0 to num player tiles PLUS existing tiles MINUS numLettersLeft  AND more than grid x = 0
+        let numEmptyLetterSpotsUp    = openTileLocations.upOpenTileLocations    // from 0 to num player tiles PLUS existing tiles MINUS numLettersRight AND more than grid x = 0
+        let numEmptyLetterSpotsDown  = openTileLocations.downOpenTileLocations  // from 0 to num player tiles PLUS existing tiles MINUS numLettersLeft  AND more than grid x = 0
         
-        var numEmptyLetterSpotsLeftOrUp     = numEmptyLetterSpotsLeft  // from 0 to num player tiles PLUS existing tiles MINUS numLettersRight AND more than grid x = 0
-        var numEmptyLetterSpotsRightOrDown  = numEmptyLetterSpotsRight // from 0 to num player tiles PLUS existing tiles MINUS numLettersLeft  AND more than grid x = 0
+        var numEmptyLetterSpotsLeftOrUp     = numEmptyLetterSpotsLeft           // from 0 to num player tiles PLUS existing tiles MINUS numLettersRight AND more than grid x = 0
+        var numEmptyLetterSpotsRightOrDown  = numEmptyLetterSpotsRight          // from 0 to num player tiles PLUS existing tiles MINUS numLettersLeft  AND more than grid x = 0
         
         var shiftLeftOrUp = 0
         var shiftRightOrDown = 0

@@ -9,7 +9,7 @@
 import SpriteKit
 
 var mmwOptionScreen : MMWOptionScreen! = MMWOptionScreen(size: screenSize!)
-var mmwGameScene : MMWGameScene! = MMWGameScene(size: screenSize!)
+var mmwGameScene    : MMWGameScene!    = MMWGameScene(size: screenSize!)
 var mmwResultsScene : MMWResultsScene! = MMWResultsScene(size: screenSize!, gameResult: false, score: 25)
 
 class MainMenuScene: SKScene {
