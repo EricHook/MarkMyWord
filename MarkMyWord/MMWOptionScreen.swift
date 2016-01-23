@@ -320,7 +320,6 @@ class MMWOptionScreen: SKScene {
         loadingIndicator.name = "loadingBtn"
         loadingIndicator.zPosition = 100
         self.addChild(loadingIndicator)
-        
         let scaleHoriz = SKAction.scaleXTo(2, duration: loadDelayTimeSecs)
         let loadingAnim = SKAction.group([scaleHoriz])
         let loadingAnimSequence = SKAction.sequence([loadingAnim, SKAction.removeFromParent()])
@@ -329,11 +328,7 @@ class MMWOptionScreen: SKScene {
         delay (loadDelayTimeSecs) {
             gameViewController.ViewAllOptionsUI.hidden = true
 
-
-            
-            //mmwGameSceneViewController.resetGame()
-            
-            //mmwGameScene.resetGameView()   // includes tileCollection?.resetAllTiles()
+            mmwGameScene.resetGameView()   // includes tileCollection?.resetAllTiles()
             self.view?.presentScene(mmwGameScene)
             mmwGameScene.startGame()  // set grids, starter words, ...
             

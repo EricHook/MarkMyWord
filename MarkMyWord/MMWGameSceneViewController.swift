@@ -41,12 +41,11 @@ class MMWGameSceneViewController : UIViewController {
     var secondsPerTurn = 45
     var timerIsOn = true
 
-    var player0 : Player = Player(_playerID: 0, _playerName: "AI",          _playerColor: 0) // used to add initial word ownership
-    var player1 : Player = Player(_playerID: 1, _playerName: "Player 1",    _playerColor: 1)
-    var player2 : Player = Player(_playerID: 2, _playerName: "Bart",        _playerColor: 2)
-    // player 3 and 4 objects created but only used in 3 or 4 player games
-    var player3 : Player = Player(_playerID: 3, _playerName: "Charlie",     _playerColor: 3)
-    var player4 : Player = Player(_playerID: 4, _playerName: "Dan",         _playerColor: 4)
+    var player0 : Player = Player(_playerID: 0, _playerName: "AI", _playerColor: 0) // used for initial word ownership
+    var player1 : Player = Player(_playerID: 1, _playerName: "Player 1", _playerColor: 1)
+    var player2 : Player = Player(_playerID: 2, _playerName: "Bart",  _playerColor: 2)
+    var player3 : Player = Player(_playerID: 3, _playerName: "Charlie", _playerColor: 3)
+    var player4 : Player = Player(_playerID: 4, _playerName: "Dan", _playerColor: 4)
     
     var playerArray : [Player]!
 
@@ -57,8 +56,7 @@ class MMWGameSceneViewController : UIViewController {
     var lettersPlayedInTurn = 0
     
     //var timer : NSTimer!
-    //var wordTrie : Trie<Character>?
-    
+ 
     var wordSet : WordSet?
     let wordSetPrecomputedSize : Int = 1253231;
     
@@ -366,10 +364,8 @@ class MMWGameSceneViewController : UIViewController {
         letterToPlace.gridHome? = letterToPlace.gridEnd!
         letterToPlace.gridX = xSquare
         letterToPlace.gridY = ySquare
-        
         letterToPlace.gridHome?.grid2DArr[xSquare][ySquare] = letterToPlace
-        
-        
+
         // move tile to snap point
         let tileLocation = Grid.sendToGridSquare(gridToPlaceLetter, squareX: xSquare, squareY: ySquare)
         let tileLocX = tileLocation.x

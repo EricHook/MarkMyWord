@@ -62,6 +62,7 @@ class PlayerView: SKSpriteNode {
                 playerTex = SKTexture(imageNamed: gameViewController.playerImageArray[mmwGameSceneViewController.playerArray[0].playerAvatarNumber])
             }
         }
+            
         else if playerNumber == 2 {
             if mmwGameSceneViewController.player2.isHuman == false {
                 playerTex = SKTexture(imageNamed: gameViewController.meyamaImageArray[mmwGameSceneViewController.playerArray[1].playerMeyamaNumber])
@@ -69,6 +70,7 @@ class PlayerView: SKSpriteNode {
                 playerTex = SKTexture(imageNamed: gameViewController.playerImageArray[mmwGameSceneViewController.playerArray[1].playerAvatarNumber])
             }
         }
+            
         else if playerNumber == 3 {
             if mmwGameSceneViewController.player3.isHuman == false {
                 playerTex = SKTexture(imageNamed: gameViewController.meyamaImageArray[mmwGameSceneViewController.playerArray[1].playerMeyamaNumber])
@@ -76,6 +78,7 @@ class PlayerView: SKSpriteNode {
                 playerTex = SKTexture(imageNamed: gameViewController.playerImageArray[mmwGameSceneViewController.playerArray[1].playerAvatarNumber])
             }
         }
+            
         else if playerNumber == 4 {
             if mmwGameSceneViewController.player4.isHuman == false {
                 playerTex = SKTexture(imageNamed: gameViewController.meyamaImageArray[mmwGameSceneViewController.playerArray[1].playerMeyamaNumber])
@@ -83,6 +86,7 @@ class PlayerView: SKSpriteNode {
                 playerTex = SKTexture(imageNamed: gameViewController.playerImageArray[mmwGameSceneViewController.playerArray[1].playerAvatarNumber])
             }
         }
+            
         else {
             playerTex = SKTexture(imageNamed: "avatar000.png")
         }
@@ -222,17 +226,7 @@ class PlayerView: SKSpriteNode {
 //        playerGridGlow.hidden = true
 //        addChild(playerGridGlow)
     }
-    
-    
-//    func setPlayerGameSceneAndController (mmwGameScene: MMWGameScene, mmwGameSceneViewController: MMWGameSceneViewController) {
-//        //self.mmwGameScene = mmwGameScene
-//        //self.mmwGameSceneViewController = mmwGameSceneViewController
-//        
-//        //self.xScale = (mmwGame.screenSize!.width)/1024
-//        self.xScale = (screenSize!.height)/768
-//        self.yScale = (screenSize!.height)/768
-//    }
-    
+
     
     func changePlayerScoreDisplay () {
         let score = mmwPlayer.playerScore

@@ -1801,7 +1801,19 @@ class LetterTileSprite : SKSpriteNode {
             
             self.tileSpriteParent.tileState = TileState.PlayedMadeWord
             
-            self.tileSpriteParent.playedMadeWord = PlayedMadeWord.Horizontal
+            if self.tileSpriteParent.playedMadeWord != PlayedMadeWord.Both {
+                if self.tileSpriteParent.playedMadeWord == PlayedMadeWord.Vertical {
+                    self.tileSpriteParent.playedMadeWord = PlayedMadeWord.Both
+                }
+                else {
+                    self.tileSpriteParent.playedMadeWord = PlayedMadeWord.Vertical
+                }
+            }
+            
+            
+            //self.tileSpriteParent.playedMadeWord = PlayedMadeWord.Horizontal
+            
+            
             
             for tile in possibleWordTilesHorizontal{
                 print("\(tile.tileText)  :  \(tile.tileState)")
@@ -1991,14 +2003,33 @@ class LetterTileSprite : SKSpriteNode {
 
             //let tileWordState = self.testForValidWordsAtDropSpot(self.tileSpriteParent.gridXEnd, tileSnapResultsYGrid: self.tileSpriteParent.gridYEnd, isAI: true)
             var pointsForCompletingWord = 0
-            if tileSpriteParent.tileState == TileState.PlayedMadeWord && tileSpriteParent.playedMadeWord == PlayedMadeWord.Vertical {
+            
+            
+//            if tileSpriteParent.tileState == TileState.PlayedMadeWord && tileSpriteParent.playedMadeWord == PlayedMadeWord.Horizontal {
+//                if tileSpriteParent.playedMadeWord == PlayedMadeWord.Vertical {
+//                    
+//                }
+//            
+//             if tileSpriteParent.tileState == TileState.PlayedMadeWord && tileSpriteParent.playedMadeWord == PlayedMadeWord.Vertical {
+            
+            
+//            // only score both on one direction rather than double score on horizontal AND vertical passes
+//            if tileSpriteParent.tileState == TileState.PlayedMadeWord && tileSpriteParent.playedMadeWord == PlayedMadeWord.Both && scoredMadeWordBoth == false {
+//                //self.color = UIColor.blackColor()
+//                pointsForCompletingWord = ( (tileArrToScoreVertical.count * 5) + (tileArrToScoreHorizontal.count * 5) )
+//                print("+POINTS for completing word BOTH : \(pointsForCompletingWord) : \(self.tileText) ")
+//                tileSpriteParent.tileState = TileState.Locked
+//                scoredMadeWordBoth = true
+//            }
+            
+            if tileSpriteParent.tileState == TileState.PlayedMadeWord && (tileSpriteParent.playedMadeWord == PlayedMadeWord.Vertical || tileSpriteParent.playedMadeWord == PlayedMadeWord.Both) {
                 //self.color = UIColor.grayColor()
                 pointsForCompletingWord = tileArrToScoreVertical.count * 5
                 print("+POINTS for completing word VERTICAL : \(pointsForCompletingWord) : \(self.tileText) ")
                 tileSpriteParent.tileState = TileState.Locked
             }
             
-            if tileSpriteParent.tileState == TileState.PlayedMadeWord && tileSpriteParent.playedMadeWord == PlayedMadeWord.Horizontal {
+            else if tileSpriteParent.tileState == TileState.PlayedMadeWord && (tileSpriteParent.playedMadeWord == PlayedMadeWord.Horizontal || tileSpriteParent.playedMadeWord == PlayedMadeWord.Both) {
                 //self.color = UIColor.grayColor()
                 pointsForCompletingWord = tileArrToScoreHorizontal.count * 5
                 print("+POINTS for completing word HORIZONTAL : \(pointsForCompletingWord) : \(self.tileText) ")
@@ -2006,13 +2037,16 @@ class LetterTileSprite : SKSpriteNode {
             }
                 
             // only score both on one direction rather than double score on horizontal AND vertical passes
-            else if tileSpriteParent.tileState == TileState.PlayedMadeWord && tileSpriteParent.playedMadeWord == PlayedMadeWord.Both && scoredMadeWordBoth == false {
+            if tileSpriteParent.tileState == TileState.PlayedMadeWord && tileSpriteParent.playedMadeWord == PlayedMadeWord.Both && scoredMadeWordBoth == false {
                 //self.color = UIColor.blackColor()
                 pointsForCompletingWord = ( (tileArrToScoreVertical.count * 5) + (tileArrToScoreHorizontal.count * 5) )
                 print("+POINTS for completing word BOTH : \(pointsForCompletingWord) : \(self.tileText) ")
                 tileSpriteParent.tileState = TileState.Locked
                 scoredMadeWordBoth = true
             }
+            
+            
+            
             
             let waitTime = SKAction.waitForDuration( delayTime + 0.8 )
             animationTime += 0.8

@@ -35,8 +35,8 @@ class Player {
         playerColor = _playerColor
         playerID = _playerID
         playerName = _playerName
-        playerAvatarNumber = playerID
-        playerMeyamaNumber = playerID
+        playerAvatarNumber = (playerID > 1) ? ( playerID - 1 ) : 0
+        playerMeyamaNumber = (playerID > 1) ? ( playerID - 1 ) : 0
     }
 
     func setPlayerTilesGrid (inout playerTilesGrid: Grid) {

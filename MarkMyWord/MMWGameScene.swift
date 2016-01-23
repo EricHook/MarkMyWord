@@ -186,9 +186,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         userInteractionEnabled = true
         
         setGrids() // sets tile grid positions, size square, number squares and position on screen for each grid possible
-        
-        //tileCollection = MMWTileBuilder()
-        
+
         tileCollection!.resetAllTiles()
         
         //        // ADD ALL TILES to Scene - they start as invisible
@@ -209,8 +207,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         if self.childNodeWithName("backgroundNode") == nil {
             addChild(backgroundNode)
         }
-        
-        
+
         newGameSpriteNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         newGameSpriteNode.position = CGPoint(x: size.width/2.0, y: 0.0)
         newGameSpriteNode.userInteractionEnabled = false
@@ -218,37 +215,34 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         newGameSpriteNode.zPosition = 100
         newGameSpriteNode.size.height = viewSize.height
         newGameSpriteNode.size.width  = viewSize.width
-        if self.childNodeWithName("newGameSpriteNode") == nil {
-            addChild(newGameSpriteNode)
-        }
-        
-        player1View = updatePlayerView(1, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player1))
+        addChild(newGameSpriteNode)
+
+        player1View = updatePlayerView(1, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.playerArray[0]))
         playerViewArr.append(player1View)
         player1View.hidden = false
 
 
-        player2View = updatePlayerView(2, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player2))
+        player2View = updatePlayerView(2, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.playerArray[1]))
         playerViewArr.append(player2View)
         player2View.hidden = false
 
-        player3View = updatePlayerView(3, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player3))
+        player3View = updatePlayerView(3, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.playerArray[2]))
         playerViewArr.append(player3View)
 
-        
         if mmwGameSceneViewController.numPlayers > 2 {
             player3View.hidden = false
         } else {
             player3View.hidden = true
         }
         
-        player4View = updatePlayerView(4, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.player4))
+        player4View = updatePlayerView(4, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.playerArray[3]))
         playerViewArr.append(player4View)
         if mmwGameSceneViewController.numPlayers > 3 {
             player4View.hidden = false
         } else {
             player4View.hidden = true
         }
-        
+
         for playerView in playerViewArr {
             playerView.zPosition = -1
             addChild(playerView)
@@ -305,31 +299,28 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             gameGrid.xScale = 1.33
             gameGrid.yScale = 1.33
         }
-        
-        //gameGrid.anchorPoint = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
-        gameGrid.position = CGPoint(x: (viewSize.width/2), y: (viewSize.height * 0.490 ) )
-        gameGrid.name = "gameGrid"
-        //gameGrid.userInteractionEnabled = false
-        gameGrid.zPosition = -49
-        gameGrid.alpha     = 0.1
-        
-        //self.addChild(gameGrid)
+
+//        gameGrid.position = CGPoint(x: (viewSize.width/2), y: (viewSize.height * 0.490 ) )
+//        gameGrid.name = "gameGrid"
+//        //gameGrid.userInteractionEnabled = false
+//        gameGrid.zPosition = -49
+//        gameGrid.alpha     = 0.1
+//        self.addChild(gameGrid)
+
+        topDisplayHUD("Welcome to Mark My Word") // ("Turn: Player 1, Special Letter Bonus In Effect, 2x Point Bonus")
+        topDisplayHUD2("topDisplayHUD2")
         
         tilesRemainingHUD(tileCollection!.mmwTileArray.count)
-        
-        //timeRemainingLabel.text = "Timer: 00"
-        
+
         bottomDisplayHUD("Begin ... ")
         
+        //timeRemainingLabel.text = "Timer: 00"
 //        timeRemainingHUD(mmwGameSceneViewController.secondsPerTurn)  // default set to         standard time remaining
 //        isPaused = true
 //        if (timer != nil) {
 //            timer!.invalidate()
 //        }
 
-        topDisplayHUD("Welcome to Mark My Word") // ("Turn: Player 1, Special Letter Bonus In Effect, 2x Point Bonus")
-        topDisplayHUD2("topDisplayHUD2")
-        
         playButton.position = CGPoint(x: (viewSize.width * 0.5), y: (viewSize.height * 0.1) )
         playButton.name = "playButton"
         self.addChild(playButton)
@@ -392,10 +383,6 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         // ADD ALL TILES to Scene - they start as invisible
         var tileTempXLocation = 0
         
-        //if self.childNodeWithName("newGameSpriteNode") == nil {
-            //addChild(newGameSpriteNode)
-        //}
-        
         for tile in tileCollection!.mmwTileArray {
             tile.tileSprite.hidden = true
             tileTempXLocation += 40
@@ -403,16 +390,15 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             self.addChild(tile.tileSprite)
         }
         
-        optionsLayerNode.name = "optionsLayerNode"
-        optionsLayerNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        optionsLayerNode.position = CGPoint(x: size.width/2.0, y: size.height/2.0)
-        optionsLayerNode.userInteractionEnabled = false
-        optionsLayerNode.zPosition = 100
-        optionsLayerNode.size = CGSize(width: (viewSize.width * 1.0),  height: (viewSize.height * 1.0) )
-        optionsLayerNode.alpha = 0.95
-        optionsLayerNode.hidden = true
- 
-        self.addChild(optionsLayerNode)
+//        optionsLayerNode.name = "optionsLayerNode"
+//        optionsLayerNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+//        optionsLayerNode.position = CGPoint(x: size.width/2.0, y: size.height/2.0)
+//        optionsLayerNode.userInteractionEnabled = false
+//        optionsLayerNode.zPosition = 100
+//        optionsLayerNode.size = CGSize(width: (viewSize.width * 1.0),  height: (viewSize.height * 1.0) )
+//        optionsLayerNode.alpha = 0.95
+//        optionsLayerNode.hidden = true
+//        self.addChild(optionsLayerNode)
         
         //        // Placeholder for dictionary data loading progress display
         //        let playBtnTEMP = SKSpriteNode(imageNamed: "PlayButton.png")
@@ -433,7 +419,6 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         playBtnPlay.name = "playBtnPlay"
         playBtnPlay.zPosition = 100
         playBtnPlay.size = CGSizeMake(40.0, 40.0)
-
         self.addChild(playBtnPlay)
         newTilesButton.userInteractionEnabled = true
         
@@ -445,7 +430,6 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         testPlayButton.name = "testPlayButton"
         testPlayButton.zPosition = 100
         testPlayButton.size = CGSizeMake(40.0, 40.0)
-    
         self.addChild(testPlayButton)
         
         
@@ -471,40 +455,13 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     func resetGameView () {
         print("---   in resetGameView mmwGameScene")
         gameViewController.ViewAllOptionsUI.hidden = true
-        //userInteractionEnabled = true
-        
-        //tileCollection = nil
-        //tileCollection!.resetAllTiles()
-        
+
         // update locations and visibility of player views
         player1View = updatePlayerView(1, playerView: player1View)
-        
         player2View = updatePlayerView(2, playerView: player2View)
-        
         player3View = updatePlayerView(3, playerView: player3View)
-        
         player4View = updatePlayerView(4, playerView: player4View)
-        
-        
-        
-        for playerView in playerViewArr {
-            var playerArrayNumber = 0
-            let isHuman = playerView.mmwPlayer.isHuman
-            let meyamaImageNumber = playerView.mmwPlayer.playerMeyamaNumber
-            let avatarImageNumber = playerView.mmwPlayer.playerAvatarNumber
-            
-            if  isHuman == false {
-                mmwGameSceneViewController.playerArray[playerArrayNumber].playerView.playerTex = SKTexture(imageNamed:gameViewController.meyamaImageArray[meyamaImageNumber])
-            }
-            else {
-                mmwGameSceneViewController.playerArray[playerArrayNumber].playerView.playerTex = SKTexture(imageNamed: gameViewController.playerImageArray[avatarImageNumber])
-            }
-            playerArrayNumber++
-        }
 
-        
-        
-        
 //        if mmwGameSceneViewController.timerIsOn == false {
 //            timeRemainingLabel.text = "Timer: off"
 //        } else {
@@ -653,17 +610,29 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     
     func updatePlayerView (playerNum : Int, playerView : PlayerView) -> PlayerView {
         print("---   in updatePlayerView mmwGameScene")
+
+        let isHuman = playerView.mmwPlayer.isHuman
+        let meyamaImageNumber = playerView.mmwPlayer.playerMeyamaNumber
+        let avatarImageNumber = playerView.mmwPlayer.playerAvatarNumber
+        
+        if  isHuman == false {
+            playerView.playerSprite.texture  = SKTexture(imageNamed:gameViewController.meyamaImageArray[meyamaImageNumber])
+            playerView.playerNameLabel.text = gameViewController.meyamaAvatarNames[meyamaImageNumber]
+        }
+        else {
+            playerView.playerSprite.texture = SKTexture(imageNamed:gameViewController.playerImageArray[avatarImageNumber])
+            playerView.playerNameLabel.text = gameViewController.playerAvatarNames[avatarImageNumber]
+        }
+        
         if mmwGameSceneViewController.numPlayers == 2 { // if 2 one left and one right
             if playerNum == 1 {
                 playerView.position = CGPointMake(0, self.size.height * 0.3853 )
                 playerView.hidden = false
                 //playerView.playerViewBeginTurn()
-
             }
             if playerNum == 2 {
                 playerView.position = CGPointMake(self.size.width * 0.8495, self.size.height * 0.3853 )
                 playerView.hidden = false
-                
                 //playerView.playerViewEndTurn()
             }
         }
@@ -957,22 +926,21 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         
         animationsActive(false)
         
-        
-        
-//        for playerView in playerViewArr {
-//            var playerArrayNumber = 0
-//            let isHuman = playerView.mmwPlayer.isHuman
-//            let meyamaImageNumber = playerView.mmwPlayer.playerMeyamaNumber
-//            let avatarImageNumber = playerView.mmwPlayer.playerAvatarNumber
-//            
-//            if  isHuman == false {
-//                mmwGameSceneViewController.playerArray[playerArrayNumber].playerView.playerTex = SKTexture(imageNamed:gameViewController.meyamaImageArray[meyamaImageNumber])
-//            }
-//            else {
-//                mmwGameSceneViewController.playerArray[playerArrayNumber].playerView.playerTex = SKTexture(imageNamed: gameViewController.playerImageArray[avatarImageNumber])
-//            }
-//            playerArrayNumber++
-//        }
+        //playerTex = SKTexture(imageNamed: "avatar000.png")
+        var playerArrayNumber = 0
+        for playerView in playerViewArr {
+            let isHuman = playerView.mmwPlayer.isHuman
+            let meyamaImageNumber = playerView.mmwPlayer.playerMeyamaNumber
+            let avatarImageNumber = playerView.mmwPlayer.playerAvatarNumber
+            
+            if  isHuman == false {
+                playerViewArr[playerArrayNumber].playerTex = SKTexture(imageNamed:gameViewController.meyamaImageArray[meyamaImageNumber])
+            }
+            else {
+                playerViewArr[playerArrayNumber].playerTex = SKTexture(imageNamed:gameViewController.playerImageArray[avatarImageNumber])
+            }
+            playerArrayNumber++
+        }
         
     }
     
@@ -996,8 +964,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     
     
     func playBtnPlay (playButtonPlayNode: SKNode) {
-        
-        
+
         playAILetters()
         
         mmwGameSceneViewController.resetConsequtivePasses()
@@ -1006,9 +973,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     }
     
     func playAILetters() {
-        
-        
-        
+
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         dispatch_async(dispatch_get_global_queue(priority, 0), { ()->() in
             
@@ -2059,19 +2024,13 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                     }
                     
                     if (mmwGameSceneViewController.checkPartialWordMatch(testString) == true) { //&& LetterTileSprite.testLetterAtDropSpot(currentTestAILetterPlay.gridXEnd, tileSnapResultsYGrid: currentTestAILetterPlay.gridYEnd, letterToTest: currentTestAILetterPlay.tileSpriteLetter).validHorizontalPartialWord == true && LetterTileSprite.testLetterAtDropSpot(currentTestAILetterPlay.gridXEnd, tileSnapResultsYGrid: currentTestAILetterPlay.gridYEnd, letterToTest: currentTestAILetterPlay.tileSpriteLetter).validVerticalPartialWord == true ) {
-                        
-        
-                        
+
                         if currentPossibleAILetterPlayArr.count > 0 {
                             if currentPossibleAILetterPlayArr[0].gridXEnd == -1 {
                                 currentPossibleAILetterPlayArr.removeFirst()
                             }
                         }
 
-                        
-                        
-                        
-                        
                         var allLettersPossibleWords = true
                         
                         var currentPossibleAILetterPlayArrIndex = 0
@@ -2087,10 +2046,6 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                         
                         }
 
-                        
-      
-                        
-                        
                             if allLettersPossibleWords && currentPossibleAILetterPlayArr.count > 0 {
                                 
                                 validPartialAILetterPlayArr = currentPossibleAILetterPlayArr
@@ -2122,8 +2077,6 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                                 break
                             }
                         }
-                    
-                        
                     else {
                         //print("NOT partial Word Match! \(testString) checkForValidWordsAI mmwGameScene" )
                     }
@@ -2139,16 +2092,11 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                     testString = self.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileText // get letter at start tile
                     shiftLeftOrUp--
                     shiftRightOrDown++
-                    
-                    
                 }
-            }
-            
-            /////////////////////
+            }            /////////////////////
             gridTestX = gridXSpot // reset test spot as it may have been moved to right in code below
             gridTestY = gridYSpot
             ////////////////////
-            
         }
         
         if allFoundPartialWordPlaysAtLockedTile.count > 0 {
@@ -2187,7 +2135,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                 } else {
                     letterTilePlayable.tileState = TileState.Played
                 }
-                print("H updating letterTilePlayable.tileSprite.updateAIWordsAtDropSpot \(letter.tileSpriteLetter), \(letter.gridXEnd), \(letter.gridYEnd), \(letter.partOfWord), \(letterTilePlayable.tileState)  checkForValidWordsAI mmwGameScene")
+                print("H updating letterTilePlayable.tileSprite.updateAIWordsAtDropSpot \(letter.tileSpriteLetter), \(letter.gridXEnd), \(letter.gridYEnd), \(letter.partOfWord), \(letterTilePlayable.tileState), \(letterTilePlayable.tileState.rawValue ) checkForValidWordsAI mmwGameScene")
                 letterTilePlayable.tileSprite.updateAIWordsAtDropSpot(letter.gridXEnd, tileYGridDestination: letter.gridYEnd, madeValidWord: letter.madeValidWord)
             }
             placedTiles++
@@ -2196,7 +2144,6 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             //numLetters++
         }
         return true
-        
     }
     
     
