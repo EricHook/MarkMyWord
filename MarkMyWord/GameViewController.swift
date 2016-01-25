@@ -13,7 +13,7 @@ extension SKNode {
         if let path = NSBundle.mainBundle().pathForResource(file, ofType: "sks") {
             let sceneData = NSData(contentsOfFile: path)!
             let archiver = NSKeyedUnarchiver(forReadingWithData: sceneData)
-            
+
             archiver.setClass(self.classForKeyedUnarchiver(), forClassName: "SKScene")
             let scene1 = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as! MainMenuScene
             
@@ -27,6 +27,7 @@ extension SKNode {
     }
 }
 
+var endGameSceneController = EndGameSceneController()
 var mmwGameSceneViewController : MMWGameSceneViewController! = MMWGameSceneViewController()
 var gameViewController : GameViewController! = GameViewController()
 
@@ -36,9 +37,6 @@ var selectedHumanAvatar  = 0
 var selectedMeyamaAvatar = 0
 
 //var avatar000 =
-
-
-
 
 //var humanAvatarImages = [SKimage]
 //var meyamaAvatarImages = [SKimage]
@@ -136,16 +134,16 @@ class GameViewController : UIViewController {
         case 0:
             mmwGameSceneViewController.numPlayers = 2
             print("UI numPlayers 2")
-            gameViewController.ViewPlayer3UI.alpha = 0.5
+            gameViewController.ViewPlayer3UI.alpha = 0.2
             gameViewController.ViewPlayer3UI.userInteractionEnabled = false
-            gameViewController.ViewPlayer4UI.alpha = 0.5
+            gameViewController.ViewPlayer4UI.alpha = 0.2
             gameViewController.ViewPlayer4UI.userInteractionEnabled = false
         case 1:
             mmwGameSceneViewController.numPlayers = 3
             print("UI numPlayers 3")
             gameViewController.ViewPlayer3UI.alpha = 1.0
             gameViewController.ViewPlayer3UI.userInteractionEnabled = true
-            gameViewController.ViewPlayer4UI.alpha = 0.5
+            gameViewController.ViewPlayer4UI.alpha = 0.2
             gameViewController.ViewPlayer4UI.userInteractionEnabled = false
         case 2:
             mmwGameSceneViewController.numPlayers = 4
@@ -157,11 +155,33 @@ class GameViewController : UIViewController {
         default:
             break;
         }
+        
+//        ////////////////////
+//        
+//        if mmwGameSceneViewController.playerArray[1].isHuman == false {
+//            gameViewController.isHumanPlayer2Outlet.selectedSegmentIndex = 0
+//        }
+//        else {
+//            gameViewController.isHumanPlayer2Outlet.selectedSegmentIndex = 1
+//        }
+//        
+//        if mmwGameSceneViewController.playerArray[2].isHuman == false {
+//            gameViewController.isHumanPlayer3Outlet.selectedSegmentIndex = 0
+//        }
+//        else {
+//            gameViewController.isHumanPlayer3Outlet.selectedSegmentIndex = 1
+//        }
+//        
+//        if mmwGameSceneViewController.playerArray[3].isHuman == false {
+//            gameViewController.isHumanPlayer4Outlet.selectedSegmentIndex = 0
+//        }
+//        else {
+//            gameViewController.isHumanPlayer4Outlet.selectedSegmentIndex = 1
+//        }
+//        
+//        ////////////////////
 
-        
-        
-        
-        
+
         tempMinWordSize = mmwGameSceneViewController.minWordSize
         tempNumStarterWords = mmwGameSceneViewController.numStarterWords
         tempNumPlayers = mmwGameSceneViewController.numPlayers
@@ -190,39 +210,118 @@ class GameViewController : UIViewController {
         tempPlayer2MeyamaNumber = mmwGameSceneViewController.playerArray[1].playerMeyamaNumber
         tempPlayer3MeyamaNumber = mmwGameSceneViewController.playerArray[2].playerMeyamaNumber
         tempPlayer4MeyamaNumber = mmwGameSceneViewController.playerArray[3].playerMeyamaNumber
-        
-        
+
         if tempPlayer2IsHuman == false {
             isHumanPlayer2Outlet.selectedSegmentIndex = 0
             player2NameLabel.text = meyamaAvatarNames[tempPlayer2MeyamaNumber]
             player2ImageOutlet.image = UIImage(named: meyamaImageArray[tempPlayer2MeyamaNumber ])
             avatarStepperPlayer02.value = Double(tempPlayer2MeyamaNumber)
-            
         }
         else { // human player tempPlayer2IsHuman = true
             isHumanPlayer2Outlet.selectedSegmentIndex = 1
             player2NameLabel.text = playerAvatarNames[tempPlayer2AvatarNumber]
             player2ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer2AvatarNumber ])
             avatarStepperPlayer02.value = Double(tempPlayer2AvatarNumber)
-            
         }
         
+        if tempPlayer3IsHuman == false {
+            isHumanPlayer3Outlet.selectedSegmentIndex = 0
+            player3NameLabel.text = meyamaAvatarNames[tempPlayer3MeyamaNumber]
+            player3ImageOutlet.image = UIImage(named: meyamaImageArray[tempPlayer3MeyamaNumber ])
+            avatarStepperPlayer03.value = Double(tempPlayer3MeyamaNumber)
+            
+        }
+        else { // human player tempPlayer3IsHuman = true
+            isHumanPlayer3Outlet.selectedSegmentIndex = 1
+            player3NameLabel.text = playerAvatarNames[tempPlayer3AvatarNumber]
+            player3ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer3AvatarNumber ])
+            avatarStepperPlayer03.value = Double(tempPlayer3AvatarNumber)
+        }
 
-        
+        if tempPlayer4IsHuman == false {
+            isHumanPlayer4Outlet.selectedSegmentIndex = 0
+            player4NameLabel.text = meyamaAvatarNames[tempPlayer4MeyamaNumber]
+            player4ImageOutlet.image = UIImage(named: meyamaImageArray[tempPlayer4MeyamaNumber ])
+            avatarStepperPlayer04.value = Double(tempPlayer4MeyamaNumber)
+            
+        }
+        else { // human player tempPlayer4IsHuman = true
+            isHumanPlayer4Outlet.selectedSegmentIndex = 1
+            player4NameLabel.text = playerAvatarNames[tempPlayer4AvatarNumber]
+            player4ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer4AvatarNumber ])
+            avatarStepperPlayer04.value = Double(tempPlayer4AvatarNumber)
+        }
     }
 
     @IBOutlet var GameViewControllerUI: SKView!
     
+    
     @IBOutlet weak var ViewOptionsUI: UIView!
     @IBOutlet weak var ViewAllOptionsUI: UIView!
 
+    
     @IBOutlet weak var ViewPlayer1UI: UIView!
     @IBOutlet weak var ViewPlayer2UI: UIView!
     @IBOutlet weak var ViewPlayer3UI: UIView!
     @IBOutlet weak var ViewPlayer4UI: UIView!
     @IBOutlet weak var numberPlayersUI: UISegmentedControl!
     
+    
+    @IBOutlet weak var viewStatsContainer: UIView!
+    
+    
+    @IBOutlet weak var OptionsSwitchOutlet: UISegmentedControl!
+
+    
+    @IBAction func OptionsSwitchAction(sender: AnyObject) {
+        if sender.selectedSegmentIndex == 2 {
+            print("stats selected")
+        }
+        
+        switch (self.OptionsSwitchOutlet.selectedSegmentIndex){
+        case 0:
+            print("stats 0 Options selected")
+            ViewOptionsUI.hidden = false
+            
+            self.viewStatsContainer.hidden = true
+            ViewOptionsUI.userInteractionEnabled = true
+        case 1:
+            print("stats 1 Rules selected")
+            self.ViewOptionsUI.hidden = true
+        case 2:
+            print("stats 2 Stats selected")
+            self.viewStatsContainer.hidden = false
+            self.ViewOptionsUI.hidden = true
+            toStatView.sendActionsForControlEvents(.TouchUpInside)
+            
+        default:
+            break;
+        }
+        
+        print("testSwitch worked")
+//        button.enabled = false
+//        button.hidden = true
+        //testSwitch.tintColor = UIColorApplePurple
+        
+    }
+
+
+    
+    //    @IBAction func OptionsSwitchAction(sender: AnyObject) {
+    //
+    //       //    }
+    
+    
+    @IBOutlet weak var toStatView: UIButton!
+    
+    @IBAction func toStatView(sender: AnyObject) {
+        
+        
+    }
+
+    
     @IBOutlet weak var secondPerTurnSwitchOutlet: UISegmentedControl!
+    
     
     @IBAction func secondsPerTurnAction(sender: AnyObject) {
 //        switch (sender.selectedSegmentIndex){
@@ -246,7 +345,9 @@ class GameViewController : UIViewController {
 //        }
     }
 
+    
     @IBOutlet weak var audioSettingOutlet: UISegmentedControl!
+    
     
     @IBAction func audioSettingAction(sender: AnyObject) {
 //        switch (sender.selectedSegmentIndex){
@@ -346,7 +447,6 @@ class GameViewController : UIViewController {
     ///////////////////////////////////////
     
     // No isHumanPlayer1Outlet / Player 1 always human
-    
     @IBOutlet weak var isHumanPlayer2Outlet: UISegmentedControl!
     @IBOutlet weak var isHumanPlayer3Outlet: UISegmentedControl!
     @IBOutlet weak var isHumanPlayer4Outlet: UISegmentedControl!
@@ -366,39 +466,53 @@ class GameViewController : UIViewController {
             player2NameLabel.text = playerAvatarNames[tempPlayer2AvatarNumber]
             player2ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer2AvatarNumber ])
             avatarStepperPlayer02.value = Double(tempPlayer2AvatarNumber)
-            
         default:
-            break;
+            break
         }
     }
 
     @IBAction func isHumanPlayer3Action(sender: AnyObject) {
         switch (sender.selectedSegmentIndex){
-        case 0:
+        case 0: // AI Meyama
             tempPlayer3IsHuman = false
-            player3ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer3AvatarNumber])
-        case 1:
+            player3ImageOutlet.image = UIImage(named: meyamaImageArray[tempPlayer3MeyamaNumber ])
+            player3NameLabel.text = meyamaAvatarNames[tempPlayer3MeyamaNumber]
+            avatarStepperPlayer03.value = Double(tempPlayer3MeyamaNumber)
+        
+        case 1: // human player
             tempPlayer3IsHuman = true
-            player3ImageOutlet.image = UIImage(named: meyamaImageArray[tempPlayer3MeyamaNumber])
+            player3NameLabel.text = playerAvatarNames[tempPlayer3AvatarNumber]
+            player3ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer3AvatarNumber ])
+            avatarStepperPlayer03.value = Double(tempPlayer3AvatarNumber)
         default:
-            break;
+            break
         }
     }
-    
+
     @IBAction func isHumanPlayer4Action(sender: AnyObject) {
         switch (sender.selectedSegmentIndex){
-        case 0:
+        case 0: // AI Meyama
             tempPlayer4IsHuman = false
-            player4ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer4AvatarNumber])
-        case 1:
+            player4ImageOutlet.image = UIImage(named: meyamaImageArray[tempPlayer4MeyamaNumber ])
+            player4NameLabel.text = meyamaAvatarNames[tempPlayer4MeyamaNumber]
+            avatarStepperPlayer03.value = Double(tempPlayer4MeyamaNumber)
+        case 1: // human player
             tempPlayer4IsHuman = true
-            player4ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer4AvatarNumber])
+            player4NameLabel.text = playerAvatarNames[tempPlayer4AvatarNumber]
+            player4ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer4AvatarNumber ])
+            avatarStepperPlayer04.value = Double(tempPlayer4AvatarNumber)
         default:
-            break;
+            break
         }
     }
 
     ///////////////////////////////////////
+
+    @IBOutlet weak var avatarStepperPlayer02: UIStepper!
+    @IBOutlet weak var avatarStepperPlayer03: UIStepper!
+    @IBOutlet weak var avatarStepperPlayer04: UIStepper!
+
+   ///////////////////////////////////////
     
     @IBAction func avatarStepperPlayer01(sender: UIStepper) {
         
@@ -410,19 +524,14 @@ class GameViewController : UIViewController {
             player1NameLabel.text = playerAvatarNames[tempPlayer1AvatarNumber]
         }
     }
-    
-    
-    @IBOutlet weak var avatarStepperPlayer02: UIStepper!
-    
+
     @IBAction func avatarStepperPlayer02(sender: UIStepper) {
         
-        if tempPlayer2IsHuman == false{ // an AI Meyama
+        if tempPlayer2IsHuman == false { // an AI Meyama
             tempPlayer2MeyamaNumber = Int(sender.value)
             player2NameLabel.text = meyamaAvatarNames[tempPlayer2MeyamaNumber]
             player2ImageOutlet.image = UIImage(named: meyamaImageArray[tempPlayer2MeyamaNumber])
             player2NameLabel.text = meyamaAvatarNames[tempPlayer2MeyamaNumber]
-            
-            
         } else { // human
             tempPlayer2AvatarNumber = Int(sender.value)
             player2NameLabel.text = playerAvatarNames[tempPlayer2AvatarNumber]
@@ -430,10 +539,34 @@ class GameViewController : UIViewController {
             player2NameLabel.text = playerAvatarNames[tempPlayer2AvatarNumber]
         }
     }
-    
-    
-    
-    
+
+    @IBAction func avatarStepperPlayer03(sender: UIStepper) {
+        if tempPlayer3IsHuman == false{ // an AI Meyama
+            tempPlayer3MeyamaNumber = Int(sender.value)
+            player3NameLabel.text = meyamaAvatarNames[tempPlayer3MeyamaNumber]
+            player3ImageOutlet.image = UIImage(named: meyamaImageArray[tempPlayer3MeyamaNumber])
+            player3NameLabel.text = meyamaAvatarNames[tempPlayer3MeyamaNumber]
+        } else { // human
+            tempPlayer3AvatarNumber = Int(sender.value)
+            player3NameLabel.text = playerAvatarNames[tempPlayer3AvatarNumber]
+            player3ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer3AvatarNumber])
+            player3NameLabel.text = playerAvatarNames[tempPlayer3AvatarNumber]
+        }
+    }
+
+    @IBAction func avatarStepperPlayer04(sender: UIStepper) {
+        if tempPlayer4IsHuman == false{ // an AI Meyama
+            tempPlayer4MeyamaNumber = Int(sender.value)
+            player4NameLabel.text = meyamaAvatarNames[tempPlayer4MeyamaNumber]
+            player4ImageOutlet.image = UIImage(named: meyamaImageArray[tempPlayer4MeyamaNumber])
+            player4NameLabel.text = meyamaAvatarNames[tempPlayer4MeyamaNumber]
+        } else { // human
+            tempPlayer4AvatarNumber = Int(sender.value)
+            player4NameLabel.text = playerAvatarNames[tempPlayer4AvatarNumber]
+            player4ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer4AvatarNumber])
+            player4NameLabel.text = playerAvatarNames[tempPlayer4AvatarNumber]
+        }
+    }
 
     ///////////////////////////////////////
     
@@ -446,9 +579,6 @@ class GameViewController : UIViewController {
     @IBOutlet weak var player4ImageOutlet: UIImageView!
 
     ///////////////////////////////////////
-    
-    
-
 
     @IBAction func startNewGameButton(sender: AnyObject) {
         // update game settings to those in UI
@@ -550,15 +680,11 @@ class GameViewController : UIViewController {
 //        button.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
         
         //cornerView.addSubview(button)
-        
-        
+
         gameViewController = self as GameViewController
         gameViewController.buttonAction()
         
         //self.view.addSubview(cornerView)
-        
-        
-
     }
 
     
@@ -575,54 +701,8 @@ class GameViewController : UIViewController {
     }
     
     
-    @IBOutlet weak var OptionsSwitchOutlet: UISegmentedControl!
-    
-    
-    @IBAction func OptionsSwitchAction(sender: AnyObject) {
-        
-        if sender.selectedSegmentIndex == 2 {
-            print("stats selected")
-        }
-
-        switch (self.OptionsSwitchOutlet.selectedSegmentIndex){
-        case 0:
-            print("stats 0 Options selected")
-            ViewOptionsUI.hidden = false
-            ViewOptionsUI.userInteractionEnabled = true
-        case 1:
-            print("stats 1 Rules selected")
-            self.ViewOptionsUI.hidden = true
-        case 2:
-            print("stats 2 Stats selected")
-
-            self.ViewOptionsUI.hidden = true
-            self.ViewOptionsUI.alpha = 1.0
-            toStatView.sendActionsForControlEvents(.TouchUpInside)
-
-        default:
-            break;
-        }
-        
-        print("testSwitch worked")
-        button.enabled = false
-        button.hidden = true
-        //testSwitch.tintColor = UIColorApplePurple
-
-    }
-    
-
-//    @IBAction func OptionsSwitchAction(sender: AnyObject) {
-//        
-//       //    }
-  
-    
-    @IBOutlet weak var toStatView: UIButton!
-    
-    @IBAction func toStatView(sender: AnyObject) {
-       
-            
-//            selectedSegmentIndex  .sendActionsForControlEvents(.TouchUpInside)
-    }
+    //            selectedSegmentIndex  .sendActionsForControlEvents(.TouchUpInside)
+    //}
     
     override func shouldAutorotate() -> Bool {
         return true

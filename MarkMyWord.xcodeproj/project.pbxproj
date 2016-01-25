@@ -92,6 +92,9 @@
 		B8B2CACC1ADADD9100C9DEE7 /* 5-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA871ADADD9000C9DEE7 /* 5-LetterWords.txt */; };
 		B8B49DBB1AF1AF610086154C /* MMWResultsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B49DBA1AF1AF610086154C /* MMWResultsScene.swift */; };
 		B8B5E1EA1BB707FC00AD876E /* TrieElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B5E1E91BB707FC00AD876E /* TrieElement.swift */; };
+		B8C0860C1C55A532008F8E40 /* EndGameSceneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C0860A1C55A532008F8E40 /* EndGameSceneController.swift */; };
+		B8C0860D1C55A532008F8E40 /* EndGameScene.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8C0860B1C55A532008F8E40 /* EndGameScene.xib */; };
+		B8C0860F1C55A9A1008F8E40 /* EndGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C0860E1C55A9A1008F8E40 /* EndGameScene.swift */; };
 		B8C14EF11AF27E5100E640C0 /* LetterTileSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C14EF01AF27E5100E640C0 /* LetterTileSprite.swift */; };
 		B8CB742F1AF9260400AE5F40 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CB742E1AF9260400AE5F40 /* Grid.swift */; };
 		B8CCE1A21AD8C13500882391 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CCE1A11AD8C13500882391 /* AppDelegate.swift */; };
@@ -224,6 +227,9 @@
 		B8B49DBA1AF1AF610086154C /* MMWResultsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMWResultsScene.swift; sourceTree = "<group>"; };
 		B8B5E1E91BB707FC00AD876E /* TrieElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrieElement.swift; sourceTree = "<group>"; };
 		B8B5F2CB1C208538005B768C /* data.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = data.dat; sourceTree = "<group>"; };
+		B8C0860A1C55A532008F8E40 /* EndGameSceneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndGameSceneController.swift; sourceTree = "<group>"; };
+		B8C0860B1C55A532008F8E40 /* EndGameScene.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EndGameScene.xib; sourceTree = "<group>"; };
+		B8C0860E1C55A9A1008F8E40 /* EndGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndGameScene.swift; sourceTree = "<group>"; };
 		B8C14EF01AF27E5100E640C0 /* LetterTileSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterTileSprite.swift; sourceTree = "<group>"; };
 		B8CB742E1AF9260400AE5F40 /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		B8CCE19C1AD8C13500882391 /* MarkMyWord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarkMyWord.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -551,6 +557,9 @@
 				B8DA7EC41AE136CA003FE2C6 /* Assets */,
 				B8DA7EC01AE1369F003FE2C6 /* Classes */,
 				B8CCE1A11AD8C13500882391 /* AppDelegate.swift */,
+				B8C0860B1C55A532008F8E40 /* EndGameScene.xib */,
+				B8C0860E1C55A9A1008F8E40 /* EndGameScene.swift */,
+				B8C0860A1C55A532008F8E40 /* EndGameSceneController.swift */,
 				B8CCE1A31AD8C13500882391 /* GameScene.sks */,
 				B8CCE1AC1AD8C13500882391 /* Images.xcassets */,
 				B8CCE19F1AD8C13500882391 /* Supporting Files */,
@@ -823,6 +832,7 @@
 				B8FB37771C28F7CC00C68434 /* Tile3D.png in Resources */,
 				B80757221C3ED01600E59EF4 /* MMWResumeButton@2x.png in Resources */,
 				B8DFE1561C29F288009FB8ED /* OptionsButton@2x.png in Resources */,
+				B8C0860D1C55A532008F8E40 /* EndGameScene.xib in Resources */,
 				B85C726C1C4F176A00170B88 /* meyama001@2x.png in Resources */,
 				B89719D11C34F687005BE647 /* SmallSquare.png in Resources */,
 				B800575E1C3D7E4600185769 /* MMWBG.png in Resources */,
@@ -927,6 +937,7 @@
 				B8F3F2191C33665F00A38BB7 /* WordSetError.swift in Sources */,
 				B8E874E61AE17E0000763849 /* MMWTile.swift in Sources */,
 				B80057591C3C8D2D00185769 /* OptionsUISceneViewController.swift in Sources */,
+				B8C0860C1C55A532008F8E40 /* EndGameSceneController.swift in Sources */,
 				B81CF1501C123D5C00F5261D /* TrieData+CoreDataProperties.swift in Sources */,
 				B81CF1511C123D5C00F5261D /* TrieData.swift in Sources */,
 				B8C14EF11AF27E5100E640C0 /* LetterTileSprite.swift in Sources */,
@@ -936,6 +947,7 @@
 				B808A42E1B9A0C000070A1A6 /* Trie.swift in Sources */,
 				B8FA8FA91AE9DDB5007CF07C /* Config.swift in Sources */,
 				B81CF15C1C12485200F5261D /* GameState+CoreDataProperties.swift in Sources */,
+				B8C0860F1C55A9A1008F8E40 /* EndGameScene.swift in Sources */,
 				B8A455171AF15A1400C0D83B /* GameViewController.swift in Sources */,
 				B820241F1B65BFD0004E413A /* StreamReader.swift in Sources */,
 				B81CF1601C1249A100F5261D /* Item+CoreDataProperties.swift in Sources */,

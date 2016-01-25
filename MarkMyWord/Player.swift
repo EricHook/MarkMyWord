@@ -16,7 +16,7 @@ class Player {
     var playerScore = 0
     var playerColor = 0
 
-    var isHuman = true
+    var isHuman = false
     
     var playerAvatarNumber = 0
     
@@ -32,11 +32,14 @@ class Player {
     var playerView : PlayerView! = nil
  
     init (_playerID : Int, _playerName : String, _playerColor : Int) {
+        //if playerID > 0 { isHuman = false } // only player 1 defaults to human
         playerColor = _playerColor
         playerID = _playerID
         playerName = _playerName
         playerAvatarNumber = (playerID > 1) ? ( playerID - 1 ) : 0
         playerMeyamaNumber = (playerID > 1) ? ( playerID - 1 ) : 0
+        if playerID == 1 {isHuman = true} // Player 1 always human
+        
     }
 
     func setPlayerTilesGrid (inout playerTilesGrid: Grid) {

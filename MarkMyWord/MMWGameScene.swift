@@ -140,8 +140,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         }
         
         self.mmwBoardGrid = Grid(gridUpperLeftX: gridBoardUpperLeftX, gridUpperLeftY: gridBoardUpperLeftY, gridSquareSizeX: gridSquareSize, gridSquareSizeY: gridSquareSize, gridNumSquaresX: 15, gridNumSquaresY: 15, gridName: "mmwBoardGrid")
-        
-        
+
         self.mmwPlayer1Grid = Grid(gridUpperLeftX: Double(viewSize.width * 0.0058), gridUpperLeftY: Double(viewSize.height * 0.272), gridSquareSizeX: gridSquareSize, gridSquareSizeY: gridSquareSize, gridNumSquaresX: 3, gridNumSquaresY: 2, gridName: "mmwPlayer1Grid")
         self.mmwPlayer1Grid.setGridPlayer(mmwGameSceneViewController.player1)
         
@@ -929,7 +928,11 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         //playerTex = SKTexture(imageNamed: "avatar000.png")
         var playerArrayNumber = 0
         for playerView in playerViewArr {
+            
+            //if playerArrayNumber > 0 { playerView.mmwPlayer.isHuman = false }
+            
             let isHuman = playerView.mmwPlayer.isHuman
+            
             let meyamaImageNumber = playerView.mmwPlayer.playerMeyamaNumber
             let avatarImageNumber = playerView.mmwPlayer.playerAvatarNumber
             
@@ -1287,6 +1290,13 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             print("\(mmwGameSceneViewController.consecutivePasses) consecutive passes")
             if mmwGameSceneViewController.consecutivePasses >= mmwGameSceneViewController.numPlayers {
                 print("CHECK TO END GAME > PASSES = \(mmwGameSceneViewController.consecutivePasses)")
+                
+                //view?.presentScene(mmwGameScene)
+                
+                view?.presentScene(endGameScene)
+                
+                //self.view.presentScene(endGameScene)
+                
             }
             //                  runAction(actionSound)
             changePlayerTurn()
