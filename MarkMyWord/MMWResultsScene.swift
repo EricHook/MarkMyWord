@@ -42,6 +42,7 @@ class MMWResultsScene: SKScene {
         let backgroundNode = SKSpriteNode(imageNamed: "MMWBG.png")
         backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         backgroundNode.position = CGPointMake(size.width / 2.0, 0)
+        backgroundNode.zPosition = -100
         addChild(backgroundNode)
         
         let gameResultTextNode = SKLabelNode(fontNamed: "Copperplate")

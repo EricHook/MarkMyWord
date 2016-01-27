@@ -25,6 +25,7 @@ class MainMenuScene: SKScene {
         size = viewSize
     }
 
+    
     override init(size: CGSize) {
         super.init(size: size)
     }
@@ -32,32 +33,34 @@ class MainMenuScene: SKScene {
 
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        
 
         screenSize = view.bounds.size
-        print("view size MenuScene: \(screenSize)")
+//        print("view size MenuScene: \(screenSize)")
 
-        // add BG
-        let backgroundNode = SKSpriteNode(imageNamed: "MarkMyWordBGCleaniPad@2x.png")
-        //backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-        backgroundNode.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
-        backgroundNode.userInteractionEnabled = false
-        backgroundNode.size = self.frame.size;
-        self.addChild(backgroundNode)
+//        // add BG
+//        let backgroundNode = SKSpriteNode(imageNamed: "MarkMyWordBGCleaniPad@2x.png")
+//        //backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+//        backgroundNode.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
+//        backgroundNode.userInteractionEnabled = false
+//        backgroundNode.size = self.frame.size;
+//        self.addChild(backgroundNode)
+//        
+//        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
+//        myLabel.text = "MainMenuScene" // scene is: \(scene?.description)"
+//        myLabel.fontSize = 65;
+//        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y: (CGRectGetMidY(self.frame) - 50) )
+//        self.addChild(myLabel)
+//        myLabel.zPosition = 100
+//        
+//        let playBtn = SKSpriteNode(imageNamed: "PlayButton.png")
+//        playBtn.position = CGPoint(x: viewSize.width/2, y: viewSize.height/3)
+//        self.addChild(playBtn)
+//        playBtn.name = "playBtn"
+//        playBtn.zPosition = 100
         
-        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "MainMenuScene" // scene is: \(scene?.description)"
-        myLabel.fontSize = 65;
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y: (CGRectGetMidY(self.frame) - 50) )
-        self.addChild(myLabel)
-        myLabel.zPosition = 100
-        
-        let playBtn = SKSpriteNode(imageNamed: "PlayButton.png")
-        playBtn.position = CGPoint(x: viewSize.width/2, y: viewSize.height/3)
-        self.addChild(playBtn)
-        playBtn.name = "playBtn"
-        playBtn.zPosition = 100
+        presentMMWScene()
     }
+    
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
@@ -78,6 +81,7 @@ class MainMenuScene: SKScene {
         }
     }
 
+    
 //    func presentMenuScene() {
 //        let transition = SKTransition.crossFadeWithDuration(2.0)
 //        let menuScene = MenuScene(size: size, gameResult: true, score: 123)
@@ -85,10 +89,12 @@ class MainMenuScene: SKScene {
 //        print("presentMenuScene")
 //    }
     
+    
 //    func createMMWSceneController() -> MMWGameSceneViewController {
 //        mmwGameSceneViewController = MMWGameSceneViewController(size: size)
 //        return mmwGameSceneViewController
 //    }
+    
     
     func presentMMWScene() -> MMWGameScene {
 //        let transition = SKTransition.crossFadeWithDuration(0.01)
@@ -99,6 +105,7 @@ class MainMenuScene: SKScene {
         return mmwGameScene
     }
 
+    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }

@@ -39,8 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let item:Item = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: CDHelper.shared.context) as! Item
 //        item.name = itemName
 //        print("Inserted New Managed Object for '\(item.name)'")
-        
-        
+
         CDHelper.saveSharedContext()
 
     }
@@ -114,10 +113,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("AppDelegate > applicationWillTerminate...")
     }
     
-    
-    
-    
-    
+
 //    func playMenuScene() {
 //        let transition = SKTransition.crossFadeWithDuration(2.0)
 //        let menuScene = MenuScene(size: size,
@@ -125,8 +121,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            score: 123)
 //        view?.presentScene(menuScene, transition: transition)
 //    }
-    
-    
     
     
     // MARK: - Core Data stack

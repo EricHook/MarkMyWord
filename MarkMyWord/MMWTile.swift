@@ -106,7 +106,7 @@ class MMWTile : NSObject, NSCoding {
         gridXTest = -1
         gridYTest = -1
      
-        tileSprite.position = CGPoint (x: 50, y: 50)
+        tileSprite.position = CGPoint (x: -50, y: -50)
         tileSprite.zPosition = 2
         tileSprite.letterLabel.zPosition = 3
         undealt = true

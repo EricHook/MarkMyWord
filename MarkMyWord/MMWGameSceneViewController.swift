@@ -29,6 +29,11 @@ struct GameSceneSettings {
 
 class MMWGameSceneViewController : UIViewController {
     
+    var numGamesWon = 0
+    var numGamesLost = 0
+    var numWordsMade = 0
+    var numLettersPlayed = 0
+    
     var viewSize = screenSize
     // var tileCollection : MMWTileBuilder? = MMWTileBuilder() // : MMWTileBuilder
     var tilesPlayable = [MMWTile]()

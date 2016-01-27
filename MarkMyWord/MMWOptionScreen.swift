@@ -55,15 +55,15 @@ class MMWOptionScreen: SKScene {
         self.addChild(backgroundNode)
 
         
-        newGameSpriteNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-        newGameSpriteNode.position = CGPoint(x: size.width/2.0, y: 0.0)
-        newGameSpriteNode.userInteractionEnabled = false
-        newGameSpriteNode.hidden = true
-        newGameSpriteNode.zPosition = 100
-        newGameSpriteNode.size.height = screenSize!.height
-        newGameSpriteNode.size.width  = screenSize!.width
-        newGameSpriteNode.alpha = 0.75
-        addChild(newGameSpriteNode)
+//        newGameSpriteNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+//        newGameSpriteNode.position = CGPoint(x: size.width/2.0, y: 0.0)
+//        newGameSpriteNode.userInteractionEnabled = false
+//        newGameSpriteNode.hidden = true
+//        newGameSpriteNode.zPosition = 100
+//        newGameSpriteNode.size.height = screenSize!.height
+//        newGameSpriteNode.size.width  = screenSize!.width
+//        newGameSpriteNode.alpha = 0.75
+//        addChild(newGameSpriteNode)
         
         
         
@@ -94,12 +94,12 @@ class MMWOptionScreen: SKScene {
         //        self.addChild(myLabel)
         //        myLabel.zPosition = 100
         
-        let playBtn = SKSpriteNode(imageNamed: "PlayButton.png")
-        playBtn.position = CGPoint(x: screenSize!.width/2, y: screenSize!.height/10)
-        playBtn.size = CGSize.init(width: 100, height: 50)
-        self.addChild(playBtn)
-        playBtn.name = "playBtn"
-        playBtn.zPosition = 98
+//        let playBtn = SKSpriteNode(imageNamed: "PlayButton.png")
+//        playBtn.position = CGPoint(x: screenSize!.width/2, y: screenSize!.height/10)
+//        playBtn.size = CGSize.init(width: 100, height: 50)
+//        self.addChild(playBtn)
+//        playBtn.name = "playBtn"
+//        playBtn.zPosition = 98
         
     }
     

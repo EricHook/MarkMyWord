@@ -27,7 +27,9 @@ extension SKNode {
     }
 }
 
-var endGameSceneController = EndGameSceneController()
+//var endGameSceneController = EndGameSceneController()
+
+var mmwEndGameScene = MMWEndGameScene()
 var mmwGameSceneViewController : MMWGameSceneViewController! = MMWGameSceneViewController()
 var gameViewController : GameViewController! = GameViewController()
 
@@ -47,7 +49,8 @@ class GameViewController : UIViewController {
     //@IBOutlet weak var playButton: UIButton?
 
     //var tempSecondsPerTurn : Int!
-    //var tempAudioOn : Bool!
+    
+    var tempAudioOn : Bool!
     
     var tempMinWordSize : Int!
     var tempNumStarterWords : Int!
@@ -181,7 +184,7 @@ class GameViewController : UIViewController {
 //        
 //        ////////////////////
 
-
+        tempAudioOn = mmwGameSceneViewController.audioOn
         tempMinWordSize = mmwGameSceneViewController.minWordSize
         tempNumStarterWords = mmwGameSceneViewController.numStarterWords
         tempNumPlayers = mmwGameSceneViewController.numPlayers
@@ -268,8 +271,8 @@ class GameViewController : UIViewController {
     
     
     @IBOutlet weak var viewStatsContainer: UIView!
-    
-    
+    @IBOutlet weak var viewRulesContainer: UIView!
+
     @IBOutlet weak var OptionsSwitchOutlet: UISegmentedControl!
 
     
@@ -281,18 +284,22 @@ class GameViewController : UIViewController {
         switch (self.OptionsSwitchOutlet.selectedSegmentIndex){
         case 0:
             print("stats 0 Options selected")
-            ViewOptionsUI.hidden = false
-            
-            self.viewStatsContainer.hidden = true
+            self.ViewOptionsUI.hidden = false
+//            self.viewStatsContainer.hidden = true
+//            self.viewRulesContainer.hidden = true
             ViewOptionsUI.userInteractionEnabled = true
         case 1:
             print("stats 1 Rules selected")
             self.ViewOptionsUI.hidden = true
+//            self.viewRulesContainer.hidden = false
+//            self.viewStatsContainer.hidden = true
         case 2:
             print("stats 2 Stats selected")
-            self.viewStatsContainer.hidden = false
             self.ViewOptionsUI.hidden = true
-            toStatView.sendActionsForControlEvents(.TouchUpInside)
+//            self.viewRulesContainer.hidden = true
+//            self.viewStatsContainer.hidden = false
+            
+//            toStatView.sendActionsForControlEvents(.TouchUpInside)
             
         default:
             break;
@@ -350,17 +357,17 @@ class GameViewController : UIViewController {
     
     
     @IBAction func audioSettingAction(sender: AnyObject) {
-//        switch (sender.selectedSegmentIndex){
-//        case 0:
-//            tempAudioOn = false
-//            print("tempAudioOn turned to off")
-//            
-//        case 1:
-//            tempAudioOn = true
-//            print("tempAudioOn turned to on")
-//        default:
-//            break;
-//        }
+        switch (sender.selectedSegmentIndex){
+        case 0:
+            tempAudioOn = false
+            print("tempAudioOn turned to off")
+            
+        case 1:
+            tempAudioOn = true
+            print("tempAudioOn turned to on")
+        default:
+            break;
+        }
     }
     
     
@@ -584,7 +591,8 @@ class GameViewController : UIViewController {
         // update game settings to those in UI
         
 //        mmwGameSceneViewController.secondsPerTurn = tempSecondsPerTurn
-//        mmwGameSceneViewController.audioOn = tempAudioOn
+        
+        mmwGameSceneViewController.audioOn = tempAudioOn
         
         mmwGameSceneViewController.minWordSize = tempMinWordSize
         mmwGameSceneViewController.numStarterWords = tempNumStarterWords

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OptionsUIView: UIView {
+class RulesUIView: UIView {
 
     /*
     // Only override drawRect: if you perform custom drawing.

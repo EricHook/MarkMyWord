@@ -181,7 +181,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     
     func buildGameView () {
         print("---   in buildGameView mmwGameScene")
-        gameViewController.ViewAllOptionsUI.hidden = true
+        //gameViewController.ViewAllOptionsUI.hidden = true
         userInteractionEnabled = true
         
         setGrids() // sets tile grid positions, size square, number squares and position on screen for each grid possible
@@ -454,6 +454,8 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     func resetGameView () {
         print("---   in resetGameView mmwGameScene")
         gameViewController.ViewAllOptionsUI.hidden = true
+        
+        
 
         // update locations and visibility of player views
         player1View = updatePlayerView(1, playerView: player1View)
@@ -471,6 +473,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         topDisplayLabel.text = "Welcome to Mark My Word"
         topDisplayLabel2.text =  ""
         
+        //tileCollection = MMWTileBuilder()
         tileCollection!.resetAllTiles()
     }
     
@@ -1288,15 +1291,12 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             }
             
             print("\(mmwGameSceneViewController.consecutivePasses) consecutive passes")
-            if mmwGameSceneViewController.consecutivePasses >= mmwGameSceneViewController.numPlayers {
+            if mmwGameSceneViewController.consecutivePasses >= mmwGameSceneViewController.numPlayers && mmwGameSceneViewController.playerArray[ mmwGameSceneViewController.playerTurn - 1].isHuman == true {
                 print("CHECK TO END GAME > PASSES = \(mmwGameSceneViewController.consecutivePasses)")
                 
-                //view?.presentScene(mmwGameScene)
-                
-                view?.presentScene(endGameScene)
-                
-                //self.view.presentScene(endGameScene)
-                
+                //view?.presentScene(mmwGameScene) 
+                view?.presentScene(mmwEndGameScene)
+
             }
             //                  runAction(actionSound)
             changePlayerTurn()
@@ -1333,20 +1333,20 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     }
     
     func optionsButton (optionsButtonNode: SKNode) {
-        var readyToRestart  = false
+//        var readyToRestart  = false
         
         print("options button pressed")
-        
+        gameViewController.ViewAllOptionsUI.hidden = false
         view?.presentScene(mmwOptionScreen)
         
         print("back to  mmwGameScene from optionsButton")
         
-        delay (0) {
-            print ("!!!!!!!!!!!!!!!!!!!!!!!!  delay 0 optionsButton DELAY ready to restart")
-            readyToRestart = true
-            //self.animationsTimedOut = true
-            
-        }
+//        delay (0) {
+//            print ("!!!!!!!!!!!!!!!!!!!!!!!!  delay 0 optionsButton DELAY ready to restart")
+//            readyToRestart = true
+//            //self.animationsTimedOut = true
+//            
+//        }
         
         //        while readyToRestart == false {
         //            print("false")
@@ -1539,10 +1539,15 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
 //    }
     
     
-    func explosion(pos: CGPoint) {
+    func explosion(pos: CGPoint, color: UIColor) {
         let emitterNode = SKEmitterNode(fileNamed: "MagicParticle.sks")
         emitterNode?.zPosition = 100
         emitterNode!.particlePosition = pos
+        
+        emitterNode!.particleColorSequence = nil
+        emitterNode!.particleColorBlendFactor = 1.0
+        emitterNode!.particleColor = color
+
         self.addChild(emitterNode!)
         // Don't forget to remove emitter node after explosion
         runAction(SKAction.playSoundFileNamed("1003.wav", waitForCompletion: false))
@@ -2149,8 +2154,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                 letterTilePlayable.tileSprite.updateAIWordsAtDropSpot(letter.gridXEnd, tileYGridDestination: letter.gridYEnd, madeValidWord: letter.madeValidWord)
             }
             placedTiles++
-            
-            
+
             //numLetters++
         }
         return true

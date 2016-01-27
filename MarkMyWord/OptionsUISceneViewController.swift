@@ -35,3 +35,48 @@ class OptionsUISceneViewController: UIViewController {
     */
 
 }
+
+
+//let button   = UIButton(type: UIButtonType.System) as UIButton
+//
+//override func viewDidLoad() {
+//    super.viewDidLoad()
+//    print("in GameViewController viewDidLoad")
+//    screenSize = view.bounds.size
+//    let mainMenuScene = MainMenuScene(size: screenSize!)
+//    
+//    switch Int(screenSize!.width) {
+//    case 1024: // [1024x768]
+//        mmwGame.setDeviceType(MMWGame.DeviceType.iPad)
+//    case 2048: //  [2048 x 1536]
+//        mmwGame.setDeviceType(MMWGame.DeviceType.iPadRetina)
+//    case 1366: // [2732 x 2048] --> Width 1366!
+//        mmwGame.setDeviceType(MMWGame.DeviceType.iPadPro)
+//    case 568: // [568.0, 320.0]
+//        mmwGame.setDeviceType(MMWGame.DeviceType.iPhone5)
+//    case 2732: // [2732 x 2048]
+//        mmwGame.setDeviceType(MMWGame.DeviceType.iPhone6)
+//    case 736: // [2732 x 2048]
+//        mmwGame.setDeviceType(MMWGame.DeviceType.iPhone6Plus)
+//    default:
+//        mmwGame.setDeviceType(MMWGame.DeviceType.iPad)
+//        print("Screen width:\(screenSize!.width) , device type: \(mmwGame.deviceType) ")
+//    }
+//    
+//    let skView = self.view as! SKView
+//    skView.showsFPS = true
+//    skView.showsNodeCount = true
+//    
+//    /* Sprite Kit applies additional optimizations to improve rendering performance */
+//    skView.ignoresSiblingOrder = true
+//    
+//    /* Set the scale mode to scale to fit the window */
+//    mainMenuScene.scaleMode = .AspectFill
+//    
+//    /////////////////
+//    //        NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentView", name: "showController", object: nil)
+//    /////////////////////////////////
+//    
+//    //scene.parentController = self
+//    
+//    skView.presentScene(mainMenuScene)

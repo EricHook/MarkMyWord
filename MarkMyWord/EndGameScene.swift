@@ -47,9 +47,4 @@ class EndGameScene: SKScene {
         backgroundNode.size = self.frame.size;
         self.addChild(backgroundNode)
     }
-
-    
-    
-    
-
 }
