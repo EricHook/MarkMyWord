@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B80057591C3C8D2D00185769 /* OptionsUISceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80057571C3C8D2D00185769 /* OptionsUISceneViewController.swift */; };
-		B800575C1C3C8D8900185769 /* RulesUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B800575B1C3C8D8900185769 /* RulesUIView.swift */; };
+		B800575C1C3C8D8900185769 /* EndGameUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B800575B1C3C8D8900185769 /* EndGameUIView.swift */; };
 		B800575E1C3D7E4600185769 /* MMWBG.png in Resources */ = {isa = PBXBuildFile; fileRef = B800575D1C3D7E4600185769 /* MMWBG.png */; };
 		B80057601C3D827500185769 /* MMWOptionsScreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B800575F1C3D827500185769 /* MMWOptionsScreen@2x.png */; };
 		B80327FF1C0CD22E0002665F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B80327FE1C0CD22E0002665F /* CoreData.framework */; };
@@ -147,7 +147,7 @@
 
 /* Begin PBXFileReference section */
 		B80057571C3C8D2D00185769 /* OptionsUISceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsUISceneViewController.swift; sourceTree = "<group>"; };
-		B800575B1C3C8D8900185769 /* RulesUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulesUIView.swift; sourceTree = "<group>"; };
+		B800575B1C3C8D8900185769 /* EndGameUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndGameUIView.swift; sourceTree = "<group>"; };
 		B800575D1C3D7E4600185769 /* MMWBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MMWBG.png; sourceTree = "<group>"; };
 		B800575F1C3D827500185769 /* MMWOptionsScreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MMWOptionsScreen@2x.png"; sourceTree = "<group>"; };
 		B80327FE1C0CD22E0002665F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -358,6 +358,21 @@
 			name = MMW;
 			sourceTree = "<group>";
 		};
+		B87A49141C59972200621F6C /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				B8C0860B1C55A532008F8E40 /* EndGameScene.xib */,
+				B881A5A21C3A0329005BFE27 /* optionScreen.xib */,
+				B800575B1C3C8D8900185769 /* EndGameUIView.swift */,
+				B8C0860A1C55A532008F8E40 /* EndGameSceneController.swift */,
+				B87A49081C57F24B00621F6C /* RulesViewController.swift */,
+				B87A490A1C5819D000621F6C /* MMWEndGameScene.swift */,
+				B80057571C3C8D2D00185769 /* OptionsUISceneViewController.swift */,
+				B8B49DBA1AF1AF610086154C /* MMWResultsScene.swift */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
 		B88118DA1BEA90AA003E74E5 /* H WordLists */ = {
 			isa = PBXGroup;
 			children = (
@@ -389,16 +404,13 @@
 		B88A58451BEAD0AA003E0957 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				B87A49141C59972200621F6C /* Tests */,
 				B8CCE1AE1AD8C13500882391 /* LaunchScreen.xib */,
 				B8CCE1A91AD8C13500882391 /* Main.storyboard */,
-				B881A5A21C3A0329005BFE27 /* optionScreen.xib */,
+				B822CF0B1C390DA80043905E /* MMWOptionScreen.swift */,
+				B8C0860E1C55A9A1008F8E40 /* EndGameScene.swift */,
 				B8A455141AF15A1400C0D83B /* MainMenuScene.swift */,
 				B8CCE1A51AD8C13500882391 /* MMWGameScene.swift */,
-				B822CF0B1C390DA80043905E /* MMWOptionScreen.swift */,
-				B87A490A1C5819D000621F6C /* MMWEndGameScene.swift */,
-				B8B49DBA1AF1AF610086154C /* MMWResultsScene.swift */,
-				B80057571C3C8D2D00185769 /* OptionsUISceneViewController.swift */,
-				B800575B1C3C8D8900185769 /* RulesUIView.swift */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -574,9 +586,6 @@
 				B8DA7EC41AE136CA003FE2C6 /* Assets */,
 				B8DA7EC01AE1369F003FE2C6 /* Classes */,
 				B8CCE1A11AD8C13500882391 /* AppDelegate.swift */,
-				B8C0860B1C55A532008F8E40 /* EndGameScene.xib */,
-				B8C0860E1C55A9A1008F8E40 /* EndGameScene.swift */,
-				B8C0860A1C55A532008F8E40 /* EndGameSceneController.swift */,
 				B8CCE1A31AD8C13500882391 /* GameScene.sks */,
 				B8CCE1AC1AD8C13500882391 /* Images.xcassets */,
 				B8CCE19F1AD8C13500882391 /* Supporting Files */,
@@ -647,7 +656,6 @@
 			children = (
 				B8D789271B0C3A0300C3DC36 /* MMWGame.swift */,
 				B8A455151AF15A1400C0D83B /* GameViewController.swift */,
-				B87A49081C57F24B00621F6C /* RulesViewController.swift */,
 				B8CCE1A71AD8C13500882391 /* MMWGameSceneViewController.swift */,
 				B8FB376E1C28D56700C68434 /* codeSnippets */,
 			);
@@ -953,7 +961,7 @@
 				B8CB742F1AF9260400AE5F40 /* Grid.swift in Sources */,
 				B8CCE1A61AD8C13500882391 /* MMWGameScene.swift in Sources */,
 				B8AA6C081B2A481600DEAC41 /* MMWTileBuilder.swift in Sources */,
-				B800575C1C3C8D8900185769 /* RulesUIView.swift in Sources */,
+				B800575C1C3C8D8900185769 /* EndGameUIView.swift in Sources */,
 				B82786151B05585D00916E20 /* Player.swift in Sources */,
 				B822CF0C1C390DA80043905E /* MMWOptionScreen.swift in Sources */,
 				B8F3F2191C33665F00A38BB7 /* WordSetError.swift in Sources */,

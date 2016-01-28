@@ -272,12 +272,7 @@ class MMWOptionScreen: SKScene {
 //            if mmwGameSceneViewController.playerArray[0].isHuman {
 ////                gameViewController.player1ImageOutlet.image = gameViewController.playerImageArray[mmwGameSceneViewController.playerArray[0].playerAvatarNumber]
 //            }
-            
-                
-                
-            
-            
-            
+
         }
 
         gameViewController.ViewAllOptionsUI.hidden = false
@@ -296,11 +291,21 @@ class MMWOptionScreen: SKScene {
         print("return to mmw scene") //create MMW controller
         //presentMMWScene()
         
-        gameViewController.ViewAllOptionsUI.hidden = true
+        //gameViewController.ViewAllOptionsUI.hidden = true
 //        if mmwGameSceneViewController.timerIsOn {
 //            mmwGameScene.startTimer()
 //        }
-        view?.presentScene(mmwGameScene)
+        
+        print("all players passed on turn")
+        gameViewController.ViewAllOptionsUI.hidden = true
+        gameViewController.ViewOptionsUI.hidden = true
+        gameViewController.viewRulesContainer.hidden = true
+        gameViewController.viewStatsContainer.hidden = true
+        gameViewController.ViewEndGameUI.hidden = true
+        //view?.presentScene(mmwOptionScreen)
+       
+        self.view?.presentScene(mmwGameScene)
+
     }
     
     func newGameScene () {
@@ -336,15 +341,7 @@ class MMWOptionScreen: SKScene {
     }
 
     
-//    func buttonAction(sender:UIButton!)
-//    {
-//        print("Manual Button tapped sender:UIButton!")
-//    }
-//    
-//    func buttonAction()
-//    {
-//        print("TEST Manual Button tapped ()")
-//    }
+
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */

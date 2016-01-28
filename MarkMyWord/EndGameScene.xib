@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EndGameScene" customModule="MarkMyWord" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="EndGameScene" customModule="MarkMyWord" customModuleProvider="target">
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="EndGameUIView" customModule="MarkMyWord" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -17,13 +17,19 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N77-zQ-gfo">
-                    <rect key="frame" x="343" y="227" width="30" height="30"/>
-                    <state key="normal" title="No"/>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hda-O2-XgP">
                     <rect key="frame" x="228" y="227" width="30" height="30"/>
                     <state key="normal" title="Yes"/>
+                    <connections>
+                        <action selector="EndGameYesButton:" destination="i5M-Pr-FkT" eventType="touchUpInside" id="Olf-m3-hvX"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N77-zQ-gfo">
+                    <rect key="frame" x="343" y="227" width="30" height="30"/>
+                    <state key="normal" title="No"/>
+                    <connections>
+                        <action selector="EndGameNoButton:" destination="i5M-Pr-FkT" eventType="touchUpInside" id="LOy-2d-mVk"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -32,6 +38,7 @@
                 <constraint firstItem="aX8-8F-4UD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="132" id="9TX-kp-M0D"/>
                 <constraint firstItem="N77-zQ-gfo" firstAttribute="leading" secondItem="aX8-8F-4UD" secondAttribute="leading" id="C8a-ZZ-o8c"/>
                 <constraint firstItem="hda-O2-XgP" firstAttribute="top" secondItem="aX8-8F-4UD" secondAttribute="bottom" constant="74" id="J9U-Cl-Jdf"/>
+                <constraint firstItem="aX8-8F-4UD" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Lrn-yM-5ly"/>
                 <constraint firstItem="hda-O2-XgP" firstAttribute="leading" secondItem="aX8-8F-4UD" secondAttribute="leading" id="Px4-mb-W7G"/>
                 <constraint firstItem="aX8-8F-4UD" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="eOH-sL-BCH"/>
             </constraints>

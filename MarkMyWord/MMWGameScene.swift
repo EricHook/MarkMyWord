@@ -186,7 +186,6 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         
         setGrids() // sets tile grid positions, size square, number squares and position on screen for each grid possible
 
-        tileCollection!.resetAllTiles()
         
         //        // ADD ALL TILES to Scene - they start as invisible
         //        var tileTempXLocation = 0
@@ -200,6 +199,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         backgroundNode.position = CGPoint(x: size.width/2.0, y: 0.0)
         backgroundNode.userInteractionEnabled = false
+        backgroundNode.name = "backgroundNode"
         backgroundNode.zPosition = -100
         backgroundNode.size.height = viewSize.height
         backgroundNode.size.width  = viewSize.width
@@ -210,11 +210,15 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         newGameSpriteNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         newGameSpriteNode.position = CGPoint(x: size.width/2.0, y: 0.0)
         newGameSpriteNode.userInteractionEnabled = false
+        newGameSpriteNode.name = "newGameSpriteNode"
         newGameSpriteNode.hidden = true
         newGameSpriteNode.zPosition = 100
         newGameSpriteNode.size.height = viewSize.height
         newGameSpriteNode.size.width  = viewSize.width
-        addChild(newGameSpriteNode)
+        if self.childNodeWithName("newGameSpriteNode") == nil {
+            addChild(newGameSpriteNode)
+        }
+      
 
         player1View = updatePlayerView(1, playerView: PlayerView(mmwPlayer: mmwGameSceneViewController.playerArray[0]))
         playerViewArr.append(player1View)
@@ -342,7 +346,9 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         optionsButton.position = CGPoint(x: (viewSize.width * 0.9238), y: (viewSize.height * 0.05) )
         optionsButton.name = "optionsButton"
         optionsButton.userInteractionEnabled = true
-        self.addChild(optionsButton)
+        if self.childNodeWithName("optionsButton") == nil {
+            addChild(optionsButton)
+        }
         
         let buttonResizeArr = [playButton, newTilesButton, passButton, optionsButton] // [playButton, newTilesButton, passButton, pauseButton, optionsButton]
         
@@ -356,7 +362,6 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                 topDisplayLabel2.position.y -= 0.4
                 //                bottomDisplayLabel
             }
-            
         }
         else if mmwGame.deviceType == MMWGame.DeviceType.iPhone6Plus {
             for button in buttonResizeArr {
@@ -381,6 +386,10 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         
         // ADD ALL TILES to Scene - they start as invisible
         var tileTempXLocation = 0
+        
+        tileCollection = MMWTileBuilder()
+        
+        tileCollection!.resetAllTiles()
         
         for tile in tileCollection!.mmwTileArray {
             tile.tileSprite.hidden = true
@@ -418,7 +427,9 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         playBtnPlay.name = "playBtnPlay"
         playBtnPlay.zPosition = 100
         playBtnPlay.size = CGSizeMake(40.0, 40.0)
-        self.addChild(playBtnPlay)
+        if self.childNodeWithName("playBtnPlay") == nil {
+            addChild(playBtnPlay)
+        }
         newTilesButton.userInteractionEnabled = true
         
         // Placeholder for Test Code
@@ -429,7 +440,10 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         testPlayButton.name = "testPlayButton"
         testPlayButton.zPosition = 100
         testPlayButton.size = CGSizeMake(40.0, 40.0)
-        self.addChild(testPlayButton)
+        if self.childNodeWithName("testPlayButton") == nil {
+            addChild(testPlayButton)
+        }
+        
         
         
         //        var logoFrame = CGRectMake(0,0,118,40)
@@ -452,6 +466,8 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     
     
     func resetGameView () {
+        
+        
         print("---   in resetGameView mmwGameScene")
         gameViewController.ViewAllOptionsUI.hidden = true
         
@@ -472,9 +488,17 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         bottomDisplayLabel.text =  "Begin ... "
         topDisplayLabel.text = "Welcome to Mark My Word"
         topDisplayLabel2.text =  ""
+
+        tileCollection = MMWTileBuilder()
         
-        //tileCollection = MMWTileBuilder()
-        tileCollection!.resetAllTiles()
+        //tileCollection!.resetAllTiles()
+        
+        for tile in tileCollection!.mmwTileArray {
+            tile.tileSprite.hidden = true
+            //tileTempXLocation += 40
+            tile.tileSprite.tileLocation = CGPoint(x: 15, y: 15 )
+            self.addChild(tile.tileSprite)
+        }
     }
     
     
@@ -1295,7 +1319,31 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                 print("CHECK TO END GAME > PASSES = \(mmwGameSceneViewController.consecutivePasses)")
                 
                 //view?.presentScene(mmwGameScene) 
-                view?.presentScene(mmwEndGameScene)
+                //view?.presentScene(mmwEndGameScene)
+                
+//                gameViewController.ViewAllOptionsUI.hidden = false
+//                view?.presentScene(mmwOptionScreen)
+
+
+                
+                
+
+                
+                
+                
+                
+                
+                
+                print("all players passed on turn")
+                gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
+                gameViewController.ViewAllOptionsUI.hidden = false
+                gameViewController.OptionsSwitchOutlet.hidden = true
+                gameViewController.ViewOptionsUI.hidden = true
+                gameViewController.viewRulesContainer.hidden = true
+                gameViewController.viewStatsContainer.hidden = true
+                gameViewController.ViewEndGameUI.hidden = false
+                view?.presentScene(mmwOptionScreen)
+                //print("back to  mmwGameScene from optionsButton")
 
             }
             //                  runAction(actionSound)
@@ -1335,8 +1383,18 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     func optionsButton (optionsButtonNode: SKNode) {
 //        var readyToRestart  = false
         
+//        print("options button pressed")
+//        gameViewController.ViewAllOptionsUI.hidden = false
+        
         print("options button pressed")
+        gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
         gameViewController.ViewAllOptionsUI.hidden = false
+        gameViewController.OptionsSwitchOutlet.hidden = false
+        gameViewController.ViewOptionsUI.hidden = false
+        gameViewController.viewRulesContainer.hidden = true
+        gameViewController.viewStatsContainer.hidden = true
+        gameViewController.ViewEndGameUI.hidden = true
+
         view?.presentScene(mmwOptionScreen)
         
         print("back to  mmwGameScene from optionsButton")
@@ -2181,11 +2239,13 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     
     
     func presentResultsScene() {
-        let transition = SKTransition.crossFadeWithDuration(0.5)
-        let mmwResultsScene = MMWResultsScene(size: size,
-            gameResult: true,
-            score: 123)
-        view?.presentScene(mmwResultsScene, transition: transition)
+//        let transition = SKTransition.crossFadeWithDuration(0.5)
+//        let mmwResultsScene = MMWResultsScene(size: size,
+//            gameResult: true,
+//            score: 123)
+//        view?.presentScene(mmwResultsScene, transition: transition)
+        view?.presentScene(mmwOptionScreen)
+        
     }
 }
 

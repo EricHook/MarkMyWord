@@ -29,7 +29,7 @@ extension SKNode {
 
 //var endGameSceneController = EndGameSceneController()
 
-var mmwEndGameScene = MMWEndGameScene()
+//var mmwEndGameScene = MMWEndGameScene()
 var mmwGameSceneViewController : MMWGameSceneViewController! = MMWGameSceneViewController()
 var gameViewController : GameViewController! = GameViewController()
 
@@ -261,6 +261,7 @@ class GameViewController : UIViewController {
     
     @IBOutlet weak var ViewOptionsUI: UIView!
     @IBOutlet weak var ViewAllOptionsUI: UIView!
+    @IBOutlet weak var ViewEndGameUI: UIView!
 
     
     @IBOutlet weak var ViewPlayer1UI: UIView!
@@ -277,25 +278,41 @@ class GameViewController : UIViewController {
 
     
     @IBAction func OptionsSwitchAction(sender: AnyObject) {
-        if sender.selectedSegmentIndex == 2 {
-            print("stats selected")
-        }
+//        if sender.selectedSegmentIndex == 2 {
+//            print("stats selected")
+//            gameViewController.ViewAllOptionsUI.hidden = false
+//            gameViewController.ViewOptionsUI.hidden = true
+//            gameViewController.viewRulesContainer.hidden = true
+//            gameViewController.viewStatsContainer.hidden = false
+//            gameViewController.ViewEndGameUI.hidden = true
+//        }
         
         switch (self.OptionsSwitchOutlet.selectedSegmentIndex){
         case 0:
-            print("stats 0 Options selected")
-            self.ViewOptionsUI.hidden = false
-//            self.viewStatsContainer.hidden = true
-//            self.viewRulesContainer.hidden = true
+            print("outlet 0 Options selected")
             ViewOptionsUI.userInteractionEnabled = true
+            gameViewController.ViewAllOptionsUI.hidden = false
+            gameViewController.ViewOptionsUI.hidden = false
+            gameViewController.viewRulesContainer.hidden = true
+            gameViewController.viewStatsContainer.hidden = true
+            gameViewController.ViewEndGameUI.hidden = true
         case 1:
-            print("stats 1 Rules selected")
-            self.ViewOptionsUI.hidden = true
-//            self.viewRulesContainer.hidden = false
-//            self.viewStatsContainer.hidden = true
+            print("outlet 1 Rules selected")
+            gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
+            gameViewController.ViewAllOptionsUI.hidden = false
+            gameViewController.ViewOptionsUI.hidden = true
+            gameViewController.viewRulesContainer.hidden = false
+            gameViewController.viewStatsContainer.hidden = true
+            gameViewController.ViewEndGameUI.hidden = true
         case 2:
-            print("stats 2 Stats selected")
-            self.ViewOptionsUI.hidden = true
+            print("outlet 2 selected")
+            gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
+            gameViewController.ViewAllOptionsUI.hidden = false
+            gameViewController.ViewOptionsUI.hidden = true
+            gameViewController.viewRulesContainer.hidden = true
+            gameViewController.viewStatsContainer.hidden = false
+            gameViewController.ViewEndGameUI.hidden = true
+            
 //            self.viewRulesContainer.hidden = true
 //            self.viewStatsContainer.hidden = false
             
@@ -586,11 +603,10 @@ class GameViewController : UIViewController {
     @IBOutlet weak var player4ImageOutlet: UIImageView!
 
     ///////////////////////////////////////
-
-    @IBAction func startNewGameButton(sender: AnyObject) {
-        // update game settings to those in UI
+    
+    func startNewGame() {
         
-//        mmwGameSceneViewController.secondsPerTurn = tempSecondsPerTurn
+        //mmwGameSceneViewController.secondsPerTurn = tempSecondsPerTurn
         
         mmwGameSceneViewController.audioOn = tempAudioOn
         
@@ -622,8 +638,16 @@ class GameViewController : UIViewController {
         mmwGameSceneViewController.playerArray[1].playerMeyamaNumber = tempPlayer2MeyamaNumber
         mmwGameSceneViewController.playerArray[2].playerMeyamaNumber = tempPlayer3MeyamaNumber
         mmwGameSceneViewController.playerArray[3].playerMeyamaNumber = tempPlayer4MeyamaNumber
-
+        
         mmwOptionScreen.newGameScene()
+        
+        
+    }
+
+    @IBAction func startNewGameButton(sender: AnyObject) {
+        // update game settings to those in UI
+        startNewGame()
+//
     }
 
     
@@ -709,6 +733,21 @@ class GameViewController : UIViewController {
     }
     
     
+    // MARK: END GAME SCREEN
+    
+  
+    @IBAction func EndGameYesButton(sender: AnyObject) {
+        // returns to game without any settings changes
+        startNewGame()
+    }
+
+
+    @IBAction func EndGameNoButton(sender: AnyObject) {
+        // returns to game without any settings changes
+        mmwOptionScreen.returnToGameScene()
+    }
+
+
     //            selectedSegmentIndex  .sendActionsForControlEvents(.TouchUpInside)
     //}
     
