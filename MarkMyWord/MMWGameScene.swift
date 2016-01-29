@@ -80,6 +80,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     
     var foundValidWordOnTurn = false
     var animationsTimedOut = false
+    var numWordsPlayedInTurn = 0
     
     
     enum MMWErrorType: ErrorType {
@@ -491,9 +492,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
 
         tileCollection!.resetAllTiles()
         tileCollection = MMWTileBuilder()
-        
-        
-        
+
         for tile in tileCollection!.mmwTileArray {
             tile.tileSprite.hidden = true
             //tileTempXLocation += 40
@@ -993,21 +992,95 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         print("testPlayButton ()")
     }
     
+    func numPlayerLettersRemaining(player: Player) -> Int {
+        var numLetterTiles = 0
+        for y in 0...(mmwBoardGrid.gridNumSquaresY - 1) {   // fill letter tiles
+            for x in 0...(mmwBoardGrid.gridNumSquaresX - 1) {
+                if mmwBoardGrid.grid2DArr[x][y].tileType == TileType.Letter {
+                    numLetterTiles++
+                }
+            }
+        }
+        return numLetterTiles
+    }
+    
     
     func playBtnPlay (playButtonPlayNode: SKNode) {
+        var canChangeTurn = true
+        let playersTurn = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1]
+//        var playerLetterTilesArr = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.getArrayLetterTilesInGrid()
+        var pauseTime = 5.0
+        
+        if playAILetters().playedWholeWord == true {
+            canChangeTurn = false
+            
+            var numTilesRemaining = numPlayerLettersRemaining(mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1])
+            var playAnotherWord = Int(arc4random_uniform(10))
+            
+            if playAnotherWord < 10 && numTilesRemaining > 0 {
+                pauseTime += 5.0
+                delay(pauseTime) {
 
-        playAILetters()
+                    if self.playAILetters().playedWholeWord == true {
+
+                    numTilesRemaining = self.numPlayerLettersRemaining(mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1])
+                    playAnotherWord = Int(arc4random_uniform(10))
+                        
+                        if playAnotherWord < 10 && numTilesRemaining > 0 {
+                            pauseTime += 5.0
+                            delay(pauseTime) {
+                                self.playAILetters()
+                                delay(5){
+                                    canChangeTurn = true
+                                    self.changePlayerTurn()
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        delay(pauseTime) {
+                        canChangeTurn = true
+                        self.changePlayerTurn()
+                        }
+                    }
+                }
+            }
+            else {
+                delay(pauseTime) {
+                    canChangeTurn = true
+                    self.changePlayerTurn()
+                }
+            }
+        }
+        else {
+            delay(pauseTime) {
+                canChangeTurn = true
+                self.changePlayerTurn()
+            }
+        }
         
         mmwGameSceneViewController.resetConsequtivePasses()
         
-        //changePlayerTurn()
+//        if canChangeTurn == true {
+//            delay(Double(pauseTime)) {
+//                self.changePlayerTurn()
+//            }
+//        }
     }
     
-    func playAILetters() {
+    func playAILetters() -> (playedWholeWord: Bool, playedPartialWord: Bool){
+        numWordsPlayedInTurn = 0
+        var playedWholeWord = false
+        var playedPartialWord = false
 
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-        dispatch_async(dispatch_get_global_queue(priority, 0), { ()->() in
+        
+//        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+//        dispatch_async(dispatch_get_global_queue(priority, 0), { ()->() in
+        
+        func playLetters () {
             
+        }
+        
             print("Currently dispatched thread asynchronously 0 playBtnPlay playAILetters")
             
             //get tile from current player
@@ -1120,7 +1193,33 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             
             
             if allPossibleWholeWordPlays.count >= 1 {
-                self.playAIPlaceholderTilesToBoard (allPossibleWholeWordPlays[0])
+                let wordToPlay = Int(arc4random_uniform(UInt32(allPossibleWholeWordPlays.count)))
+                
+                self.playAIPlaceholderTilesToBoard (allPossibleWholeWordPlays[wordToPlay])
+            
+                playedWholeWord = true
+
+                
+            }
+            else {
+                var notAnEdgeWord = true
+                
+                //let wordToPlay = Int(arc4random_uniform(UInt32(allPossiblePartialWordPlays.count)))
+                
+                for partialWord in allPossiblePartialWordPlays {
+                    for letter in partialWord {
+                        notAnEdgeWord = true
+                        if letter.gridXEnd<3 || letter.gridXEnd>11 || letter.gridYEnd<3 || letter.gridYEnd>11{
+                            notAnEdgeWord = false
+                        }
+                        // might also check for 2 plus open spots in a direction to make future words
+                    }
+                    if notAnEdgeWord == true {
+                        self.playAIPlaceholderTilesToBoard (partialWord)
+                        playedPartialWord = true
+                        break
+                    }
+                }
             }
             
             // Change turns if player has no letter tiles remaining
@@ -1132,11 +1231,12 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             
             
             
-            dispatch_async(dispatch_get_main_queue(), {
-                print("hello from playBtnPlay playAILetters thread executed as dispatch")
-            })
-        })
+//            dispatch_async(dispatch_get_main_queue(), {
+//                print("hello from playBtnPlay playAILetters thread executed as dispatch")
+//            })
+//        })
         print("hello from playBtnPlay playAILetters thread")
+        return (playedWholeWord, playedPartialWord)
         
     }
     
@@ -2157,7 +2257,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                     }
                     
                     if allFoundWholeWordPlaysAtLockedTile.count > 1 {
-                        break
+                        break // break early to speed AI play - can alter to give AI choices of plays
                     }
                     
                     currentTestAILetterPlay = validAILetterPlay()
