@@ -20,49 +20,6 @@
                             <view hidden="YES" userInteractionEnabled="NO" contentMode="center" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kvZ-ZC-q1r" userLabel="ViewAllOptionsUI">
                                 <rect key="frame" x="7" y="8" width="1359" height="827"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5c7-Ad-yBv" userLabel="ViewEndGameUI">
-                                        <rect key="frame" x="205" y="76" width="600" height="600"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7LO-lI-mtE" userLabel="ViewEndGame">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Would you like to end the game?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENN-uE-fWR">
-                                                        <rect key="frame" x="181" y="112" width="248" height="21"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5jk-lf-Zyh">
-                                                        <rect key="frame" x="321" y="285" width="108" height="30"/>
-                                                        <state key="normal" title="Return to Game"/>
-                                                        <connections>
-                                                            <action selector="EndGameNoButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="bQn-Ep-XhG"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gMA-Di-Jbz">
-                                                        <rect key="frame" x="181" y="285" width="71" height="30"/>
-                                                        <state key="normal" title="End Game"/>
-                                                        <connections>
-                                                            <action selector="EndGameYesButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="OSl-Lm-nLl"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X3W-CH-lJA">
-                                                        <rect key="frame" x="181" y="355" width="52" height="30"/>
-                                                        <state key="normal" title="Button"/>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstItem="5jk-lf-Zyh" firstAttribute="leading" secondItem="gMA-Di-Jbz" secondAttribute="trailing" constant="69" id="3yo-V4-309"/>
-                                                    <constraint firstItem="gMA-Di-Jbz" firstAttribute="leading" secondItem="ENN-uE-fWR" secondAttribute="leading" id="E9p-Ka-shq"/>
-                                                    <constraint firstItem="ENN-uE-fWR" firstAttribute="top" secondItem="7LO-lI-mtE" secondAttribute="top" constant="112" id="UbV-vb-LKm"/>
-                                                    <constraint firstItem="gMA-Di-Jbz" firstAttribute="top" secondItem="ENN-uE-fWR" secondAttribute="bottom" constant="152" id="vaI-wx-j4I"/>
-                                                    <constraint firstItem="ENN-uE-fWR" firstAttribute="centerX" secondItem="7LO-lI-mtE" secondAttribute="centerX" id="wn6-qs-MLa"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </view>
                                     <view hidden="YES" contentMode="center" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2xc-sc-iPr" userLabel="ViewOptionsUI">
                                         <rect key="frame" x="177" y="23" width="656" height="706"/>
                                         <subviews>
@@ -92,6 +49,63 @@
                                                     </label>
                                                 </subviews>
                                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vX9-lX-NeL" userLabel="ViewPlayer2">
+                                                <rect key="frame" x="146" y="272" width="183" height="244"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="meyama000.png" translatesAutoresizingMaskIntoConstraints="NO" id="nPl-7S-LhR">
+                                                        <rect key="frame" x="60" y="78" width="67" height="67"/>
+                                                        <accessibility key="accessibilityConfiguration">
+                                                            <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                                        </accessibility>
+                                                    </imageView>
+                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="HDZ-F4-ppR" userLabel="Stepper2">
+                                                        <rect key="frame" x="48" y="145" width="94" height="29"/>
+                                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <connections>
+                                                            <action selector="avatarStepperPlayer02:" destination="BV1-FR-VrT" eventType="valueChanged" id="vth-GF-XCm"/>
+                                                        </connections>
+                                                    </stepper>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="fe5-FU-GZT">
+                                                        <rect key="frame" x="48" y="187" width="94" height="29"/>
+                                                        <segments>
+                                                            <segment title="low"/>
+                                                            <segment title="mid"/>
+                                                            <segment title="high"/>
+                                                        </segments>
+                                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </segmentedControl>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" highlighted="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ecm-Pm-26c">
+                                                        <rect key="frame" x="48" y="46" width="94" height="29"/>
+                                                        <segments>
+                                                            <segment title="AI"/>
+                                                            <segment title="human"/>
+                                                        </segments>
+                                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <connections>
+                                                            <action selector="isHumanPlayer2Action:" destination="BV1-FR-VrT" eventType="valueChanged" id="vr7-uw-fnt"/>
+                                                        </connections>
+                                                    </segmentedControl>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="skill level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHW-pb-UQG" userLabel="Player2 skill level">
+                                                        <rect key="frame" x="66" y="215" width="58" height="21"/>
+                                                        <color key="tintColor" red="0.15000000599999999" green="0.15000000599999999" blue="0.15000000599999999" alpha="1" colorSpace="deviceRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Player 2" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M3c-pi-u9t" userLabel="Player2Name">
+                                                        <rect key="frame" x="48" y="8" width="94" height="30"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                                    </textField>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0a5-uK-Bdf" userLabel="Player2Label">
+                                                        <rect key="frame" x="48" y="-9" width="94" height="29"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="tintColor" red="0.83921568629999999" green="0.1333333333" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iai-zq-20q" userLabel="ViewPlayer3">
                                                 <rect key="frame" x="337" y="272" width="175" height="244"/>
@@ -306,63 +320,6 @@
                                                 <rect key="frame" x="500" y="592" width="45" height="30"/>
                                                 <state key="normal" title="cancel"/>
                                             </button>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vX9-lX-NeL" userLabel="ViewPlayer2">
-                                                <rect key="frame" x="146" y="272" width="183" height="244"/>
-                                                <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="meyama000.png" translatesAutoresizingMaskIntoConstraints="NO" id="nPl-7S-LhR">
-                                                        <rect key="frame" x="60" y="78" width="67" height="67"/>
-                                                        <accessibility key="accessibilityConfiguration">
-                                                            <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
-                                                        </accessibility>
-                                                    </imageView>
-                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="HDZ-F4-ppR" userLabel="Stepper2">
-                                                        <rect key="frame" x="48" y="145" width="94" height="29"/>
-                                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <connections>
-                                                            <action selector="avatarStepperPlayer02:" destination="BV1-FR-VrT" eventType="valueChanged" id="vth-GF-XCm"/>
-                                                        </connections>
-                                                    </stepper>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="fe5-FU-GZT">
-                                                        <rect key="frame" x="48" y="187" width="94" height="29"/>
-                                                        <segments>
-                                                            <segment title="low"/>
-                                                            <segment title="mid"/>
-                                                            <segment title="high"/>
-                                                        </segments>
-                                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </segmentedControl>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" highlighted="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ecm-Pm-26c">
-                                                        <rect key="frame" x="48" y="46" width="94" height="29"/>
-                                                        <segments>
-                                                            <segment title="AI"/>
-                                                            <segment title="human"/>
-                                                        </segments>
-                                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <connections>
-                                                            <action selector="isHumanPlayer2Action:" destination="BV1-FR-VrT" eventType="valueChanged" id="vr7-uw-fnt"/>
-                                                        </connections>
-                                                    </segmentedControl>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="skill level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHW-pb-UQG" userLabel="Player2 skill level">
-                                                        <rect key="frame" x="66" y="215" width="58" height="21"/>
-                                                        <color key="tintColor" red="0.15000000599999999" green="0.15000000599999999" blue="0.15000000599999999" alpha="1" colorSpace="deviceRGB"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Player 2" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M3c-pi-u9t" userLabel="Player2Name">
-                                                        <rect key="frame" x="48" y="8" width="94" height="30"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                                                    </textField>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0a5-uK-Bdf" userLabel="Player2Label">
-                                                        <rect key="frame" x="48" y="-9" width="94" height="29"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="tintColor" red="0.83921568629999999" green="0.1333333333" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
-                                            </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="minimum word length:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSo-L6-cGo">
                                                 <rect key="frame" x="81" y="94" width="170" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -526,9 +483,90 @@
                                             <action selector="OptionsSwitchAction:" destination="BV1-FR-VrT" eventType="valueChanged" id="HHa-Vg-NbQ"/>
                                         </connections>
                                     </segmentedControl>
+                                    <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="veM-F1-Sv6" userLabel="ViewResultsScreenUI">
+                                        <rect key="frame" x="256" y="0.0" width="600" height="600"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Results:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3K-rD-N63">
+                                                <rect key="frame" x="270" y="28" width="61" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Congratulation! You Won!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qqf-me-QYt">
+                                                <rect key="frame" x="203" y="115" width="195" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Q4-Bg-CB5">
+                                                <rect key="frame" x="223" y="271" width="155" height="30"/>
+                                                <state key="normal" title="Change Game Options"/>
+                                                <connections>
+                                                    <action selector="gameResultsChangeOptionsButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="p9A-Uz-JzU"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ed-i9-CpZ">
+                                                <rect key="frame" x="263" y="322" width="75" height="30"/>
+                                                <state key="normal" title="New Game"/>
+                                                <connections>
+                                                    <action selector="gameResultsNewGameButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="7Bu-5d-bHB"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="3Ed-i9-CpZ" firstAttribute="centerX" secondItem="veM-F1-Sv6" secondAttribute="centerX" id="ESB-vt-FmY"/>
+                                            <constraint firstItem="Qqf-me-QYt" firstAttribute="centerX" secondItem="veM-F1-Sv6" secondAttribute="centerX" id="Exz-kJ-Uwe"/>
+                                            <constraint firstItem="F3K-rD-N63" firstAttribute="centerX" secondItem="veM-F1-Sv6" secondAttribute="centerX" id="QYQ-ub-UTa"/>
+                                            <constraint firstItem="Qqf-me-QYt" firstAttribute="top" secondItem="F3K-rD-N63" secondAttribute="bottom" constant="66" id="cSO-00-gNt"/>
+                                            <constraint firstItem="3Ed-i9-CpZ" firstAttribute="top" secondItem="Qqf-me-QYt" secondAttribute="bottom" constant="186" id="khn-PO-XPZ"/>
+                                            <constraint firstItem="6Q4-Bg-CB5" firstAttribute="top" secondItem="Qqf-me-QYt" secondAttribute="bottom" constant="135" id="ksf-Ru-8Sd"/>
+                                            <constraint firstItem="6Q4-Bg-CB5" firstAttribute="centerX" secondItem="veM-F1-Sv6" secondAttribute="centerX" id="xFZ-0R-b2W"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5c7-Ad-yBv" userLabel="ViewEndGameUI">
+                                        <rect key="frame" x="265" y="0.0" width="600" height="577"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7LO-lI-mtE" userLabel="ViewEndGame">
+                                                <rect key="frame" x="0.0" y="-23" width="600" height="600"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Would you like to end the game?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENN-uE-fWR">
+                                                        <rect key="frame" x="181" y="112" width="248" height="21"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5jk-lf-Zyh">
+                                                        <rect key="frame" x="321" y="285" width="108" height="30"/>
+                                                        <state key="normal" title="Return to Game"/>
+                                                        <connections>
+                                                            <action selector="EndGameNoButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="bQn-Ep-XhG"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gMA-Di-Jbz">
+                                                        <rect key="frame" x="181" y="285" width="71" height="30"/>
+                                                        <state key="normal" title="End Game"/>
+                                                        <connections>
+                                                            <action selector="EndGameYesButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="OSl-Lm-nLl"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="5jk-lf-Zyh" firstAttribute="leading" secondItem="gMA-Di-Jbz" secondAttribute="trailing" constant="69" id="3yo-V4-309"/>
+                                                    <constraint firstItem="gMA-Di-Jbz" firstAttribute="leading" secondItem="ENN-uE-fWR" secondAttribute="leading" id="E9p-Ka-shq"/>
+                                                    <constraint firstItem="ENN-uE-fWR" firstAttribute="top" secondItem="7LO-lI-mtE" secondAttribute="top" constant="112" id="UbV-vb-LKm"/>
+                                                    <constraint firstItem="gMA-Di-Jbz" firstAttribute="top" secondItem="ENN-uE-fWR" secondAttribute="bottom" constant="152" id="vaI-wx-j4I"/>
+                                                    <constraint firstItem="ENN-uE-fWR" firstAttribute="centerX" secondItem="7LO-lI-mtE" secondAttribute="centerX" id="wn6-qs-MLa"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="veM-F1-Sv6" firstAttribute="centerX" secondItem="kvZ-ZC-q1r" secondAttribute="centerX" id="DLt-4c-uXX"/>
                                     <constraint firstItem="2xc-sc-iPr" firstAttribute="centerX" secondItem="kvZ-ZC-q1r" secondAttribute="centerX" id="dET-tI-3f6"/>
                                     <constraint firstItem="3aq-kh-RBD" firstAttribute="centerX" secondItem="kvZ-ZC-q1r" secondAttribute="centerX" id="gne-BH-NYp"/>
                                 </constraints>
@@ -539,6 +577,8 @@
                             <constraint firstItem="Le2-4T-vRc" firstAttribute="top" secondItem="maK-i9-Uhn" secondAttribute="bottom" constant="2" id="NG7-YX-y4b"/>
                             <constraint firstItem="CgP-F3-NOu" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="NHP-9E-flx"/>
                             <constraint firstItem="Le2-4T-vRc" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="abQ-pm-qUB"/>
+                            <constraint firstItem="5c7-Ad-yBv" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="foZ-rD-Sli"/>
+                            <constraint firstItem="veM-F1-Sv6" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="go9-1J-dz9"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -556,10 +596,12 @@
                         <outlet property="ViewPlayer2UI" destination="vX9-lX-NeL" id="Qe7-gb-B36"/>
                         <outlet property="ViewPlayer3UI" destination="Iai-zq-20q" id="CWg-5V-ai7"/>
                         <outlet property="ViewPlayer4UI" destination="3qF-ym-6Gm" id="0aW-sB-9Ap"/>
+                        <outlet property="ViewResultsScreenUI" destination="veM-F1-Sv6" id="x4M-vG-qqC"/>
                         <outlet property="audioSettingOutlet" destination="r3t-0e-OMa" id="N9S-ik-dcU"/>
                         <outlet property="avatarStepperPlayer02" destination="HDZ-F4-ppR" id="Ysb-21-wbx"/>
                         <outlet property="avatarStepperPlayer03" destination="jaW-pd-atE" id="7MO-ny-qjy"/>
                         <outlet property="avatarStepperPlayer04" destination="eQQ-AF-wwX" id="jPP-UU-naB"/>
+                        <outlet property="gameResultsLabel" destination="Qqf-me-QYt" id="Fgs-9C-cnq"/>
                         <outlet property="isHumanPlayer2Outlet" destination="ecm-Pm-26c" id="7Du-vF-wmZ"/>
                         <outlet property="isHumanPlayer3Outlet" destination="0Ae-aA-bya" id="coB-4v-sNK"/>
                         <outlet property="isHumanPlayer4Outlet" destination="56l-dQ-RG0" id="g8Z-u2-U5w"/>
@@ -574,6 +616,7 @@
                         <outlet property="player3NameLabel" destination="JIi-mz-Xfk" id="iUd-71-LZx"/>
                         <outlet property="player4ImageOutlet" destination="DjD-Kz-HSF" id="34e-wc-RDG"/>
                         <outlet property="player4NameLabel" destination="lJy-6A-j8C" id="e8u-H9-Quv"/>
+                        <outlet property="returnToGameButtonOutlet" destination="rOF-Gn-kq7" id="YjK-S4-dHm"/>
                         <outlet property="secondPerTurnSwitchOutlet" destination="MWV-lc-QH3" id="MD3-na-F2A"/>
                         <outlet property="toStatView" destination="Ivf-B6-O6g" id="uSc-Fv-Vot"/>
                         <outlet property="viewRulesContainer" destination="CgP-F3-NOu" id="S39-wU-hLK"/>
@@ -614,13 +657,7 @@
         <!--View Controller-->
         <scene sceneID="ey6-Ih-iKX">
             <objects>
-                <viewController id="jfP-3l-ScX" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="veM-F1-Sv6">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
+                <viewController id="jfP-3l-ScX" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yGp-ng-jV2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
         </scene>

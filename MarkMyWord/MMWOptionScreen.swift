@@ -275,7 +275,34 @@ class MMWOptionScreen: SKScene {
 
         }
 
+        //gameViewController.ViewAllOptionsUI.hidden = false
+        
+//        print("MMWOptionScreen didMoveToView")
+//        gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
+//        gameViewController.ViewAllOptionsUI.hidden = false
+//        gameViewController.OptionsSwitchOutlet.hidden = true
+//        gameViewController.ViewOptionsUI.hidden = true
+//        gameViewController.viewRulesContainer.hidden = true
+//        gameViewController.viewStatsContainer.hidden = true
+//        gameViewController.ViewEndGameUI.hidden = false
+//        gameViewController.ViewResultsScreenUI.hidden = true
+        
+        print("options button pressed")
+        print("MMWOptionScreen didMoveToView")
+        gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
         gameViewController.ViewAllOptionsUI.hidden = false
+        gameViewController.OptionsSwitchOutlet.hidden = false
+        
+        gameViewController.ViewOptionsUI.hidden = false
+        gameViewController.returnToGameButtonOutlet.alpha = 1.0
+        gameViewController.returnToGameButtonOutlet.userInteractionEnabled = true
+        
+        gameViewController.viewRulesContainer.hidden = true
+        gameViewController.viewStatsContainer.hidden = true
+        gameViewController.ViewEndGameUI.hidden = true
+        gameViewController.ViewResultsScreenUI.hidden = true
+        
+        
 
         //gameViewController.GameViewControllerUI.hidden = false   //ViewOptionsUI.hidden = false
 
@@ -285,6 +312,24 @@ class MMWOptionScreen: SKScene {
         //presentMMWScene()
         
         // NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentView", name: "showController", object: nil)
+    }
+    
+    func allPlayersPassed () {
+
+        print("MMWOptionScreen allPlayersPassed")
+        gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
+        gameViewController.ViewAllOptionsUI.hidden = false
+        gameViewController.OptionsSwitchOutlet.hidden = true
+        
+        gameViewController.ViewOptionsUI.hidden = true
+//        gameViewController.returnToGameButtonOutlet.alpha = 1.0
+//        gameViewController.returnToGameButtonOutlet.userInteractionEnabled = true
+        
+        gameViewController.viewRulesContainer.hidden = true
+        gameViewController.viewStatsContainer.hidden = true
+        gameViewController.ViewEndGameUI.hidden = false
+        gameViewController.ViewResultsScreenUI.hidden = true
+
     }
     
     func returnToGameScene () {
@@ -298,10 +343,13 @@ class MMWOptionScreen: SKScene {
         
         print("all players passed on turn")
         gameViewController.ViewAllOptionsUI.hidden = true
-        gameViewController.ViewOptionsUI.hidden = true
-        gameViewController.viewRulesContainer.hidden = true
-        gameViewController.viewStatsContainer.hidden = true
-        gameViewController.ViewEndGameUI.hidden = true
+//        gameViewController.OptionsSwitchOutlet.hidden = true
+//        gameViewController.ViewOptionsUI.hidden = true
+//        gameViewController.viewRulesContainer.hidden = true
+//        gameViewController.viewStatsContainer.hidden = true
+//        gameViewController.ViewEndGameUI.hidden = true
+//        gameViewController.ViewResultsScreenUI.hidden = true
+
         //view?.presentScene(mmwOptionScreen)
        
         self.view?.presentScene(mmwGameScene)

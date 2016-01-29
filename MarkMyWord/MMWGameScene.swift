@@ -183,7 +183,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         print("---   in buildGameView mmwGameScene")
         //gameViewController.ViewAllOptionsUI.hidden = true
         userInteractionEnabled = true
-        
+        mmwGameSceneViewController.consecutivePasses = 0
         setGrids() // sets tile grid positions, size square, number squares and position on screen for each grid possible
 
         
@@ -389,7 +389,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         
         tileCollection = MMWTileBuilder()
         
-        tileCollection!.resetAllTiles()
+        //tileCollection!.resetAllTiles()
         
         for tile in tileCollection!.mmwTileArray {
             tile.tileSprite.hidden = true
@@ -467,7 +467,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     
     func resetGameView () {
         
-        
+        mmwGameSceneViewController.consecutivePasses = 0
         print("---   in resetGameView mmwGameScene")
         gameViewController.ViewAllOptionsUI.hidden = true
         
@@ -489,9 +489,10 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         topDisplayLabel.text = "Welcome to Mark My Word"
         topDisplayLabel2.text =  ""
 
+        tileCollection!.resetAllTiles()
         tileCollection = MMWTileBuilder()
         
-        //tileCollection!.resetAllTiles()
+        
         
         for tile in tileCollection!.mmwTileArray {
             tile.tileSprite.hidden = true
@@ -1324,27 +1325,20 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
 //                gameViewController.ViewAllOptionsUI.hidden = false
 //                view?.presentScene(mmwOptionScreen)
 
-
-                
-                
-
-                
-                
-                
-                
-                
-                
                 print("all players passed on turn")
-                gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
-                gameViewController.ViewAllOptionsUI.hidden = false
-                gameViewController.OptionsSwitchOutlet.hidden = true
-                gameViewController.ViewOptionsUI.hidden = true
-                gameViewController.viewRulesContainer.hidden = true
-                gameViewController.viewStatsContainer.hidden = true
-                gameViewController.ViewEndGameUI.hidden = false
+//                gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
+//                gameViewController.ViewAllOptionsUI.hidden = true
+//                gameViewController.OptionsSwitchOutlet.hidden = true
+//                gameViewController.ViewOptionsUI.hidden = true
+//                gameViewController.viewRulesContainer.hidden = true
+//                gameViewController.viewStatsContainer.hidden = true
+//                gameViewController.ViewEndGameUI.hidden = true
+//                gameViewController.ViewResultsScreenUI.hidden = false
                 view?.presentScene(mmwOptionScreen)
+                mmwOptionScreen.allPlayersPassed()
                 //print("back to  mmwGameScene from optionsButton")
 
+                
             }
             //                  runAction(actionSound)
             changePlayerTurn()
@@ -1357,8 +1351,10 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     func newTilesButton(newTilesButtonNode: SKNode) {
         if userInteractionEnabled == true {
             
-            //runAction(actionSound)
-            
+            if mmwGameSceneViewController.audioOn == true {
+                runAction(actionSound)
+            }
+
             mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.dealGridFromArrayRandom(&tileCollection!.mmwTileArray, numTilesToDeal: 6, playerNum: (mmwGameSceneViewController.playerTurn), clearGrid: true)
             
             showTilesInSquares(tileCollection!) // 'deals' player tiles and shows demo tiles on board for testing
@@ -1386,14 +1382,19 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
 //        print("options button pressed")
 //        gameViewController.ViewAllOptionsUI.hidden = false
         
-        print("options button pressed")
-        gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
-        gameViewController.ViewAllOptionsUI.hidden = false
-        gameViewController.OptionsSwitchOutlet.hidden = false
-        gameViewController.ViewOptionsUI.hidden = false
-        gameViewController.viewRulesContainer.hidden = true
-        gameViewController.viewStatsContainer.hidden = true
-        gameViewController.ViewEndGameUI.hidden = true
+//        print("options button pressed")
+//        gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
+//        gameViewController.ViewAllOptionsUI.hidden = false
+//        gameViewController.OptionsSwitchOutlet.hidden = false
+//        
+//        gameViewController.ViewOptionsUI.hidden = false
+//        gameViewController.returnToGameButtonOutlet.alpha = 1.0
+//        gameViewController.returnToGameButtonOutlet.userInteractionEnabled = true
+//        
+//        gameViewController.viewRulesContainer.hidden = true
+//        gameViewController.viewStatsContainer.hidden = true
+//        gameViewController.ViewEndGameUI.hidden = true
+//        gameViewController.ViewResultsScreenUI.hidden = true
 
         view?.presentScene(mmwOptionScreen)
         
@@ -2144,6 +2145,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                                     }
                                     allFoundWholeWordPlaysAtLockedTile.append(validWholeWordAILetterPlayArr)
                                     print("!!! allValidWholeWordTilePlayArr \(validWholeWordAILetterPlayArr) \(testString) checkForValidWordsAI mmwGameScene" )
+                                    
                                 }
                             }
                             else {
@@ -2152,6 +2154,10 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                         }
                     else {
                         //print("NOT partial Word Match! \(testString) checkForValidWordsAI mmwGameScene" )
+                    }
+                    
+                    if allFoundWholeWordPlaysAtLockedTile.count > 1 {
+                        break
                     }
                     
                     currentTestAILetterPlay = validAILetterPlay()
@@ -2175,11 +2181,9 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         if allFoundPartialWordPlaysAtLockedTile.count > 0 {
             if allFoundPartialWordPlaysAtLockedTile[0].count == 0 { allFoundWholeWordPlaysAtLockedTile.removeFirst() }
         }
-        
         if allFoundWholeWordPlaysAtLockedTile.count > 0 {
             if allFoundWholeWordPlaysAtLockedTile[0].count   == 0 { allFoundWholeWordPlaysAtLockedTile.removeFirst() }
         }
-        
         return ( allFoundPartialWordPlaysAtLockedTile , allFoundWholeWordPlaysAtLockedTile )
     }
     

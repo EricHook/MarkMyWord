@@ -262,6 +262,7 @@ class GameViewController : UIViewController {
     @IBOutlet weak var ViewOptionsUI: UIView!
     @IBOutlet weak var ViewAllOptionsUI: UIView!
     @IBOutlet weak var ViewEndGameUI: UIView!
+    @IBOutlet weak var ViewResultsScreenUI: UIView!
 
     
     @IBOutlet weak var ViewPlayer1UI: UIView!
@@ -647,10 +648,11 @@ class GameViewController : UIViewController {
     @IBAction func startNewGameButton(sender: AnyObject) {
         // update game settings to those in UI
         startNewGame()
-//
     }
-
     
+    
+    @IBOutlet weak var returnToGameButtonOutlet: UIButton!
+
     @IBAction func returnToGameButton(sender: AnyObject) {
         // returns to game without any settings changes
         mmwOptionScreen.returnToGameScene()
@@ -738,7 +740,19 @@ class GameViewController : UIViewController {
   
     @IBAction func EndGameYesButton(sender: AnyObject) {
         // returns to game without any settings changes
-        startNewGame()
+        
+        print("MMWOptionScreen didMoveToView")
+        gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
+        gameViewController.ViewAllOptionsUI.hidden = false
+        gameViewController.OptionsSwitchOutlet.hidden = true
+        gameViewController.ViewOptionsUI.hidden = true
+        gameViewController.viewRulesContainer.hidden = true
+        gameViewController.viewStatsContainer.hidden = true
+        gameViewController.ViewEndGameUI.hidden = true
+        gameViewController.ViewResultsScreenUI.hidden = false
+        
+        
+        //startNewGame()
     }
 
 
@@ -747,6 +761,71 @@ class GameViewController : UIViewController {
         mmwOptionScreen.returnToGameScene()
     }
 
+    
+    // MARK: RESULTS SCREEN
+    
+    
+    
+    @IBOutlet weak var gameResultsLabel: UILabel!
+    
+    
+    @IBAction func gameResultsNewGameButton(sender: AnyObject) {
+        
+        //mmwGameSceneViewController.secondsPerTurn = tempSecondsPerTurn
+        
+        mmwGameSceneViewController.audioOn = tempAudioOn
+        
+        mmwGameSceneViewController.minWordSize = tempMinWordSize
+        mmwGameSceneViewController.numStarterWords = tempNumStarterWords
+        mmwGameSceneViewController.numPlayers = tempNumPlayers
+        
+        mmwGameSceneViewController.playerArray[0].playerName = tempPlayer1Name
+        mmwGameSceneViewController.playerArray[1].playerName = tempPlayer2Name
+        mmwGameSceneViewController.playerArray[2].playerName = tempPlayer3Name
+        mmwGameSceneViewController.playerArray[3].playerName = tempPlayer4Name
+        
+        mmwGameSceneViewController.playerArray[0].isHuman = tempPlayer1IsHuman
+        mmwGameSceneViewController.playerArray[1].isHuman = tempPlayer2IsHuman
+        mmwGameSceneViewController.playerArray[2].isHuman = tempPlayer3IsHuman
+        mmwGameSceneViewController.playerArray[3].isHuman = tempPlayer4IsHuman
+        
+        mmwGameSceneViewController.playerArray[0].playerSkillLevel = tempPlayer1SkillLevel
+        mmwGameSceneViewController.playerArray[1].playerSkillLevel = tempPlayer2SkillLevel
+        mmwGameSceneViewController.playerArray[2].playerSkillLevel = tempPlayer3SkillLevel
+        mmwGameSceneViewController.playerArray[3].playerSkillLevel = tempPlayer4SkillLevel
+        
+        mmwGameSceneViewController.playerArray[0].playerAvatarNumber = tempPlayer1AvatarNumber
+        mmwGameSceneViewController.playerArray[1].playerAvatarNumber = tempPlayer2AvatarNumber
+        mmwGameSceneViewController.playerArray[2].playerAvatarNumber = tempPlayer3AvatarNumber
+        mmwGameSceneViewController.playerArray[3].playerAvatarNumber = tempPlayer4AvatarNumber
+        
+        mmwGameSceneViewController.playerArray[0].playerMeyamaNumber = tempPlayer1MeyamaNumber
+        mmwGameSceneViewController.playerArray[1].playerMeyamaNumber = tempPlayer2MeyamaNumber
+        mmwGameSceneViewController.playerArray[2].playerMeyamaNumber = tempPlayer3MeyamaNumber
+        mmwGameSceneViewController.playerArray[3].playerMeyamaNumber = tempPlayer4MeyamaNumber
+        
+        mmwOptionScreen.newGameScene()
+        //startNewGame()
+    }
+    
+    @IBAction func gameResultsChangeOptionsButton(sender: AnyObject) {
+        print("options button pressed")
+        gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
+        gameViewController.ViewAllOptionsUI.hidden = false
+        gameViewController.OptionsSwitchOutlet.hidden = false
+        gameViewController.ViewOptionsUI.hidden = false
+        gameViewController.returnToGameButtonOutlet.alpha = 0.25
+        gameViewController.returnToGameButtonOutlet.userInteractionEnabled = false
+        gameViewController.viewRulesContainer.hidden = true
+        gameViewController.viewStatsContainer.hidden = true
+        gameViewController.ViewEndGameUI.hidden = true
+        gameViewController.ViewResultsScreenUI.hidden = true
+
+        //view?.presentScene(mmwOptionScreen)
+
+        print("back to  mmwGameScene from optionsButton")
+        
+    }
 
     //            selectedSegmentIndex  .sendActionsForControlEvents(.TouchUpInside)
     //}
