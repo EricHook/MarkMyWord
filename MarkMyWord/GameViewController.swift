@@ -750,8 +750,7 @@ class GameViewController : UIViewController {
         gameViewController.viewStatsContainer.hidden = true
         gameViewController.ViewEndGameUI.hidden = true
         gameViewController.ViewResultsScreenUI.hidden = false
-        
-        
+
         //startNewGame()
     }
 
@@ -763,7 +762,6 @@ class GameViewController : UIViewController {
 
     
     // MARK: RESULTS SCREEN
-    
     
     
     @IBOutlet weak var gameResultsLabel: UILabel!
@@ -827,8 +825,6 @@ class GameViewController : UIViewController {
         
     }
 
-    //            selectedSegmentIndex  .sendActionsForControlEvents(.TouchUpInside)
-    //}
     
     override func shouldAutorotate() -> Bool {
         return true
