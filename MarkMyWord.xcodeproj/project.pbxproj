@@ -73,9 +73,9 @@
 		B87A49131C5844F400621F6C /* EndGameButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B87A490F1C5844F400621F6C /* EndGameButton@2x.png */; };
 		B881A5A31C3A0329005BFE27 /* optionScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B881A5A21C3A0329005BFE27 /* optionScreen.xib */; };
 		B88A58531BEAD859003E0957 /* 37Bronk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B88A58461BEAD859003E0957 /* 37Bronk.mp3 */; };
-		B88A58541BEAD859003E0957 /* 1003.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B88A58471BEAD859003E0957 /* 1003.WAV */; };
-		B88A58551BEAD859003E0957 /* 1007.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B88A58481BEAD859003E0957 /* 1007.WAV */; };
-		B88A58561BEAD859003E0957 /* 1023.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B88A58491BEAD859003E0957 /* 1023.WAV */; };
+		B88A58541BEAD859003E0957 /* pass.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B88A58471BEAD859003E0957 /* pass.WAV */; };
+		B88A58551BEAD859003E0957 /* points.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B88A58481BEAD859003E0957 /* points.WAV */; };
+		B88A58561BEAD859003E0957 /* badPlay.WAV in Resources */ = {isa = PBXBuildFile; fileRef = B88A58491BEAD859003E0957 /* badPlay.WAV */; };
 		B88A58571BEAD859003E0957 /* MarkMyWordBGCleaniPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A584A1BEAD859003E0957 /* MarkMyWordBGCleaniPad@2x.png */; };
 		B88A585A1BEAD859003E0957 /* MMWOptionsScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A584D1BEAD859003E0957 /* MMWOptionsScreen.png */; };
 		B88A585B1BEAD859003E0957 /* NewTilesButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A584E1BEAD859003E0957 /* NewTilesButton.png */; };
@@ -213,9 +213,9 @@
 		B87A490F1C5844F400621F6C /* EndGameButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EndGameButton@2x.png"; sourceTree = "<group>"; };
 		B881A5A21C3A0329005BFE27 /* optionScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = optionScreen.xib; sourceTree = "<group>"; };
 		B88A58461BEAD859003E0957 /* 37Bronk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 37Bronk.mp3; sourceTree = "<group>"; };
-		B88A58471BEAD859003E0957 /* 1003.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1003.WAV; sourceTree = "<group>"; };
-		B88A58481BEAD859003E0957 /* 1007.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1007.WAV; sourceTree = "<group>"; };
-		B88A58491BEAD859003E0957 /* 1023.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1023.WAV; sourceTree = "<group>"; };
+		B88A58471BEAD859003E0957 /* pass.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pass.WAV; sourceTree = "<group>"; };
+		B88A58481BEAD859003E0957 /* points.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = points.WAV; sourceTree = "<group>"; };
+		B88A58491BEAD859003E0957 /* badPlay.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = badPlay.WAV; sourceTree = "<group>"; };
 		B88A584A1BEAD859003E0957 /* MarkMyWordBGCleaniPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MarkMyWordBGCleaniPad@2x.png"; sourceTree = "<group>"; };
 		B88A584D1BEAD859003E0957 /* MMWOptionsScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MMWOptionsScreen.png; sourceTree = "<group>"; };
 		B88A584E1BEAD859003E0957 /* NewTilesButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewTilesButton.png; sourceTree = "<group>"; };
@@ -744,9 +744,9 @@
 			isa = PBXGroup;
 			children = (
 				B88A58461BEAD859003E0957 /* 37Bronk.mp3 */,
-				B88A58471BEAD859003E0957 /* 1003.WAV */,
-				B88A58481BEAD859003E0957 /* 1007.WAV */,
-				B88A58491BEAD859003E0957 /* 1023.WAV */,
+				B88A58471BEAD859003E0957 /* pass.WAV */,
+				B88A58481BEAD859003E0957 /* points.WAV */,
+				B88A58491BEAD859003E0957 /* badPlay.WAV */,
 			);
 			name = SoundEffects;
 			sourceTree = "<group>";
@@ -906,7 +906,7 @@
 				B88A58671BEAD978003E0957 /* player02.png in Resources */,
 				B8FFF25E1BE96E2E006D2010 /* MagicParticle.sks in Resources */,
 				B85C72701C4F177400170B88 /* meyama000@2x.png in Resources */,
-				B88A58541BEAD859003E0957 /* 1003.WAV in Resources */,
+				B88A58541BEAD859003E0957 /* pass.WAV in Resources */,
 				B88A58641BEAD969003E0957 /* MMWPlayerTilesGrid.png in Resources */,
 				B86AC8E71C4496140002A223 /* NewGameScreen@2x.png in Resources */,
 				B822CF071C390D0C0043905E /* OptButtonWordLength2.png in Resources */,
@@ -915,7 +915,7 @@
 				B84738D41C0A3F20003B05BA /* tileCover@2x.png in Resources */,
 				B8CCE1A41AD8C13500882391 /* GameScene.sks in Resources */,
 				B87A49111C5844F400621F6C /* ResumeButton@2x.png in Resources */,
-				B88A58551BEAD859003E0957 /* 1007.WAV in Resources */,
+				B88A58551BEAD859003E0957 /* points.WAV in Resources */,
 				B822CEEF1C388AE10043905E /* PlayerBG02Island.png in Resources */,
 				B85C72711C4F177400170B88 /* meyama000.png in Resources */,
 				B85C72661C4F176A00170B88 /* avatar003@2x.png in Resources */,
@@ -932,7 +932,7 @@
 				B8DFE1611C2B0DE9009FB8ED /* Tile3D@iPadPro.png in Resources */,
 				B88A58531BEAD859003E0957 /* 37Bronk.mp3 in Resources */,
 				B8FB376F1C28D56700C68434 /* codeSnippets in Resources */,
-				B88A58561BEAD859003E0957 /* 1023.WAV in Resources */,
+				B88A58561BEAD859003E0957 /* badPlay.WAV in Resources */,
 				B822CF011C38ABCF0043905E /* tileCover@3x.png in Resources */,
 				B822CEED1C38880B0043905E /* NewTilesButton@3x.png in Resources */,
 				B88A585F1BEAD859003E0957 /* PlayButton.png in Resources */,

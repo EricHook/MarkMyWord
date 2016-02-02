@@ -439,6 +439,11 @@ class LetterTileSprite : SKSpriteNode {
         }
 
         runAction(SKAction.group([slide, scaleUp, scaleDown]))
+        
+        
+        if mmwGameSceneViewController.audioOn == true {
+            runAction(SKAction.playSoundFileNamed("badPlay.WAV", waitForCompletion: false))
+        }
 
         self.tileGlow.hidden = true
         delay(0.5) {
@@ -527,39 +532,43 @@ class LetterTileSprite : SKSpriteNode {
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         dispatch_async(dispatch_get_global_queue(priority, 0), { ()->() in
             print("Currently dispatched thread asynchronously 0 playBtnPlay playAILetters")
-        
 
-        var tileScore = SKLabelNode()
-        tileScore = self.createLetterScoreText ( CGPointMake(0.0, 0.0) , endLocation: CGPointMake(0.0, 0.0), textColor: gameColors[self.tileSpriteParent.tileOwner.rawValue], displayText: String(pointsForTile) )
-        tileScore.zPosition = 100
-        tileScore.text = String(pointsForTile)
-        tileScore.fontColor =  gameColors[self.tileSpriteParent.tileOwner.rawValue]
-        tileScore.fontSize = 45
-        tileScore.fontName = FontHUDName
+            var tileScore = SKLabelNode()
+            tileScore = self.createLetterScoreText ( CGPointMake(0.0, 0.0) , endLocation: CGPointMake(0.0, 0.0), textColor: gameColors[self.tileSpriteParent.tileOwner.rawValue], displayText: String(pointsForTile) )
+            tileScore.zPosition = 100
+            tileScore.text = String(pointsForTile)
+            tileScore.fontColor =  gameColors[self.tileSpriteParent.tileOwner.rawValue]
+            tileScore.fontSize = 45
+            tileScore.fontName = FontHUDName
 
-        var homePosition = CGPoint(x: 0, y: 0)
-        if (self.tileSpriteParent.gridX != -1) {
-            homePosition = Grid.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: self.tileSpriteParent.gridX, squareY: self.tileSpriteParent.gridY)
-        }
-        var endPosition = CGPoint(x: 0, y: 0)
-        if (self.tileSpriteParent.gridX != -1) {
-            endPosition  = Grid.sendToGridSquare(self.tileSpriteParent.gridEnd!, squareX: self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridYEnd)
-        }
-        
-        let changeInX : CGFloat = -(endPosition.x - homePosition.x)
-        let changeInY : CGFloat = -(endPosition.y - homePosition.y)
-        let returnPosition = CGPointMake(changeInX, changeInY)
-        let slide     = SKAction.moveTo(returnPosition, duration:1.0)
-        let scaleUp   = SKAction.scaleTo(1.5, duration:0.5)
-        let scaleDown = SKAction.scaleTo(0.66, duration:0.5)
-        let fadeIn    = SKAction.fadeInWithDuration(0.8)
-        let fadeOut   = SKAction.fadeOutWithDuration(0.2)
-        let animPart1 = SKAction.group([fadeIn, scaleUp])
-        let animPart2 = SKAction.group([fadeOut, scaleDown])
-        let removeText = SKAction.removeFromParent()
-        let tileEffects = SKAction.sequence([animPart1, animPart2, removeText])
-        
-        tileScore.runAction(SKAction.group([slide, tileEffects]) )
+            var homePosition = CGPoint(x: 0, y: 0)
+            if (self.tileSpriteParent.gridX != -1) {
+                homePosition = Grid.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: self.tileSpriteParent.gridX, squareY: self.tileSpriteParent.gridY)
+            }
+            var endPosition = CGPoint(x: 0, y: 0)
+            if (self.tileSpriteParent.gridX != -1) {
+                endPosition  = Grid.sendToGridSquare(self.tileSpriteParent.gridEnd!, squareX: self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridYEnd)
+            }
+            
+            let changeInX : CGFloat = -(endPosition.x - homePosition.x)
+            let changeInY : CGFloat = -(endPosition.y - homePosition.y)
+            let returnPosition = CGPointMake(changeInX, changeInY)
+            let slide     = SKAction.moveTo(returnPosition, duration:1.0)
+            let scaleUp   = SKAction.scaleTo(1.5, duration:0.5)
+            let scaleDown = SKAction.scaleTo(0.66, duration:0.5)
+            let fadeIn    = SKAction.fadeInWithDuration(0.8)
+            let fadeOut   = SKAction.fadeOutWithDuration(0.2)
+            let animPart1 = SKAction.group([fadeIn, scaleUp])
+            let animPart2 = SKAction.group([fadeOut, scaleDown])
+            let removeText = SKAction.removeFromParent()
+            let tileEffects = SKAction.sequence([animPart1, animPart2, removeText])
+            
+            tileScore.runAction(SKAction.group([slide, tileEffects]) )
+            
+            if mmwGameSceneViewController.audioOn == true {
+                self.runAction(SKAction.playSoundFileNamed("points.WAV", waitForCompletion: false))
+            }
+   
         
 //        delay(animationTime + 12.0){
 //            mmwGameScene.animationsActive(false)
@@ -590,6 +599,10 @@ class LetterTileSprite : SKSpriteNode {
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         dispatch_async(dispatch_get_global_queue(priority, 0), { ()->() in
             print("Currently dispatched thread asynchronously 0 playBtnPlay playAILetters")
+            
+            if mmwGameSceneViewController.audioOn == true {
+                self.runAction(SKAction.playSoundFileNamed("points.WAV", waitForCompletion: false))
+            }
 
             var tileScore = SKLabelNode()
             
@@ -632,11 +645,13 @@ class LetterTileSprite : SKSpriteNode {
                 let animPart1 = SKAction.group([unhide, slide])
                 let animScale = SKAction.sequence([scaleUp, scaleDown, remove])
                 
+                
+                
                 tileScore.runAction(SKAction.group([fadeIn, animPart1, fadeOut, animScale]) )
                 
                 mmwGameScene.explosion(endPosition, color: tileColors[self.tileSpriteParent.tileOwner.rawValue])
 
-                //self.runAction(self.actionSound)
+                
             }
                 
             dispatch_async(dispatch_get_main_queue(), {

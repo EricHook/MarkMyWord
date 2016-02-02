@@ -205,9 +205,7 @@ class PlayerView: SKSpriteNode {
         playerTileCover.alpha = 0.6
         playerTileCover.zPosition = 50
         addChild(playerTileCover)
-        
-        
-        
+
 //        playerTileBacking.anchorPoint = CGPoint(x: 0.5, y: 0.0)
 //        playerTileBacking.position = CGPoint(x: size.width/2.0, y: screenHeight*0.071 ) // 482.0)
 //        playerTileBacking.userInteractionEnabled = false

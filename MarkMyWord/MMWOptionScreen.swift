@@ -353,6 +353,7 @@ class MMWOptionScreen: SKScene {
         //view?.presentScene(mmwOptionScreen)
        
         self.view?.presentScene(mmwGameScene)
+        mmwGameScene.changePlayerTurn()
 
     }
     
