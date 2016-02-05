@@ -940,6 +940,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         print("testPlayButton ()")
     }
     
+    
     func numPlayerLettersOnBoard(player: Player) -> Int {
         var numLetterTiles = 0
         for y in 0...(mmwBoardGrid.gridNumSquaresY - 1) {   // fill letter tiles

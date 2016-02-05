@@ -736,8 +736,7 @@ class GameViewController : UIViewController {
         //self.view.addSubview(cornerView)
     }
 
-    
-    
+
     func buttonAction(sender:UIButton!)
     {
         print("Manual Button tapped")
@@ -748,11 +747,9 @@ class GameViewController : UIViewController {
     {
         print("TEST Manual Button tapped")
     }
-    
-    
+
     // MARK: END GAME SCREEN
-    
-  
+
     @IBAction func EndGameYesButton(sender: AnyObject) {
         // returns to game without any settings changes
         
@@ -864,8 +861,7 @@ class GameViewController : UIViewController {
     
     // MARK: STATS SCREEN
     
-    
-    
+
     @IBOutlet weak var gamesWonOutlet: UILabel!
     
     @IBOutlet weak var gamesLostOutlet: UILabel!
