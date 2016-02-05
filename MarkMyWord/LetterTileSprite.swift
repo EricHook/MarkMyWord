@@ -529,9 +529,9 @@ class LetterTileSprite : SKSpriteNode {
 //        var animationTime = 0.0
         
   
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-        dispatch_async(dispatch_get_global_queue(priority, 0), { ()->() in
-            print("Currently dispatched thread asynchronously 0 playBtnPlay playAILetters")
+//        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+//        dispatch_async(dispatch_get_global_queue(priority, 0), { ()->() in
+//            print("Currently dispatched thread asynchronously 0 playBtnPlay playAILetters")
 
             var tileScore = SKLabelNode()
             tileScore = self.createLetterScoreText ( CGPointMake(0.0, 0.0) , endLocation: CGPointMake(0.0, 0.0), textColor: gameColors[self.tileSpriteParent.tileOwner.rawValue], displayText: String(pointsForTile) )
@@ -577,10 +577,10 @@ class LetterTileSprite : SKSpriteNode {
         //self.runAction(self.actionSound2)
         
 
-            dispatch_async(dispatch_get_main_queue(), {
-                print("hello from playBtnPlay playAILetters thread executed as dispatch")
-            })
-        })
+//            dispatch_async(dispatch_get_main_queue(), {
+//                print("hello from playBtnPlay playAILetters thread executed as dispatch")
+//            })
+//        })
     
         
                     
@@ -1250,6 +1250,10 @@ class LetterTileSprite : SKSpriteNode {
             }
             else {  // valid drop of tile by human player
                 playTileToBoard(tileSnapResultsXGrid, yGrid: tileSnapResultsYGrid)
+                if mmwGameSceneViewController.playerTurn == 0 {
+                    mmwGameSceneViewController.numLettersPlayed++
+                }
+
                 if validHorizontalWholeWord || validVerticalWholeWord {
                     
                 }
@@ -1512,6 +1516,8 @@ class LetterTileSprite : SKSpriteNode {
         LetterTileSprite.removeAllTileHighlights ()
         
         mmwGameScene.newTilesButtonOff() // placed tile on board so now can only pass turn
+
+        //mmwGameSceneViewController.numLettersPlayed++
     }
     
     //    /// func updateWordsAtDropSpot2 (tileSnapResultsXGrid: Int, tileSnapResultsYGrid: Int, touchX: Float, touchY: Float) ()
@@ -2404,10 +2410,7 @@ class LetterTileSprite : SKSpriteNode {
         
         // + 5 * wordLen points for making a new complete word // SCORE  // display points awarded animation (for completing whole word)
         if tileSpriteParent.tileState == TileState.PlayedMadeWord {
-            
-            
             var pointsForCompletingWord = 0
-            
 
                 let tileWordState = self.testForValidWordsAtDropSpot(self.tileSpriteParent.gridXEnd, tileSnapResultsYGrid: self.tileSpriteParent.gridYEnd, isAI: true, isAIScoringPass: false)
             

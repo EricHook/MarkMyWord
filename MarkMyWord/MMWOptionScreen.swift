@@ -32,11 +32,8 @@ class MMWOptionScreen: SKScene {
     var backgroundNode = SKSpriteNode(imageNamed: "MMWOptionsScreen.png")
     var newGameSpriteNode = SKSpriteNode(imageNamed: "NewGameScreen.png")
     var loadingIndicator = SKSpriteNode(imageNamed: "PlayButton.png")
-    
-    
-    var defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-    
 
+    var defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
 
     //var viewSize:CGSize!
     
@@ -54,7 +51,6 @@ class MMWOptionScreen: SKScene {
         backgroundNode.size = self.frame.size;
         self.addChild(backgroundNode)
 
-        
 //        newGameSpriteNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
 //        newGameSpriteNode.position = CGPoint(x: size.width/2.0, y: 0.0)
 //        newGameSpriteNode.userInteractionEnabled = false
@@ -64,9 +60,7 @@ class MMWOptionScreen: SKScene {
 //        newGameSpriteNode.size.width  = screenSize!.width
 //        newGameSpriteNode.alpha = 0.75
 //        addChild(newGameSpriteNode)
-        
-        
-        
+
         //        // Placeholder for dictionary data loading progress display
         //        let playBtnTEMP = SKSpriteNode(imageNamed: "PlayButton.png")
         //        playBtnTEMP.position = CGPoint(x: viewSize.width/4, y: viewSize.height/6)
@@ -106,11 +100,7 @@ class MMWOptionScreen: SKScene {
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        
         //viewSize = view.bounds.size
-        
-        
-
         print("view size MenuScene: \(screenSize)")
         newGameSpriteNode.hidden = true
 
@@ -130,17 +120,14 @@ class MMWOptionScreen: SKScene {
         //        backgroundNode.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
         //        backgroundNode.userInteractionEnabled = false
         //        self.addChild(backgroundNode)
-        
-        
-//        var backgroundNode = SKSpriteNode(imageNamed: "MMWOptionsScreen.png")
 
+//        var backgroundNode = SKSpriteNode(imageNamed: "MMWOptionsScreen.png")
+//
 //        // add BG
 //        backgroundNode.position = CGPoint(x: screenSize!.width/2, y: screenSize!.height/2)
 //        backgroundNode.userInteractionEnabled = false
 //        backgroundNode.size = self.frame.size;
 //        self.addChild(backgroundNode)
-        
-
 //
 //        newGameSpriteNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
 //        newGameSpriteNode.position = CGPoint(x: size.width/2.0, y: 0.0)
@@ -157,136 +144,12 @@ class MMWOptionScreen: SKScene {
 ////        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y: (CGRectGetMidY(self.frame) - 50) )
 ////        self.addChild(myLabel)
 ////        myLabel.zPosition = 100
-        
-        
-        
-        
+
         delay(0.0){
-            
             gameViewController.updateGameSettings()
-            
-            
-            //gameViewController.buttonAction()
-            // update controllers to reflect current game data
-            
-//            // seconds per turn UI
-//            switch (mmwGameSceneViewController.secondsPerTurn) {
-//            case 20:
-//                gameViewController.secondPerTurnSwitchOutlet.selectedSegmentIndex = 0
-//                print("UI secondsPerTurn = 20")
-//            case 30:
-//                gameViewController.secondPerTurnSwitchOutlet.selectedSegmentIndex = 1
-//                print("UI secondsPerTurn = 30")
-//            case 45:
-//                gameViewController.secondPerTurnSwitchOutlet.selectedSegmentIndex = 2
-//                print("UI secondsPerTurn = 45")
-//            case 60:
-//                gameViewController.secondPerTurnSwitchOutlet.selectedSegmentIndex = 3
-//                print("UI secondsPerTurn = 60")
-//            case 999:
-//                gameViewController.secondPerTurnSwitchOutlet.selectedSegmentIndex = 4
-//                print("UI secondsPerTurn = 999 / OFF")
-//            default:
-//                break;
-//            }
-//
-//            // audio UI
-//            if mmwGameSceneViewController.audioOn == true {
-//                gameViewController.audioSettingOutlet.selectedSegmentIndex = 1
-//            }
-//            else {
-//                gameViewController.audioSettingOutlet.selectedSegmentIndex = 0
-//            }
-//            print("UI audioOn = \(mmwGameSceneViewController.audioOn)")
-//
-//            // minWordSize UI
-//            gameViewController.minWordLengthSwitchOutlet.selectedSegmentIndex = mmwGameSceneViewController.minWordSize - 2
-//            print("UI minWordSize = \(mmwGameSceneViewController.minWordSize)")
-//            
-//            // number starter words UI
-//            gameViewController.numStarterWordsSwitchOutlet.selectedSegmentIndex = mmwGameSceneViewController.numStarterWords - 1
-//            print("UI numStarterWords = \(mmwGameSceneViewController.numStarterWords)")
-//            
-//            // number of players UI
-//            gameViewController.numPlayersSwitchOutlet.selectedSegmentIndex = mmwGameSceneViewController.numPlayers - 2
-//            switch (mmwGameSceneViewController.numPlayers - 2){
-//            case 0:
-//                mmwGameSceneViewController.numPlayers = 2
-//                print("UI numPlayers 2")
-//                gameViewController.ViewPlayer3UI.alpha = 0.5
-//                gameViewController.ViewPlayer3UI.userInteractionEnabled = false
-//                gameViewController.ViewPlayer4UI.alpha = 0.5
-//                gameViewController.ViewPlayer4UI.userInteractionEnabled = false
-//            case 1:
-//                mmwGameSceneViewController.numPlayers = 3
-//                print("UI numPlayers 3")
-//                gameViewController.ViewPlayer3UI.alpha = 1.0
-//                gameViewController.ViewPlayer3UI.userInteractionEnabled = true
-//                gameViewController.ViewPlayer4UI.alpha = 0.5
-//                gameViewController.ViewPlayer4UI.userInteractionEnabled = false
-//            case 2:
-//                mmwGameSceneViewController.numPlayers = 4
-//                print("UI numPlayers 4")
-//                gameViewController.ViewPlayer3UI.alpha = 1.0
-//                gameViewController.ViewPlayer3UI.userInteractionEnabled = true
-//                gameViewController.ViewPlayer4UI.alpha = 1.0
-//                gameViewController.ViewPlayer4UI.userInteractionEnabled = true
-//            default:
-//                break;
-//            }
-            
-//            gameViewController.player1NameLabel.text = mmwGameSceneViewController.playerArray[0].playerName
-//            gameViewController.player2NameLabel.text = mmwGameSceneViewController.playerArray[1].playerName
-//            gameViewController.player3NameLabel.text = mmwGameSceneViewController.playerArray[2].playerName
-//            gameViewController.player4NameLabel.text = mmwGameSceneViewController.playerArray[3].playerName
-//            
-//            
-//            if mmwGameSceneViewController.playerArray[1].isHuman == true {  // Player 1 always human
-//                gameViewController.isHumanPlayer2Outlet.selectedSegmentIndex = 0
-//                gameViewController.player1ImageOutlet.image = UIImage(named: gameViewController.playerImageArray[mmwGameSceneViewController.playerArray[1].playerAvatarNumber])             }
-//            else {
-//                gameViewController.isHumanPlayer2Outlet.selectedSegmentIndex = 1
-//            }
-//            
-//            
-//            if mmwGameSceneViewController.playerArray[2].isHuman == false { // Player 2 always human
-//                gameViewController.isHumanPlayer2Outlet.selectedSegmentIndex = 0
-//                gameViewController.player2ImageOutlet.image = UIImage(named: gameViewController.playerImageArray[mmwGameSceneViewController.playerArray[1].playerAvatarNumber])
-//            }
-//            else {
-//                gameViewController.isHumanPlayer2Outlet.selectedSegmentIndex = 1
-//                gameViewController.player2ImageOutlet.image = UIImage(named: gameViewController.playerImageArray[mmwGameSceneViewController.playerArray[1].playerAvatarNumber])
-//            }
-
-            
-            
-//            for player in mmwGameSceneViewController.playerArray {
-//                if player.isHuman == false {
-//                    gameViewController.isHumanPlayer2Outlet.selectedSegmentIndex = 0
-//                    
-//                } else {
-//                    gameViewController.isHumanPlayer2Outlet.selectedSegmentIndex = 1
-//                }
-//            }
-            
-//            if mmwGameSceneViewController.playerArray[0].isHuman {
-////                gameViewController.player1ImageOutlet.image = gameViewController.playerImageArray[mmwGameSceneViewController.playerArray[0].playerAvatarNumber]
-//            }
-
         }
-
-        //gameViewController.ViewAllOptionsUI.hidden = false
-        
-//        print("MMWOptionScreen didMoveToView")
-//        gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
-//        gameViewController.ViewAllOptionsUI.hidden = false
-//        gameViewController.OptionsSwitchOutlet.hidden = true
-//        gameViewController.ViewOptionsUI.hidden = true
-//        gameViewController.viewRulesContainer.hidden = true
-//        gameViewController.viewStatsContainer.hidden = true
-//        gameViewController.ViewEndGameUI.hidden = false
-//        gameViewController.ViewResultsScreenUI.hidden = true
-        
+      
+            
         print("options button pressed")
         print("MMWOptionScreen didMoveToView")
         gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
@@ -301,8 +164,6 @@ class MMWOptionScreen: SKScene {
         gameViewController.viewStatsContainer.hidden = true
         gameViewController.ViewEndGameUI.hidden = true
         gameViewController.ViewResultsScreenUI.hidden = true
-        
-        
 
         //gameViewController.GameViewControllerUI.hidden = false   //ViewOptionsUI.hidden = false
 
@@ -334,26 +195,17 @@ class MMWOptionScreen: SKScene {
     
     func returnToGameScene () {
         print("return to mmw scene") //create MMW controller
-        //presentMMWScene()
-        
-        //gameViewController.ViewAllOptionsUI.hidden = true
+
 //        if mmwGameSceneViewController.timerIsOn {
 //            mmwGameScene.startTimer()
 //        }
-        
-        print("all players passed on turn")
-        gameViewController.ViewAllOptionsUI.hidden = true
-//        gameViewController.OptionsSwitchOutlet.hidden = true
-//        gameViewController.ViewOptionsUI.hidden = true
-//        gameViewController.viewRulesContainer.hidden = true
-//        gameViewController.viewStatsContainer.hidden = true
-//        gameViewController.ViewEndGameUI.hidden = true
-//        gameViewController.ViewResultsScreenUI.hidden = true
 
-        //view?.presentScene(mmwOptionScreen)
-       
+        gameViewController.ViewAllOptionsUI.hidden = true
         self.view?.presentScene(mmwGameScene)
-        mmwGameScene.changePlayerTurn()
+        //delay(1){
+            mmwGameScene.changePlayerTurn()
+        //}
+        
 
     }
     
@@ -362,7 +214,7 @@ class MMWOptionScreen: SKScene {
         
         mmwGameScene.foundValidWordOnTurn = true
         
-        let loadDelayTimeSecs = 20.0
+        let loadDelayTimeSecs = 17.0
         
         gameViewController.ViewAllOptionsUI.hidden = true
         newGameSpriteNode.hidden = false
@@ -381,15 +233,11 @@ class MMWOptionScreen: SKScene {
         
         delay (loadDelayTimeSecs) {
             gameViewController.ViewAllOptionsUI.hidden = true
-
             mmwGameScene.resetGameView()   // includes tileCollection?.resetAllTiles()
             self.view?.presentScene(mmwGameScene)
             mmwGameScene.startGame()  // set grids, starter words, ...
-            
         }
     }
-
-    
 
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -398,9 +246,7 @@ class MMWOptionScreen: SKScene {
             let location = touch.locationInNode(self)
             let _node:SKNode = self.nodeAtPoint(location)
 //            if(_node.name == "playBtn"){
-//                
 //                //returnToGameScene()
-//                
 //                newGameScene()
 //            }
         }

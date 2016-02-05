@@ -30,6 +30,7 @@ struct GameSceneSettings {
 class MMWGameSceneViewController : UIViewController {
     
     var numGamesWon = 0
+    var numGamesTied = 0
     var numGamesLost = 0
     var numWordsMade = 0
     var numLettersPlayed = 0

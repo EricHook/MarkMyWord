@@ -19,13 +19,14 @@ class EndGameScene: SKScene {
     }
     */
     
-    
     var viewSize = screenSize!
+    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         size = viewSize
     }
+    
     
     override init(size: CGSize) {
         super.init(size: size)
@@ -34,8 +35,7 @@ class EndGameScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        
-        
+
         screenSize = view.bounds.size
         print("view size MenuScene: \(screenSize)")
         

@@ -314,6 +314,7 @@ class GameViewController : UIViewController {
             gameViewController.viewStatsContainer.hidden = false
             gameViewController.ViewEndGameUI.hidden = true
             
+            toStatViewSettings()
 //            self.viewRulesContainer.hidden = true
 //            self.viewStatsContainer.hidden = false
             
@@ -337,10 +338,24 @@ class GameViewController : UIViewController {
     //       //    }
     
     
-    @IBOutlet weak var toStatView: UIButton!
+   
+//    @IBOutlet weak var toStatViewOutlet: UIButton!
+//    
+//    
+//    @IBAction func toStatView(sender: AnyObject) {
+//
+//        
+//    }
     
-    @IBAction func toStatView(sender: AnyObject) {
+    func toStatViewSettings() {
         
+        gamesWonOutlet.text = String(mmwGameSceneViewController.numGamesWon)
+        
+        gamesLostOutlet.text = String(mmwGameSceneViewController.numGamesLost)
+        
+        wordsPlayedOutlet.text = String(mmwGameSceneViewController.numWordsMade)
+        
+        lettersPlayedOutlet.text = String(mmwGameSceneViewController.numLettersPlayed)
         
     }
 
@@ -750,8 +765,30 @@ class GameViewController : UIViewController {
         gameViewController.viewStatsContainer.hidden = true
         gameViewController.ViewEndGameUI.hidden = true
         gameViewController.ViewResultsScreenUI.hidden = false
-
+        goToResults()
         //startNewGame()
+    }
+    
+    func goToResults() {
+        var otherHighestScore = -10000
+        for playerNum in 1..<mmwGameSceneViewController.playerArray.count {
+            if mmwGameSceneViewController.playerArray[playerNum].playerScore > otherHighestScore {
+                otherHighestScore = mmwGameSceneViewController.playerArray[playerNum].playerScore
+            }
+        }
+
+        if mmwGameSceneViewController.playerArray[0].playerScore > otherHighestScore {
+            gameResultsLabel.text = "Congratulations! You Won!"
+            mmwGameSceneViewController.numGamesWon++
+        }
+        else if mmwGameSceneViewController.playerArray[0].playerScore == otherHighestScore {
+            gameResultsLabel.text = "Not bad. You Tied."
+            mmwGameSceneViewController.numGamesTied++
+        }
+        else if mmwGameSceneViewController.playerArray[0].playerScore < otherHighestScore {
+            gameResultsLabel.text = "You Lost."
+            mmwGameSceneViewController.numGamesLost++
+        }
     }
 
 
@@ -824,7 +861,18 @@ class GameViewController : UIViewController {
         print("back to  mmwGameScene from optionsButton")
         
     }
+    
+    // MARK: STATS SCREEN
+    
+    
+    
+    @IBOutlet weak var gamesWonOutlet: UILabel!
+    
+    @IBOutlet weak var gamesLostOutlet: UILabel!
+    
+    @IBOutlet weak var wordsPlayedOutlet: UILabel!
 
+    @IBOutlet weak var lettersPlayedOutlet: UILabel!
     
     override func shouldAutorotate() -> Bool {
         return true

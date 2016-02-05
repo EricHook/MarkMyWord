@@ -940,7 +940,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         print("testPlayButton ()")
     }
     
-    func numPlayerLettersRemaining(player: Player) -> Int {
+    func numPlayerLettersOnBoard(player: Player) -> Int {
         var numLetterTiles = 0
         for y in 0...(mmwBoardGrid.gridNumSquaresY - 1) {   // fill letter tiles
             for x in 0...(mmwBoardGrid.gridNumSquaresX - 1) {
@@ -956,64 +956,101 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     func playBtnPlay () { // playButtonPlayNode: SKNode
 
         let playersTurn = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1]
-        
-        if playersTurn.playerLetterGrid.numLetterTilesInGrid() <= 0 {
-            //changePlayerTurn()
-            mmwGameSceneViewController.consecutivePasses++
-            playerPass()
-        }
+        let playerLevel = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerSkillLevel
+
+//        if playersTurn.playerLetterGrid.numLetterTilesInGrid() <= 0 {
+//            //changePlayerTurn()
+//            mmwGameSceneViewController.consecutivePasses++
+//            playerPass()
+//        }
 
         var pauseTime = 5.0
         
-        var numTilesRemaining = numPlayerLettersRemaining(mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1])
+//        var numTilesRemaining = numPlayerLettersOnBoard(mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1])
         
-        if playAILetters().playedWholeWord == true {
-            mmwGameSceneViewController.resetConsequtivePasses()
+        var numLettersRemaining = (mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid).numLetterTilesInGrid()
+        
+        if numLettersRemaining == 0 {
+            mmwGameSceneViewController.consecutivePasses++
+            delay(2){
+                self.changePlayerTurn()
+            }
             
-            numTilesRemaining = numPlayerLettersRemaining(mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1])
-            var playAnotherWord = Int(arc4random_uniform(10))
+        }
+        
+        else {
             
-            if playAnotherWord < 10 && numTilesRemaining > 0 {
-                pauseTime += 3.0
-                delay(pauseTime) {
-                    // Play second whole word, or partial
-                    if self.playAILetters().playedWholeWord == true {
-
-                    numTilesRemaining = self.numPlayerLettersRemaining(mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1])
-                        
-                    playAnotherWord = Int(arc4random_uniform(10))
-                        numTilesRemaining = self.numPlayerLettersRemaining(mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1])
-                        
-                        if playAnotherWord < 10 && numTilesRemaining > 0 {
-                            pauseTime += 3.0
-                            delay(pauseTime) {
-                                
-                                self.playAILetters() // Play third whole word, or partial
-                                delay(4) {
-                                    numTilesRemaining = self.numPlayerLettersRemaining(mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1])
-                                    if numTilesRemaining > 0 {
-                                        self.changePlayerTurn()
-                                    }
+            let tileplay : (playedPartialWord: Bool, playedWholeWord: Bool) = playAILetters()
+            
+            if tileplay.playedWholeWord == true && numLettersRemaining > 0 {
+                
+                if (tileplay.playedPartialWord == true || tileplay.playedWholeWord == true) {
+                    mmwGameSceneViewController.resetConsequtivePasses()
+                }
+                
+                numLettersRemaining = (mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid).numLetterTilesInGrid()
+                
+                var playAnotherWord = Int(arc4random_uniform(10))
+                
+                if playAnotherWord + (playerLevel * 2) > 4 && numLettersRemaining > 0 {
+                    pauseTime += 3.0
+                    delay(pauseTime) {
+                        // Play second whole word, or partial
+                        if self.playAILetters().playedWholeWord == true {
+                            
+                            numLettersRemaining = (mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid).numLetterTilesInGrid()
+                            
+                            playAnotherWord = Int(arc4random_uniform(10))
+                            numLettersRemaining = (mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid).numLetterTilesInGrid()
+                            
+                            if playAnotherWord + (playerLevel * 3) > 9 && numLettersRemaining > 0 {
+                                //pauseTime += 3.0
+                                delay(pauseTime) {
                                     
+                                    self.playAILetters() // Play third whole word, or partial
+                                    delay(4) {
+                                        numLettersRemaining = (mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid).numLetterTilesInGrid()
+                                        //if numLettersRemaining > 0 {
+                                        self.changePlayerTurn()
+                                        //}
+                                    }
+                                }
+                            }
+                            else {
+                                delay(pauseTime + 3) {
+                                    self.changePlayerTurn()
                                 }
                             }
                         }
                         else {
-                            self.changePlayerTurn()
+                            delay(pauseTime) {
+                                self.changePlayerTurn()
+                            }
                         }
                     }
-                    else {
+                }
+                else {
+                    delay(pauseTime) {
                         self.changePlayerTurn()
                     }
                 }
             }
+            else {
+                delay(2) {
+                    if (tileplay.playedPartialWord == false) {
+                        mmwGameSceneViewController.consecutivePasses++
+                    }
+                    self.changePlayerTurn()
+                    
+                }
+            }
+            
+            numLettersRemaining = (mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid).numLetterTilesInGrid()
+            //        if numTilesRemaining > 0 {
+            //            changePlayerTurn()
+            //        }
+
         }
-        
-        numTilesRemaining = self.numPlayerLettersRemaining(mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1])
-//        if numTilesRemaining > 0 {
-//            changePlayerTurn()
-//        }
-        
     }
     
     func playAILetters() -> (playedWholeWord: Bool, playedPartialWord: Bool){
@@ -1044,10 +1081,10 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             var allPossibleWholeWordPlays   = [[validAILetterPlay]]()
 
             if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerSkillLevel == 0 {
-                numLettersToPlayMax = 6
+                numLettersToPlayMax = 4
             }
             if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerSkillLevel == 1 {
-                numLettersToPlayMax = 6
+                numLettersToPlayMax = 5
             }
             if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerSkillLevel == 2 {
                 numLettersToPlayMax = 6
@@ -1125,9 +1162,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             
             if allPossibleWholeWordPlays.count >= 1 {
                 let wordToPlay = Int(arc4random_uniform(UInt32(allPossibleWholeWordPlays.count)))
-                
                 self.playAIPlaceholderTilesToBoard (allPossibleWholeWordPlays[wordToPlay])
-            
                 playedWholeWord = true
             }
             else {
@@ -1157,9 +1192,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
 //                self.changePlayerTurn()
 //            }
         
-        
 
-        
 //            dispatch_async(dispatch_get_main_queue(), {
 //                print("hello from playBtnPlay playAILetters thread executed as dispatch")
 //            })
@@ -1655,14 +1688,14 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             tile.tileSprite.tileGlow.hidden = true
         }
         
-        if tileCollection!.mmwTileArray.count > 0 {
-            newTilesButtonOn()
-            tilesRemainingLabel.text = "Tiles Left: \(tileCollection!.mmwTileArray.count)"
-        }
-        else {
-            newTilesButtonOff()
-            tilesRemainingLabel.text = "Tiles Left: None"
-        }
+//        if tileCollection!.mmwTileArray.count > 0 {
+//            newTilesButtonOn()
+//            tilesRemainingLabel.text = "Tiles Left: \(tileCollection!.mmwTileArray.count)"
+//        }
+//        else {
+//            newTilesButtonOff()
+//            tilesRemainingLabel.text = "Tiles Left: None"
+//        }
         
         let oldPlayer = mmwGameSceneViewController.playerTurn - 1  // player array is 0 based, players are 1 through 4
         mmwGameSceneViewController.playerArray[oldPlayer].playerLetterGrid.makeTilesInGridInteractive(false)
@@ -1675,11 +1708,20 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].isHuman == true {
                 mmwGameScene.optionsButton.userInteractionEnabled = false
                 mmwGameScene.optionsButton.alpha = 1.0
+                mmwGameScene.passButton.userInteractionEnabled = false
+                mmwGameScene.passButton.alpha = 1.0
+                if tileCollection!.mmwTileArray.count > 0 {
+                    newTilesButtonOn()
+                }
+                else { newTilesButtonOff() }
             }
                 
             else {
                 mmwGameScene.optionsButton.userInteractionEnabled = true
                 mmwGameScene.optionsButton.alpha = 0.5
+                mmwGameScene.passButton.userInteractionEnabled = true
+                mmwGameScene.passButton.alpha = 0.5
+                newTilesButtonOff()
             }
         }
             
@@ -1691,12 +1733,30 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].isHuman == true {
                 mmwGameScene.optionsButton.userInteractionEnabled = false
                 mmwGameScene.optionsButton.alpha = 1.0
+                mmwGameScene.passButton.userInteractionEnabled = false
+                mmwGameScene.passButton.alpha = 1.0
+                if tileCollection!.mmwTileArray.count > 0 {
+                    newTilesButtonOn()
+                }
+                else { newTilesButtonOff() }
             }
                 
             else {
                 mmwGameScene.optionsButton.userInteractionEnabled = true
                 mmwGameScene.optionsButton.alpha = 0.5
+                mmwGameScene.passButton.userInteractionEnabled = true
+                mmwGameScene.passButton.alpha = 0.5
+                newTilesButtonOff()
             }
+        }
+
+        if tileCollection!.mmwTileArray.count > 0 {
+            //newTilesButtonOn()
+            tilesRemainingLabel.text = "Tiles Left: \(tileCollection!.mmwTileArray.count)"
+        }
+        else {
+            //newTilesButtonOff()
+            tilesRemainingLabel.text = "Tiles Left: None"
         }
 
 //        if mmwGameSceneViewController.timerIsOn {
@@ -1713,7 +1773,18 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         }
         
         if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].isHuman == false {
-            playBtnPlay()
+//            if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.numLetterTilesInGrid() > 0 {
+                playBtnPlay()
+//            }
+//            else {
+//            
+        }
+        else if mmwGameSceneViewController.consecutivePasses >= mmwGameSceneViewController.numPlayers {
+            
+            print("all players passed on turn")
+//            view?.presentScene(mmwOptionScreen)
+//            mmwOptionScreen.allPlayersPassed()
+            
         }
     }
     
