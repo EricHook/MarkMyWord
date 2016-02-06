@@ -20,8 +20,8 @@
                             <view hidden="YES" userInteractionEnabled="NO" contentMode="center" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kvZ-ZC-q1r" userLabel="ViewAllOptionsUI">
                                 <rect key="frame" x="7" y="8" width="1359" height="827"/>
                                 <subviews>
-                                    <view hidden="YES" contentMode="center" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2xc-sc-iPr" userLabel="ViewOptionsUI">
-                                        <rect key="frame" x="177" y="23" width="656" height="706"/>
+                                    <view contentMode="center" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2xc-sc-iPr" userLabel="ViewOptionsUI">
+                                        <rect key="frame" x="351" y="61" width="656" height="706"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nWc-xQ-dyC" userLabel="ViewPlayer1">
                                                 <rect key="frame" x="-37" y="272" width="175" height="244"/>
@@ -36,15 +36,15 @@
                                                             <action selector="avatarStepperPlayer01:" destination="BV1-FR-VrT" eventType="valueChanged" id="pNp-cM-NIl"/>
                                                         </connections>
                                                     </stepper>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Player 1" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XJX-2z-rkx" userLabel="Player">
-                                                        <rect key="frame" x="40" y="8" width="94" height="30"/>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Player 1" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XJX-2z-rkx" userLabel="Player1NameTextField">
+                                                        <rect key="frame" x="24" y="8" width="126" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gyy-A0-cJA" userLabel="Player1Label">
-                                                        <rect key="frame" x="40" y="-8" width="94" height="29"/>
+                                                        <rect key="frame" x="40" y="8" width="94" height="29"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -74,6 +74,9 @@
                                                             <segment title="high"/>
                                                         </segments>
                                                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <connections>
+                                                            <action selector="player2SkillLevelAction:" destination="BV1-FR-VrT" eventType="valueChanged" id="fjx-iF-6u0"/>
+                                                        </connections>
                                                     </segmentedControl>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" highlighted="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ecm-Pm-26c">
                                                         <rect key="frame" x="48" y="46" width="94" height="29"/>
@@ -90,18 +93,18 @@
                                                         <rect key="frame" x="66" y="215" width="58" height="21"/>
                                                         <color key="tintColor" red="0.15000000599999999" green="0.15000000599999999" blue="0.15000000599999999" alpha="1" colorSpace="deviceRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Player 2" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M3c-pi-u9t" userLabel="Player2Name">
-                                                        <rect key="frame" x="48" y="8" width="94" height="30"/>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Player 2" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M3c-pi-u9t" userLabel="Player2NameTextField">
+                                                        <rect key="frame" x="32" y="8" width="126" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0a5-uK-Bdf" userLabel="Player2Label">
-                                                        <rect key="frame" x="48" y="-9" width="94" height="29"/>
+                                                        <rect key="frame" x="48" y="8" width="94" height="29"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -128,9 +131,12 @@
                                                             <segment title="high"/>
                                                         </segments>
                                                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <connections>
+                                                            <action selector="player3SkillLevelAction:" destination="BV1-FR-VrT" eventType="valueChanged" id="cnF-mk-qb1"/>
+                                                        </connections>
                                                     </segmentedControl>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Player 3" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QUJ-k7-C1N" userLabel="Player4Name">
-                                                        <rect key="frame" x="40" y="8" width="94" height="30"/>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Player 3" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QUJ-k7-C1N" userLabel="Player3NameTextField">
+                                                        <rect key="frame" x="24" y="8" width="126" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                     </textField>
@@ -149,13 +155,13 @@
                                                         <rect key="frame" x="58" y="215" width="58" height="21"/>
                                                         <color key="tintColor" red="0.15000000599999999" green="0.15000000599999999" blue="0.15000000599999999" alpha="1" colorSpace="deviceRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JIi-mz-Xfk" userLabel="Player3Label">
-                                                        <rect key="frame" x="40" y="-9" width="94" height="29"/>
+                                                        <rect key="frame" x="40" y="8" width="94" height="29"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -174,15 +180,6 @@
                                                             <action selector="avatarStepperPlayer04:" destination="BV1-FR-VrT" eventType="valueChanged" id="bpJ-RJ-5Ma"/>
                                                         </connections>
                                                     </stepper>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="Qpa-ab-m37">
-                                                        <rect key="frame" x="40" y="187" width="94" height="29"/>
-                                                        <segments>
-                                                            <segment title="low"/>
-                                                            <segment title="mid"/>
-                                                            <segment title="high"/>
-                                                        </segments>
-                                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </segmentedControl>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="56l-dQ-RG0">
                                                         <rect key="frame" x="40" y="46" width="94" height="29"/>
                                                         <segments>
@@ -194,8 +191,8 @@
                                                             <action selector="isHumanPlayer4Action:" destination="BV1-FR-VrT" eventType="valueChanged" id="lN6-93-uQi"/>
                                                         </connections>
                                                     </segmentedControl>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Player 4" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0ej-dc-Dm7">
-                                                        <rect key="frame" x="40" y="8" width="94" height="30"/>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Player 4" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0ej-dc-Dm7" userLabel="Player4NameTextField">
+                                                        <rect key="frame" x="24" y="8" width="126" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                     </textField>
@@ -203,22 +200,34 @@
                                                         <rect key="frame" x="58" y="215" width="58" height="21"/>
                                                         <color key="tintColor" red="0.15000000599999999" green="0.15000000599999999" blue="0.15000000599999999" alpha="1" colorSpace="deviceRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJy-6A-j8C" userLabel="Player4Label">
-                                                        <rect key="frame" x="40" y="-9" width="94" height="29"/>
+                                                        <rect key="frame" x="40" y="9" width="94" height="29"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="Qpa-ab-m37">
+                                                        <rect key="frame" x="40" y="187" width="94" height="29"/>
+                                                        <segments>
+                                                            <segment title="low"/>
+                                                            <segment title="mid"/>
+                                                            <segment title="high"/>
+                                                        </segments>
+                                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <connections>
+                                                            <action selector="player4SkillLevelAction:" destination="BV1-FR-VrT" eventType="valueChanged" id="3U9-Xs-8dR"/>
+                                                        </connections>
+                                                    </segmentedControl>
                                                 </subviews>
                                                 <color key="tintColor" red="0.50980392159999999" green="0.1450980392" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="number of players:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgk-Kz-z3l">
                                                 <rect key="frame" x="81" y="188" width="143" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="2Fh-YX-ONY">
@@ -246,7 +255,7 @@
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="seconds per turn:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIl-oo-DtS">
                                                 <rect key="frame" x="81" y="13" width="135" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="MWV-lc-QH3">
@@ -265,7 +274,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="audio:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20T-ls-v9S">
                                                 <rect key="frame" x="81" y="49" width="47" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="r3t-0e-OMa">
@@ -281,7 +290,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="number of starter words:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLQ-27-Abo">
                                                 <rect key="frame" x="81" y="142" width="190" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="sMJ-dZ-c0b">
@@ -295,15 +304,8 @@
                                                     <action selector="numStarterWordsSwitchAction:" destination="BV1-FR-VrT" eventType="valueChanged" id="I9K-eD-ifo"/>
                                                 </connections>
                                             </segmentedControl>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tsw-7H-Vfy">
-                                                <rect key="frame" x="81" y="592" width="107" height="30"/>
-                                                <state key="normal" title="start new game"/>
-                                                <connections>
-                                                    <action selector="startNewGameButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="G72-Ig-sue"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOF-Gn-kq7">
-                                                <rect key="frame" x="289" y="592" width="102" height="30"/>
+                                                <rect key="frame" x="458" y="592" width="102" height="30"/>
                                                 <state key="normal" title="return to game"/>
                                                 <connections>
                                                     <action selector="returnToGameButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="VKm-r8-xfz"/>
@@ -312,9 +314,16 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="minimum word length:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSo-L6-cGo">
                                                 <rect key="frame" x="81" y="94" width="170" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tsw-7H-Vfy">
+                                                <rect key="frame" x="81" y="592" width="107" height="30"/>
+                                                <state key="normal" title="start new game"/>
+                                                <connections>
+                                                    <action selector="startNewGameButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="G72-Ig-sue"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
@@ -375,7 +384,7 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rules" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1uS-fF-Jv2">
                                                         <rect key="frame" x="266" y="34" width="52" height="40"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -396,55 +405,55 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Statistics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhS-au-6cc">
                                                                 <rect key="frame" x="144" y="40" width="90" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="games won:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QaO-aL-b7h">
                                                                 <rect key="frame" x="142" y="82" width="92" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1i-Tn-50g" userLabel="gamesWonLabel">
                                                                 <rect key="frame" x="249" y="82" width="86" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="games lost:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ArC-Ke-eIA">
                                                                 <rect key="frame" x="145" y="111" width="89" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cK7-KW-cGf" userLabel="gamesLostLabel">
                                                                 <rect key="frame" x="249" y="111" width="86" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="number of words played:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qE-3q-a1G">
                                                                 <rect key="frame" x="44" y="140" width="190" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6l-nj-Nhe" userLabel="numWordsPlayedLabel">
                                                                 <rect key="frame" x="249" y="140" width="86" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="number of letters played:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3NK-YW-a5C">
                                                                 <rect key="frame" x="42" y="168" width="192" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awp-mc-tAM" userLabel="numLettersPlayedLabel">
                                                                 <rect key="frame" x="249" y="168" width="86" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -481,7 +490,7 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Would you like to end the game?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENN-uE-fWR">
                                                         <rect key="frame" x="181" y="112" width="248" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5jk-lf-Zyh">
@@ -517,13 +526,13 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Results:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3K-rD-N63">
                                                 <rect key="frame" x="270" y="28" width="61" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Congratulation! You Won!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qqf-me-QYt">
                                                 <rect key="frame" x="203" y="115" width="195" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Q4-Bg-CB5">
@@ -555,7 +564,6 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="2xc-sc-iPr" firstAttribute="centerX" secondItem="kvZ-ZC-q1r" secondAttribute="centerX" id="dET-tI-3f6"/>
                                     <constraint firstItem="3aq-kh-RBD" firstAttribute="centerX" secondItem="kvZ-ZC-q1r" secondAttribute="centerX" id="gne-BH-NYp"/>
                                 </constraints>
                             </view>
@@ -565,6 +573,7 @@
                             <constraint firstItem="Le2-4T-vRc" firstAttribute="top" secondItem="maK-i9-Uhn" secondAttribute="bottom" constant="2" id="NG7-YX-y4b"/>
                             <constraint firstItem="CgP-F3-NOu" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="NHP-9E-flx"/>
                             <constraint firstItem="Le2-4T-vRc" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="abQ-pm-qUB"/>
+                            <constraint firstItem="2xc-sc-iPr" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="eZB-hp-SG3"/>
                             <constraint firstItem="5c7-Ad-yBv" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="foZ-rD-Sli"/>
                         </constraints>
                     </view>
@@ -600,12 +609,19 @@
                         <outlet property="numStarterWordsSwitchOutlet" destination="sMJ-dZ-c0b" id="Q89-ke-xjL"/>
                         <outlet property="player1ImageOutlet" destination="Rht-8W-azC" id="4bv-Tu-2tO"/>
                         <outlet property="player1NameLabel" destination="gyy-A0-cJA" id="Q3n-2L-f8s"/>
+                        <outlet property="player1NameTextFieldOutlet" destination="XJX-2z-rkx" id="OvC-ob-gHJ"/>
                         <outlet property="player2ImageOutlet" destination="nPl-7S-LhR" id="uVx-Q7-chZ"/>
                         <outlet property="player2NameLabel" destination="0a5-uK-Bdf" id="RR8-9M-3xU"/>
+                        <outlet property="player2NameTextFieldOutlet" destination="M3c-pi-u9t" id="wM0-Ce-myT"/>
+                        <outlet property="player2SkillLevelOutlet" destination="fe5-FU-GZT" id="xED-e2-3W7"/>
                         <outlet property="player3ImageOutlet" destination="uSM-A3-PiP" id="Lfx-ez-Rq0"/>
                         <outlet property="player3NameLabel" destination="JIi-mz-Xfk" id="iUd-71-LZx"/>
+                        <outlet property="player3NameTextFieldOutlet" destination="QUJ-k7-C1N" id="vRK-kx-Wu8"/>
+                        <outlet property="player3SkillLevelOutlet" destination="JTH-xM-j94" id="PRi-zm-SWr"/>
                         <outlet property="player4ImageOutlet" destination="DjD-Kz-HSF" id="34e-wc-RDG"/>
                         <outlet property="player4NameLabel" destination="lJy-6A-j8C" id="e8u-H9-Quv"/>
+                        <outlet property="player4NameTextFieldOutlet" destination="0ej-dc-Dm7" id="SJ4-BX-X9a"/>
+                        <outlet property="player4SkillLevelOutlet" destination="Qpa-ab-m37" id="5y0-1A-jWq"/>
                         <outlet property="returnToGameButtonOutlet" destination="rOF-Gn-kq7" id="YjK-S4-dHm"/>
                         <outlet property="secondPerTurnSwitchOutlet" destination="MWV-lc-QH3" id="MD3-na-F2A"/>
                         <outlet property="viewRulesContainer" destination="CgP-F3-NOu" id="S39-wU-hLK"/>

@@ -398,29 +398,30 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         //        let loadingAnimSequence = SKAction.sequence([loadingAnim, SKAction.removeFromParent()])
         //        playBtnTEMP.runAction(loadingAnimSequence)
         
-        // Placeholder for AI play
-        let playBtnPlay = SKSpriteNode(imageNamed: "PlayButton.png")
-        playBtnPlay.position = CGPoint(x: viewSize.width * 0.0, y: viewSize.height * 0.00)
-        playBtnPlay.anchorPoint = CGPointMake(0, 0)
-        playBtnPlay.name = "playBtnPlay"
-        playBtnPlay.zPosition = 100
-        playBtnPlay.size = CGSizeMake(40.0, 40.0)
-        if self.childNodeWithName("playBtnPlay") == nil {
-            addChild(playBtnPlay)
-        }
+//        // Placeholder for AI play
+//        let playBtnPlay = SKSpriteNode(imageNamed: "PlayButton.png")
+//        playBtnPlay.position = CGPoint(x: viewSize.width * 0.0, y: viewSize.height * 0.00)
+//        playBtnPlay.anchorPoint = CGPointMake(0, 0)
+//        playBtnPlay.name = "playBtnPlay"
+//        playBtnPlay.zPosition = 100
+//        playBtnPlay.size = CGSizeMake(40.0, 40.0)
+//        if self.childNodeWithName("playBtnPlay") == nil {
+//            addChild(playBtnPlay)
+//        }
+        
         newTilesButton.userInteractionEnabled = true
         
-        // Placeholder for Test Code
-        let testPlayButton = SKSpriteNode(imageNamed: "PlayButton.png")
-        testPlayButton.position = CGPoint(x: viewSize.width * 0.0, y: viewSize.height * 1.0)
-        //testPlayButton.position = CGPoint(x: 50, y: 50)
-        testPlayButton.anchorPoint = CGPointMake(0, 1)
-        testPlayButton.name = "testPlayButton"
-        testPlayButton.zPosition = 100
-        testPlayButton.size = CGSizeMake(40.0, 40.0)
-        if self.childNodeWithName("testPlayButton") == nil {
-            addChild(testPlayButton)
-        }
+//        // Placeholder for Test Code
+//        let testPlayButton = SKSpriteNode(imageNamed: "PlayButton.png")
+//        testPlayButton.position = CGPoint(x: viewSize.width * 0.0, y: viewSize.height * 1.0)
+//        //testPlayButton.position = CGPoint(x: 50, y: 50)
+//        testPlayButton.anchorPoint = CGPointMake(0, 1)
+//        testPlayButton.name = "testPlayButton"
+//        testPlayButton.zPosition = 100
+//        testPlayButton.size = CGSizeMake(40.0, 40.0)
+//        if self.childNodeWithName("testPlayButton") == nil {
+//            addChild(testPlayButton)
+//        }
 
         //        var logoFrame = CGRectMake(0,0,118,40)
         //        self.addChild(logoFrame)
@@ -620,13 +621,15 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         let meyamaImageNumber = playerView.mmwPlayer.playerMeyamaNumber
         let avatarImageNumber = playerView.mmwPlayer.playerAvatarNumber
         
-        if  isHuman == false {
+        if  isHuman == false { // is Meyama
             playerView.playerSprite.texture  = SKTexture(imageNamed:gameViewController.meyamaImageArray[meyamaImageNumber])
             playerView.playerNameLabel.text = gameViewController.meyamaAvatarNames[meyamaImageNumber]
+            
         }
-        else {
+        else { // is Human
             playerView.playerSprite.texture = SKTexture(imageNamed:gameViewController.playerImageArray[avatarImageNumber])
-            playerView.playerNameLabel.text = gameViewController.playerAvatarNames[avatarImageNumber]
+            //playerView.playerNameLabel.text = gameViewController.playerAvatarNames[avatarImageNumber]
+            playerView.playerNameLabel.text = mmwGameSceneViewController.playerArray[playerNum-1].playerName
         }
         
         if mmwGameSceneViewController.numPlayers == 2 { // if 2 one left and one right
@@ -755,16 +758,18 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         var starterWord0TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord0, letterTileArray: &tileCollection!.mmwTileArray)
         
         var starterWord1 = mmwGameSceneViewController.getRandomWord()
-        while mmwGameSceneViewController.checkTilesForWord(starterWord1, letterTileArray: tileCollection!.mmwTileArray) == false {
-            starterWord1 = mmwGameSceneViewController.getRandomWord()
-        }
+//        while mmwGameSceneViewController.checkTilesForWord(starterWord1, letterTileArray: tileCollection!.mmwTileArray) == false {
+//            starterWord1 = mmwGameSceneViewController.getRandomWord()
+//        }
         var starterWord1TileArray : [MMWTile]
-        
-        var starterWord2 = mmwGameSceneViewController.getRandomWord()
-        while (starterWord2 == starterWord1) || (mmwGameSceneViewController.checkTilesForWord(starterWord2, letterTileArray: tileCollection!.mmwTileArray ) == false )  {
-            starterWord2 = mmwGameSceneViewController.getRandomWord()
-        }
+//        //var starterWord1TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord1, letterTileArray: &tileCollection!.mmwTileArray)
+//        
+//        var starterWord2 = mmwGameSceneViewController.getRandomWord()
+//        while (starterWord2 == starterWord1) || (mmwGameSceneViewController.checkTilesForWord(starterWord2, letterTileArray: tileCollection!.mmwTileArray ) == false )  {
+//            starterWord2 = mmwGameSceneViewController.getRandomWord()
+//        }
         var starterWord2TileArray : [MMWTile]
+//        //var starterWord2TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord1, letterTileArray: &tileCollection!.mmwTileArray)
         
         if arc4random_uniform(100) > 50 { // VERTICAL
             if mmwGameSceneViewController.numStarterWords == 1 {
@@ -772,43 +777,92 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             }
             
             if mmwGameSceneViewController.numStarterWords == 2 {
-                starterWord1TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord1, letterTileArray: &tileCollection!.mmwTileArray)!
+//                starterWord1TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord1, letterTileArray: &tileCollection!.mmwTileArray)!
                 
+                
+                var starterWord1 = mmwGameSceneViewController.getRandomWord()
+                while mmwGameSceneViewController.checkTilesForWord(starterWord1, letterTileArray: tileCollection!.mmwTileArray) == false {
+                    starterWord1 = mmwGameSceneViewController.getRandomWord()
+                }
+                var starterWord1TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord1, letterTileArray: &tileCollection!.mmwTileArray)
+
                 mmwGameSceneViewController.sendWordToBoard(&starterWord0TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 3, yStartSquare: 3, IsHorizonal: false, player: mmwGameSceneViewController.player0)
-                mmwGameSceneViewController.sendWordToBoard(&starterWord1TileArray, gridToDisplay: mmwBoardGrid, xStartSquare: 11, yStartSquare: 7, IsHorizonal: false, player: mmwGameSceneViewController.player0)
+                mmwGameSceneViewController.sendWordToBoard(&starterWord1TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 11, yStartSquare: 7, IsHorizonal: false, player: mmwGameSceneViewController.player0)
             }
             
             if mmwGameSceneViewController.numStarterWords == 3 {
-                starterWord1TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord1, letterTileArray: &tileCollection!.mmwTileArray)!
                 
-                starterWord2TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord2, letterTileArray: &tileCollection!.mmwTileArray)!
+                var starterWord1 = mmwGameSceneViewController.getRandomWord()
+                while mmwGameSceneViewController.checkTilesForWord(starterWord1, letterTileArray: tileCollection!.mmwTileArray) == false {
+                    starterWord1 = mmwGameSceneViewController.getRandomWord()
+                }
+                var starterWord1TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord1, letterTileArray: &tileCollection!.mmwTileArray)
+                
+                var starterWord2 = mmwGameSceneViewController.getRandomWord()
+                while mmwGameSceneViewController.checkTilesForWord(starterWord2, letterTileArray: tileCollection!.mmwTileArray) == false {
+                    starterWord1 = mmwGameSceneViewController.getRandomWord()
+                }
+                var starterWord2TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord2, letterTileArray: &tileCollection!.mmwTileArray)
+                
+//                starterWord1TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord1, letterTileArray: &tileCollection!.mmwTileArray)!
+//                
+//                starterWord2TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord2, letterTileArray: &tileCollection!.mmwTileArray)!
                 
                 mmwGameSceneViewController.sendWordToBoard(&starterWord0TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 3, yStartSquare: 2, IsHorizonal: false, player: mmwGameSceneViewController.player0)
-                mmwGameSceneViewController.sendWordToBoard(&starterWord1TileArray, gridToDisplay: mmwBoardGrid, xStartSquare: 11, yStartSquare: 2, IsHorizonal: false, player: mmwGameSceneViewController.player0)
-                mmwGameSceneViewController.sendWordToBoard(&starterWord2TileArray, gridToDisplay: mmwBoardGrid, xStartSquare: 7, yStartSquare: 8, IsHorizonal: false, player: mmwGameSceneViewController.player0)
+                mmwGameSceneViewController.sendWordToBoard(&starterWord1TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 11, yStartSquare: 2, IsHorizonal: false, player: mmwGameSceneViewController.player0)
+                mmwGameSceneViewController.sendWordToBoard(&starterWord2TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 7, yStartSquare: 8, IsHorizonal: false, player: mmwGameSceneViewController.player0)
             }
         }
             
         else { // HORIZONTAL
             if mmwGameSceneViewController.numStarterWords == 1 {
+                
+                
                 mmwGameSceneViewController.sendWordToBoard(&starterWord0TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 5, yStartSquare: 7, IsHorizonal: true, player: mmwGameSceneViewController.player0)
             }
             
             if mmwGameSceneViewController.numStarterWords == 2 {
-                starterWord1TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord1, letterTileArray: &tileCollection!.mmwTileArray)!
+                
+                
+                var starterWord1 = mmwGameSceneViewController.getRandomWord()
+                while mmwGameSceneViewController.checkTilesForWord(starterWord1, letterTileArray: tileCollection!.mmwTileArray) == false {
+                    starterWord1 = mmwGameSceneViewController.getRandomWord()
+                }
+                var starterWord1TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord1, letterTileArray: &tileCollection!.mmwTileArray)
+
+                
+
+//                starterWord1TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord1, letterTileArray: &tileCollection!.mmwTileArray)!
                 
                 mmwGameSceneViewController.sendWordToBoard(&starterWord0TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 3, yStartSquare: 3, IsHorizonal: true, player: mmwGameSceneViewController.player0)
-                mmwGameSceneViewController.sendWordToBoard(&starterWord1TileArray, gridToDisplay: mmwBoardGrid, xStartSquare: 7, yStartSquare: 11, IsHorizonal: true, player: mmwGameSceneViewController.player0)
+                mmwGameSceneViewController.sendWordToBoard(&starterWord1TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 7, yStartSquare: 11, IsHorizonal: true, player: mmwGameSceneViewController.player0)
             }
             
             if mmwGameSceneViewController.numStarterWords == 3 {
-                starterWord1TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord1, letterTileArray: &tileCollection!.mmwTileArray)!
                 
-                starterWord2TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord2, letterTileArray: &tileCollection!.mmwTileArray)!
+                
+                
+                var starterWord1 = mmwGameSceneViewController.getRandomWord()
+                while mmwGameSceneViewController.checkTilesForWord(starterWord1, letterTileArray: tileCollection!.mmwTileArray) == false {
+                    starterWord1 = mmwGameSceneViewController.getRandomWord()
+                }
+                var starterWord1TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord1, letterTileArray: &tileCollection!.mmwTileArray)
+                
+                var starterWord2 = mmwGameSceneViewController.getRandomWord()
+                while mmwGameSceneViewController.checkTilesForWord(starterWord2, letterTileArray: tileCollection!.mmwTileArray) == false {
+                    starterWord1 = mmwGameSceneViewController.getRandomWord()
+                }
+                var starterWord2TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord2, letterTileArray: &tileCollection!.mmwTileArray)
+                
+
+                
+//                starterWord1TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord1, letterTileArray: &tileCollection!.mmwTileArray)!
+//                
+//                starterWord2TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord2, letterTileArray: &tileCollection!.mmwTileArray)!
                 
                 mmwGameSceneViewController.sendWordToBoard(&starterWord0TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 2, yStartSquare: 3, IsHorizonal: true, player: mmwGameSceneViewController.player0)
-                mmwGameSceneViewController.sendWordToBoard(&starterWord1TileArray, gridToDisplay: mmwBoardGrid, xStartSquare: 8, yStartSquare: 7, IsHorizonal: true, player: mmwGameSceneViewController.player0)
-                mmwGameSceneViewController.sendWordToBoard(&starterWord2TileArray, gridToDisplay: mmwBoardGrid, xStartSquare: 2, yStartSquare: 11, IsHorizonal: true, player: mmwGameSceneViewController.player0)
+                mmwGameSceneViewController.sendWordToBoard(&starterWord1TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 8, yStartSquare: 7, IsHorizonal: true, player: mmwGameSceneViewController.player0)
+                mmwGameSceneViewController.sendWordToBoard(&starterWord2TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 2, yStartSquare: 11, IsHorizonal: true, player: mmwGameSceneViewController.player0)
             }
         }
     }
@@ -918,6 +972,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             }
             else {
                 playerViewArr[playerArrayNumber].playerTex = SKTexture(imageNamed:gameViewController.playerImageArray[avatarImageNumber])
+//                playerViewArr[playerArrayNumber].playerNameLabel.text = mmwGameSceneViewController.playerArray[playerArrayNumber].playerName
             }
             playerArrayNumber++
         }
@@ -1773,18 +1828,25 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             runAction(SKAction.playSoundFileNamed("points.WAV", waitForCompletion: false))
         }
         
-        if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].isHuman == false {
-//            if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.numLetterTilesInGrid() > 0 {
-                playBtnPlay()
-//            }
-//            else {
-//            
-        }
-        else if mmwGameSceneViewController.consecutivePasses >= mmwGameSceneViewController.numPlayers {
+        
+        delay (0.5) {
             
-            print("all players passed on turn")
-//            view?.presentScene(mmwOptionScreen)
-//            mmwOptionScreen.allPlayersPassed()
+            if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].isHuman == false {
+                //            if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.numLetterTilesInGrid() > 0 {
+                self.playBtnPlay()
+                //            }
+                //            else {
+                //
+            }
+            else if mmwGameSceneViewController.consecutivePasses >= mmwGameSceneViewController.numPlayers {
+                
+                print("all players passed on turn")
+                //            view?.presentScene(mmwOptionScreen)
+                //            mmwOptionScreen.allPlayersPassed()
+                
+            }
+
+            
             
         }
     }

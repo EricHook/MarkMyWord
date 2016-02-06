@@ -203,7 +203,7 @@ class MMWOptionScreen: SKScene {
         gameViewController.ViewAllOptionsUI.hidden = true
         self.view?.presentScene(mmwGameScene)
         //delay(1){
-            mmwGameScene.changePlayerTurn()
+            //mmwGameScene.changePlayerTurn()
         //}
         
 
@@ -272,6 +272,9 @@ class MMWOptionScreen: SKScene {
         /* Called before each frame is rendered */
     }
     
+    
+    
+       
 //    func openKeyboardToSaveValue(value:String){
 //        if keyboardOpen == false {
 //            keyboardOpen = true

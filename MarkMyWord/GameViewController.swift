@@ -43,7 +43,7 @@ var selectedMeyamaAvatar = 0
 //var humanAvatarImages = [SKimage]
 //var meyamaAvatarImages = [SKimage]
 
-class GameViewController : UIViewController {
+class GameViewController : UIViewController, UITextFieldDelegate {
     
     //@IBOutlet weak var menuView: UIView?
     //@IBOutlet weak var playButton: UIButton?
@@ -213,18 +213,30 @@ class GameViewController : UIViewController {
         tempPlayer2MeyamaNumber = mmwGameSceneViewController.playerArray[1].playerMeyamaNumber
         tempPlayer3MeyamaNumber = mmwGameSceneViewController.playerArray[2].playerMeyamaNumber
         tempPlayer4MeyamaNumber = mmwGameSceneViewController.playerArray[3].playerMeyamaNumber
+        
+        // Player 1 always human
+        player1NameTextFieldOutlet.hidden = false
+        player1NameLabel.hidden = true
+        
 
         if tempPlayer2IsHuman == false {
             isHumanPlayer2Outlet.selectedSegmentIndex = 0
             player2NameLabel.text = meyamaAvatarNames[tempPlayer2MeyamaNumber]
             player2ImageOutlet.image = UIImage(named: meyamaImageArray[tempPlayer2MeyamaNumber ])
             avatarStepperPlayer02.value = Double(tempPlayer2MeyamaNumber)
+            player2NameTextFieldOutlet.hidden = true
+            player2NameLabel.hidden = false
+            player2SkillLevelOutlet.hidden = false
+            
         }
         else { // human player tempPlayer2IsHuman = true
             isHumanPlayer2Outlet.selectedSegmentIndex = 1
             player2NameLabel.text = playerAvatarNames[tempPlayer2AvatarNumber]
             player2ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer2AvatarNumber ])
             avatarStepperPlayer02.value = Double(tempPlayer2AvatarNumber)
+            player2NameTextFieldOutlet.hidden = false
+            player2NameLabel.hidden = true
+            player2SkillLevelOutlet.hidden = true
         }
         
         if tempPlayer3IsHuman == false {
@@ -232,6 +244,9 @@ class GameViewController : UIViewController {
             player3NameLabel.text = meyamaAvatarNames[tempPlayer3MeyamaNumber]
             player3ImageOutlet.image = UIImage(named: meyamaImageArray[tempPlayer3MeyamaNumber ])
             avatarStepperPlayer03.value = Double(tempPlayer3MeyamaNumber)
+            player3NameTextFieldOutlet.hidden = true
+            player3NameLabel.hidden = false
+            player3SkillLevelOutlet.hidden = false
             
         }
         else { // human player tempPlayer3IsHuman = true
@@ -239,6 +254,9 @@ class GameViewController : UIViewController {
             player3NameLabel.text = playerAvatarNames[tempPlayer3AvatarNumber]
             player3ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer3AvatarNumber ])
             avatarStepperPlayer03.value = Double(tempPlayer3AvatarNumber)
+            player3NameTextFieldOutlet.hidden = false
+            player3NameLabel.hidden = true
+            player3SkillLevelOutlet.hidden = true
         }
 
         if tempPlayer4IsHuman == false {
@@ -246,13 +264,18 @@ class GameViewController : UIViewController {
             player4NameLabel.text = meyamaAvatarNames[tempPlayer4MeyamaNumber]
             player4ImageOutlet.image = UIImage(named: meyamaImageArray[tempPlayer4MeyamaNumber ])
             avatarStepperPlayer04.value = Double(tempPlayer4MeyamaNumber)
-            
+            player4NameTextFieldOutlet.hidden = true
+            player4NameLabel.hidden = false
+            player4SkillLevelOutlet.hidden = false
         }
         else { // human player tempPlayer4IsHuman = true
             isHumanPlayer4Outlet.selectedSegmentIndex = 1
             player4NameLabel.text = playerAvatarNames[tempPlayer4AvatarNumber]
             player4ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer4AvatarNumber ])
             avatarStepperPlayer04.value = Double(tempPlayer4AvatarNumber)
+            player4NameTextFieldOutlet.hidden = false
+            player4NameLabel.hidden = true
+            player4SkillLevelOutlet.hidden = true
         }
     }
 
@@ -500,12 +523,18 @@ class GameViewController : UIViewController {
             player2ImageOutlet.image = UIImage(named: meyamaImageArray[tempPlayer2MeyamaNumber ])
             player2NameLabel.text = meyamaAvatarNames[tempPlayer2MeyamaNumber]
             avatarStepperPlayer02.value = Double(tempPlayer2MeyamaNumber)
+            player2NameTextFieldOutlet.hidden = true
+            player2NameLabel.hidden = false
+            player2SkillLevelOutlet.hidden = false
             
         case 1: // human player
             tempPlayer2IsHuman = true
             player2NameLabel.text = playerAvatarNames[tempPlayer2AvatarNumber]
             player2ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer2AvatarNumber ])
             avatarStepperPlayer02.value = Double(tempPlayer2AvatarNumber)
+            player2NameTextFieldOutlet.hidden = false
+            player2NameLabel.hidden = true
+            player2SkillLevelOutlet.hidden = true
         default:
             break
         }
@@ -518,12 +547,18 @@ class GameViewController : UIViewController {
             player3ImageOutlet.image = UIImage(named: meyamaImageArray[tempPlayer3MeyamaNumber ])
             player3NameLabel.text = meyamaAvatarNames[tempPlayer3MeyamaNumber]
             avatarStepperPlayer03.value = Double(tempPlayer3MeyamaNumber)
+            player3NameTextFieldOutlet.hidden = true
+            player3NameLabel.hidden = false
+            player3SkillLevelOutlet.hidden = false
         
         case 1: // human player
             tempPlayer3IsHuman = true
             player3NameLabel.text = playerAvatarNames[tempPlayer3AvatarNumber]
             player3ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer3AvatarNumber ])
             avatarStepperPlayer03.value = Double(tempPlayer3AvatarNumber)
+            player3NameTextFieldOutlet.hidden = false
+            player3NameLabel.hidden = true
+            player3SkillLevelOutlet.hidden = true
         default:
             break
         }
@@ -536,11 +571,17 @@ class GameViewController : UIViewController {
             player4ImageOutlet.image = UIImage(named: meyamaImageArray[tempPlayer4MeyamaNumber ])
             player4NameLabel.text = meyamaAvatarNames[tempPlayer4MeyamaNumber]
             avatarStepperPlayer03.value = Double(tempPlayer4MeyamaNumber)
+            player4NameTextFieldOutlet.hidden = true
+            player4NameLabel.hidden = false
+            player4SkillLevelOutlet.hidden = false
         case 1: // human player
             tempPlayer4IsHuman = true
             player4NameLabel.text = playerAvatarNames[tempPlayer4AvatarNumber]
             player4ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer4AvatarNumber ])
             avatarStepperPlayer04.value = Double(tempPlayer4AvatarNumber)
+            player4NameTextFieldOutlet.hidden = false
+            player4NameLabel.hidden = true
+            player4SkillLevelOutlet.hidden = true
         default:
             break
         }
@@ -560,8 +601,12 @@ class GameViewController : UIViewController {
         player1ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer1AvatarNumber ])
         if tempPlayer1IsHuman == true {
             player1NameLabel.text = playerAvatarNames[tempPlayer1AvatarNumber]
+//            player1NameTextFieldOutlet.hidden = false
+//            player1NameLabel.hidden = true
         } else {
             player1NameLabel.text = playerAvatarNames[tempPlayer1AvatarNumber]
+//            player1NameTextFieldOutlet.hidden = true
+//            player1NameLabel.hidden = false
         }
     }
 
@@ -572,11 +617,15 @@ class GameViewController : UIViewController {
             player2NameLabel.text = meyamaAvatarNames[tempPlayer2MeyamaNumber]
             player2ImageOutlet.image = UIImage(named: meyamaImageArray[tempPlayer2MeyamaNumber])
             player2NameLabel.text = meyamaAvatarNames[tempPlayer2MeyamaNumber]
+//            player2NameTextFieldOutlet.hidden = true
+//            player2NameLabel.hidden = false
         } else { // human
             tempPlayer2AvatarNumber = Int(sender.value)
             player2NameLabel.text = playerAvatarNames[tempPlayer2AvatarNumber]
             player2ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer2AvatarNumber])
             player2NameLabel.text = playerAvatarNames[tempPlayer2AvatarNumber]
+//            player2NameTextFieldOutlet.hidden = false
+//            player2NameLabel.hidden = true
         }
     }
 
@@ -586,11 +635,15 @@ class GameViewController : UIViewController {
             player3NameLabel.text = meyamaAvatarNames[tempPlayer3MeyamaNumber]
             player3ImageOutlet.image = UIImage(named: meyamaImageArray[tempPlayer3MeyamaNumber])
             player3NameLabel.text = meyamaAvatarNames[tempPlayer3MeyamaNumber]
+//            player3NameTextFieldOutlet.hidden = true
+//            player3NameLabel.hidden = false
         } else { // human
             tempPlayer3AvatarNumber = Int(sender.value)
             player3NameLabel.text = playerAvatarNames[tempPlayer3AvatarNumber]
             player3ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer3AvatarNumber])
             player3NameLabel.text = playerAvatarNames[tempPlayer3AvatarNumber]
+//            player3NameTextFieldOutlet.hidden = false
+//            player3NameLabel.hidden = true
         }
     }
 
@@ -600,11 +653,15 @@ class GameViewController : UIViewController {
             player4NameLabel.text = meyamaAvatarNames[tempPlayer4MeyamaNumber]
             player4ImageOutlet.image = UIImage(named: meyamaImageArray[tempPlayer4MeyamaNumber])
             player4NameLabel.text = meyamaAvatarNames[tempPlayer4MeyamaNumber]
+//            player4NameTextFieldOutlet.hidden = true
+//            player4NameLabel.hidden = false
         } else { // human
             tempPlayer4AvatarNumber = Int(sender.value)
             player4NameLabel.text = playerAvatarNames[tempPlayer4AvatarNumber]
             player4ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer4AvatarNumber])
             player4NameLabel.text = playerAvatarNames[tempPlayer4AvatarNumber]
+//            player4NameTextFieldOutlet.hidden = false
+//            player4NameLabel.hidden = true
         }
     }
 
@@ -620,6 +677,54 @@ class GameViewController : UIViewController {
 
     ///////////////////////////////////////
     
+    // switch (sender.selectedSegmentIndex){
+
+    @IBOutlet weak var player2SkillLevelOutlet: UISegmentedControl!
+    
+    @IBAction func player2SkillLevelAction(sender: AnyObject) {
+        
+        let skillLevelNum = sender.selectedSegmentIndex
+
+        if tempPlayer2IsHuman == false { // an AI Meyama
+            player2SkillLevelOutlet.hidden = false
+            tempPlayer2SkillLevel = skillLevelNum
+
+        } else { // human
+            player2SkillLevelOutlet.hidden = true
+        }
+    }
+
+
+    @IBOutlet weak var player3SkillLevelOutlet: UISegmentedControl!
+    
+    @IBAction func player3SkillLevelAction(sender: AnyObject) {
+        let skillLevelNum = sender.selectedSegmentIndex
+        
+        if tempPlayer3IsHuman == false { // an AI Meyama
+            player3SkillLevelOutlet.hidden = false
+            tempPlayer3SkillLevel = skillLevelNum
+            
+        } else { // human
+            player3SkillLevelOutlet.hidden = true
+        }
+    }
+
+
+    @IBOutlet weak var player4SkillLevelOutlet: UISegmentedControl!
+    
+    @IBAction func player4SkillLevelAction(sender: AnyObject) {
+        let skillLevelNum = sender.selectedSegmentIndex
+        
+        if tempPlayer4IsHuman == false { // an AI Meyama
+            player4SkillLevelOutlet.hidden = false
+            tempPlayer4SkillLevel = skillLevelNum
+            
+        } else { // human
+            player4SkillLevelOutlet.hidden = true
+        }
+    }
+
+
     func startNewGame() {
         
         //mmwGameSceneViewController.secondsPerTurn = tempSecondsPerTurn
@@ -629,6 +734,11 @@ class GameViewController : UIViewController {
         mmwGameSceneViewController.minWordSize = tempMinWordSize
         mmwGameSceneViewController.numStarterWords = tempNumStarterWords
         mmwGameSceneViewController.numPlayers = tempNumPlayers
+        
+        tempPlayer1Name = player1NameTextFieldOutlet.text!
+        tempPlayer2Name = player2NameTextFieldOutlet.text!
+        tempPlayer3Name = player3NameTextFieldOutlet.text!
+        tempPlayer4Name = player4NameTextFieldOutlet.text!
         
         mmwGameSceneViewController.playerArray[0].playerName = tempPlayer1Name
         mmwGameSceneViewController.playerArray[1].playerName = tempPlayer2Name
@@ -656,8 +766,7 @@ class GameViewController : UIViewController {
         mmwGameSceneViewController.playerArray[3].playerMeyamaNumber = tempPlayer4MeyamaNumber
         
         mmwOptionScreen.newGameScene()
-        
-        
+
     }
 
     @IBAction func startNewGameButton(sender: AnyObject) {
@@ -701,8 +810,8 @@ class GameViewController : UIViewController {
         }
 
         let skView = self.view as! SKView
-        skView.showsFPS = true
-        skView.showsNodeCount = true
+        skView.showsFPS = false
+        skView.showsNodeCount = false
         
         /* Sprite Kit applies additional optimizations to improve rendering performance */
         skView.ignoresSiblingOrder = true
@@ -715,6 +824,8 @@ class GameViewController : UIViewController {
 /////////////////////////////////
         
         //scene.parentController = self
+        initializeTextFields()
+        
 
         skView.presentScene(mainMenuScene)
 
@@ -731,17 +842,17 @@ class GameViewController : UIViewController {
         //cornerView.addSubview(button)
 
         gameViewController = self as GameViewController
-        gameViewController.buttonAction()
+        //gameViewController.buttonAction()
         
         //self.view.addSubview(cornerView)
     }
 
 
-    func buttonAction(sender:UIButton!)
-    {
-        print("Manual Button tapped")
-        
-    }
+//    func buttonAction(sender:UIButton!)
+//    {
+//        print("Manual Button tapped")
+//        
+//    }
     
     func buttonAction()
     {
@@ -791,6 +902,7 @@ class GameViewController : UIViewController {
 
     @IBAction func EndGameNoButton(sender: AnyObject) {
         // returns to game without any settings changes
+        mmwGameSceneViewController.consecutivePasses = mmwGameSceneViewController.numPlayers - 2
         mmwOptionScreen.returnToGameScene()
     }
 
@@ -811,10 +923,20 @@ class GameViewController : UIViewController {
         mmwGameSceneViewController.numStarterWords = tempNumStarterWords
         mmwGameSceneViewController.numPlayers = tempNumPlayers
         
+        mmwGameSceneViewController.playerArray[0].playerName = player1NameTextFieldOutlet.text!
+        mmwGameSceneViewController.playerArray[1].playerName = player2NameTextFieldOutlet.text!
+        mmwGameSceneViewController.playerArray[2].playerName = player3NameTextFieldOutlet.text!
+        mmwGameSceneViewController.playerArray[3].playerName = player4NameTextFieldOutlet.text!
+
         mmwGameSceneViewController.playerArray[0].playerName = tempPlayer1Name
         mmwGameSceneViewController.playerArray[1].playerName = tempPlayer2Name
         mmwGameSceneViewController.playerArray[2].playerName = tempPlayer3Name
         mmwGameSceneViewController.playerArray[3].playerName = tempPlayer4Name
+        
+//        mmwGameSceneViewController.playerArray[0].playerName = player1NameTextFieldOutlet.text!
+//        mmwGameSceneViewController.playerArray[1].playerName = player2NameTextFieldOutlet.text!
+//        mmwGameSceneViewController.playerArray[2].playerName = player3NameTextFieldOutlet.text!
+//        mmwGameSceneViewController.playerArray[3].playerName = player4NameTextFieldOutlet.text!
         
         mmwGameSceneViewController.playerArray[0].isHuman = tempPlayer1IsHuman
         mmwGameSceneViewController.playerArray[1].isHuman = tempPlayer2IsHuman
@@ -858,6 +980,7 @@ class GameViewController : UIViewController {
         print("back to  mmwGameScene from optionsButton")
         
     }
+
     
     // MARK: STATS SCREEN
     
@@ -893,4 +1016,122 @@ class GameViewController : UIViewController {
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
+    
+    // Tap outside a text field to dismiss the keyboard
+    // ------------------------------------------------
+    // By changing the underlying class of the view from UIView to UIControl,
+    // the view can respond to events, including Touch Down, which is
+    // wired to this method.
+    @IBAction func userTappedBackground(sender: AnyObject) {
+        view.endEditing(true)
+    }
+    
+    @IBOutlet weak var player1NameTextFieldOutlet: UITextField!
+    
+    @IBOutlet weak var player2NameTextFieldOutlet: UITextField!
+    
+    @IBOutlet weak var player3NameTextFieldOutlet: UITextField!
+    
+    @IBOutlet weak var player4NameTextFieldOutlet: UITextField!
+
+    
+//    @IBAction func player1TextFieldNameAction(sender: AnyObject) {
+////        textField(Pl, shouldChangeCharactersInRange: <#T##NSRange#>, replacementString: <#T##String#>)
+//    }
+    
+    func initializeTextFields() {
+        player1NameTextFieldOutlet.delegate = self
+        player2NameTextFieldOutlet.delegate = self
+        player3NameTextFieldOutlet.delegate = self
+        player4NameTextFieldOutlet.delegate = self
+        
+//        player1NameTextFieldOutlet.keyboardType = UIKeyboardType.Alphabet
+//        player1NameTextFieldOutlet.keyboardType = UIKeyboardType.Alphabet
+//        player1NameTextFieldOutlet.keyboardType = UIKeyboardType.Alphabet
+//        player1NameTextFieldOutlet.keyboardType = UIKeyboardType.Alphabet
+        
+//        noVowelsTextField.delegate = self
+//        noVowelsTextField.keyboardType = UIKeyboardType.ASCIICapable
+//        
+//        digitsOnlyTextField.delegate = self
+//        digitsOnlyTextField.keyboardType = UIKeyboardType.NumberPad
+//        
+//        numericOnlyTextField.delegate = self
+//        numericOnlyTextField.keyboardType = UIKeyboardType.NumbersAndPunctuation
+//        
+//        positiveIntegersOnlyTextField.delegate = self
+//        positiveIntegersOnlyTextField.keyboardType = UIKeyboardType.DecimalPad
+    }
+    
+    
+    func textField(textField: UITextField,
+        shouldChangeCharactersInRange range: NSRange,
+        replacementString string: String)
+        -> Bool
+    {
+        // We ignore any change that doesn't add characters to the text field.
+        // These changes are things like character deletions and cuts, as well
+        // as moving the insertion point.
+        //
+        // We still return true to allow the change to take place.
+        if string.characters.count == 0 {
+            return true
+        }
+        
+        // Check to see if the text field's contents still fit the constraints
+        // with the new content added to it.
+        // If the contents still fit the constraints, allow the change
+        // by returning true; otherwise disallow the change by returning false.
+        let currentText = textField.text ?? ""
+        let prospectiveText = (currentText as NSString).stringByReplacingCharactersInRange(range, withString: string)
+        
+        print("player name = \(prospectiveText)")
+        
+        return
+
+            prospectiveText.characters.count <= 12
+        
+        switch textField {
+            
+            // Allow only upper- and lower-case vowels in this field,
+            // and limit its contents to a maximum of 6 characters.
+        case  player1NameTextFieldOutlet:
+            return
+                prospectiveText.characters.count <= 6
+            
+//            // Allow any characters EXCEPT upper- and lower-case vowels in this field,
+//            // and limit its contents to a maximum of 8 characters.
+//        case noVowelsTextField:
+//            return prospectiveText.doesNotContainCharactersIn("aeiouAEIOU") &&
+//                prospectiveText.characters.count <= 8
+//            
+//            // Allow only digits in this field,
+//            // and limit its contents to a maximum of 3 characters.
+//        case digitsOnlyTextField:
+//            return prospectiveText.containsOnlyCharactersIn("0123456789") &&
+//                prospectiveText.characters.count <= 3
+//            
+//            // Allow only values that evaluate to proper numeric values in this field,
+//            // and limit its contents to a maximum of 7 characters.
+//        case numericOnlyTextField:
+//            return prospectiveText.isNumeric() &&
+//                prospectiveText.characters.count <= 7
+//            
+//            // In this field, allow only values that evalulate to proper numeric values and
+//            // do not contain the "-" and "e" characters, nor the decimal separator character
+//            // for the current locale. Limit its contents to a maximum of 5 characters.
+//        case positiveIntegersOnlyTextField:
+//            let decimalSeparator = NSLocale.currentLocale().objectForKey(NSLocaleDecimalSeparator) as! String
+//            return prospectiveText.isNumeric() &&
+//                prospectiveText.doesNotContainCharactersIn("-e" + decimalSeparator) &&
+//                prospectiveText.characters.count <= 5
+            
+            // Do not put constraints on any other text field in this view
+            // that uses this class as its delegate.
+        default:
+            return true
+        }
+        
+    }
+
 }
