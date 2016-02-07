@@ -653,7 +653,7 @@ class LetterTileSprite : SKSpriteNode {
 
                 
             }
-                
+
             dispatch_async(dispatch_get_main_queue(), {
                 print("hello from showWordScoreTextToGridHome thread executed as dispatch")
             })
@@ -712,7 +712,6 @@ class LetterTileSprite : SKSpriteNode {
             mmwGameScene.explosion(endPosition, color: tileColors[self.tileSpriteParent.tileOwner.rawValue])
             }
 
-            
             dispatch_async(dispatch_get_main_queue(), {
                 print("hello from showNegativeScoreTextToGridHome thread executed as dispatch")
             })
@@ -1239,14 +1238,17 @@ class LetterTileSprite : SKSpriteNode {
                     self.adjustPlayerPoints(-5, player: (mmwGameSceneViewController.playerArray[self.tileSpriteParent.tileOwner.rawValue - 1]) )
                     mmwGameScene.updatePartialWordFeedback("-5 points for invalid word attempt")
                     mmwGameScene.updatePartialWordFeedback2("")
-                    print("# -5 POINTS for bad word attempt (\" \(horizontalString) \", \" \(verticalString) \" ): \(-5) : \(self.tileText) ")
+                    print("# -5 POINTS for bad word attempt (\" \(horizontalString) \", \" \(verticalString) \" ): \(-2) : \(self.tileText) ")
 
-                    showNegativeScoreTextToGridHome(-5)
+                    showNegativeScoreTextToGridHome(-2)
                     self.tileSpriteParent.tileOwner = TileOwner.None
                     tileCollection!.mmwDiscardedTileArray.append(self.tileSpriteParent)
                     self.hidden = true
                     self.tileSpriteParent.gridHome?.grid2DArr[self.tileSpriteParent.gridX][self.tileSpriteParent.gridY] = MMWTile()
-                    mmwGameScene.changePlayerTurn()
+                    delay (1.0){
+                        mmwGameScene.changePlayerTurn()
+                    }
+                    
             }
             else {  // valid drop of tile by human player
                 playTileToBoard(tileSnapResultsXGrid, yGrid: tileSnapResultsYGrid)

@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/LetterTileSprite.swift"
-            timestampString = "476392489.448568"
+            timestampString = "476497526.149535"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1637"
-            endingLineNumber = "1637"
+            startingLineNumber = "1639"
+            endingLineNumber = "1639"
             landmarkName = "LetterTileSprite"
             landmarkType = "3">
          </BreakpointContent>
@@ -344,11 +344,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/LetterTileSprite.swift"
-            timestampString = "476392489.448568"
+            timestampString = "476497526.149535"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1384"
-            endingLineNumber = "1384"
+            startingLineNumber = "1386"
+            endingLineNumber = "1386"
             landmarkName = "updateWordsAtDropSpot(_:touchY:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -360,11 +360,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/LetterTileSprite.swift"
-            timestampString = "476392489.448568"
+            timestampString = "476497526.149535"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1264"
-            endingLineNumber = "1264"
+            startingLineNumber = "1266"
+            endingLineNumber = "1266"
             landmarkName = "testForValidWordsAtDropSpot(_:tileSnapResultsYGrid:isAI:isAIScoringPass:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -376,11 +376,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/LetterTileSprite.swift"
-            timestampString = "476392489.448568"
+            timestampString = "476497526.149535"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2394"
-            endingLineNumber = "2394"
+            startingLineNumber = "2396"
+            endingLineNumber = "2396"
             landmarkName = "scoreTilesInArr(_:tileArrToScoreVertical:wordStringHorizontal:wordStringVertical:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -408,11 +408,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "476424806.891083"
+            timestampString = "476498496.834287"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1729"
-            endingLineNumber = "1729"
+            startingLineNumber = "1746"
+            endingLineNumber = "1746"
             landmarkName = "explosion(_:color:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -488,11 +488,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "476424806.891083"
+            timestampString = "476498496.834287"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1737"
-            endingLineNumber = "1737"
+            startingLineNumber = "1754"
+            endingLineNumber = "1754"
             landmarkName = "changePlayerTurn()"
             landmarkType = "5">
          </BreakpointContent>
@@ -504,11 +504,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "476424806.891083"
+            timestampString = "476498496.834287"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1852"
-            endingLineNumber = "1852"
+            startingLineNumber = "1865"
+            endingLineNumber = "1865"
             landmarkName = "changePlayerTurn()"
             landmarkType = "5">
          </BreakpointContent>
@@ -520,11 +520,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/MMWGameScene.swift"
-            timestampString = "476424806.891083"
+            timestampString = "476498496.834287"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1789"
-            endingLineNumber = "1789"
+            startingLineNumber = "1806"
+            endingLineNumber = "1806"
             landmarkName = "changePlayerTurn()"
             landmarkType = "5">
          </BreakpointContent>

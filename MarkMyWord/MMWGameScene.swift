@@ -1049,7 +1049,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                 var playAnotherWord = Int(arc4random_uniform(10))
                 
                 if playAnotherWord + (playerLevel * 2) > 4 && numLettersRemaining > 0 {
-                    pauseTime += 3.0
+                    pauseTime += 3.0  //  5 + 3
                     delay(pauseTime) {
                         // Play second whole word, or partial
                         if self.playAILetters().playedWholeWord == true {
@@ -1061,10 +1061,10 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                             
                             if playAnotherWord + (playerLevel * 3) > 9 && numLettersRemaining > 0 {
                                 //pauseTime += 3.0
-                                delay(pauseTime) {
+                                delay(5) {
                                     
                                     self.playAILetters() // Play third whole word, or partial
-                                    delay(4) {
+                                    delay(3) {
                                         numLettersRemaining = (mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid).numLetterTilesInGrid()
                                         //if numLettersRemaining > 0 {
                                         self.changePlayerTurn()
@@ -1073,7 +1073,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                                 }
                             }
                             else {
-                                delay(pauseTime + 3) {
+                                delay(pauseTime) {
                                     self.changePlayerTurn()
                                 }
                             }
@@ -1453,11 +1453,15 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                 mmwOptionScreen.allPlayersPassed()
             }
             else {
-                changePlayerTurn()
+                //delay(1.0) {
+                    self.changePlayerTurn()
+                //}
             }
         }
         else {
-            changePlayerTurn()
+            //delay(1.0) {
+                self.changePlayerTurn()
+            //}
         }
     }
     
@@ -1475,7 +1479,9 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             
             mmwGameSceneViewController.resetConsequtivePasses()
             
-            changePlayerTurn()
+            //delay(1.0) {
+                self.changePlayerTurn()
+            //}
         }
     }
     
@@ -1715,17 +1721,28 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     
     
     func explosion(pos: CGPoint, color: UIColor) {
-
-        let emitterNode = SKEmitterNode(fileNamed: "MagicParticle.sks")
-        emitterNode?.zPosition = 100
-        emitterNode!.particlePosition = pos
         
-        emitterNode!.particleColorSequence = nil
-        emitterNode!.particleColorBlendFactor = 1.0
-        emitterNode!.particleColor = color
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        dispatch_async(dispatch_get_global_queue(priority, 0), { ()->() in
+            print("Currently dispatched thread asynchronously 0 explosion")
+            
+            
+            let emitterNode = SKEmitterNode(fileNamed: "MagicParticle.sks")
+            emitterNode?.zPosition = 100
+            emitterNode!.particlePosition = pos
+            
+            emitterNode!.particleColorSequence = nil
+            emitterNode!.particleColorBlendFactor = 1.0
+            emitterNode!.particleColor = color
+            
+            self.addChild(emitterNode!)
+            self.runAction(SKAction.waitForDuration(2), completion: { emitterNode!.removeFromParent() })
 
-        self.addChild(emitterNode!)
-        self.runAction(SKAction.waitForDuration(2), completion: { emitterNode!.removeFromParent() })
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                print("hello from showWordScoreTextToGridHome thread executed as dispatch")
+            })
+        })
     }
     
     
@@ -1827,11 +1844,10 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         if mmwGameSceneViewController.audioOn == true {
             runAction(SKAction.playSoundFileNamed("points.WAV", waitForCompletion: false))
         }
-        
-        
+
         delay (0.5) {
             
-            if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].isHuman == false {
+            if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].isHuman == false {  // is AI so autoplay letters in rack
                 //            if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.numLetterTilesInGrid() > 0 {
                 self.playBtnPlay()
                 //            }
@@ -1845,9 +1861,6 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                 //            mmwOptionScreen.allPlayersPassed()
                 
             }
-
-            
-            
         }
     }
     
