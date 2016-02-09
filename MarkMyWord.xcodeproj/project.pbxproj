@@ -102,7 +102,6 @@
 		B89E506B1C69C2C900C18F1C /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B89E506A1C69C2C900C18F1C /* EventKit.framework */; };
 		B89E506D1C69C2D000C18F1C /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B89E506C1C69C2D000C18F1C /* EventKitUI.framework */; };
 		B89E506F1C69C2E400C18F1C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B89E506E1C69C2E400C18F1C /* MessageUI.framework */; };
-		B89E50711C69C2EF00C18F1C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B89E50701C69C2EF00C18F1C /* StoreKit.framework */; };
 		B89E50731C69C2F500C18F1C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B89E50721C69C2F500C18F1C /* SystemConfiguration.framework */; };
 		B8A455161AF15A1400C0D83B /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A455141AF15A1400C0D83B /* MainMenuScene.swift */; };
 		B8A455171AF15A1400C0D83B /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A455151AF15A1400C0D83B /* GameViewController.swift */; };
@@ -254,7 +253,6 @@
 		B89E506A1C69C2C900C18F1C /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		B89E506C1C69C2D000C18F1C /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		B89E506E1C69C2E400C18F1C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		B89E50701C69C2EF00C18F1C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B89E50721C69C2F500C18F1C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B8A455141AF15A1400C0D83B /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		B8A455151AF15A1400C0D83B /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -313,7 +311,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B89E50731C69C2F500C18F1C /* SystemConfiguration.framework in Frameworks */,
-				B89E50711C69C2EF00C18F1C /* StoreKit.framework in Frameworks */,
 				B89E506F1C69C2E400C18F1C /* MessageUI.framework in Frameworks */,
 				B89E506D1C69C2D000C18F1C /* EventKitUI.framework in Frameworks */,
 				B89E506B1C69C2C900C18F1C /* EventKit.framework in Frameworks */,
@@ -591,7 +588,6 @@
 			isa = PBXGroup;
 			children = (
 				B89E50721C69C2F500C18F1C /* SystemConfiguration.framework */,
-				B89E50701C69C2EF00C18F1C /* StoreKit.framework */,
 				B89E506E1C69C2E400C18F1C /* MessageUI.framework */,
 				B89E506C1C69C2D000C18F1C /* EventKitUI.framework */,
 				B89E506A1C69C2C900C18F1C /* EventKit.framework */,
@@ -866,6 +862,11 @@
 					B8CCE19B1AD8C13500882391 = {
 						CreatedOnToolsVersion = 6.3;
 						DevelopmentTeam = 2NN9JNUBV3;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 					B8CCE1B41AD8C13500882391 = {
 						CreatedOnToolsVersion = 6.3;
@@ -1100,6 +1101,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1146,6 +1148,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1172,6 +1175,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.6.0",
@@ -1179,6 +1183,7 @@
 				INFOPLIST_FILE = MarkMyWord/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hookstudios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1195,6 +1200,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.6.0",
@@ -1202,6 +1208,7 @@
 				INFOPLIST_FILE = MarkMyWord/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hookstudios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

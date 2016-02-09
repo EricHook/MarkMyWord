@@ -148,8 +148,7 @@ class MMWOptionScreen: SKScene {
         delay(0.0){
             gameViewController.updateGameSettings()
         }
-      
-            
+
         print("options button pressed")
         print("MMWOptionScreen didMoveToView")
         gameViewController.ViewAllOptionsUI.userInteractionEnabled = true

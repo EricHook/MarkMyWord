@@ -2418,6 +2418,31 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     }
     
     
+    func subtractTilesRemainingOnBoard() {
+        var numLetterTilesRemaining = 0
+        for y in 0...(mmwBoardGrid.gridNumSquaresY - 1) {   // fill letter tiles
+            for x in 0...(mmwBoardGrid.gridNumSquaresX - 1) {
+                if mmwBoardGrid.grid2DArr[x][y].tileState == TileState.Played  {
+                    //delay (Double (numLetterTilesRemaining) ) {
+                        self.mmwBoardGrid.grid2DArr[x][y].tileSprite.showNegativeScoreTextToGridHome(-2)
+                        mmwGameSceneViewController.playerArray[self.mmwBoardGrid.grid2DArr[x][y].tileOwner.rawValue - 1].playerScore -= 2
+                        self.mmwBoardGrid.grid2DArr[x][y].tileSprite.alpha = 0.5
+                        numLetterTilesRemaining++
+                    }
+                //}
+            }
+        }
+        
+        
+        delay ( 3.0) { // Double(++numLetterTilesRemaining) ) {
+            self.view?.presentScene(mmwOptionScreen)
+            gameViewController.goToResults()
+        }
+        
+        
+    }
+    
+    
     func permuteLetters(list: [String], minStringLen : Int, maxStringLen: Int) -> Set<String> {
         func permuteLetters(fromList: [String], toList: [String], minStringLen: Int, maxStringLen: Int, inout set: Set<String>) {
             if toList.count >= minStringLen && toList.count <= maxStringLen {

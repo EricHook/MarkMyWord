@@ -686,7 +686,7 @@ class LetterTileSprite : SKSpriteNode {
             let negPlayScore = SKLabelNode() // = createLetterScoreText (self.position, endLocation: homePosition, textColor: gameColors[self.tileSpriteParent.tileOwner.rawValue], displayText: String(number) )
 
             negPlayScore.fontColor = gameColors[self.tileSpriteParent.tileOwner.rawValue]
-            negPlayScore.text = "-2"
+            negPlayScore.text = "-\(number)"
             negPlayScore.fontSize = 65
             negPlayScore.fontName = FontHUDName
             negPlayScore.zPosition = 95

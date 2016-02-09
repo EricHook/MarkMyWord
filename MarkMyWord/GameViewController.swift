@@ -234,6 +234,7 @@ class GameViewController : UIViewController, UITextFieldDelegate {
             player2NameTextFieldOutlet.hidden = true
             player2NameLabel.hidden = false
             player2SkillLevelOutlet.hidden = false
+            player2SkillLevelLabelOutlet.hidden = false
             
         }
         else { // human player tempPlayer2IsHuman = true
@@ -244,6 +245,7 @@ class GameViewController : UIViewController, UITextFieldDelegate {
             player2NameTextFieldOutlet.hidden = false
             player2NameLabel.hidden = true
             player2SkillLevelOutlet.hidden = true
+            player2SkillLevelLabelOutlet.hidden = true
         }
         
         if tempPlayer3IsHuman == false {
@@ -254,6 +256,7 @@ class GameViewController : UIViewController, UITextFieldDelegate {
             player3NameTextFieldOutlet.hidden = true
             player3NameLabel.hidden = false
             player3SkillLevelOutlet.hidden = false
+            player3SkillLevelLabelOutlet.hidden = false
             
         }
         else { // human player tempPlayer3IsHuman = true
@@ -264,6 +267,7 @@ class GameViewController : UIViewController, UITextFieldDelegate {
             player3NameTextFieldOutlet.hidden = false
             player3NameLabel.hidden = true
             player3SkillLevelOutlet.hidden = true
+            player3SkillLevelLabelOutlet.hidden = true
         }
 
         if tempPlayer4IsHuman == false {
@@ -274,6 +278,7 @@ class GameViewController : UIViewController, UITextFieldDelegate {
             player4NameTextFieldOutlet.hidden = true
             player4NameLabel.hidden = false
             player4SkillLevelOutlet.hidden = false
+            player4SkillLevelLabelOutlet.hidden = false
         }
         else { // human player tempPlayer4IsHuman = true
             isHumanPlayer4Outlet.selectedSegmentIndex = 1
@@ -283,6 +288,7 @@ class GameViewController : UIViewController, UITextFieldDelegate {
             player4NameTextFieldOutlet.hidden = false
             player4NameLabel.hidden = true
             player4SkillLevelOutlet.hidden = true
+            player4SkillLevelLabelOutlet.hidden = true
         }
     }
 
@@ -295,6 +301,10 @@ class GameViewController : UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var bannerView2: GADBannerView!
+    @IBOutlet weak var bannerViewLowerLeft: GADBannerView!
+    @IBOutlet weak var bannerViewUpperRight: GADBannerView!
+    @IBOutlet weak var bannerViewLowerRight: GADBannerView!
+
     
     @IBOutlet weak var ViewPlayer1UI: UIView!
     @IBOutlet weak var ViewPlayer2UI: UIView!
@@ -532,6 +542,7 @@ class GameViewController : UIViewController, UITextFieldDelegate {
             player2NameTextFieldOutlet.hidden = true
             player2NameLabel.hidden = false
             player2SkillLevelOutlet.hidden = false
+            player2SkillLevelLabelOutlet.hidden = false
             
         case 1: // human player
             tempPlayer2IsHuman = true
@@ -541,6 +552,7 @@ class GameViewController : UIViewController, UITextFieldDelegate {
             player2NameTextFieldOutlet.hidden = false
             player2NameLabel.hidden = true
             player2SkillLevelOutlet.hidden = true
+            player2SkillLevelLabelOutlet.hidden = true
         default:
             break
         }
@@ -556,6 +568,7 @@ class GameViewController : UIViewController, UITextFieldDelegate {
             player3NameTextFieldOutlet.hidden = true
             player3NameLabel.hidden = false
             player3SkillLevelOutlet.hidden = false
+            player3SkillLevelLabelOutlet.hidden = false
         
         case 1: // human player
             tempPlayer3IsHuman = true
@@ -565,6 +578,7 @@ class GameViewController : UIViewController, UITextFieldDelegate {
             player3NameTextFieldOutlet.hidden = false
             player3NameLabel.hidden = true
             player3SkillLevelOutlet.hidden = true
+            player3SkillLevelLabelOutlet.hidden = true
         default:
             break
         }
@@ -580,6 +594,7 @@ class GameViewController : UIViewController, UITextFieldDelegate {
             player4NameTextFieldOutlet.hidden = true
             player4NameLabel.hidden = false
             player4SkillLevelOutlet.hidden = false
+            player4SkillLevelLabelOutlet.hidden = false
         case 1: // human player
             tempPlayer4IsHuman = true
             player4NameLabel.text = playerAvatarNames[tempPlayer4AvatarNumber]
@@ -588,6 +603,7 @@ class GameViewController : UIViewController, UITextFieldDelegate {
             player4NameTextFieldOutlet.hidden = false
             player4NameLabel.hidden = true
             player4SkillLevelOutlet.hidden = true
+            player4SkillLevelLabelOutlet.hidden = true
         default:
             break
         }
@@ -693,10 +709,12 @@ class GameViewController : UIViewController, UITextFieldDelegate {
 
         if tempPlayer2IsHuman == false { // an AI Meyama
             player2SkillLevelOutlet.hidden = false
+            player2SkillLevelLabelOutlet.hidden = false
             tempPlayer2SkillLevel = skillLevelNum
 
         } else { // human
             player2SkillLevelOutlet.hidden = true
+            player2SkillLevelLabelOutlet.hidden = true
         }
     }
 
@@ -708,10 +726,12 @@ class GameViewController : UIViewController, UITextFieldDelegate {
         
         if tempPlayer3IsHuman == false { // an AI Meyama
             player3SkillLevelOutlet.hidden = false
+            player3SkillLevelLabelOutlet.hidden = false
             tempPlayer3SkillLevel = skillLevelNum
             
         } else { // human
             player3SkillLevelOutlet.hidden = true
+            player3SkillLevelLabelOutlet.hidden = true
         }
     }
 
@@ -723,14 +743,22 @@ class GameViewController : UIViewController, UITextFieldDelegate {
         
         if tempPlayer4IsHuman == false { // an AI Meyama
             player4SkillLevelOutlet.hidden = false
+            player4SkillLevelLabelOutlet.hidden = false
             tempPlayer4SkillLevel = skillLevelNum
             
         } else { // human
             player4SkillLevelOutlet.hidden = true
+            player4SkillLevelLabelOutlet.hidden = true
         }
     }
 
+    @IBOutlet weak var player2SkillLevelLabelOutlet: UILabel!
 
+    @IBOutlet weak var player3SkillLevelLabelOutlet: UILabel!
+
+    @IBOutlet weak var player4SkillLevelLabelOutlet: UILabel!
+    
+    
     func startNewGame() {
         
         //mmwGameSceneViewController.secondsPerTurn = tempSecondsPerTurn
@@ -812,22 +840,38 @@ class GameViewController : UIViewController, UITextFieldDelegate {
                mmwGame.setDeviceType(MMWGame.DeviceType.iPhone6Plus)
             default:
                 mmwGame.setDeviceType(MMWGame.DeviceType.iPad)
-            print("Screen width:\(screenSize!.width) , device type: \(mmwGame.deviceType) ")
-            
-            
-
-            
+            print("Screen width:\(screenSize!.width) , device type: \(mmwGame.deviceType) ") 
         }
         
         print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        //bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.adUnitID = "ca-app-pub-6428967577130104/9786515687"
         bannerView.rootViewController = self
         bannerView.loadRequest(GADRequest())
         
         print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
+        //bannerView2.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         bannerView2.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         bannerView2.rootViewController = self
         bannerView2.loadRequest(GADRequest())
+        
+        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
+        //bannerViewLowerLeft.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerViewLowerLeft.adUnitID = "ca-app-pub-6428967577130104/2263248882"
+        bannerViewLowerLeft.rootViewController = self
+        bannerViewLowerLeft.loadRequest(GADRequest())
+        
+        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
+        //bannerViewUpperRight.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerViewUpperRight.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerViewUpperRight.rootViewController = self
+        bannerViewUpperRight.loadRequest(GADRequest())
+        
+        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
+        //bannerViewLowerRight.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerViewLowerRight.adUnitID = "ca-app-pub-6428967577130104/3739982084"
+        bannerViewLowerRight.rootViewController = self
+        bannerViewLowerRight.loadRequest(GADRequest())
 
 
         let skView = self.view as! SKView
@@ -881,11 +925,32 @@ class GameViewController : UIViewController, UITextFieldDelegate {
     }
 
     // MARK: END GAME SCREEN
+    
+    
 
     @IBAction func EndGameYesButton(sender: AnyObject) {
         // returns to game without any settings changes
         
+        //view?.presentScene(mmwOptionScreen)
+        
+        gameViewController.ViewAllOptionsUI.hidden = true
+        mmwOptionScreen.returnToGameScene()
+        
+        mmwGameScene.subtractTilesRemainingOnBoard()
+
         print("MMWOptionScreen didMoveToView")
+
+        //goToResults()
+        //startNewGame()
+    }
+    
+    
+    
+    
+    func goToResults() {
+        
+        //view?.presentScene(mmwOptionScreen)
+        
         gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
         gameViewController.ViewAllOptionsUI.hidden = false
         gameViewController.OptionsSwitchOutlet.hidden = true
@@ -894,11 +959,8 @@ class GameViewController : UIViewController, UITextFieldDelegate {
         gameViewController.viewStatsContainer.hidden = true
         gameViewController.ViewEndGameUI.hidden = true
         gameViewController.ViewResultsScreenUI.hidden = false
-        goToResults()
-        //startNewGame()
-    }
-    
-    func goToResults() {
+        
+        
         var otherHighestScore = -10000
         for playerNum in 1..<mmwGameSceneViewController.playerArray.count {
             if mmwGameSceneViewController.playerArray[playerNum].playerScore > otherHighestScore {
