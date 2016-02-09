@@ -7,6 +7,7 @@
 
 import UIKit
 import SpriteKit
+import GoogleMobileAds
 
 extension SKNode {
     class func unarchiveFromFile(file : String) -> SKNode? {
@@ -42,6 +43,12 @@ var selectedMeyamaAvatar = 0
 
 //var humanAvatarImages = [SKimage]
 //var meyamaAvatarImages = [SKimage]
+
+
+
+//// Makes ViewController available to Objc classes.
+//@objc(ViewController)
+
 
 class GameViewController : UIViewController, UITextFieldDelegate {
     
@@ -280,27 +287,26 @@ class GameViewController : UIViewController, UITextFieldDelegate {
     }
 
     @IBOutlet var GameViewControllerUI: SKView!
-    
-    
+
     @IBOutlet weak var ViewOptionsUI: UIView!
     @IBOutlet weak var ViewAllOptionsUI: UIView!
     @IBOutlet weak var ViewEndGameUI: UIView!
     @IBOutlet weak var ViewResultsScreenUI: UIView!
 
+    @IBOutlet weak var bannerView: GADBannerView!
+    @IBOutlet weak var bannerView2: GADBannerView!
     
     @IBOutlet weak var ViewPlayer1UI: UIView!
     @IBOutlet weak var ViewPlayer2UI: UIView!
     @IBOutlet weak var ViewPlayer3UI: UIView!
     @IBOutlet weak var ViewPlayer4UI: UIView!
     @IBOutlet weak var numberPlayersUI: UISegmentedControl!
-    
-    
+
     @IBOutlet weak var viewStatsContainer: UIView!
     @IBOutlet weak var viewRulesContainer: UIView!
 
     @IBOutlet weak var OptionsSwitchOutlet: UISegmentedControl!
 
-    
     @IBAction func OptionsSwitchAction(sender: AnyObject) {
 //        if sender.selectedSegmentIndex == 2 {
 //            print("stats selected")
@@ -807,7 +813,22 @@ class GameViewController : UIViewController, UITextFieldDelegate {
             default:
                 mmwGame.setDeviceType(MMWGame.DeviceType.iPad)
             print("Screen width:\(screenSize!.width) , device type: \(mmwGame.deviceType) ")
+            
+            
+
+            
         }
+        
+        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.rootViewController = self
+        bannerView.loadRequest(GADRequest())
+        
+        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
+        bannerView2.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView2.rootViewController = self
+        bannerView2.loadRequest(GADRequest())
+
 
         let skView = self.view as! SKView
         skView.showsFPS = false

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BV1-FR-VrT">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--GameViewController-->
@@ -481,6 +481,22 @@
                                             <action selector="OptionsSwitchAction:" destination="BV1-FR-VrT" eventType="valueChanged" id="HHa-Vg-NbQ"/>
                                         </connections>
                                     </segmentedControl>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RMg-jj-MBK" customClass="GADBannerView">
+                                        <rect key="frame" x="519" y="389" width="320" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="jEa-rW-RWQ"/>
+                                            <constraint firstAttribute="width" constant="320" id="xiT-Ax-bHa"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1eH-KO-wpy" userLabel="adMobBanner" customClass="GADBannerView">
+                                        <rect key="frame" x="439" y="398" width="480" height="32"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="480" id="lj6-Sc-Xg0"/>
+                                            <constraint firstAttribute="height" constant="32" id="sfN-uu-tl6"/>
+                                        </constraints>
+                                    </view>
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5c7-Ad-yBv" userLabel="ViewEndGameUI">
                                         <rect key="frame" x="265" y="0.0" width="600" height="577"/>
                                         <subviews>
@@ -597,6 +613,8 @@
                         <outlet property="avatarStepperPlayer02" destination="HDZ-F4-ppR" id="Ysb-21-wbx"/>
                         <outlet property="avatarStepperPlayer03" destination="jaW-pd-atE" id="7MO-ny-qjy"/>
                         <outlet property="avatarStepperPlayer04" destination="eQQ-AF-wwX" id="jPP-UU-naB"/>
+                        <outlet property="bannerView" destination="1eH-KO-wpy" id="RsK-dK-VTK"/>
+                        <outlet property="bannerView2" destination="RMg-jj-MBK" id="eWm-LF-hQ7"/>
                         <outlet property="gameResultsLabel" destination="Qqf-me-QYt" id="Fgs-9C-cnq"/>
                         <outlet property="gamesLostOutlet" destination="cK7-KW-cGf" id="4Dc-l8-Ep5"/>
                         <outlet property="gamesWonOutlet" destination="f1i-Tn-50g" id="erf-g5-ipF"/>

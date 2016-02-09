@@ -31,10 +31,10 @@ struct validAILetterPlay {
 class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDelegate {
     
     var viewSize = screenSize!
-    var backgroundNode   : SKSpriteNode = SKSpriteNode(imageNamed: "MarkMyWordBGCleaniPad.png" )
-    var newGameSpriteNode   : SKSpriteNode = SKSpriteNode(imageNamed: "NewGameScreen.png" )
-    var optionsLayerNode : SKSpriteNode = SKSpriteNode(imageNamed: "MMWOptionsScreen.png")
-    var foregroundNode   : SKSpriteNode = SKSpriteNode()
+    var backgroundNode    : SKSpriteNode = SKSpriteNode(imageNamed: "MarkMyWordBGCleaniPad.png" )
+    var newGameSpriteNode : SKSpriteNode = SKSpriteNode(imageNamed: "NewGameScreen.png" )
+    var optionsLayerNode  : SKSpriteNode = SKSpriteNode(imageNamed: "MMWOptionsScreen.png")
+    var foregroundNode    : SKSpriteNode = SKSpriteNode()
     
     var mmwBoardGrid: Grid!
     
@@ -57,8 +57,8 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
 //    var timeRemainingLabel  = SKLabelNode(fontNamed: FontHUDName)
     var tilesRemainingLabel = SKLabelNode(fontNamed: FontHUDName)
     var topDisplayLabel     = SKLabelNode(fontNamed: FontHUDName)
-    var topDisplayLabel2    = SKLabelNode(fontNamed: FontHUDName)
-    var bottomDisplayLabel  = SKLabelNode(fontNamed: FontHUDName)
+    //var topDisplayLabel2    = SKLabelNode(fontNamed: FontHUDName)
+    //var bottomDisplayLabel  = SKLabelNode(fontNamed: FontHUDName)
     
     let playButton     = SKSpriteNode(imageNamed: "PlayButton.png")
     var newTilesButton = SKSpriteNode(imageNamed: "NewTilesButton.png")
@@ -289,11 +289,11 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
 //        self.addChild(gameGrid)
 
         topDisplayHUD("Welcome to Mark My Word") // ("Turn: Player 1, Special Letter Bonus In Effect, 2x Point Bonus")
-        topDisplayHUD2("topDisplayHUD2")
+        //topDisplayHUD2("topDisplayHUD2")
         
         tilesRemainingHUD(tileCollection!.mmwTileArray.count)
 
-        bottomDisplayHUD("Begin ... ")
+        //bottomDisplayHUD("Begin ... ")
         
         //timeRemainingLabel.text = "Timer: 00"
 //        timeRemainingHUD(mmwGameSceneViewController.secondsPerTurn)  // default set to         standard time remaining
@@ -337,7 +337,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                 //                timeRemainingLabel
                 //                tilesRemainingLabel
                 topDisplayLabel.position.y -= 0.15
-                topDisplayLabel2.position.y -= 0.4
+                //topDisplayLabel2.position.y -= 0.4
                 //                bottomDisplayLabel
             }
         }
@@ -460,9 +460,9 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
 //            timeRemainingLabel.text = "Timer: \(mmwGameSceneViewController.secondsPerTurn) "
 //        }
         
-        bottomDisplayLabel.text =  "Begin ... "
+        //bottomDisplayLabel.text =  "Begin ... "
         topDisplayLabel.text = "Welcome to Mark My Word"
-        topDisplayLabel2.text =  ""
+        //topDisplayLabel2.text =  ""
 
         tileCollection!.resetAllTiles()
         tileCollection = MMWTileBuilder()
@@ -574,44 +574,52 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         tilesRemainingLabel.zPosition = 1
         tilesRemainingLabel.text = "Tiles Left: \(tileCollection!.mmwTileArray.count  )" // "Tiles Left: \(tilesLeft)"
         tilesRemainingLabel.fontSize = FontHUDSize
-        tilesRemainingLabel.position = CGPointMake(size.width * 0.160, size.height * 0.004)
+        //tilesRemainingLabel.position = CGPointMake(size.width * 0.160, size.height * 0.004)
+        tilesRemainingLabel.position = CGPointMake(size.width * 0.873, size.height * 0.10)
         tilesRemainingLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 1)!
         addChild(tilesRemainingLabel)
         return tilesRemainingLabel
     }
     
     
-    func bottomDisplayHUD (letters : String)  -> SKLabelNode {        // bottom text display area - first line
-        bottomDisplayLabel.zPosition = 1
-        bottomDisplayLabel.text = "\(letters)"
-        bottomDisplayLabel.fontSize = FontHUDSize
-        bottomDisplayLabel.position = CGPointMake(size.width/2.0, size.height * 0.004)
-        bottomDisplayLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
-        addChild(bottomDisplayLabel)
-        return bottomDisplayLabel
-    }
+//    func bottomDisplayHUD (letters : String)  -> SKLabelNode {        // bottom text display area - first line
+//        bottomDisplayLabel.zPosition = 1
+//        bottomDisplayLabel.text = "\(letters)"
+//        bottomDisplayLabel.fontSize = FontHUDSize
+//        bottomDisplayLabel.position = CGPointMake(size.width/2.0, size.height * 0.004)
+//        bottomDisplayLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
+//        addChild(bottomDisplayLabel)
+//        return bottomDisplayLabel
+//        bottomDisplayLabel.hidden = true
+//    }
     
     
     func topDisplayHUD (message : String)  -> SKLabelNode {         // top text display area - first line
         topDisplayLabel.zPosition = 1
         topDisplayLabel.text = "\(message)"
         topDisplayLabel.fontSize = FontHUDSize
-        topDisplayLabel.position = CGPointMake(size.width/2.0, self.size.height * 0.980) // CGPointMake(size.width/2.0, 753.0) // 1 of 2 top lines
+        
+        //topDisplayLabel.position = CGPointMake(size.width/2.0, self.size.height * 0.980) // CGPointMake(size.width/2.0, 753.0) // 1 of 2 top lines
+        topDisplayLabel.position = CGPointMake(size.width * 0.3, self.size.height * 0.0025)
+        
         topDisplayLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
         addChild(topDisplayLabel)
         return topDisplayLabel
     }
     
     
-    func topDisplayHUD2 (message : String)  -> SKLabelNode {        // top text display area - second line
-        topDisplayLabel2.zPosition = 1
-        topDisplayLabel2.text = message
-        topDisplayLabel2.fontSize = FontHUDSize
-        topDisplayLabel2.position = CGPointMake(size.width/2.0, (self.size.height * 0.959) )// 2 of 2 top lines CGPointMake(size.width/2.0, 735.0)
-        topDisplayLabel2.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
-        addChild(topDisplayLabel2)
-        return topDisplayLabel2
-    }
+//    func topDisplayHUD2 (message : String)  -> SKLabelNode {        // top text display area - second line
+//        topDisplayLabel2.zPosition = 1
+//        topDisplayLabel2.text = message
+//        topDisplayLabel2.fontSize = FontHUDSize
+//        
+////        topDisplayLabel2.position = CGPointMake(size.width/2.0, (self.size.height * 0.959) )// 2 of 2 top lines CGPointMake(size.width/2.0, 735.0)
+//        topDisplayLabel2.position = CGPointMake(size.width * 0.7, self.size.height * 0.0025)
+//        
+//        topDisplayLabel2.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
+//        addChild(topDisplayLabel2)
+//        return topDisplayLabel2
+//    }
     
     
     func updatePlayerView (playerNum : Int, playerView : PlayerView) -> PlayerView {
@@ -911,9 +919,9 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
 //            startTimer()
 //        }
         
-        bottomDisplayLabel.text =  "Begin ... "
+        //bottomDisplayLabel.text =  "Begin ... "
         topDisplayLabel.text = "Welcome to Mark My Word"
-        topDisplayLabel2.text =  ""
+        //topDisplayLabel2.text =  ""
         
         mmwGameScene.setGrids() // sets tile grid positions, size square, number squares and position on screen for each grid possible
         
@@ -1955,7 +1963,9 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     
     
     func updatePartialWordFeedback2(updatedText: String) {
-        topDisplayLabel2.text = updatedText
+        topDisplayLabel.text = topDisplayLabel.text! + ", " + updatedText
+        
+        //topDisplayLabel2.text = updatedText
     }
     
     
