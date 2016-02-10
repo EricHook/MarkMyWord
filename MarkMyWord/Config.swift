@@ -19,17 +19,17 @@ func randomNumber(minX minX:UInt32, maxX:UInt32) -> Int {
   return Int(result)
 }
 
-let TileMargin: CGFloat = 20.0
+let TileMargin: CGFloat = 19.0
 
 //// Fonts ///////////////////////////////////////
 //let FontHUD = UIFont(name:"comic andy", size: 62.0)!
 //let FontHUDBig = UIFont(name:"comic andy", size:120.0)!
 
-let FontHUDName = "HelveticaNeue-Bold"
+let FontHUDName = "HelveticaNeue"
 
 
 
-var FontHUDSize : CGFloat = 16.0
+var FontHUDSize : CGFloat = 19.0
 
 func setFontHUDSize () {
     if mmwGame.deviceType == MMWGame.DeviceType.iPhone5 {
@@ -39,18 +39,18 @@ func setFontHUDSize () {
         FontHUDSize = 8
     }
     if mmwGame.deviceType == MMWGame.DeviceType.iPad {
-        FontHUDSize = 16
+        FontHUDSize = 19
     }
     if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
-        FontHUDSize = 18
+        FontHUDSize = 19
     }
 }
 
 
-var FontHUD = UIFont(name:"HelveticaNeue-Bold", size: 16.0)
+var FontHUD = UIFont(name:"HelveticaNeue", size: 18.0)
 
 let FontHUDiPhoneSize = 12.0
-let FontHUDiPhone = UIFont(name:"HelveticaNeue-Bold", size: 12.0)
+let FontHUDiPhone = UIFont(name:"HelveticaNeue", size: 12.0)
 
 let fontLetterTileSize = 40
 

@@ -31,7 +31,7 @@ class MMWOptionScreen: SKScene {
 //    var newGameSpriteNode : SKSpriteNode
     var backgroundNode = SKSpriteNode(imageNamed: "MMWOptionsScreen.png")
     var newGameSpriteNode = SKSpriteNode(imageNamed: "NewGameScreen.png")
-    var loadingIndicator = SKSpriteNode(imageNamed: "PlayButton.png")
+
 
     var defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
 
@@ -163,6 +163,7 @@ class MMWOptionScreen: SKScene {
         gameViewController.viewStatsContainer.hidden = true
         gameViewController.ViewEndGameUI.hidden = true
         gameViewController.ViewResultsScreenUI.hidden = true
+        gameViewController.ViewLoadingGameUIOutlet.hidden = true
 
         //gameViewController.GameViewControllerUI.hidden = false   //ViewOptionsUI.hidden = false
 
@@ -189,6 +190,7 @@ class MMWOptionScreen: SKScene {
         gameViewController.viewStatsContainer.hidden = true
         gameViewController.ViewEndGameUI.hidden = false
         gameViewController.ViewResultsScreenUI.hidden = true
+        gameViewController.ViewLoadingGameUIOutlet.hidden = true
 
     }
     
@@ -211,27 +213,41 @@ class MMWOptionScreen: SKScene {
     func newGameScene () {
         print("going to NEW mmw scene from mmwOptionScreen") //create MMW controller
         
+        let loadingIndicator = SKSpriteNode(imageNamed: "LoadingBarInside.png")
+        
         mmwGameScene.foundValidWordOnTurn = true
         
         let loadDelayTimeSecs = 17.0
         
-        gameViewController.ViewAllOptionsUI.hidden = true
+        //gameViewController.ViewAllOptionsUI.hidden = true
+        gameViewController.ViewOptionsUI.hidden = true
+        gameViewController.ViewLoadingGameUIOutlet.hidden = false
+        gameViewController.bannerViewLowerLeft.hidden = true
+        gameViewController.bannerViewLowerRight.hidden = true
         newGameSpriteNode.hidden = false
+        gameViewController.OptionsSwitchOutlet.hidden = true
         
-        loadingIndicator.position = CGPoint(x: screenSize!.width/2, y: screenSize!.height/5)
-        loadingIndicator.size = CGSize.init(width: 100, height: 50)
+        loadingIndicator.position = CGPoint(x: screenSize!.width/2 - 150, y: screenSize!.height/2 - 12.5)
+        loadingIndicator.size = CGSize.init(width: 150, height: 25)
         loadingIndicator.anchorPoint = CGPoint(x: 0, y: 0)
         loadingIndicator.hidden = false
         loadingIndicator.name = "loadingBtn"
         loadingIndicator.zPosition = 100
         self.addChild(loadingIndicator)
-        let scaleHoriz = SKAction.scaleXTo(2, duration: loadDelayTimeSecs)
+        loadingIndicator.runAction(SKAction.scaleXTo(0, duration: 0.0))
+        let scaleHoriz = SKAction.scaleXTo(2, duration: loadDelayTimeSecs + 0.5)
         let loadingAnim = SKAction.group([scaleHoriz])
         let loadingAnimSequence = SKAction.sequence([loadingAnim, SKAction.removeFromParent()])
         loadingIndicator.runAction(loadingAnimSequence)
-        
+        loadingIndicator.runAction(SKAction.scaleXTo(1, duration: 0.0))
+        gameViewController.ViewLoadingGameUIOutlet.hidden = false
+
         delay (loadDelayTimeSecs) {
+            gameViewController.ViewLoadingGameUIOutlet.hidden = true
             gameViewController.ViewAllOptionsUI.hidden = true
+            gameViewController.OptionsSwitchOutlet.hidden = false
+            gameViewController.bannerViewLowerLeft.hidden = false
+            gameViewController.bannerViewLowerRight.hidden = false
             mmwGameScene.resetGameView()   // includes tileCollection?.resetAllTiles()
             self.view?.presentScene(mmwGameScene)
             mmwGameScene.startGame()  // set grids, starter words, ...

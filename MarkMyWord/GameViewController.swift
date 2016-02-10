@@ -299,6 +299,8 @@ class GameViewController : UIViewController, UITextFieldDelegate {
     @IBOutlet weak var ViewEndGameUI: UIView!
     @IBOutlet weak var ViewResultsScreenUI: UIView!
 
+    @IBOutlet weak var ViewLoadingGameUIOutlet: UIView!
+    
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var bannerView2: GADBannerView!
     @IBOutlet weak var bannerViewLowerLeft: GADBannerView!
@@ -872,7 +874,12 @@ class GameViewController : UIViewController, UITextFieldDelegate {
         bannerViewLowerRight.adUnitID = "ca-app-pub-6428967577130104/3739982084"
         bannerViewLowerRight.rootViewController = self
         bannerViewLowerRight.loadRequest(GADRequest())
-
+        
+        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
+        //adMob300x250LoadingViewOutlet.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        adMob300x250LoadingViewOutlet.adUnitID = "ca-app-pub-6428967577130104/8755277689"
+        adMob300x250LoadingViewOutlet.rootViewController = self
+        adMob300x250LoadingViewOutlet.loadRequest(GADRequest())
 
         let skView = self.view as! SKView
         skView.showsFPS = false
@@ -1080,6 +1087,12 @@ class GameViewController : UIViewController, UITextFieldDelegate {
     override func shouldAutorotate() -> Bool {
         return true
     }
+    
+    // MARK: LOADING SCREEN
+    
+    
+
+    @IBOutlet weak var adMob300x250LoadingViewOutlet: GADBannerView!
     
     
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {

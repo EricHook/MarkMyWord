@@ -38,26 +38,278 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view hidden="YES" userInteractionEnabled="NO" contentMode="center" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kvZ-ZC-q1r" userLabel="ViewAllOptionsUI">
-                                <rect key="frame" x="5" y="0.0" width="1366" height="1024"/>
+                                <rect key="frame" x="27" y="0.0" width="1319" height="1004"/>
                                 <subviews>
                                     <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RMg-jj-MBK" userLabel="BannerViewLTop" customClass="GADBannerView">
-                                        <rect key="frame" x="8" y="8" width="150" height="125"/>
+                                        <rect key="frame" x="-14" y="8" width="150" height="125"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="jEa-rW-RWQ"/>
                                             <constraint firstAttribute="width" constant="320" id="xiT-Ax-bHa"/>
                                         </constraints>
                                     </view>
+                                    <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bff-yX-xnu" userLabel="BannerViewRTop" customClass="GADBannerView">
+                                        <rect key="frame" x="1186" y="8" width="150" height="125"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="knb-Me-C0P"/>
+                                            <constraint firstAttribute="width" constant="320" id="yVP-Zb-k8Q"/>
+                                        </constraints>
+                                    </view>
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D2Y-s7-jdW" userLabel="BannerViewLBottom" customClass="GADBannerView">
-                                        <rect key="frame" x="351" y="691" width="320" height="50"/>
+                                        <rect key="frame" x="309" y="692" width="320" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="IKF-kZ-ODN"/>
                                             <constraint firstAttribute="width" constant="320" id="VBy-gA-G1H"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="center" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2xc-sc-iPr" userLabel="ViewOptionsUI">
-                                        <rect key="frame" x="354" y="75" width="659" height="616"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WYU-7H-1rp" userLabel="BannerViewRBottom" customClass="GADBannerView">
+                                        <rect key="frame" x="687" y="691" width="320" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="320" id="1WA-XH-fbH"/>
+                                            <constraint firstAttribute="height" constant="50" id="FbG-ft-3hd"/>
+                                        </constraints>
+                                    </view>
+                                    <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CgP-F3-NOu" userLabel="ViewRulesContainer">
+                                        <rect key="frame" x="391" y="84" width="540" height="639"/>
+                                        <subviews>
+                                            <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n4z-Zs-Nfo" userLabel="ViewRules">
+                                                <rect key="frame" x="-23" y="-42" width="581" height="711"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rules" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1uS-fF-Jv2">
+                                                        <rect key="frame" x="266" y="34" width="52" height="40"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wYw-Bu-34O">
+                                                        <rect key="frame" x="10" y="62" width="564" height="588"/>
+                                                        <subviews>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ycm-7j-cqq">
+                                                                <rect key="frame" x="20" y="8" width="524" height="117"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                <string key="text">Players drag letter tiles from their rack to the board. If the letter makes the existing letters into a valid word it "locks" those existing letters and points are awarded: 1 point per letter in the complete word for each "unlocked" tile to the player that placed the tile to the board, and 2 points per tile in the complete word for the letter that finishes a word (at least the minimum word length). The minimum word length can set set to two, three or four letters in 'Options'. </string>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            </textView>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Shz-pp-tmC">
+                                                                <rect key="frame" x="20" y="127" width="524" height="100"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                <string key="text">EXAMPLE: If Player 1 placed the tiles "A" and "R" to the right of the locked letter "E" and the minimum word length was two or three letters, the "A" tile would earn Player 1 three points (3 letter word times 1 point per letter) and the "R" would earn the player 6 points (3 letter word times 2 points per letter) for completing the word.</string>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            </textView>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2k-ij-f83">
+                                                                <rect key="frame" x="20" y="219" width="524" height="88"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                <string key="text">If Player 2 then played an "N" after the "R" to form the word EARN, Player 2 would be awarded 12 points (8 letter word times 2 points per letter) for completing the word. Since the letters in "EAR" already formed a word and were awarded points, no further points are awarded for locking those letters. </string>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            </textView>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="G4K-z6-0SH">
+                                                                <rect key="frame" x="20" y="310" width="524" height="83"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                <string key="text">Invalid Plays: If the player attempts to place a tile in a valid position in an attempt to make a word, but the letter placed does not make a valid partial word, it is an invalid play. In this case, the letter is destroyed, the player loses 5 points, and the turn automatically passes to the next player.</string>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            </textView>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Eyw-st-tFF">
+                                                                <rect key="frame" x="20" y="390" width="524" height="88"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                <string key="text">Ending the Turn: After the player is finished placinig tiles to the board, the player may select the "PASS" button and the turn will then go the the next player in a clockwise direction. If the player has placed all the tiles in the rack to the board, the turn will pass automatically. </string>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            </textView>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DbL-K9-DjS">
+                                                                <rect key="frame" x="20" y="471" width="524" height="117"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                <string key="text">Winning the Game: After every tile is played to the board, or if every player passes on his/her turn and the player on the second pass chooses to end the game, every unlocked tile on the board subtracts 2 points from the player that placed it. Additionally, every tile in the rack subtracts 1 point from the total score of that player. The player with the highest score at the end is awarded the victory.</string>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            </textView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </scrollView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3aq-kh-RBD" userLabel="ViewStatsContainer">
+                                        <rect key="frame" x="358" y="214" width="600" height="600"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="muh-FF-C1b" userLabel="ViewStats">
+                                                <rect key="frame" x="-2" y="-51" width="603" height="702"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TgM-NS-ph2">
+                                                        <rect key="frame" x="78" y="57" width="430" height="587"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Statistics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhS-au-6cc">
+                                                                <rect key="frame" x="144" y="40" width="90" height="21"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="games won:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QaO-aL-b7h">
+                                                                <rect key="frame" x="142" y="82" width="92" height="21"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1i-Tn-50g" userLabel="gamesWonLabel">
+                                                                <rect key="frame" x="249" y="82" width="86" height="21"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="games lost:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ArC-Ke-eIA">
+                                                                <rect key="frame" x="145" y="111" width="89" height="21"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cK7-KW-cGf" userLabel="gamesLostLabel">
+                                                                <rect key="frame" x="249" y="111" width="86" height="21"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="number of words played:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qE-3q-a1G">
+                                                                <rect key="frame" x="44" y="140" width="190" height="21"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6l-nj-Nhe" userLabel="numWordsPlayedLabel">
+                                                                <rect key="frame" x="249" y="140" width="86" height="21"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="number of letters played:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3NK-YW-a5C">
+                                                                <rect key="frame" x="42" y="168" width="192" height="21"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awp-mc-tAM" userLabel="numLettersPlayedLabel">
+                                                                <rect key="frame" x="249" y="168" width="86" height="21"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="TgM-NS-ph2" firstAttribute="top" secondItem="muh-FF-C1b" secondAttribute="top" constant="57" id="P7u-Pq-Dmy"/>
+                                                    <constraint firstItem="TgM-NS-ph2" firstAttribute="centerX" secondItem="muh-FF-C1b" secondAttribute="centerX" id="cAR-MQ-YwY"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5c7-Ad-yBv" userLabel="ViewEndGameUI">
+                                        <rect key="frame" x="358" y="234" width="600" height="556"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7LO-lI-mtE" userLabel="ViewEndGame">
+                                                <rect key="frame" x="0.0" y="40" width="600" height="516"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Would you like to end the game?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENN-uE-fWR">
+                                                        <rect key="frame" x="181" y="28" width="248" height="21"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5jk-lf-Zyh">
+                                                        <rect key="frame" x="321" y="201" width="108" height="30"/>
+                                                        <state key="normal" title="Return to Game"/>
+                                                        <connections>
+                                                            <action selector="EndGameNoButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="bQn-Ep-XhG"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gMA-Di-Jbz">
+                                                        <rect key="frame" x="181" y="201" width="71" height="30"/>
+                                                        <state key="normal" title="End Game"/>
+                                                        <connections>
+                                                            <action selector="EndGameYesButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="OSl-Lm-nLl"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="5jk-lf-Zyh" firstAttribute="leading" secondItem="gMA-Di-Jbz" secondAttribute="trailing" constant="69" id="3yo-V4-309"/>
+                                                    <constraint firstItem="gMA-Di-Jbz" firstAttribute="leading" secondItem="ENN-uE-fWR" secondAttribute="leading" id="E9p-Ka-shq"/>
+                                                    <constraint firstItem="ENN-uE-fWR" firstAttribute="top" secondItem="7LO-lI-mtE" secondAttribute="top" constant="112" id="UbV-vb-LKm"/>
+                                                    <constraint firstItem="5jk-lf-Zyh" firstAttribute="top" secondItem="ENN-uE-fWR" secondAttribute="bottom" constant="152" id="lEU-o6-LvG"/>
+                                                    <constraint firstItem="gMA-Di-Jbz" firstAttribute="top" secondItem="ENN-uE-fWR" secondAttribute="bottom" constant="152" id="vaI-wx-j4I"/>
+                                                    <constraint firstItem="ENN-uE-fWR" firstAttribute="centerX" secondItem="7LO-lI-mtE" secondAttribute="centerX" id="wn6-qs-MLa"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="veM-F1-Sv6" userLabel="ViewResultsScreenUI">
+                                        <rect key="frame" x="358" y="214" width="600" height="600"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Results:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3K-rD-N63">
+                                                <rect key="frame" x="255" y="28" width="98" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Congratulations! You Won!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qqf-me-QYt">
+                                                <rect key="frame" x="140" y="115" width="321" height="29"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ed-i9-CpZ">
+                                                <rect key="frame" x="85" y="397" width="75" height="30"/>
+                                                <state key="normal" title="New Game"/>
+                                                <connections>
+                                                    <action selector="gameResultsNewGameButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="7Bu-5d-bHB"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Q4-Bg-CB5">
+                                                <rect key="frame" x="404" y="397" width="155" height="30"/>
+                                                <state key="normal" title="Change Game Options"/>
+                                                <connections>
+                                                    <action selector="gameResultsChangeOptionsButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="p9A-Uz-JzU"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="6Q4-Bg-CB5" firstAttribute="leading" secondItem="3Ed-i9-CpZ" secondAttribute="trailing" constant="243" id="0A6-um-l5C"/>
+                                            <constraint firstItem="6Q4-Bg-CB5" firstAttribute="top" secondItem="veM-F1-Sv6" secondAttribute="top" constant="397" id="5W2-K1-Uo6"/>
+                                            <constraint firstItem="3Ed-i9-CpZ" firstAttribute="top" secondItem="veM-F1-Sv6" secondAttribute="top" constant="397" id="64m-Kh-ez4"/>
+                                            <constraint firstItem="Qqf-me-QYt" firstAttribute="centerX" secondItem="veM-F1-Sv6" secondAttribute="centerX" id="B4j-L6-fHZ"/>
+                                            <constraint firstItem="F3K-rD-N63" firstAttribute="top" secondItem="veM-F1-Sv6" secondAttribute="top" constant="28" id="IIe-qW-Zk3"/>
+                                            <constraint firstItem="Qqf-me-QYt" firstAttribute="top" secondItem="veM-F1-Sv6" secondAttribute="top" constant="115" id="VgE-qF-Xh4"/>
+                                            <constraint firstItem="3Ed-i9-CpZ" firstAttribute="leading" secondItem="veM-F1-Sv6" secondAttribute="leading" constant="87" id="WaP-Wx-mVO"/>
+                                            <constraint firstItem="F3K-rD-N63" firstAttribute="centerX" secondItem="veM-F1-Sv6" secondAttribute="centerX" id="xCI-O3-HFc"/>
+                                        </constraints>
+                                    </view>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Le2-4T-vRc" userLabel="OptionsSwitch">
+                                        <rect key="frame" x="406" y="48" width="499" height="29"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.1000387854609929" colorSpace="calibratedRGB"/>
+                                        <segments>
+                                            <segment title="Options"/>
+                                            <segment title="Rules"/>
+                                            <segment title="Statistics"/>
+                                        </segments>
+                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="OptionsSwitchAction:" destination="BV1-FR-VrT" eventType="valueChanged" id="HHa-Vg-NbQ"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <view hidden="YES" contentMode="center" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2xc-sc-iPr" userLabel="ViewOptionsUI">
+                                        <rect key="frame" x="332" y="75" width="659" height="616"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nWc-xQ-dyC" userLabel="ViewPlayer1">
                                                 <rect key="frame" x="-37" y="266" width="175" height="244"/>
@@ -340,298 +592,95 @@
                                                     <action selector="numStarterWordsSwitchAction:" destination="BV1-FR-VrT" eventType="valueChanged" id="I9K-eD-ifo"/>
                                                 </connections>
                                             </segmentedControl>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOF-Gn-kq7">
-                                                <rect key="frame" x="458" y="586" width="102" height="30"/>
-                                                <state key="normal" title="return to game"/>
-                                                <connections>
-                                                    <action selector="returnToGameButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="VKm-r8-xfz"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="minimum word length:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSo-L6-cGo">
                                                 <rect key="frame" x="81" y="88" width="170" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tsw-7H-Vfy">
-                                                <rect key="frame" x="81" y="586" width="107" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tsw-7H-Vfy">
+                                                <rect key="frame" x="81" y="537" width="107" height="30"/>
                                                 <state key="normal" title="start new game"/>
                                                 <connections>
                                                     <action selector="startNewGameButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="G72-Ig-sue"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOF-Gn-kq7">
+                                                <rect key="frame" x="456" y="537" width="102" height="30"/>
+                                                <state key="normal" title="return to game"/>
+                                                <connections>
+                                                    <action selector="returnToGameButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="VKm-r8-xfz"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </view>
-                                    <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bff-yX-xnu" userLabel="BannerViewRTop" customClass="GADBannerView">
-                                        <rect key="frame" x="1208" y="8" width="150" height="125"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="knb-Me-C0P"/>
-                                            <constraint firstAttribute="width" constant="320" id="yVP-Zb-k8Q"/>
+                                            <constraint firstItem="Tsw-7H-Vfy" firstAttribute="top" secondItem="2xc-sc-iPr" secondAttribute="top" constant="537" id="7Dt-uC-eyL"/>
+                                            <constraint firstItem="rOF-Gn-kq7" firstAttribute="top" secondItem="2xc-sc-iPr" secondAttribute="top" constant="537" id="Zoe-9s-uGq"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WYU-7H-1rp" userLabel="BannerViewRBottom" customClass="GADBannerView">
-                                        <rect key="frame" x="709" y="691" width="320" height="50"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="1WA-XH-fbH"/>
-                                            <constraint firstAttribute="height" constant="50" id="FbG-ft-3hd"/>
-                                        </constraints>
-                                    </view>
-                                    <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CgP-F3-NOu" userLabel="ViewRulesContainer">
-                                        <rect key="frame" x="413" y="84" width="540" height="639"/>
+                                    <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ftc-Ke-fhd" userLabel="ViewLoadingGameUI">
+                                        <rect key="frame" x="-28" y="-1" width="1368" height="1025"/>
                                         <subviews>
-                                            <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n4z-Zs-Nfo" userLabel="ViewRules">
-                                                <rect key="frame" x="-23" y="-42" width="581" height="711"/>
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ClC-kI-9i3" userLabel="LoadingGameView">
+                                                <rect key="frame" x="0.0" y="0.0" width="1368" height="1026"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rules" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1uS-fF-Jv2">
-                                                        <rect key="frame" x="266" y="34" width="52" height="40"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wYw-Bu-34O">
-                                                        <rect key="frame" x="10" y="62" width="564" height="588"/>
-                                                        <subviews>
-                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ycm-7j-cqq">
-                                                                <rect key="frame" x="20" y="8" width="524" height="117"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                <string key="text">Players drag letter tiles from their rack to the board. If the letter makes the existing letters into a valid word it "locks" those existing letters and points are awarded: 1 point per letter in the complete word for each "unlocked" tile to the player that placed the tile to the board, and 2 points per tile in the complete word for the letter that finishes a word (at least the minimum word length). The minimum word length can set set to two, three or four letters in 'Options'. </string>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                            </textView>
-                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Shz-pp-tmC">
-                                                                <rect key="frame" x="20" y="127" width="524" height="100"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                <string key="text">EXAMPLE: If Player 1 placed the tiles "A" and "R" to the right of the locked letter "E" and the minimum word length was two or three letters, the "A" tile would earn Player 1 three points (3 letter word times 1 point per letter) and the "R" would earn the player 6 points (3 letter word times 2 points per letter) for completing the word.</string>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                            </textView>
-                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2k-ij-f83">
-                                                                <rect key="frame" x="20" y="219" width="524" height="88"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                <string key="text">If Player 2 then played an "N" after the "R" to form the word EARN, Player 2 would be awarded 12 points (8 letter word times 2 points per letter) for completing the word. Since the letters in "EAR" already formed a word and were awarded points, no further points are awarded for locking those letters. </string>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                            </textView>
-                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="G4K-z6-0SH">
-                                                                <rect key="frame" x="20" y="310" width="524" height="83"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                <string key="text">Invalid Plays: If the player attempts to place a tile in a valid position in an attempt to make a word, but the letter placed does not make a valid partial word, it is an invalid play. In this case, the letter is destroyed, the player loses 5 points, and the turn automatically passes to the next player.</string>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                            </textView>
-                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Eyw-st-tFF">
-                                                                <rect key="frame" x="20" y="390" width="524" height="88"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                <string key="text">Ending the Turn: After the player is finished placinig tiles to the board, the player may select the "PASS" button and the turn will then go the the next player in a clockwise direction. If the player has placed all the tiles in the rack to the board, the turn will pass automatically. </string>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                            </textView>
-                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DbL-K9-DjS">
-                                                                <rect key="frame" x="20" y="471" width="524" height="117"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                <string key="text">Winning the Game: After every tile is played to the board, or if every player passes on his/her turn and the player on the second pass chooses to end the game, every unlocked tile on the board subtracts 2 points from the player that placed it. Additionally, every tile in the rack subtracts 1 point from the total score of that player. The player with the highest score at the end is awarded the victory.</string>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                            </textView>
-                                                        </subviews>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dZj-F0-FkC">
+                                                        <rect key="frame" x="539" y="140" width="300" height="117"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    </scrollView>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </view>
-                                    <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3aq-kh-RBD" userLabel="ViewStatsContainer">
-                                        <rect key="frame" x="380" y="214" width="600" height="600"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="muh-FF-C1b" userLabel="ViewStats">
-                                                <rect key="frame" x="-2" y="-51" width="603" height="702"/>
-                                                <subviews>
-                                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TgM-NS-ph2">
-                                                        <rect key="frame" x="78" y="57" width="430" height="587"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Statistics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhS-au-6cc">
-                                                                <rect key="frame" x="144" y="40" width="90" height="21"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="games won:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QaO-aL-b7h">
-                                                                <rect key="frame" x="142" y="82" width="92" height="21"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1i-Tn-50g" userLabel="gamesWonLabel">
-                                                                <rect key="frame" x="249" y="82" width="86" height="21"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="games lost:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ArC-Ke-eIA">
-                                                                <rect key="frame" x="145" y="111" width="89" height="21"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cK7-KW-cGf" userLabel="gamesLostLabel">
-                                                                <rect key="frame" x="249" y="111" width="86" height="21"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="number of words played:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qE-3q-a1G">
-                                                                <rect key="frame" x="44" y="140" width="190" height="21"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6l-nj-Nhe" userLabel="numWordsPlayedLabel">
-                                                                <rect key="frame" x="249" y="140" width="86" height="21"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="number of letters played:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3NK-YW-a5C">
-                                                                <rect key="frame" x="42" y="168" width="192" height="21"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awp-mc-tAM" userLabel="numLettersPlayedLabel">
-                                                                <rect key="frame" x="249" y="168" width="86" height="21"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
+                                                        <string key="text">Creating new game. If you enjoyed the game please rate the game, and if you have any requests for new features or fixes, we'd love to hear from you on our website at www.dashboardgames.com/markmyword. Thank you for playing!</string>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    </textView>
+                                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nGi-s0-nVi" userLabel="adMob300x250LoadingView" customClass="GADBannerView">
+                                                        <rect key="frame" x="534" y="326" width="300" height="250"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="300" id="9ef-Io-RNt"/>
+                                                            <constraint firstAttribute="height" constant="250" id="dx5-AA-jzJ"/>
+                                                        </constraints>
                                                     </view>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="LoadingBarBorder.png" translatesAutoresizingMaskIntoConstraints="NO" id="er7-aQ-M1U">
+                                                        <rect key="frame" x="534" y="301" width="300" height="25"/>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstItem="TgM-NS-ph2" firstAttribute="top" secondItem="muh-FF-C1b" secondAttribute="top" constant="57" id="P7u-Pq-Dmy"/>
-                                                    <constraint firstItem="TgM-NS-ph2" firstAttribute="centerX" secondItem="muh-FF-C1b" secondAttribute="centerX" id="cAR-MQ-YwY"/>
+                                                    <constraint firstItem="dZj-F0-FkC" firstAttribute="centerX" secondItem="ClC-kI-9i3" secondAttribute="centerX" id="1c5-g5-2EL"/>
+                                                    <constraint firstItem="dZj-F0-FkC" firstAttribute="top" secondItem="ClC-kI-9i3" secondAttribute="top" constant="140" id="3Yr-6b-frc"/>
+                                                    <constraint firstItem="nGi-s0-nVi" firstAttribute="top" secondItem="er7-aQ-M1U" secondAttribute="bottom" id="yUt-7E-df1"/>
                                                 </constraints>
                                             </view>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </view>
-                                    <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5c7-Ad-yBv" userLabel="ViewEndGameUI">
-                                        <rect key="frame" x="380" y="234" width="600" height="556"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7LO-lI-mtE" userLabel="ViewEndGame">
-                                                <rect key="frame" x="0.0" y="40" width="600" height="516"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Would you like to end the game?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENN-uE-fWR">
-                                                        <rect key="frame" x="181" y="28" width="248" height="21"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5jk-lf-Zyh">
-                                                        <rect key="frame" x="321" y="201" width="108" height="30"/>
-                                                        <state key="normal" title="Return to Game"/>
-                                                        <connections>
-                                                            <action selector="EndGameNoButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="bQn-Ep-XhG"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gMA-Di-Jbz">
-                                                        <rect key="frame" x="181" y="201" width="71" height="30"/>
-                                                        <state key="normal" title="End Game"/>
-                                                        <connections>
-                                                            <action selector="EndGameYesButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="OSl-Lm-nLl"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstItem="5jk-lf-Zyh" firstAttribute="leading" secondItem="gMA-Di-Jbz" secondAttribute="trailing" constant="69" id="3yo-V4-309"/>
-                                                    <constraint firstItem="gMA-Di-Jbz" firstAttribute="leading" secondItem="ENN-uE-fWR" secondAttribute="leading" id="E9p-Ka-shq"/>
-                                                    <constraint firstItem="ENN-uE-fWR" firstAttribute="top" secondItem="7LO-lI-mtE" secondAttribute="top" constant="112" id="UbV-vb-LKm"/>
-                                                    <constraint firstItem="5jk-lf-Zyh" firstAttribute="top" secondItem="ENN-uE-fWR" secondAttribute="bottom" constant="152" id="lEU-o6-LvG"/>
-                                                    <constraint firstItem="gMA-Di-Jbz" firstAttribute="top" secondItem="ENN-uE-fWR" secondAttribute="bottom" constant="152" id="vaI-wx-j4I"/>
-                                                    <constraint firstItem="ENN-uE-fWR" firstAttribute="centerX" secondItem="7LO-lI-mtE" secondAttribute="centerX" id="wn6-qs-MLa"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </view>
-                                    <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="veM-F1-Sv6" userLabel="ViewResultsScreenUI">
-                                        <rect key="frame" x="380" y="214" width="600" height="600"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Results:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3K-rD-N63">
-                                                <rect key="frame" x="255" y="28" width="98" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Congratulations! You Won!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qqf-me-QYt">
-                                                <rect key="frame" x="140" y="115" width="321" height="29"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ed-i9-CpZ">
-                                                <rect key="frame" x="85" y="397" width="75" height="30"/>
-                                                <state key="normal" title="New Game"/>
-                                                <connections>
-                                                    <action selector="gameResultsNewGameButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="7Bu-5d-bHB"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Q4-Bg-CB5">
-                                                <rect key="frame" x="404" y="397" width="155" height="30"/>
-                                                <state key="normal" title="Change Game Options"/>
-                                                <connections>
-                                                    <action selector="gameResultsChangeOptionsButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="p9A-Uz-JzU"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="6Q4-Bg-CB5" firstAttribute="leading" secondItem="3Ed-i9-CpZ" secondAttribute="trailing" constant="243" id="0A6-um-l5C"/>
-                                            <constraint firstItem="6Q4-Bg-CB5" firstAttribute="top" secondItem="veM-F1-Sv6" secondAttribute="top" constant="397" id="5W2-K1-Uo6"/>
-                                            <constraint firstItem="3Ed-i9-CpZ" firstAttribute="top" secondItem="veM-F1-Sv6" secondAttribute="top" constant="397" id="64m-Kh-ez4"/>
-                                            <constraint firstItem="Qqf-me-QYt" firstAttribute="centerX" secondItem="veM-F1-Sv6" secondAttribute="centerX" id="B4j-L6-fHZ"/>
-                                            <constraint firstItem="F3K-rD-N63" firstAttribute="top" secondItem="veM-F1-Sv6" secondAttribute="top" constant="28" id="IIe-qW-Zk3"/>
-                                            <constraint firstItem="Qqf-me-QYt" firstAttribute="top" secondItem="veM-F1-Sv6" secondAttribute="top" constant="115" id="VgE-qF-Xh4"/>
-                                            <constraint firstItem="3Ed-i9-CpZ" firstAttribute="leading" secondItem="veM-F1-Sv6" secondAttribute="leading" constant="87" id="WaP-Wx-mVO"/>
-                                            <constraint firstItem="F3K-rD-N63" firstAttribute="centerX" secondItem="veM-F1-Sv6" secondAttribute="centerX" id="xCI-O3-HFc"/>
+                                            <constraint firstItem="ClC-kI-9i3" firstAttribute="centerY" secondItem="ftc-Ke-fhd" secondAttribute="centerY" id="H2E-RD-rS2"/>
+                                            <constraint firstItem="ClC-kI-9i3" firstAttribute="centerX" secondItem="ftc-Ke-fhd" secondAttribute="centerX" id="UYg-HX-h7m"/>
                                         </constraints>
                                     </view>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Le2-4T-vRc" userLabel="OptionsSwitch">
-                                        <rect key="frame" x="428" y="48" width="499" height="29"/>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.1000387854609929" colorSpace="calibratedRGB"/>
-                                        <segments>
-                                            <segment title="Options"/>
-                                            <segment title="Rules"/>
-                                            <segment title="Statistics"/>
-                                        </segments>
-                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <action selector="OptionsSwitchAction:" destination="BV1-FR-VrT" eventType="valueChanged" id="HHa-Vg-NbQ"/>
-                                        </connections>
-                                    </segmentedControl>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="T6s-Q9-0AD">
+                                        <rect key="frame" x="20" y="379" width="20" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
                                 <constraints>
-                                    <constraint firstItem="D2Y-s7-jdW" firstAttribute="leading" secondItem="kvZ-ZC-q1r" secondAttribute="leading" constant="334" id="k6g-yC-MSh"/>
-                                    <constraint firstItem="2xc-sc-iPr" firstAttribute="centerX" secondItem="kvZ-ZC-q1r" secondAttribute="centerX" id="zRY-Vj-EXD"/>
+                                    <constraint firstItem="ftc-Ke-fhd" firstAttribute="centerX" secondItem="kvZ-ZC-q1r" secondAttribute="centerX" id="9Fi-mf-az3"/>
+                                    <constraint firstItem="ftc-Ke-fhd" firstAttribute="centerY" secondItem="kvZ-ZC-q1r" secondAttribute="centerY" id="Bca-va-CDC"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="kvZ-ZC-q1r" firstAttribute="top" secondItem="maK-i9-Uhn" secondAttribute="bottom" id="6jk-LL-Kiz"/>
                             <constraint firstItem="1eH-KO-wpy" firstAttribute="leading" secondItem="xlB-ti-aqt" secondAttribute="trailing" constant="5" id="7O5-Eo-El3"/>
+                            <constraint firstItem="nGi-s0-nVi" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="C79-lU-pub"/>
                             <constraint firstItem="1eH-KO-wpy" firstAttribute="top" secondItem="maK-i9-Uhn" secondAttribute="bottom" id="Rdn-Bt-Sxq"/>
                             <constraint firstItem="kvZ-ZC-q1r" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="Ust-kU-7bm"/>
                             <constraint firstItem="1eH-KO-wpy" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="kjS-tK-fMK"/>
                             <constraint firstItem="5KB-Zw-5RO" firstAttribute="leading" secondItem="1eH-KO-wpy" secondAttribute="trailing" constant="12" id="kkF-jg-Zut"/>
+                            <constraint firstItem="er7-aQ-M1U" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="l3t-jH-fD9"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -644,12 +693,14 @@
                         <outlet property="OptionsSwitchOutlet" destination="Le2-4T-vRc" id="ysz-ht-dDD"/>
                         <outlet property="ViewAllOptionsUI" destination="kvZ-ZC-q1r" id="SXV-Kb-UBS"/>
                         <outlet property="ViewEndGameUI" destination="5c7-Ad-yBv" id="U2A-Sz-7hc"/>
+                        <outlet property="ViewLoadingGameUIOutlet" destination="ftc-Ke-fhd" id="Iw4-2X-khA"/>
                         <outlet property="ViewOptionsUI" destination="2xc-sc-iPr" id="0sk-jq-Zfy"/>
                         <outlet property="ViewPlayer1UI" destination="nWc-xQ-dyC" id="EBq-0W-PDN"/>
                         <outlet property="ViewPlayer2UI" destination="vX9-lX-NeL" id="Qe7-gb-B36"/>
                         <outlet property="ViewPlayer3UI" destination="Iai-zq-20q" id="CWg-5V-ai7"/>
                         <outlet property="ViewPlayer4UI" destination="3qF-ym-6Gm" id="0aW-sB-9Ap"/>
                         <outlet property="ViewResultsScreenUI" destination="veM-F1-Sv6" id="x4M-vG-qqC"/>
+                        <outlet property="adMob300x250LoadingViewOutlet" destination="nGi-s0-nVi" id="6ym-l3-MAA"/>
                         <outlet property="audioSettingOutlet" destination="r3t-0e-OMa" id="N9S-ik-dcU"/>
                         <outlet property="avatarStepperPlayer02" destination="HDZ-F4-ppR" id="Ysb-21-wbx"/>
                         <outlet property="avatarStepperPlayer03" destination="jaW-pd-atE" id="7MO-ny-qjy"/>
@@ -702,24 +753,9 @@
         <scene sceneID="2TM-St-aDZ">
             <objects>
                 <viewController id="8OM-nR-pgS" userLabel="ViewControllerOptions" customClass="GameViewController" customModule="MarkMyWord" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="XTp-HP-UtF"/>
-                        <viewControllerLayoutGuide type="bottom" id="olT-Nw-g1l"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ftc-Ke-fhd">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dZj-F0-FkC">
-                                <rect key="frame" x="67" y="168" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
+                    <connections>
+                        <outlet property="adMob320x250LoadingViewOutlet" destination="nGi-s0-nVi" id="otJ-SW-LcE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OAA-bc-Inn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -753,6 +789,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="LoadingBarBorder.png" width="300" height="25"/>
         <image name="avatar000.png" width="313" height="308"/>
         <image name="meyama000.png" width="201" height="179"/>
         <image name="meyama001.png" width="100" height="89"/>
