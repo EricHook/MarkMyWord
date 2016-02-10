@@ -57,7 +57,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
 //    var timeRemainingLabel  = SKLabelNode(fontNamed: FontHUDName)
     var tilesRemainingLabel = SKLabelNode(fontNamed: FontHUDName)
     var topDisplayLabel     = SKLabelNode(fontNamed: FontHUDName)
-    //var topDisplayLabel2    = SKLabelNode(fontNamed: FontHUDName)
+    var topDisplayLabel2    = SKLabelNode(fontNamed: FontHUDName)
     //var bottomDisplayLabel  = SKLabelNode(fontNamed: FontHUDName)
     
     let playButton     = SKSpriteNode(imageNamed: "PlayButton.png")
@@ -289,7 +289,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
 //        self.addChild(gameGrid)
 
         topDisplayHUD("Welcome to Mark My Word") // ("Turn: Player 1, Special Letter Bonus In Effect, 2x Point Bonus")
-        //topDisplayHUD2("topDisplayHUD2")
+        topDisplayHUD2("topDisplayHUD2")
         
         tilesRemainingHUD(tileCollection!.mmwTileArray.count)
 
@@ -462,7 +462,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         
         //bottomDisplayLabel.text =  "Begin ... "
         topDisplayLabel.text = "Welcome to Mark My Word"
-        //topDisplayLabel2.text =  ""
+        topDisplayLabel2.text =  "Have Fun!"
 
         tileCollection!.resetAllTiles()
         tileCollection = MMWTileBuilder()
@@ -600,26 +600,26 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         topDisplayLabel.fontSize = FontHUDSize
         
         //topDisplayLabel.position = CGPointMake(size.width/2.0, self.size.height * 0.980) // CGPointMake(size.width/2.0, 753.0) // 1 of 2 top lines
-        topDisplayLabel.position = CGPointMake(size.width * 0.3, self.size.height * 0.0025)
+        topDisplayLabel.position = CGPointMake(size.width * 0.313, self.size.height * 0.0029)
         
-        topDisplayLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
+        topDisplayLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center // = SKLabelHorizontalAlignmentMode(rawValue: 0)!
         addChild(topDisplayLabel)
         return topDisplayLabel
     }
     
     
-//    func topDisplayHUD2 (message : String)  -> SKLabelNode {        // top text display area - second line
-//        topDisplayLabel2.zPosition = 1
-//        topDisplayLabel2.text = message
-//        topDisplayLabel2.fontSize = FontHUDSize
-//        
-////        topDisplayLabel2.position = CGPointMake(size.width/2.0, (self.size.height * 0.959) )// 2 of 2 top lines CGPointMake(size.width/2.0, 735.0)
-//        topDisplayLabel2.position = CGPointMake(size.width * 0.7, self.size.height * 0.0025)
-//        
-//        topDisplayLabel2.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode(rawValue: 0)!
-//        addChild(topDisplayLabel2)
-//        return topDisplayLabel2
-//    }
+    func topDisplayHUD2 (message : String)  -> SKLabelNode {        // top text display area - second line
+        topDisplayLabel2.zPosition = 1
+        topDisplayLabel2.text = message
+        topDisplayLabel2.fontSize = FontHUDSize
+        
+//        topDisplayLabel2.position = CGPointMake(size.width/2.0, (self.size.height * 0.959) )// 2 of 2 top lines CGPointMake(size.width/2.0, 735.0)
+        topDisplayLabel2.position = CGPointMake(size.width * 0.685, self.size.height * 0.0029)
+        
+        topDisplayLabel2.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
+        addChild(topDisplayLabel2)
+        return topDisplayLabel2
+    }
     
     
     func updatePlayerView (playerNum : Int, playerView : PlayerView) -> PlayerView {
@@ -697,6 +697,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         return playerView
     }
     
+    
     func updateGridInScene (gridToUpdate: Grid) {  // sets position of tile in grid to proper screen location
         for y in 0...(gridToUpdate.gridNumSquaresY - 1) {
             for x in 0...(gridToUpdate.gridNumSquaresX - 1) {
@@ -705,6 +706,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             }
         }
     }
+    
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
@@ -749,6 +751,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         }
     }
     
+    
     func playButton (buttonNode: SKNode) {
         if userInteractionEnabled {
             print(">>> PLAY BUTTON PRESSED >>>")
@@ -756,6 +759,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             buttonNode.removeFromParent() // gets rid of play button in middle of screen
         }
     }
+    
     
     func dealStarterWords() {
         print("---   in startGame mmwGameScene")
@@ -808,7 +812,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                 
                 var starterWord2 = mmwGameSceneViewController.getRandomWord()
                 while mmwGameSceneViewController.checkTilesForWord(starterWord2, letterTileArray: tileCollection!.mmwTileArray) == false {
-                    starterWord1 = mmwGameSceneViewController.getRandomWord()
+                    starterWord2 = mmwGameSceneViewController.getRandomWord()
                 }
                 var starterWord2TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord2, letterTileArray: &tileCollection!.mmwTileArray)
                 
@@ -824,21 +828,17 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             
         else { // HORIZONTAL
             if mmwGameSceneViewController.numStarterWords == 1 {
-                
-                
+ 
                 mmwGameSceneViewController.sendWordToBoard(&starterWord0TileArray!, gridToDisplay: mmwBoardGrid, xStartSquare: 5, yStartSquare: 7, IsHorizonal: true, player: mmwGameSceneViewController.player0)
             }
             
             if mmwGameSceneViewController.numStarterWords == 2 {
-                
-                
+
                 var starterWord1 = mmwGameSceneViewController.getRandomWord()
                 while mmwGameSceneViewController.checkTilesForWord(starterWord1, letterTileArray: tileCollection!.mmwTileArray) == false {
                     starterWord1 = mmwGameSceneViewController.getRandomWord()
                 }
                 var starterWord1TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord1, letterTileArray: &tileCollection!.mmwTileArray)
-
-                
 
 //                starterWord1TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord1, letterTileArray: &tileCollection!.mmwTileArray)!
                 
@@ -847,9 +847,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             }
             
             if mmwGameSceneViewController.numStarterWords == 3 {
-                
-                
-                
+
                 var starterWord1 = mmwGameSceneViewController.getRandomWord()
                 while mmwGameSceneViewController.checkTilesForWord(starterWord1, letterTileArray: tileCollection!.mmwTileArray) == false {
                     starterWord1 = mmwGameSceneViewController.getRandomWord()
@@ -858,12 +856,10 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                 
                 var starterWord2 = mmwGameSceneViewController.getRandomWord()
                 while mmwGameSceneViewController.checkTilesForWord(starterWord2, letterTileArray: tileCollection!.mmwTileArray) == false {
-                    starterWord1 = mmwGameSceneViewController.getRandomWord()
+                    starterWord2 = mmwGameSceneViewController.getRandomWord()
                 }
                 var starterWord2TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord2, letterTileArray: &tileCollection!.mmwTileArray)
-                
 
-                
 //                starterWord1TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord1, letterTileArray: &tileCollection!.mmwTileArray)!
 //                
 //                starterWord2TileArray = mmwGameSceneViewController.returnTilesForWord(starterWord2, letterTileArray: &tileCollection!.mmwTileArray)!
@@ -1438,6 +1434,8 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     
     func playerPass () {
         
+        playerPassButtonOff()
+        
         if mmwGameSceneViewController.audioOn == true {
             self.runAction(SKAction.playSoundFileNamed("points.WAV", waitForCompletion: false))
         }
@@ -1461,21 +1459,22 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                 mmwOptionScreen.allPlayersPassed()
             }
             else {
-                //delay(1.0) {
+                delay(0.5) {
                     self.changePlayerTurn()
-                //}
+                }
             }
         }
         else {
-            //delay(1.0) {
+            delay(0.5) {
                 self.changePlayerTurn()
-            //}
+            }
         }
     }
     
     
     func newTilesButton(newTilesButtonNode: SKNode) {
         if userInteractionEnabled == true {
+            newTilesButtonOff()
             
             if mmwGameSceneViewController.audioOn == true {
                 runAction(actionSound)
@@ -1487,9 +1486,9 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             
             mmwGameSceneViewController.resetConsequtivePasses()
             
-            //delay(1.0) {
+            delay(1.0) {
                 self.changePlayerTurn()
-            //}
+            }
         }
     }
     
@@ -1789,8 +1788,9 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].isHuman == true {
                 mmwGameScene.optionsButton.userInteractionEnabled = false
                 mmwGameScene.optionsButton.alpha = 1.0
-                mmwGameScene.passButton.userInteractionEnabled = false
-                mmwGameScene.passButton.alpha = 1.0
+                playerPassButtonOn()
+//                mmwGameScene.passButton.userInteractionEnabled = false
+//                mmwGameScene.passButton.alpha = 1.0
                 if tileCollection!.mmwTileArray.count > 0 {
                     newTilesButtonOn()
                 }
@@ -1800,8 +1800,9 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             else {
                 mmwGameScene.optionsButton.userInteractionEnabled = true
                 mmwGameScene.optionsButton.alpha = 0.5
-                mmwGameScene.passButton.userInteractionEnabled = true
-                mmwGameScene.passButton.alpha = 0.5
+                playerPassButtonOff()
+//                mmwGameScene.passButton.userInteractionEnabled = true
+//                mmwGameScene.passButton.alpha = 0.5
                 newTilesButtonOff()
             }
         }
@@ -1814,8 +1815,9 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].isHuman == true {
                 mmwGameScene.optionsButton.userInteractionEnabled = false
                 mmwGameScene.optionsButton.alpha = 1.0
-                mmwGameScene.passButton.userInteractionEnabled = false
-                mmwGameScene.passButton.alpha = 1.0
+                playerPassButtonOn()
+//                mmwGameScene.passButton.userInteractionEnabled = false
+//                mmwGameScene.passButton.alpha = 1.0
                 if tileCollection!.mmwTileArray.count > 0 {
                     newTilesButtonOn()
                 }
@@ -1825,8 +1827,9 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             else {
                 mmwGameScene.optionsButton.userInteractionEnabled = true
                 mmwGameScene.optionsButton.alpha = 0.5
-                mmwGameScene.passButton.userInteractionEnabled = true
-                mmwGameScene.passButton.alpha = 0.5
+                playerPassButtonOff()
+//                mmwGameScene.passButton.userInteractionEnabled = true
+//                mmwGameScene.passButton.alpha = 0.5
                 newTilesButtonOff()
             }
         }
@@ -1950,6 +1953,17 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         self.newTilesButton.userInteractionEnabled = false // ??? why false, seems backwards but works this way
     }
     
+    func playerPassButtonOff () {
+        mmwGameScene.passButton.userInteractionEnabled = true
+        mmwGameScene.passButton.alpha = 0.5
+    }
+    
+    func playerPassButtonOn () {
+        mmwGameScene.passButton.userInteractionEnabled = false
+        mmwGameScene.passButton.alpha = 1.0
+    }
+   
+    
     
     func newTilesButtonOff () {
         self.newTilesButton.alpha = 0.5
@@ -1963,9 +1977,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     
     
     func updatePartialWordFeedback2(updatedText: String) {
-        topDisplayLabel.text = topDisplayLabel.text! + ", " + updatedText
-        
-        //topDisplayLabel2.text = updatedText
+        topDisplayLabel2.text = updatedText
     }
     
     
@@ -2423,22 +2435,26 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         for y in 0...(mmwBoardGrid.gridNumSquaresY - 1) {   // fill letter tiles
             for x in 0...(mmwBoardGrid.gridNumSquaresX - 1) {
                 if mmwBoardGrid.grid2DArr[x][y].tileState == TileState.Played  {
-                    //delay (Double (numLetterTilesRemaining) ) {
+                    delay (Double (numLetterTilesRemaining) ) {
                         self.mmwBoardGrid.grid2DArr[x][y].tileSprite.showNegativeScoreTextToGridHome(-2)
                         mmwGameSceneViewController.playerArray[self.mmwBoardGrid.grid2DArr[x][y].tileOwner.rawValue - 1].playerScore -= 2
+                        mmwGameScene.playerViewArr[self.mmwBoardGrid.grid2DArr[x][y].tileOwner.rawValue - 1].changePlayerScoreDisplay()
+                        //mmwGameSceneViewController.playerArray[self.mmwBoardGrid.grid2DArr[x][y].tileOwner.rawValue - 1].up
                         self.mmwBoardGrid.grid2DArr[x][y].tileSprite.alpha = 0.5
                         numLetterTilesRemaining++
                     }
-                //}
+                }
             }
         }
-        
-        
+
         delay ( 3.0) { // Double(++numLetterTilesRemaining) ) {
-            self.view?.presentScene(mmwOptionScreen)
-            gameViewController.goToResults()
-        }
-        
+            self.gameIsOver()
+        } 
+    }
+    
+    func gameIsOver() {
+        view?.presentScene(mmwOptionScreen)
+        gameViewController.goToResults()
         
     }
     

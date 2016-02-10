@@ -926,7 +926,6 @@ class GameViewController : UIViewController, UITextFieldDelegate {
 
     // MARK: END GAME SCREEN
     
-    
 
     @IBAction func EndGameYesButton(sender: AnyObject) {
         // returns to game without any settings changes
@@ -944,9 +943,7 @@ class GameViewController : UIViewController, UITextFieldDelegate {
         //startNewGame()
     }
     
-    
-    
-    
+
     func goToResults() {
         
         //view?.presentScene(mmwOptionScreen)
@@ -959,8 +956,7 @@ class GameViewController : UIViewController, UITextFieldDelegate {
         gameViewController.viewStatsContainer.hidden = true
         gameViewController.ViewEndGameUI.hidden = true
         gameViewController.ViewResultsScreenUI.hidden = false
-        
-        
+
         var otherHighestScore = -10000
         for playerNum in 1..<mmwGameSceneViewController.playerArray.count {
             if mmwGameSceneViewController.playerArray[playerNum].playerScore > otherHighestScore {
@@ -986,6 +982,11 @@ class GameViewController : UIViewController, UITextFieldDelegate {
     @IBAction func EndGameNoButton(sender: AnyObject) {
         // returns to game without any settings changes
         mmwGameSceneViewController.consecutivePasses = mmwGameSceneViewController.numPlayers - 2
+        mmwGameScene.playerPassButtonOn()
+        if tileCollection!.mmwTileArray.count > 0 {
+            mmwGameScene.newTilesButtonOn()
+        }
+        else { mmwGameScene.newTilesButtonOff() }
         mmwOptionScreen.returnToGameScene()
     }
 

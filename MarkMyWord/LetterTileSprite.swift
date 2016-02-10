@@ -673,43 +673,42 @@ class LetterTileSprite : SKSpriteNode {
         dispatch_async(dispatch_get_global_queue(priority, 0), { ()->() in
             //print("Currently dispatched thread asynchronously 0 playBtnPlay playAILetters")
 
-            
-            var homePosition = CGPoint(x: 0, y: 0)
-            if (self.tileSpriteParent.gridX != -1) {
-                homePosition = Grid.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: self.tileSpriteParent.gridX, squareY: self.tileSpriteParent.gridY)
-            }
-            var endPosition = CGPoint(x: 0, y: 0)
-            if (self.tileSpriteParent.gridX != -1) {
-                endPosition = self.position
-            }
+                var homePosition = CGPoint(x: 0, y: 0)
+                if (self.tileSpriteParent.gridX != -1) {
+                    homePosition = Grid.sendToGridSquare(self.tileSpriteParent.gridHome!, squareX: self.tileSpriteParent.gridX, squareY: self.tileSpriteParent.gridY)
+                }
+                var endPosition = CGPoint(x: 0, y: 0)
+                if (self.tileSpriteParent.gridX != -1) {
+                    endPosition = self.position
+                }
 
-            let negPlayScore = SKLabelNode() // = createLetterScoreText (self.position, endLocation: homePosition, textColor: gameColors[self.tileSpriteParent.tileOwner.rawValue], displayText: String(number) )
+                let negPlayScore = SKLabelNode() // = createLetterScoreText (self.position, endLocation: homePosition, textColor: gameColors[self.tileSpriteParent.tileOwner.rawValue], displayText: String(number) )
 
-            negPlayScore.fontColor = gameColors[self.tileSpriteParent.tileOwner.rawValue]
-            negPlayScore.text = "-\(number)"
-            negPlayScore.fontSize = 65
-            negPlayScore.fontName = FontHUDName
-            negPlayScore.zPosition = 95
-            negPlayScore.removeFromParent()
-            mmwGameScene.addChild(negPlayScore)
-            negPlayScore.position = self.position
-            let returnPosition = homePosition
+                negPlayScore.fontColor = gameColors[self.tileSpriteParent.tileOwner.rawValue]
+                negPlayScore.text = "\(number)"
+                negPlayScore.fontSize = 65
+                negPlayScore.fontName = FontHUDName
+                negPlayScore.zPosition = 95
+                negPlayScore.removeFromParent()
+                mmwGameScene.addChild(negPlayScore)
+                negPlayScore.position = self.position
+                let returnPosition = homePosition
 
-            let waitTime = SKAction.waitForDuration( Double(0.0) )
-            self.runAction( waitTime ) {  //  !! Delay for show word score text set here
-            let slide = SKAction.moveTo(returnPosition, duration:1.0)
-            let scaleUp = SKAction.scaleTo(2.0, duration:0.75)
-            let scaleDown = SKAction.scaleTo(0.5, duration:0.25)
-            let fadeIn = SKAction.fadeInWithDuration(0.75)
-            let fadeOut = SKAction.fadeOutWithDuration(0.75)
-            let remove = SKAction.removeFromParent()
+                let waitTime = SKAction.waitForDuration( Double(0.0) )
+                self.runAction( waitTime ) {  //  !! Delay for show word score text set here
+                let slide = SKAction.moveTo(returnPosition, duration:1.0)
+                let scaleUp = SKAction.scaleTo(2.0, duration:0.75)
+                let scaleDown = SKAction.scaleTo(0.5, duration:0.25)
+                let fadeIn = SKAction.fadeInWithDuration(0.75)
+                let fadeOut = SKAction.fadeOutWithDuration(0.75)
+                let remove = SKAction.removeFromParent()
 
-            let animPart1 = SKAction.group([slide])
-            let animScale = SKAction.sequence([scaleUp, scaleDown, remove])
-            
-            negPlayScore.runAction(SKAction.group([fadeIn, animPart1, fadeOut, animScale]) )
+                let animPart1 = SKAction.group([slide])
+                let animScale = SKAction.sequence([scaleUp, scaleDown, remove])
+                
+                negPlayScore.runAction(SKAction.group([fadeIn, animPart1, fadeOut, animScale]) )
 
-            mmwGameScene.explosion(endPosition, color: tileColors[self.tileSpriteParent.tileOwner.rawValue])
+                mmwGameScene.explosion(endPosition, color: tileColors[self.tileSpriteParent.tileOwner.rawValue])
             }
 
             dispatch_async(dispatch_get_main_queue(), {
