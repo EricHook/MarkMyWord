@@ -27,8 +27,6 @@ let TileMargin: CGFloat = 19.0
 
 let FontHUDName = "HelveticaNeue"
 
-
-
 var FontHUDSize : CGFloat = 19.0
 
 func setFontHUDSize () {
@@ -42,7 +40,7 @@ func setFontHUDSize () {
         FontHUDSize = 19
     }
     if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
-        FontHUDSize = 19
+        FontHUDSize = 25
     }
 }
 
@@ -53,7 +51,6 @@ let FontHUDiPhoneSize = 12.0
 let FontHUDiPhone = UIFont(name:"HelveticaNeue", size: 12.0)
 
 let fontLetterTileSize = 40
-
 
 let FontHUDBigName = "HelveticaNeue-Bold"
 

@@ -55,7 +55,7 @@ class GameViewController : UIViewController, UITextFieldDelegate {
     //@IBOutlet weak var menuView: UIView?
     //@IBOutlet weak var playButton: UIButton?
 
-    //var tempSecondsPerTurn : Int!
+    var tempSecondsPerTurn : Int!
     
     var tempAudioOn : Bool!
     
@@ -97,29 +97,29 @@ class GameViewController : UIViewController, UITextFieldDelegate {
     var meyamaAvatarNames = ["Alice", "Bongo", "Cocoa", "Dizzy", "Ethota", "Fadama"]
     
     func updateGameSettings() {
-//        tempSecondsPerTurn = mmwGameSceneViewController.secondsPerTurn
-//        tempAudioOn = mmwGameSceneViewController.audioOn
+        tempSecondsPerTurn = mmwGameSceneViewController.secondsPerTurn
+        tempAudioOn = mmwGameSceneViewController.audioOn
         
-//        // seconds per turn UI
-//        switch (mmwGameSceneViewController.secondsPerTurn) {
-//        case 20:
-//            gameViewController.secondPerTurnSwitchOutlet.selectedSegmentIndex = 0
-//            print("UI secondsPerTurn = 20")
-//        case 30:
-//            gameViewController.secondPerTurnSwitchOutlet.selectedSegmentIndex = 1
-//            print("UI secondsPerTurn = 30")
-//        case 45:
-//            gameViewController.secondPerTurnSwitchOutlet.selectedSegmentIndex = 2
-//            print("UI secondsPerTurn = 45")
-//        case 60:
-//            gameViewController.secondPerTurnSwitchOutlet.selectedSegmentIndex = 3
-//            print("UI secondsPerTurn = 60")
-//        case 999:
-//            gameViewController.secondPerTurnSwitchOutlet.selectedSegmentIndex = 4
-//            print("UI secondsPerTurn = 999 / OFF")
-//        default:
-//            break;
-//        }
+        // seconds per turn UI
+        switch (mmwGameSceneViewController.secondsPerTurn) {
+        case 20:
+            gameViewController.secondPerTurnSwitchOutlet.selectedSegmentIndex = 0
+            print("UI secondsPerTurn = 20")
+        case 30:
+            gameViewController.secondPerTurnSwitchOutlet.selectedSegmentIndex = 1
+            print("UI secondsPerTurn = 30")
+        case 45:
+            gameViewController.secondPerTurnSwitchOutlet.selectedSegmentIndex = 2
+            print("UI secondsPerTurn = 45")
+        case 60:
+            gameViewController.secondPerTurnSwitchOutlet.selectedSegmentIndex = 3
+            print("UI secondsPerTurn = 60")
+        case 999:
+            gameViewController.secondPerTurnSwitchOutlet.selectedSegmentIndex = 4
+            print("UI secondsPerTurn = 999 / OFF")
+        default:
+            break;
+        }
         
         // audio UI
         if mmwGameSceneViewController.audioOn == true {
@@ -405,25 +405,25 @@ class GameViewController : UIViewController, UITextFieldDelegate {
     
     
     @IBAction func secondsPerTurnAction(sender: AnyObject) {
-//        switch (sender.selectedSegmentIndex){
-//        case 0:
-//            tempSecondsPerTurn = 20
-//            print("tempSecondsPerTurn = 20")
-//        case 1:
-//            tempSecondsPerTurn = 30
-//            print("tempSecondsPerTurn = 30")
-//        case 2:
-//            tempSecondsPerTurn = 45
-//            print("tempSecondsPerTurn = 45")
-//        case 3:
-//            tempSecondsPerTurn = 60
-//            print("tempSecondsPerTurn = 60")
-//        case 4:
-//            tempSecondsPerTurn = 999
-//            print("tempSecondsPerTurn = 999")
-//        default:
-//            break;
-//        }
+        switch (sender.selectedSegmentIndex){
+        case 0:
+            tempSecondsPerTurn = 20
+            print("tempSecondsPerTurn = 20")
+        case 1:
+            tempSecondsPerTurn = 30
+            print("tempSecondsPerTurn = 30")
+        case 2:
+            tempSecondsPerTurn = 45
+            print("tempSecondsPerTurn = 45")
+        case 3:
+            tempSecondsPerTurn = 60
+            print("tempSecondsPerTurn = 60")
+        case 4:
+            tempSecondsPerTurn = 999
+            print("tempSecondsPerTurn = 999")
+        default:
+            break;
+        }
     }
 
     
@@ -763,7 +763,7 @@ class GameViewController : UIViewController, UITextFieldDelegate {
     
     func startNewGame() {
         
-        //mmwGameSceneViewController.secondsPerTurn = tempSecondsPerTurn
+        mmwGameSceneViewController.secondsPerTurn = tempSecondsPerTurn
         
         mmwGameSceneViewController.audioOn = tempAudioOn
         
@@ -940,7 +940,8 @@ class GameViewController : UIViewController, UITextFieldDelegate {
         //view?.presentScene(mmwOptionScreen)
         
         gameViewController.ViewAllOptionsUI.hidden = true
-        mmwOptionScreen.returnToGameScene()
+        
+        mmwOptionScreen.returnToGameSceneFinishGame()
         
         mmwGameScene.subtractTilesRemainingOnBoard()
 
@@ -1006,7 +1007,7 @@ class GameViewController : UIViewController, UITextFieldDelegate {
     
     @IBAction func gameResultsNewGameButton(sender: AnyObject) {
         
-        //mmwGameSceneViewController.secondsPerTurn = tempSecondsPerTurn
+        mmwGameSceneViewController.secondsPerTurn = tempSecondsPerTurn
         
         mmwGameSceneViewController.audioOn = tempAudioOn
         

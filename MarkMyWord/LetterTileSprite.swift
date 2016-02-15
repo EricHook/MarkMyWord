@@ -1,4 +1,4 @@
-//
+ //
 //  TileView.swift
 //  MarkMyWord
 //
@@ -1234,10 +1234,10 @@ class LetterTileSprite : SKSpriteNode {
                     //runAction(actionSound)
                     
                     // -5 points for non-partial word // SCORE
-                    self.adjustPlayerPoints(-5, player: (mmwGameSceneViewController.playerArray[self.tileSpriteParent.tileOwner.rawValue - 1]) )
+                    self.adjustPlayerPoints(-2, player: (mmwGameSceneViewController.playerArray[self.tileSpriteParent.tileOwner.rawValue - 1]) )
                     mmwGameScene.updatePartialWordFeedback("-5 points for invalid word attempt")
                     mmwGameScene.updatePartialWordFeedback2("")
-                    print("# -5 POINTS for bad word attempt (\" \(horizontalString) \", \" \(verticalString) \" ): \(-2) : \(self.tileText) ")
+                    print("# -2 POINTS for bad word attempt (\" \(horizontalString) \", \" \(verticalString) \" ): \(-2) : \(self.tileText) ")
 
                     showNegativeScoreTextToGridHome(-2)
                     self.tileSpriteParent.tileOwner = TileOwner.None

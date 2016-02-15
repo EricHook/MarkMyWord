@@ -239,24 +239,30 @@ class PlayerView: SKSpriteNode {
     
     
     func playerViewBeginTurn () {
-        self.playerNameLabel.fontColor = UIColor.whiteColor()
-        self.playerScoreLabel.fontColor = UIColor.whiteColor()
-        self.playerTileCover.hidden = true
-        self.playerGridGlow.hidden = false
+        playerNameLabel.fontColor = UIColor.whiteColor()
+        playerScoreLabel.fontColor = UIColor.whiteColor()
+        playerTileCover.hidden = true
+        playerGridGlow.hidden = false
         
 //        mmwGameScene.bottomDisplayLabel.text =  ("\(mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerName ), place letters")
         
         let playerGrid = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid!
         
-        playerGrid.makeTilesInGridInteractive(true)
+        if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].isHuman == true {
+            playerGrid.makeTilesInGridInteractive(true)
+        }
+        else {
+            playerGrid.makeTilesInGridInteractive(false)
+        }
+        
     }
     
     
     func playerViewEndTurn () {
-        self.playerNameLabel.fontColor =  FontHUDBlack
-        self.playerScoreLabel.fontColor = FontHUDBlack
+        playerNameLabel.fontColor =  FontHUDBlack
+        playerScoreLabel.fontColor = FontHUDBlack
         //changePlayerScoreDisplay()
-        self.playerTileCover.hidden = false
+        playerTileCover.hidden = false
         //self.playerGridGlow.hidden = true
 //        mmwGameScene.topDisplayLabel.text = ("Great Job, \(self.playerNameLabel.text)!!!")
 //        mmwGameScene.topDisplayLabel2.text = ("You rock!!!")

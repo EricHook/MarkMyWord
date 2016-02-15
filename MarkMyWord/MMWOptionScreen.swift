@@ -176,7 +176,7 @@ class MMWOptionScreen: SKScene {
     }
     
     func allPlayersPassed () {
-
+        mmwGameScene.stopTimer()
         print("MMWOptionScreen allPlayersPassed")
         gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
         gameViewController.ViewAllOptionsUI.hidden = false
@@ -203,11 +203,27 @@ class MMWOptionScreen: SKScene {
 
         gameViewController.ViewAllOptionsUI.hidden = true
         self.view?.presentScene(mmwGameScene)
+        
+        mmwGameScene.startTimer(mmwGameScene.secondsLeft)
         //delay(1){
             //mmwGameScene.changePlayerTurn()
         //}
+    }
+    
+    func returnToGameSceneFinishGame () {
+        print("return to mmw scene") //create MMW controller
         
-
+        //        if mmwGameSceneViewController.timerIsOn {
+        //            mmwGameScene.startTimer()
+        //        }
+        
+        gameViewController.ViewAllOptionsUI.hidden = true
+        self.view?.presentScene(mmwGameScene)
+        
+        //mmwGameScene.startTimer(mmwGameScene.secondsLeft)
+        //delay(1){
+        //mmwGameScene.changePlayerTurn()
+        //}
     }
     
     func newGameScene () {
@@ -226,6 +242,7 @@ class MMWOptionScreen: SKScene {
         gameViewController.bannerViewLowerRight.hidden = true
         newGameSpriteNode.hidden = false
         gameViewController.OptionsSwitchOutlet.hidden = true
+        gameViewController.ViewResultsScreenUI.hidden = true
         
         loadingIndicator.position = CGPoint(x: screenSize!.width/2 - 150, y: screenSize!.height/2 - 12.5)
         loadingIndicator.size = CGSize.init(width: 150, height: 25)
@@ -251,6 +268,7 @@ class MMWOptionScreen: SKScene {
             mmwGameScene.resetGameView()   // includes tileCollection?.resetAllTiles()
             self.view?.presentScene(mmwGameScene)
             mmwGameScene.startGame()  // set grids, starter words, ...
+            //mmwGameScene.startTimer(mmwGameSceneViewController.secondsPerTurn)
         }
     }
 
