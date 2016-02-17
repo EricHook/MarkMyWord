@@ -46,6 +46,7 @@ class MMWGameSceneViewController : UIViewController {
     var audioOn = true
     var secondsPerTurn = 45
     var timerIsOn = true
+    var allowOffensiveWords = false
 
     var player0 : Player = Player(_playerID: 0, _playerName: "AI", _playerColor: 0) // used for initial word ownership
     var player1 : Player = Player(_playerID: 1, _playerName: "Player 1", _playerColor: 1)
@@ -144,12 +145,12 @@ class MMWGameSceneViewController : UIViewController {
     
     
     func resetConsequtivePasses () {
-        self.consecutivePasses = 0
+        consecutivePasses = 0
     }
     
     
     func resetLettersPlayedInTurn () {
-        self.lettersPlayedInTurn = 0
+        lettersPlayedInTurn = 0
     }
     
     

@@ -228,13 +228,13 @@ class PlayerView: SKSpriteNode {
     
     func changePlayerScoreDisplay () {
         let score = mmwPlayer.playerScore
-        self.playerScoreLabel.text = String(score)
+        playerScoreLabel.text = String(score)
     }
     
     
     func changePlayerScoreDisplay (score: Int) {
         mmwPlayer.playerScore = score
-        self.playerScoreLabel.text = String(score)
+        playerScoreLabel.text = String(score)
     }
     
     

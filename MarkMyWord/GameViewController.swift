@@ -62,6 +62,7 @@ class GameViewController : UIViewController, UITextFieldDelegate {
     var tempMinWordSize : Int!
     var tempNumStarterWords : Int!
     var tempNumPlayers : Int!
+    var tempAllowOffensiveWords : Bool!
     
     var tempPlayer1Name : String!
     var tempPlayer2Name : String!
@@ -99,7 +100,7 @@ class GameViewController : UIViewController, UITextFieldDelegate {
     func updateGameSettings() {
         tempSecondsPerTurn = mmwGameSceneViewController.secondsPerTurn
         tempAudioOn = mmwGameSceneViewController.audioOn
-        
+
         // seconds per turn UI
         switch (mmwGameSceneViewController.secondsPerTurn) {
         case 20:
@@ -165,6 +166,15 @@ class GameViewController : UIViewController, UITextFieldDelegate {
         default:
             break;
         }
+        
+        // allow offensive words
+       tempAllowOffensiveWords = mmwGameSceneViewController.allowOffensiveWords
+        if tempAllowOffensiveWords == false {
+            allowOffensiveWordsSwitchOutlet.selectedSegmentIndex = 0
+        } else {
+            allowOffensiveWordsSwitchOutlet.selectedSegmentIndex = 1
+        }
+
         
 //        ////////////////////
 //        
@@ -515,6 +525,44 @@ class GameViewController : UIViewController, UITextFieldDelegate {
         }
     }
     
+    
+    
+    @IBOutlet weak var allowOffensiveWordsLabelOutlet: UILabel!
+    
+    @IBOutlet weak var allowOffensiveWordsSwitchOutlet: UISegmentedControl!
+
+    @IBAction func allowOffensiveWordsSwitchAction(sender: AnyObject) {
+        switch (sender.selectedSegmentIndex){
+            case 0:
+                tempAllowOffensiveWords = false
+                print("allowOffensiveWords turned to off")
+            case 1:
+                tempAudioOn = true
+                print("allowOffensiveWords turned to on")
+            default:
+                break
+        }
+    }
+    
+    
+//    @IBAction func audioSettingAction(sender: AnyObject) {
+//        switch (sender.selectedSegmentIndex){
+//        case 0:
+//            tempAudioOn = false
+//            print("tempAudioOn turned to off")
+//            
+//        case 1:
+//            tempAudioOn = true
+//            print("tempAudioOn turned to on")
+//        default:
+//            break;
+//        }
+//    }
+
+    
+    
+    
+    
     ///////////////////////////////////////
     
     @IBOutlet weak var player1NameLabel: UILabel!
@@ -771,6 +819,8 @@ class GameViewController : UIViewController, UITextFieldDelegate {
         mmwGameSceneViewController.numStarterWords = tempNumStarterWords
         mmwGameSceneViewController.numPlayers = tempNumPlayers
         
+        mmwGameSceneViewController.allowOffensiveWords = tempAllowOffensiveWords
+        
         tempPlayer1Name = player1NameTextFieldOutlet.text!
         tempPlayer2Name = player2NameTextFieldOutlet.text!
         tempPlayer3Name = player3NameTextFieldOutlet.text!
@@ -1015,6 +1065,8 @@ class GameViewController : UIViewController, UITextFieldDelegate {
         mmwGameSceneViewController.numStarterWords = tempNumStarterWords
         mmwGameSceneViewController.numPlayers = tempNumPlayers
         
+        mmwGameSceneViewController.allowOffensiveWords = tempAllowOffensiveWords
+        
         mmwGameSceneViewController.playerArray[0].playerName = player1NameTextFieldOutlet.text!
         mmwGameSceneViewController.playerArray[1].playerName = player2NameTextFieldOutlet.text!
         mmwGameSceneViewController.playerArray[2].playerName = player3NameTextFieldOutlet.text!
@@ -1090,9 +1142,8 @@ class GameViewController : UIViewController, UITextFieldDelegate {
     }
     
     // MARK: LOADING SCREEN
-    
-    
 
+    
     @IBOutlet weak var adMob300x250LoadingViewOutlet: GADBannerView!
     
     

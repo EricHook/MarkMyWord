@@ -267,7 +267,11 @@ class MMWOptionScreen: SKScene {
             gameViewController.bannerViewLowerRight.hidden = false
             mmwGameScene.resetGameView()   // includes tileCollection?.resetAllTiles()
             self.view?.presentScene(mmwGameScene)
-            mmwGameScene.startGame()  // set grids, starter words, ...
+            
+            mmwGameScene.playButton.hidden = false
+            
+            //mmwGameScene.startGame()  // set grids, starter words, ...
+            
             //mmwGameScene.startTimer(mmwGameSceneViewController.secondsPerTurn)
         }
     }
