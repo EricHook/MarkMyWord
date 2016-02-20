@@ -187,7 +187,7 @@ class Grid {
  
     
     func dealGridFromArrayRandom (inout arrayIn: [MMWTile], var numTilesToDeal: Int, playerNum: Int, clearGrid: Bool) {
-        print("<Grid> fillGridFromArray(arrayIn: [MMWTile], gridToFill: Grid) \(self.gridName) ")
+        if debugMode == true { print("<Grid> fillGridFromArray(arrayIn: [MMWTile], gridToFill: Grid) \(self.gridName) ") }
 
         for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
             for x in 0...(self.gridNumSquaresX - 1) {
@@ -240,7 +240,7 @@ class Grid {
                     numTilesToDeal--
                 }
                 else {
-                    print("No More Tiles To Deal ... ")
+                    if debugMode == true { print("No More Tiles To Deal ... ") }
                 }
             }
         }
@@ -261,7 +261,7 @@ class Grid {
     
     
     func dealGridFromArraySpecificTile (inout arrayIn: [MMWTile], tileArrayLocation: Int, playerNum: Int, squareX: Int, squareY: Int) {
-        print("<Grid> refillGridFromArrayTile (inout arrayIn: [MMWTile], var tileArrayLocation: Int, playerNum: Int) \(self.gridName) ")
+        if debugMode == true { print("<Grid> refillGridFromArrayTile (inout arrayIn: [MMWTile], var tileArrayLocation: Int, playerNum: Int) \(self.gridName) ") }
         //var arrayInMarker = 0
 //        for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
 //            for x in 0...(self.gridNumSquaresX - 1) {
@@ -282,7 +282,7 @@ class Grid {
                 dealtTile.gridHome = self
         }
         else {
-            print("No More Tiles To Deal ... ")
+            if debugMode == true { print("No More Tiles To Deal ... ") }
         }
     }
     
@@ -359,23 +359,23 @@ class Grid {
     
     
     func printGrid () {
-        print("<Grid> printGrid \(self.gridName) ")
+        if debugMode == true { print("<Grid> printGrid \(self.gridName) ") }
         //print(">>>mmwGameSceneViewController.mmwGameScene.mmwPlayer1Grid: ")
         for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
             for x in 0...(self.gridNumSquaresX - 1) {
                 let gridArr = self.grid2DArr[x][y]
-                print(" \( gridArr.tileSprite.tileText) -> [\(gridArr.tileSprite.tileSpriteParent.gridX)] [\(gridArr.tileSprite.tileSpriteParent.gridY)] -> \(gridArr.tileSprite.tileSpriteParent.tileOwner) ->  \(gridArr.tileSprite.tileSpriteParent.tileState) -> \(gridArr.tileSprite.tileSpriteParent.tileType) ")
+                if debugMode == true { print(" \( gridArr.tileSprite.tileText) -> [\(gridArr.tileSprite.tileSpriteParent.gridX)] [\(gridArr.tileSprite.tileSpriteParent.gridY)] -> \(gridArr.tileSprite.tileSpriteParent.tileOwner) ->  \(gridArr.tileSprite.tileSpriteParent.tileState) -> \(gridArr.tileSprite.tileSpriteParent.tileType) ") }
             }
         }
     }
 
 
     class func printGrid (gridToPrint: Grid ) {
-        print("<Grid> printGrid \(gridToPrint.gridName) ")
+        if debugMode == true { print("<Grid> printGrid \(gridToPrint.gridName) ") }
         for x in 0...(gridToPrint.gridNumSquaresX - 1) {   // fill letter tiles
             for y in 0...(gridToPrint.gridNumSquaresY - 1) {
                 let gridArr = gridToPrint.grid2DArr[x][y]
-                print(" \( gridArr.tileSprite.tileText) -> [\(gridArr.tileSprite.tileSpriteParent.gridX)] [\(gridArr.tileSprite.tileSpriteParent.gridY)] [\(gridArr.tileSprite.tileSpriteParent.gridHome)] state:[\(gridArr.tileSprite.tileSpriteParent.tileState)] owner:[\(gridArr.tileSprite.tileSpriteParent.tileOwner)] type:[\(gridArr.tileSprite.tileSpriteParent.tileType)]")
+                if debugMode == true { print(" \( gridArr.tileSprite.tileText) -> [\(gridArr.tileSprite.tileSpriteParent.gridX)] [\(gridArr.tileSprite.tileSpriteParent.gridY)] [\(gridArr.tileSprite.tileSpriteParent.gridHome)] state:[\(gridArr.tileSprite.tileSpriteParent.tileState)] owner:[\(gridArr.tileSprite.tileSpriteParent.tileOwner)] type:[\(gridArr.tileSprite.tileSpriteParent.tileType)]") }
             }
         }
     }

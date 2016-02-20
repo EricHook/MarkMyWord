@@ -28,6 +28,7 @@ struct GameSceneSettings {
 
 
 class MMWGameSceneViewController : UIViewController {
+
     
     var numGamesWon = 0
     var numGamesTied = 0
@@ -68,10 +69,10 @@ class MMWGameSceneViewController : UIViewController {
     let wordSetPrecomputedSize : Int = 1253231;
     
     override func viewDidLoad() {
-        print("---   in viewDidLoad mmwGameSceneViewController")
-        print("before MMWGameSceneViewController viewDidLoad() setUpGame() ")
+        if debugMode == true { print("---   in viewDidLoad mmwGameSceneViewController") }
+        if debugMode == true { print("before MMWGameSceneViewController viewDidLoad() setUpGame() ") }
         setUpGame()
-        print("after MMWGameSceneViewController viewDidLoad() setUpGame() ")
+        if debugMode == true { print("after MMWGameSceneViewController viewDidLoad() setUpGame() ") }
         //CDHelper.
         super.viewDidLoad()
     }
@@ -89,7 +90,7 @@ class MMWGameSceneViewController : UIViewController {
     
     
     func setUpGame () {
-        print("---   in setUpGame mmwGameSceneViewController")
+        if debugMode == true { print("---   in setUpGame mmwGameSceneViewController") }
         loadWordSet()
         
         playerArray = [player1, player2, player3, player4]  // array of all players 0-3 for easier iteration of player turns
@@ -100,7 +101,7 @@ class MMWGameSceneViewController : UIViewController {
     
     
     func setUpPlayers () {
-        print("---   in setUpPlayers mmwGameSceneViewController")
+        if debugMode == true { print("---   in setUpPlayers mmwGameSceneViewController") }
         player1.setPlayerTilesGrid(&mmwGameScene.mmwPlayer1Grid!)
         player1.setPlayerView(&mmwGameScene.player1View!)
         player2.setPlayerTilesGrid(&mmwGameScene.mmwPlayer2Grid!)
@@ -113,7 +114,7 @@ class MMWGameSceneViewController : UIViewController {
     
     
     func loadWordSet() {
-        print("---   in loadWordSet mmwGameSceneViewController")
+        if debugMode == true { print("---   in loadWordSet mmwGameSceneViewController") }
         do {
             if let path = NSBundle.mainBundle().pathForResource("WordListChopped", ofType: "txt") {
                 wordSet = WordSet(filePath: path, precomputedSize: wordSetPrecomputedSize)
@@ -248,7 +249,7 @@ class MMWGameSceneViewController : UIViewController {
                     break
                 }  // return char exits loop
                 if String(letter).uppercaseString == tile.tileText.uppercaseString && !lettersToPlay.contains(tileArrayNumber){
-                    print("Found letter: \(letter) in tiles \(tile.tileSprite.tileText)")
+                    if debugMode == true { print("Found letter: \(letter) in tiles \(tile.tileSprite.tileText)") }
                     lettersToPlay.append(tileArrayNumber)
                     ++lettersToPlayCount
                     //print( "LettersToPlay.count: \(lettersToPlay.count), lettersToPlayCount: \(lettersToPlayCount)" )
@@ -281,15 +282,15 @@ class MMWGameSceneViewController : UIViewController {
         for letter in wordToCheckArr {
             for tile in letterTileArray {
                 if String(letter).uppercaseString == "\r" {
-                    print ("String(letter).uppercaseString == \r ...return char at \(letter)")
+                    if debugMode == true { print ("String(letter).uppercaseString == \r ...return char at \(letter)") }
                     --wordToCheckArrCount
                     break
                 }  // return char exits loop
                 if String(letter).uppercaseString == tile.tileText.uppercaseString && !lettersToPlay.contains(tileArrayNumber){
-                    print("Found letter: \(letter) in tiles \(tile.tileSprite.tileText)")
+                    if debugMode == true { print("Found letter: \(letter) in tiles \(tile.tileSprite.tileText)") }
                     lettersToPlay.append(tileArrayNumber)
                     ++lettersToPlayCount
-                    print( "LettersToPlay.count: \(lettersToPlay.count), lettersToPlayCount: \(lettersToPlayCount)" )
+                    if debugMode == true { print( "LettersToPlay.count: \(lettersToPlay.count), lettersToPlayCount: \(lettersToPlayCount)" ) }
                     foundLetterInPass = true
                     break
                 }
@@ -298,20 +299,20 @@ class MMWGameSceneViewController : UIViewController {
             }
             if String(letter).uppercaseString == "\r" {break}  // return char exits loop
             if foundLetterInPass == false {
-                print( "Tile \(String(letter).uppercaseString) doesn't exist to create word" )
+                if debugMode == true { print( "Tile \(String(letter).uppercaseString) doesn't exist to create word" ) }
                 break
             }
             tileArrayNumber = 0
         }
         
-        print( "Letters to Play from letterTileArray: \(lettersToPlay)" )
-        print( "LettersToPlay.count: \(lettersToPlay.count), wordToCheckArr.count: \(wordToCheckArrCount)" )
+        if debugMode == true { print( "Letters to Play from letterTileArray: \(lettersToPlay)" ) }
+        if debugMode == true { print( "LettersToPlay.count: \(lettersToPlay.count), wordToCheckArr.count: \(wordToCheckArrCount)" ) }
         
         if lettersToPlay.count < wordToCheckArrCount{ // letters not availible return nil
-            print("FAIL!")
+            if debugMode == true { print("FAIL!") }
             return nil
         }
-        print( "PASS! Found \(string)! self.tileCollection.mmwTileArray.count: \(letterTileArray.count)" )
+        if debugMode == true { print( "PASS! Found \(string)! self.tileCollection.mmwTileArray.count: \(letterTileArray.count)" ) }
         //return true
         
         ////////////////////////////////////////////
@@ -324,8 +325,8 @@ class MMWGameSceneViewController : UIViewController {
         for letter in wordToCheckArr {
             for tile in letterTileArray {
                 if String(letter).uppercaseString == tile.tileText.uppercaseString {
-                    print("REMOVE letter: \(letter) in tiles \(tile.tileSprite.tileText)")
-                    letterTileArray.removeAtIndex(tileArrayNumber)
+                    if debugMode == true { print("REMOVE letter: \(letter) in tiles \(tile.tileSprite.tileText)") }
+                    letterTileArray.removeAtIndex(tileArrayNumber) 
                     break
                 }
                 tileArrayNumber++
@@ -333,7 +334,7 @@ class MMWGameSceneViewController : UIViewController {
             if String(letter).uppercaseString == "\r" {break}  // return char exits loop
             tileArrayNumber = 0
         }
-        print("After remove tiles: letterTileArray.count: \(letterTileArray.count)" )
+        if debugMode == true { print("After remove tiles: letterTileArray.count: \(letterTileArray.count)" ) }
         return tilesToBoard
     }
 
@@ -418,7 +419,7 @@ class MMWGameSceneViewController : UIViewController {
         var yLoc: Int = yStartSquare
         for var tileInWord in letterTileArray {
             if tileInWord.tileText == "\r" {break}
-            print("Letter tileInWord \(tileInWord) is at x:\(xLoc) y:\(yLoc)")
+            if debugMode == true { print("Letter tileInWord \(tileInWord) is at x:\(xLoc) y:\(yLoc)") }
             setTileOwner(&tileInWord, player: player)
             tileInWord.gridHome = mmwGameScene.mmwBoardGrid
             tileInWord.tileGrid = mmwGameScene.mmwBoardGrid

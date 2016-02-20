@@ -489,9 +489,9 @@ class MMWTileBuilder {
 //    }
     
     func displayTileArrayValues (tileArray: [MMWTile]) {
-        print("\nMMWTileBuilder.displayTileArrayValues (tileArray: [MMWTile]) ... \(tileArray) count:\(tileArray.count)")
+        if debugMode == true { print("\nMMWTileBuilder.displayTileArrayValues (tileArray: [MMWTile]) ... \(tileArray) count:\(tileArray.count)") }
         for tile in tileArray {
-            print("\(tile.tileText)")
+            if debugMode == true { print("\(tile.tileText)") }
         }
     }
     

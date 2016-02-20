@@ -19,7 +19,7 @@ extension SKNode {
             let scene1 = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as! MainMenuScene
             
             scene1.name = "scene in GameViewController"
-            print("scene is: \(scene1.description)")
+            if debugMode == true { print("scene is: \(scene1.description)") }
             
             archiver.finishDecoding()
             return scene1
@@ -50,7 +50,7 @@ var selectedMeyamaAvatar = 0
 //@objc(ViewController)
 
 
-class GameViewController : UIViewController, UITextFieldDelegate {
+class GameViewController : UIViewController, UITextFieldDelegate, GADBannerViewDelegate {
     
     //@IBOutlet weak var menuView: UIView?
     //@IBOutlet weak var playButton: UIButton?
@@ -105,19 +105,19 @@ class GameViewController : UIViewController, UITextFieldDelegate {
         switch (mmwGameSceneViewController.secondsPerTurn) {
         case 20:
             gameViewController.secondPerTurnSwitchOutlet.selectedSegmentIndex = 0
-            print("UI secondsPerTurn = 20")
+            if debugMode == true { print("UI secondsPerTurn = 20") }
         case 30:
             gameViewController.secondPerTurnSwitchOutlet.selectedSegmentIndex = 1
-            print("UI secondsPerTurn = 30")
+            if debugMode == true { print("UI secondsPerTurn = 30") }
         case 45:
             gameViewController.secondPerTurnSwitchOutlet.selectedSegmentIndex = 2
-            print("UI secondsPerTurn = 45")
+            if debugMode == true { print("UI secondsPerTurn = 45") }
         case 60:
             gameViewController.secondPerTurnSwitchOutlet.selectedSegmentIndex = 3
-            print("UI secondsPerTurn = 60")
+            if debugMode == true { print("UI secondsPerTurn = 60") }
         case 999:
             gameViewController.secondPerTurnSwitchOutlet.selectedSegmentIndex = 4
-            print("UI secondsPerTurn = 999 / OFF")
+            if debugMode == true { print("UI secondsPerTurn = 999 / OFF") }
         default:
             break;
         }
@@ -129,36 +129,36 @@ class GameViewController : UIViewController, UITextFieldDelegate {
         else {
             gameViewController.audioSettingOutlet.selectedSegmentIndex = 0
         }
-        print("UI audioOn = \(mmwGameSceneViewController.audioOn)")
+        if debugMode == true { print("UI audioOn = \(mmwGameSceneViewController.audioOn)") }
         
         // minWordSize UI
         gameViewController.minWordLengthSwitchOutlet.selectedSegmentIndex = mmwGameSceneViewController.minWordSize - 2
-        print("UI minWordSize = \(mmwGameSceneViewController.minWordSize)")
+        if debugMode == true { print("UI minWordSize = \(mmwGameSceneViewController.minWordSize)") }
         
         // number starter words UI
         gameViewController.numStarterWordsSwitchOutlet.selectedSegmentIndex = mmwGameSceneViewController.numStarterWords - 1
-        print("UI numStarterWords = \(mmwGameSceneViewController.numStarterWords)")
+            if debugMode == true { print("UI numStarterWords = \(mmwGameSceneViewController.numStarterWords)") }
         
         // number of players UI
         gameViewController.numPlayersSwitchOutlet.selectedSegmentIndex = mmwGameSceneViewController.numPlayers - 2
         switch (mmwGameSceneViewController.numPlayers - 2){
         case 0:
             mmwGameSceneViewController.numPlayers = 2
-            print("UI numPlayers 2")
+            if debugMode == true { print("UI numPlayers 2") }
             gameViewController.ViewPlayer3UI.alpha = 0.2
             gameViewController.ViewPlayer3UI.userInteractionEnabled = false
             gameViewController.ViewPlayer4UI.alpha = 0.2
             gameViewController.ViewPlayer4UI.userInteractionEnabled = false
         case 1:
             mmwGameSceneViewController.numPlayers = 3
-            print("UI numPlayers 3")
+                if debugMode == true { print("UI numPlayers 3") }
             gameViewController.ViewPlayer3UI.alpha = 1.0
             gameViewController.ViewPlayer3UI.userInteractionEnabled = true
             gameViewController.ViewPlayer4UI.alpha = 0.2
             gameViewController.ViewPlayer4UI.userInteractionEnabled = false
         case 2:
             mmwGameSceneViewController.numPlayers = 4
-            print("UI numPlayers 4")
+                if debugMode == true { print("UI numPlayers 4") }
             gameViewController.ViewPlayer3UI.alpha = 1.0
             gameViewController.ViewPlayer3UI.userInteractionEnabled = true
             gameViewController.ViewPlayer4UI.alpha = 1.0
@@ -205,6 +205,7 @@ class GameViewController : UIViewController, UITextFieldDelegate {
         tempMinWordSize = mmwGameSceneViewController.minWordSize
         tempNumStarterWords = mmwGameSceneViewController.numStarterWords
         tempNumPlayers = mmwGameSceneViewController.numPlayers
+        tempAllowOffensiveWords = mmwGameSceneViewController.allowOffensiveWords
         
         tempPlayer1Name = mmwGameSceneViewController.playerArray[0].playerName
         tempPlayer2Name = mmwGameSceneViewController.playerArray[1].playerName
@@ -312,12 +313,11 @@ class GameViewController : UIViewController, UITextFieldDelegate {
     @IBOutlet weak var ViewLoadingGameUIOutlet: UIView!
     
     @IBOutlet weak var bannerView: GADBannerView!
-    @IBOutlet weak var bannerView2: GADBannerView!
-    @IBOutlet weak var bannerViewLowerLeft: GADBannerView!
-    @IBOutlet weak var bannerViewUpperRight: GADBannerView!
-    @IBOutlet weak var bannerViewLowerRight: GADBannerView!
+//    @IBOutlet weak var bannerView2: GADBannerView!
+//    @IBOutlet weak var bannerViewLowerLeft: GADBannerView!
+//    @IBOutlet weak var bannerViewUpperRight: GADBannerView!
+//    @IBOutlet weak var bannerViewLowerRight: GADBannerView!
 
-    
     @IBOutlet weak var ViewPlayer1UI: UIView!
     @IBOutlet weak var ViewPlayer2UI: UIView!
     @IBOutlet weak var ViewPlayer3UI: UIView!
@@ -340,42 +340,42 @@ class GameViewController : UIViewController, UITextFieldDelegate {
 //        }
         
         switch (self.OptionsSwitchOutlet.selectedSegmentIndex){
-        case 0:
-            print("outlet 0 Options selected")
-            ViewOptionsUI.userInteractionEnabled = true
-            gameViewController.ViewAllOptionsUI.hidden = false
-            gameViewController.ViewOptionsUI.hidden = false
-            gameViewController.viewRulesContainer.hidden = true
-            gameViewController.viewStatsContainer.hidden = true
-            gameViewController.ViewEndGameUI.hidden = true
-        case 1:
-            print("outlet 1 Rules selected")
-            gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
-            gameViewController.ViewAllOptionsUI.hidden = false
-            gameViewController.ViewOptionsUI.hidden = true
-            gameViewController.viewRulesContainer.hidden = false
-            gameViewController.viewStatsContainer.hidden = true
-            gameViewController.ViewEndGameUI.hidden = true
-        case 2:
-            print("outlet 2 selected")
-            gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
-            gameViewController.ViewAllOptionsUI.hidden = false
-            gameViewController.ViewOptionsUI.hidden = true
-            gameViewController.viewRulesContainer.hidden = true
-            gameViewController.viewStatsContainer.hidden = false
-            gameViewController.ViewEndGameUI.hidden = true
-            
-            toStatViewSettings()
-//            self.viewRulesContainer.hidden = true
-//            self.viewStatsContainer.hidden = false
-            
-//            toStatView.sendActionsForControlEvents(.TouchUpInside)
-            
-        default:
-            break;
+            case 0:
+                if debugMode == true { print("outlet 0 Options selected") }
+                ViewOptionsUI.userInteractionEnabled = true
+                gameViewController.ViewAllOptionsUI.hidden = false
+                gameViewController.ViewOptionsUI.hidden = false
+                gameViewController.viewRulesContainer.hidden = true
+                gameViewController.viewStatsContainer.hidden = true
+                gameViewController.ViewEndGameUI.hidden = true
+            case 1:
+                if debugMode == true { print("outlet 1 Rules selected") }
+                gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
+                gameViewController.ViewAllOptionsUI.hidden = false
+                gameViewController.ViewOptionsUI.hidden = true
+                gameViewController.viewRulesContainer.hidden = false
+                gameViewController.viewStatsContainer.hidden = true
+                gameViewController.ViewEndGameUI.hidden = true
+            case 2:
+                if debugMode == true { print("outlet 2 selected") }
+                gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
+                gameViewController.ViewAllOptionsUI.hidden = false
+                gameViewController.ViewOptionsUI.hidden = true
+                gameViewController.viewRulesContainer.hidden = true
+                gameViewController.viewStatsContainer.hidden = false
+                gameViewController.ViewEndGameUI.hidden = true
+                
+                toStatViewSettings()
+    //            self.viewRulesContainer.hidden = true
+    //            self.viewStatsContainer.hidden = false
+                
+    //            toStatView.sendActionsForControlEvents(.TouchUpInside)
+                
+            default:
+                break;
         }
         
-        print("testSwitch worked")
+        if debugMode == true { print("testSwitch worked") }
 //        button.enabled = false
 //        button.hidden = true
         //testSwitch.tintColor = UIColorApplePurple
@@ -418,19 +418,19 @@ class GameViewController : UIViewController, UITextFieldDelegate {
         switch (sender.selectedSegmentIndex){
         case 0:
             tempSecondsPerTurn = 20
-            print("tempSecondsPerTurn = 20")
+            if debugMode == true { print("tempSecondsPerTurn = 20") }
         case 1:
             tempSecondsPerTurn = 30
-            print("tempSecondsPerTurn = 30")
+            if debugMode == true { print("tempSecondsPerTurn = 30") }
         case 2:
             tempSecondsPerTurn = 45
-            print("tempSecondsPerTurn = 45")
+            if debugMode == true { print("tempSecondsPerTurn = 45") }
         case 3:
             tempSecondsPerTurn = 60
-            print("tempSecondsPerTurn = 60")
+            if debugMode == true { print("tempSecondsPerTurn = 60") }
         case 4:
             tempSecondsPerTurn = 999
-            print("tempSecondsPerTurn = 999")
+            if debugMode == true { print("tempSecondsPerTurn = 999") }
         default:
             break;
         }
@@ -444,11 +444,11 @@ class GameViewController : UIViewController, UITextFieldDelegate {
         switch (sender.selectedSegmentIndex){
         case 0:
             tempAudioOn = false
-            print("tempAudioOn turned to off")
+            if debugMode == true { print("tempAudioOn turned to off") }
             
         case 1:
             tempAudioOn = true
-            print("tempAudioOn turned to on")
+            if debugMode == true { print("tempAudioOn turned to on") }
         default:
             break;
         }
@@ -462,13 +462,13 @@ class GameViewController : UIViewController, UITextFieldDelegate {
         switch (sender.selectedSegmentIndex){
         case 0:
             tempMinWordSize = 2
-            print("tempMinWordSize set to 2")
+            if debugMode == true { print("tempMinWordSize set to 2") }
         case 1:
             tempMinWordSize = 3
-            print("tempMinWordSize set to 3")
+            if debugMode == true { print("tempMinWordSize set to 3") }
         case 2:
             tempMinWordSize = 3
-            print("tempMinWordSize set to 4")
+            if debugMode == true { print("tempMinWordSize set to 4") }
         default:
             break;
         }
@@ -476,19 +476,18 @@ class GameViewController : UIViewController, UITextFieldDelegate {
     
     
     @IBOutlet weak var numStarterWordsSwitchOutlet: UISegmentedControl!
-    
-    
+
     @IBAction func numStarterWordsSwitchAction(sender: AnyObject) {
         switch (sender.selectedSegmentIndex){
         case 0:
             tempNumStarterWords = 1
-            print("tempNumStarterWords = 1")
+            if debugMode == true { print("tempNumStarterWords = 1") }
         case 1:
             tempNumStarterWords = 2
-            print("tempNumStarterWords = 2")
+            if debugMode == true { print("tempNumStarterWords = 2") }
         case 2:
             tempNumStarterWords = 3
-            print("tempNumStarterWords = 3")
+            if debugMode == true { print("tempNumStarterWords = 3") }
         default:
             break;
         }
@@ -501,21 +500,21 @@ class GameViewController : UIViewController, UITextFieldDelegate {
         switch (sender.selectedSegmentIndex){
         case 0:
             tempNumPlayers = 2
-            print("tempNumPlayers 2")
+            if debugMode == true { print("tempNumPlayers 2") }
             ViewPlayer3UI.alpha = 0.5
             ViewPlayer3UI.userInteractionEnabled = false
             ViewPlayer4UI.alpha = 0.5
             ViewPlayer4UI.userInteractionEnabled = false
         case 1:
             tempNumPlayers = 3
-            print("tempNumPlayers 3")
+            if debugMode == true { print("tempNumPlayers 3") }
             ViewPlayer3UI.alpha = 1.0
             ViewPlayer3UI.userInteractionEnabled = true
             ViewPlayer4UI.alpha = 0.5
             ViewPlayer4UI.userInteractionEnabled = false
         case 2:
             tempNumPlayers = 4
-            print("tempNumPlayers 4")
+            if debugMode == true { print("tempNumPlayers 4") }
             ViewPlayer3UI.alpha = 1.0
             ViewPlayer3UI.userInteractionEnabled = true
             ViewPlayer4UI.alpha = 1.0
@@ -535,10 +534,10 @@ class GameViewController : UIViewController, UITextFieldDelegate {
         switch (sender.selectedSegmentIndex){
             case 0:
                 tempAllowOffensiveWords = false
-                print("allowOffensiveWords turned to off")
+                if debugMode == true { print("allowOffensiveWords turned to off") }
             case 1:
-                tempAudioOn = true
-                print("allowOffensiveWords turned to on")
+                tempAllowOffensiveWords = true
+                if debugMode == true { print("allowOffensiveWords turned to on") }
             default:
                 break
         }
@@ -818,7 +817,6 @@ class GameViewController : UIViewController, UITextFieldDelegate {
         mmwGameSceneViewController.minWordSize = tempMinWordSize
         mmwGameSceneViewController.numStarterWords = tempNumStarterWords
         mmwGameSceneViewController.numPlayers = tempNumPlayers
-        
         mmwGameSceneViewController.allowOffensiveWords = tempAllowOffensiveWords
         
         tempPlayer1Name = player1NameTextFieldOutlet.text!
@@ -865,7 +863,12 @@ class GameViewController : UIViewController, UITextFieldDelegate {
 
     @IBAction func returnToGameButton(sender: AnyObject) {
         // returns to game without any settings changes
+        
+//        bannerView.removeFromSuperview()
+//        adMob300x250LoadingViewOutlet.removeFromSuperview()
+        
         mmwOptionScreen.returnToGameScene()
+        
     }
 
     
@@ -873,7 +876,7 @@ class GameViewController : UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("in GameViewController viewDidLoad")
+        if debugMode == true { print("in GameViewController viewDidLoad") }
         screenSize = view.bounds.size
         let mainMenuScene = MainMenuScene(size: screenSize!)
         
@@ -892,44 +895,48 @@ class GameViewController : UIViewController, UITextFieldDelegate {
                mmwGame.setDeviceType(MMWGame.DeviceType.iPhone6Plus)
             default:
                 mmwGame.setDeviceType(MMWGame.DeviceType.iPad)
-            print("Screen width:\(screenSize!.width) , device type: \(mmwGame.deviceType) ") 
+                if debugMode == true { print("Screen width:\(screenSize!.width) , device type: \(mmwGame.deviceType) ") }
         }
-        
+
         print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
         //bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         bannerView.adUnitID = "ca-app-pub-6428967577130104/9786515687"
         bannerView.rootViewController = self
         bannerView.loadRequest(GADRequest())
-        
-        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
-        //bannerView2.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        bannerView2.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        bannerView2.rootViewController = self
-        bannerView2.loadRequest(GADRequest())
-        
-        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
-        //bannerViewLowerLeft.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        bannerViewLowerLeft.adUnitID = "ca-app-pub-6428967577130104/2263248882"
-        bannerViewLowerLeft.rootViewController = self
-        bannerViewLowerLeft.loadRequest(GADRequest())
-        
-        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
-        //bannerViewUpperRight.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        bannerViewUpperRight.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        bannerViewUpperRight.rootViewController = self
-        bannerViewUpperRight.loadRequest(GADRequest())
-        
-        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
-        //bannerViewLowerRight.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        bannerViewLowerRight.adUnitID = "ca-app-pub-6428967577130104/3739982084"
-        bannerViewLowerRight.rootViewController = self
-        bannerViewLowerRight.loadRequest(GADRequest())
+//        bannerView.delegate = nil
+//        //bannerView.removeFromSuperview()
+
+//        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
+//        //bannerView2.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+//        bannerView2.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+//        bannerView2.rootViewController = self
+//        bannerView2.loadRequest(GADRequest())
+//
+//        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
+//        //bannerViewLowerLeft.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+//        bannerViewLowerLeft.adUnitID = "ca-app-pub-6428967577130104/2263248882"
+//        bannerViewLowerLeft.rootViewController = self
+//        bannerViewLowerLeft.loadRequest(GADRequest())
+//        
+//        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
+//        //bannerViewUpperRight.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+//        bannerViewUpperRight.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+//        bannerViewUpperRight.rootViewController = self
+//        bannerViewUpperRight.loadRequest(GADRequest())
+//        
+//        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
+//        //bannerViewLowerRight.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+//        bannerViewLowerRight.adUnitID = "ca-app-pub-6428967577130104/3739982084"
+//        bannerViewLowerRight.rootViewController = self
+//        bannerViewLowerRight.loadRequest(GADRequest())
         
         print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
         //adMob300x250LoadingViewOutlet.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         adMob300x250LoadingViewOutlet.adUnitID = "ca-app-pub-6428967577130104/8755277689"
         adMob300x250LoadingViewOutlet.rootViewController = self
         adMob300x250LoadingViewOutlet.loadRequest(GADRequest())
+//        adMob300x250LoadingViewOutlet.delegate = nil
+//        //adMob300x250LoadingViewOutlet.removeFromSuperview()
 
         let skView = self.view as! SKView
         skView.showsFPS = false
@@ -968,6 +975,51 @@ class GameViewController : UIViewController, UITextFieldDelegate {
         
         //self.view.addSubview(cornerView)
     }
+    
+    
+    
+    
+    
+//    /// Tells the delegate an ad request loaded an ad.
+//    func adViewDidReceiveAd(bannerView: GADBannerView!) {
+//        print("adViewDidReceiveAd")
+//    }
+//    
+//    /// Tells the delegate an ad request failed.
+//    func adView(bannerView: GADBannerView!,
+//        didFailToReceiveAdWithError error: GADRequestError!) {
+//            print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+//    }
+//    
+//    /// Tells the delegate that a full screen view will be presented in response
+//    /// to the user clicking on an ad.
+//    func adViewWillPresentScreen(bannerView: GADBannerView!) {
+//        print("adViewWillPresentScreen")
+//    }
+//    
+//    /// Tells the delegate that the full screen view will be dismissed.
+//    func adViewWillDismissScreen(bannerView: GADBannerView!) {
+//        print("adViewWillDismissScreen")
+//    }
+//    
+//    /// Tells the delegate that the full screen view has been dismissed.
+//    func adViewDidDismissScreen(bannerView: GADBannerView!) {
+//        print("adViewDidDismissScreen")
+//    }
+//    
+//    /// Tells the delegate that a user click will open another app (such as
+//    /// the App Store), backgrounding the current app.
+//    func adViewWillLeaveApplication(bannerView: GADBannerView!) {
+//        print("adViewWillLeaveApplication")
+//    }
+    
+    
+    
+    
+    
+    
+    
+    
 
 
 //    func buttonAction(sender:UIButton!)
@@ -978,7 +1030,7 @@ class GameViewController : UIViewController, UITextFieldDelegate {
     
     func buttonAction()
     {
-        print("TEST Manual Button tapped")
+        if debugMode == true { print("TEST Manual Button tapped") }
     }
 
     // MARK: END GAME SCREEN
@@ -995,7 +1047,7 @@ class GameViewController : UIViewController, UITextFieldDelegate {
         
         mmwGameScene.subtractTilesRemainingOnBoard()
 
-        print("MMWOptionScreen didMoveToView")
+        if debugMode == true { print("MMWOptionScreen didMoveToView") }
 
         //goToResults()
         //startNewGame()
@@ -1107,7 +1159,7 @@ class GameViewController : UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func gameResultsChangeOptionsButton(sender: AnyObject) {
-        print("options button pressed")
+        if debugMode == true { print("options button pressed") }
         gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
         gameViewController.ViewAllOptionsUI.hidden = false
         gameViewController.OptionsSwitchOutlet.hidden = false
@@ -1121,7 +1173,7 @@ class GameViewController : UIViewController, UITextFieldDelegate {
 
         //view?.presentScene(mmwOptionScreen)
 
-        print("back to  mmwGameScene from optionsButton")
+        if debugMode == true { print("back to  mmwGameScene from optionsButton") }
         
     }
 
@@ -1234,52 +1286,52 @@ class GameViewController : UIViewController, UITextFieldDelegate {
         let currentText = textField.text ?? ""
         let prospectiveText = (currentText as NSString).stringByReplacingCharactersInRange(range, withString: string)
         
-        print("player name = \(prospectiveText)")
+        if debugMode == true { print("player name = \(prospectiveText)") }
         
         return
 
             prospectiveText.characters.count <= 12
         
-        switch textField {
-            
-            // Allow only upper- and lower-case vowels in this field,
-            // and limit its contents to a maximum of 6 characters.
-        case  player1NameTextFieldOutlet:
-            return
-                prospectiveText.characters.count <= 6
-            
-//            // Allow any characters EXCEPT upper- and lower-case vowels in this field,
-//            // and limit its contents to a maximum of 8 characters.
-//        case noVowelsTextField:
-//            return prospectiveText.doesNotContainCharactersIn("aeiouAEIOU") &&
-//                prospectiveText.characters.count <= 8
+//        switch textField {
 //            
-//            // Allow only digits in this field,
-//            // and limit its contents to a maximum of 3 characters.
-//        case digitsOnlyTextField:
-//            return prospectiveText.containsOnlyCharactersIn("0123456789") &&
-//                prospectiveText.characters.count <= 3
+//            // Allow only upper- and lower-case vowels in this field,
+//            // and limit its contents to a maximum of 6 characters.
+//            case  player1NameTextFieldOutlet:
+//                return
+//                    prospectiveText.characters.count <= 6
 //            
-//            // Allow only values that evaluate to proper numeric values in this field,
-//            // and limit its contents to a maximum of 7 characters.
-//        case numericOnlyTextField:
-//            return prospectiveText.isNumeric() &&
-//                prospectiveText.characters.count <= 7
-//            
-//            // In this field, allow only values that evalulate to proper numeric values and
-//            // do not contain the "-" and "e" characters, nor the decimal separator character
-//            // for the current locale. Limit its contents to a maximum of 5 characters.
-//        case positiveIntegersOnlyTextField:
-//            let decimalSeparator = NSLocale.currentLocale().objectForKey(NSLocaleDecimalSeparator) as! String
-//            return prospectiveText.isNumeric() &&
-//                prospectiveText.doesNotContainCharactersIn("-e" + decimalSeparator) &&
-//                prospectiveText.characters.count <= 5
-            
-            // Do not put constraints on any other text field in this view
-            // that uses this class as its delegate.
-        default:
-            return true
-        }
+//    //            // Allow any characters EXCEPT upper- and lower-case vowels in this field,
+//    //            // and limit its contents to a maximum of 8 characters.
+//    //        case noVowelsTextField:
+//    //            return prospectiveText.doesNotContainCharactersIn("aeiouAEIOU") &&
+//    //                prospectiveText.characters.count <= 8
+//    //            
+//    //            // Allow only digits in this field,
+//    //            // and limit its contents to a maximum of 3 characters.
+//    //        case digitsOnlyTextField:
+//    //            return prospectiveText.containsOnlyCharactersIn("0123456789") &&
+//    //                prospectiveText.characters.count <= 3
+//    //            
+//    //            // Allow only values that evaluate to proper numeric values in this field,
+//    //            // and limit its contents to a maximum of 7 characters.
+//    //        case numericOnlyTextField:
+//    //            return prospectiveText.isNumeric() &&
+//    //                prospectiveText.characters.count <= 7
+//    //            
+//    //            // In this field, allow only values that evalulate to proper numeric values and
+//    //            // do not contain the "-" and "e" characters, nor the decimal separator character
+//    //            // for the current locale. Limit its contents to a maximum of 5 characters.
+//    //        case positiveIntegersOnlyTextField:
+//    //            let decimalSeparator = NSLocale.currentLocale().objectForKey(NSLocaleDecimalSeparator) as! String
+//    //            return prospectiveText.isNumeric() &&
+//    //                prospectiveText.doesNotContainCharactersIn("-e" + decimalSeparator) &&
+//    //                prospectiveText.characters.count <= 5
+//                
+//                // Do not put constraints on any other text field in this view
+//                // that uses this class as its delegate.
+//        default:
+//            return true
+//        }
         
     }
 

@@ -14,6 +14,10 @@ var mmwGameScene    : MMWGameScene!    = MMWGameScene(size: screenSize!)
 //var mmwResultsScene : MMWResultsScene! = MMWResultsScene(size: screenSize!, gameResult: false, score: 25)
 var endGameScene : EndGameScene = EndGameScene(size: screenSize!)
 
+let backgroundNode = SKSpriteNode(imageNamed: "MarkMyWordBGCleaniPad.png")
+let myLabel = SKLabelNode(fontNamed:"Chalkduster")
+let playBtn = SKSpriteNode(imageNamed: "PlayButton.png")
+
 class MainMenuScene: SKScene {
 
 //    var currentScene : SKScene?
@@ -37,28 +41,28 @@ class MainMenuScene: SKScene {
         screenSize = view.bounds.size
 //        print("view size MenuScene: \(screenSize)")
 
-//        // add BG
-//        let backgroundNode = SKSpriteNode(imageNamed: "MarkMyWordBGCleaniPad@2x.png")
-//        //backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-//        backgroundNode.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
-//        backgroundNode.userInteractionEnabled = false
-//        backgroundNode.size = self.frame.size;
-//        self.addChild(backgroundNode)
-//        
-//        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-//        myLabel.text = "MainMenuScene" // scene is: \(scene?.description)"
-//        myLabel.fontSize = 65;
-//        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y: (CGRectGetMidY(self.frame) - 50) )
-//        self.addChild(myLabel)
-//        myLabel.zPosition = 100
-//        
-//        let playBtn = SKSpriteNode(imageNamed: "PlayButton.png")
-//        playBtn.position = CGPoint(x: viewSize.width/2, y: viewSize.height/3)
-//        self.addChild(playBtn)
-//        playBtn.name = "playBtn"
-//        playBtn.zPosition = 100
+        // add BG
+        //let backgroundNode = SKSpriteNode(imageNamed: "MarkMyWordBGCleaniPad.png")
+        //backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+        backgroundNode.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
+        backgroundNode.userInteractionEnabled = false
+        backgroundNode.size = self.frame.size;
+        self.addChild(backgroundNode)
+
+        //let myLabel = SKLabelNode(fontNamed:"Chalkduster")
+        myLabel.text = "MainMenuScene" // scene is: \(scene?.description)"
+        myLabel.fontSize = 65;
+        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y: (CGRectGetMidY(self.frame) - 50) )
+        self.addChild(myLabel)
+        myLabel.zPosition = 100
+
+        //let playBtn = SKSpriteNode(imageNamed: "PlayButton.png")
+        playBtn.position = CGPoint(x: viewSize.width/2, y: viewSize.height/3)
+        self.addChild(playBtn)
+        playBtn.name = "playBtn"
+        playBtn.zPosition = 100
         
-        presentMMWScene()
+        //presentMMWScene()
     }
     
     
@@ -69,8 +73,9 @@ class MainMenuScene: SKScene {
             let _node:SKNode = self.nodeAtPoint(location)
             
             if(_node.name == "playBtn"){
-                print("going to mmw scene") //create MMW controller
-
+                if debugMode == true { print("going to mmw scene") } //create MMW controller
+                playBtn.alpha = 0.1
+                
                 presentMMWScene()
                 
                 if mmwGameSceneViewController.audioOn == true {
@@ -100,7 +105,7 @@ class MainMenuScene: SKScene {
 //        let transition = SKTransition.crossFadeWithDuration(0.01)
 //        view?.presentScene(mmwGameScene, transition: transition)
         view?.presentScene(mmwGameScene)
-        print("presentMMWScene")
+        if debugMode == true { print("presentMMWScene") }
         mmwGameSceneViewController.setUpGame()
         return mmwGameScene
     }

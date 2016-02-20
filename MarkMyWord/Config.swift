@@ -44,6 +44,7 @@ func setFontHUDSize () {
     }
 }
 
+var debugMode = false
 
 var FontHUD = UIFont(name:"HelveticaNeue", size: 18.0)
 

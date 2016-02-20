@@ -101,7 +101,7 @@ class MMWOptionScreen: SKScene {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         //viewSize = view.bounds.size
-        print("view size MenuScene: \(screenSize)")
+        if debugMode == true { print("view size MenuScene: \(screenSize)") }
         newGameSpriteNode.hidden = true
 
         //        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
@@ -149,8 +149,8 @@ class MMWOptionScreen: SKScene {
             gameViewController.updateGameSettings()
         }
 
-        print("options button pressed")
-        print("MMWOptionScreen didMoveToView")
+        if debugMode == true { print("options button pressed") }
+        if debugMode == true { print("MMWOptionScreen didMoveToView") }
         gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
         gameViewController.ViewAllOptionsUI.hidden = false
         gameViewController.OptionsSwitchOutlet.hidden = false
@@ -176,8 +176,14 @@ class MMWOptionScreen: SKScene {
     }
     
     func allPlayersPassed () {
-        mmwGameScene.stopTimer()
-        print("MMWOptionScreen allPlayersPassed")
+        
+        
+        
+        //mmwGameScene.stopTimer()
+        
+        
+        
+        if debugMode == true { print("MMWOptionScreen allPlayersPassed") }
         gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
         gameViewController.ViewAllOptionsUI.hidden = false
         gameViewController.OptionsSwitchOutlet.hidden = true
@@ -195,7 +201,7 @@ class MMWOptionScreen: SKScene {
     }
     
     func returnToGameScene () {
-        print("return to mmw scene") //create MMW controller
+        if debugMode == true { print("return to mmw scene") } //create MMW controller
 
 //        if mmwGameSceneViewController.timerIsOn {
 //            mmwGameScene.startTimer()
@@ -204,14 +210,14 @@ class MMWOptionScreen: SKScene {
         gameViewController.ViewAllOptionsUI.hidden = true
         self.view?.presentScene(mmwGameScene)
         
-        mmwGameScene.startTimer(mmwGameScene.secondsLeft)
+        //mmwGameScene.startTimer(mmwGameScene.secondsLeft)
         //delay(1){
             //mmwGameScene.changePlayerTurn()
         //}
     }
     
     func returnToGameSceneFinishGame () {
-        print("return to mmw scene") //create MMW controller
+        if debugMode == true { print("return to mmw scene") }//create MMW controller
         
         //        if mmwGameSceneViewController.timerIsOn {
         //            mmwGameScene.startTimer()
@@ -227,7 +233,7 @@ class MMWOptionScreen: SKScene {
     }
     
     func newGameScene () {
-        print("going to NEW mmw scene from mmwOptionScreen") //create MMW controller
+        if debugMode == true { print("going to NEW mmw scene from mmwOptionScreen") } //create MMW controller
         
         let loadingIndicator = SKSpriteNode(imageNamed: "LoadingBarInside.png")
         
@@ -238,8 +244,8 @@ class MMWOptionScreen: SKScene {
         //gameViewController.ViewAllOptionsUI.hidden = true
         gameViewController.ViewOptionsUI.hidden = true
         gameViewController.ViewLoadingGameUIOutlet.hidden = false
-        gameViewController.bannerViewLowerLeft.hidden = true
-        gameViewController.bannerViewLowerRight.hidden = true
+//        gameViewController.bannerViewLowerLeft.hidden = true
+//        gameViewController.bannerViewLowerRight.hidden = true
         newGameSpriteNode.hidden = false
         gameViewController.OptionsSwitchOutlet.hidden = true
         gameViewController.ViewResultsScreenUI.hidden = true
@@ -263,8 +269,8 @@ class MMWOptionScreen: SKScene {
             gameViewController.ViewLoadingGameUIOutlet.hidden = true
             gameViewController.ViewAllOptionsUI.hidden = true
             gameViewController.OptionsSwitchOutlet.hidden = false
-            gameViewController.bannerViewLowerLeft.hidden = false
-            gameViewController.bannerViewLowerRight.hidden = false
+//            gameViewController.bannerViewLowerLeft.hidden = false
+//            gameViewController.bannerViewLowerRight.hidden = false
             mmwGameScene.resetGameView()   // includes tileCollection?.resetAllTiles()
             self.view?.presentScene(mmwGameScene)
             
@@ -279,14 +285,14 @@ class MMWOptionScreen: SKScene {
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
-        for touch: AnyObject in touches {
-            let location = touch.locationInNode(self)
-            let _node:SKNode = self.nodeAtPoint(location)
-//            if(_node.name == "playBtn"){
-//                //returnToGameScene()
-//                newGameScene()
-//            }
-        }
+//        for touch: AnyObject in touches {
+//            let location = touch.locationInNode(self)
+//            let _node:SKNode = self.nodeAtPoint(location)
+////            if(_node.name == "playBtn"){
+////                //returnToGameScene()
+////                newGameScene()
+////            }
+//        }
     }
     
 //    func presentMenuScene() {
