@@ -62,28 +62,31 @@ class MainMenuScene: SKScene {
         playBtn.name = "playBtn"
         playBtn.zPosition = 100
         
+        delay(3){
+            self.presentMMWScene()
+        }
         //presentMMWScene()
     }
     
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
-        for touch: AnyObject in touches {
-            let location = touch.locationInNode(self)
-            let _node:SKNode = self.nodeAtPoint(location)
-            
-            if(_node.name == "playBtn"){
-                if debugMode == true { print("going to mmw scene") } //create MMW controller
-                playBtn.alpha = 0.1
-                
-                presentMMWScene()
-                
-                if mmwGameSceneViewController.audioOn == true {
-                    let actionSound = SKAction.playSoundFileNamed("37Bronk.mp3", waitForCompletion: true)
-                    runAction(actionSound)
-                }
-            }
-        }
+//        for touch: AnyObject in touches {
+//            let location = touch.locationInNode(self)
+//            let _node:SKNode = self.nodeAtPoint(location)
+//            
+//            if(_node.name == "playBtn"){
+//                if debugMode == true { print("going to mmw scene") } //create MMW controller
+//                playBtn.alpha = 0.1
+//                
+//                presentMMWScene()
+//                
+//                if mmwGameSceneViewController.audioOn == true {
+//                    let actionSound = SKAction.playSoundFileNamed("37Bronk.mp3", waitForCompletion: true)
+//                    runAction(actionSound)
+//                }
+//            }
+//        }
     }
 
     

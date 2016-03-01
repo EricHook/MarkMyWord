@@ -306,30 +306,38 @@ class LetterTileSprite : SKSpriteNode {
         hasLockedPotentialWord = false
         
         for touch in (touches as Set<UITouch>) {
-            //if isMovable {
-            let location = touch.locationInNode(scene!)
-            let touchedNode = nodeAtPoint(location)
-            touchedNode.position = location
-            //}
             
-            let tileSnapTouch = (touch as UITouch).locationInView(scene!.view)
-            
-            if debugMode == true { print("touches moved: \(location)  \(mmwGameScene.getSnapGrid(tileSnapTouch)?.gridName) zPos TileSprite: \(self.zPosition), \(tileShadow.zPosition)") }
-            
-            // IF VALID DROP LOCATION
-            if (tileSnapTouch.x > (screenSize!.width) * 0.153320 && tileSnapTouch.x < (screenSize!.width) * 0.84553) && (tileSnapTouch.y > (screenSize!.height) * 0.04947917 && tileSnapTouch.y < (screenSize!.height) * 0.97135416) { // checks that drag location within game grid boundaries
-
-                let gameGrid = mmwGameScene.getSnapGrid(tileSnapTouch)
-                let tileSnapResults = gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y)) // gets grid x, y on tile drag
+            if mmwGameScene.secondsLeft > 0 && (self.tileSpriteParent.tileOwner.rawValue == mmwGameSceneViewController.playerTurn) {
                 
-                let tileSnapResultsXGrid = tileSnapResults.GridSquareX
-                let tileSnapResultsYGrid = tileSnapResults.GridSquareY
-                if debugMode == true { print("touch: \(tileSnapTouch.x), \(tileSnapTouch.y) /  \(tileSnapResultsXGrid), \(tileSnapResultsYGrid)  \(mmwGameScene.getSnapGrid(tileSnapTouch)?.gridName)") }
-                checkForValidWordsOnTileDrag(tileSnapResultsXGrid, gridYSpot: tileSnapResultsYGrid, IsAI: false)
+                let location = touch.locationInNode(scene!)
+                let touchedNode = nodeAtPoint(location)
+                touchedNode.position = location
+                //}
+                
+                let tileSnapTouch = (touch as UITouch).locationInView(scene!.view)
+                
+                if debugMode == true { print("touches moved: \(location)  \(mmwGameScene.getSnapGrid(tileSnapTouch)?.gridName) zPos TileSprite: \(self.zPosition), \(tileShadow.zPosition)") }
+                
+                // IF VALID DROP LOCATION
+                if (tileSnapTouch.x > (screenSize!.width) * 0.153320 && tileSnapTouch.x < (screenSize!.width) * 0.84553) && (tileSnapTouch.y > (screenSize!.height) * 0.04947917 && tileSnapTouch.y < (screenSize!.height) * 0.97135416) { // checks that drag location within game grid boundaries
+
+                    let gameGrid = mmwGameScene.getSnapGrid(tileSnapTouch)
+                    let tileSnapResults = gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y)) // gets grid x, y on tile drag
+                    
+                    let tileSnapResultsXGrid = tileSnapResults.GridSquareX
+                    let tileSnapResultsYGrid = tileSnapResults.GridSquareY
+                    if debugMode == true { print("touch: \(tileSnapTouch.x), \(tileSnapTouch.y) /  \(tileSnapResultsXGrid), \(tileSnapResultsYGrid)  \(mmwGameScene.getSnapGrid(tileSnapTouch)?.gridName)") }
+                    checkForValidWordsOnTileDrag(tileSnapResultsXGrid, gridYSpot: tileSnapResultsYGrid, IsAI: false)
+                }
+                else {
+                    LetterTileSprite.removeAllTileHighlights ()
+                }
             }
-            else {
-                LetterTileSprite.removeAllTileHighlights ()
+            
+            else  {
+                self.returnTileToGridHome()
             }
+            
         }
     }
     

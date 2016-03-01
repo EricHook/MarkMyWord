@@ -671,13 +671,29 @@ class GameViewController : UIViewController, UITextFieldDelegate, GADBannerViewD
         tempPlayer1AvatarNumber = Int(sender.value)
         player1ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer1AvatarNumber ])
         if tempPlayer1IsHuman == true {
+            
+            tempPlayer1AvatarNumber = Int(sender.value)
             player1NameLabel.text = playerAvatarNames[tempPlayer1AvatarNumber]
-//            player1NameTextFieldOutlet.hidden = false
-//            player1NameLabel.hidden = true
+            player1ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer1AvatarNumber])
+            player1NameLabel.text = playerAvatarNames[tempPlayer1AvatarNumber]
+            //            player2NameTextFieldOutlet.hidden = false
+            //            player2NameLabel.hidden = true
+            
+//            player1NameLabel.text = playerAvatarNames[tempPlayer1AvatarNumber]
+////            player1NameTextFieldOutlet.hidden = false
+////            player1NameLabel.hidden = true
         } else {
+            
+            tempPlayer1AvatarNumber = Int(sender.value)
             player1NameLabel.text = playerAvatarNames[tempPlayer1AvatarNumber]
-//            player1NameTextFieldOutlet.hidden = true
-//            player1NameLabel.hidden = false
+            player1ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer1AvatarNumber])
+            player1NameLabel.text = playerAvatarNames[tempPlayer1AvatarNumber]
+            //            player2NameTextFieldOutlet.hidden = false
+            //            player2NameLabel.hidden = true
+
+//            player1NameLabel.text = playerAvatarNames[tempPlayer1AvatarNumber]
+////            player1NameTextFieldOutlet.hidden = true
+////            player1NameLabel.hidden = false
         }
     }
 
@@ -817,8 +833,13 @@ class GameViewController : UIViewController, UITextFieldDelegate, GADBannerViewD
         mmwGameSceneViewController.minWordSize = tempMinWordSize
         mmwGameSceneViewController.numStarterWords = tempNumStarterWords
         mmwGameSceneViewController.numPlayers = tempNumPlayers
+
+        if mmwGameSceneViewController.allowOffensiveWords != tempAllowOffensiveWords{
+            mmwGameSceneViewController.allowOffensiveWords = tempAllowOffensiveWords
+            mmwGameSceneViewController.loadWordSet()
+        }
         mmwGameSceneViewController.allowOffensiveWords = tempAllowOffensiveWords
-        
+
         tempPlayer1Name = player1NameTextFieldOutlet.text!
         tempPlayer2Name = player2NameTextFieldOutlet.text!
         tempPlayer3Name = player3NameTextFieldOutlet.text!

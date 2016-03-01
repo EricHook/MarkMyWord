@@ -115,13 +115,26 @@ class MMWGameSceneViewController : UIViewController {
     
     func loadWordSet() {
         if debugMode == true { print("---   in loadWordSet mmwGameSceneViewController") }
-        do {
-            if let path = NSBundle.mainBundle().pathForResource("WordListChopped", ofType: "txt") {
-                wordSet = WordSet(filePath: path, precomputedSize: wordSetPrecomputedSize)
-                try wordSet?.load()
+        
+        if mmwGameSceneViewController.allowOffensiveWords == true {
+            do {
+                if let path = NSBundle.mainBundle().pathForResource("WordListChoppedNoDupRaw", ofType: "txt") {
+                    wordSet = WordSet(filePath: path, precomputedSize: wordSetPrecomputedSize)
+                    try wordSet?.load()
+                }
+            } catch {
+                // alert message to user here
             }
-        } catch {
-            // alert message to user here
+        }
+        else {
+            do {
+                if let path = NSBundle.mainBundle().pathForResource("WordListChoppedNoDupClean", ofType: "txt") {
+                    wordSet = WordSet(filePath: path, precomputedSize: wordSetPrecomputedSize)
+                    try wordSet?.load()
+                }
+            } catch {
+                // alert message to user here
+            }
         }
     }
     

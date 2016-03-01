@@ -1649,6 +1649,16 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         
         playerPassButtonOff()
         
+        newTilesButtonOff()
+
+        mmwGameScene.optionsButton.userInteractionEnabled = true
+        mmwGameScene.optionsButton.alpha = 0.5
+        
+        mmwGameScene.pauseButton.userInteractionEnabled = true
+        mmwGameScene.pauseButton.alpha = 0.5
+        
+        
+        
         if mmwGameSceneViewController.audioOn == true {
             self.runAction(SKAction.playSoundFileNamed("points.WAV", waitForCompletion: false))
         }
@@ -1689,15 +1699,30 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         if userInteractionEnabled == true {
             newTilesButtonOff()
             
+            
+            
+            mmwGameScene.optionsButton.userInteractionEnabled = true
+            mmwGameScene.optionsButton.alpha = 0.5
+            
+            playerPassButtonOff()
+            newTilesButtonOff()
+            
+            mmwGameScene.pauseButton.userInteractionEnabled = true
+            mmwGameScene.pauseButton.alpha = 0.5
+
+
+    
             if mmwGameSceneViewController.audioOn == true {
                 runAction(actionSound)
             }
-            
+    
             mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.dealGridFromArrayRandom(&tileCollection!.mmwTileArray, numTilesToDeal: 6, playerNum: (mmwGameSceneViewController.playerTurn), clearGrid: true)
             
             showTilesInSquares(tileCollection!) // 'deals' player tiles and shows demo tiles on board for testing
             
             mmwGameSceneViewController.resetConsequtivePasses()
+            
+            
             
             delay(1.0) {
                 self.changePlayerTurn()
