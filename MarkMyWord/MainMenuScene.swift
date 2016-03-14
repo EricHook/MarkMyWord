@@ -14,7 +14,8 @@ var mmwGameScene    : MMWGameScene!    = MMWGameScene(size: screenSize!)
 //var mmwResultsScene : MMWResultsScene! = MMWResultsScene(size: screenSize!, gameResult: false, score: 25)
 var endGameScene : EndGameScene = EndGameScene(size: screenSize!)
 
-let backgroundNode = SKSpriteNode(imageNamed: "MarkMyWordBGCleaniPad.png")
+let backgroundNode = SKSpriteNode(imageNamed: gameViewController.backgroundImageArray[mmwGameSceneViewController.backgroundNumber])
+
 let myLabel = SKLabelNode(fontNamed:"Chalkduster")
 let playBtn = SKSpriteNode(imageNamed: "PlayButton.png")
 

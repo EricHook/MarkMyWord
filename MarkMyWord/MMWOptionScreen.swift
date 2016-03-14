@@ -29,7 +29,9 @@ class MMWOptionScreen: SKScene {
     
  //   var backgroundNode : SKSpriteNode
 //    var newGameSpriteNode : SKSpriteNode
-    var backgroundNode = SKSpriteNode(imageNamed: "MMWOptionsScreen.png")
+//    var backgroundNode = SKSpriteNode(imageNamed: "MMWOptionsScreen.png")
+    var backgroundNode = SKSpriteNode(imageNamed: gameViewController.backgroundImageArray[mmwGameSceneViewController.backgroundNumber])
+    var gameGridCover       = SKSpriteNode(imageNamed: "GameGridCover.png")
     var newGameSpriteNode = SKSpriteNode(imageNamed: "NewGameScreen.png")
 
 
@@ -49,7 +51,29 @@ class MMWOptionScreen: SKScene {
         backgroundNode.position = CGPoint(x: screenSize!.width/2, y: screenSize!.height/2)
         backgroundNode.userInteractionEnabled = false
         backgroundNode.size = self.frame.size;
-        self.addChild(backgroundNode)
+        backgroundNode.zPosition = -100
+        if self.childNodeWithName("backgroundNode") == nil {
+            addChild(backgroundNode)
+        }
+
+        gameGridCover.anchorPoint = CGPoint(x: 0.0, y: 0.0)
+        gameGridCover.position = CGPoint(x: 154.5, y: 31.0)
+        gameGridCover.userInteractionEnabled = false
+        gameGridCover.name = "gameGridCover"
+        gameGridCover.zPosition = -99
+        gameGridCover.alpha = 0.75
+        //        gameGrid.size.height = viewSize.height
+        //        gameGrid.size.width  = viewSize.width
+        if self.childNodeWithName("gameGridCover") == nil {
+            addChild(gameGridCover)
+        }
+        if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
+            //gameGrid = SKSpriteNode(imageNamed: "GameGrid@iPadPro.png")
+
+            gameGridCover.position = CGPoint(x: 207.0, y: 42.0)
+            gameGridCover.xScale = 1.3333
+            gameGridCover.yScale = 1.3333
+        }
 
 //        newGameSpriteNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
 //        newGameSpriteNode.position = CGPoint(x: size.width/2.0, y: 0.0)
@@ -148,6 +172,9 @@ class MMWOptionScreen: SKScene {
         delay(0.0){
             gameViewController.updateGameSettings()
         }
+        
+        backgroundNode.texture = SKTexture(imageNamed: gameViewController.backgroundImageArray[mmwGameSceneViewController.backgroundNumber])
+        gameGridCover.hidden = false
 
         if debugMode == true { print("options button pressed") }
         if debugMode == true { print("MMWOptionScreen didMoveToView") }
@@ -206,7 +233,7 @@ class MMWOptionScreen: SKScene {
 //        if mmwGameSceneViewController.timerIsOn {
 //            mmwGameScene.startTimer()
 //        }
-
+        gameGridCover.hidden = true
         gameViewController.ViewAllOptionsUI.hidden = true
         self.view?.presentScene(mmwGameScene)
         
@@ -222,7 +249,7 @@ class MMWOptionScreen: SKScene {
         //        if mmwGameSceneViewController.timerIsOn {
         //            mmwGameScene.startTimer()
         //        }
-        
+        gameGridCover.hidden = true
         gameViewController.ViewAllOptionsUI.hidden = true
         self.view?.presentScene(mmwGameScene)
         
@@ -272,6 +299,8 @@ class MMWOptionScreen: SKScene {
 //            gameViewController.bannerViewLowerLeft.hidden = false
 //            gameViewController.bannerViewLowerRight.hidden = false
             mmwGameScene.resetGameView()   // includes tileCollection?.resetAllTiles()
+            
+            mmwGameScene.backgroundNode.texture = SKTexture(imageNamed: gameViewController.backgroundImageArray[mmwGameSceneViewController.backgroundNumber])
             self.view?.presentScene(mmwGameScene)
             
             mmwGameScene.playButton.hidden = false

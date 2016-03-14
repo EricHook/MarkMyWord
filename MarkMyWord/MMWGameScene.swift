@@ -11,6 +11,7 @@
 import SpriteKit
 import UIKit
 import CoreMotion
+import GoogleMobileAds
 
 //struct validAITilePlay {
 //    var tile : MMWTile = MMWTile()
@@ -32,9 +33,11 @@ struct validAILetterPlay {
 class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDelegate {
     
     var viewSize = screenSize!
-    var backgroundNode    : SKSpriteNode = SKSpriteNode(imageNamed: "MarkMyWordBGCleaniPad.png" )
+//    var backgroundNode    : SKSpriteNode = SKSpriteNode(imageNamed: "MarkMyWordBGCleaniPad.png" )
+    var backgroundNode    : SKSpriteNode = SKSpriteNode(imageNamed: gameViewController.backgroundImageArray[mmwGameSceneViewController.backgroundNumber])
     var newGameSpriteNode : SKSpriteNode = SKSpriteNode(imageNamed: "NewGameScreen.png" )
     var optionsLayerNode  : SKSpriteNode = SKSpriteNode(imageNamed: "MMWOptionsScreen.png")
+    var gameGridNode  : SKSpriteNode = SKSpriteNode(imageNamed: "GameGrid.png")
     var foregroundNode    : SKSpriteNode = SKSpriteNode()
     
     var mmwBoardGrid: Grid!
@@ -72,6 +75,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     let pauseButton    = SKSpriteNode(imageNamed: "PauseButton.png")
     let optionsButton  = SKSpriteNode(imageNamed: "OptionsButton.png")
     var gameGrid       = SKSpriteNode(imageNamed: "GameGrid.png")
+    var gameGridCover       = SKSpriteNode(imageNamed: "GameGridCover.png")
     //
     //    let smallSquare    = SKSpriteNode(imageNamed: "SmallSquare.png")
     
@@ -113,6 +117,36 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             addChild(backgroundNode)
         }
         
+        gameGrid.anchorPoint = CGPoint(x: 0.0, y: 0.0)
+        gameGrid.position = CGPoint(x: 154.5, y: 31.0)
+        gameGrid.userInteractionEnabled = false
+        gameGrid.name = "gameGrid"
+        gameGrid.zPosition = -99
+//        gameGrid.size.height = viewSize.height
+//        gameGrid.size.width  = viewSize.width
+        if self.childNodeWithName("gameGrid") == nil {
+            addChild(gameGrid)
+        }
+//        if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
+//            //gameGrid = SKSpriteNode(imageNamed: "GameGrid@iPadPro.png")
+//            gameGrid.xScale = 1.33
+//            gameGrid.yScale = 1.33
+//        }
+
+        
+        
+//        gameGridCover.anchorPoint = CGPoint(x: 0.0, y: 0.0)
+//        gameGridCover.position = CGPoint(x: 154.5, y: 31.0)
+//        gameGridCover.userInteractionEnabled = false
+//        gameGridCover.name = "gameGrid"
+//        gameGridCover.zPosition = -98
+//        //        gameGrid.size.height = viewSize.height
+//        //        gameGrid.size.width  = viewSize.width
+//        if self.childNodeWithName("gameGridCover") == nil {
+//            addChild(gameGridCover)
+//        }
+//        gameGridCover.hidden = true
+        
         newGameSpriteNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         newGameSpriteNode.position = CGPoint(x: size.width/2.0, y: 0.0)
         newGameSpriteNode.userInteractionEnabled = false
@@ -125,7 +159,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             addChild(newGameSpriteNode)
         }
         
-        backgroundNode.zPosition = -50
+        //backgroundNode.zPosition = -50
         
         // Set GameGrid Size
         if mmwGame.deviceType == MMWGame.DeviceType.iPhone5 || mmwGame.deviceType == MMWGame.DeviceType.iPhone6 {
@@ -150,8 +184,9 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             
         else if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
             //gameGrid = SKSpriteNode(imageNamed: "GameGrid@iPadPro.png")
-            gameGrid.xScale = 1.33
-            gameGrid.yScale = 1.33
+            gameGrid.xScale = 1.333
+            gameGrid.yScale = 1.333
+            gameGrid.position = CGPoint(x: 207.0, y: 42.0)
         }
         
         //        gameGrid.position = CGPoint(x: (viewSize.width/2), y: (viewSize.height * 0.490 ) )
@@ -161,8 +196,8 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         //        gameGrid.alpha     = 0.1
         //        self.addChild(gameGrid)
         
-        topDisplayHUD("                Welcome to Mark My Word") // ("Turn: Player 1, Special Letter Bonus In Effect, 2x Point Bonus")
-        topDisplayHUD2(" ")
+        topDisplayHUD("Welcome to Mark My Word") // ("Turn: Player 1, Special Letter Bonus In Effect, 2x Point Bonus")
+        topDisplayHUD2("Have fun!")
         
         tilesRemainingHUD(tileCollection!.mmwTileArray.count)
         
@@ -956,6 +991,10 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         
         if debugMode == true { print("---   in resetGameView mmwGameScene") }
         gameViewController.ViewAllOptionsUI.hidden = true
+
+        backgroundNode.texture = SKTexture(imageNamed: gameViewController.backgroundImageArray[mmwGameSceneViewController.backgroundNumber])
+            
+//            backgroundNode    : SKSpriteNode = SKSpriteNode(imageNamed: gameViewController.backgroundImageArray[mmwGameSceneViewController.backgroundNumber])
         
         tileCollection!.resetAllTiles()
         
@@ -977,6 +1016,8 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         optionsButton.userInteractionEnabled = false
         optionsButton.alpha = 1
         
+        gameGridCover.hidden = true
+        
         if mmwGameSceneViewController.timerIsOn == false {
             secondsLeft = 999
             timeRemainingLabel.text = "Timer: off"
@@ -996,7 +1037,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         
         //bottomDisplayLabel.text =  "Begin ... "
         topDisplayLabel.text = " Welcome to Mark My Word"
-        topDisplayLabel2.text =  ""
+        topDisplayLabel2.text =  "Have fun!"
         
         mmwGameScene.setGrids() // sets tile grid positions, size square, number squares and position on screen for each grid possible
         
@@ -1059,6 +1100,11 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             }
             playerArrayNumber++
         }
+        
+        
+        //backgroundNode = SKSpriteNode(imageNamed: gameViewController.backgroundImageArray[mmwGameSceneViewController.backgroundNumber])
+        //backgroundNode = SKSpriteNode(imageNamed: gameViewController.backgroundImageArray[4])
+        
     }
     
     //    func testPlayButton () {

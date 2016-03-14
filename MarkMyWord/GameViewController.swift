@@ -64,6 +64,8 @@ class GameViewController : UIViewController, UITextFieldDelegate, GADBannerViewD
     var tempNumPlayers : Int!
     var tempAllowOffensiveWords : Bool!
     
+    var tempBackgroundNumber = 0
+    
     var tempPlayer1Name : String!
     var tempPlayer2Name : String!
     var tempPlayer3Name : String!
@@ -89,13 +91,17 @@ class GameViewController : UIViewController, UITextFieldDelegate, GADBannerViewD
     var tempPlayer3MeyamaNumber = 0
     var tempPlayer4MeyamaNumber = 0
     
-    var playerImageArray = ["avatar000.png", "avatar001.png", "avatar002.png", "avatar003.png", "avatar004.png", "avatar005.png"]
+    // currently number of avatars for humans and AI must be same along with associated number names
     
-    var meyamaImageArray = ["meyama000.png", "meyama001.png", "meyama002.png", "meyama003.png", "meyama004.png", "meyama003.png"]
+    var playerImageArray = ["avatar000.png", "avatar001.png", "avatar002.png", "avatar003.png", "avatar004.png", "avatar005.png", "avatar006.png"]
     
-    var playerAvatarNames = ["Player1a", "Player1b", "Player1c", "Player1d", "Player1e", "Player1f"]
+    var meyamaImageArray = ["meyama000.png", "meyama001.png", "meyama002.png", "meyama003.png", "meyama004.png", "meyama005.png", "meyama006.png"]
     
-    var meyamaAvatarNames = ["Alice", "Bongo", "Cocoa", "Dizzy", "Ethota", "Fadama"]
+    var backgroundImageArray = ["BG000.png", "BG001.png", "BG002.png", "BG003.png", "BG004.png", "BG005.png", "BG006.png", "BG007.png", "BG008.png"]
+    
+    var playerAvatarNames = ["Player0", "Player1", "Player2", "Player3", "Player4", "Player5", "Player6" ]
+    
+    var meyamaAvatarNames = ["Alice", "Bongo", "Cocoa", "Dizzy", "Ethota", "Fadama", "George"]
     
     func updateGameSettings() {
         tempSecondsPerTurn = mmwGameSceneViewController.secondsPerTurn
@@ -231,6 +237,8 @@ class GameViewController : UIViewController, UITextFieldDelegate, GADBannerViewD
         tempPlayer2MeyamaNumber = mmwGameSceneViewController.playerArray[1].playerMeyamaNumber
         tempPlayer3MeyamaNumber = mmwGameSceneViewController.playerArray[2].playerMeyamaNumber
         tempPlayer4MeyamaNumber = mmwGameSceneViewController.playerArray[3].playerMeyamaNumber
+        
+        tempBackgroundNumber = mmwGameSceneViewController.backgroundNumber
         
         // Player 1 always human
         player1NameTextFieldOutlet.hidden = false
@@ -543,6 +551,18 @@ class GameViewController : UIViewController, UITextFieldDelegate, GADBannerViewD
         }
     }
     
+    @IBOutlet weak var backgroundImageOutlet: UIImageView!
+    
+    @IBAction func backgroundStepper(sender: UIStepper) {
+
+            tempBackgroundNumber = Int(sender.value)
+            //player4NameLabel.text = playerAvatarNames[tempPlayer4AvatarNumber]
+            backgroundImageOutlet.image = UIImage(named: backgroundImageArray[tempBackgroundNumber])
+            //player4NameLabel.text = playerAvatarNames[tempPlayer4AvatarNumber]
+            //            player4NameTextFieldOutlet.hidden = false
+            //            player4NameLabel.hidden = true
+    }
+    
     
 //    @IBAction func audioSettingAction(sender: AnyObject) {
 //        switch (sender.selectedSegmentIndex){
@@ -839,6 +859,8 @@ class GameViewController : UIViewController, UITextFieldDelegate, GADBannerViewD
             mmwGameSceneViewController.loadWordSet()
         }
         mmwGameSceneViewController.allowOffensiveWords = tempAllowOffensiveWords
+        
+        mmwGameSceneViewController.backgroundNumber = tempBackgroundNumber
 
         tempPlayer1Name = player1NameTextFieldOutlet.text!
         tempPlayer2Name = player2NameTextFieldOutlet.text!
@@ -885,15 +907,27 @@ class GameViewController : UIViewController, UITextFieldDelegate, GADBannerViewD
     @IBAction func returnToGameButton(sender: AnyObject) {
         // returns to game without any settings changes
         
-//        bannerView.removeFromSuperview()
-//        adMob300x250LoadingViewOutlet.removeFromSuperview()
+        //bannerView.removeFromSuperview()
+        //adMob300x250LoadingViewOutlet.removeFromSuperview()
         
         mmwOptionScreen.returnToGameScene()
-        
     }
 
     
     let button   = UIButton(type: UIButtonType.System) as UIButton
+    
+    func adViewDidReceiveAd(var bannerView: GADBannerView!) {
+        bannerView.hidden = false
+
+//        bannerView.rootViewController = nil
+//        self.bannerView.delegate = nil
+//        
+//        bannerView.rootViewController = self
+//        self.bannerView.delegate = self
+        
+        print("received ad")
+
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -919,19 +953,38 @@ class GameViewController : UIViewController, UITextFieldDelegate, GADBannerViewD
                 if debugMode == true { print("Screen width:\(screenSize!.width) , device type: \(mmwGame.deviceType) ") }
         }
 
+        
+        
+        
         print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
         //bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         bannerView.adUnitID = "ca-app-pub-6428967577130104/9786515687"
         bannerView.rootViewController = self
+        self.bannerView.delegate = self
         bannerView.loadRequest(GADRequest())
+
+        //adMob300x250LoadingViewOutlet
+        
+        //bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        adMob300x250LoadingViewOutlet.adUnitID = "ca-app-pub-6428967577130104/8755277689"
+        adMob300x250LoadingViewOutlet.rootViewController = self
+        self.adMob300x250LoadingViewOutlet.delegate = self
+        adMob300x250LoadingViewOutlet.loadRequest(GADRequest())
+        
+        
+        
+        
 //        bannerView.delegate = nil
-//        //bannerView.removeFromSuperview()
+//        bannerView.removeFromSuperview()
+        
 
 //        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
 //        //bannerView2.adUnitID = "ca-app-pub-3940256099942544/2934735716"
 //        bannerView2.adUnitID = "ca-app-pub-3940256099942544/2934735716"
 //        bannerView2.rootViewController = self
 //        bannerView2.loadRequest(GADRequest())
+        
+        
 //
 //        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
 //        //bannerViewLowerLeft.adUnitID = "ca-app-pub-3940256099942544/2934735716"
@@ -951,14 +1004,16 @@ class GameViewController : UIViewController, UITextFieldDelegate, GADBannerViewD
 //        bannerViewLowerRight.rootViewController = self
 //        bannerViewLowerRight.loadRequest(GADRequest())
         
-        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
-        //adMob300x250LoadingViewOutlet.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        adMob300x250LoadingViewOutlet.adUnitID = "ca-app-pub-6428967577130104/8755277689"
-        adMob300x250LoadingViewOutlet.rootViewController = self
-        adMob300x250LoadingViewOutlet.loadRequest(GADRequest())
-//        adMob300x250LoadingViewOutlet.delegate = nil
-//        //adMob300x250LoadingViewOutlet.removeFromSuperview()
+        
+        
+        
+        
 
+        
+        
+        
+        
+        
         let skView = self.view as! SKView
         skView.showsFPS = false
         skView.showsNodeCount = false
