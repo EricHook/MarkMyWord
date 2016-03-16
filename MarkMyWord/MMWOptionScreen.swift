@@ -13,12 +13,6 @@ import SpriteKit
 
 class MMWOptionScreen: SKScene {
     
-//    let gameGridTex = SKTexture(imageNamed: "GameGrid.png")
-//    let OptButtonWordLength2Tex = SKTexture(imageNamed: "OptButtonWordLength2.png")
-//    let OptButtonWordLength2BoxedTex = SKTexture(imageNamed: "OptButtonWordLength2Boxed.png")
-//    let OptButtonWordLength3Tex = SKTexture(imageNamed: "OptButtonWordLength3.png")
-//    let OptButtonWordLength3BoxedTex = SKTexture(imageNamed: "OptButtonWordLength3Boxed.png")
-    
     var currentScene : SKScene?
 
     var inputText:UITextField?
@@ -27,18 +21,12 @@ class MMWOptionScreen: SKScene {
     var keyboardType:UIKeyboardType = UIKeyboardType.Alphabet
     var keyboardAppearance:UIKeyboardAppearance = UIKeyboardAppearance.Default
     
- //   var backgroundNode : SKSpriteNode
-//    var newGameSpriteNode : SKSpriteNode
-//    var backgroundNode = SKSpriteNode(imageNamed: "MMWOptionsScreen.png")
     var backgroundNode = SKSpriteNode(imageNamed: gameViewController.backgroundImageArray[mmwGameSceneViewController.backgroundNumber])
-    var gameGridCover       = SKSpriteNode(imageNamed: "GameGridCover.png")
-    var newGameSpriteNode = SKSpriteNode(imageNamed: "NewGameScreen.png")
-
+    var backgroundBlackNode = SKSpriteNode(imageNamed: "BGBlack.png")
+    var backgroundStripesAll       = SKSpriteNode(imageNamed: "BGStripes.png")
 
     var defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
 
-    //var viewSize:CGSize!
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         size = screenSize!
@@ -47,78 +35,45 @@ class MMWOptionScreen: SKScene {
     override init(size: CGSize) {
         super.init(size: size)
 
+        mmwGameScene.playAreaWhite.hidden = true
+        mmwGameScene.backgroundStripes.hidden = true
+        mmwGameScene.gameGrid.hidden = true
+
         // add BG
         backgroundNode.position = CGPoint(x: screenSize!.width/2, y: screenSize!.height/2)
         backgroundNode.userInteractionEnabled = false
         backgroundNode.size = self.frame.size;
-        backgroundNode.zPosition = -100
+        backgroundNode.zPosition = 1
         if self.childNodeWithName("backgroundNode") == nil {
             addChild(backgroundNode)
         }
+        backgroundNode.alpha = 0.5
 
-        gameGridCover.anchorPoint = CGPoint(x: 0.0, y: 0.0)
-        gameGridCover.position = CGPoint(x: 154.5, y: 31.0)
-        gameGridCover.userInteractionEnabled = false
-        gameGridCover.name = "gameGridCover"
-        gameGridCover.zPosition = -99
-        gameGridCover.alpha = 0.75
-        //        gameGrid.size.height = viewSize.height
-        //        gameGrid.size.width  = viewSize.width
-        if self.childNodeWithName("gameGridCover") == nil {
-            addChild(gameGridCover)
+        backgroundStripesAll.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+        backgroundStripesAll.position = CGPoint(x: size.width/2.0, y: 0.0)
+        backgroundStripesAll.userInteractionEnabled = false
+        backgroundStripesAll.name = "backgroundStripes"
+        backgroundStripesAll.zPosition = 3
+        if self.childNodeWithName("backgroundStripesAll") == nil {
+            addChild(backgroundStripesAll)
         }
+        backgroundStripesAll.alpha = 0.15
+
+        // add BGBlack
+        backgroundBlackNode.position = CGPoint(x: screenSize!.width/2, y: screenSize!.height/2)
+        backgroundBlackNode.userInteractionEnabled = false
+        backgroundBlackNode.size = self.frame.size;
+        backgroundBlackNode.zPosition = 5
+        if self.childNodeWithName("backgroundBlackNode") == nil {
+            addChild(backgroundBlackNode)
+        }
+        backgroundBlackNode.alpha = 0.5
+        
         if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
-            //gameGrid = SKSpriteNode(imageNamed: "GameGrid@iPadPro.png")
-
-            gameGridCover.position = CGPoint(x: 207.0, y: 42.0)
-            gameGridCover.xScale = 1.3333
-            gameGridCover.yScale = 1.3333
+            backgroundStripesAll.xScale = 1.333
+            backgroundStripesAll.yScale = 1.333
         }
 
-//        newGameSpriteNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-//        newGameSpriteNode.position = CGPoint(x: size.width/2.0, y: 0.0)
-//        newGameSpriteNode.userInteractionEnabled = false
-//        newGameSpriteNode.hidden = true
-//        newGameSpriteNode.zPosition = 100
-//        newGameSpriteNode.size.height = screenSize!.height
-//        newGameSpriteNode.size.width  = screenSize!.width
-//        newGameSpriteNode.alpha = 0.75
-//        addChild(newGameSpriteNode)
-
-        //        // Placeholder for dictionary data loading progress display
-        //        let playBtnTEMP = SKSpriteNode(imageNamed: "PlayButton.png")
-        //        playBtnTEMP.position = CGPoint(x: viewSize.width/4, y: viewSize.height/6)
-        //        self.addChild(playBtnTEMP)
-        //        playBtnTEMP.name = "playBtnTEMP"
-        //        playBtnTEMP.zPosition = 100
-        //        playBtnTEMP.anchorPoint = CGPointMake(0, 0)
-        //        let scaleHoriz = SKAction.scaleXTo(2, duration: 3.0)
-        //        let loadingAnim = SKAction.group([scaleHoriz])
-        //        let loadingAnimSequence = SKAction.sequence([loadingAnim, SKAction.removeFromParent()])
-        //        playBtnTEMP.runAction(loadingAnimSequence)
-        
-        
-//        loadingIndicator.position = CGPoint(x: screenSize!.width/2, y: screenSize!.height/10)
-//        loadingIndicator.size = CGSize.init(width: 100, height: 50)
-//        loadingIndicator.hidden = true
-//        loadingIndicator.name = "loadingBtn"
-//        loadingIndicator.zPosition = 100
-//        self.addChild(loadingIndicator)
-
-        //        let myLabel = SKLabelNode(fontNamed: "")
-        //        myLabel.text = "Option Screen" // scene is: \(scene?.description)"
-        //        myLabel.fontSize = 65;
-        //        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y: (CGRectGetMidY(self.frame) - 50) )
-        //        self.addChild(myLabel)
-        //        myLabel.zPosition = 100
-        
-//        let playBtn = SKSpriteNode(imageNamed: "PlayButton.png")
-//        playBtn.position = CGPoint(x: screenSize!.width/2, y: screenSize!.height/10)
-//        playBtn.size = CGSize.init(width: 100, height: 50)
-//        self.addChild(playBtn)
-//        playBtn.name = "playBtn"
-//        playBtn.zPosition = 98
-        
     }
     
     
@@ -126,55 +81,13 @@ class MMWOptionScreen: SKScene {
         /* Setup your scene here */
         //viewSize = view.bounds.size
         if debugMode == true { print("view size MenuScene: \(screenSize)") }
-        newGameSpriteNode.hidden = true
-
-        //        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-        //            viewSize.height *= 2
-        //            viewSize.width *= 2
-        //        }
-        //        print("view size MenuScene mod: \(viewSize)")
-        
-        //        let BG = SKSpriteNode(imageNamed: "MeyamaSplashScreen_iPad.jpg")
-        //        BG.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
-        //        self.addChild(BG)
-        
-        //        // add BG
-        //        let backgroundNode = SKSpriteNode(imageNamed: "MeyamaMathMenuScreenBG_1024x768.png")
-        //        //backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-        //        backgroundNode.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
-        //        backgroundNode.userInteractionEnabled = false
-        //        self.addChild(backgroundNode)
-
-//        var backgroundNode = SKSpriteNode(imageNamed: "MMWOptionsScreen.png")
-//
-//        // add BG
-//        backgroundNode.position = CGPoint(x: screenSize!.width/2, y: screenSize!.height/2)
-//        backgroundNode.userInteractionEnabled = false
-//        backgroundNode.size = self.frame.size;
-//        self.addChild(backgroundNode)
-//
-//        newGameSpriteNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-//        newGameSpriteNode.position = CGPoint(x: size.width/2.0, y: 0.0)
-//        newGameSpriteNode.userInteractionEnabled = false
-//        newGameSpriteNode.hidden = true
-//        newGameSpriteNode.zPosition = 100
-//        newGameSpriteNode.size.height = screenSize!.height
-//        newGameSpriteNode.size.width  = screenSize!.width
-//        addChild(newGameSpriteNode)
-//        
-////        let myLabel = SKLabelNode(fontNamed: "")
-////        myLabel.text = "Option Screen" // scene is: \(scene?.description)"
-////        myLabel.fontSize = 65;
-////        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y: (CGRectGetMidY(self.frame) - 50) )
-////        self.addChild(myLabel)
-////        myLabel.zPosition = 100
 
         delay(0.0){
             gameViewController.updateGameSettings()
         }
         
         backgroundNode.texture = SKTexture(imageNamed: gameViewController.backgroundImageArray[mmwGameSceneViewController.backgroundNumber])
-        gameGridCover.hidden = false
+        //gameGridCover.hidden = false
 
         if debugMode == true { print("options button pressed") }
         if debugMode == true { print("MMWOptionScreen didMoveToView") }
@@ -191,33 +104,22 @@ class MMWOptionScreen: SKScene {
         gameViewController.ViewEndGameUI.hidden = true
         gameViewController.ViewResultsScreenUI.hidden = true
         gameViewController.ViewLoadingGameUIOutlet.hidden = true
-
-        //gameViewController.GameViewControllerUI.hidden = false   //ViewOptionsUI.hidden = false
-
-        //openKeyboardToSaveValue("Player")
-        //presentMMWScene()
-        //mmwGameSceneViewController = createMMWSceneController()
-        //presentMMWScene()
+        
+        mmwGameScene.playAreaWhite.hidden = true
+        mmwGameScene.backgroundStripes.hidden = true
+        mmwGameScene.gameGrid.hidden = true
         
         // NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentView", name: "showController", object: nil)
     }
     
     func allPlayersPassed () {
-        
-        
-        
-        //mmwGameScene.stopTimer()
-        
-        
-        
+
         if debugMode == true { print("MMWOptionScreen allPlayersPassed") }
         gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
         gameViewController.ViewAllOptionsUI.hidden = false
         gameViewController.OptionsSwitchOutlet.hidden = true
         
         gameViewController.ViewOptionsUI.hidden = true
-//        gameViewController.returnToGameButtonOutlet.alpha = 1.0
-//        gameViewController.returnToGameButtonOutlet.userInteractionEnabled = true
         
         gameViewController.viewRulesContainer.hidden = true
         gameViewController.viewStatsContainer.hidden = true
@@ -233,8 +135,13 @@ class MMWOptionScreen: SKScene {
 //        if mmwGameSceneViewController.timerIsOn {
 //            mmwGameScene.startTimer()
 //        }
-        gameGridCover.hidden = true
+
         gameViewController.ViewAllOptionsUI.hidden = true
+        
+        mmwGameScene.playAreaWhite.hidden = false
+        mmwGameScene.backgroundStripes.hidden = false
+        mmwGameScene.gameGrid.hidden = false
+        
         self.view?.presentScene(mmwGameScene)
         
         //mmwGameScene.startTimer(mmwGameScene.secondsLeft)
@@ -249,8 +156,14 @@ class MMWOptionScreen: SKScene {
         //        if mmwGameSceneViewController.timerIsOn {
         //            mmwGameScene.startTimer()
         //        }
-        gameGridCover.hidden = true
+        //gameGridCover.hidden = true
+
         gameViewController.ViewAllOptionsUI.hidden = true
+        
+        mmwGameScene.playAreaWhite.hidden = false
+        mmwGameScene.backgroundStripes.hidden = false
+        mmwGameScene.gameGrid.hidden = false
+        
         self.view?.presentScene(mmwGameScene)
         
         //mmwGameScene.startTimer(mmwGameScene.secondsLeft)
@@ -273,7 +186,7 @@ class MMWOptionScreen: SKScene {
         gameViewController.ViewLoadingGameUIOutlet.hidden = false
 //        gameViewController.bannerViewLowerLeft.hidden = true
 //        gameViewController.bannerViewLowerRight.hidden = true
-        newGameSpriteNode.hidden = false
+        //newGameSpriteNode.hidden = false
         gameViewController.OptionsSwitchOutlet.hidden = true
         gameViewController.ViewResultsScreenUI.hidden = true
         
@@ -301,6 +214,11 @@ class MMWOptionScreen: SKScene {
             mmwGameScene.resetGameView()   // includes tileCollection?.resetAllTiles()
             
             mmwGameScene.backgroundNode.texture = SKTexture(imageNamed: gameViewController.backgroundImageArray[mmwGameSceneViewController.backgroundNumber])
+            
+            mmwGameScene.playAreaWhite.hidden = false
+            mmwGameScene.backgroundStripes.hidden = false
+            mmwGameScene.gameGrid.hidden = false
+            
             self.view?.presentScene(mmwGameScene)
             
             mmwGameScene.playButton.hidden = false

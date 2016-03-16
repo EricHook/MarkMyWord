@@ -33,6 +33,8 @@ extension SKNode {
 //var mmwEndGameScene = MMWEndGameScene()
 var mmwGameSceneViewController : MMWGameSceneViewController! = MMWGameSceneViewController()
 var gameViewController : GameViewController! = GameViewController()
+var mmwOptionScreen : MMWOptionScreen! = MMWOptionScreen(size: screenSize!)
+var mmwGameScene    : MMWGameScene!  = MMWGameScene(size: screenSize!)
 
 var humanAvatarPrefixString  = "avatar00"
 var meyamaAvatarPrefixString = "meyama00"
@@ -50,10 +52,12 @@ var selectedMeyamaAvatar = 0
 //@objc(ViewController)
 
 
-class GameViewController : UIViewController, UITextFieldDelegate, GADBannerViewDelegate {
+class GameViewController : UIViewController, UITextFieldDelegate { // , GADBannerViewDelegate {
     
     //@IBOutlet weak var menuView: UIView?
     //@IBOutlet weak var playButton: UIButton?
+    
+
 
     var tempSecondsPerTurn : Int!
     
@@ -916,18 +920,19 @@ class GameViewController : UIViewController, UITextFieldDelegate, GADBannerViewD
     
     let button   = UIButton(type: UIButtonType.System) as UIButton
     
-    func adViewDidReceiveAd(var bannerView: GADBannerView!) {
-        bannerView.hidden = false
-
-//        bannerView.rootViewController = nil
-//        self.bannerView.delegate = nil
+    
+//    func adViewDidReceiveAd(var bannerView: GADBannerView!) {
+//        bannerView.hidden = false
+//
+////        bannerView.rootViewController = nil
+////        self.bannerView.delegate = nil
+////        
+////        bannerView.rootViewController = self
+////        self.bannerView.delegate = self
 //        
-//        bannerView.rootViewController = self
-//        self.bannerView.delegate = self
-        
-        print("received ad")
-
-    }
+//        print("received ad")
+//
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -954,24 +959,24 @@ class GameViewController : UIViewController, UITextFieldDelegate, GADBannerViewD
         }
 
         
-        
-        
-        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
-        //bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        bannerView.adUnitID = "ca-app-pub-6428967577130104/9786515687"
-        bannerView.rootViewController = self
-        self.bannerView.delegate = self
-        bannerView.loadRequest(GADRequest())
-
-        //adMob300x250LoadingViewOutlet
-        
-        //bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        adMob300x250LoadingViewOutlet.adUnitID = "ca-app-pub-6428967577130104/8755277689"
-        adMob300x250LoadingViewOutlet.rootViewController = self
-        self.adMob300x250LoadingViewOutlet.delegate = self
-        adMob300x250LoadingViewOutlet.loadRequest(GADRequest())
-        
-        
+//        //////////////////////////////////
+//        
+//        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
+//        //bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+//        bannerView.adUnitID = "ca-app-pub-6428967577130104/9786515687"
+//        bannerView.rootViewController = self
+//        self.bannerView.delegate = self
+//        bannerView.loadRequest(GADRequest())
+//
+//        //adMob300x250LoadingViewOutlet
+//        
+//        //bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+//        adMob300x250LoadingViewOutlet.adUnitID = "ca-app-pub-6428967577130104/8755277689"
+//        adMob300x250LoadingViewOutlet.rootViewController = self
+//        self.adMob300x250LoadingViewOutlet.delegate = self
+//        adMob300x250LoadingViewOutlet.loadRequest(GADRequest())
+//        
+//        ////////////////////////////////
         
         
 //        bannerView.delegate = nil

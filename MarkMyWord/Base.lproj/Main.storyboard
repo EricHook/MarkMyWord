@@ -41,7 +41,7 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rules" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1uS-fF-Jv2">
                                                         <rect key="frame" x="266" y="34" width="52" height="40"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wYw-Bu-34O">
@@ -51,6 +51,7 @@
                                                                 <rect key="frame" x="20" y="8" width="524" height="117"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <string key="text">Players drag letter tiles from their rack to the board. If the letter makes the existing letters into a valid word it "locks" those existing letters and points are awarded: 1 point per letter in the complete word for each "unlocked" tile to the player that placed the tile to the board, and 2 points per tile in the complete word for the letter that finishes a word (at least the minimum word length). The minimum word length can set set to two, three or four letters in 'Options'. </string>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                             </textView>
@@ -58,6 +59,7 @@
                                                                 <rect key="frame" x="20" y="127" width="524" height="100"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <string key="text">EXAMPLE: If Player 1 placed the tiles "A" and "R" to the right of the locked letter "E" and the minimum word length was two or three letters, the "A" tile would earn Player 1 three points (3 letter word times 1 point per letter) and the "R" would earn the player 6 points (3 letter word times 2 points per letter) for completing the word.</string>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                             </textView>
@@ -65,6 +67,7 @@
                                                                 <rect key="frame" x="20" y="219" width="524" height="88"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <string key="text">If Player 2 then played an "N" after the "R" to form the word EARN, Player 2 would be awarded 12 points (8 letter word times 2 points per letter) for completing the word. Since the letters in "EAR" already formed a word and were awarded points, no further points are awarded for locking those letters. </string>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                             </textView>
@@ -72,6 +75,7 @@
                                                                 <rect key="frame" x="20" y="310" width="524" height="83"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <string key="text">Invalid Plays: If the player attempts to place a tile in a valid position in an attempt to make a word, but the letter placed does not make a valid partial word, it is an invalid play. In this case, the letter is destroyed, the player loses 5 points, and the turn automatically passes to the next player.</string>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                             </textView>
@@ -79,6 +83,7 @@
                                                                 <rect key="frame" x="20" y="390" width="524" height="88"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <string key="text">Ending the Turn: After the player is finished placinig tiles to the board, the player may select the "PASS" button and the turn will then go the the next player in a clockwise direction. If the player has placed all the tiles in the rack to the board, the turn will pass automatically. </string>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                             </textView>
@@ -86,6 +91,7 @@
                                                                 <rect key="frame" x="20" y="471" width="524" height="117"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <string key="text">Winning the Game: After every tile is played to the board, or if every player passes on his/her turn and the player on the second pass chooses to end the game, every unlocked tile on the board subtracts 2 points from the player that placed it. Additionally, every tile in the rack subtracts 1 point from the total score of that player. The player with the highest score at the end is awarded the victory.</string>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                             </textView>
@@ -109,13 +115,14 @@
                                                 <rect key="frame" x="0.0" y="40" width="600" height="516"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Would you like to end the game?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENN-uE-fWR">
-                                                        <rect key="frame" x="181" y="28" width="248" height="21"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <rect key="frame" x="150" y="28" width="305" height="30"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5jk-lf-Zyh">
                                                         <rect key="frame" x="321" y="201" width="108" height="30"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                         <state key="normal" title="Return to Game"/>
                                                         <connections>
                                                             <action selector="EndGameNoButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="bQn-Ep-XhG"/>
@@ -123,6 +130,7 @@
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gMA-Di-Jbz">
                                                         <rect key="frame" x="181" y="201" width="71" height="30"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <state key="normal" title="End Game"/>
                                                         <connections>
                                                             <action selector="EndGameYesButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="OSl-Lm-nLl"/>
@@ -148,13 +156,13 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Results:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3K-rD-N63">
                                                 <rect key="frame" x="255" y="28" width="98" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Congratulations! You Won!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qqf-me-QYt">
                                                 <rect key="frame" x="140" y="115" width="321" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ed-i9-CpZ">
@@ -192,7 +200,7 @@
                                             <segment title="Rules"/>
                                             <segment title="Statistics"/>
                                         </segments>
-                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <action selector="OptionsSwitchAction:" destination="BV1-FR-VrT" eventType="valueChanged" id="HHa-Vg-NbQ"/>
                                         </connections>
@@ -204,10 +212,11 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="1368" height="1026"/>
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dZj-F0-FkC">
-                                                        <rect key="frame" x="539" y="140" width="300" height="178"/>
+                                                        <rect key="frame" x="539" y="140" width="300" height="244"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <string key="text">Creating new game. If you enjoyed the game please rate the game, and if you have any requests for new features or fixes, we'd love to hear from you on our website at www.dashboardgames.com/markmyword. Thank you for playing!</string>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="T6s-Q9-0AD">
@@ -223,6 +232,7 @@
                                                     </view>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="LoadingBarBorder.png" translatesAutoresizingMaskIntoConstraints="NO" id="er7-aQ-M1U">
                                                         <rect key="frame" x="534" y="301" width="300" height="25"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -251,7 +261,7 @@
                                                     </imageView>
                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="6" translatesAutoresizingMaskIntoConstraints="NO" id="e6u-6V-ioh" userLabel="Stepper1">
                                                         <rect key="frame" x="40" y="145" width="94" height="29"/>
-                                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <connections>
                                                             <action selector="avatarStepperPlayer01:" destination="BV1-FR-VrT" eventType="valueChanged" id="pNp-cM-NIl"/>
                                                         </connections>
@@ -264,7 +274,7 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gyy-A0-cJA" userLabel="Player1Label">
                                                         <rect key="frame" x="40" y="8" width="94" height="29"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -281,7 +291,7 @@
                                                     </imageView>
                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="6" translatesAutoresizingMaskIntoConstraints="NO" id="HDZ-F4-ppR" userLabel="Stepper2">
                                                         <rect key="frame" x="48" y="145" width="94" height="29"/>
-                                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <connections>
                                                             <action selector="avatarStepperPlayer02:" destination="BV1-FR-VrT" eventType="valueChanged" id="vth-GF-XCm"/>
                                                         </connections>
@@ -293,7 +303,7 @@
                                                             <segment title="mid"/>
                                                             <segment title="high"/>
                                                         </segments>
-                                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <connections>
                                                             <action selector="player2SkillLevelAction:" destination="BV1-FR-VrT" eventType="valueChanged" id="fjx-iF-6u0"/>
                                                         </connections>
@@ -304,7 +314,7 @@
                                                             <segment title="AI"/>
                                                             <segment title="human"/>
                                                         </segments>
-                                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <connections>
                                                             <action selector="isHumanPlayer2Action:" destination="BV1-FR-VrT" eventType="valueChanged" id="vr7-uw-fnt"/>
                                                         </connections>
@@ -313,7 +323,7 @@
                                                         <rect key="frame" x="66" y="215" width="58" height="21"/>
                                                         <color key="tintColor" red="0.15000000599999999" green="0.15000000599999999" blue="0.15000000599999999" alpha="1" colorSpace="deviceRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Player 2" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M3c-pi-u9t" userLabel="Player2NameTextField">
@@ -324,7 +334,7 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0a5-uK-Bdf" userLabel="Player2Label">
                                                         <rect key="frame" x="48" y="8" width="94" height="29"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -338,7 +348,7 @@
                                                     </imageView>
                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="6" translatesAutoresizingMaskIntoConstraints="NO" id="jaW-pd-atE" userLabel="Stepper3">
                                                         <rect key="frame" x="40" y="145" width="94" height="29"/>
-                                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <connections>
                                                             <action selector="avatarStepperPlayer03:" destination="BV1-FR-VrT" eventType="valueChanged" id="zKh-K0-htZ"/>
                                                         </connections>
@@ -350,7 +360,7 @@
                                                             <segment title="mid"/>
                                                             <segment title="high"/>
                                                         </segments>
-                                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <connections>
                                                             <action selector="player3SkillLevelAction:" destination="BV1-FR-VrT" eventType="valueChanged" id="cnF-mk-qb1"/>
                                                         </connections>
@@ -366,7 +376,7 @@
                                                             <segment title="AI"/>
                                                             <segment title="human"/>
                                                         </segments>
-                                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <connections>
                                                             <action selector="isHumanPlayer3Action:" destination="BV1-FR-VrT" eventType="valueChanged" id="5MC-RG-La7"/>
                                                         </connections>
@@ -375,13 +385,13 @@
                                                         <rect key="frame" x="58" y="215" width="58" height="21"/>
                                                         <color key="tintColor" red="0.15000000599999999" green="0.15000000599999999" blue="0.15000000599999999" alpha="1" colorSpace="deviceRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JIi-mz-Xfk" userLabel="Player3Label">
                                                         <rect key="frame" x="40" y="8" width="94" height="29"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -395,7 +405,7 @@
                                                     </imageView>
                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="6" translatesAutoresizingMaskIntoConstraints="NO" id="eQQ-AF-wwX" userLabel="Stepper4">
                                                         <rect key="frame" x="40" y="145" width="94" height="29"/>
-                                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <connections>
                                                             <action selector="avatarStepperPlayer04:" destination="BV1-FR-VrT" eventType="valueChanged" id="bpJ-RJ-5Ma"/>
                                                         </connections>
@@ -406,7 +416,7 @@
                                                             <segment title="AI"/>
                                                             <segment title="human"/>
                                                         </segments>
-                                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <connections>
                                                             <action selector="isHumanPlayer4Action:" destination="BV1-FR-VrT" eventType="valueChanged" id="lN6-93-uQi"/>
                                                         </connections>
@@ -420,13 +430,13 @@
                                                         <rect key="frame" x="58" y="215" width="58" height="21"/>
                                                         <color key="tintColor" red="0.15000000599999999" green="0.15000000599999999" blue="0.15000000599999999" alpha="1" colorSpace="deviceRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJy-6A-j8C" userLabel="Player4Label">
                                                         <rect key="frame" x="40" y="9" width="94" height="29"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="Qpa-ab-m37">
@@ -436,7 +446,7 @@
                                                             <segment title="mid"/>
                                                             <segment title="high"/>
                                                         </segments>
-                                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <connections>
                                                             <action selector="player4SkillLevelAction:" destination="BV1-FR-VrT" eventType="valueChanged" id="3U9-Xs-8dR"/>
                                                         </connections>
@@ -449,11 +459,12 @@
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="BG000.png" translatesAutoresizingMaskIntoConstraints="NO" id="cc2-Mb-ah7" userLabel="BG_MMW01.png">
                                                         <rect key="frame" x="36" y="27" width="94" height="67"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </imageView>
                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="6" translatesAutoresizingMaskIntoConstraints="NO" id="vsC-ax-F1n" userLabel="StepperBG">
                                                         <rect key="frame" x="36" y="94" width="94" height="29"/>
-                                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <connections>
                                                             <action selector="backgroundStepper:" destination="BV1-FR-VrT" eventType="valueChanged" id="BV6-tM-jd2"/>
                                                         </connections>
@@ -462,15 +473,14 @@
                                                         <rect key="frame" x="36" y="-4" width="94" height="21"/>
                                                         <color key="tintColor" red="0.15000000599999999" green="0.15000000599999999" blue="0.15000000599999999" alpha="1" colorSpace="deviceRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                                 <color key="tintColor" red="0.50980392159999999" green="0.1450980392" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tsw-7H-Vfy">
-                                                <rect key="frame" x="327" y="556" width="305" height="38"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <rect key="frame" x="312" y="556" width="305" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <inset key="contentEdgeInsets" minX="2" minY="2" maxX="0.0" maxY="0.0"/>
                                                 <inset key="titleEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
@@ -483,7 +493,6 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOF-Gn-kq7">
                                                 <rect key="frame" x="0.0" y="556" width="269" height="30"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <inset key="titleEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
                                                 <state key="normal" title=" return to game (no changes) "/>
@@ -494,7 +503,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="seconds per turn:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIl-oo-DtS">
                                                 <rect key="frame" x="79" y="5" width="135" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="MWV-lc-QH3">
@@ -506,6 +515,7 @@
                                                     <segment title="60"/>
                                                     <segment title="off"/>
                                                 </segments>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <connections>
                                                     <action selector="secondsPerTurnAction:" destination="BV1-FR-VrT" eventType="valueChanged" id="tLB-ZH-1b7"/>
                                                 </connections>
@@ -513,7 +523,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="audio:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20T-ls-v9S">
                                                 <rect key="frame" x="79" y="47" width="47" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="r3t-0e-OMa">
@@ -522,6 +532,7 @@
                                                     <segment title="off"/>
                                                     <segment title="on"/>
                                                 </segments>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <connections>
                                                     <action selector="audioSettingAction:" destination="BV1-FR-VrT" eventType="valueChanged" id="Fnd-xc-Ney"/>
                                                 </connections>
@@ -529,7 +540,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="minimum word length:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSo-L6-cGo">
                                                 <rect key="frame" x="79" y="92" width="170" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="JIq-uB-ciZ">
@@ -539,6 +550,7 @@
                                                     <segment title="3"/>
                                                     <segment title="4"/>
                                                 </segments>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <connections>
                                                     <action selector="minWordLengthSwitchAction:" destination="BV1-FR-VrT" eventType="valueChanged" id="3eA-1F-VfM"/>
                                                 </connections>
@@ -546,7 +558,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="number of starter words:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLQ-27-Abo">
                                                 <rect key="frame" x="79" y="140" width="190" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="sMJ-dZ-c0b">
@@ -556,6 +568,7 @@
                                                     <segment title="2"/>
                                                     <segment title="3"/>
                                                 </segments>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <connections>
                                                     <action selector="numStarterWordsSwitchAction:" destination="BV1-FR-VrT" eventType="valueChanged" id="I9K-eD-ifo"/>
                                                 </connections>
@@ -563,7 +576,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="number of players:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgk-Kz-z3l">
                                                 <rect key="frame" x="79" y="186" width="143" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="2Fh-YX-ONY">
@@ -573,14 +586,16 @@
                                                     <segment title="3"/>
                                                     <segment title="4"/>
                                                 </segments>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <connections>
                                                     <action selector="numPlayersSwitchAction:" destination="BV1-FR-VrT" eventType="valueChanged" id="mf5-Up-KuE"/>
                                                 </connections>
                                             </segmentedControl>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="allow offensive words:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2V5-ga-RrC" userLabel="allowOffensiveWordsLabel">
                                                 <rect key="frame" x="79" y="233" width="169" height="21"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="gv6-ni-nhL" userLabel="allowOffensiveWordsSwitchOutlet">
@@ -589,6 +604,7 @@
                                                     <segment title="off"/>
                                                     <segment title="on"/>
                                                 </segments>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <connections>
                                                     <action selector="allowOffensiveWordsSwitchAction:" destination="BV1-FR-VrT" eventType="valueChanged" id="e85-tr-Zmu"/>
                                                     <action selector="allowOffensiveWordsSwitchAction:" destination="8OM-nR-pgS" eventType="valueChanged" id="hQv-5Z-NKu"/>
@@ -598,8 +614,8 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="b4a-TL-wne" firstAttribute="leading" secondItem="2xc-sc-iPr" secondAttribute="leading" constant="452" id="0B5-Aa-Iwu"/>
+                                            <constraint firstItem="Tsw-7H-Vfy" firstAttribute="leading" secondItem="2xc-sc-iPr" secondAttribute="leading" constant="312" id="ApI-E6-NAC"/>
                                             <constraint firstItem="2Fh-YX-ONY" firstAttribute="top" secondItem="2xc-sc-iPr" secondAttribute="top" constant="183" id="Hs8-Eq-WMV"/>
-                                            <constraint firstItem="Tsw-7H-Vfy" firstAttribute="leading" secondItem="2xc-sc-iPr" secondAttribute="leading" constant="375" id="K0r-Dc-Qhw"/>
                                             <constraint firstItem="vX9-lX-NeL" firstAttribute="top" secondItem="2xc-sc-iPr" secondAttribute="top" constant="266" id="Nfk-Fp-vMT"/>
                                             <constraint firstItem="3qF-ym-6Gm" firstAttribute="top" secondItem="2xc-sc-iPr" secondAttribute="top" constant="266" id="OIb-BN-woK"/>
                                             <constraint firstItem="Tsw-7H-Vfy" firstAttribute="top" secondItem="2xc-sc-iPr" secondAttribute="top" constant="556" id="PxE-Wj-kNU"/>
@@ -632,55 +648,55 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Statistics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhS-au-6cc">
                                                                 <rect key="frame" x="142" y="40" width="92" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="games won:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QaO-aL-b7h">
                                                                 <rect key="frame" x="124" y="82" width="110" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1i-Tn-50g" userLabel="gamesWonLabel">
                                                                 <rect key="frame" x="249" y="82" width="95" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="games lost:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ArC-Ke-eIA">
                                                                 <rect key="frame" x="124" y="111" width="110" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cK7-KW-cGf" userLabel="gamesLostLabel">
                                                                 <rect key="frame" x="249" y="111" width="86" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="number of words played:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qE-3q-a1G">
                                                                 <rect key="frame" x="8" y="140" width="226" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6l-nj-Nhe" userLabel="numWordsPlayedLabel">
                                                                 <rect key="frame" x="249" y="140" width="86" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="number of letters played:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3NK-YW-a5C">
                                                                 <rect key="frame" x="8" y="168" width="226" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awp-mc-tAM" userLabel="numLettersPlayedLabel">
                                                                 <rect key="frame" x="249" y="168" width="86" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>

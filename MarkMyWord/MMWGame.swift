@@ -18,6 +18,7 @@ class MMWGame {
 //    var mmwGameScene : MMWGameScene?
 //    var mmwGameSceneViewController : MMWGameSceneViewController?
 //    var screenSize : CGSize?
+    
     var deviceType: DeviceType?
     
     enum DeviceType : Int {

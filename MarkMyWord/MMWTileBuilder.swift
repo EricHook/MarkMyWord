@@ -38,155 +38,6 @@ class MMWTileBuilder {
 ////            }
 ////        }
 //    }
-    
-//    func makeNewLetterTiles () {
-//        tileA1 = MMWTile(letterString: "A")
-//        tileA2 = MMWTile(letterString: "A")
-//        tileA3 = MMWTile(letterString: "A")
-//        tileA4 = MMWTile(letterString: "A")
-//        tileA5 = MMWTile(letterString: "A")
-//        tileA6 = MMWTile(letterString: "A")
-//        tileA7 = MMWTile(letterString: "A")
-//        tileA8 = MMWTile(letterString: "A")
-//        tileA9 = MMWTile(letterString: "A")
-//        tileA10 = MMWTile(letterString: "A")
-//        
-//        tileB1 : MMWTile = MMWTile(letterString: "B")
-//        tileB2 : MMWTile = MMWTile(letterString: "B")
-//        tileB3 : MMWTile = MMWTile(letterString: "B")
-//        
-//        var tileC1 = MMWTile(letterString: "C")
-//        var tileC2 = MMWTile(letterString: "C")
-//        var tileC3 = MMWTile(letterString: "C")
-//        
-//        var tileD1 = MMWTile(letterString: "D")
-//        var tileD2 = MMWTile(letterString: "D")
-//        var tileD3 = MMWTile(letterString: "D")
-//        var tileD4 = MMWTile(letterString: "D")
-//        var tileD5 = MMWTile(letterString: "D")
-//        
-//        var tileE1 = MMWTile(letterString: "E")
-//        var tileE2 = MMWTile(letterString: "E")
-//        var tileE3 = MMWTile(letterString: "E")
-//        var tileE4 = MMWTile(letterString: "E")
-//        var tileE5 = MMWTile(letterString: "E")
-//        var tileE6 = MMWTile(letterString: "E")
-//        var tileE7 = MMWTile(letterString: "E")
-//        var tileE8 = MMWTile(letterString: "E")
-//        var tileE9 = MMWTile(letterString: "E")
-//        var tileE10 = MMWTile(letterString: "E")
-//        var tileE11 = MMWTile(letterString: "E")
-//        var tileE12 = MMWTile(letterString: "E")
-//        var tileE13 = MMWTile(letterString: "E")
-//        
-//        var tileF1 = MMWTile(letterString: "F")
-//        var tileF2 = MMWTile(letterString: "F")
-//        
-//        var tileG1 = MMWTile(letterString: "G")
-//        var tileG2 = MMWTile(letterString: "G")
-//        var tileG3 = MMWTile(letterString: "G")
-//        var tileG4 = MMWTile(letterString: "G")
-//        
-//        var tileH1 = MMWTile(letterString: "H")
-//        var tileH2 = MMWTile(letterString: "H")
-//        var tileH3 = MMWTile(letterString: "H")
-//        
-//        var tileI1 = MMWTile(letterString: "I")
-//        var tileI2 = MMWTile(letterString: "I")
-//        var tileI3 = MMWTile(letterString: "I")
-//        var tileI4 = MMWTile(letterString: "I")
-//        var tileI5 = MMWTile(letterString: "I")
-//        var tileI6 = MMWTile(letterString: "I")
-//        var tileI7 = MMWTile(letterString: "I")
-//        var tileI8 = MMWTile(letterString: "I")
-//        var tileI9 = MMWTile(letterString: "I")
-//        var tileI10 = MMWTile(letterString: "I")
-//        
-//        var tileJ1 : MMWTile = MMWTile(letterString: "J")
-//        
-//        var tileK1 : MMWTile = MMWTile(letterString: "K")
-//        var tileK2 : MMWTile = MMWTile(letterString: "K")
-//        
-//        var tileL1 : MMWTile = MMWTile(letterString: "L")
-//        var tileL2 : MMWTile = MMWTile(letterString: "L")
-//        var tileL3 : MMWTile = MMWTile(letterString: "L")
-//        var tileL4 : MMWTile = MMWTile(letterString: "L")
-//        
-//        var tileM1 : MMWTile = MMWTile(letterString: "M")
-//        var tileM2 : MMWTile = MMWTile(letterString: "M")
-//        var tileM3 : MMWTile = MMWTile(letterString: "M")
-//        var tileM4 : MMWTile = MMWTile(letterString: "M")
-//        
-//        var tileN1 : MMWTile = MMWTile(letterString: "N")
-//        var tileN2 : MMWTile = MMWTile(letterString: "N")
-//        var tileN3 : MMWTile = MMWTile(letterString: "N")
-//        var tileN4 : MMWTile = MMWTile(letterString: "N")
-//        var tileN5 : MMWTile = MMWTile(letterString: "N")
-//        var tileN6 : MMWTile = MMWTile(letterString: "N")
-//        
-//        var tileO1 : MMWTile = MMWTile(letterString: "O")
-//        var tileO2 : MMWTile = MMWTile(letterString: "O")
-//        var tileO3 : MMWTile = MMWTile(letterString: "O")
-//        var tileO4 : MMWTile = MMWTile(letterString: "O")
-//        var tileO5 : MMWTile = MMWTile(letterString: "O")
-//        var tileO6 : MMWTile = MMWTile(letterString: "O")
-//        var tileO7 : MMWTile = MMWTile(letterString: "O")
-//        var tileO8 : MMWTile = MMWTile(letterString: "O")
-//        var tileO9 : MMWTile = MMWTile(letterString: "O")
-//        
-//        var tileP1 : MMWTile = MMWTile(letterString: "P")
-//        var tileP2 : MMWTile = MMWTile(letterString: "P")
-//        var tileP3 : MMWTile = MMWTile(letterString: "P")
-//        
-//        var tileQ1 : MMWTile = MMWTile(letterString: "Q")
-//        
-//        var tileR1 : MMWTile = MMWTile(letterString: "R")
-//        var tileR2 : MMWTile = MMWTile(letterString: "R")
-//        var tileR3 : MMWTile = MMWTile(letterString: "R")
-//        var tileR4 : MMWTile = MMWTile(letterString: "R")
-//        var tileR5 : MMWTile = MMWTile(letterString: "R")
-//        var tileR6 : MMWTile = MMWTile(letterString: "R")
-//        var tileR7 : MMWTile = MMWTile(letterString: "R")
-//        
-//        var tileS1 : MMWTile = MMWTile(letterString: "S")
-//        var tileS2 : MMWTile = MMWTile(letterString: "S")
-//        var tileS3 : MMWTile = MMWTile(letterString: "S")
-//        var tileS4 : MMWTile = MMWTile(letterString: "S")
-//        var tileS5 : MMWTile = MMWTile(letterString: "S")
-//        var tileS6 : MMWTile = MMWTile(letterString: "S")
-//        
-//        var tileT1 : MMWTile = MMWTile(letterString: "T")
-//        var tileT2 : MMWTile = MMWTile(letterString: "T")
-//        var tileT3 : MMWTile = MMWTile(letterString: "T")
-//        var tileT4 : MMWTile = MMWTile(letterString: "T")
-//        var tileT5 : MMWTile = MMWTile(letterString: "T")
-//        var tileT6 : MMWTile = MMWTile(letterString: "T")
-//        var tileT7 : MMWTile = MMWTile(letterString: "T")
-//        
-//        var tileU1 : MMWTile = MMWTile(letterString: "U")
-//        var tileU2 : MMWTile = MMWTile(letterString: "U")
-//        var tileU3 : MMWTile = MMWTile(letterString: "U")
-//        var tileU4 : MMWTile = MMWTile(letterString: "U")
-//        
-//        var tileV1 : MMWTile = MMWTile(letterString: "V")
-//        var tileV2 : MMWTile = MMWTile(letterString: "V")
-//        
-//        var tileW1 : MMWTile = MMWTile(letterString: "W")
-//        var tileW2 : MMWTile = MMWTile(letterString: "W")
-//        
-//        var tileX1 : MMWTile = MMWTile(letterString: "X")
-//        
-//        var tileY1 : MMWTile = MMWTile(letterString: "Y")
-//        var tileY2 : MMWTile = MMWTile(letterString: "Y")
-//        var tileY3 : MMWTile = MMWTile(letterString: "Y")
-//        
-//        var tileZ1 : MMWTile = MMWTile(letterString: "Z")
-//        
-//        //    var tileBlank1 : MMWTile = MMWTile(letterString: "?")
-//        //    var tileBlank2 : MMWTile = MMWTile(letterString: "?")
-//
-//        
-//    }
 
     var tileA1 : MMWTile = MMWTile(letterString: "A")
     var tileA2 : MMWTile = MMWTile(letterString: "A")
@@ -483,10 +334,7 @@ class MMWTileBuilder {
 //            mmwBlankTileArray.append(MMWTile())
 //        }
     }
-    
-//    func setViewControllerAndScene (mmwGameSceneController: MMWGameSceneViewController) {
-//   
-//    }
+
     
     func displayTileArrayValues (tileArray: [MMWTile]) {
         if debugMode == true { print("\nMMWTileBuilder.displayTileArrayValues (tileArray: [MMWTile]) ... \(tileArray) count:\(tileArray.count)") }
@@ -494,6 +342,7 @@ class MMWTileBuilder {
             if debugMode == true { print("\(tile.tileText)") }
         }
     }
+    
     
     /// send/move num Tiles from one tile array to another tile array
     func getAllNewArrayTiles(inout tilesFrom: [MMWTile], inout tilesTo: [MMWTile], var numTilesGet: Int, changeColorTo: Int) {
@@ -512,6 +361,7 @@ class MMWTileBuilder {
         }
     }
     
+    
     /// send/move num Tiles from one tile array to another tile array
     func discardTiles(inout tilesFrom: [MMWTile], var numTilesDiscard: Int) {
         while numTilesDiscard > 0 {
@@ -522,6 +372,7 @@ class MMWTileBuilder {
             numTilesDiscard--
         }
     }
+    
     
     func getNewLetterTiles() {
         mmwTileArray.removeAll()
@@ -666,6 +517,7 @@ class MMWTileBuilder {
 
     }
     
+    
     /// send/move num Tiles from one tile array to another tile array
     func resetAllTiles() {
 
@@ -732,6 +584,7 @@ class MMWTileBuilder {
         }
     }
     
+    
 //    func fillGridWithBlankTiles (inout gridToFill: Grid) {
 //        let gridNumSquaresX = gridToFill.gridNumSquaresX
 //        let gridNumSquaresY = gridToFill.gridNumSquaresY
@@ -747,4 +600,5 @@ class MMWTileBuilder {
 //            }
 //        }
 //    }
+    
 }

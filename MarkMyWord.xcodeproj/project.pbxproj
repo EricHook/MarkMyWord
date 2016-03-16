@@ -101,6 +101,11 @@
 		B88A586C1BEADA46003E0957 /* Tile3DGlow.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A586B1BEADA46003E0957 /* Tile3DGlow.png */; };
 		B88A586E1BEADA57003E0957 /* Tile3DBack.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A586D1BEADA57003E0957 /* Tile3DBack.png */; };
 		B88A58701BEADA6F003E0957 /* TileShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A586F1BEADA6F003E0957 /* TileShadow.png */; };
+		B89104571C9798260045102F /* BGStripes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B89104561C9798260045102F /* BGStripes@2x.png */; };
+		B89104591C9799890045102F /* BGStripesHole@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B89104581C9799890045102F /* BGStripesHole@2x.png */; };
+		B891045B1C979CB00045102F /* PlayAreaWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B891045A1C979CB00045102F /* PlayAreaWhite@2x.png */; };
+		B891045D1C979E590045102F /* PlayAreaWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = B891045C1C979E590045102F /* PlayAreaWhite.png */; };
+		B891045F1C97A4E20045102F /* BGBlack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B891045E1C97A4E20045102F /* BGBlack@2x.png */; };
 		B89719CF1C34E1D6005BE647 /* gridHighlightHorizontal.png in Resources */ = {isa = PBXBuildFile; fileRef = B89719CE1C34E1D6005BE647 /* gridHighlightHorizontal.png */; };
 		B89719D11C34F687005BE647 /* SmallSquare.png in Resources */ = {isa = PBXBuildFile; fileRef = B89719D01C34F687005BE647 /* SmallSquare.png */; };
 		B89E50611C69C29800C18F1C /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B89E50601C69C29800C18F1C /* AdSupport.framework */; };
@@ -272,6 +277,11 @@
 		B88A586B1BEADA46003E0957 /* Tile3DGlow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tile3DGlow.png; sourceTree = "<group>"; };
 		B88A586D1BEADA57003E0957 /* Tile3DBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tile3DBack.png; sourceTree = "<group>"; };
 		B88A586F1BEADA6F003E0957 /* TileShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileShadow.png; sourceTree = "<group>"; };
+		B89104561C9798260045102F /* BGStripes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BGStripes@2x.png"; sourceTree = "<group>"; };
+		B89104581C9799890045102F /* BGStripesHole@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BGStripesHole@2x.png"; sourceTree = "<group>"; };
+		B891045A1C979CB00045102F /* PlayAreaWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlayAreaWhite@2x.png"; sourceTree = "<group>"; };
+		B891045C1C979E590045102F /* PlayAreaWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayAreaWhite.png; sourceTree = "<group>"; };
+		B891045E1C97A4E20045102F /* BGBlack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BGBlack@2x.png"; sourceTree = "<group>"; };
 		B89719CE1C34E1D6005BE647 /* gridHighlightHorizontal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gridHighlightHorizontal.png; sourceTree = "<group>"; };
 		B89719D01C34F687005BE647 /* SmallSquare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SmallSquare.png; sourceTree = "<group>"; };
 		B89E50601C69C29800C18F1C /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -433,6 +443,8 @@
 		B87A49141C59972200621F6C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				B8C0860E1C55A9A1008F8E40 /* EndGameScene.swift */,
+				B8CCE1AE1AD8C13500882391 /* LaunchScreen.xib */,
 				B8C0860B1C55A532008F8E40 /* EndGameScene.xib */,
 				B881A5A21C3A0329005BFE27 /* optionScreen.xib */,
 				B800575B1C3C8D8900185769 /* EndGameUIView.swift */,
@@ -477,12 +489,10 @@
 			isa = PBXGroup;
 			children = (
 				B87A49141C59972200621F6C /* Tests */,
-				B8CCE1AE1AD8C13500882391 /* LaunchScreen.xib */,
 				B8CCE1A91AD8C13500882391 /* Main.storyboard */,
-				B822CF0B1C390DA80043905E /* MMWOptionScreen.swift */,
-				B8C0860E1C55A9A1008F8E40 /* EndGameScene.swift */,
 				B8A455141AF15A1400C0D83B /* MainMenuScene.swift */,
 				B8CCE1A51AD8C13500882391 /* MMWGameScene.swift */,
+				B822CF0B1C390DA80043905E /* MMWOptionScreen.swift */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -581,8 +591,13 @@
 				B8B0C51B1C95FB3B00226CC8 /* BG002@2x.png */,
 				B8B0C51C1C95FB3B00226CC8 /* BG001@2x.png */,
 				B8B0C51D1C95FB3B00226CC8 /* BG000@2x.png */,
+				B89104561C9798260045102F /* BGStripes@2x.png */,
+				B89104581C9799890045102F /* BGStripesHole@2x.png */,
+				B891045E1C97A4E20045102F /* BGBlack@2x.png */,
 				B8B0C5271C96043E00226CC8 /* GameGridCover.png */,
 				B8B0C5281C96043E00226CC8 /* GameGridCover@2x.png */,
+				B891045A1C979CB00045102F /* PlayAreaWhite@2x.png */,
+				B891045C1C979E590045102F /* PlayAreaWhite.png */,
 				B800575D1C3D7E4600185769 /* MMWBG.png */,
 				B89719CE1C34E1D6005BE647 /* gridHighlightHorizontal.png */,
 				B8DFE1581C2A0BEE009FB8ED /* GameGrid.png */,
@@ -1003,6 +1018,7 @@
 				B862332D1C7FCD4F0030787E /* avatar001@2x.png in Resources */,
 				B8DFE15F1C2A11A5009FB8ED /* MarkMyWordBGCleaniPad.png in Resources */,
 				B86233341C7FCD960030787E /* avatar004@2x.png in Resources */,
+				B891045B1C979CB00045102F /* PlayAreaWhite@2x.png in Resources */,
 				B822CEF71C388F530043905E /* MMWPlayerTilesPlaque.png in Resources */,
 				B8DFE15C1C2A0E60009FB8ED /* GameGrid@2x.png in Resources */,
 				B822E3711C6BCE1800669422 /* LoadingBarInside@2x.png in Resources */,
@@ -1013,6 +1029,7 @@
 				B86233391C8649730030787E /* WordListChoppedNoDupClean.txt in Resources */,
 				B88A585E1BEAD859003E0957 /* PauseButton.png in Resources */,
 				B822CEE51C38864D0043905E /* PauseButton@3x.png in Resources */,
+				B89104571C9798260045102F /* BGStripes@2x.png in Resources */,
 				B809D4201C90D1890091B9F0 /* meyama005@2x.png in Resources */,
 				B822CEE81C3886560043905E /* PassButton@2x.png in Resources */,
 				B84738DD1C0A5E47003B05BA /* player03.png in Resources */,
@@ -1040,6 +1057,7 @@
 				B88A58551BEAD859003E0957 /* points.WAV in Resources */,
 				B822CEEF1C388AE10043905E /* PlayerBG02Island.png in Resources */,
 				B82D68CA1C7C162C00FFFA1E /* offensive.txt in Resources */,
+				B891045D1C979E590045102F /* PlayAreaWhite.png in Resources */,
 				B86233271C7F6EC20030787E /* meyama001@2x.png in Resources */,
 				B822CF0A1C390D0C0043905E /* OptButtonWordLength3Boxed.png in Resources */,
 				B87A49131C5844F400621F6C /* EndGameButton@2x.png in Resources */,
@@ -1054,9 +1072,11 @@
 				B88A58701BEADA6F003E0957 /* TileShadow.png in Resources */,
 				B86233371C8644B90030787E /* WordListChoppedNoDupRaw.txt in Resources */,
 				B822CF091C390D0C0043905E /* OptButtonWordLength3.png in Resources */,
+				B891045F1C97A4E20045102F /* BGBlack@2x.png in Resources */,
 				B8DFE1611C2B0DE9009FB8ED /* Tile3D@iPadPro.png in Resources */,
 				B8B0C51E1C95FB3B00226CC8 /* BG008@2x.png in Resources */,
 				B88A58531BEAD859003E0957 /* bonk.mp3 in Resources */,
+				B89104591C9799890045102F /* BGStripesHole@2x.png in Resources */,
 				B8B0C5231C95FB3B00226CC8 /* BG003@2x.png in Resources */,
 				B8FB376F1C28D56700C68434 /* codeSnippets in Resources */,
 				B88A58561BEAD859003E0957 /* badPlay.WAV in Resources */,

@@ -13,6 +13,9 @@ import UIKit
 let screenWidth  = UIScreen.mainScreen().bounds.size.width
 let screenHeight = UIScreen.mainScreen().bounds.size.height
 var screenSize : CGSize?
+
+
+
 // Random number generator /////////////////////
 func randomNumber(minX minX:UInt32, maxX:UInt32) -> Int {
   let result = (arc4random() % (maxX - minX + 1)) + minX
@@ -46,6 +49,8 @@ func setFontHUDSize () {
 
 var debugMode = false
 
+var gameIsSuspended = false
+
 var FontHUD = UIFont(name:"HelveticaNeue", size: 18.0)
 
 let FontHUDiPhoneSize = 12.0
@@ -60,8 +65,6 @@ var FontHUDBig = UIFont(name:"HelveticaNeue-Bold", size:120.0)
 
 let FontHUDBigiPhoneiPhone = 80.0
 let FontHUDBigiPhone = UIFont(name:"HelveticaNeue-Bold", size:80.0)
-
-
 
 //// Colors //////////////////////////////////////
 let FontHUDWhite        = UIColor(red: 1.0,    green: 1.0,    blue: 1.0,    alpha: 1.0)
@@ -93,6 +96,7 @@ let SoundDing = "ding.mp3"
 let SoundWrong = "wrong.m4a"
 let SoundWin = "win.mp3"
 let AudioEffectFiles = [SoundDing, SoundWrong, SoundWin]
+
 
 func delay(delay:Double, closure:()->()) {
     dispatch_after(

@@ -35,6 +35,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     var viewSize = screenSize!
 //    var backgroundNode    : SKSpriteNode = SKSpriteNode(imageNamed: "MarkMyWordBGCleaniPad.png" )
     var backgroundNode    : SKSpriteNode = SKSpriteNode(imageNamed: gameViewController.backgroundImageArray[mmwGameSceneViewController.backgroundNumber])
+    var backgroundBlackNode    : SKSpriteNode = SKSpriteNode(imageNamed: "BGBlack.png")
     var newGameSpriteNode : SKSpriteNode = SKSpriteNode(imageNamed: "NewGameScreen.png" )
     var optionsLayerNode  : SKSpriteNode = SKSpriteNode(imageNamed: "MMWOptionsScreen.png")
     var gameGridNode  : SKSpriteNode = SKSpriteNode(imageNamed: "GameGrid.png")
@@ -56,12 +57,9 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     
     //var timer = NSTimer()
     private var timer : NSTimer?
-    
 
     //private var timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
-    
-    
-    
+
     var secondsLeft = mmwGameSceneViewController.secondsPerTurn
     var timeRemainingLabel  = SKLabelNode(fontNamed: FontHUDName)
     var tilesRemainingLabel = SKLabelNode(fontNamed: FontHUDName)
@@ -76,6 +74,9 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     let optionsButton  = SKSpriteNode(imageNamed: "OptionsButton.png")
     var gameGrid       = SKSpriteNode(imageNamed: "GameGrid.png")
     var gameGridCover       = SKSpriteNode(imageNamed: "GameGridCover.png")
+    var playAreaWhite       = SKSpriteNode(imageNamed: "PlayAreaWhite.png")
+
+    var backgroundStripes       = SKSpriteNode(imageNamed: "BGStripesHole.png")
     //
     //    let smallSquare    = SKSpriteNode(imageNamed: "SmallSquare.png")
     
@@ -87,7 +88,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     //let backgroundMusic = SKAction.playSoundFileNamed("30Showdown.m4a", waitForCompletion: true)
     
     var gameIsPaused = true
-    private var gameIsSuspended = true
+
     
     var foundValidWordOnTurn = false
     var numWordsPlayedInTurn = 0
@@ -116,17 +117,102 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         if self.childNodeWithName("backgroundNode") == nil {
             addChild(backgroundNode)
         }
+        backgroundNode.alpha = 1.0
+        
+        backgroundStripes.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+        backgroundStripes.position = CGPoint(x: size.width/2.0, y: 0.0)
+        backgroundStripes.userInteractionEnabled = false
+        backgroundStripes.name = "backgroundStripes"
+        backgroundStripes.zPosition = -99
+        backgroundStripes.size.height = viewSize.height
+        backgroundStripes.size.width  = viewSize.width
+        if self.childNodeWithName("backgroundStripes") == nil {
+            addChild(backgroundStripes)
+        }
+        backgroundStripes.alpha = 0.15
+        
+
+        // add BGBlack
+        backgroundBlackNode.position = CGPoint(x: screenSize!.width/2, y: screenSize!.height/2)
+        backgroundBlackNode.userInteractionEnabled = false
+        backgroundBlackNode.size = self.frame.size;
+        backgroundBlackNode.zPosition = -95
+        if self.childNodeWithName("backgroundBlackNode") == nil {
+            addChild(backgroundBlackNode)
+        }
+        backgroundBlackNode.alpha = 0.25
+        
+
+        playAreaWhite.anchorPoint = CGPoint(x: 0.0, y: 0.0)
+        playAreaWhite.position = CGPoint(x: 0.0, y: 0.0)
+        playAreaWhite.userInteractionEnabled = false
+        playAreaWhite.name = "playAreaWhite"
+        playAreaWhite.zPosition = -98
+        if self.childNodeWithName("playAreaWhite") == nil {
+            addChild(playAreaWhite)
+        }
+        playAreaWhite.alpha = 0.50
+        
         
         gameGrid.anchorPoint = CGPoint(x: 0.0, y: 0.0)
         gameGrid.position = CGPoint(x: 154.5, y: 31.0)
         gameGrid.userInteractionEnabled = false
         gameGrid.name = "gameGrid"
-        gameGrid.zPosition = -99
-//        gameGrid.size.height = viewSize.height
-//        gameGrid.size.width  = viewSize.width
+        gameGrid.zPosition = -97
+        //        gameGrid.size.height = viewSize.height
+        //        gameGrid.size.width  = viewSize.width
         if self.childNodeWithName("gameGrid") == nil {
             addChild(gameGrid)
         }
+        
+        
+        //        // Set GameGrid Size
+        //        if mmwGame.deviceType == MMWGame.DeviceType.iPhone5 || mmwGame.deviceType == MMWGame.DeviceType.iPhone6 {
+        //            //gameGrid = SKSpriteNode(imageNamed: "GameGrid@iPadPro.png")
+        //            gameGrid.xScale = 0.412
+        //            gameGrid.yScale = 0.412
+        //            FontHUD = FontHUDiPhone
+        //        }
+        //
+        //        else if mmwGame.deviceType == MMWGame.DeviceType.iPhone6Plus {
+        //            //gameGrid = SKSpriteNode(imageNamed: "GameGrid@iPadPro.png")
+        //            gameGrid.xScale = 0.533
+        //            gameGrid.yScale = 0.533
+        //            FontHUD = FontHUDiPhone
+        //            for playerView in playerViewArr {
+        //                playerView.position.x += 13
+        //            }
+        //            for playerGrid in playerGridArray {
+        //                playerGrid.gridUpperLeftX += 8.5
+        //            }
+        //        }
+        
+        if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
+            playAreaWhite.xScale = 1.3333
+            playAreaWhite.yScale = 1.3333
+            playAreaWhite.position = CGPoint(x: 0, y: 0.0)
+            gameGrid.xScale = 1.333
+            gameGrid.yScale = 1.333
+            gameGrid.position = CGPoint(x: 207.0, y: 42.0)
+        }
+        
+        //        gameGrid.position = CGPoint(x: (viewSize.width/2), y: (viewSize.height * 0.490 ) )
+        //        gameGrid.name = "gameGrid"
+        //        //gameGrid.userInteractionEnabled = false
+        //        gameGrid.zPosition = -49
+        //        gameGrid.alpha     = 0.1
+        //        self.addChild(gameGrid)
+
+        
+        
+//        if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
+//            //gameGrid = SKSpriteNode(imageNamed: "GameGrid@iPadPro.png")
+//            
+//            playAreaWhite.position = CGPoint(x: 207.0, y: 42.0)
+//            playAreaWhite.xScale = 1.3333
+//            playAreaWhite.yScale = 1.3333
+//        }
+        
 //        if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
 //            //gameGrid = SKSpriteNode(imageNamed: "GameGrid@iPadPro.png")
 //            gameGrid.xScale = 1.33
@@ -147,54 +233,18 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
 //        }
 //        gameGridCover.hidden = true
         
-        newGameSpriteNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-        newGameSpriteNode.position = CGPoint(x: size.width/2.0, y: 0.0)
-        newGameSpriteNode.userInteractionEnabled = false
-        newGameSpriteNode.name = "newGameSpriteNode"
-        newGameSpriteNode.hidden = true
-        newGameSpriteNode.zPosition = 100
-        newGameSpriteNode.size.height = viewSize.height
-        newGameSpriteNode.size.width  = viewSize.width
-        if self.childNodeWithName("newGameSpriteNode") == nil {
-            addChild(newGameSpriteNode)
-        }
+//        newGameSpriteNode.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+//        newGameSpriteNode.position = CGPoint(x: size.width/2.0, y: 0.0)
+//        newGameSpriteNode.userInteractionEnabled = false
+//        newGameSpriteNode.name = "newGameSpriteNode"
+//        newGameSpriteNode.hidden = true
+//        newGameSpriteNode.zPosition = 90
+//        newGameSpriteNode.size.height = viewSize.height
+//        newGameSpriteNode.size.width  = viewSize.width
+//        if self.childNodeWithName("newGameSpriteNode") == nil {
+//            addChild(newGameSpriteNode)
+//        }
         
-        //backgroundNode.zPosition = -50
-        
-        // Set GameGrid Size
-        if mmwGame.deviceType == MMWGame.DeviceType.iPhone5 || mmwGame.deviceType == MMWGame.DeviceType.iPhone6 {
-            //gameGrid = SKSpriteNode(imageNamed: "GameGrid@iPadPro.png")
-            gameGrid.xScale = 0.412
-            gameGrid.yScale = 0.412
-            FontHUD = FontHUDiPhone
-        }
-            
-        else if mmwGame.deviceType == MMWGame.DeviceType.iPhone6Plus {
-            //gameGrid = SKSpriteNode(imageNamed: "GameGrid@iPadPro.png")
-            gameGrid.xScale = 0.533
-            gameGrid.yScale = 0.533
-            FontHUD = FontHUDiPhone
-            for playerView in playerViewArr {
-                playerView.position.x += 13
-            }
-            for playerGrid in playerGridArray {
-                playerGrid.gridUpperLeftX += 8.5
-            }
-        }
-            
-        else if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
-            //gameGrid = SKSpriteNode(imageNamed: "GameGrid@iPadPro.png")
-            gameGrid.xScale = 1.333
-            gameGrid.yScale = 1.333
-            gameGrid.position = CGPoint(x: 207.0, y: 42.0)
-        }
-        
-        //        gameGrid.position = CGPoint(x: (viewSize.width/2), y: (viewSize.height * 0.490 ) )
-        //        gameGrid.name = "gameGrid"
-        //        //gameGrid.userInteractionEnabled = false
-        //        gameGrid.zPosition = -49
-        //        gameGrid.alpha     = 0.1
-        //        self.addChild(gameGrid)
         
         topDisplayHUD("Welcome to Mark My Word") // ("Turn: Player 1, Special Letter Bonus In Effect, 2x Point Bonus")
         topDisplayHUD2("Have fun!")
@@ -662,7 +712,10 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                 if secondsLeft <= 0 {
                     //runAction(actionSound)   // play turn over sound
                     timeRemainingLabel.text = ("Timer: 0")
-                    changePlayerTurn()
+                    if gameIsSuspended == false {
+                        changePlayerTurn()
+                    }
+                    else { pauseGame() }
                 }
             }
             --secondsLeft
@@ -1170,13 +1223,13 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
 //                    }
 //                }
     
-                if wordAttemptsPlayed == 1 && numLettersRemaining > 0 && mmwGameScene.secondsLeft > Int(12) {
+                if wordAttemptsPlayed == 1 && numLettersRemaining > 0 && mmwGameScene.secondsLeft > Int(12) && gameIsSuspended == false {
     
 //                    numLettersRemaining = (mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid).numLetterTilesInGrid()
     
                     playAnotherWord = Int(arc4random_uniform(10))
     
-                    if playAnotherWord + (playerLevel * 3) > 7 && numLettersRemaining > 0 {
+                    if playAnotherWord + (playerLevel * 3) > 5 && numLettersRemaining > 0 {
     
                         delay(8.0) { // allow time for first word play
                             //Play second whole word, or partial
@@ -1192,17 +1245,17 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                                 
                                 numLettersRemaining = (mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid).numLetterTilesInGrid()
     
-                                if wordAttemptsPlayed == 2 && numLettersRemaining > 0 && mmwGameScene.secondsLeft > Int(10) {
+                                if wordAttemptsPlayed == 2 && numLettersRemaining > 0 && mmwGameScene.secondsLeft > Int(9) && gameIsSuspended == false {
 
                                     playAnotherWord = Int(arc4random_uniform(10))
     
-                                    if playAnotherWord + (playerLevel * 3) > 10 && numLettersRemaining > 0 {
+                                    if playAnotherWord + (playerLevel * 3) > 9 && numLettersRemaining > 0 {
     
                                         delay(pauseTime) {           // pause to allow second word play
                                             self.playAILetters()     // Play third whole word, or partial
     
                                             numLettersRemaining = (mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid).numLetterTilesInGrid()
-                                            if numLettersRemaining == 0 && mmwGameScene.secondsLeft > Int(6) {
+                                            if numLettersRemaining == 0 && mmwGameScene.secondsLeft > Int(6) && gameIsSuspended == false {
                                                 delay(5.0){
                                                     self.changePlayerTurn()
                                                 }
@@ -1229,7 +1282,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                 }
             }
     
-            else { // 0 tiles left so pause and change turn
+            else if gameIsSuspended == false { // 0 tiles left so pause and change turn
                 mmwGameSceneViewController.consecutivePasses++
                 delay(3.0){
                     self.changePlayerTurn()
@@ -1809,9 +1862,12 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         //        gameViewController.ViewEndGameUI.hidden = true
         //        gameViewController.ViewResultsScreenUI.hidden = true
         
-        gameIsSuspended = true
+        
         
         stopTimer()
+        
+        gameGrid.hidden = true
+        playAreaWhite.hidden = true
         
         view?.presentScene(mmwOptionScreen)
         
@@ -1952,6 +2008,32 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         }
     }
     
+    func pauseGame () {
+        mmwGameSceneViewController.appPaused = true
+        //runAction(actionSound)
+        if !gameIsPaused {
+            stopTimer()
+        }
+        else {
+            startTimer(secondsLeft)
+        }
+
+        
+    }
+    
+    func resumeGame () {
+        mmwGameSceneViewController.appPaused = false
+        //runAction(actionSound)
+        if !gameIsPaused {
+            startTimer(secondsLeft)
+        }
+        else {
+            stopTimer()
+            
+        }
+
+    }
+    
     
     func startTimer(seconds: Int) {
         //timeRemainingLabel.hidden = false
@@ -2066,133 +2148,139 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     
     func changePlayerTurn () {
         
-        //runAction(actionSound)
-        //explosion(CGPointMake(self.size.width/2, self.size.height/2))
-        
-        mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.dealGridFromArrayRandom(&tileCollection!.mmwTileArray, numTilesToDeal: 6, playerNum: (mmwGameSceneViewController.playerTurn), clearGrid: false)
-        
-        showTilesInSquares(tileCollection!) // 'deals' player tiles and shows demo tiles on board for testing
-        
-        let tilesPlayedOnBoard = self.mmwBoardGrid.convert2DGridToArray(mmwBoardGrid.grid2DArr)
-        
-        for tile in tilesPlayedOnBoard! {
-            tile.tileSprite.tileGlow.hidden = true
-        }
-        
-        //        if tileCollection!.mmwTileArray.count > 0 {
-        //            newTilesButtonOn()
-        //            tilesRemainingLabel.text = "Tiles: \(tileCollection!.mmwTileArray.count)"
-        //        }
-        //        else {
-        //            newTilesButtonOff()
-        //            tilesRemainingLabel.text = "Tiles: 00"
-        //        }
-        
-        let oldPlayer = mmwGameSceneViewController.playerTurn - 1  // player array is 0 based, players are 1 through 4
-        mmwGameSceneViewController.playerArray[oldPlayer].playerLetterGrid.makeTilesInGridInteractive(false)
-        
-        if oldPlayer < mmwGameSceneViewController.numPlayers - 1 {
-            mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerView.playerViewEndTurn()
-            mmwGameSceneViewController.playerTurn++
-            mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerView.playerViewBeginTurn()
+        if mmwGameSceneViewController.appPaused == false {
             
-            if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].isHuman == true {
-                mmwGameScene.optionsButton.userInteractionEnabled = false
-                mmwGameScene.optionsButton.alpha = 1.0
-                playerPassButtonOn()
+            //runAction(actionSound)
+            //explosion(CGPointMake(self.size.width/2, self.size.height/2))
+            
+            mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.dealGridFromArrayRandom(&tileCollection!.mmwTileArray, numTilesToDeal: 6, playerNum: (mmwGameSceneViewController.playerTurn), clearGrid: false)
+            
+            showTilesInSquares(tileCollection!) // 'deals' player tiles and shows demo tiles on board for testing
+            
+            let tilesPlayedOnBoard = self.mmwBoardGrid.convert2DGridToArray(mmwBoardGrid.grid2DArr)
+            
+            for tile in tilesPlayedOnBoard! {
+                tile.tileSprite.tileGlow.hidden = true
+            }
+            
+            //        if tileCollection!.mmwTileArray.count > 0 {
+            //            newTilesButtonOn()
+            //            tilesRemainingLabel.text = "Tiles: \(tileCollection!.mmwTileArray.count)"
+            //        }
+            //        else {
+            //            newTilesButtonOff()
+            //            tilesRemainingLabel.text = "Tiles: 00"
+            //        }
+            
+            let oldPlayer = mmwGameSceneViewController.playerTurn - 1  // player array is 0 based, players are 1 through 4
+            mmwGameSceneViewController.playerArray[oldPlayer].playerLetterGrid.makeTilesInGridInteractive(false)
+            
+            if oldPlayer < mmwGameSceneViewController.numPlayers - 1 {
+                mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerView.playerViewEndTurn()
+                mmwGameSceneViewController.playerTurn++
+                mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerView.playerViewBeginTurn()
                 
-                mmwGameScene.pauseButton.userInteractionEnabled = false
-                mmwGameScene.pauseButton.alpha = 0.5
-                if tileCollection!.mmwTileArray.count > 0 {
-                    newTilesButtonOn()
+                if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].isHuman == true {
+                    mmwGameScene.optionsButton.userInteractionEnabled = false
+                    mmwGameScene.optionsButton.alpha = 1.0
+                    playerPassButtonOn()
+                    
+                    mmwGameScene.pauseButton.userInteractionEnabled = false
+                    mmwGameScene.pauseButton.alpha = 0.5
+                    if tileCollection!.mmwTileArray.count > 0 {
+                        newTilesButtonOn()
+                    }
+                    else { newTilesButtonOff() }
                 }
-                else { newTilesButtonOff() }
+                    
+                else {
+                    mmwGameScene.optionsButton.userInteractionEnabled = true
+                    mmwGameScene.optionsButton.alpha = 0.5
+                    playerPassButtonOff()
+                    
+                    newTilesButtonOff()
+                    mmwGameScene.pauseButton.userInteractionEnabled = true
+                    mmwGameScene.pauseButton.alpha = 0.5
+                }
             }
                 
             else {
-                mmwGameScene.optionsButton.userInteractionEnabled = true
-                mmwGameScene.optionsButton.alpha = 0.5
-                playerPassButtonOff()
+                mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerView.playerViewEndTurn()
+                mmwGameSceneViewController.playerTurn = 1
+                mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerView.playerViewBeginTurn()
                 
-                newTilesButtonOff()
-                mmwGameScene.pauseButton.userInteractionEnabled = true
-                mmwGameScene.pauseButton.alpha = 0.5
-            }
-        }
-            
-        else {
-            mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerView.playerViewEndTurn()
-            mmwGameSceneViewController.playerTurn = 1
-            mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerView.playerViewBeginTurn()
-            
-            if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].isHuman == true {
-                mmwGameScene.optionsButton.userInteractionEnabled = false
-                mmwGameScene.optionsButton.alpha = 1.0
-                playerPassButtonOn()
-                
-                if tileCollection!.mmwTileArray.count > 0 {
-                    newTilesButtonOn()
+                if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].isHuman == true {
+                    mmwGameScene.optionsButton.userInteractionEnabled = false
+                    mmwGameScene.optionsButton.alpha = 1.0
+                    playerPassButtonOn()
+                    
+                    if tileCollection!.mmwTileArray.count > 0 {
+                        newTilesButtonOn()
+                    }
+                    else { newTilesButtonOff() }
+                    mmwGameScene.pauseButton.userInteractionEnabled = false
+                    mmwGameScene.pauseButton.alpha = 0.5
                 }
-                else { newTilesButtonOff() }
-                mmwGameScene.pauseButton.userInteractionEnabled = false
-                mmwGameScene.pauseButton.alpha = 0.5
+                    
+                else {
+                    mmwGameScene.optionsButton.userInteractionEnabled = true
+                    mmwGameScene.optionsButton.alpha = 0.5
+                    playerPassButtonOff()
+                    
+                    newTilesButtonOff()
+                    mmwGameScene.pauseButton.userInteractionEnabled = true
+                    mmwGameScene.pauseButton.alpha = 0.5
+                }
             }
-                
-            else {
-                mmwGameScene.optionsButton.userInteractionEnabled = true
-                mmwGameScene.optionsButton.alpha = 0.5
-                playerPassButtonOff()
-                
-                newTilesButtonOff()
-                mmwGameScene.pauseButton.userInteractionEnabled = true
-                mmwGameScene.pauseButton.alpha = 0.5
-            }
-        }
-        
-        if tileCollection!.mmwTileArray.count > 0 {
-            //newTilesButtonOn()
-            tilesRemainingLabel.text = "Tiles: \(tileCollection!.mmwTileArray.count)"
-        }
-        else {
-            //newTilesButtonOff()
-            tilesRemainingLabel.text = "Tiles: 00"
-        }
-        
-        timeRemainingLabel.color = UIColor.whiteColor()
-        
-        if mmwGameSceneViewController.timerIsOn {
-            stopTimer()
-            secondsLeft = mmwGameSceneViewController.secondsPerTurn
-            if gameIsPaused == true {
-                gameIsPaused = false
-                //startTimer(secondsLeft)
-            }
-            startTimer(secondsLeft)
-        }
-        
-        mmwGameSceneViewController.lettersPlayedInTurn = 0
-        
-        if mmwGameSceneViewController.audioOn == true {
-            runAction(SKAction.playSoundFileNamed("points.WAV", waitForCompletion: false))
-        }
-        
-        delay (0.5) {
             
-            if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].isHuman == false {  // is AI so autoplay letters in rack
-                //            if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.numLetterTilesInGrid() > 0 {
-                self.playBtnPlay()
-                //            }
-                //            else {
-                //
+            if tileCollection!.mmwTileArray.count > 0 {
+                //newTilesButtonOn()
+                tilesRemainingLabel.text = "Tiles: \(tileCollection!.mmwTileArray.count)"
             }
-            else if mmwGameSceneViewController.consecutivePasses >= mmwGameSceneViewController.numPlayers {
-                
-                if debugMode == true { print("all players passed on turn") }
-                //            view?.presentScene(mmwOptionScreen)
-                //            mmwOptionScreen.allPlayersPassed()
-                
+            else {
+                //newTilesButtonOff()
+                tilesRemainingLabel.text = "Tiles: 00"
             }
+            
+            timeRemainingLabel.color = UIColor.whiteColor()
+            
+            if mmwGameSceneViewController.timerIsOn {
+                stopTimer()
+                secondsLeft = mmwGameSceneViewController.secondsPerTurn
+                if gameIsPaused == true {
+                    gameIsPaused = false
+                    //startTimer(secondsLeft)
+                }
+                startTimer(secondsLeft)
+            }
+            
+            mmwGameSceneViewController.lettersPlayedInTurn = 0
+            
+            if mmwGameSceneViewController.audioOn == true {
+                runAction(SKAction.playSoundFileNamed("points.WAV", waitForCompletion: false))
+            }
+            
+            delay (0.5) {
+                
+                if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].isHuman == false {  // is AI so autoplay letters in rack
+                    //            if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid.numLetterTilesInGrid() > 0 {
+                    self.playBtnPlay()
+                    //            }
+                    //            else {
+                    //
+                }
+                else if mmwGameSceneViewController.consecutivePasses >= mmwGameSceneViewController.numPlayers {
+                    
+                    if debugMode == true { print("all players passed on turn") }
+                    //            view?.presentScene(mmwOptionScreen)
+                    //            mmwOptionScreen.allPlayersPassed()
+                    
+                }
+            }
+
+            
         }
+        
     }
     
     

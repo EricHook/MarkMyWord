@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MeyamaSplashScreen_iPad.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="PuS-kH-X5M">
+                <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tile3D.png" translatesAutoresizingMaskIntoConstraints="NO" id="PuS-kH-X5M">
                     <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <accessibility key="accessibilityConfiguration">
@@ -32,6 +32,6 @@
         </view>
     </objects>
     <resources>
-        <image name="MeyamaSplashScreen_iPad.jpg" width="1024" height="768"/>
+        <image name="Tile3D.png" width="95" height="95"/>
     </resources>
 </document>

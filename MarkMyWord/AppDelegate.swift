@@ -73,7 +73,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //demo()
 //        CDHelper.shared
 //        fetch()
-
+        mmwGameSceneViewController.appPaused = false
+        gameIsSuspended = false
+        
+        
+        //mmwGameScene.paus
         return true
     }
 
@@ -84,6 +88,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if mmwGameSceneViewController.timerIsOn {
             mmwGameScene.stopTimer()
         }
+        mmwGameSceneViewController.appPaused = true
+        gameIsSuspended = true
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
@@ -92,8 +98,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         CDHelper.saveSharedContext()
         if mmwGameSceneViewController.timerIsOn {
-            mmwGameScene.stopTimer()
+            //mmwGameScene.stopTimer()
         }
+        
+        mmwGameSceneViewController.appPaused = true
+        gameIsSuspended = true
 
         if debugMode == true { print("AppDelegate > application ...") }
     }
@@ -102,8 +111,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
         if debugMode == true { print("AppDelegate > applicationWillEnterForeground ...") }
         if mmwGameSceneViewController.timerIsOn {
-            //mmwGameScene.startTimer(mmwGameScene.secondsLeft)
+            mmwGameScene.startTimer(mmwGameScene.secondsLeft)
         }
+        mmwGameSceneViewController.appPaused = false
+        gameIsSuspended = false
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
@@ -115,13 +126,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if mmwGameSceneViewController.timerIsOn {
             //mmwGameScene.startTimer(mmwGameScene.secondsLeft)
         }
+        mmwGameSceneViewController.appPaused = false
+        gameIsSuspended = false
     }
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         
         //CDHelper.saveSharedContext()
-
+        mmwGameSceneViewController.appPaused = true
+        gameIsSuspended = true
         if debugMode == true { print("AppDelegate > applicationWillTerminate...") }
     }
     

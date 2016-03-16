@@ -9,15 +9,12 @@
 import SpriteKit
 
 
-var mmwOptionScreen : MMWOptionScreen! = MMWOptionScreen(size: screenSize!)
-var mmwGameScene    : MMWGameScene!    = MMWGameScene(size: screenSize!)
-//var mmwResultsScene : MMWResultsScene! = MMWResultsScene(size: screenSize!, gameResult: false, score: 25)
-var endGameScene : EndGameScene = EndGameScene(size: screenSize!)
+//var endGameScene : EndGameScene = EndGameScene(size: screenSize!)
 
 let backgroundNode = SKSpriteNode(imageNamed: gameViewController.backgroundImageArray[mmwGameSceneViewController.backgroundNumber])
 
 let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-let playBtn = SKSpriteNode(imageNamed: "PlayButton.png")
+//let playBtn = SKSpriteNode(imageNamed: "PlayButton.png")
 
 class MainMenuScene: SKScene {
 
@@ -28,13 +25,39 @@ class MainMenuScene: SKScene {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         size = viewSize
+
+        
     }
 
     
     override init(size: CGSize) {
         super.init(size: size)
+            //screenSize = view!.bounds.size
+        
+//        mmwOptionScreen  = MMWOptionScreen(size: screenSize!)
+//        mmwGameScene     = MMWGameScene(size: screenSize!)
     }
     
+    
+    
+//    var myTimer = NSTimer()
+//    
+//    func startTimer() {
+//        myTimer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "myFunction", userInfo: nil, repeats: false)
+//    }
+//    
+//    func myFunction() {
+//        myTimer.invalidate()
+//        presentMMWScene()
+//        //do other stuff
+//    }
+//    //the selector is "myFunction", this will be the name of the function that you wish to call every time the timer reaches its specified intervl
+//    //the interval in this case is 10 seconds. In my experience NSTimer is good down to the second but is not precise enough beyond that
+//    //repeats: true ... this will tell the timer to repeat its action consistently firing the selector each time the given time interval is reached. If repeat is set to false then the timer only fires once
+//    //use myTimer.invalidate to stop the timer and to stop calling the selector.
+    
+
+
 
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -51,22 +74,25 @@ class MainMenuScene: SKScene {
         self.addChild(backgroundNode)
 
         //let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "MainMenuScene" // scene is: \(scene?.description)"
+        myLabel.text = "Mark My Word" // scene is: \(scene?.description)"
         myLabel.fontSize = 65;
         myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y: (CGRectGetMidY(self.frame) - 50) )
         self.addChild(myLabel)
         myLabel.zPosition = 100
 
-        //let playBtn = SKSpriteNode(imageNamed: "PlayButton.png")
-        playBtn.position = CGPoint(x: viewSize.width/2, y: viewSize.height/3)
-        self.addChild(playBtn)
-        playBtn.name = "playBtn"
-        playBtn.zPosition = 100
+//        //let playBtn = SKSpriteNode(imageNamed: "PlayButton.png")
+//        playBtn.position = CGPoint(x: viewSize.width/2, y: viewSize.height/3)
+//        self.addChild(playBtn)
+//        playBtn.name = "playBtn"
+//        playBtn.zPosition = 100
+
         
-        delay(3){
+        //startTimer()
+        
+        delay(1){
             self.presentMMWScene()
         }
-        //presentMMWScene()
+        
     }
     
     
@@ -113,7 +139,7 @@ class MainMenuScene: SKScene {
         mmwGameSceneViewController.setUpGame()
         return mmwGameScene
     }
-
+    
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */

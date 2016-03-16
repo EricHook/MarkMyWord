@@ -29,7 +29,6 @@ struct GameSceneSettings {
 
 class MMWGameSceneViewController : UIViewController {
 
-    
     var numGamesWon = 0
     var numGamesTied = 0
     var numGamesLost = 0
@@ -47,6 +46,8 @@ class MMWGameSceneViewController : UIViewController {
     var audioOn = true
     var secondsPerTurn = 45
     var timerIsOn = true
+    var appPaused = false
+    var playerFinishedTurn = false
     var allowOffensiveWords = false
     var backgroundNumber = 0
 
@@ -63,8 +64,6 @@ class MMWGameSceneViewController : UIViewController {
     
     var consecutivePasses = 0
     var lettersPlayedInTurn = 0
-    
-    //var timer : NSTimer!
  
     var wordSet : WordSet?
     let wordSetPrecomputedSize : Int = 1253231;
