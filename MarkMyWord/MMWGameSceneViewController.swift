@@ -15,7 +15,7 @@ import CoreData
 
 extension StreamReader : SequenceType {
     func generate() -> AnyGenerator<String> {
-        return anyGenerator {
+        return AnyGenerator {
             return self.nextLine()
         }
     }
@@ -174,7 +174,7 @@ class MMWGameSceneViewController : UIViewController {
             var numLines = 0
             while (aStreamReader.nextLine() != nil) {
                 //print(line)
-                ++numLines
+                numLines += 1
             }
             
             let randomWordNum = Int(arc4random_uniform((UInt32(numLines-1))) )
@@ -187,7 +187,7 @@ class MMWGameSceneViewController : UIViewController {
                     //print("Random getFirstWord () Word: " + wordToReturn)
                     return String(wordToReturn)
                 }
-                ++lineNumber
+                lineNumber += 1
             }
             // You can close the underlying file explicitly. Otherwise it will be
             // closed when the reader is deallocated.
@@ -258,18 +258,18 @@ class MMWGameSceneViewController : UIViewController {
             for tile in letterTileArray {
                 if String(letter).uppercaseString == "\r" {
                     //print ("String(letter).uppercaseString == \r ...return char at \(letter)")
-                    --wordToCheckArrCount
+                    wordToCheckArrCount -= 1
                     break
                 }  // return char exits loop
                 if String(letter).uppercaseString == tile.tileText.uppercaseString && !lettersToPlay.contains(tileArrayNumber){
                     if debugMode == true { print("Found letter: \(letter) in tiles \(tile.tileSprite.tileText)") }
                     lettersToPlay.append(tileArrayNumber)
-                    ++lettersToPlayCount
+                    lettersToPlayCount += 1
                     //print( "LettersToPlay.count: \(lettersToPlay.count), lettersToPlayCount: \(lettersToPlayCount)" )
                     foundLetterInPass = true
                     break
                 }
-                tileArrayNumber++
+                tileArrayNumber += 1
                 foundLetterInPass = false
             }
             if String(letter).uppercaseString == "\r" {break}  // return char exits loop
@@ -296,18 +296,18 @@ class MMWGameSceneViewController : UIViewController {
             for tile in letterTileArray {
                 if String(letter).uppercaseString == "\r" {
                     if debugMode == true { print ("String(letter).uppercaseString == \r ...return char at \(letter)") }
-                    --wordToCheckArrCount
+                    wordToCheckArrCount -= 1
                     break
                 }  // return char exits loop
                 if String(letter).uppercaseString == tile.tileText.uppercaseString && !lettersToPlay.contains(tileArrayNumber){
                     if debugMode == true { print("Found letter: \(letter) in tiles \(tile.tileSprite.tileText)") }
                     lettersToPlay.append(tileArrayNumber)
-                    ++lettersToPlayCount
+                    lettersToPlayCount += 1
                     if debugMode == true { print( "LettersToPlay.count: \(lettersToPlay.count), lettersToPlayCount: \(lettersToPlayCount)" ) }
                     foundLetterInPass = true
                     break
                 }
-                tileArrayNumber++
+                tileArrayNumber += 1
                 foundLetterInPass = false
             }
             if String(letter).uppercaseString == "\r" {break}  // return char exits loop
@@ -342,7 +342,7 @@ class MMWGameSceneViewController : UIViewController {
                     letterTileArray.removeAtIndex(tileArrayNumber) 
                     break
                 }
-                tileArrayNumber++
+                tileArrayNumber += 1
             }
             if String(letter).uppercaseString == "\r" {break}  // return char exits loop
             tileArrayNumber = 0
@@ -449,8 +449,8 @@ class MMWGameSceneViewController : UIViewController {
             tileInWord.tileState = TileState.Locked
             tileInWord.tileSprite.hidden = false
             
-            if IsHorizonal { ++xLoc }
-            else { ++yLoc }
+            if IsHorizonal { xLoc += 1 }
+            else { yLoc += 1 }
         }
         
         mmwGameScene.updateGridInScene(mmwGameScene.mmwBoardGrid)

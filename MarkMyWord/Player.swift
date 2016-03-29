@@ -49,4 +49,8 @@ class Player {
     func setPlayerView (inout playerView: PlayerView) {
         self.playerView = playerView
     }
+    
+    deinit {
+        print("player is being deinitialized")
+    }
 }

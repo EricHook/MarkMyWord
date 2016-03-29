@@ -2513,12 +2513,7 @@ class LetterTileSprite : SKSpriteNode {
     }
 
     
-    
-    
-    
-    
 
-    
     func adjustPlayerPoints (points: Int, player : Player) {
         player.playerScore += points
         player.playerView.playerScoreLabel.text = String(player.playerScore)
@@ -2532,5 +2527,11 @@ class LetterTileSprite : SKSpriteNode {
         //        for node in nodes {
         //                   
         //        }
+    }
+    
+    deinit {
+//        if debugMode == true {
+            print("LetterTileSprite is being deinitialized")
+//        }
     }
 }

@@ -116,8 +116,6 @@ class PlayerView: SKSpriteNode {
             super.init(texture: playerBGTex, color: UIColorAppleBlue, size: CGSizeMake( playerBGTex.size().width , playerBGTex.size().height) ) // (309/2, 1319/2) )
         }
 
-        
-        
 //        if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
 //            super.init(texture: playerTileGridTex, color: UIColorAppleBlue, size: CGSizeMake( playerBGTex.size().width * 1.33 , playerBGTex.size().height * 1.33) ) // (309/2, 1319/2) )
 //        }
@@ -202,7 +200,7 @@ class PlayerView: SKSpriteNode {
         playerTileCover.colorBlendFactor = CGFloat(1.0)
         playerTileCover.size.height = playerTileCover.size.height * 0.75
         playerTileCover.size.width = playerTileCover.size.width + 2
-        playerTileCover.alpha = 0.6
+        playerTileCover.alpha = 0.4
         playerTileCover.zPosition = 50
         addChild(playerTileCover)
 
@@ -259,8 +257,8 @@ class PlayerView: SKSpriteNode {
     
     
     func playerViewEndTurn () {
-        playerNameLabel.fontColor =  FontHUDBlack
-        playerScoreLabel.fontColor = FontHUDBlack
+        playerNameLabel.fontColor =  UIColor.whiteColor()
+        playerScoreLabel.fontColor = UIColor.whiteColor()
         //changePlayerScoreDisplay()
         playerTileCover.hidden = false
         //self.playerGridGlow.hidden = true
@@ -275,5 +273,9 @@ class PlayerView: SKSpriteNode {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        print("PlayerView is being deinitialized")
     }
 }

@@ -22,6 +22,8 @@ class MainMenuScene: SKScene {
 //    var viewSize:CGSize!
     var viewSize = screenSize!
     
+    var waiting = true
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         size = viewSize
@@ -58,7 +60,6 @@ class MainMenuScene: SKScene {
     
 
 
-
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
 
@@ -89,10 +90,36 @@ class MainMenuScene: SKScene {
         
         //startTimer()
         
-        delay(1){
+        
+//        //var waiting = true
+//        print("waiting false A")
+//       
+//
+//        var _ = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(MainMenuScene.waitingFalse),
+//                            userInfo: nil, repeats: false)
+//        
+////        var timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("waitingFalse"), userInfo: nil, repeats: true)
+//
+//        while waiting == true {
+//            
+//        }
+//        
+//        waiting = true
+//        
+//        presentMMWScene()
+
+        
+        delay(2){
             self.presentMMWScene()
+
         }
         
+    }
+    
+    
+    func waitingFalse () {
+        print("waiting false")
+        waiting = false
     }
     
     
@@ -136,12 +163,20 @@ class MainMenuScene: SKScene {
 //        view?.presentScene(mmwGameScene, transition: transition)
         view?.presentScene(mmwGameScene)
         if debugMode == true { print("presentMMWScene") }
+        print("presentMMWScene")
         mmwGameSceneViewController.setUpGame()
+        
+        mmwGameScene.startDelayTimer(3)
+        
         return mmwGameScene
     }
     
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+    }
+    
+    deinit {
+        print("MainMenuScene is being deinitialized")
     }
 }

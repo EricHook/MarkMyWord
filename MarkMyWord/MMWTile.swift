@@ -183,5 +183,9 @@ class MMWTile : NSObject, NSCoding {
         //        aCoder.encodeInteger(rating, forKey: PropertyKey.ratingKey)
     }
     
+    deinit {
+        print("mmwtile is being deinitialized")
+    }
+    
 
 }

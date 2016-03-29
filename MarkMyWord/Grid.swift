@@ -406,4 +406,8 @@ class Grid {
         }
         return tileToReturn
     }
+    
+    deinit {
+        print("grid is being deinitialized")
+    }
 }
