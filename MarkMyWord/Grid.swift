@@ -50,7 +50,7 @@ class Grid {
         for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
             for x in 0...(self.gridNumSquaresX - 1) {
                 if self.grid2DArr[x][y].tileType == TileType.Letter {
-                    numLetterTiles++
+                    numLetterTiles += 1
                 }  
             }
         }
@@ -64,7 +64,7 @@ class Grid {
         for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
             for x in 0...(self.gridNumSquaresX - 1) {
                 if self.grid2DArr[x][y].tileType == TileType.Letter {
-                    numLetterTiles++
+                    numLetterTiles += 1
                     letterTilesInGrid.append(grid2DArr[x][y])
                 }
             }
@@ -95,7 +95,7 @@ class Grid {
         for y in 0...(self.gridNumSquaresY - 1) {   // fill letter tiles
             for x in 0...(self.gridNumSquaresX - 1) {
                 if self.grid2DArr[x][y].tileType == TileType.Letter && self.grid2DArr[x][y].tileState == TileState.Locked {
-                    numLetterTiles++
+                    numLetterTiles += 1
                     letterTilesInGrid.append(grid2DArr[x][y])
                 }
             }

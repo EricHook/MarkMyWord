@@ -166,7 +166,7 @@ class MainMenuScene: SKScene {
         print("presentMMWScene")
         mmwGameSceneViewController.setUpGame()
         
-        mmwGameScene.startDelayTimer(3)
+//        mmwGameScene.startDelayTimer(3)
         
         return mmwGameScene
     }

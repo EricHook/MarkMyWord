@@ -7,7 +7,7 @@
 
 import UIKit
 import SpriteKit
-import GoogleMobileAds
+//import GoogleMobileAds
 
 extension SKNode {
     class func unarchiveFromFile(file : String) -> SKNode? {
@@ -324,7 +324,7 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
 
     @IBOutlet weak var ViewLoadingGameUIOutlet: UIView!
     
-    @IBOutlet weak var bannerView: GADBannerView!
+//    @IBOutlet weak var bannerView: GADBannerView!
 //    @IBOutlet weak var bannerView2: GADBannerView!
 //    @IBOutlet weak var bannerViewLowerLeft: GADBannerView!
 //    @IBOutlet weak var bannerViewUpperRight: GADBannerView!
@@ -1157,15 +1157,15 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
 
         if mmwGameSceneViewController.playerArray[0].playerScore > otherHighestScore {
             gameResultsLabel.text = "Congratulations! You Won!"
-            mmwGameSceneViewController.numGamesWon++
+            mmwGameSceneViewController.numGamesWon += 1
         }
         else if mmwGameSceneViewController.playerArray[0].playerScore == otherHighestScore {
             gameResultsLabel.text = "Not bad. You Tied."
-            mmwGameSceneViewController.numGamesTied++
+            mmwGameSceneViewController.numGamesTied += 1
         }
         else if mmwGameSceneViewController.playerArray[0].playerScore < otherHighestScore {
             gameResultsLabel.text = "You Lost."
-            mmwGameSceneViewController.numGamesLost++
+            mmwGameSceneViewController.numGamesLost += 1
         }
     }
 
@@ -1277,7 +1277,7 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
     // MARK: LOADING SCREEN
 
     
-    @IBOutlet weak var adMob300x250LoadingViewOutlet: GADBannerView!
+//    @IBOutlet weak var adMob300x250LoadingViewOutlet: GADBannerView!
     
     
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {

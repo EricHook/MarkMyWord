@@ -357,7 +357,7 @@ class MMWTileBuilder {
             tilesTo.insert(tileRemoved, atIndex: originalTilesGet - numTilesGet)
             tilesTo[originalTilesGet - numTilesGet].tileSprite.color =  gameColors[changeColorTo]
             tilesTo[originalTilesGet - numTilesGet].tileSprite.hidden = false
-            numTilesGet--
+            numTilesGet -= 1
         }
     }
     
@@ -369,7 +369,7 @@ class MMWTileBuilder {
             tileRemoved.tileSprite.color =  gameColors[0]          //tilesTo.removeAtIndex(originalTilesGet - numTilesGet)
             tileRemoved.tileSprite.hidden = true
             mmwDiscardedTileArray.insert(tileRemoved, atIndex: mmwDiscardedTileArray.count)
-            numTilesDiscard--
+            numTilesDiscard -= 1
         }
     }
     
@@ -580,7 +580,7 @@ class MMWTileBuilder {
                 tilesTo.removeAtIndex(originalTilesGet - numTilesGet)
             }
             tilesTo.insert(tileRemoved, atIndex: originalTilesGet - numTilesGet)
-            numTilesGet--
+            numTilesGet -= 1
         }
     }
     

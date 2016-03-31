@@ -11,7 +11,7 @@
 import SpriteKit
 import UIKit
 import CoreMotion
-import GoogleMobileAds
+//import GoogleMobileAds
 
 //struct validAITilePlay {
 //    var tile : MMWTile = MMWTile()
@@ -652,7 +652,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                 gridToDisplay.grid2DArr[x][y].tileSprite.hidden = false
                 gridToDisplay.grid2DArr[x][y].tileSprite.position = Grid.sendToGridSquare(gridToDisplay, squareX: x, squareY: y)
                 
-                if gridToDisplay.grid2DArr[x][y].tileType == TileType.Letter {letterCount++}
+                if gridToDisplay.grid2DArr[x][y].tileType == TileType.Letter {letterCount += 1}
             }
         }
         if debugMode == true { print("---   in showAllGridTiles mmwGameScene Count: #\(letterCount) ") }
@@ -738,28 +738,28 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         }
     }
     
-    func updateDelayTimer() {
-        //secondsDelayLabel.fontColor = SKColor(red: 1, green: 1, blue: 1, alpha: 1) // counter starts white color
-        secondsDelayLabel.text = "Timer: \(String(secondsDelay) ) " // String(counter--)
-
-        if secondsDelay <= 0 {
-            print("updateDelayTimer() \(secondsDelay)")
-        }
-
-        secondsDelay -= 1
-
-        print("updateDelayTimer() <= 0")
-    }
-    
-    func checkDelayTimer() -> ( Bool ){
-        var timesUp = false
-
-        if secondsDelay <= 0 {
-            timesUp = true
-        }
-        
-        return timesUp
-    }
+//    func updateDelayTimer() {
+//        //secondsDelayLabel.fontColor = SKColor(red: 1, green: 1, blue: 1, alpha: 1) // counter starts white color
+//        secondsDelayLabel.text = "Timer: \(String(secondsDelay) ) " // String(counter--)
+//
+//        if secondsDelay <= 0 {
+//            print("updateDelayTimer() \(secondsDelay)")
+//        }
+//
+//        secondsDelay -= 1
+//
+//        print("updateDelayTimer() <= 0")
+//    }
+//    
+//    func checkDelayTimer() -> ( Bool ){
+//        var timesUp = false
+//
+//        if secondsDelay <= 0 {
+//            timesUp = true
+//        }
+//        
+//        return timesUp
+//    }
     
     
     func tilesRemainingHUD (tilesLeft : Int) -> SKLabelNode {
@@ -1230,144 +1230,130 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     }
     
     
-        func playBtnPlay () { // playButtonPlayNode: SKNode
-    
-            let playersTurn = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1]
-            let playerLevel = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerSkillLevel
-    
-            let pauseTime = 7.0
-    
-            var numLettersRemaining = (mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid).numLetterTilesInGrid()
-    
-            var wordAttemptsPlayed = 0
-            var playAnotherWord = 0
-    
-            if numLettersRemaining > 0 {
-                // play first word attempt here
-                let tileplay : (playedPartialWord: Bool, playedWholeWord: Bool) = playAILetters()
-    
-                if (tileplay.playedPartialWord == true || tileplay.playedWholeWord == true) {
-                    mmwGameSceneViewController.resetConsequtivePasses()
-                    if tileplay.playedWholeWord == true {
-                        wordAttemptsPlayed += 1
-                    }
+    func playBtnPlay () { // playButtonPlayNode: SKNode
+        
+        let playersTurn = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1]
+        let playerLevel = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerSkillLevel
+        
+        let pauseTime = 7.0
+        
+        var numLettersRemaining = (mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid).numLetterTilesInGrid()
+        
+        var wordAttemptsPlayed = 0
+        var playAnotherWord = 0
+        
+        if numLettersRemaining > 0 {
+            // play first word attempt here
+            let tileplay1 : (playedPartialWord: Int, playedWholeWord: Int) = playAILetters()
+            
+            let tileplay1Count = tileplay1.playedPartialWord > tileplay1.playedWholeWord ? tileplay1.playedPartialWord : tileplay1.playedWholeWord
+            
+            if (tileplay1.playedPartialWord > 0 || tileplay1.playedWholeWord > 0) {
+                mmwGameSceneViewController.resetConsequtivePasses()
+                if tileplay1.playedWholeWord > 0 {
+                    wordAttemptsPlayed += 1
                 }
+            }
+            
+            numLettersRemaining = (mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid).numLetterTilesInGrid()
+            
+            //                if numLettersRemaining == 0 && mmwGameScene.secondsLeft > Int(12) { // 0 tiles left so pause and change turn
+            //                    mmwGameSceneViewController.consecutivePasses++
+            //                    delay(11.0){
+            //                        self.changePlayerTurn()
+            //                    }
+            //                }
+            
+            if wordAttemptsPlayed == 1 && numLettersRemaining > 0 && mmwGameScene.secondsLeft > Int(12) && gameIsSuspended == false {
                 
-                numLettersRemaining = (mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid).numLetterTilesInGrid()
+                //                    numLettersRemaining = (mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid).numLetterTilesInGrid()
                 
-//                if numLettersRemaining == 0 && mmwGameScene.secondsLeft > Int(12) { // 0 tiles left so pause and change turn
-//                    mmwGameSceneViewController.consecutivePasses++
-//                    delay(11.0){
-//                        self.changePlayerTurn()
-//                    }
-//                }
-    
-                if wordAttemptsPlayed == 1 && numLettersRemaining > 0 && mmwGameScene.secondsLeft > Int(12) && gameIsSuspended == false {
-    
-//                    numLettersRemaining = (mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid).numLetterTilesInGrid()
-    
-                    playAnotherWord = Int(arc4random_uniform(10))
-    
-                    if playAnotherWord + (playerLevel * 3) > 5 && numLettersRemaining > 0 {
+                playAnotherWord = Int(arc4random_uniform(10))
+                
+                if playAnotherWord + (playerLevel * 3) > 5 && numLettersRemaining > 0 {
+                    
+                    delay(Double(tileplay1Count + 4)) { // (8.0) { // allow time for first word play
+                        //Play second whole word, or partial
+                        let tileplay2 : (playedPartialWord: Int, playedWholeWord: Int) = self.playAILetters()
+                        let tileplay2Count = tileplay2.playedPartialWord > tileplay2.playedWholeWord ? tileplay2.playedPartialWord : tileplay2.playedWholeWord
                         
-                        
-                        
-                        //if mmwGameSceneViewController.timerIsOn {
-                            //stopDelayTimer()
-//                            secondsLeft = mmwGameSceneViewController.secondsPerTurn
-//                            if gameIsPaused == true {
-//                                gameIsPaused = false
-//                                //startTimer(secondsLeft)
+                        if tileplay2Count > 0 {
+                            
+                            wordAttemptsPlayed += 1
+                            
+//                            if numLettersRemaining == 0  && mmwGameScene.secondsLeft > Int(Double(tileplay2Count + 5)) {
+//                                delay(Double(tileplay2Count + 4)){
+//                                    self.changePlayerTurn()
+//                                }
 //                            }
-                            startDelayTimer(8)
-                        
-                    //}
-   
-    
-                        //delay(8.0) { // allow time for first word play
-                            //Play second whole word, or partial
-                            if self.playAILetters().playedWholeWord == true {
-    
-                                wordAttemptsPlayed += 1
-    
-                                if numLettersRemaining == 0  && mmwGameScene.secondsLeft > Int(8) {
-                                    
-                                    startDelayTimer(8)
-                                    changePlayerTurn()
-                                    
-//                                    delay(7.0){
-//                                        self.changePlayerTurn()
-//                                    }
+                            
+                            numLettersRemaining = (mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid).numLetterTilesInGrid()
+                            
+                            if numLettersRemaining == 0  && mmwGameScene.secondsLeft > Int(Double(tileplay2Count + 5)) {
+                                delay(Double(tileplay2Count + 4)){
+                                    self.changePlayerTurn()
                                 }
-                                
-                                numLettersRemaining = (mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid).numLetterTilesInGrid()
-    
-                                if wordAttemptsPlayed == 2 && numLettersRemaining > 0 && mmwGameScene.secondsLeft > Int(9) && gameIsSuspended == false {
+                            }
 
-                                    playAnotherWord = Int(arc4random_uniform(10))
-    
-                                    if playAnotherWord + (playerLevel * 3) > 9 && numLettersRemaining > 0 {
+                            
+                            if tileplay2.playedWholeWord > 0 && numLettersRemaining > 0 && mmwGameScene.secondsLeft > Int(Double(tileplay2Count + 5)) && gameIsSuspended == false {
+                                
+                                playAnotherWord = Int(arc4random_uniform(10))
+                                
+                                if playAnotherWord + (playerLevel * 3) > 9 && numLettersRemaining > 0 {
+                                    
+                                    delay(Double(tileplay2Count + 4)) {           // pause to allow second word play
                                         
-                                        startDelayTimer(7)
-                                        //delay(pauseTime) {           // pause to allow second word play
-                                            playAILetters()     // Play third whole word, or partial
-                                            
-                                            numLettersRemaining = (mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid).numLetterTilesInGrid()
-                                            if numLettersRemaining == 0 && mmwGameScene.secondsLeft > Int(8) && gameIsSuspended == false {
-                                                
-                                                startDelayTimer(7)
-                                                //delay(7.0){
-                                                    changePlayerTurn()
-                                                //}
+                                        let tileplay3 : (playedPartialWord: Int, playedWholeWord: Int) = self.playAILetters()
+                                        let tileplay3Count = tileplay3.playedPartialWord > tileplay3.playedWholeWord ? tileplay3.playedPartialWord : tileplay3.playedWholeWord
+                                        
+//                                        self.playAILetters()     // Play third whole word, or partial
+                                        
+                                        //numLettersRemaining = (mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid).numLetterTilesInGrid()
+                                        
+                                        if mmwGameScene.secondsLeft > Int(Double(tileplay3Count + 4)) && gameIsSuspended == false {
+                                            delay(Double(tileplay3Count + 3)){
+                                                self.changePlayerTurn()
                                             }
-                                        //}
-                                        
-                                        
-    
-//                                        delay(pauseTime) {           // pause to allow second word play
-//                                            self.playAILetters()     // Play third whole word, or partial
-//    
-//                                            numLettersRemaining = (mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn-1].playerLetterGrid).numLetterTilesInGrid()
-//                                            if numLettersRemaining == 0 && mmwGameScene.secondsLeft > Int(8) && gameIsSuspended == false {
-//                                                delay(7.0){
-//                                                    self.changePlayerTurn()
-//                                                }
-//                                            }
-//                                        }
+                                        }
                                     }
-    
-                                    else if mmwGameScene.secondsLeft > Int(8) { // don't play third word attempt, either AI skip or no letters
-                                        startDelayTimer(7)
-                                        changePlayerTurn()
-                                        
-//                                        delay(7.0)  {
-//                                            self.changePlayerTurn()
-//                                        }
+                                }
+                                    
+                                else if mmwGameScene.secondsLeft > Int(Double(tileplay2Count + 5)) { // don't play third word attempt, either AI skip or no letters
+                                    delay(Double(tileplay2Count + 4))  {
+                                        self.changePlayerTurn()
                                     }
                                 }
                             }
-                        //}
+                        }
                     }
-    
-    
-                    else if mmwGameScene.secondsLeft > Int(10.0) { // don't play second word attempt, either AI skip or no letters
-                        startDelayTimer(9)
-                        changePlayerTurn()
-                        
-//                        delay(9.0){
-//                            self.changePlayerTurn()
-//                        }
+                }
+                    
+                    
+                else if mmwGameScene.secondsLeft > Int(tileplay1Count + 7) { // don't play second word attempt, either AI skip or no letters
+                    delay(Double(tileplay1Count + 6)){
+                        self.changePlayerTurn()
                     }
                 }
             }
-    
+            
             else if gameIsSuspended == false { // 0 tiles left so pause and change turn
-                mmwGameSceneViewController.consecutivePasses += 1
-                delay(3.0){
+                delay(Double(tileplay1Count + 6)){
                     self.changePlayerTurn()
                 }
             }
+            
+            
+            
         }
+            
+        else if gameIsSuspended == false { // 0 tiles left so pause and change turn
+            mmwGameSceneViewController.consecutivePasses += 1
+            delay(3.0){
+                self.changePlayerTurn()
+            }
+        }
+    }
     
     
     
@@ -1491,10 +1477,10 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     //        }
     //    }
     
-    func playAILetters() -> (playedWholeWord: Bool, playedPartialWord: Bool){
+    func playAILetters() -> (playedWholeWord: Int, playedPartialWord: Int){
         numWordsPlayedInTurn = 0
-        var playedWholeWord = false
-        var playedPartialWord = false
+        var playedWholeWord = 0
+        var playedPartialWord = 0
         
         //        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         //        dispatch_async(dispatch_get_global_queue(priority, 0), { ()->() in
@@ -1536,7 +1522,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                 break
             }
             
-            numLockedTilesSearched++
+            numLockedTilesSearched += 1
             if debugMode == true { print("looking at tile \(lockedTile.gridXEnd), \(lockedTile.gridYEnd)" ) }
             // checks for playable valid whole word in player tiles
             ////////////////////////
@@ -1606,13 +1592,13 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         //                    }
         //}
         
-        if debugMode == true { print(">> numLockedTilesSearched : \(numLockedTilesSearched++), checkForValidWordsAISearchedTRUE : \(checkForValidWordsAISearchedTRUE), allPossiblePartialWordPlays: \(allPossiblePartialWordPlays.count), allPossibleWholeWordPlays: \(allPossibleWholeWordPlays.count) playBtnPlay loadWords() mmwGameScene") }
+        if debugMode == true { print(">> numLockedTilesSearched : \(numLockedTilesSearched += 1), checkForValidWordsAISearchedTRUE : \(checkForValidWordsAISearchedTRUE), allPossiblePartialWordPlays: \(allPossiblePartialWordPlays.count), allPossibleWholeWordPlays: \(allPossibleWholeWordPlays.count) playBtnPlay loadWords() mmwGameScene") }
         
         
         if allPossibleWholeWordPlays.count >= 1 {
             let wordToPlay = Int(arc4random_uniform(UInt32(allPossibleWholeWordPlays.count)))
             self.playAIPlaceholderTilesToBoard (allPossibleWholeWordPlays[wordToPlay])
-            playedWholeWord = true
+            playedWholeWord = allPossibleWholeWordPlays[wordToPlay].count
         }
         else {
             var notAnEdgeWord = true
@@ -1629,7 +1615,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                 }
                 if notAnEdgeWord == true {
                     self.playAIPlaceholderTilesToBoard (partialWord)
-                    playedPartialWord = true
+                    playedPartialWord = partialWord.count
                     break
                 }
             }
@@ -1797,7 +1783,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         for y in 0...(mmwBoardGrid.gridNumSquaresY - 1) {   // fill letter tiles
             for x in 0...(mmwBoardGrid.gridNumSquaresX - 1) {
                 if mmwBoardGrid.grid2DArr[x][y].tileType == TileType.Letter {
-                    numLetterTiles++
+                    numLetterTiles += 1
                     playedSpots.append(mmwBoardGrid.grid2DArr[x][y])
                     if debugMode == true { print("\(mmwBoardGrid.grid2DArr[x][y].tileSprite.tileText) , x: \(x) y: \(y) ") }
                 }
@@ -2200,55 +2186,55 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         }
     }
     
-    func startDelayTimer(seconds: Int) {
-        secondsDelay = seconds
-
-        if ( timerDelay != nil) {
-            timerDelay!.invalidate()
-            timerDelay = nil
-        }
-        
-        secondsDelayLabel.text = "Delay: \(secondsDelay)"
-        
-        timerDelay = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: #selector(MMWGameScene.updateDelayTimer), userInfo: nil, repeats: true)
-        
-        print ("startDelayTimer() \(secondsDelay)")
-        
-        var checkTimerDelay = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: #selector(MMWGameScene.checkDelayTimer), userInfo: nil, repeats: true)
-
-        
-                            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-                            dispatch_async(dispatch_get_global_queue(priority, 0), { ()->() in
-                                print("Currently dispatched thread asynchronously 0 playBtnPlay playAILetters")
-    
-                                    while self.secondsDelay > 0 {
-                                        print ("startDelayTimer(seconds: Int) > 0 : \(self.secondsDelay) "  )
-                                    }
-                                
-                                self.stopDelayTimer()
-                                
-
-                                dispatch_async(dispatch_get_main_queue(), {
-                                    print("hello from playBtnPlay playAILetters thread executed as dispatch")
-                                })
-                            })
-        
-        
-        
-
-        
-        
+//    func startDelayTimer(seconds: Int) {
+//        secondsDelay = seconds
+//
+//        if ( timerDelay != nil) {
+//            timerDelay!.invalidate()
+//            timerDelay = nil
 //        }
-    }
-    
-    func stopDelayTimer() {
-        //gameIsPaused = true
-        //pauseButton.texture = SKTexture(imageNamed: "MMWResumeButton.png")
-        if ( timerDelay != nil) {
-            timerDelay!.invalidate()
-            timerDelay = nil
-        }
-    }
+//        
+//        secondsDelayLabel.text = "Delay: \(secondsDelay)"
+//        
+//        timerDelay = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: #selector(MMWGameScene.updateDelayTimer), userInfo: nil, repeats: true)
+//        
+//        print ("startDelayTimer() \(secondsDelay)")
+//        
+//        var checkTimerDelay = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: #selector(MMWGameScene.checkDelayTimer), userInfo: nil, repeats: true)
+//
+//        
+//                            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+//                            dispatch_async(dispatch_get_global_queue(priority, 0), { ()->() in
+//                                print("Currently dispatched thread asynchronously 0 playBtnPlay playAILetters")
+//    
+//                                    while self.secondsDelay > 0 {
+//                                        print ("startDelayTimer(seconds: Int) > 0 : \(self.secondsDelay) "  )
+//                                    }
+//                                
+//                                self.stopDelayTimer()
+//                                
+//
+//                                dispatch_async(dispatch_get_main_queue(), {
+//                                    print("hello from playBtnPlay playAILetters thread executed as dispatch")
+//                                })
+//                            })
+//        
+//        
+//        
+//
+//        
+//        
+////        }
+//    }
+//    
+//    func stopDelayTimer() {
+//        //gameIsPaused = true
+//        //pauseButton.texture = SKTexture(imageNamed: "MMWResumeButton.png")
+//        if ( timerDelay != nil) {
+//            timerDelay!.invalidate()
+//            timerDelay = nil
+//        }
+//    }
 
     
     func explosion(pos: CGPoint, color: UIColor) {
@@ -2308,7 +2294,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             
             if oldPlayer < mmwGameSceneViewController.numPlayers - 1 {
                 mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerView.playerViewEndTurn()
-                mmwGameSceneViewController.playerTurn++
+                mmwGameSceneViewController.playerTurn += 1
                 mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerView.playerViewBeginTurn()
                 
                 if mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].isHuman == true {
@@ -2468,7 +2454,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         for arrayX in tileGrid.grid2DArr {
             for arrayY in arrayX {
                 if arrayY.tileText == "!" {
-                    numEmpty++
+                    numEmpty += 1
                 }
             }
         }
@@ -2531,9 +2517,9 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         var downOpenTileLocations = 0
         
         while gridTestX > 0 {
-            --gridTestX
+            gridTestX -= 1
             if self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileType == TileType.Letter {
-                numExistingLetterTilesInDirection++
+                numExistingLetterTilesInDirection += 1
             }
             leftOpenTileLocations = gridXStart - numExistingLetterTilesInDirection
         }
@@ -2541,9 +2527,9 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         numExistingLetterTilesInDirection = 0
         
         while gridTestX < 14 {
-            ++gridTestX
+            gridTestX += 1
             if self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileType == TileType.Letter {
-                numExistingLetterTilesInDirection++
+                numExistingLetterTilesInDirection += 1
             }
             rightOpenTileLocations = (14 - gridXStart) - numExistingLetterTilesInDirection
         }
@@ -2551,9 +2537,9 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         numExistingLetterTilesInDirection = 0
         
         while gridTestY > 0 {
-            --gridTestY
+            gridTestY -= 1
             if self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileType == TileType.Letter {
-                numExistingLetterTilesInDirection++
+                numExistingLetterTilesInDirection += 1
             }
             upOpenTileLocations = gridYStart - numExistingLetterTilesInDirection
         }
@@ -2561,9 +2547,9 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         numExistingLetterTilesInDirection = 0
         
         while gridTestY < 14 {
-            ++gridTestY
+            gridTestY += 1
             if self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileType == TileType.Letter {
-                numExistingLetterTilesInDirection++
+                numExistingLetterTilesInDirection += 1
             }
             
             downOpenTileLocations = (14 - gridYStart) - numExistingLetterTilesInDirection
@@ -2717,7 +2703,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                         
                         if (gridToTest>=1 && gridToTest<=14) && self.mmwBoardGrid.grid2DArr[gridTestX + tileShiftXLeftOrUp][gridTestY + tileShiftYLeftOrUp].tileType != TileType.Letter {
                             
-                            --numTilesToPlayLeftOrUpMax
+                            numTilesToPlayLeftOrUpMax -= 1
                             let permutationLeftOrUpLastLetter = String( playerLettersToTestLeftOrUp.removeAtIndex(playerLettersToTestLeftOrUp.endIndex.predecessor()) )
                             
                             currentTestAILetterPlay.tileSpriteLetter = permutationLeftOrUpLastLetter
@@ -2726,16 +2712,16 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                             currentTestAILetterPlay.gridYEnd = gridTestY + tileShiftYLeftOrUp
                             
                             currentPossibleAILetterPlayArr.append(currentTestAILetterPlay)
-                            lettersPlayedInPermutation++
+                            lettersPlayedInPermutation += 1
                             testString = permutationLeftOrUpLastLetter + testString
                             
                             if (gridToTest>=1) {
-                                --gridToTest
+                                gridToTest -= 1
                                 if passNumber == 0 {
-                                    --gridTestX
+                                    gridTestX -= 1
                                 }
                                 if passNumber == 1 {
-                                    --gridTestY
+                                    gridTestY -= 1
                                 }
                             }
                             
@@ -2744,12 +2730,12 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                                 testString = existingLetterToAdd + testString
                                 
                                 if (gridToTest>=1) {
-                                    --gridToTest
+                                    gridToTest -= 1
                                     if passNumber == 0 {
-                                        --gridTestX
+                                        gridTestX -= 1
                                     }
                                     if passNumber == 1 {
-                                        --gridTestY
+                                        gridTestY -= 1
                                     }
                                 }
                                 
@@ -2762,12 +2748,12 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                                 testString = existingLetterToAdd + testString
                                 
                                 if (gridToTest>=1) {
-                                    --gridToTest
+                                    gridToTest -= 1
                                     if passNumber == 0 {
-                                        --gridTestX
+                                        gridTestX -= 1
                                     }
                                     if passNumber == 1 {
-                                        --gridTestY
+                                        gridTestY -= 1
                                     }
                                 }
                             }
@@ -2787,12 +2773,12 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                         while gridToTest>=1 && self.mmwBoardGrid.grid2DArr[gridTestX + tileShiftXLeftOrUp][gridTestY + tileShiftYLeftOrUp].tileType == TileType.Letter {
                             let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX + tileShiftXLeftOrUp][gridTestY + tileShiftYLeftOrUp].tileText)
                             testString = existingLetterToAdd + testString
-                            --gridToTest
+                            gridToTest -= 1
                             if passNumber == 0 {
-                                --gridTestX
+                                gridTestX -= 1
                             }
                             if passNumber == 1 {
-                                --gridTestY
+                                gridTestY -= 1
                             }
                         }
                     }
@@ -2809,35 +2795,35 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                         let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX + tileShiftXRightOrDown][gridTestY + tileShiftYRightOrDown].tileText)
                         //print("Added existing letter: \(self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText) ")
                         testString = testString + existingLetterToAdd
-                        ++gridToTest
+                        gridToTest += 1
                         if passNumber == 0 {
-                            ++gridTestX
+                            gridTestX += 1
                         }
                         if passNumber == 1 {
-                            ++gridTestY
+                            gridTestY += 1
                         }
                     }
                     //////////  added && gridToTest<14 ????? to fix prible with y array going to 14 adding 1 and going off grid
                     while playerLettersToTestRightOrDown.characters.count > 0 && playerLettersToTestRightOrDown.characters.count <= numTilesToPlayRightOrDownMax && gridToTest < 14 {
                         if self.mmwBoardGrid.grid2DArr[gridTestX + tileShiftXRightOrDown][gridTestY + tileShiftYRightOrDown].tileType != TileType.Letter { // if NOT a letter then play a letter
                             let permutationRightOrDownFirstLetter = String(playerLettersToTestRightOrDown.removeAtIndex(playerLettersToTestRightOrDown.startIndex))
-                            --numTilesToPlayRightOrDownMax
+                            numTilesToPlayRightOrDownMax -= 1
                             
-                            lettersPlayedInPermutation++
+                            lettersPlayedInPermutation += 1
                             currentTestAILetterPlay.tileSpriteLetter = permutationRightOrDownFirstLetter
                             currentTestAILetterPlay.gridXEnd = gridTestX + tileShiftXRightOrDown
                             currentTestAILetterPlay.gridYEnd = gridTestY + tileShiftYRightOrDown
                             
                             currentPossibleAILetterPlayArr.append(currentTestAILetterPlay)
-                            lettersPlayedInPermutation++
+                            lettersPlayedInPermutation += 1
                             
                             testString = testString + permutationRightOrDownFirstLetter
-                            ++gridToTest
+                            gridToTest += 1
                             if passNumber == 0 {
-                                ++gridTestX
+                                gridTestX += 1
                             }
                             if passNumber == 1 {
-                                ++gridTestY
+                                gridTestY += 1
                             }
                             
                             // if IS a letter then add a letter(s)
@@ -2846,12 +2832,12 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                                 //print("Added existing letter: \(mmwBoardGrid.grid2DArr[gridTestX+1][gridTestY].tileText) ")
                                 testString = testString + existingLetterToAdd
                                 
-                                ++gridToTest
+                                gridToTest += 1
                                 if passNumber == 0 {
-                                    ++gridTestX
+                                    gridTestX += 1
                                 }
                                 if passNumber == 1 {
-                                    ++gridTestY
+                                    gridTestY += 1
                                 }
                                 //print (testString)
                             }
@@ -2862,12 +2848,12 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                                 let existingLetterToAdd = String(mmwBoardGrid.grid2DArr[gridTestX + tileShiftXRightOrDown][gridTestY + tileShiftYRightOrDown].tileText)      //   ????? + 1 ???
                                 //print("Added existing letter: \(self.mmwBoardGrid.grid2DArr[gridTestX][gridTestY].tileText) ")
                                 testString = testString + existingLetterToAdd
-                                ++gridToTest
+                                gridToTest += 1
                                 if passNumber == 0 {
-                                    ++gridTestX
+                                    gridTestX += 1
                                 }
                                 if passNumber == 1 {
-                                    ++gridTestY
+                                    gridTestY += 1
                                 }
                             }
                         }
@@ -2891,20 +2877,20 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                             if (isValidCurrentLetterAtDropSpot.validHorizontalPartialWord == false) || (isValidCurrentLetterAtDropSpot.validVerticalPartialWord == false) {
                                 allLettersPossibleWords = false
                             }
-                            currentPossibleAILetterPlayArrIndex++
+                            currentPossibleAILetterPlayArrIndex += 1
                         }
                         
                         if allLettersPossibleWords && currentPossibleAILetterPlayArr.count > 0 {
                             
                             validPartialAILetterPlayArr = currentPossibleAILetterPlayArr
                             
-                            foundPartialWordsNumberAtLockedTile++
+                            foundPartialWordsNumberAtLockedTile += 1
                             
                             allFoundPartialWordPlaysAtLockedTile.append(validPartialAILetterPlayArr)
                             
                             if (mmwGameSceneViewController.checkWholeWordMatch(testString) == true ) && testString.characters.count >= (mmwGameSceneViewController.minWordSize) {
                                 // update existing placeholder data to reflect that tile made word
-                                foundWholeWordsNumberAtLockedTile++
+                                foundWholeWordsNumberAtLockedTile += 1
                                 
                         
                                 
@@ -2946,8 +2932,8 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                     lettersPlayedInPermutation = 0
                     tileArrayToPlay = [MMWTile]()
                     testString = self.mmwBoardGrid.grid2DArr[gridXSpot][gridYSpot].tileText // get letter at start tile
-                    shiftLeftOrUp--
-                    shiftRightOrDown++
+                    shiftLeftOrUp -= 1
+                    shiftRightOrDown += 1
                 }
             }            /////////////////////
             gridTestX = gridXSpot // reset test spot as it may have been moved to right in code below
@@ -2987,7 +2973,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                 if debugMode == true { print("H updating letterTilePlayable.tileSprite.updateAIWordsAtDropSpot \(letter.tileSpriteLetter), \(letter.gridXEnd), \(letter.gridYEnd), \(letter.partOfWord), \(letterTilePlayable.tileState), \(letterTilePlayable.tileState.rawValue ) checkForValidWordsAI mmwGameScene") }
                 letterTilePlayable.tileSprite.updateAIWordsAtDropSpot(letter.gridXEnd, tileYGridDestination: letter.gridYEnd, madeValidWord: letter.madeValidWord)
             }
-            placedTiles++
+            placedTiles += 1
         }
         return true
     }
@@ -3009,7 +2995,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         for y in 0...(mmwBoardGrid.gridNumSquaresY - 1) {   // fill letter tiles
             for x in 0...(mmwBoardGrid.gridNumSquaresX - 1) {
                 if mmwBoardGrid.grid2DArr[x][y].tileState == TileState.Played  {
-                    ++tilesToSubtractBoard
+                    tilesToSubtractBoard += 1
                     delay (Double (tilesToSubtractBoard) * 0.5 ) {
                         
                         mmwGameScene.explosion(self.mmwBoardGrid.grid2DArr[x][y].tileSprite.position, color: tileColors[self.mmwBoardGrid.grid2DArr[x][y].tileOwner.rawValue])
@@ -3033,7 +3019,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                 for tileCol in 0..<grid.grid2DArr[tileRow].count {
                     let tile = grid.grid2DArr[tileRow][tileCol]
                     if tile.tileType == TileType.Letter {
-                        ++tilesToSubtract
+                        tilesToSubtract += 1
                         delay (Double (tilesToSubtract) * 0.5) {
                             
                             mmwGameScene.explosion(tile.tileSprite.position, color: tileColors[tile.tileOwner.rawValue])
@@ -3044,11 +3030,11 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                             mmwGameScene.playerViewArr[tile.tileOwner.rawValue - 1].changePlayerScoreDisplay()
                             tile.tileSprite.alpha = 0.5
                         }
-                        tilesToSubtract++
+                        tilesToSubtract += 1
                     }
                 }
             }
-            playerNum++
+            playerNum += 1
         }
         
         let tileDelay = tilesToSubtractBoard >= tilesToSubtract ? tilesToSubtractBoard : tilesToSubtract

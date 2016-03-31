@@ -222,14 +222,6 @@
                                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="T6s-Q9-0AD">
                                                         <rect key="frame" x="674" y="503" width="20" height="20"/>
                                                     </activityIndicatorView>
-                                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nGi-s0-nVi" userLabel="adMob300x250LoadingView" customClass="GADBannerView">
-                                                        <rect key="frame" x="534" y="326" width="300" height="250"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="300" id="9ef-Io-RNt"/>
-                                                            <constraint firstAttribute="height" constant="250" id="dx5-AA-jzJ"/>
-                                                        </constraints>
-                                                    </view>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="LoadingBarBorder.png" translatesAutoresizingMaskIntoConstraints="NO" id="er7-aQ-M1U">
                                                         <rect key="frame" x="534" y="301" width="300" height="25"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -240,7 +232,6 @@
                                                     <constraint firstItem="dZj-F0-FkC" firstAttribute="centerX" secondItem="ClC-kI-9i3" secondAttribute="centerX" id="1c5-g5-2EL"/>
                                                     <constraint firstItem="dZj-F0-FkC" firstAttribute="top" secondItem="ClC-kI-9i3" secondAttribute="top" constant="140" id="3Yr-6b-frc"/>
                                                     <constraint firstItem="T6s-Q9-0AD" firstAttribute="centerX" secondItem="ClC-kI-9i3" secondAttribute="centerX" id="p2Y-qA-VTU"/>
-                                                    <constraint firstItem="nGi-s0-nVi" firstAttribute="top" secondItem="er7-aQ-M1U" secondAttribute="bottom" id="yUt-7E-df1"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -736,21 +727,10 @@
                                     <constraint firstItem="CgP-F3-NOu" firstAttribute="top" secondItem="kvZ-ZC-q1r" secondAttribute="top" constant="84" id="xeD-dR-Sh4"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1eH-KO-wpy" userLabel="adMobBanner" customClass="GADBannerView">
-                                <rect key="frame" x="446" y="992" width="480" height="32"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="480" id="lj6-Sc-Xg0"/>
-                                    <constraint firstAttribute="height" constant="32" id="sfN-uu-tl6"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <constraints>
                             <constraint firstItem="kvZ-ZC-q1r" firstAttribute="top" secondItem="maK-i9-Uhn" secondAttribute="bottom" id="6jk-LL-Kiz"/>
-                            <constraint firstItem="1eH-KO-wpy" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="8ox-ld-Oxn"/>
-                            <constraint firstItem="nGi-s0-nVi" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="C79-lU-pub"/>
                             <constraint firstItem="kvZ-ZC-q1r" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="Ust-kU-7bm"/>
-                            <constraint firstItem="khH-OB-KpY" firstAttribute="top" secondItem="1eH-KO-wpy" secondAttribute="bottom" id="WqB-1K-aC1"/>
                             <constraint firstItem="er7-aQ-M1U" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="l3t-jH-fD9"/>
                         </constraints>
                     </view>
@@ -771,14 +751,12 @@
                         <outlet property="ViewPlayer3UI" destination="Iai-zq-20q" id="CWg-5V-ai7"/>
                         <outlet property="ViewPlayer4UI" destination="3qF-ym-6Gm" id="0aW-sB-9Ap"/>
                         <outlet property="ViewResultsScreenUI" destination="veM-F1-Sv6" id="x4M-vG-qqC"/>
-                        <outlet property="adMob300x250LoadingViewOutlet" destination="nGi-s0-nVi" id="6ym-l3-MAA"/>
                         <outlet property="allowOffensiveWordsSwitchOutlet" destination="gv6-ni-nhL" id="ZiR-BW-rYx"/>
                         <outlet property="audioSettingOutlet" destination="r3t-0e-OMa" id="N9S-ik-dcU"/>
                         <outlet property="avatarStepperPlayer02" destination="HDZ-F4-ppR" id="Ysb-21-wbx"/>
                         <outlet property="avatarStepperPlayer03" destination="jaW-pd-atE" id="7MO-ny-qjy"/>
                         <outlet property="avatarStepperPlayer04" destination="eQQ-AF-wwX" id="jPP-UU-naB"/>
                         <outlet property="backgroundImageOutlet" destination="cc2-Mb-ah7" id="4ah-z1-rkG"/>
-                        <outlet property="bannerView" destination="1eH-KO-wpy" id="RsK-dK-VTK"/>
                         <outlet property="gameResultsLabel" destination="Qqf-me-QYt" id="Fgs-9C-cnq"/>
                         <outlet property="gamesLostOutlet" destination="cK7-KW-cGf" id="4Dc-l8-Ep5"/>
                         <outlet property="gamesWonOutlet" destination="f1i-Tn-50g" id="erf-g5-ipF"/>
@@ -823,7 +801,6 @@
             <objects>
                 <viewController id="8OM-nR-pgS" userLabel="ViewControllerOptions" customClass="GameViewController" customModule="MarkMyWord" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
-                        <outlet property="adMob320x250LoadingViewOutlet" destination="nGi-s0-nVi" id="otJ-SW-LcE"/>
                         <outlet property="allowOffensiveWordsLabelOutlet" destination="2V5-ga-RrC" id="MuA-2o-0KL"/>
                     </connections>
                 </viewController>
