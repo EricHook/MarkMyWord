@@ -5,9 +5,9 @@
 //  Copyright (c) 2015 Hook Studios. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import SpriteKit
-//import GoogleMobileAds
 
 extension SKNode {
     class func unarchiveFromFile(file : String) -> SKNode? {
@@ -101,7 +101,7 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
     
     var meyamaImageArray = ["meyama000.png", "meyama001.png", "meyama002.png", "meyama003.png", "meyama004.png", "meyama005.png", "meyama006.png"]
     
-    var backgroundImageArray = ["BG000.png", "BG001.png", "BG002.png", "BG003.png", "BG004.png", "BG005.png", "BG006.png", "BG007.png", "BG008.png"]
+    var backgroundImageArray = ["BG000.jpg", "BG001.jpg", "BG002.jpg", "BG003.jpg", "BG004.jpg", "BG005.jpg", "BG006.jpg", "BG007.jpg", "BG008.jpg"]
     
     var playerAvatarNames = ["Player0", "Player1", "Player2", "Player3", "Player4", "Player5", "Player6" ]
     

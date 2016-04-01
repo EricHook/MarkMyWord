@@ -20,10 +20,6 @@ enum GridLocation: Int {
     case Undealt = 0, Player1, Player2, Player3, Player4, GameBoard, Discard
 }
 
-//enum LetterValue: Int {
-//    case unknown = 0, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z
-//}
-
 enum TileState: Int {
     case Undealt = 0, Player1, Player2, Player3, Player4, Played, PlayedMadeWord, Locked
 }
@@ -36,9 +32,8 @@ enum TileOwner: Int {
     case None = 0, Player1, Player2, Player3, Player4, Discard
 }
 
-class MMWTile : NSObject, NSCoding {
+class MMWTile : NSObject {
     var tileSprite : LetterTileSprite!
-    //var tileBuilder : MMWTileBuilder? = nil
     var tileType: TileType = TileType.Unknown
     var spritename: SpriteName = SpriteName.Blank
     var gridLocation: GridLocation = GridLocation.Undealt
@@ -68,24 +63,12 @@ class MMWTile : NSObject, NSCoding {
 //    }
     
     required convenience init?(coder aDecoder: NSCoder) {
-        //        let name = aDecoder.decodeObjectForKey(PropertyKey.nameKey) as! String
-        //
-        //        // Because photo is an optional property of Meal, use conditional cast.
-        //        let photo = aDecoder.decodeObjectForKey(PropertyKey.photoKey) as? UIImage
-        //
-        //        let rating = aDecoder.decodeIntegerForKey(PropertyKey.ratingKey)
-        //
-        //        // Must call designated initializer.
-//                self.init(name: name, photo: photo, rating: rating)
-        
         self.init()
     }
     
+    
     func resetTileValues () {
         self.tileSprite.removeActionForKey("tileAction")
-        
-        //if gridHome?.grid2DArr[gridX][gridY] = MMWTile()
-        //gridHome?.grid2DArr[gridX][gridY] = MMWTile()
         
         if tileType == TileType.Letter {
             tileCollection?.mmwTileArray.append(self)
@@ -96,9 +79,9 @@ class MMWTile : NSObject, NSCoding {
         
         self.gridLocation = GridLocation.Undealt
         gridLocationEnd = GridLocation.Undealt
-        gridHome = nil // mmwGameScene.mmwBoardGrid
-        gridEnd = nil //mmwGameScene.mmwBoardGrid
-        gridTest = nil //mmwGameScene.mmwBoardGrid
+        gridHome = nil
+        gridEnd = nil
+        gridTest = nil
         gridX = -1
         gridY = -1
         gridXEnd = -1
@@ -131,7 +114,6 @@ class MMWTile : NSObject, NSCoding {
         tileSprite.color = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.00)
     }
     
-
     
     override init () {  // creates blank placeholder tile
         
@@ -177,15 +159,14 @@ class MMWTile : NSObject, NSCoding {
     }
     
     
-    func encodeWithCoder(aCoder: NSCoder) {
-        //        aCoder.encodeObject(name, forKey: PropertyKey.nameKey)
-        //        aCoder.encodeObject(photo, forKey: PropertyKey.photoKey)
-        //        aCoder.encodeInteger(rating, forKey: PropertyKey.ratingKey)
-    }
+//    func encodeWithCoder(aCoder: NSCoder) {
+//        //        aCoder.encodeObject(name, forKey: PropertyKey.nameKey)
+//        //        aCoder.encodeObject(photo, forKey: PropertyKey.photoKey)
+//        //        aCoder.encodeInteger(rating, forKey: PropertyKey.ratingKey)
+//    }
+    
     
     deinit {
         print("mmwtile is being deinitialized")
     }
-    
-
 }

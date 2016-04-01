@@ -9,6 +9,7 @@
 import UIKit
 
 import Foundation
+import UIKit
 import SpriteKit
 
 class MMWOptionScreen: SKScene {
@@ -22,7 +23,7 @@ class MMWOptionScreen: SKScene {
     var keyboardAppearance:UIKeyboardAppearance = UIKeyboardAppearance.Default
     
     var backgroundNode = SKSpriteNode(imageNamed: gameViewController.backgroundImageArray[mmwGameSceneViewController.backgroundNumber])
-    var backgroundBlackNode = SKSpriteNode(imageNamed: "BGBlack.png")
+//    var backgroundBlackNode = SKSpriteNode(imageNamed: "BGBlack.png")
     var backgroundStripesAll       = SKSpriteNode(imageNamed: "BGStripes.png")
 
     var defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -59,15 +60,15 @@ class MMWOptionScreen: SKScene {
         }
         backgroundStripesAll.alpha = 0.15
 
-        // add BGBlack
-        backgroundBlackNode.position = CGPoint(x: screenSize!.width/2, y: screenSize!.height/2)
-        backgroundBlackNode.userInteractionEnabled = false
-        backgroundBlackNode.size = self.frame.size;
-        backgroundBlackNode.zPosition = 5
-        if self.childNodeWithName("backgroundBlackNode") == nil {
-            addChild(backgroundBlackNode)
-        }
-        backgroundBlackNode.alpha = 0.5
+//        // add BGBlack
+//        backgroundBlackNode.position = CGPoint(x: screenSize!.width/2, y: screenSize!.height/2)
+//        backgroundBlackNode.userInteractionEnabled = false
+//        backgroundBlackNode.size = self.frame.size;
+//        backgroundBlackNode.zPosition = 5
+//        if self.childNodeWithName("backgroundBlackNode") == nil {
+//            addChild(backgroundBlackNode)
+//        }
+//        backgroundBlackNode.alpha = 0.5
         
         if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
             backgroundStripesAll.xScale = 1.333

@@ -10,8 +10,8 @@
 import Foundation
 import UIKit
 import SpriteKit
-import CoreMotion
-import CoreData
+//import CoreMotion
+//import CoreData
 
 extension StreamReader : SequenceType {
     func generate() -> AnyGenerator<String> {

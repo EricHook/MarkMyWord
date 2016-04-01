@@ -30,7 +30,7 @@ class PlayerView: SKSpriteNode {
     var playerTex            : SKTexture!
     
     let tileCoverTex         = SKTexture(imageNamed: "tileCover.png")
-    let playerGridGlowTex    = SKTexture(imageNamed: "playerGridGlowTex.png")
+//    let playerGridGlowTex    = SKTexture(imageNamed: "playerGridGlowTex.png")
     
     //var playerGridGlowTex    : SKSpriteNode = SKSpriteNode(texture: SKTexture(imageNamed: "Tile3D100xGLOW"), color: UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.00), size: CGSizeMake(50.0, 50.0))
 
@@ -39,7 +39,7 @@ class PlayerView: SKSpriteNode {
     let playerTileGrid    : SKSpriteNode!
     let playerTilesPlaque : SKSpriteNode!
     
-    let playerGridGlow    : SKSpriteNode!
+//    let playerGridGlow    : SKSpriteNode!
     let playerTileCover   : SKSpriteNode!
     let playerTileBacking   : SKSpriteNode!
     
@@ -107,7 +107,7 @@ class PlayerView: SKSpriteNode {
         
         playerTileBacking  = SKSpriteNode(texture: tileCoverTex,   color: UIColorGray, size: CGSizeMake( ( (tileCoverTex.size().width) + 2), ((tileCoverTex.size().height) + 2) ) )
         
-        playerGridGlow   = SKSpriteNode (texture: playerGridGlowTex, color: SKColor.whiteColor(), size: CGSizeMake( ( (playerGridGlowTex.size().width)), ((playerGridGlowTex.size().height)) ) )
+//        playerGridGlow   = SKSpriteNode (texture: playerGridGlowTex, color: SKColor.whiteColor(), size: CGSizeMake( ( (playerGridGlowTex.size().width)), ((playerGridGlowTex.size().height)) ) )
 
         if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
             super.init(texture: playerBGTex, color: UIColorAppleBlue, size: CGSizeMake( playerBGTex.size().width * 1.33 , playerBGTex.size().height * 1.33) ) // (309/2, 1319/2) )
@@ -126,7 +126,7 @@ class PlayerView: SKSpriteNode {
         self.zPosition = -90
         self.anchorPoint = CGPointMake(0, 0)
         
-        let playerGraphics = [playerSprite, playerTileGrid, playerTilesPlaque, playerTileCover, playerGridGlow]
+        let playerGraphics = [playerSprite, playerTileGrid, playerTilesPlaque, playerTileCover] //, playerGridGlow]
         
         for graphic in playerGraphics {
             if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
@@ -240,7 +240,7 @@ class PlayerView: SKSpriteNode {
         playerNameLabel.fontColor = UIColor.whiteColor()
         playerScoreLabel.fontColor = UIColor.whiteColor()
         playerTileCover.hidden = true
-        playerGridGlow.hidden = false
+//        playerGridGlow.hidden = false
         
 //        mmwGameScene.bottomDisplayLabel.text =  ("\(mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerName ), place letters")
         
