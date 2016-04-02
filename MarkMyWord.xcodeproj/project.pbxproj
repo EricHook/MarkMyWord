@@ -110,7 +110,8 @@
 		B8DFB0F81CAE010700F30667 /* BG005@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8DFB0F11CAE010700F30667 /* BG005@2x.jpg */; };
 		B8DFB0F91CAE010700F30667 /* BG006@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8DFB0F21CAE010700F30667 /* BG006@2x.jpg */; };
 		B8DFB0FA1CAE010700F30667 /* BG007@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8DFB0F31CAE010700F30667 /* BG007@2x.jpg */; };
-		B8DFB0FB1CAE010700F30667 /* BG008@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8DFB0F41CAE010700F30667 /* BG008@2x.jpg */; };
+		B8DFB0FE1CAF03EE00F30667 /* tick.wav in Resources */ = {isa = PBXBuildFile; fileRef = B8DFB0FD1CAF03EE00F30667 /* tick.wav */; };
+		B8DFB1001CAF19BE00F30667 /* endTurn.wav in Resources */ = {isa = PBXBuildFile; fileRef = B8DFB0FF1CAF19BE00F30667 /* endTurn.wav */; };
 		B8DFE1561C29F288009FB8ED /* OptionsButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DFE1541C29F288009FB8ED /* OptionsButton@2x.png */; };
 		B8DFE1591C2A0BEE009FB8ED /* GameGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DFE1581C2A0BEE009FB8ED /* GameGrid.png */; };
 		B8DFE15C1C2A0E60009FB8ED /* GameGrid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DFE15A1C2A0E60009FB8ED /* GameGrid@2x.png */; };
@@ -246,7 +247,9 @@
 		B8DFB0F11CAE010700F30667 /* BG005@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "BG005@2x.jpg"; sourceTree = "<group>"; };
 		B8DFB0F21CAE010700F30667 /* BG006@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "BG006@2x.jpg"; sourceTree = "<group>"; };
 		B8DFB0F31CAE010700F30667 /* BG007@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "BG007@2x.jpg"; sourceTree = "<group>"; };
-		B8DFB0F41CAE010700F30667 /* BG008@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "BG008@2x.jpg"; sourceTree = "<group>"; };
+		B8DFB0FC1CAF025C00F30667 /* tick.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = tick.m4a; sourceTree = "<group>"; };
+		B8DFB0FD1CAF03EE00F30667 /* tick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tick.wav; sourceTree = "<group>"; };
+		B8DFB0FF1CAF19BE00F30667 /* endTurn.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = endTurn.wav; sourceTree = "<group>"; };
 		B8DFE1541C29F288009FB8ED /* OptionsButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OptionsButton@2x.png"; sourceTree = "<group>"; };
 		B8DFE1581C2A0BEE009FB8ED /* GameGrid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameGrid.png; sourceTree = "<group>"; };
 		B8DFE15A1C2A0E60009FB8ED /* GameGrid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GameGrid@2x.png"; sourceTree = "<group>"; };
@@ -464,7 +467,6 @@
 				B8DFB0F11CAE010700F30667 /* BG005@2x.jpg */,
 				B8DFB0F21CAE010700F30667 /* BG006@2x.jpg */,
 				B8DFB0F31CAE010700F30667 /* BG007@2x.jpg */,
-				B8DFB0F41CAE010700F30667 /* BG008@2x.jpg */,
 				B86E07FA1CAC86FC009C425D /* BGStripesHole@2x.png */,
 				B86E07EA1CAC86E4009C425D /* BGStripes@2x.png */,
 				B86E07EB1CAC86E4009C425D /* PlayAreaWhite.png */,
@@ -701,6 +703,9 @@
 		B8DA7EDE1AE13A83003FE2C6 /* SoundEffects */ = {
 			isa = PBXGroup;
 			children = (
+				B8DFB0FF1CAF19BE00F30667 /* endTurn.wav */,
+				B8DFB0FD1CAF03EE00F30667 /* tick.wav */,
+				B8DFB0FC1CAF025C00F30667 /* tick.m4a */,
 				B88A58461BEAD859003E0957 /* bonk.mp3 */,
 				B88A58471BEAD859003E0957 /* pass.WAV */,
 				B88A58481BEAD859003E0957 /* points.WAV */,
@@ -858,12 +863,14 @@
 				B8FFF25E1BE96E2E006D2010 /* MagicParticle.sks in Resources */,
 				B88A58541BEAD859003E0957 /* pass.WAV in Resources */,
 				B88A58641BEAD969003E0957 /* MMWPlayerTilesGrid.png in Resources */,
+				B8DFB1001CAF19BE00F30667 /* endTurn.wav in Resources */,
 				B822E36F1C6BCE1800669422 /* LoadingBarBorder.png in Resources */,
 				B8DFB0F81CAE010700F30667 /* BG005@2x.jpg in Resources */,
 				B8A75F8C1CADF08F005EF126 /* WordListChoppedNoDupClean.txt in Resources */,
 				B822E3721C6BCE1800669422 /* LoadingBarBorder@2x.png in Resources */,
 				B809D4221C90D1B70091B9F0 /* meyama006@2x.png in Resources */,
 				B86233351C7FCD960030787E /* avatar005@2x.png in Resources */,
+				B8DFB0FE1CAF03EE00F30667 /* tick.wav in Resources */,
 				B86E07F61CAC86E4009C425D /* BGStripes@2x.png in Resources */,
 				B8B2CACC1ADADD9100C9DEE7 /* 5-LetterWords.txt in Resources */,
 				B84738D41C0A3F20003B05BA /* tileCover@2x.png in Resources */,
@@ -885,7 +892,6 @@
 				B88A58701BEADA6F003E0957 /* TileShadow.png in Resources */,
 				B88A58531BEAD859003E0957 /* bonk.mp3 in Resources */,
 				B8DFB0EC1CADFFDB00F30667 /* BG000@2x.jpg in Resources */,
-				B8DFB0FB1CAE010700F30667 /* BG008@2x.jpg in Resources */,
 				B8FB376F1C28D56700C68434 /* codeSnippets in Resources */,
 				B88A58561BEAD859003E0957 /* badPlay.WAV in Resources */,
 				B8DFB0FA1CAE010700F30667 /* BG007@2x.jpg in Resources */,

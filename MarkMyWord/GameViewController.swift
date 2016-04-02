@@ -28,36 +28,17 @@ extension SKNode {
     }
 }
 
-//var endGameSceneController = EndGameSceneController()
-
-//var mmwEndGameScene = MMWEndGameScene()
-var mmwGameSceneViewController : MMWGameSceneViewController! = MMWGameSceneViewController()
-var gameViewController : GameViewController! = GameViewController()
-var mmwOptionScreen : MMWOptionScreen! = MMWOptionScreen(size: screenSize!)
-var mmwGameScene    : MMWGameScene!  = MMWGameScene(size: screenSize!)
+var mmwGameSceneViewController  = MMWGameSceneViewController()
+var gameViewController          = GameViewController()
+var mmwOptionScreen             = MMWOptionScreen(size: screenSize!)
+var mmwGameScene                = MMWGameScene(size: screenSize!)
 
 var humanAvatarPrefixString  = "avatar00"
 var meyamaAvatarPrefixString = "meyama00"
 var selectedHumanAvatar  = 0
 var selectedMeyamaAvatar = 0
 
-//var avatar000 =
-
-//var humanAvatarImages = [SKimage]
-//var meyamaAvatarImages = [SKimage]
-
-
-
-//// Makes ViewController available to Objc classes.
-//@objc(ViewController)
-
-
 class GameViewController : UIViewController, UITextFieldDelegate { // , GADBannerViewDelegate {
-    
-    //@IBOutlet weak var menuView: UIView?
-    //@IBOutlet weak var playButton: UIButton?
-    
-
 
     var tempSecondsPerTurn : Int!
     
@@ -101,9 +82,9 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
     
     var meyamaImageArray = ["meyama000.png", "meyama001.png", "meyama002.png", "meyama003.png", "meyama004.png", "meyama005.png", "meyama006.png"]
     
-    var backgroundImageArray = ["BG000.jpg", "BG001.jpg", "BG002.jpg", "BG003.jpg", "BG004.jpg", "BG005.jpg", "BG006.jpg", "BG007.jpg", "BG008.jpg"]
+    var backgroundImageArray = ["BG000.jpg", "BG001.jpg", "BG002.jpg", "BG003.jpg", "BG004.jpg", "BG005.jpg", "BG006.jpg", "BG007.jpg"]
     
-    var playerAvatarNames = ["Player0", "Player1", "Player2", "Player3", "Player4", "Player5", "Player6" ]
+    var playerAvatarNames = ["Player0", "Player1", "Player2", "Player3", "Player4", "Player5", "Player6"]
     
     var meyamaAvatarNames = ["Alice", "Bongo", "Cocoa", "Dizzy", "Ethota", "Fadama", "George"]
     
@@ -184,32 +165,6 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
         } else {
             allowOffensiveWordsSwitchOutlet.selectedSegmentIndex = 1
         }
-
-        
-//        ////////////////////
-//        
-//        if mmwGameSceneViewController.playerArray[1].isHuman == false {
-//            gameViewController.isHumanPlayer2Outlet.selectedSegmentIndex = 0
-//        }
-//        else {
-//            gameViewController.isHumanPlayer2Outlet.selectedSegmentIndex = 1
-//        }
-//        
-//        if mmwGameSceneViewController.playerArray[2].isHuman == false {
-//            gameViewController.isHumanPlayer3Outlet.selectedSegmentIndex = 0
-//        }
-//        else {
-//            gameViewController.isHumanPlayer3Outlet.selectedSegmentIndex = 1
-//        }
-//        
-//        if mmwGameSceneViewController.playerArray[3].isHuman == false {
-//            gameViewController.isHumanPlayer4Outlet.selectedSegmentIndex = 0
-//        }
-//        else {
-//            gameViewController.isHumanPlayer4Outlet.selectedSegmentIndex = 1
-//        }
-//        
-//        ////////////////////
 
         tempAudioOn = mmwGameSceneViewController.audioOn
         tempMinWordSize = mmwGameSceneViewController.minWordSize
@@ -323,12 +278,6 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
     @IBOutlet weak var ViewResultsScreenUI: UIView!
 
     @IBOutlet weak var ViewLoadingGameUIOutlet: UIView!
-    
-//    @IBOutlet weak var bannerView: GADBannerView!
-//    @IBOutlet weak var bannerView2: GADBannerView!
-//    @IBOutlet weak var bannerViewLowerLeft: GADBannerView!
-//    @IBOutlet weak var bannerViewUpperRight: GADBannerView!
-//    @IBOutlet weak var bannerViewLowerRight: GADBannerView!
 
     @IBOutlet weak var ViewPlayer1UI: UIView!
     @IBOutlet weak var ViewPlayer2UI: UIView!
@@ -342,14 +291,6 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
     @IBOutlet weak var OptionsSwitchOutlet: UISegmentedControl!
 
     @IBAction func OptionsSwitchAction(sender: AnyObject) {
-//        if sender.selectedSegmentIndex == 2 {
-//            print("stats selected")
-//            gameViewController.ViewAllOptionsUI.hidden = false
-//            gameViewController.ViewOptionsUI.hidden = true
-//            gameViewController.viewRulesContainer.hidden = true
-//            gameViewController.viewStatsContainer.hidden = false
-//            gameViewController.ViewEndGameUI.hidden = true
-//        }
         
         switch (self.OptionsSwitchOutlet.selectedSegmentIndex){
             case 0:
@@ -378,37 +319,12 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
                 gameViewController.ViewEndGameUI.hidden = true
                 
                 toStatViewSettings()
-    //            self.viewRulesContainer.hidden = true
-    //            self.viewStatsContainer.hidden = false
-                
-    //            toStatView.sendActionsForControlEvents(.TouchUpInside)
                 
             default:
                 break;
         }
-        
-        if debugMode == true { print("testSwitch worked") }
-//        button.enabled = false
-//        button.hidden = true
-        //testSwitch.tintColor = UIColorApplePurple
-        
     }
 
-
-    
-    //    @IBAction func OptionsSwitchAction(sender: AnyObject) {
-    //
-    //       //    }
-    
-    
-   
-//    @IBOutlet weak var toStatViewOutlet: UIButton!
-//    
-//    
-//    @IBAction func toStatView(sender: AnyObject) {
-//
-//        
-//    }
     
     func toStatViewSettings() {
         
@@ -560,32 +476,10 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
     @IBAction func backgroundStepper(sender: UIStepper) {
 
             tempBackgroundNumber = Int(sender.value)
-            //player4NameLabel.text = playerAvatarNames[tempPlayer4AvatarNumber]
             backgroundImageOutlet.image = UIImage(named: backgroundImageArray[tempBackgroundNumber])
-            //player4NameLabel.text = playerAvatarNames[tempPlayer4AvatarNumber]
-            //            player4NameTextFieldOutlet.hidden = false
-            //            player4NameLabel.hidden = true
     }
-    
-    
-//    @IBAction func audioSettingAction(sender: AnyObject) {
-//        switch (sender.selectedSegmentIndex){
-//        case 0:
-//            tempAudioOn = false
-//            print("tempAudioOn turned to off")
-//            
-//        case 1:
-//            tempAudioOn = true
-//            print("tempAudioOn turned to on")
-//        default:
-//            break;
-//        }
-//    }
 
-    
-    
-    
-    
+
     ///////////////////////////////////////
     
     @IBOutlet weak var player1NameLabel: UILabel!
@@ -700,24 +594,11 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
             player1NameLabel.text = playerAvatarNames[tempPlayer1AvatarNumber]
             player1ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer1AvatarNumber])
             player1NameLabel.text = playerAvatarNames[tempPlayer1AvatarNumber]
-            //            player2NameTextFieldOutlet.hidden = false
-            //            player2NameLabel.hidden = true
-            
-//            player1NameLabel.text = playerAvatarNames[tempPlayer1AvatarNumber]
-////            player1NameTextFieldOutlet.hidden = false
-////            player1NameLabel.hidden = true
         } else {
-            
             tempPlayer1AvatarNumber = Int(sender.value)
             player1NameLabel.text = playerAvatarNames[tempPlayer1AvatarNumber]
             player1ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer1AvatarNumber])
             player1NameLabel.text = playerAvatarNames[tempPlayer1AvatarNumber]
-            //            player2NameTextFieldOutlet.hidden = false
-            //            player2NameLabel.hidden = true
-
-//            player1NameLabel.text = playerAvatarNames[tempPlayer1AvatarNumber]
-////            player1NameTextFieldOutlet.hidden = true
-////            player1NameLabel.hidden = false
         }
     }
 
@@ -728,15 +609,11 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
             player2NameLabel.text = meyamaAvatarNames[tempPlayer2MeyamaNumber]
             player2ImageOutlet.image = UIImage(named: meyamaImageArray[tempPlayer2MeyamaNumber])
             player2NameLabel.text = meyamaAvatarNames[tempPlayer2MeyamaNumber]
-//            player2NameTextFieldOutlet.hidden = true
-//            player2NameLabel.hidden = false
         } else { // human
             tempPlayer2AvatarNumber = Int(sender.value)
             player2NameLabel.text = playerAvatarNames[tempPlayer2AvatarNumber]
             player2ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer2AvatarNumber])
             player2NameLabel.text = playerAvatarNames[tempPlayer2AvatarNumber]
-//            player2NameTextFieldOutlet.hidden = false
-//            player2NameLabel.hidden = true
         }
     }
 
@@ -746,15 +623,11 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
             player3NameLabel.text = meyamaAvatarNames[tempPlayer3MeyamaNumber]
             player3ImageOutlet.image = UIImage(named: meyamaImageArray[tempPlayer3MeyamaNumber])
             player3NameLabel.text = meyamaAvatarNames[tempPlayer3MeyamaNumber]
-//            player3NameTextFieldOutlet.hidden = true
-//            player3NameLabel.hidden = false
         } else { // human
             tempPlayer3AvatarNumber = Int(sender.value)
             player3NameLabel.text = playerAvatarNames[tempPlayer3AvatarNumber]
             player3ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer3AvatarNumber])
             player3NameLabel.text = playerAvatarNames[tempPlayer3AvatarNumber]
-//            player3NameTextFieldOutlet.hidden = false
-//            player3NameLabel.hidden = true
         }
     }
 
@@ -764,15 +637,11 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
             player4NameLabel.text = meyamaAvatarNames[tempPlayer4MeyamaNumber]
             player4ImageOutlet.image = UIImage(named: meyamaImageArray[tempPlayer4MeyamaNumber])
             player4NameLabel.text = meyamaAvatarNames[tempPlayer4MeyamaNumber]
-//            player4NameTextFieldOutlet.hidden = true
-//            player4NameLabel.hidden = false
         } else { // human
             tempPlayer4AvatarNumber = Int(sender.value)
             player4NameLabel.text = playerAvatarNames[tempPlayer4AvatarNumber]
             player4ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer4AvatarNumber])
             player4NameLabel.text = playerAvatarNames[tempPlayer4AvatarNumber]
-//            player4NameTextFieldOutlet.hidden = false
-//            player4NameLabel.hidden = true
         }
     }
 
@@ -787,8 +656,6 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
     @IBOutlet weak var player4ImageOutlet: UIImageView!
 
     ///////////////////////////////////////
-    
-    // switch (sender.selectedSegmentIndex){
 
     @IBOutlet weak var player2SkillLevelOutlet: UISegmentedControl!
     
@@ -910,30 +777,13 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
 
     @IBAction func returnToGameButton(sender: AnyObject) {
         // returns to game without any settings changes
-        
-        //bannerView.removeFromSuperview()
-        //adMob300x250LoadingViewOutlet.removeFromSuperview()
-        
+
         mmwOptionScreen.returnToGameScene()
     }
 
     
     let button   = UIButton(type: UIButtonType.System) as UIButton
     
-    
-//    func adViewDidReceiveAd(var bannerView: GADBannerView!) {
-//        bannerView.hidden = false
-//
-////        bannerView.rootViewController = nil
-////        self.bannerView.delegate = nil
-////        
-////        bannerView.rootViewController = self
-////        self.bannerView.delegate = self
-//        
-//        print("received ad")
-//
-//    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         if debugMode == true { print("in GameViewController viewDidLoad") }
@@ -957,67 +807,6 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
                 mmwGame.setDeviceType(MMWGame.DeviceType.iPad)
                 if debugMode == true { print("Screen width:\(screenSize!.width) , device type: \(mmwGame.deviceType) ") }
         }
-
-        
-//        //////////////////////////////////
-//        
-//        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
-//        //bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-//        bannerView.adUnitID = "ca-app-pub-6428967577130104/9786515687"
-//        bannerView.rootViewController = self
-//        self.bannerView.delegate = self
-//        bannerView.loadRequest(GADRequest())
-//
-//        //adMob300x250LoadingViewOutlet
-//        
-//        //bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-//        adMob300x250LoadingViewOutlet.adUnitID = "ca-app-pub-6428967577130104/8755277689"
-//        adMob300x250LoadingViewOutlet.rootViewController = self
-//        self.adMob300x250LoadingViewOutlet.delegate = self
-//        adMob300x250LoadingViewOutlet.loadRequest(GADRequest())
-//        
-//        ////////////////////////////////
-        
-        
-//        bannerView.delegate = nil
-//        bannerView.removeFromSuperview()
-        
-
-//        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
-//        //bannerView2.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-//        bannerView2.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-//        bannerView2.rootViewController = self
-//        bannerView2.loadRequest(GADRequest())
-        
-        
-//
-//        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
-//        //bannerViewLowerLeft.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-//        bannerViewLowerLeft.adUnitID = "ca-app-pub-6428967577130104/2263248882"
-//        bannerViewLowerLeft.rootViewController = self
-//        bannerViewLowerLeft.loadRequest(GADRequest())
-//        
-//        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
-//        //bannerViewUpperRight.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-//        bannerViewUpperRight.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-//        bannerViewUpperRight.rootViewController = self
-//        bannerViewUpperRight.loadRequest(GADRequest())
-//        
-//        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
-//        //bannerViewLowerRight.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-//        bannerViewLowerRight.adUnitID = "ca-app-pub-6428967577130104/3739982084"
-//        bannerViewLowerRight.rootViewController = self
-//        bannerViewLowerRight.loadRequest(GADRequest())
-        
-        
-        
-        
-        
-
-        
-        
-        
-        
         
         let skView = self.view as! SKView
         skView.showsFPS = false
@@ -1028,86 +817,15 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
 
         /* Set the scale mode to scale to fit the window */
         mainMenuScene.scaleMode = .AspectFill
-        
-/////////////////
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentView", name: "showController", object: nil)
-/////////////////////////////////
-        
-        //scene.parentController = self
+
         initializeTextFields()
         
 
         skView.presentScene(mainMenuScene)
 
-
-        //var cornerView = UIView()
-        
-        //self.view.insertSubview(cornerView, atIndex: 2)
-        
-//        button.frame = CGRectMake(100, 100, 100, 50)
-//        button.backgroundColor = UIColor.greenColor()
-//        button.setTitle("Test Button", forState: UIControlState.Normal)
-//        button.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        //cornerView.addSubview(button)
-
         gameViewController = self as GameViewController
-        //gameViewController.buttonAction()
-        
-        //self.view.addSubview(cornerView)
+
     }
-    
-    
-    
-    
-    
-//    /// Tells the delegate an ad request loaded an ad.
-//    func adViewDidReceiveAd(bannerView: GADBannerView!) {
-//        print("adViewDidReceiveAd")
-//    }
-//    
-//    /// Tells the delegate an ad request failed.
-//    func adView(bannerView: GADBannerView!,
-//        didFailToReceiveAdWithError error: GADRequestError!) {
-//            print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
-//    }
-//    
-//    /// Tells the delegate that a full screen view will be presented in response
-//    /// to the user clicking on an ad.
-//    func adViewWillPresentScreen(bannerView: GADBannerView!) {
-//        print("adViewWillPresentScreen")
-//    }
-//    
-//    /// Tells the delegate that the full screen view will be dismissed.
-//    func adViewWillDismissScreen(bannerView: GADBannerView!) {
-//        print("adViewWillDismissScreen")
-//    }
-//    
-//    /// Tells the delegate that the full screen view has been dismissed.
-//    func adViewDidDismissScreen(bannerView: GADBannerView!) {
-//        print("adViewDidDismissScreen")
-//    }
-//    
-//    /// Tells the delegate that a user click will open another app (such as
-//    /// the App Store), backgrounding the current app.
-//    func adViewWillLeaveApplication(bannerView: GADBannerView!) {
-//        print("adViewWillLeaveApplication")
-//    }
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-//    func buttonAction(sender:UIButton!)
-//    {
-//        print("Manual Button tapped")
-//        
-//    }
     
     func buttonAction()
     {
@@ -1115,12 +833,9 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
     }
 
     // MARK: END GAME SCREEN
-    
 
     @IBAction func EndGameYesButton(sender: AnyObject) {
         // returns to game without any settings changes
-        
-        //view?.presentScene(mmwOptionScreen)
         
         gameViewController.ViewAllOptionsUI.hidden = true
         
@@ -1129,16 +844,11 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
         mmwGameScene.subtractTilesRemainingOnBoard()
 
         if debugMode == true { print("MMWOptionScreen didMoveToView") }
-
-        //goToResults()
-        //startNewGame()
     }
     
 
     func goToResults() {
-        
-        //view?.presentScene(mmwOptionScreen)
-        
+
         gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
         gameViewController.ViewAllOptionsUI.hidden = false
         gameViewController.OptionsSwitchOutlet.hidden = true
@@ -1210,11 +920,6 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
         mmwGameSceneViewController.playerArray[2].playerName = tempPlayer3Name
         mmwGameSceneViewController.playerArray[3].playerName = tempPlayer4Name
         
-//        mmwGameSceneViewController.playerArray[0].playerName = player1NameTextFieldOutlet.text!
-//        mmwGameSceneViewController.playerArray[1].playerName = player2NameTextFieldOutlet.text!
-//        mmwGameSceneViewController.playerArray[2].playerName = player3NameTextFieldOutlet.text!
-//        mmwGameSceneViewController.playerArray[3].playerName = player4NameTextFieldOutlet.text!
-        
         mmwGameSceneViewController.playerArray[0].isHuman = tempPlayer1IsHuman
         mmwGameSceneViewController.playerArray[1].isHuman = tempPlayer2IsHuman
         mmwGameSceneViewController.playerArray[2].isHuman = tempPlayer3IsHuman
@@ -1236,7 +941,6 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
         mmwGameSceneViewController.playerArray[3].playerMeyamaNumber = tempPlayer4MeyamaNumber
         
         mmwOptionScreen.newGameScene()
-        //startNewGame()
     }
     
     @IBAction func gameResultsChangeOptionsButton(sender: AnyObject) {
@@ -1251,8 +955,6 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
         gameViewController.viewStatsContainer.hidden = true
         gameViewController.ViewEndGameUI.hidden = true
         gameViewController.ViewResultsScreenUI.hidden = true
-
-        //view?.presentScene(mmwOptionScreen)
 
         if debugMode == true { print("back to  mmwGameScene from optionsButton") }
         
@@ -1276,10 +978,6 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
     
     // MARK: LOADING SCREEN
 
-    
-//    @IBOutlet weak var adMob300x250LoadingViewOutlet: GADBannerView!
-    
-    
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
             return UIInterfaceOrientationMask.AllButUpsideDown
@@ -1317,32 +1015,11 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
     @IBOutlet weak var player4NameTextFieldOutlet: UITextField!
 
     
-//    @IBAction func player1TextFieldNameAction(sender: AnyObject) {
-////        textField(Pl, shouldChangeCharactersInRange: <#T##NSRange#>, replacementString: <#T##String#>)
-//    }
-    
     func initializeTextFields() {
         player1NameTextFieldOutlet.delegate = self
         player2NameTextFieldOutlet.delegate = self
         player3NameTextFieldOutlet.delegate = self
         player4NameTextFieldOutlet.delegate = self
-        
-//        player1NameTextFieldOutlet.keyboardType = UIKeyboardType.Alphabet
-//        player1NameTextFieldOutlet.keyboardType = UIKeyboardType.Alphabet
-//        player1NameTextFieldOutlet.keyboardType = UIKeyboardType.Alphabet
-//        player1NameTextFieldOutlet.keyboardType = UIKeyboardType.Alphabet
-        
-//        noVowelsTextField.delegate = self
-//        noVowelsTextField.keyboardType = UIKeyboardType.ASCIICapable
-//        
-//        digitsOnlyTextField.delegate = self
-//        digitsOnlyTextField.keyboardType = UIKeyboardType.NumberPad
-//        
-//        numericOnlyTextField.delegate = self
-//        numericOnlyTextField.keyboardType = UIKeyboardType.NumbersAndPunctuation
-//        
-//        positiveIntegersOnlyTextField.delegate = self
-//        positiveIntegersOnlyTextField.keyboardType = UIKeyboardType.DecimalPad
     }
     
     
@@ -1368,52 +1045,7 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
         let prospectiveText = (currentText as NSString).stringByReplacingCharactersInRange(range, withString: string)
         
         if debugMode == true { print("player name = \(prospectiveText)") }
-        
-        return
 
-            prospectiveText.characters.count <= 12
-        
-//        switch textField {
-//            
-//            // Allow only upper- and lower-case vowels in this field,
-//            // and limit its contents to a maximum of 6 characters.
-//            case  player1NameTextFieldOutlet:
-//                return
-//                    prospectiveText.characters.count <= 6
-//            
-//    //            // Allow any characters EXCEPT upper- and lower-case vowels in this field,
-//    //            // and limit its contents to a maximum of 8 characters.
-//    //        case noVowelsTextField:
-//    //            return prospectiveText.doesNotContainCharactersIn("aeiouAEIOU") &&
-//    //                prospectiveText.characters.count <= 8
-//    //            
-//    //            // Allow only digits in this field,
-//    //            // and limit its contents to a maximum of 3 characters.
-//    //        case digitsOnlyTextField:
-//    //            return prospectiveText.containsOnlyCharactersIn("0123456789") &&
-//    //                prospectiveText.characters.count <= 3
-//    //            
-//    //            // Allow only values that evaluate to proper numeric values in this field,
-//    //            // and limit its contents to a maximum of 7 characters.
-//    //        case numericOnlyTextField:
-//    //            return prospectiveText.isNumeric() &&
-//    //                prospectiveText.characters.count <= 7
-//    //            
-//    //            // In this field, allow only values that evalulate to proper numeric values and
-//    //            // do not contain the "-" and "e" characters, nor the decimal separator character
-//    //            // for the current locale. Limit its contents to a maximum of 5 characters.
-//    //        case positiveIntegersOnlyTextField:
-//    //            let decimalSeparator = NSLocale.currentLocale().objectForKey(NSLocaleDecimalSeparator) as! String
-//    //            return prospectiveText.isNumeric() &&
-//    //                prospectiveText.doesNotContainCharactersIn("-e" + decimalSeparator) &&
-//    //                prospectiveText.characters.count <= 5
-//                
-//                // Do not put constraints on any other text field in this view
-//                // that uses this class as its delegate.
-//        default:
-//            return true
-//        }
-        
+        return prospectiveText.characters.count <= 12
     }
-
 }

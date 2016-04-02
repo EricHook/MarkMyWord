@@ -28,8 +28,8 @@ class Player {
         case low = 0, mid = 1, high = 2
     }
 
-    var playerLetterGrid: Grid! = nil
-    var playerView : PlayerView! = nil
+    weak var playerLetterGrid : Grid! = nil
+    weak var playerView : PlayerView! = nil
  
     init (_playerID : Int, _playerName : String, _playerColor : Int) {
         //if playerID > 0 { isHuman = false } // only player 1 defaults to human

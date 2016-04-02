@@ -133,10 +133,6 @@ class MMWOptionScreen: SKScene {
     func returnToGameScene () {
         if debugMode == true { print("return to mmw scene") } //create MMW controller
 
-//        if mmwGameSceneViewController.timerIsOn {
-//            mmwGameScene.startTimer()
-//        }
-
         gameViewController.ViewAllOptionsUI.hidden = true
         
         mmwGameScene.playAreaWhite.hidden = false
@@ -144,33 +140,17 @@ class MMWOptionScreen: SKScene {
         mmwGameScene.gameGrid.hidden = false
         
         self.view?.presentScene(mmwGameScene)
-        
-        //mmwGameScene.startTimer(mmwGameScene.secondsLeft)
-        //delay(1){
-            //mmwGameScene.changePlayerTurn()
-        //}
     }
     
     func returnToGameSceneFinishGame () {
         if debugMode == true { print("return to mmw scene") }//create MMW controller
-        
-        //        if mmwGameSceneViewController.timerIsOn {
-        //            mmwGameScene.startTimer()
-        //        }
-        //gameGridCover.hidden = true
 
         gameViewController.ViewAllOptionsUI.hidden = true
-        
         mmwGameScene.playAreaWhite.hidden = false
         mmwGameScene.backgroundStripes.hidden = false
         mmwGameScene.gameGrid.hidden = false
         
         self.view?.presentScene(mmwGameScene)
-        
-        //mmwGameScene.startTimer(mmwGameScene.secondsLeft)
-        //delay(1){
-        //mmwGameScene.changePlayerTurn()
-        //}
     }
     
     func newGameScene () {

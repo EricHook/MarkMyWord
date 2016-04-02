@@ -48,13 +48,13 @@ class MMWTile : NSObject {
     var gridXTest: Int = -1
     var gridYTest: Int = -1
 
-    var tileText: String = "!"
-    var undealt = true
+    var tileText: String     = "!"
+    var undealt              = true
     var tileState: TileState = TileState.Undealt
     var playedMadeWord       = PlayedMadeWord.None
     var tileOwner: TileOwner = TileOwner.None
     var tileGrid: Grid?      = nil
-    var describe          = "!"
+    var describe             = "!"
     
     var playableSpotsEachDirection : (left: Int, right: Int, up: Int, down: Int) = (0, 0, 0, 0)
 

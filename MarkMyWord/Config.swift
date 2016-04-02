@@ -14,8 +14,6 @@ let screenWidth  = UIScreen.mainScreen().bounds.size.width
 let screenHeight = UIScreen.mainScreen().bounds.size.height
 var screenSize : CGSize?
 
-
-
 // Random number generator /////////////////////
 func randomNumber(minX minX:UInt32, maxX:UInt32) -> Int {
   let result = (arc4random() % (maxX - minX + 1)) + minX
@@ -25,9 +23,6 @@ func randomNumber(minX minX:UInt32, maxX:UInt32) -> Int {
 let TileMargin: CGFloat = 19.0
 
 //// Fonts ///////////////////////////////////////
-//let FontHUD = UIFont(name:"comic andy", size: 62.0)!
-//let FontHUDBig = UIFont(name:"comic andy", size:120.0)!
-
 let FontHUDName = "HelveticaNeue"
 
 var FontHUDSize : CGFloat = 19.0
@@ -52,17 +47,14 @@ var debugMode = false
 var gameIsSuspended = false
 
 var FontHUD = UIFont(name:"HelveticaNeue", size: 18.0)
-
 let FontHUDiPhoneSize = 12.0
 let FontHUDiPhone = UIFont(name:"HelveticaNeue", size: 12.0)
 
 let fontLetterTileSize = 40
 
 let FontHUDBigName = "HelveticaNeue-Bold"
-
 let FontHUDBigSize : CGFloat = 120.0
 var FontHUDBig = UIFont(name:"HelveticaNeue-Bold", size:120.0)
-
 let FontHUDBigiPhoneiPhone = 80.0
 let FontHUDBigiPhone = UIFont(name:"HelveticaNeue-Bold", size:80.0)
 
@@ -87,9 +79,8 @@ let UIColorAppleYellow  = UIColor(red: 0.9609, green: 0.5117, blue: 0.125,  alph
 //let UIColorApplePurple = UIColor(red: 169/256, green: 33/256, blue: 237/256, alpha: 1.0)
 //let UIColorAppleYellow = UIColor(colorLiteralRed: 252/256, green: 217/256, blue: 0/256, alpha: 1.0)
 
-let gameColors :  [UIColor] = [UIColorGray, UIColorAppleBlue, UIColorAppleOrange, UIColorAppleRed, UIColorApplePurple, UIColorAppleGreen,  ]
+let gameColors :  [UIColor] = [UIColorGray, UIColorAppleBlue, UIColorAppleOrange, UIColorAppleRed, UIColorApplePurple, UIColorAppleGreen]
 let tileColors :  [UIColor] = gameColors
-//let gameColors :  [UIColor] = [UIColorGray, UIColorAppleBlue, UIColorAppleRed, UIColorApplePurple,  UIColorAppleGreen, UIColorAppleYellow, UIColorAppleOrange]
 
 //// Sound effects ///////////////////////////////
 let SoundDing = "ding.mp3"

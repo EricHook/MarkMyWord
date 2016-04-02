@@ -22,11 +22,11 @@ import SpriteKit
 
 
 struct validAILetterPlay {
-    var tileSpriteLetter : String = ""
-    var gridXEnd: Int = -1
-    var gridYEnd: Int = -1
-    var partOfWord = ""
-    var madeValidWord = false
+    var tileSpriteLetter = ""
+    var gridXEnd         = -1
+    var gridYEnd         = -1
+    var partOfWord       = ""
+    var madeValidWord    = false
 }
 
 
@@ -622,17 +622,17 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             if secondsLeft <= 10 && secondsLeft > 5 {
                 timeRemainingLabel.text =  "Timer: \( String(secondsLeft) ) "
                 timeRemainingLabel.fontColor = SKColor(red: 0, green: 1, blue: 1, alpha: 1) // counter turns orange color
-                if mmwGameSceneViewController.timerIsOn == true {
-                    let countdownSmall = SKAction.playSoundFileNamed("pass.WAV", waitForCompletion: true)
-                    runAction(SKAction.sequence( [countdownSmall]) )
-                }
+//                if mmwGameSceneViewController.timerIsOn == true {
+//                    let countdownSmall = SKAction.playSoundFileNamed("tick.wav", waitForCompletion: true)
+//                    runAction(SKAction.sequence( [countdownSmall]) )
+//                }
             }
             
             if secondsLeft <= 5 {
                 timeRemainingLabel.text =  "Timer: \( String(secondsLeft) )"
                 timeRemainingLabel.fontColor = SKColor(red: 1, green: 0, blue: 0, alpha: 1) // counter turns red color
                 if mmwGameSceneViewController.timerIsOn == true {
-                    let countdownBig = SKAction.playSoundFileNamed("points.WAV", waitForCompletion: true)
+                    let countdownBig = SKAction.playSoundFileNamed("tick.wav", waitForCompletion: true)
                     runAction(SKAction.sequence( [countdownBig]) )
                 }
 
@@ -1745,12 +1745,10 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         
         mmwGameScene.pauseButton.userInteractionEnabled = true
         mmwGameScene.pauseButton.alpha = 0.5
-        
-        
-        
-        if mmwGameSceneViewController.audioOn == true {
-            self.runAction(SKAction.playSoundFileNamed("points.WAV", waitForCompletion: false))
-        }
+
+//        if mmwGameSceneViewController.audioOn == true {
+//            self.runAction(SKAction.playSoundFileNamed("endTurn.wav", waitForCompletion: false))
+//        }
         
         if mmwGameSceneViewController.lettersPlayedInTurn == 0 {
             mmwGameSceneViewController.consecutivePasses += 1
@@ -2299,7 +2297,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             mmwGameSceneViewController.lettersPlayedInTurn = 0
             
             if mmwGameSceneViewController.audioOn == true {
-                runAction(SKAction.playSoundFileNamed("points.WAV", waitForCompletion: false))
+                runAction(SKAction.playSoundFileNamed("endTurn.wav", waitForCompletion: false))
             }
             
             delay (0.5) {
@@ -2502,7 +2500,7 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         var playerLetterTilesGrid = mmwGameSceneViewController.playerArray[mmwGameSceneViewController.playerTurn - 1].playerLetterGrid // num of tilesToPlay 0 to numTiles in player grid
         
         ///////////////// HORIZONTAL && VERTICAL
-        var currentTestAILetterPlay        = validAILetterPlay()
+        var currentTestAILetterPlay : validAILetterPlay? = validAILetterPlay()
         var currentPossibleAILetterPlayArr = [validAILetterPlay]()
         var validPartialAILetterPlayArr    : [validAILetterPlay] = [validAILetterPlay]()
         var validWholeWordAILetterPlayArr  : [validAILetterPlay] = [validAILetterPlay]()
@@ -2631,12 +2629,12 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                             numTilesToPlayLeftOrUpMax -= 1
                             let permutationLeftOrUpLastLetter = String( playerLettersToTestLeftOrUp.removeAtIndex(playerLettersToTestLeftOrUp.endIndex.predecessor()) )
                             
-                            currentTestAILetterPlay.tileSpriteLetter = permutationLeftOrUpLastLetter
+                            currentTestAILetterPlay!.tileSpriteLetter = permutationLeftOrUpLastLetter
                             
-                            currentTestAILetterPlay.gridXEnd = gridTestX + tileShiftXLeftOrUp
-                            currentTestAILetterPlay.gridYEnd = gridTestY + tileShiftYLeftOrUp
+                            currentTestAILetterPlay!.gridXEnd = gridTestX + tileShiftXLeftOrUp
+                            currentTestAILetterPlay!.gridYEnd = gridTestY + tileShiftYLeftOrUp
                             
-                            currentPossibleAILetterPlayArr.append(currentTestAILetterPlay)
+                            currentPossibleAILetterPlayArr.append(currentTestAILetterPlay!)
                             lettersPlayedInPermutation += 1
                             testString = permutationLeftOrUpLastLetter + testString
                             
@@ -2735,11 +2733,11 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                             numTilesToPlayRightOrDownMax -= 1
                             
                             lettersPlayedInPermutation += 1
-                            currentTestAILetterPlay.tileSpriteLetter = permutationRightOrDownFirstLetter
-                            currentTestAILetterPlay.gridXEnd = gridTestX + tileShiftXRightOrDown
-                            currentTestAILetterPlay.gridYEnd = gridTestY + tileShiftYRightOrDown
+                            currentTestAILetterPlay!.tileSpriteLetter = permutationRightOrDownFirstLetter
+                            currentTestAILetterPlay!.gridXEnd = gridTestX + tileShiftXRightOrDown
+                            currentTestAILetterPlay!.gridYEnd = gridTestY + tileShiftYRightOrDown
                             
-                            currentPossibleAILetterPlayArr.append(currentTestAILetterPlay)
+                            currentPossibleAILetterPlayArr.append(currentTestAILetterPlay!)
                             lettersPlayedInPermutation += 1
                             
                             testString = testString + permutationRightOrDownFirstLetter
@@ -2841,11 +2839,11 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                         }
                     }
                     else {
-                        //print("NOT partial Word Match! \(testString) checkForValidWordsAI mmwGameScene" )
+                        if debugMode == true { print("NOT partial Word Match! \(testString) checkForValidWordsAI mmwGameScene" ) }
                     }
                     
                     if allFoundWholeWordPlaysAtLockedTile.count > 1 {
-                        break // break early to speed AI play - can alter to give AI choices of plays
+                        break // break early to speed AI play - can alter later to optimize to give AI choices of valid tile plays
                     }
                     
                     currentTestAILetterPlay = validAILetterPlay()
@@ -2860,10 +2858,9 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                     shiftLeftOrUp -= 1
                     shiftRightOrDown += 1
                 }
-            }            /////////////////////
+            }
             gridTestX = gridXSpot // reset test spot as it may have been moved to right in code below
             gridTestY = gridYSpot
-            ////////////////////
         }
         
         if allFoundPartialWordPlaysAtLockedTile.count > 0 {
@@ -2912,17 +2909,15 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             playerView.playerNameLabel.fontColor = UIColor.whiteColor()
             playerView.playerScoreLabel.fontColor = UIColor.whiteColor()
             playerView.playerTileCover.hidden = true
-//            playerView.playerGridGlow.hidden = false
         }
         
         var tilesToSubtractBoard = 0
-        //var numLetterTilesRemaining = 0
         for y in 0...(mmwBoardGrid.gridNumSquaresY - 1) {   // fill letter tiles
             for x in 0...(mmwBoardGrid.gridNumSquaresX - 1) {
                 if mmwBoardGrid.grid2DArr[x][y].tileState == TileState.Played  {
                     tilesToSubtractBoard += 1
                     delay (Double (tilesToSubtractBoard) * 0.5 ) {
-                        
+
                         mmwGameScene.explosion(self.mmwBoardGrid.grid2DArr[x][y].tileSprite.position, color: tileColors[self.mmwBoardGrid.grid2DArr[x][y].tileOwner.rawValue])
                         
                         self.mmwBoardGrid.grid2DArr[x][y].tileSprite.showNegativeScoreTextToGridHome(-2)
@@ -2946,11 +2941,8 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
                     if tile.tileType == TileType.Letter {
                         tilesToSubtract += 1
                         delay (Double (tilesToSubtract) * 0.5) {
-                            
                             mmwGameScene.explosion(tile.tileSprite.position, color: tileColors[tile.tileOwner.rawValue])
-                            
                             mmwGameSceneViewController.playerArray[tile.tileOwner.rawValue - 1].playerScore -= 2
-                            //mmwGameSceneViewController.playerArray[playerNum].playerScore -= 2
                             tile.tileSprite.showNegativeScoreTextToGridHome(-2)
                             mmwGameScene.playerViewArr[tile.tileOwner.rawValue - 1].changePlayerScoreDisplay()
                             tile.tileSprite.alpha = 0.5
@@ -2974,7 +2966,6 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         view?.presentScene(mmwOptionScreen)
         mmwGameScene.stopTimer()
         gameViewController.goToResults()
-        
     }
     
     
