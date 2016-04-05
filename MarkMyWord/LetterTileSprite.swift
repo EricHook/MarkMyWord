@@ -446,14 +446,10 @@ class LetterTileSprite : SKSpriteNode {
             self.zPosition = 1
             self.letterLabel.zPosition = 2
         }
-        
-        
+
         LetterTileSprite.removeAllTileHighlights ()
         //runAction(actionSound2)
-        
-//        delay(animationTime + 5.0){
-//            mmwGameScene.animationsActive(false)
-//        }
+
     }
     
     
@@ -462,10 +458,7 @@ class LetterTileSprite : SKSpriteNode {
     /// - Parameters: pauseDuration: Double
     ///
     func playTileToBoardGrid (pauseDuration: Double) {
-        //        let scaleUp : SKAction!
-        //        let scaleDown : SKAction!
-        
-        //mmwGameScene.animationsActive(true)
+
         var animationTime = 0.0
         
         self.zPosition = 25
@@ -479,19 +472,16 @@ class LetterTileSprite : SKSpriteNode {
         if (self.tileSpriteParent.gridX != -1) {
             boardPosition = Grid.sendToGridSquare(mmwGameScene.mmwBoardGrid, squareX: self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridYEnd)
         }
-        //let boardPosition = Grid.sendToGridSquare(mmwGameScene.mmwBoardGrid, squareX: self.tileSpriteParent.gridXEnd, squareY: self.tileSpriteParent.gridYEnd)
         
         let slide = SKAction.moveTo(boardPosition, duration: 0.75)
         var scaleUp   = SKAction.scaleTo(1.5, duration:0.4)
         var scaleDown = SKAction.scaleTo(1.00, duration:0.3)
-//        animationTime += 0.75
 
         if mmwGame.deviceType == MMWGame.DeviceType.iPadPro {
             scaleUp = SKAction.scaleTo(2.5, duration:0.4)
             scaleDown = SKAction.scaleTo(1.33, duration:0.3)
         }
 
-        //let pauseSlide = SKAction.sequence([slide])
         let scaleUpDown = SKAction.sequence([scaleUp, scaleDown])  // , self.actionSound2, ])
         self.runAction(SKAction.group([slide, scaleUpDown]))
 
@@ -503,15 +493,6 @@ class LetterTileSprite : SKSpriteNode {
         self.userInteractionEnabled = false
         self.tileGlow.hidden = true
         LetterTileSprite.removeAllTileHighlights()
-        
-//        delay(0.25) {
-//            self.zPosition = 5
-//        }
-    
-//        delay(animationTime + 12.0){
-//            mmwGameScene.animationsActive(false)
-//        }
-
     }
     
     
@@ -520,11 +501,7 @@ class LetterTileSprite : SKSpriteNode {
     /// - Parameters:
     ///     - none: nothing
     func showTileScoreTextToGridHome (delaySec: Int, pointsForTile: Int ) {
-        
-//        mmwGameScene.animationsActive(true)
-//        var animationTime = 0.0
-        
-  
+
 //        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
 //        dispatch_async(dispatch_get_global_queue(priority, 0), { ()->() in
 //            print("Currently dispatched thread asynchronously 0 playBtnPlay playAILetters")
@@ -564,22 +541,12 @@ class LetterTileSprite : SKSpriteNode {
             if mmwGameSceneViewController.audioOn == true {
                 self.runAction(SKAction.playSoundFileNamed("points.WAV", waitForCompletion: false))
             }
-   
-        
-//        delay(animationTime + 12.0){
-//            mmwGameScene.animationsActive(false)
-//        }
-        
-        //self.runAction(self.actionSound2)
-        
 
 //            dispatch_async(dispatch_get_main_queue(), {
 //                print("hello from playBtnPlay playAILetters thread executed as dispatch")
 //            })
 //        })
-    
-        
-                    
+       
     }
     
     
@@ -589,11 +556,9 @@ class LetterTileSprite : SKSpriteNode {
     ///     - none: nothing
     func showWordScoreTextToGridHome (number: Int, isHorizontalScore: Bool) {
         
-        //mmwGameScene.animationsActive(true)
-        //var animationTime = 0.0
-
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         dispatch_async(dispatch_get_global_queue(priority, 0), { ()->() in
+            
             if debugMode == true { print("Currently dispatched thread asynchronously 0 playBtnPlay playAILetters") }
             
             if mmwGameSceneViewController.audioOn == true {
@@ -640,14 +605,11 @@ class LetterTileSprite : SKSpriteNode {
                 
                 let animPart1 = SKAction.group([unhide, slide])
                 let animScale = SKAction.sequence([scaleUp, scaleDown, remove])
-                
-                
-                
+
                 tileScore.runAction(SKAction.group([fadeIn, animPart1, fadeOut, animScale]) )
                 
                 mmwGameScene.explosion(endPosition, color: tileColors[self.tileSpriteParent.tileOwner.rawValue])
 
-                
             }
 
             dispatch_async(dispatch_get_main_queue(), {
@@ -971,13 +933,11 @@ class LetterTileSprite : SKSpriteNode {
                 
                 if mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum - 1][tileSnapResultsYGrid].tileState == TileState.Locked {
                     foundLockedTile = true // stops check on last last locked tile
-                    //hasLockedPotentialWord = true
                 }
                 currentCheckXGridNum -= 1
             }
             
             leftString = stringToAdd.stringByAppendingString(letterToTest) //possibleWordTilesHorizontal = possibleWordTilesHorizontal.reverse()  ///
-            //possibleWordTilesHorizontal.append(tileSpriteParent)
             
             //RIGHT
             currentCheckXGridNum = tileSnapResultsXGrid
@@ -988,7 +948,6 @@ class LetterTileSprite : SKSpriteNode {
                 stringToAdd = stringToAdd.stringByAppendingString(letterToAdd)
                 if mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileSnapResultsYGrid].tileState == TileState.Locked {
                     foundLockedTile = true
-                    //hasLockedPotentialWord = true
                 }
                 currentCheckXGridNum += 1
             }
@@ -1015,17 +974,13 @@ class LetterTileSprite : SKSpriteNode {
                 numVerticalAdjacentLetters += 1
                 let letterToAdd : String = "\(mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].tileText)"
                 stringToAdd = letterToAdd.stringByAppendingString(stringToAdd)
-                
-                //possibleWordTilesVertical.append((mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1]))
                 if mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum - 1].tileState == TileState.Locked {
                     foundLockedTile = true
-                    //hasLockedPotentialWord = true
                 }
                 currentCheckYGridNum -= 1
             }
             
             upString = stringToAdd.stringByAppendingString(letterToTest)
-            //possibleWordTilesVertical.append(tileSpriteParent)
             
             //DOWN
             currentCheckYGridNum = tileSnapResultsYGrid
@@ -1036,11 +991,8 @@ class LetterTileSprite : SKSpriteNode {
                 stringToAdd = stringToAdd.stringByAppendingString(letterToAdd)
                 if mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum + 1].tileState == TileState.Locked {
                     foundLockedTile = true
-                    //hasLockedPotentialWord = true
                 }
-                
-                //possibleWordTilesVertical.append(mmwGameScene.mmwBoardGrid.grid2DArr[tileSnapResultsXGrid][currentCheckYGridNum + 1])
-                
+
                 currentCheckYGridNum += 1
             }
             
@@ -1292,8 +1244,18 @@ class LetterTileSprite : SKSpriteNode {
         currentCheckXGridNum = tileSnapResultsXGrid
         stringToAdd = ""
         while ( (currentCheckXGridNum < 14) && (mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileSnapResultsYGrid].tileState == TileState.Locked || (mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileSnapResultsYGrid].tileState == TileState.Played) || (mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileSnapResultsYGrid].tileState == TileState.PlayedMadeWord) ) )  {
-            numHorizontalAdjacentLetters += 1
-            numHorizontalAdjacentLetters += 1
+            
+            
+//            numHorizontalAdjacentLetters += 2
+//            
+//            
+//            
+//            
+//            //numHorizontalAdjacentLetters += 1
+            
+            
+            
+            
             let letterToAdd : String = "\(mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileSnapResultsYGrid].tileText)"
             stringToAdd = stringToAdd.stringByAppendingString(letterToAdd)
             if mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileSnapResultsYGrid].tileState == TileState.Locked {
@@ -1346,8 +1308,6 @@ class LetterTileSprite : SKSpriteNode {
         
         downString = self.tileText.stringByAppendingString(stringToAdd)
         verticalString = upString.stringByAppendingString(stringToAdd)
-        
-        ///////////////////
 
         if ( ( mmwGameSceneViewController.checkWholeWordMatch(horizontalString) ) == false || horizontalString.characters.count < mmwGameSceneViewController.minWordSize  ) {
             mmwGameScene.updatePartialWordFeedback2("Horizontal: \(horizontalString) is a partial word")
@@ -1368,13 +1328,6 @@ class LetterTileSprite : SKSpriteNode {
                     self.tileSpriteParent.playedMadeWord = PlayedMadeWord.Horizontal
                 }
             }
-            
-//            if tileSpriteParent.tileState == TileState.PlayedMadeWord {
-//                scoreTilesInArr(possibleWordTilesHorizontal, tileArrToScoreVertical: possibleWordTilesVertical, wordStringHorizontal: horizontalString, wordStringVertical: verticalString)
-//                for tile in possibleWordTilesHorizontal{
-//                     print("\(tile.tileText)  :  \(tile.tileState)")
-//                }
-//            }
         }
         
         if (( mmwGameSceneViewController.checkWholeWordMatch(verticalString) ) == false || verticalString.characters.count < mmwGameSceneViewController.minWordSize  ) {
@@ -1399,14 +1352,12 @@ class LetterTileSprite : SKSpriteNode {
         if tileSpriteParent.tileState == TileState.PlayedMadeWord {
             scoreTilesInArr(possibleWordTilesHorizontal, tileArrToScoreVertical: possibleWordTilesVertical, wordStringHorizontal: horizontalString, wordStringVertical: verticalString)
         }
-        
-        //////////////////
+
         if mmwGameSceneViewController.playerTurn == 1 {
             if tileMadeCompleteWord == true { mmwGameSceneViewController.numWordsMade += 1 }
             mmwGameSceneViewController.numLettersPlayed += 1
             if debugMode == true { print("played: letters: \(mmwGameSceneViewController.numLettersPlayed),words: \(mmwGameSceneViewController.numWordsMade)") }
         }
-        
         playTileToBoard (tileSnapResults.GridSquareX, yGrid: tileSnapResults.GridSquareY)
     }
     
@@ -1508,8 +1459,27 @@ class LetterTileSprite : SKSpriteNode {
             (mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileYGridDestination].tileState == TileState.Locked ||
                 (mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileYGridDestination].tileState == TileState.Played) ||
                 (mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileYGridDestination].tileState == TileState.PlayedMadeWord)) )  {
-                    numHorizontalAdjacentLetters += 1
-                    numHorizontalAdjacentLetters += 1
+                    
+                    
+                    
+                    
+//                    numHorizontalAdjacentLetters += 2
+//                    
+//                    
+//                    
+//                    
+//                    
+//                    
+//                    
+//                    //numHorizontalAdjacentLetters += 1
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     let letterToAdd : String = "\(mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileYGridDestination].tileText)"
                     stringToAdd = stringToAdd.stringByAppendingString(letterToAdd)
                     if mmwGameScene.mmwBoardGrid.grid2DArr[currentCheckXGridNum + 1][tileYGridDestination].tileState == TileState.Locked {
@@ -1537,8 +1507,7 @@ class LetterTileSprite : SKSpriteNode {
         if ( ( mmwGameSceneViewController.checkWholeWordMatch(horizontalString) ) == true && horizontalString.characters.count >= mmwGameSceneViewController.minWordSize  ) {
             mmwGameScene.updatePartialWordFeedback2 ("Horizontal: \(horizontalString) is a valid word")
             //print ( "\(horizontalString) is a valid whole word string (horizontalString) updateAIWordsAtDropSpot LetterTileSprite" )
- 
-            
+
             self.tileSpriteParent.tileState = TileState.PlayedMadeWord
             
             if self.tileSpriteParent.playedMadeWord != PlayedMadeWord.Both {
@@ -1642,9 +1611,7 @@ class LetterTileSprite : SKSpriteNode {
         // set basic placeholder tile settings to fit in void in grid - home grid and x and y values
         let replacementPlaceholderTile : MMWTile = MMWTile()
         tileSpriteParent.gridHome?.grid2DArr[tileSpriteParent.gridX][tileSpriteParent.gridY] = replacementPlaceholderTile
-        
-        
-        
+
         self.playTileToBoardGrid(0)  // animation to move to position on board and set Grid, x and y values for tile at tile End Position
 
         if self.tileSpriteParent.tileState == TileState.PlayedMadeWord  {
@@ -1652,402 +1619,8 @@ class LetterTileSprite : SKSpriteNode {
                 self.scoreTilesInArr(possibleWordTilesHorizontal, tileArrToScoreVertical: possibleWordTilesVertical, wordStringHorizontal: horizontalString, wordStringVertical: verticalString)
             }
         }
-        
-//        // set basic placeholder tile settings to fit in void in grid - home grid and x and y values
-//        let replacementPlaceholderTile : MMWTile = MMWTile()
-//        tileSpriteParent.gridHome?.grid2DArr[tileSpriteParent.gridX][tileSpriteParent.gridY] = replacementPlaceholderTile
-        
         mmwGameScene.newTilesButtonOff() // placed tile on board so now can only pass turn
     }
-    
-    
-//    /// func scoreTilesInArr (tileArrToScore: [MMWTile], wordString: String) -> Int
-//    /// -Parameters: tileArrToScore: [MMWTile], wordString: String
-//    /// -Returns: Int
-//    /// counts tile in up/down or left/right tile array and adds points for unlocked tiles and complete word and kicks off points awarded animations
-//    func scoreTilesInArr (tileArrToScoreHorizontal: [MMWTile], tileArrToScoreVertical: [MMWTile], wordStringHorizontal: String, wordStringVertical: String) -> Int {
-//        
-//        //mmwGameScene.animationsActive(true)
-//        var animationTime = 0.0
-//        
-//        var numPasses = 0
-//        var tileArrToScore = tileArrToScoreHorizontal
-//        var tileNum = 0
-//        var delayTime = 0.0
-//        var scoredMadeWordBoth = false
-//        
-//        while numPasses <= 1 {
-//            print("### ScoreTileInArray: \(numPasses)")
-//            if numPasses == 1 {
-//                tileArrToScore = tileArrToScoreVertical
-//            }
-//            let wordLen = tileArrToScore.count
-//            
-//            tileNum = 0
-//            // + 2*wordLen points for locking a tile // SCORE  // display points awarded animation (for locked tile)
-//            for tile in tileArrToScore {
-//                var pointsForTile = 0
-//                tile.tileSprite.zPosition = 1
-//                tile.tileSprite.letterLabel.zPosition = 2
-//
-//                print("Tile: \(tile.tileText) \(tile.tileState) \(tile.tileSprite.tileSpriteParent.spritename)")
-//                if (tile.tileState == TileState.Played) { // || tile.tileState == TileState.PlayedMadeWord) {
-//                    
-//                    var doubleCountLockedTile = false
-//                    
-//                    if numPasses == 1 {
-//                        for tileH in tileArrToScoreHorizontal {
-//                            if (tileH.gridX == tile.gridX) && (tileH.gridY == tile.gridY) && (tileH.tileState == TileState.Played) && tile.tileState == TileState.Played {
-//                                doubleCountLockedTile = true
-//                            }
-//                        }
-//                    }
-//                    
-//                    // don't double lock the same tile in V and H
-//                    if doubleCountLockedTile == false {
-//                        
-//                        if wordLen >= mmwGameSceneViewController.minWordSize {
-//                            let pointsForTile = wordLen * 2     // + wordLen points for each unlocked letter to tile owner // SCORE
-//
-//                            let letterState = tile.tileSprite.testForValidWordsAtDropSpot(tile.gridX, tileSnapResultsYGrid: tile.gridY, isAI: false, isAIScoringPass: false)
-//                            
-//                            if (letterState.validHorizontalWholeWord && letterState.horizontalOnly) || (letterState.validVerticalWholeWord && letterState.verticalOnly) {
-//                                if tile.tileState == TileState.Played {
-//                                    tile.tileState = TileState.Locked
-//                                    delayTime += 0.5
-//                                    self.adjustPlayerPoints(pointsForTile, player: (mmwGameSceneViewController.playerArray[tile.tileOwner.rawValue - 1]) )
-//                                    print("#POINTS for locking tile: \(pointsForTile) : \(self.tileText) :  Player : \(mmwGameSceneViewController.playerArray[tile.tileOwner.rawValue - 1])) ")
-//                                    tile.tileSprite.letterLabel.fontColor = tileColors[self.tileSpriteParent.tileOwner.rawValue]
-//                                    tile.tileSprite.color = UIColor.darkGrayColor()
-//                                    
-//                            }
-//                            
-//                            
-//                            
-//                            
-//                            if (letterState.validHorizontalWholeWord && letterState.validHorizontalPartialWord) || (letterState.validVerticalWholeWord && letterState.validVerticalPartialWord) {
-//                                if tile.tileState == TileState.Played {
-//                                    //tile.tileState = TileState.Locked
-//                                    //delayTime += 0.5
-//                                    //self.adjustPlayerPoints(pointsForTile, player: (mmwGameSceneViewController.playerArray[tile.tileOwner.rawValue - 1]) )
-//                                    //print("#POINTS for locking tile: \(pointsForTile) : \(self.tileText) :  Player : \(mmwGameSceneViewController.playerArray[tile.tileOwner.rawValue - 1])) ")
-//                                    tile.tileSprite.letterLabel.fontColor = tileColors[self.tileSpriteParent.tileOwner.rawValue]
-//                                    tile.tileSprite.color = UIColor.darkGrayColor()
-//                                }
-//                            }
-//                                
-//                            if tile.tileState == TileState.PlayedMadeWord  {
-//                                    delayTime += 0.5
-//                                }
-//                                animationTime += delayTime
-//                                
-//                                delay(delayTime) {
-//                                    tile.tileSprite.showTileScoreTextToGridHome (1, pointsForTile: pointsForTile )
-//                                    
-//                                    tile.gridHome = tile.gridEnd
-//                                    tile.gridX = tile.gridXEnd
-//                                    tile.gridY = tile.gridYEnd
-//                                    
-//                                    mmwGameScene.explosion(tile.tileSprite.position, color: tileColors[self.tileSpriteParent.tileOwner.rawValue])
-//                                    
-//                                    delay(0.5){
-//                                        
-//                                    }
-//
-//                            
-//
-//                            
-//                                
-//                                                                        //                                    tile.tileSprite.letterLabel.fontColor = tileColors[self.tileSpriteParent.tileOwner.rawValue]
-//                                        //
-//                                        //                                    tile.tileSprite.color = UIColor.blackColor()
-//                                        
-//                                        if self.tileSpriteParent.playedMadeWord == PlayedMadeWord.Vertical || self.tileSpriteParent.playedMadeWord == PlayedMadeWord.Horizontal {
-//                                            tile.tileSprite.letterLabel.fontColor = tileColors[self.tileSpriteParent.tileOwner.rawValue]
-//                                            tile.tileSprite.color = UIColor.darkGrayColor()
-//                                        }
-//                                        else if self.tileSpriteParent.playedMadeWord == PlayedMadeWord.Both {
-//                                            tile.tileSprite.letterLabel.fontColor = tileColors[self.tileSpriteParent.tileOwner.rawValue]
-//                                            tile.tileSprite.color = UIColor.blackColor()
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                            else {
-//                                tile.tileSprite.color = UIColor.darkGrayColor()
-//                            }
-//                        }
-//                    }
-//                }
-//                pointsForTile = 0
-//                ++tileNum
-//            }
-//            numPasses++
-//        }
-//        
-//        // + 5 * wordLen points for making a new complete word // SCORE  // display points awarded animation (for completing whole word)
-//        if tileSpriteParent.tileState == TileState.PlayedMadeWord {
-//
-//            var pointsForCompletingWord = 0
-//     
-//            if tileSpriteParent.tileState == TileState.PlayedMadeWord && (tileSpriteParent.playedMadeWord == PlayedMadeWord.Vertical){ // || tileSpriteParent.playedMadeWord == PlayedMadeWord.Both) {
-//                
-//                self.tileSpriteParent.tileSprite.letterLabel.fontColor = tileColors[self.tileSpriteParent.tileOwner.rawValue]
-//                self.color = UIColor.grayColor()
-//                
-//                //pointsForCompletingWord = tileArrToScoreVertical.count * 3
-//                //print("+POINTS for completing word VERTICAL : \(pointsForCompletingWord) : \(self.tileText) ")
-//                //tileSpriteParent.tileState = TileState.Locked
-//            }
-//            
-//            else if tileSpriteParent.tileState == TileState.PlayedMadeWord && (tileSpriteParent.playedMadeWord == PlayedMadeWord.Horizontal){ // || tileSpriteParent.playedMadeWord == PlayedMadeWord.Both) {
-//                
-//                self.tileSpriteParent.tileSprite.letterLabel.fontColor = tileColors[self.tileSpriteParent.tileOwner.rawValue]
-//                self.color = UIColor.grayColor()
-//                
-//                //pointsForCompletingWord = tileArrToScoreHorizontal.count * 3
-//                //print("+POINTS for completing word HORIZONTAL : \(pointsForCompletingWord) : \(self.tileText) ")
-//                ///tileSpriteParent.tileState = TileState.Locked
-//            }
-//                
-//            // only score both on one direction rather than double score on horizontal AND vertical passes
-//            else if tileSpriteParent.tileState == TileState.PlayedMadeWord && tileSpriteParent.playedMadeWord == PlayedMadeWord.Both { // && scoredMadeWordBoth == false {
-//                //self.color = UIColor.blackColor()
-//                
-//                pointsForCompletingWord = (tileArrToScoreVertical.count * 3) + (tileArrToScoreHorizontal.count * 3)
-//                
-//                
-//                print("+POINTS for completing word BOTH : \(pointsForCompletingWord) : \(self.tileText) ")
-//                tileSpriteParent.tileState = TileState.Locked
-//                scoredMadeWordBoth = true
-//            }
-//
-//            let waitTime = SKAction.waitForDuration( delayTime + 0.8 )
-//            animationTime += 0.8
-//            
-//            self.runAction( waitTime ) {
-//                
-//                //run code here after delay secs
-//                self.showWordScoreTextToGridHome(pointsForCompletingWord, isHorizontalScore: true)      // doesn't actually use value, already set in setting letterScore.2 above
-//                
-//                self.tileSpriteParent.tileSprite.letterLabel.fontColor = tileColors[self.tileSpriteParent.tileOwner.rawValue]
-//                self.color = UIColor.blackColor()
-//                
-////                if self.tileSpriteParent.playedMadeWord == PlayedMadeWord.Horizontal || self.tileSpriteParent.playedMadeWord == PlayedMadeWord.Vertical {
-////                    self.color = UIColor.darkGrayColor()
-////                }
-////                else {
-////                    self.color = UIColor.blackColor()
-////                }
-//
-//                self.adjustPlayerPoints(pointsForCompletingWord, player: (mmwGameSceneViewController.playerArray[self.tileSpriteParent.tileOwner.rawValue - 1]) )
-//                print("# + POINTS for completing word: \(pointsForCompletingWord) : \(self.tileText) ")
-//                
-//                self.tileSpriteParent.gridHome = self.tileSpriteParent.gridEnd
-//                self.tileSpriteParent.gridX = self.tileSpriteParent.gridXEnd
-//                self.tileSpriteParent.gridY = self.tileSpriteParent.gridYEnd
-//            }
-//        }
-//        
-////        delay(10.0) {  // animationTime +=
-////            mmwGameScene.animationsActive(false)
-////        }
-//        
-//        return 0
-//    }
-    
-    
-    
-    
-//    /// func scoreTilesInArr (tileArrToScore: [MMWTile], wordString: String) -> Int
-//    /// -Parameters: tileArrToScore: [MMWTile], wordString: String
-//    /// -Returns: Int
-//    /// counts tile in up/down or left/right tile array and adds points for unlocked tiles and complete word and kicks off points awarded animations
-//    func scoreTilesInArr (tileArrToScoreHorizontal: [MMWTile], tileArrToScoreVertical: [MMWTile], wordStringHorizontal: String, wordStringVertical: String) -> Int {
-//        
-//        //mmwGameScene.animationsActive(true)
-//        var animationTime = 0.0
-//        
-//        var numPasses = 0
-//        var tileArrToScore = tileArrToScoreHorizontal
-//        var tileNum = 0
-//        var delayTime = 0.0
-//        var scoredMadeWordBoth = false
-//        
-//        while numPasses <= 1 {
-//            print("### ScoreTileInArray: \(numPasses)")
-//            if numPasses == 1 {
-//                tileArrToScore = tileArrToScoreVertical
-//            }
-//            let wordLen = tileArrToScore.count
-//            
-//            tileNum = 0
-//            // + 2*wordLen points for locking a tile // SCORE  // display points awarded animation (for locked tile)
-//            for tile in tileArrToScore {
-//                var pointsForTile = 0
-//                tile.tileSprite.zPosition = 1
-//                tile.tileSprite.letterLabel.zPosition = 2
-//                
-//                print("Tile: \(tile.tileText) \(tile.tileState) \(tile.tileSprite.tileSpriteParent.spritename)")
-//                if (tile.tileState == TileState.Played) { // || tile.tileState == TileState.PlayedMadeWord) {
-//                    
-//                    var doubleCountLockedTile = false
-//                    
-//                    if numPasses == 1 {
-//                        for tileH in tileArrToScoreHorizontal {
-//                            if (tileH.gridX == tile.gridX) && (tileH.gridY == tile.gridY) && (tileH.tileState == TileState.Played) && tile.tileState == TileState.Played {
-//                                doubleCountLockedTile = true
-//                            }
-//                        }
-//                    }
-//                    
-//                    // don't double lock the same tile in V and H
-//                    if doubleCountLockedTile == false {
-//                        if wordLen >= mmwGameSceneViewController.minWordSize {
-//                            let pointsForTile = wordLen * 2     // + wordLen points for each unlocked letter to tile owner // SCORE
-//                            self.adjustPlayerPoints(pointsForTile, player: (mmwGameSceneViewController.playerArray[tile.tileOwner.rawValue - 1]) )
-//                            
-//                            print("#POINTS for locking tile: \(pointsForTile) : \(self.tileText) :  Player : \(mmwGameSceneViewController.playerArray[tile.tileOwner.rawValue - 1])) ")
-//                            
-//                            var letterState = tile.tileSprite.testForValidWordsAtDropSpot(tile.gridX, tileSnapResultsYGrid: tile.gridY, isAI: false, isAIScoringPass: false)
-//                            //
-//                            //                            if tile.tileState == TileState.Played && letterState.validHorizontalWholeWord && letterState.validVerticalWholeWord {
-//                            var isLockedLetter = false
-//                            if (letterState.validHorizontalWholeWord && letterState.horizontalOnly) || (letterState.validVerticalWholeWord && letterState.verticalOnly)
-//                            
-//                            if tile.tileState == TileState.Played {
-//                                
-//                                tile.tileState = TileState.Locked
-//                                delayTime += 0.5
-//                            }
-//                            if tile.tileState == TileState.PlayedMadeWord  {
-//                                delayTime += 0.5
-//                            }
-//                            animationTime += delayTime
-//                            
-//                            delay(delayTime) {
-//                                tile.tileSprite.showTileScoreTextToGridHome (1, pointsForTile: pointsForTile )
-//                                
-//                                tile.gridHome = tile.gridEnd
-//                                tile.gridX = tile.gridXEnd
-//                                tile.gridY = tile.gridYEnd
-//                                
-//                                mmwGameScene.explosion(tile.tileSprite.position, color: tileColors[self.tileSpriteParent.tileOwner.rawValue])
-//                                
-//                                delay(0.5){
-//                                    //                                    tile.tileSprite.letterLabel.fontColor = tileColors[self.tileSpriteParent.tileOwner.rawValue]
-//                                    //
-//                                    //                                    tile.tileSprite.color = UIColor.blackColor()
-//                                    
-//                                    if self.tileSpriteParent.playedMadeWord == PlayedMadeWord.Vertical || self.tileSpriteParent.playedMadeWord == PlayedMadeWord.Horizontal {
-//                                        tile.tileSprite.color = UIColor.darkGrayColor()
-//                                    }
-//                                    else if self.tileSpriteParent.playedMadeWord == PlayedMadeWord.Both {
-//                                        tile.tileSprite.color = UIColor.blackColor()
-//                                    }
-//                                }
-//                                
-//                                
-//                                //                                                            if tileWordState.validHorizontalWholeWord || tileWordState.validVerticalWholeWord {
-//                                //                                                                tile.tileSprite.color = UIColor.darkGrayColor()
-//                                //                                                            }
-//                                //                                                            else {
-//                                //                                                                tile.tileSprite.color = UIColor.blackColor()
-//                                //                                                            }
-//                            }
-//                        }
-//                    }
-//                }
-//                pointsForTile = 0
-//                ++tileNum
-//            }
-//            numPasses++
-//        }
-//        
-//        // + 5 * wordLen points for making a new complete word // SCORE  // display points awarded animation (for completing whole word)
-//        if tileSpriteParent.tileState == TileState.PlayedMadeWord {
-//            
-//            //let tileWordState = self.testForValidWordsAtDropSpot(self.tileSpriteParent.gridXEnd, tileSnapResultsYGrid: self.tileSpriteParent.gridYEnd, isAI: true)
-//            var pointsForCompletingWord = 0
-//            
-//            //            if tileSpriteParent.tileState == TileState.PlayedMadeWord && tileSpriteParent.playedMadeWord == PlayedMadeWord.Horizontal {
-//            //                if tileSpriteParent.playedMadeWord == PlayedMadeWord.Vertical {
-//            //
-//            //                }
-//            //
-//            //             if tileSpriteParent.tileState == TileState.PlayedMadeWord && tileSpriteParent.playedMadeWord == PlayedMadeWord.Vertical {
-//            
-//            
-//            //            // only score both on one direction rather than double score on horizontal AND vertical passes
-//            //            if tileSpriteParent.tileState == TileState.PlayedMadeWord && tileSpriteParent.playedMadeWord == PlayedMadeWord.Both && scoredMadeWordBoth == false {
-//            //                //self.color = UIColor.blackColor()
-//            //                pointsForCompletingWord = ( (tileArrToScoreVertical.count * 5) + (tileArrToScoreHorizontal.count * 5) )
-//            //                print("+POINTS for completing word BOTH : \(pointsForCompletingWord) : \(self.tileText) ")
-//            //                tileSpriteParent.tileState = TileState.Locked
-//            //                scoredMadeWordBoth = true
-//            //            }
-//            
-//            if tileSpriteParent.tileState == TileState.PlayedMadeWord && (tileSpriteParent.playedMadeWord == PlayedMadeWord.Vertical){ // || tileSpriteParent.playedMadeWord == PlayedMadeWord.Both) {
-//                //self.color = UIColor.grayColor()
-//                pointsForCompletingWord = tileArrToScoreVertical.count * 3
-//                print("+POINTS for completing word VERTICAL : \(pointsForCompletingWord) : \(self.tileText) ")
-//                tileSpriteParent.tileState = TileState.Locked
-//            }
-//                
-//            else if tileSpriteParent.tileState == TileState.PlayedMadeWord && (tileSpriteParent.playedMadeWord == PlayedMadeWord.Horizontal){ // || tileSpriteParent.playedMadeWord == PlayedMadeWord.Both) {
-//                //self.color = UIColor.grayColor()
-//                pointsForCompletingWord = tileArrToScoreHorizontal.count * 3
-//                print("+POINTS for completing word HORIZONTAL : \(pointsForCompletingWord) : \(self.tileText) ")
-//                tileSpriteParent.tileState = TileState.Locked
-//            }
-//                
-//                // only score both on one direction rather than double score on horizontal AND vertical passes
-//            else if tileSpriteParent.tileState == TileState.PlayedMadeWord && tileSpriteParent.playedMadeWord == PlayedMadeWord.Both { // && scoredMadeWordBoth == false {
-//                //self.color = UIColor.blackColor()
-//                
-//                pointsForCompletingWord = (tileArrToScoreVertical.count * 3) + (tileArrToScoreHorizontal.count * 3)
-//                
-//                
-//                print("+POINTS for completing word BOTH : \(pointsForCompletingWord) : \(self.tileText) ")
-//                tileSpriteParent.tileState = TileState.Locked
-//                scoredMadeWordBoth = true
-//            }
-//            
-//            let waitTime = SKAction.waitForDuration( delayTime + 0.8 )
-//            animationTime += 0.8
-//            
-//            self.runAction( waitTime ) {
-//                
-//                //run code here after delay secs
-//                self.showWordScoreTextToGridHome(pointsForCompletingWord, isHorizontalScore: true)      // doesn't actually use value, already set in setting letterScore.2 above
-//                self.tileSpriteParent.tileSprite.letterLabel.fontColor = tileColors[self.tileSpriteParent.tileOwner.rawValue]
-//                
-//                self.color = UIColor.blackColor()
-//                
-//                //                if self.tileSpriteParent.playedMadeWord == PlayedMadeWord.Horizontal || self.tileSpriteParent.playedMadeWord == PlayedMadeWord.Vertical {
-//                //                    self.color = UIColor.darkGrayColor()
-//                //                }
-//                //                else {
-//                //                    self.color = UIColor.blackColor()
-//                //                }
-//                
-//                self.adjustPlayerPoints(pointsForCompletingWord, player: (mmwGameSceneViewController.playerArray[self.tileSpriteParent.tileOwner.rawValue - 1]) )
-//                print("# + POINTS for completing word: \(pointsForCompletingWord) : \(self.tileText) ")
-//                
-//                self.tileSpriteParent.gridHome = self.tileSpriteParent.gridEnd
-//                self.tileSpriteParent.gridX = self.tileSpriteParent.gridXEnd
-//                self.tileSpriteParent.gridY = self.tileSpriteParent.gridYEnd
-//            }
-//        }
-//        
-//        //        delay(10.0) {  // animationTime +=
-//        //            mmwGameScene.animationsActive(false)
-//        //        }
-//        
-//        return 0
-//    }
-
-    
     
     
     /// func scoreTilesInArr (tileArrToScore: [MMWTile], wordString: String) -> Int
@@ -2081,7 +1654,7 @@ class LetterTileSprite : SKSpriteNode {
                 tile.tileSprite.letterLabel.zPosition = 2
                 
                 if debugMode == true { print("Tile: \(tile.tileText) \(tile.tileState) \(tile.tileSprite.tileSpriteParent.spritename)") }
-                if (tile.tileState == TileState.Played) { // || tile.tileState == TileState.PlayedMadeWord) {
+                if (tile.tileState == TileState.Played) {
                     
                     var doubleCountLockedTile = false
                     
@@ -2123,14 +1696,6 @@ class LetterTileSprite : SKSpriteNode {
                                 tile.tileSprite.color = UIColor.blackColor()
                                 self.zPosition = 1
                                 self.letterLabel.zPosition = 2
-                                
-                                //if (tileWordState.validHorizontalWholeWord && tileWordState.horizontalOnly == false)  || (tileWordState.validVerticalWholeWord && tileWordState.verticalOnly == false){
-                                    //tile.tileSprite.color = UIColor.darkGrayColor()
-                                //}
-//                                if (tileWordState.validHorizontalWholeWord && tileWordState.horizontalOnly == true) || (tileWordState.validVerticalWholeWord && tileWordState.verticalOnly == true)  {
-//                                    tile.tileSprite.color = UIColor.blackColor()
-//                                }
-                                
                             }
                         }
                     }
@@ -2147,33 +1712,13 @@ class LetterTileSprite : SKSpriteNode {
 
                 let tileWordState = self.testForValidWordsAtDropSpot(self.tileSpriteParent.gridXEnd, tileSnapResultsYGrid: self.tileSpriteParent.gridYEnd, isAI: true, isAIScoringPass: false)
             
-            
-            //            if tileSpriteParent.tileState == TileState.PlayedMadeWord && tileSpriteParent.playedMadeWord == PlayedMadeWord.Horizontal {
-            //                if tileSpriteParent.playedMadeWord == PlayedMadeWord.Vertical {
-            //
-            //                }
-            //
-            //             if tileSpriteParent.tileState == TileState.PlayedMadeWord && tileSpriteParent.playedMadeWord == PlayedMadeWord.Vertical {
-            
-            
-            //            // only score both on one direction rather than double score on horizontal AND vertical passes
-            //            if tileSpriteParent.tileState == TileState.PlayedMadeWord && tileSpriteParent.playedMadeWord == PlayedMadeWord.Both && scoredMadeWordBoth == false {
-            //                //self.color = UIColor.blackColor()
-            //                pointsForCompletingWord = ( (tileArrToScoreVertical.count * 5) + (tileArrToScoreHorizontal.count * 5) )
-            //                print("+POINTS for completing word BOTH : \(pointsForCompletingWord) : \(self.tileText) ")
-            //                tileSpriteParent.tileState = TileState.Locked
-            //                scoredMadeWordBoth = true
-            //            }
-            
             if tileSpriteParent.tileState == TileState.PlayedMadeWord && (tileSpriteParent.playedMadeWord == PlayedMadeWord.Vertical ) {
-                //self.color = UIColor.grayColor()
                 pointsForCompletingWord = tileArrToScoreVertical.count * 2
                 if debugMode == true { print("+POINTS for completing word VERTICAL : \(pointsForCompletingWord) : \(self.tileText) ") }
                 tileSpriteParent.tileState = TileState.Locked
             }
                 
             else if tileSpriteParent.tileState == TileState.PlayedMadeWord && (tileSpriteParent.playedMadeWord == PlayedMadeWord.Horizontal ) {
-                //self.color = UIColor.grayColor()
                 pointsForCompletingWord = tileArrToScoreHorizontal.count * 2
                 if debugMode == true { print("+POINTS for completing word HORIZONTAL : \(pointsForCompletingWord) : \(self.tileText) ") }
                 tileSpriteParent.tileState = TileState.Locked
@@ -2181,7 +1726,6 @@ class LetterTileSprite : SKSpriteNode {
             
             // only score both on one direction rather than double score on horizontal AND vertical passes
             else if tileSpriteParent.tileState == TileState.PlayedMadeWord && tileSpriteParent.playedMadeWord == PlayedMadeWord.Both && scoredMadeWordBoth == false {
-                //self.color = UIColor.blackColor()
                 pointsForCompletingWord = ( (tileArrToScoreVertical.count * 2) + (tileArrToScoreHorizontal.count * 2) )
                 if debugMode == true { print("+POINTS for completing word BOTH : \(pointsForCompletingWord) : \(self.tileText) ") }
                 tileSpriteParent.tileState = TileState.Locked
@@ -2201,26 +1745,7 @@ class LetterTileSprite : SKSpriteNode {
                 self.color = UIColor.blackColor()
                 self.zPosition = 1
                 self.letterLabel.zPosition = 2
-                
-//                if (tileWordState.validHorizontalWholeWord && tileWordState.horizontalOnly == false)  || (tileWordState.validVerticalWholeWord && tileWordState.verticalOnly == false){
-//                    self.color = UIColor.darkGrayColor()
-//                }
-//                else if (tileWordState.validHorizontalWholeWord && tileWordState.horizontalOnly == true) || (tileWordState.validVerticalWholeWord && tileWordState.verticalOnly == true)  {
-//                    self.color = UIColor.blackColor()
-//                }
-
-                
-//                self.tileSpriteParent.tileSprite.letterLabel.fontColor = tileColors[self.tileSpriteParent.tileOwner.rawValue]
-//                self.color = UIColor.blackColor()
-                
-                //                if self.tileSpriteParent.playedMadeWord == PlayedMadeWord.Horizontal || self.tileSpriteParent.playedMadeWord == PlayedMadeWord.Vertical {
-                //                    self.color = UIColor.darkGrayColor()
-                //                }
-                //                else {
-                //                    self.color = UIColor.blackColor()
-                //                }
-                
-                self.adjustPlayerPoints(pointsForCompletingWord, player: (mmwGameSceneViewController.playerArray[self.tileSpriteParent.tileOwner.rawValue - 1]) )
+                                self.adjustPlayerPoints(pointsForCompletingWord, player: (mmwGameSceneViewController.playerArray[self.tileSpriteParent.tileOwner.rawValue - 1]) )
                 if debugMode == true { print("# + POINTS for completing word: \(pointsForCompletingWord) : \(self.tileText) ") }
                 
                 self.tileSpriteParent.gridHome = self.tileSpriteParent.gridEnd
@@ -2228,11 +1753,6 @@ class LetterTileSprite : SKSpriteNode {
                 self.tileSpriteParent.gridY = self.tileSpriteParent.gridYEnd
             }
         }
-        
-        //        delay(10.0) {  // animationTime +=
-        //            mmwGameScene.animationsActive(false)
-        //        }
-        
         return 0
     }
 
@@ -2252,6 +1772,7 @@ class LetterTileSprite : SKSpriteNode {
         //                   
         //        }
     }
+    
     
     deinit {
 //        if debugMode == true {

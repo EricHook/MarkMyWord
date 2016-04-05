@@ -88,13 +88,14 @@ let SoundWrong = "wrong.m4a"
 let SoundWin = "win.mp3"
 let AudioEffectFiles = [SoundDing, SoundWrong, SoundWin]
 
+//////////////////
 
-func delay(delay:Double, closure:()->()) {
+func delay(delay:Double, weak closure:()->()) {     /////////////////////////// weak ????????   
     dispatch_after(
         dispatch_time(
             DISPATCH_TIME_NOW,
             Int64(delay * Double(NSEC_PER_SEC))
         ),
-        dispatch_get_main_queue(), closure)
+        dispatch_get_main_queue(),closure)
 }
 

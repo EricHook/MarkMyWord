@@ -214,9 +214,9 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="1368" height="1026"/>
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dZj-F0-FkC">
-                                                        <rect key="frame" x="539" y="140" width="300" height="244"/>
+                                                        <rect key="frame" x="539" y="102" width="300" height="282"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <string key="text">Creating new game. If you enjoyed the game please rate the game, and if you have any requests for new features or fixes, we'd love to hear from you on our website at www.dashboardgames.com/markmyword. Thank you for playing!</string>
+                                                        <string key="text">Creating new game... If you enjoyed the game please rate the game - and tell a friend! This is 'your' game and we'd love to hear about any requests for new features or fixes for future versions and updates.  Please visit our website at www.hookstudios.com/markmyword. Thank you so much for playing!</string>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -455,7 +455,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </imageView>
-                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="6" translatesAutoresizingMaskIntoConstraints="NO" id="vsC-ax-F1n" userLabel="StepperBG">
+                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="vsC-ax-F1n" userLabel="StepperBG">
                                                         <rect key="frame" x="36" y="94" width="94" height="29"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <connections>
@@ -838,7 +838,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="BG000.jpg" width="1024" height="768"/>
+        <image name="BG000.jpg" width="1500" height="1000"/>
         <image name="LoadingBarBorder.png" width="300" height="25"/>
         <image name="avatar000.png" width="313" height="308"/>
         <image name="meyama000.png" width="240" height="240"/>

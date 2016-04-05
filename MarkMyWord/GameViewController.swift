@@ -82,7 +82,7 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
     
     var meyamaImageArray = ["meyama000.png", "meyama001.png", "meyama002.png", "meyama003.png", "meyama004.png", "meyama005.png", "meyama006.png"]
     
-    var backgroundImageArray = ["BG000.jpg", "BG001.jpg", "BG002.jpg", "BG003.jpg", "BG004.jpg", "BG005.jpg", "BG006.jpg", "BG007.jpg"]
+    var backgroundImageArray = ["BG000.jpg", "BG001.jpg"]
     
     var playerAvatarNames = ["Player0", "Player1", "Player2", "Player3", "Player4", "Player5", "Player6"]
     

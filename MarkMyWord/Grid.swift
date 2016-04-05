@@ -237,7 +237,7 @@ class Grid {
                         dealtTile.tileSprite.isMovable = true
                         dealtTile.tileSprite.userInteractionEnabled = false
                     }
-                    numTilesToDeal--
+                    numTilesToDeal -= 1
                 }
                 else {
                     if debugMode == true { print("No More Tiles To Deal ... ") }
