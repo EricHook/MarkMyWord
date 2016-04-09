@@ -49,7 +49,6 @@
 		B86233331C7FCD960030787E /* avatar003@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B862332F1C7FCD960030787E /* avatar003@2x.png */; };
 		B86233341C7FCD960030787E /* avatar004@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B86233301C7FCD960030787E /* avatar004@2x.png */; };
 		B86233351C7FCD960030787E /* avatar005@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B86233311C7FCD960030787E /* avatar005@2x.png */; };
-		B86E07F51CAC86E4009C425D /* BGBlack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B86E07E91CAC86E4009C425D /* BGBlack@2x.png */; };
 		B86E07F61CAC86E4009C425D /* BGStripes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B86E07EA1CAC86E4009C425D /* BGStripes@2x.png */; };
 		B86E07F71CAC86E4009C425D /* PlayAreaWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = B86E07EB1CAC86E4009C425D /* PlayAreaWhite.png */; };
 		B86E07F81CAC86E4009C425D /* PlayAreaWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B86E07EC1CAC86E4009C425D /* PlayAreaWhite@2x.png */; };
@@ -170,7 +169,6 @@
 		B862332F1C7FCD960030787E /* avatar003@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatar003@2x.png"; sourceTree = "<group>"; };
 		B86233301C7FCD960030787E /* avatar004@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatar004@2x.png"; sourceTree = "<group>"; };
 		B86233311C7FCD960030787E /* avatar005@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatar005@2x.png"; sourceTree = "<group>"; };
-		B86E07E91CAC86E4009C425D /* BGBlack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BGBlack@2x.png"; sourceTree = "<group>"; };
 		B86E07EA1CAC86E4009C425D /* BGStripes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BGStripes@2x.png"; sourceTree = "<group>"; };
 		B86E07EB1CAC86E4009C425D /* PlayAreaWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayAreaWhite.png; sourceTree = "<group>"; };
 		B86E07EC1CAC86E4009C425D /* PlayAreaWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlayAreaWhite@2x.png"; sourceTree = "<group>"; };
@@ -727,7 +725,7 @@
 					Button4,
 				);
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Hook Studios";
 				TargetAttributes = {
 					B8CCE19B1AD8C13500882391 = {
@@ -846,7 +844,6 @@
 				B86E07F71CAC86E4009C425D /* PlayAreaWhite.png in Resources */,
 				B822E3701C6BCE1800669422 /* LoadingBarInside.png in Resources */,
 				B86E07FC1CAC86FC009C425D /* BGStripesHole@2x.png in Resources */,
-				B86E07F51CAC86E4009C425D /* BGBlack@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -951,7 +948,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Hook Studios (2NN9JNUBV3)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -975,9 +972,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "f171f1e2-da46-4c80-ae3a-3c103167bc56";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -998,7 +996,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Hook Studios (2NN9JNUBV3)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -1014,8 +1012,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "f171f1e2-da46-4c80-ae3a-3c103167bc56";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1026,16 +1025,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Hook Studios (2NN9JNUBV3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MarkMyWord/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hookstudios.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hookstudios.markmywordios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "f171f1e2-da46-4c80-ae3a-3c103167bc56";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1047,16 +1046,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Hook Studios (2NN9JNUBV3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MarkMyWord/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hookstudios.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hookstudios.markmywordios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "f171f1e2-da46-4c80-ae3a-3c103167bc56";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;

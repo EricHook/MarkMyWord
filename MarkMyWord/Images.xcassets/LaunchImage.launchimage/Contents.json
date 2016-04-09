@@ -1,15 +1,6 @@
 {
   "images" : [
     {
-      "extent" : "full-screen",
-      "idiom" : "iphone",
-      "subtype" : "736h",
-      "filename" : "launchImage2x-1.png",
-      "minimum-system-version" : "8.0",
-      "orientation" : "landscape",
-      "scale" : "3x"
-    },
-    {
       "orientation" : "landscape",
       "idiom" : "ipad",
       "filename" : "launchImage1x.png",
