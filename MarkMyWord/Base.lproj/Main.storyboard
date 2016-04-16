@@ -282,7 +282,7 @@
                                                             <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                                         </accessibility>
                                                     </imageView>
-                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="6" translatesAutoresizingMaskIntoConstraints="NO" id="HDZ-F4-ppR" userLabel="Stepper2">
+                                                    <stepper opaque="NO" userInteractionEnabled="NO" alpha="0.25" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="6" translatesAutoresizingMaskIntoConstraints="NO" id="HDZ-F4-ppR" userLabel="Stepper2">
                                                         <rect key="frame" x="48" y="145" width="94" height="29"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <connections>
@@ -339,7 +339,7 @@
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="meyama001.png" translatesAutoresizingMaskIntoConstraints="NO" id="uSM-A3-PiP">
                                                         <rect key="frame" x="52" y="78" width="67" height="67"/>
                                                     </imageView>
-                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="6" translatesAutoresizingMaskIntoConstraints="NO" id="jaW-pd-atE" userLabel="Stepper3">
+                                                    <stepper opaque="NO" userInteractionEnabled="NO" alpha="0.25" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="6" translatesAutoresizingMaskIntoConstraints="NO" id="jaW-pd-atE" userLabel="Stepper3">
                                                         <rect key="frame" x="40" y="145" width="94" height="29"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <connections>
@@ -396,7 +396,7 @@
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="meyama003.png" translatesAutoresizingMaskIntoConstraints="NO" id="DjD-Kz-HSF">
                                                         <rect key="frame" x="52" y="78" width="67" height="67"/>
                                                     </imageView>
-                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="6" translatesAutoresizingMaskIntoConstraints="NO" id="eQQ-AF-wwX" userLabel="Stepper4">
+                                                    <stepper opaque="NO" userInteractionEnabled="NO" alpha="0.25" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="6" translatesAutoresizingMaskIntoConstraints="NO" id="eQQ-AF-wwX" userLabel="Stepper4">
                                                         <rect key="frame" x="40" y="145" width="94" height="29"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <connections>

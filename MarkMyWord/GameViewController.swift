@@ -84,9 +84,9 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
     
     var backgroundImageArray = ["BG000.jpg", "BG001.jpg"]
     
-    var playerAvatarNames = ["Player0", "Player1", "Player2", "Player3", "Player4", "Player5", "Player6"]
+    var playerAvatarNames = ["Player 0", "Player 1", "Player 2", "Player 3", "Player 4", "Player 5", "Player 6"]
     
-    var meyamaAvatarNames = ["Alice", "Bongo", "Cocoa", "Dizzy", "Ethota", "Fadama", "George"]
+    var meyamaAvatarNames = ["Aquamarine", "Goldenrod", "Scarlet", "Violet", "AI 4", "AI 5", "AI 6"]
     
     func updateGameSettings() {
         tempSecondsPerTurn = mmwGameSceneViewController.secondsPerTurn
@@ -452,8 +452,7 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
         }
     }
     
-    
-    
+
     @IBOutlet weak var allowOffensiveWordsLabelOutlet: UILabel!
     
     @IBOutlet weak var allowOffensiveWordsSwitchOutlet: UISegmentedControl!
@@ -511,6 +510,10 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
             player2SkillLevelOutlet.hidden = false
             player2SkillLevelLabelOutlet.hidden = false
             
+            avatarStepperPlayer02.enabled = false
+            avatarStepperPlayer02.alpha = 0.25
+            avatarStepperPlayer02.userInteractionEnabled = false
+            
         case 1: // human player
             tempPlayer2IsHuman = true
             player2NameLabel.text = playerAvatarNames[tempPlayer2AvatarNumber]
@@ -520,6 +523,11 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
             player2NameLabel.hidden = true
             player2SkillLevelOutlet.hidden = true
             player2SkillLevelLabelOutlet.hidden = true
+            
+            avatarStepperPlayer02.enabled = true
+            avatarStepperPlayer02.alpha = 1.0
+            avatarStepperPlayer02.userInteractionEnabled = true
+            
         default:
             break
         }
@@ -536,6 +544,10 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
             player3NameLabel.hidden = false
             player3SkillLevelOutlet.hidden = false
             player3SkillLevelLabelOutlet.hidden = false
+            
+            avatarStepperPlayer03.enabled = false
+            avatarStepperPlayer03.alpha = 0.25
+            avatarStepperPlayer03.userInteractionEnabled = false
         
         case 1: // human player
             tempPlayer3IsHuman = true
@@ -546,6 +558,11 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
             player3NameLabel.hidden = true
             player3SkillLevelOutlet.hidden = true
             player3SkillLevelLabelOutlet.hidden = true
+            
+            avatarStepperPlayer03.enabled = true
+            avatarStepperPlayer03.alpha = 1.0
+            avatarStepperPlayer03.userInteractionEnabled = true
+            
         default:
             break
         }
@@ -562,6 +579,11 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
             player4NameLabel.hidden = false
             player4SkillLevelOutlet.hidden = false
             player4SkillLevelLabelOutlet.hidden = false
+            
+            avatarStepperPlayer04.enabled = false
+            avatarStepperPlayer04.alpha = 0.25
+            avatarStepperPlayer04.userInteractionEnabled = false
+            
         case 1: // human player
             tempPlayer4IsHuman = true
             player4NameLabel.text = playerAvatarNames[tempPlayer4AvatarNumber]
@@ -571,6 +593,11 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
             player4NameLabel.hidden = true
             player4SkillLevelOutlet.hidden = true
             player4SkillLevelLabelOutlet.hidden = true
+            
+            avatarStepperPlayer04.enabled = true
+            avatarStepperPlayer04.alpha = 1.0
+            avatarStepperPlayer04.userInteractionEnabled = true
+            
         default:
             break
         }
@@ -609,11 +636,19 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
             player2NameLabel.text = meyamaAvatarNames[tempPlayer2MeyamaNumber]
             player2ImageOutlet.image = UIImage(named: meyamaImageArray[tempPlayer2MeyamaNumber])
             player2NameLabel.text = meyamaAvatarNames[tempPlayer2MeyamaNumber]
+
+            
+            //avatarStepperPlayer02.maximumValue =  3
+//            avatarStepperPlayer02.enabled = false
+    
         } else { // human
             tempPlayer2AvatarNumber = Int(sender.value)
             player2NameLabel.text = playerAvatarNames[tempPlayer2AvatarNumber]
             player2ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer2AvatarNumber])
             player2NameLabel.text = playerAvatarNames[tempPlayer2AvatarNumber]
+            //avatarStepperPlayer02.maximumValue =  Double(playerAvatarNames.count)
+
+            
         }
     }
 
@@ -623,11 +658,15 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
             player3NameLabel.text = meyamaAvatarNames[tempPlayer3MeyamaNumber]
             player3ImageOutlet.image = UIImage(named: meyamaImageArray[tempPlayer3MeyamaNumber])
             player3NameLabel.text = meyamaAvatarNames[tempPlayer3MeyamaNumber]
+            
+
         } else { // human
             tempPlayer3AvatarNumber = Int(sender.value)
             player3NameLabel.text = playerAvatarNames[tempPlayer3AvatarNumber]
             player3ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer3AvatarNumber])
             player3NameLabel.text = playerAvatarNames[tempPlayer3AvatarNumber]
+            
+
         }
     }
 
@@ -637,6 +676,10 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
             player4NameLabel.text = meyamaAvatarNames[tempPlayer4MeyamaNumber]
             player4ImageOutlet.image = UIImage(named: meyamaImageArray[tempPlayer4MeyamaNumber])
             player4NameLabel.text = meyamaAvatarNames[tempPlayer4MeyamaNumber]
+            
+
+            
+            
         } else { // human
             tempPlayer4AvatarNumber = Int(sender.value)
             player4NameLabel.text = playerAvatarNames[tempPlayer4AvatarNumber]

@@ -42,7 +42,7 @@ func setFontHUDSize () {
     }
 }
 
-var debugMode = false
+var debugMode = true
 
 var gameIsSuspended = false
 

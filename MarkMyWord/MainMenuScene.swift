@@ -43,7 +43,7 @@ class MainMenuScene: SKScene {
 
         myLabel.text = "Mark My Word" // scene is: \(scene?.description)"
         myLabel.fontSize = 95;
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y: (CGRectGetMidY(self.frame) - 50) )
+        myLabel.position = CGPoint( x:CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame) )
         self.addChild(myLabel)
         myLabel.zPosition = 100
         

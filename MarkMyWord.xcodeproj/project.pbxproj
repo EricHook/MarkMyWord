@@ -30,9 +30,6 @@
 		B82786151B05585D00916E20 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82786141B05585D00916E20 /* Player.swift */; };
 		B831B3611C65636B00D270F2 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B831B3601C65636B00D270F2 /* StringUtils.swift */; };
 		B84738D41C0A3F20003B05BA /* tileCover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B84738D31C0A3F20003B05BA /* tileCover@2x.png */; };
-		B84738DA1C0A5305003B05BA /* player01.png in Resources */ = {isa = PBXBuildFile; fileRef = B84738D91C0A5305003B05BA /* player01.png */; };
-		B84738DD1C0A5E47003B05BA /* player03.png in Resources */ = {isa = PBXBuildFile; fileRef = B84738DB1C0A5E47003B05BA /* player03.png */; };
-		B84738DE1C0A5E47003B05BA /* player04.png in Resources */ = {isa = PBXBuildFile; fileRef = B84738DC1C0A5E47003B05BA /* player04.png */; };
 		B85681221CB376B000B02C99 /* Tile3DBack.png in Resources */ = {isa = PBXBuildFile; fileRef = B856811F1CB376B000B02C99 /* Tile3DBack.png */; };
 		B85681231CB376B000B02C99 /* Tile3D@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B85681201CB376B000B02C99 /* Tile3D@2x.png */; };
 		B85681241CB376B000B02C99 /* Tile3D.png in Resources */ = {isa = PBXBuildFile; fileRef = B85681211CB376B000B02C99 /* Tile3D.png */; };
@@ -71,7 +68,6 @@
 		B88A58611BEAD951003E0957 /* PlayerBG.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A58601BEAD951003E0957 /* PlayerBG.png */; };
 		B88A58641BEAD969003E0957 /* MMWPlayerTilesGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A58621BEAD969003E0957 /* MMWPlayerTilesGrid.png */; };
 		B88A58651BEAD969003E0957 /* MMWPlayerTilesPlaque@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A58631BEAD969003E0957 /* MMWPlayerTilesPlaque@2x.png */; };
-		B88A58671BEAD978003E0957 /* player02.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A58661BEAD978003E0957 /* player02.png */; };
 		B88A586C1BEADA46003E0957 /* Tile3DGlow.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A586B1BEADA46003E0957 /* Tile3DGlow.png */; };
 		B88A58701BEADA6F003E0957 /* TileShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = B88A586F1BEADA6F003E0957 /* TileShadow.png */; };
 		B8A455161AF15A1400C0D83B /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A455141AF15A1400C0D83B /* MainMenuScene.swift */; };
@@ -150,9 +146,6 @@
 		B82786141B05585D00916E20 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		B831B3601C65636B00D270F2 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 		B84738D31C0A3F20003B05BA /* tileCover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tileCover@2x.png"; sourceTree = "<group>"; };
-		B84738D91C0A5305003B05BA /* player01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player01.png; sourceTree = "<group>"; };
-		B84738DB1C0A5E47003B05BA /* player03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player03.png; sourceTree = "<group>"; };
-		B84738DC1C0A5E47003B05BA /* player04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player04.png; sourceTree = "<group>"; };
 		B856811F1CB376B000B02C99 /* Tile3DBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tile3DBack.png; sourceTree = "<group>"; };
 		B85681201CB376B000B02C99 /* Tile3D@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tile3D@2x.png"; sourceTree = "<group>"; };
 		B85681211CB376B000B02C99 /* Tile3D.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tile3D.png; sourceTree = "<group>"; };
@@ -191,7 +184,6 @@
 		B88A58601BEAD951003E0957 /* PlayerBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayerBG.png; sourceTree = "<group>"; };
 		B88A58621BEAD969003E0957 /* MMWPlayerTilesGrid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MMWPlayerTilesGrid.png; sourceTree = "<group>"; };
 		B88A58631BEAD969003E0957 /* MMWPlayerTilesPlaque@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MMWPlayerTilesPlaque@2x.png"; sourceTree = "<group>"; };
-		B88A58661BEAD978003E0957 /* player02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player02.png; sourceTree = "<group>"; };
 		B88A586B1BEADA46003E0957 /* Tile3DGlow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tile3DGlow.png; sourceTree = "<group>"; };
 		B88A586F1BEADA6F003E0957 /* TileShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileShadow.png; sourceTree = "<group>"; };
 		B8A455141AF15A1400C0D83B /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
@@ -466,10 +458,6 @@
 				B822CEF21C388ED70043905E /* MMWPlayerTilesGrid@2x.png */,
 				B822CEF61C388F530043905E /* MMWPlayerTilesPlaque.png */,
 				B88A58631BEAD969003E0957 /* MMWPlayerTilesPlaque@2x.png */,
-				B84738D91C0A5305003B05BA /* player01.png */,
-				B88A58661BEAD978003E0957 /* player02.png */,
-				B84738DB1C0A5E47003B05BA /* player03.png */,
-				B84738DC1C0A5E47003B05BA /* player04.png */,
 			);
 			name = player;
 			sourceTree = "<group>";
@@ -805,9 +793,7 @@
 				B85681281CB3873F00B02C99 /* BGBlack@2x.png in Resources */,
 				B809D4201C90D1890091B9F0 /* meyama005@2x.png in Resources */,
 				B822CEE81C3886560043905E /* PassButton@2x.png in Resources */,
-				B84738DD1C0A5E47003B05BA /* player03.png in Resources */,
 				B88A585C1BEAD859003E0957 /* OptionsButton.png in Resources */,
-				B88A58671BEAD978003E0957 /* player02.png in Resources */,
 				B8FFF25E1BE96E2E006D2010 /* MagicParticle.sks in Resources */,
 				B88A58541BEAD859003E0957 /* pass.WAV in Resources */,
 				B88A58641BEAD969003E0957 /* MMWPlayerTilesGrid.png in Resources */,
@@ -832,7 +818,6 @@
 				B8A75F8B1CADF08F005EF126 /* WordListChoppedNoDupRaw.txt in Resources */,
 				B85681221CB376B000B02C99 /* Tile3DBack.png in Resources */,
 				B8FA8FA71AE9DD7F007CF07C /* particle.png in Resources */,
-				B84738DE1C0A5E47003B05BA /* player04.png in Resources */,
 				B8CCE1AB1AD8C13500882391 /* Main.storyboard in Resources */,
 				B86233331C7FCD960030787E /* avatar003@2x.png in Resources */,
 				B88A58701BEADA6F003E0957 /* TileShadow.png in Resources */,
@@ -840,7 +825,6 @@
 				B8DFB0EC1CADFFDB00F30667 /* BG000@2x.jpg in Resources */,
 				B8FB376F1C28D56700C68434 /* codeSnippets in Resources */,
 				B88A58561BEAD859003E0957 /* badPlay.WAV in Resources */,
-				B84738DA1C0A5305003B05BA /* player01.png in Resources */,
 				B86E07F71CAC86E4009C425D /* PlayAreaWhite.png in Resources */,
 				B822E3701C6BCE1800669422 /* LoadingBarInside.png in Resources */,
 				B86E07FC1CAC86FC009C425D /* BGStripesHole@2x.png in Resources */,
@@ -972,7 +956,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "f171f1e2-da46-4c80-ae3a-3c103167bc56";
+				PROVISIONING_PROFILE = "9994aeb0-bef7-4da9-97f7-89fe3168b41d";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1012,7 +996,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "f171f1e2-da46-4c80-ae3a-3c103167bc56";
+				PROVISIONING_PROFILE = "9994aeb0-bef7-4da9-97f7-89fe3168b41d";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -1034,7 +1018,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hookstudios.markmywordios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f171f1e2-da46-4c80-ae3a-3c103167bc56";
+				PROVISIONING_PROFILE = "9994aeb0-bef7-4da9-97f7-89fe3168b41d";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1055,7 +1039,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hookstudios.markmywordios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f171f1e2-da46-4c80-ae3a-3c103167bc56";
+				PROVISIONING_PROFILE = "9994aeb0-bef7-4da9-97f7-89fe3168b41d";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;

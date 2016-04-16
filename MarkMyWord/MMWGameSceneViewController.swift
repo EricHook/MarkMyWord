@@ -30,9 +30,9 @@ class MMWGameSceneViewController : UIViewController {
     
     var viewSize = screenSize
     var tilesPlayable = [MMWTile]()
-    var numPlayers   = 2
+    var numPlayers   = 3
     var playerTurn   = 1
-    var numStarterWords = 1
+    var numStarterWords = 2
     var minWordSize  = 3
     var audioOn = true
     var secondsPerTurn = 45
@@ -60,7 +60,6 @@ class MMWGameSceneViewController : UIViewController {
     var wordSet : WordSet?
     let wordSetPrecomputedSize : Int = 1253231;
 
-    
     override func viewDidLoad() {
         if debugMode == true { print("---   in viewDidLoad mmwGameSceneViewController") }
         if debugMode == true { print("before MMWGameSceneViewController viewDidLoad() setUpGame() ") }
