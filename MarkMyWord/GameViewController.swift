@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import SpriteKit
+import StoreKit
 
 extension SKNode {
     class func unarchiveFromFile(file : String) -> SKNode? {
@@ -30,6 +31,7 @@ extension SKNode {
 
 var mmwGameSceneViewController  = MMWGameSceneViewController()
 var gameViewController          = GameViewController()
+var storeTableViewController    = StoreTableViewController()
 var mmwOptionScreen             = MMWOptionScreen(size: screenSize!)
 var mmwGameScene                = MMWGameScene(size: screenSize!)
 
@@ -38,7 +40,7 @@ var meyamaAvatarPrefixString = "meyama00"
 var selectedHumanAvatar  = 0
 var selectedMeyamaAvatar = 0
 
-class GameViewController : UIViewController, UITextFieldDelegate { // , GADBannerViewDelegate {
+class GameViewController : UIViewController, UITextFieldDelegate { // , UITableViewDataSource, UITableViewDelegate, IAPManagerDelegate   { // , GADBannerViewDelegate {
 
     var tempSecondsPerTurn : Int!
     
@@ -88,6 +90,8 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
     
     var meyamaAvatarNames = ["Aquamarine", "Goldenrod", "Scarlet", "Violet", "AI 4", "AI 5", "AI 6"]
     
+    
+    // get values saved mostly in mmwGameSceneViewController and update options settings in UI
     func updateGameSettings() {
         tempSecondsPerTurn = mmwGameSceneViewController.secondsPerTurn
         tempAudioOn = mmwGameSceneViewController.audioOn
@@ -213,12 +217,11 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
             player2NameLabel.hidden = false
             player2SkillLevelOutlet.hidden = false
             player2SkillLevelLabelOutlet.hidden = false
-            
         }
         else { // human player tempPlayer2IsHuman = true
             isHumanPlayer2Outlet.selectedSegmentIndex = 1
             player2NameLabel.text = playerAvatarNames[tempPlayer2AvatarNumber]
-            player2ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer2AvatarNumber ])
+            player2ImageOutlet.image = UIImage(named: playerImageArray[tempPlayer2AvatarNumber])
             avatarStepperPlayer02.value = Double(tempPlayer2AvatarNumber)
             player2NameTextFieldOutlet.hidden = false
             player2NameLabel.hidden = true
@@ -235,7 +238,6 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
             player3NameLabel.hidden = false
             player3SkillLevelOutlet.hidden = false
             player3SkillLevelLabelOutlet.hidden = false
-            
         }
         else { // human player tempPlayer3IsHuman = true
             isHumanPlayer3Outlet.selectedSegmentIndex = 1
@@ -268,6 +270,37 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
             player4SkillLevelOutlet.hidden = true
             player4SkillLevelLabelOutlet.hidden = true
         }
+        
+        //////////////
+        
+        updateUIDeluxeVersion()
+        
+        ////////////////
+        
+    }
+    
+    func updateUIDeluxeVersion() {
+        
+        
+        if deluxeVersionPurchased == true {
+            
+            startNewGameWithChangesButtonOutlet.hidden = false
+            purchaseDeluxeVersionButtonOutlet.hidden = true
+
+            
+            SavingOptionsInfoTextOutlet.text = " 🏆 Mark My Word Deluxe Version 🏆 "
+            SavingOptionsInfoTextOutlet.font = SavingOptionsInfoTextOutlet.font.fontWithSize(22)
+            
+        }
+            
+        else {
+            
+            startNewGameWithChangesButtonOutlet.hidden = true
+            purchaseDeluxeVersionButtonOutlet.hidden = false
+            
+            SavingOptionsInfoTextOutlet.text = "Saving options is not available in the basic version of Mark My Word. Please purchase the Deluxe Version for access to additional game customization and options."
+            SavingOptionsInfoTextOutlet.font = SavingOptionsInfoTextOutlet.font.fontWithSize(16)
+        }
     }
 
     @IBOutlet var GameViewControllerUI: SKView!
@@ -278,6 +311,8 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
     @IBOutlet weak var ViewResultsScreenUI: UIView!
 
     @IBOutlet weak var ViewLoadingGameUIOutlet: UIView!
+    
+    @IBOutlet weak var ViewStoreOutlet: UIView!
 
     @IBOutlet weak var ViewPlayer1UI: UIView!
     @IBOutlet weak var ViewPlayer2UI: UIView!
@@ -301,6 +336,7 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
                 gameViewController.viewRulesContainer.hidden = true
                 gameViewController.viewStatsContainer.hidden = true
                 gameViewController.ViewEndGameUI.hidden = true
+                gameViewController.ViewStoreOutlet.hidden = true
             case 1:
                 if debugMode == true { print("outlet 1 Rules selected") }
                 gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
@@ -309,6 +345,7 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
                 gameViewController.viewRulesContainer.hidden = false
                 gameViewController.viewStatsContainer.hidden = true
                 gameViewController.ViewEndGameUI.hidden = true
+                gameViewController.ViewStoreOutlet.hidden = true
             case 2:
                 if debugMode == true { print("outlet 2 selected") }
                 gameViewController.ViewAllOptionsUI.userInteractionEnabled = true
@@ -317,6 +354,7 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
                 gameViewController.viewRulesContainer.hidden = true
                 gameViewController.viewStatsContainer.hidden = false
                 gameViewController.ViewEndGameUI.hidden = true
+                gameViewController.ViewStoreOutlet.hidden = true
                 
                 toStatViewSettings()
                 
@@ -757,6 +795,11 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
 
     @IBOutlet weak var player4SkillLevelLabelOutlet: UILabel!
     
+    @IBOutlet weak var startNewGameWithChangesButtonOutlet: UIButton!
+    
+    @IBOutlet weak var purchaseDeluxeVersionButtonOutlet: UIButton!
+    
+    @IBOutlet weak var SavingOptionsInfoTextOutlet: UILabel!
     
     func startNewGame() {
         
@@ -820,9 +863,30 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
 
     @IBAction func returnToGameButton(sender: AnyObject) {
         // returns to game without any settings changes
-
         mmwOptionScreen.returnToGameScene()
     }
+    
+    
+    @IBAction func purchaseDeluxeVersionAction(sender: AnyObject) {
+        print("purchaseDeluxeVersionAction")
+        gameStarting = false
+        
+        
+        
+        
+        //let store = StoreTableViewController()
+        
+        deluxeVersionAction()
+        
+        //self.presentViewController(store, animated: true, completion: nil)
+        
+//        view?.presentScene(mmwGameScene)
+//        if debugMode == true { print("presentMMWScene") }
+//        
+//        store.
+    }
+    
+    
 
     
     let button   = UIButton(type: UIButtonType.System) as UIButton
@@ -862,18 +926,50 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
         mainMenuScene.scaleMode = .AspectFill
 
         initializeTextFields()
-        
 
         skView.presentScene(mainMenuScene)
 
         gameViewController = self as GameViewController
+        
+        //IAPManager.sharedInstance.delegate = self
+        
+        //if deluxeVersionPurchased == true {
+            updateUIDeluxeVersion()
+        //}
 
     }
     
-    func buttonAction()
-    {
-        if debugMode == true { print("TEST Manual Button tapped") }
+    //MARK: Deluxe Version Functionality
+    func deluxeVersionAction(){
+        if NSUserDefaults.standardUserDefaults().boolForKey("com.hookstudios.markmywordiosdeluxe"){
+            print("Active")
+        } else {
+            let alertController = UIAlertController(title: "Mark My Word Deluxe", message: "Add options and customization to the basic version of the game.", preferredStyle: .Alert)
+            let learnAction = UIAlertAction(title: "Learn More", style: .Default) { (action) -> Void in
+                print("action learnAction")
+                
+                //gameViewController.ViewStoreOutlet.hidden = false
+                
+                
+                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("StoreTableView") as! StoreTableViewController
+                self.presentViewController(vc, animated: true, completion: nil)
+                
+                
+            }
+            let cancelAction = UIAlertAction(title: "Not right now", style: .Default, handler: nil)
+            alertController.addAction(cancelAction)
+            alertController.addAction(learnAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
+        
+        
     }
+    
+    
+//    func buttonAction()
+//    {
+//        if debugMode == true { print("TEST Manual Button tapped") }
+//    }
 
     // MARK: END GAME SCREEN
 
@@ -1091,4 +1187,102 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , GADBanne
 
         return prospectiveText.characters.count <= 12
     }
+    
+    
+//    // MARK: PURCHASE DELUXE VERSION
+//    
+//    
+//    @IBAction func purchaseRestoreButtonAction(sender: AnyObject) {
+//        storeTableViewController.restorePurchases()
+//        
+////        gameViewController.restorePurchases()
+//    }
+//    
+//    @IBAction func purchaseCloseButtonAction(sender: AnyObject) {
+//        
+//        storeTableViewController.closeStoreView()
+//        
+////        ViewOptionsUI.userInteractionEnabled = true
+////        gameViewController.ViewAllOptionsUI.hidden = false
+////        gameViewController.ViewOptionsUI.hidden = false
+////        gameViewController.viewRulesContainer.hidden = true
+////        gameViewController.viewStatsContainer.hidden = true
+////        gameViewController.ViewEndGameUI.hidden = true
+//        
+////        gameViewController.ViewStoreOutlet.hidden = true
+////        gameViewController.updateUIDeluxeVersion() // based on Config setting of deluxeVersionPurchased = false or true
+//        
+//    }
+//    
+//    
+//    
+//    
+//    
+//    
+//    
+//    // MARK: - Table view data source
+//    
+//    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 1
+//    }
+//    
+//    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        // #warning Incomplete implementation, return the number of rows
+//        return IAPManager.sharedInstance.products.count
+//    }
+//    
+//    
+//    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//        let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "reuseIdentifier")
+//        
+//        // Configure the cell...
+//        
+//        let product = IAPManager.sharedInstance.products.objectAtIndex(indexPath.row) as!SKProduct
+//        
+//        cell.textLabel!.text = product.localizedTitle
+//        cell.detailTextLabel!.text = product.localizedDescription
+//        
+//        return cell
+//    }
+//    
+//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//        
+//        //3 - call payment request function with selected SKProduct
+//        IAPManager.sharedInstance.createPaymentRequestForProduct(IAPManager.sharedInstance.products.objectAtIndex(indexPath.row) as! SKProduct)
+//    }
+//    
+//    //MARK: Helper
+//    @IBAction func closeStoreView(){
+//        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+//        
+//        if deluxeVersionPurchased == true {
+//            updateUIDeluxeVersion()
+//        }
+//        
+//    }
+//    
+//    @IBAction func restorePurchases(){
+//        IAPManager.sharedInstance.restorePurchases()
+//    }
+//    
+//    func managerDidRestorePurchases() {
+//        if gameStarting == false {
+//            let alertController = UIAlertController(title: "In-App Purchase", message: "Your purchases have been restored", preferredStyle: .Alert)
+//            let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+//            alertController.addAction(okAction)
+//            
+//            self.presentViewController(alertController, animated: true, completion: nil)
+//            
+//            deluxeVersionPurchased = true
+//            updateUIDeluxeVersion()
+//        }
+//    }
+    
+    
+
+    
+    
+    
 }

@@ -10,11 +10,14 @@ import UIKit
 import CoreMotion
 import SpriteKit
 import CoreData
+import StoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    var canPurchase:Bool = false
     
 //    func demo () {
 //        
@@ -77,7 +80,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         gameIsSuspended = false
         
         
-        //mmwGameScene.paus
+        if SKPaymentQueue.canMakePayments(){
+            self.canPurchase = true
+            IAPManager.sharedInstance.setupInAppPurchases()
+        }
+
         return true
     }
 
@@ -128,6 +135,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         mmwGameSceneViewController.appPaused = false
         gameIsSuspended = false
+        
+        if deluxeVersionPurchased == true {
+            gameViewController.updateUIDeluxeVersion()
+        }
+        
+        
     }
 
     func applicationWillTerminate(application: UIApplication) {

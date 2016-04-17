@@ -131,10 +131,9 @@ class MMWOptionScreen: SKScene {
     }
     
     func returnToGameScene () {
-        if debugMode == true { print("return to mmw scene") } //create MMW controller
+        if debugMode == true { print("returnToGameScene() return to mmw scene") } //create MMW controller
 
         gameViewController.ViewAllOptionsUI.hidden = true
-        
         mmwGameScene.playAreaWhite.hidden = false
         mmwGameScene.backgroundStripes.hidden = false
         mmwGameScene.gameGrid.hidden = false
@@ -143,7 +142,7 @@ class MMWOptionScreen: SKScene {
     }
     
     func returnToGameSceneFinishGame () {
-        if debugMode == true { print("return to mmw scene") }//create MMW controller
+        if debugMode == true { print("returnToGameSceneFinishGame() return to mmw scene") }//create MMW controller
 
         gameViewController.ViewAllOptionsUI.hidden = true
         mmwGameScene.playAreaWhite.hidden = false

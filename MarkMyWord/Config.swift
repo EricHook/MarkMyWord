@@ -28,12 +28,12 @@ let FontHUDName = "HelveticaNeue"
 var FontHUDSize : CGFloat = 19.0
 
 func setFontHUDSize () {
-    if mmwGame.deviceType == MMWGame.DeviceType.iPhone5 {
-        FontHUDSize = 7.5
-    }
-    if mmwGame.deviceType == MMWGame.DeviceType.iPhone6Plus {
-        FontHUDSize = 8
-    }
+//    if mmwGame.deviceType == MMWGame.DeviceType.iPhone5 {
+//        FontHUDSize = 7.5
+//    }
+//    if mmwGame.deviceType == MMWGame.DeviceType.iPhone6Plus {
+//        FontHUDSize = 8
+//    }
     if mmwGame.deviceType == MMWGame.DeviceType.iPad {
         FontHUDSize = 19
     }
@@ -45,6 +45,9 @@ func setFontHUDSize () {
 var debugMode = true
 
 var gameIsSuspended = false
+
+var gameStarting = true
+var deluxeVersionPurchased = false
 
 var FontHUD = UIFont(name:"HelveticaNeue", size: 18.0)
 let FontHUDiPhoneSize = 12.0

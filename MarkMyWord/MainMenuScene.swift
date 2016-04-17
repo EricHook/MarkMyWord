@@ -47,7 +47,7 @@ class MainMenuScene: SKScene {
         self.addChild(myLabel)
         myLabel.zPosition = 100
         
-        delay(2){
+        delay(1){
             self.presentMMWScene()
         }
     }

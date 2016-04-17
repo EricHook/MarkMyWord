@@ -102,6 +102,14 @@
 		B8DFE1591C2A0BEE009FB8ED /* GameGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DFE1581C2A0BEE009FB8ED /* GameGrid.png */; };
 		B8DFE15C1C2A0E60009FB8ED /* GameGrid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DFE15A1C2A0E60009FB8ED /* GameGrid@2x.png */; };
 		B8E874E61AE17E0000763849 /* MMWTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E874E51AE17E0000763849 /* MMWTile.swift */; };
+		B8EBF9F41CC2A39B00CA476B /* iap_product_ids.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8EBF9F31CC2A39B00CA476B /* iap_product_ids.plist */; };
+		B8EBF9F61CC2A9BE00CA476B /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EBF9F51CC2A9BE00CA476B /* IAPManager.swift */; };
+		B8EBF9F81CC2CE1400CA476B /* StoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EBF9F71CC2CE1400CA476B /* StoreTableViewController.swift */; };
+		B8EBF9FA1CC2E16900CA476B /* markMyWord.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = B8EBF9F91CC2E16900CA476B /* markMyWord.xcdatamodel */; };
+		B8EBF9FC1CC3279900CA476B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EBF9FB1CC3279900CA476B /* DetailViewController.swift */; };
+		B8EBF9FE1CC327FD00CA476B /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EBF9FD1CC327FD00CA476B /* GameManager.swift */; };
+		B8EBFA001CC3283F00CA476B /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EBF9FF1CC3283F00CA476B /* MasterViewController.swift */; };
+		B8EBFA021CC3291D00CA476B /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EBFA011CC3291D00CA476B /* SettingsTableViewController.swift */; };
 		B8F3F2181C33665F00A38BB7 /* WordSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F3F2161C33665F00A38BB7 /* WordSet.swift */; };
 		B8F3F2191C33665F00A38BB7 /* WordSetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F3F2171C33665F00A38BB7 /* WordSetError.swift */; };
 		B8FA8FA21AE9DC93007CF07C /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FA8FA11AE9DC93007CF07C /* GameData.swift */; };
@@ -224,6 +232,14 @@
 		B8DFE1581C2A0BEE009FB8ED /* GameGrid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameGrid.png; sourceTree = "<group>"; };
 		B8DFE15A1C2A0E60009FB8ED /* GameGrid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GameGrid@2x.png"; sourceTree = "<group>"; };
 		B8E874E51AE17E0000763849 /* MMWTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMWTile.swift; sourceTree = "<group>"; };
+		B8EBF9F31CC2A39B00CA476B /* iap_product_ids.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = iap_product_ids.plist; sourceTree = "<group>"; };
+		B8EBF9F51CC2A9BE00CA476B /* IAPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
+		B8EBF9F71CC2CE1400CA476B /* StoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTableViewController.swift; sourceTree = "<group>"; };
+		B8EBF9F91CC2E16900CA476B /* markMyWord.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = markMyWord.xcdatamodel; sourceTree = "<group>"; };
+		B8EBF9FB1CC3279900CA476B /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		B8EBF9FD1CC327FD00CA476B /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		B8EBF9FF1CC3283F00CA476B /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		B8EBFA011CC3291D00CA476B /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		B8F3F2161C33665F00A38BB7 /* WordSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordSet.swift; sourceTree = "<group>"; };
 		B8F3F2171C33665F00A38BB7 /* WordSetError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordSetError.swift; sourceTree = "<group>"; };
 		B8FA8FA11AE9DC93007CF07C /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
@@ -483,6 +499,9 @@
 		B8CCE19E1AD8C13500882391 /* MarkMyWord */ = {
 			isa = PBXGroup;
 			children = (
+				B8EBF9F91CC2E16900CA476B /* markMyWord.xcdatamodel */,
+				B8EBF9F31CC2A39B00CA476B /* iap_product_ids.plist */,
+				B8EBF9F51CC2A9BE00CA476B /* IAPManager.swift */,
 				B8B5F2CB1C208538005B768C /* data.dat */,
 				B81CF13A1C12205E00F5261D /* GenericCoreDataClasses */,
 				B81CF1391C12203900F5261D /* DataModel */,
@@ -560,6 +579,7 @@
 				B8D789271B0C3A0300C3DC36 /* MMWGame.swift */,
 				B8A455151AF15A1400C0D83B /* GameViewController.swift */,
 				B8CCE1A71AD8C13500882391 /* MMWGameSceneViewController.swift */,
+				B8EBFA031CC3296600CA476B /* LyndaStoreLesson */,
 				B8FB376E1C28D56700C68434 /* codeSnippets */,
 			);
 			name = Controllers;
@@ -656,6 +676,18 @@
 				B88A58491BEAD859003E0957 /* badPlay.WAV */,
 			);
 			name = SoundEffects;
+			sourceTree = "<group>";
+		};
+		B8EBFA031CC3296600CA476B /* LyndaStoreLesson */ = {
+			isa = PBXGroup;
+			children = (
+				B8EBF9FF1CC3283F00CA476B /* MasterViewController.swift */,
+				B8EBF9FD1CC327FD00CA476B /* GameManager.swift */,
+				B8EBF9FB1CC3279900CA476B /* DetailViewController.swift */,
+				B8EBFA011CC3291D00CA476B /* SettingsTableViewController.swift */,
+				B8EBF9F71CC2CE1400CA476B /* StoreTableViewController.swift */,
+			);
+			name = LyndaStoreLesson;
 			sourceTree = "<group>";
 		};
 		B8F264F71AE1D5170072B9D4 /* Animations */ = {
@@ -755,6 +787,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8EBF9F41CC2A39B00CA476B /* iap_product_ids.plist in Resources */,
 				B8A75F881CADEF99005EF126 /* PlayButton.png in Resources */,
 				B822CEEC1C38880B0043905E /* NewTilesButton@2x.png in Resources */,
 				B809D41E1C90D16D0091B9F0 /* avatar006@2x.png in Resources */,
@@ -845,12 +878,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8EBF9FC1CC3279900CA476B /* DetailViewController.swift in Sources */,
 				B831B3611C65636B00D270F2 /* StringUtils.swift in Sources */,
 				B8B5E1EA1BB707FC00AD876E /* TrieElement.swift in Sources */,
+				B8EBF9FE1CC327FD00CA476B /* GameManager.swift in Sources */,
 				B8B49DBB1AF1AF610086154C /* MMWResultsScene.swift in Sources */,
+				B8EBFA001CC3283F00CA476B /* MasterViewController.swift in Sources */,
 				B8D130E71AFD635500865982 /* PlayerView.swift in Sources */,
 				B8CB742F1AF9260400AE5F40 /* Grid.swift in Sources */,
+				B8EBFA021CC3291D00CA476B /* SettingsTableViewController.swift in Sources */,
 				B8CCE1A61AD8C13500882391 /* MMWGameScene.swift in Sources */,
+				B8EBF9F61CC2A9BE00CA476B /* IAPManager.swift in Sources */,
 				B8AA6C081B2A481600DEAC41 /* MMWTileBuilder.swift in Sources */,
 				B800575C1C3C8D8900185769 /* EndGameUIView.swift in Sources */,
 				B82786151B05585D00916E20 /* Player.swift in Sources */,
@@ -866,12 +904,14 @@
 				B8FA8FA21AE9DC93007CF07C /* GameData.swift in Sources */,
 				B808A42E1B9A0C000070A1A6 /* Trie.swift in Sources */,
 				B8FA8FA91AE9DDB5007CF07C /* Config.swift in Sources */,
+				B8EBF9FA1CC2E16900CA476B /* markMyWord.xcdatamodel in Sources */,
 				B87A49091C57F24B00621F6C /* RulesViewController.swift in Sources */,
 				B8C0860F1C55A9A1008F8E40 /* EndGameScene.swift in Sources */,
 				B8A455171AF15A1400C0D83B /* GameViewController.swift in Sources */,
 				B820241F1B65BFD0004E413A /* StreamReader.swift in Sources */,
 				B81CF13C1C12207A00F5261D /* CDHelper.swift in Sources */,
 				B8A455161AF15A1400C0D83B /* MainMenuScene.swift in Sources */,
+				B8EBF9F81CC2CE1400CA476B /* StoreTableViewController.swift in Sources */,
 				B8CCE1A21AD8C13500882391 /* AppDelegate.swift in Sources */,
 				B8F3F2181C33665F00A38BB7 /* WordSet.swift in Sources */,
 			);
