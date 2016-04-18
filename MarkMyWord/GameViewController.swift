@@ -273,34 +273,44 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
         
         //////////////
         
-        updateUIDeluxeVersion()
+        //updateUIDeluxeVersion()
         
         ////////////////
         
     }
     
     func updateUIDeluxeVersion() {
+        if debugMode == true {print("updateUIDeluxeVersion()")}
         
+        deluxeVersionPurchased = true
         
         if deluxeVersionPurchased == true {
             
             startNewGameWithChangesButtonOutlet.hidden = false
+            startNewGameWithChangesButtonOutlet.enabled = true
+            
             purchaseDeluxeVersionButtonOutlet.hidden = true
+            purchaseDeluxeVersionButtonOutlet.enabled  = false
 
+            
+            purchaseDeluxeVersionButtonOutlet.alpha = 0.5
             
             SavingOptionsInfoTextOutlet.text = " 🏆 Mark My Word Deluxe Version 🏆 "
             SavingOptionsInfoTextOutlet.font = SavingOptionsInfoTextOutlet.font.fontWithSize(22)
             
         }
-            
-        else {
-            
-            startNewGameWithChangesButtonOutlet.hidden = true
-            purchaseDeluxeVersionButtonOutlet.hidden = false
-            
-            SavingOptionsInfoTextOutlet.text = "Saving options is not available in the basic version of Mark My Word. Please purchase the Deluxe Version for access to additional game customization and options."
-            SavingOptionsInfoTextOutlet.font = SavingOptionsInfoTextOutlet.font.fontWithSize(16)
-        }
+        
+//        else {
+//            
+//            startNewGameWithChangesButtonOutlet.hidden = true
+//            startNewGameWithChangesButtonOutlet.enabled = false
+//            
+//            purchaseDeluxeVersionButtonOutlet.hidden = false
+//            startNewGameWithChangesButtonOutlet.enabled = true
+//            
+//            SavingOptionsInfoTextOutlet.text = "Saving options is not available in the basic version of Mark My Word. Please purchase the Deluxe Version for access to additional game customization and options."
+//            SavingOptionsInfoTextOutlet.font = SavingOptionsInfoTextOutlet.font.fontWithSize(16)
+//        }
     }
 
     @IBOutlet var GameViewControllerUI: SKView!
@@ -850,6 +860,8 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
         mmwGameSceneViewController.playerArray[3].playerMeyamaNumber = tempPlayer4MeyamaNumber
         
         mmwOptionScreen.newGameScene()
+        
+        //updateUIDeluxeVersion()
 
     }
 
@@ -934,7 +946,7 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
         //IAPManager.sharedInstance.delegate = self
         
         //if deluxeVersionPurchased == true {
-            updateUIDeluxeVersion()
+            //updateUIDeluxeVersion()
         //}
 
     }

@@ -611,7 +611,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <inset key="contentEdgeInsets" minX="2" minY="2" maxX="0.0" maxY="0.0"/>
                                                 <inset key="titleEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
-                                                <state key="normal" title="🏆 purchase Deluxe Version 🏆">
+                                                <state key="normal" title=" start new game (with changes)">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
