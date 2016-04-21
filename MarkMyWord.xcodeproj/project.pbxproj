@@ -16,6 +16,7 @@
 		B809D4221C90D1B70091B9F0 /* meyama006@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B809D4211C90D1B70091B9F0 /* meyama006@2x.png */; };
 		B81CF13C1C12207A00F5261D /* CDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81CF13B1C12207A00F5261D /* CDHelper.swift */; };
 		B820241F1B65BFD0004E413A /* StreamReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B820241E1B65BFD0004E413A /* StreamReader.swift */; };
+		B822424B1CC9778B00FDBCB1 /* MMWScreenshot01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B822424A1CC9778B00FDBCB1 /* MMWScreenshot01.jpg */; };
 		B822CEE41C38864D0043905E /* PauseButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B822CEE21C38864D0043905E /* PauseButton@2x.png */; };
 		B822CEE81C3886560043905E /* PassButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B822CEE61C3886560043905E /* PassButton@2x.png */; };
 		B822CEEC1C38880B0043905E /* NewTilesButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B822CEEA1C38880B0043905E /* NewTilesButton@2x.png */; };
@@ -146,6 +147,7 @@
 		B809D4211C90D1B70091B9F0 /* meyama006@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "meyama006@2x.png"; sourceTree = "<group>"; };
 		B81CF13B1C12207A00F5261D /* CDHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDHelper.swift; sourceTree = "<group>"; };
 		B820241E1B65BFD0004E413A /* StreamReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamReader.swift; sourceTree = "<group>"; };
+		B822424A1CC9778B00FDBCB1 /* MMWScreenshot01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MMWScreenshot01.jpg; sourceTree = "<group>"; };
 		B822CEE21C38864D0043905E /* PauseButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PauseButton@2x.png"; sourceTree = "<group>"; };
 		B822CEE61C3886560043905E /* PassButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PassButton@2x.png"; sourceTree = "<group>"; };
 		B822CEEA1C38880B0043905E /* NewTilesButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NewTilesButton@2x.png"; sourceTree = "<group>"; };
@@ -441,6 +443,7 @@
 		B8C900671B01201600C72745 /* launchScreens */ = {
 			isa = PBXGroup;
 			children = (
+				B822424A1CC9778B00FDBCB1 /* MMWScreenshot01.jpg */,
 			);
 			name = launchScreens;
 			sourceTree = "<group>";
@@ -835,6 +838,7 @@
 				B88A585B1BEAD859003E0957 /* NewTilesButton.png in Resources */,
 				B862332D1C7FCD4F0030787E /* avatar001@2x.png in Resources */,
 				B85681231CB376B000B02C99 /* Tile3D@2x.png in Resources */,
+				B822424B1CC9778B00FDBCB1 /* MMWScreenshot01.jpg in Resources */,
 				B86233341C7FCD960030787E /* avatar004@2x.png in Resources */,
 				B822CEF71C388F530043905E /* MMWPlayerTilesPlaque.png in Resources */,
 				B8DFE15C1C2A0E60009FB8ED /* GameGrid@2x.png in Resources */,
@@ -996,7 +1000,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Hook Studios (2NN9JNUBV3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Eric Hook (7D457MRR6J)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -1044,7 +1048,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Hook Studios (2NN9JNUBV3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Eric Hook (7D457MRR6J)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -1073,8 +1077,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Hook Studios (2NN9JNUBV3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Eric Hook (7D457MRR6J)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Eric Hook (7D457MRR6J)";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MarkMyWord/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1094,8 +1098,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Hook Studios (2NN9JNUBV3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Eric Hook (7D457MRR6J)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Eric Hook (7D457MRR6J)";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MarkMyWord/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

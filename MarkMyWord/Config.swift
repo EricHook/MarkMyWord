@@ -42,9 +42,10 @@ func setFontHUDSize () {
     }
 }
 
-var debugMode = true
+var debugMode = false
 
 var gameIsSuspended = false
+var optionScreen = false
 
 var gameStarting = true
 var deluxeVersionPurchased = 0

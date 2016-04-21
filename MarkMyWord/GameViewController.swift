@@ -280,7 +280,12 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
         
         //////////////
         //if deluxeVersionPurchased != 0 {
+        
+        
+        
+        
             updateUIDeluxeVersion()
+        
         //}
         //
         
@@ -309,7 +314,7 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
         }
         
         else {
-             if debugMode == true {print("updateUIDeluxeVersion() X \(deluxeVersionPurchased != 0)")}
+             if debugMode == true {print("updateUIDeluxeVersion() X \(deluxeVersionPurchased == 0)")}
 //            startNewGameWithChangesButtonOutlet.hidden = true
 //            startNewGameWithChangesButtonOutlet.enabled = false
 //            
@@ -821,6 +826,9 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
     
     func startNewGame() {
         
+        
+        optionScreen = false
+        
         mmwGameSceneViewController.secondsPerTurn = tempSecondsPerTurn
         
         mmwGameSceneViewController.audioOn = tempAudioOn
@@ -872,6 +880,8 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
 
     @IBAction func startNewGameButton(sender: AnyObject) {
         // update game settings to those in UI
+
+        
         if deluxeVersionPurchased == 0 {
             if debugMode == true {
                 print("gameViewController func startNewGameButton () deluxeVersionPurchased == 0")
@@ -882,7 +892,7 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
             if debugMode == true {
                 print("gameViewController func startNewGameButton () deluxeVersionPurchased == ELSE ")
             }
-            updateUIDeluxeVersion()
+            //updateUIDeluxeVersion()
             startNewGame()
         }
         
@@ -961,7 +971,7 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
 
         initializeTextFields()
         
-
+        optionScreen = true
 
         skView.presentScene(mainMenuScene)
 
@@ -1026,6 +1036,7 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
         // returns to game without any settings changes
         
         gameViewController.ViewAllOptionsUI.hidden = true
+        optionScreen = false
         
         mmwOptionScreen.returnToGameSceneFinishGame()
         
@@ -1045,6 +1056,7 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
         gameViewController.viewStatsContainer.hidden = true
         gameViewController.ViewEndGameUI.hidden = true
         gameViewController.ViewResultsScreenUI.hidden = false
+        optionScreen = true
 
         var otherHighestScore = -10000
         for playerNum in 1..<mmwGameSceneViewController.playerArray.count {
@@ -1069,6 +1081,7 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
 
 
     @IBAction func EndGameNoButton(sender: AnyObject) {
+        optionScreen = false
         // returns to game without any settings changes
         mmwGameSceneViewController.consecutivePasses = mmwGameSceneViewController.numPlayers - 2
         mmwGameScene.playerPassButtonOn()
@@ -1128,6 +1141,7 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
         mmwGameSceneViewController.playerArray[2].playerMeyamaNumber = tempPlayer3MeyamaNumber
         mmwGameSceneViewController.playerArray[3].playerMeyamaNumber = tempPlayer4MeyamaNumber
         
+        optionScreen = false
         mmwOptionScreen.newGameScene()
     }
     

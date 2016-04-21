@@ -85,9 +85,12 @@ class MMWOptionScreen: SKScene {
         //viewSize = view.bounds.size
         if debugMode == true { print("view size MenuScene: \(screenSize)") }
 
-        delay(0.0){
+        //delay(0.0){
             gameViewController.updateGameSettings()
-        }
+        //}
+        
+        optionScreen = true
+        
         
         backgroundNode.texture = SKTexture(imageNamed: gameViewController.backgroundImageArray[mmwGameSceneViewController.backgroundNumber])
         //gameGridCover.hidden = false
@@ -136,7 +139,11 @@ class MMWOptionScreen: SKScene {
     
     func returnToGameScene () {
         if debugMode == true { print("returnToGameScene() return to mmw scene") } //create MMW controller
-
+        
+        
+        optionScreen = false
+        
+        
         gameViewController.ViewAllOptionsUI.hidden = true
         mmwGameScene.playAreaWhite.hidden = false
         mmwGameScene.backgroundStripes.hidden = false
@@ -147,6 +154,9 @@ class MMWOptionScreen: SKScene {
     
     func returnToGameSceneFinishGame () {
         if debugMode == true { print("returnToGameSceneFinishGame() return to mmw scene") }//create MMW controller
+        
+        
+        optionScreen = false
 
         gameViewController.ViewAllOptionsUI.hidden = true
         mmwGameScene.playAreaWhite.hidden = false
@@ -202,6 +212,9 @@ class MMWOptionScreen: SKScene {
             mmwGameScene.playAreaWhite.hidden = false
             mmwGameScene.backgroundStripes.hidden = false
             mmwGameScene.gameGrid.hidden = false
+            
+            
+            optionScreen = false
             
             self.view?.presentScene(mmwGameScene)
             

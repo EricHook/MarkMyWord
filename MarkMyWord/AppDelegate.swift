@@ -47,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var numWordsPlayed = mmwGameSceneViewController.numWordsMade
         var gamesWon = mmwGameSceneViewController.numGamesWon
         var gamesLost = mmwGameSceneViewController.numGamesLost
+        // deluxeVersionPurchased in Config.swift
         
         do {
             if let stats = try CDHelper.shared.context.executeFetchRequest(request) as? [Stats] {
@@ -215,26 +216,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
-//        CDHelper.saveSharedContext()
-        if mmwGameSceneViewController.timerIsOn {
-            //mmwGameScene.stopTimer()
-        }
+        
+        
+        
+        
+        
+        
+        
+        
+////        CDHelper.saveSharedContext()
+//        if mmwGameSceneViewController.timerIsOn {
+//            mmwGameScene.stopTimer()
+//        }
+        
+        
+        
+        
+        
+        
+        
+        
         
         mmwGameSceneViewController.appPaused = true
         gameIsSuspended = true
 
         if debugMode == true { print("AppDelegate > application ...") }
+        
+        if deluxeVersionPurchased != 0 {
+            gameViewController.updateUIDeluxeVersion()
+        }
     }
 
     
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
         if debugMode == true { print("AppDelegate > applicationWillEnterForeground ...") }
-        if mmwGameSceneViewController.timerIsOn {
-            mmwGameScene.startTimer(mmwGameScene.secondsLeft)
-        }
+        
+//        if optionScreen == false {
+//            if mmwGameSceneViewController.timerIsOn {
+//                mmwGameScene.startTimer(mmwGameScene.secondsLeft)
+//            }
+//        }
+        
         mmwGameSceneViewController.appPaused = false
         gameIsSuspended = false
+        
+        //if deluxeVersionPurchased != 0 {
+        
+            gameViewController.updateUIDeluxeVersion()
+        
+        //}
     }
 
     
@@ -244,15 +275,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //demo()
 
         if debugMode == true { print("AppDelegate > applicationDidBecomeActive ...") }
-        //if mmwGameSceneViewController.timerIsOn {
-            //mmwGameScene.startTimer(mmwGameScene.secondsLeft)
-        //}
+        
+        
         mmwGameSceneViewController.appPaused = false
         gameIsSuspended = false
         
-//        if deluxeVersionPurchased != 0 {
-//            gameViewController.updateUIDeluxeVersion()
-//        }
+        if optionScreen == false {
+            if mmwGameSceneViewController.timerIsOn {
+                mmwGameScene.startTimer(mmwGameScene.secondsLeft)
+            }
+        }
+
+        
+        //if deluxeVersionPurchased != 0 {
+        
+            gameViewController.updateUIDeluxeVersion()
+        
+        //}
     }
 
     

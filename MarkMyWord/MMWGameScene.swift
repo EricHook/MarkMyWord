@@ -559,7 +559,10 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             }
             secondsLeft -= 1
             
-            print("updateCounter()  \(secondsLeft)")
+            if debugMode == true {
+                print("updateCounter()  \(secondsLeft)")
+            }
+            
         }
     }
     
@@ -1406,7 +1409,10 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
     
     
     func optionsButton (optionsButtonNode: SKNode) {
-
+        
+        
+        optionScreen = true
+        
         stopTimer()
         
         gameGrid.hidden = true
@@ -1525,19 +1531,25 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
             
             let emitterNode = SKEmitterNode(fileNamed: "MagicParticle.sks")
             emitterNode?.zPosition = 100
-            emitterNode!.particlePosition = pos
+            emitterNode?.particlePosition = pos
             
-            emitterNode!.particleColorSequence = nil
-            emitterNode!.particleColorBlendFactor = 1.0
-            emitterNode!.particleColor = color
+            emitterNode?.particleColorSequence = nil
+            emitterNode?.particleColorBlendFactor = 1.0
+            emitterNode?.particleColor = color
             
-            self.addChild(emitterNode!)
-            self.runAction(SKAction.waitForDuration(2), completion: { emitterNode!.removeFromParent() })
+            if emitterNode != nil {
+                self.addChild(emitterNode!)
+                self.runAction(SKAction.waitForDuration(2), completion: { emitterNode?.removeFromParent() })
+            }
+            
+//            self.addChild(emitterNode!)
+//            
+//            self.runAction(SKAction.waitForDuration(2), completion: { emitterNode?.removeFromParent() })
             
             
-            dispatch_async(dispatch_get_main_queue(), {
-                if debugMode == true { print("hello from explosion() thread executed as dispatch") }
-            })
+//            dispatch_async(dispatch_get_main_queue(), {
+//                if debugMode == true { print("hello from explosion() thread executed as dispatch") }
+//            })
         })
     }
     

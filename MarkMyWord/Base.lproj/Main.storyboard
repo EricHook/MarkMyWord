@@ -603,27 +603,11 @@
                                                     <action selector="startNewGameButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="G72-Ig-sue"/>
                                                 </connections>
                                             </button>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lRv-3s-0iv" userLabel="purchaseDeluxeVersionButtonOutlet">
-                                                <rect key="frame" x="336" y="556" width="334" height="30"/>
-                                                <accessibility key="accessibilityConfiguration">
-                                                    <accessibilityTraits key="traits" button="YES" updatesFrequently="YES"/>
-                                                </accessibility>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <inset key="contentEdgeInsets" minX="2" minY="2" maxX="0.0" maxY="0.0"/>
-                                                <inset key="titleEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
-                                                <state key="normal" title=" start new game (with changes)">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="purchaseDeluxeVersionAction:" destination="BV1-FR-VrT" eventType="touchUpInside" id="CEm-KV-CRT"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igs-FI-gLJ" userLabel="SavingOptionsInfoTextOutlet">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igs-FI-gLJ" userLabel="SavingOptionsInfoTextOutlet">
                                                 <rect key="frame" x="8" y="618" width="641" height="53"/>
                                                 <accessibility key="accessibilityConfiguration">
-                                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES" updatesFrequently="YES"/>
+                                                    <accessibilityTraits key="traits" notEnabled="YES" updatesFrequently="YES"/>
                                                 </accessibility>
-                                                <string key="text">Saving options is not available in the basic version of Mark My Word. Please purchase the Deluxe Version for access to additional game customization and options.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -842,7 +826,6 @@
                         <outlet property="player4NameTextFieldOutlet" destination="0ej-dc-Dm7" id="SJ4-BX-X9a"/>
                         <outlet property="player4SkillLevelLabelOutlet" destination="6Su-rL-cpX" id="j4A-tv-yLq"/>
                         <outlet property="player4SkillLevelOutlet" destination="Qpa-ab-m37" id="5y0-1A-jWq"/>
-                        <outlet property="purchaseDeluxeVersionButtonOutlet" destination="lRv-3s-0iv" id="esH-GF-nXz"/>
                         <outlet property="returnToGameButtonOutlet" destination="rOF-Gn-kq7" id="YjK-S4-dHm"/>
                         <outlet property="secondPerTurnSwitchOutlet" destination="MWV-lc-QH3" id="MD3-na-F2A"/>
                         <outlet property="startNewGameWithChangesButtonOutlet" destination="Tsw-7H-Vfy" id="QBt-7z-UPa"/>
