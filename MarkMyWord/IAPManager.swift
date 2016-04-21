@@ -43,7 +43,7 @@ class IAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObser
     
     //Retrieve product information
     func validateProductIdentifiers(identifiers:NSArray) {
-        if debugMode == true { print("validateProductIdentifiers(identifiers:NSArray)") }
+        if debugMode == true { print("IAPManager validateProductIdentifiers(identifiers:NSArray) deluxeVersionPurchased? \(deluxeVersionPurchased)") }
         let productIdentifiers = NSSet(array: identifiers as [AnyObject])
         let productRequest = SKProductsRequest(productIdentifiers: productIdentifiers as! Set<String>)
         self.request = productRequest
@@ -61,11 +61,11 @@ class IAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObser
     
     
     func verifyReceipt(transaction:SKPaymentTransaction?){
-        if debugMode == true { print("verifyReceipt(transaction:SKPaymentTransaction?)") }
+        if debugMode == true { print("IAPManager verifyReceipt(transaction:SKPaymentTransaction?) deluxeVersionPurchased? \(deluxeVersionPurchased)") }
         let receiptURL = NSBundle.mainBundle().appStoreReceiptURL!
         if let receipt = NSData(contentsOfURL: receiptURL){
             //Receipt exists
-            let requestContents = ["receipt-data" : receipt.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0)), "password" : "tgbyhn"] // "password" : "326200e390c84cda8f7fb53750b72e05"
+            let requestContents = ["receipt-data" : receipt.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0)), "password" : "326200e390c84cda8f7fb53750b72e05"]
             
             //Perform request
             do {
@@ -111,10 +111,14 @@ class IAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObser
                             if transaction != nil {
                                 SKPaymentQueue.defaultQueue().finishTransaction(transaction!)
 
+                                if debugMode == true {
+                                    print("IAPManager dispatch_sync( dispatch_get_main_queue  )  1  deluxeVersionPurchased? \(deluxeVersionPurchased)")
+                                }
+                                deluxeVersionPurchased = 1
+                                //gameViewController.updateUIDeluxeVersion()
                                 
-                                //deluxeVersionPurchased = true
-                                if debugMode == true {print("if transaction != nil verifyReceipt(transaction:SKPaymentTransaction?)") }
-                                gameViewController.updateUIDeluxeVersion()
+                                if debugMode == true {print("IAPManager if transaction != nil verifyReceipt(transaction:SKPaymentTransaction?) deluxeVersionPurchased? \(deluxeVersionPurchased)") }
+
                                 
                                 
                             }
@@ -123,20 +127,18 @@ class IAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObser
                                 self.delegate?.managerDidRestorePurchases()
                                 
                                 if debugMode == true {
-                                    
-                                    print("dispatch_sync( dispatch_get_main_queue  ) ")
-                                
+                                    print("IAPManager dispatch_sync( dispatch_get_main_queue  ) 2 deluxeVersionPurchased? \(deluxeVersionPurchased)")
                                 }
                                     
-                                //deluxeVersionPurchased = true
-                                gameViewController.updateUIDeluxeVersion()
+                                //deluxeVersionPurchased = 1
+                                //gameViewController.updateUIDeluxeVersion()
                                 
                                 
                             })
                             
                         } else {
                             //Debug the receipt
-                            print(json.objectForKey("status") as! NSNumber)
+                            print(json.objectForKey("IAPManager status") as! NSNumber)
                         }
                         
                     } catch {
@@ -152,29 +154,29 @@ class IAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObser
             
         } else {
             //Receipt does not exist
-            print("verifyReceipt >> No Receipt")
-            deluxeVersionPurchased = false
+            print("IAPManager verifyReceipt >> No Receipt deluxeVersionPurchased? \(deluxeVersionPurchased)")
+            //deluxeVersionPurchased = 0
         }
     }
     
     
     func validatePurchaseArray(purchases:NSArray){
-        if debugMode == true { print("validatePurchaseArray(purchases:NSArray)") }
+        if debugMode == true { print("IAPManager validatePurchaseArray(purchases:NSArray) deluxeVersionPurchased? \(deluxeVersionPurchased)") }
         for purchase in purchases as! [NSDictionary]{
             
             
-            //deluxeVersionPurchased = true
-            //gameViewController.updateUIDeluxeVersion()
+//            deluxeVersionPurchased = 1
+//            gameViewController.updateUIDeluxeVersion()
             
             
             if let expires_date_ms_string = purchase["expires_date_ms"] as? String {
                 let expires_date_ms = NSNumberFormatter().numberFromString(expires_date_ms_string)
                 if self.isDateExpired(expires_date_ms as! Double){
                     //
-                    print("Expired subscription")
+                    print("IAPManager Expired subscription")
                     self.lockPurchasedFunctionalityForProductIdentifier(purchase["product_id"] as! String)
                 } else {
-                    print("Active subscription")
+                    print("IAPManager Active subscription")
                     self.unlockPurchasedFunctionalityForProductIdentifier(purchase["product_id"] as! String)
                 }
                 
@@ -186,14 +188,21 @@ class IAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObser
     
     
     func unlockPurchasedFunctionalityForProductIdentifier(productIdentifier:String){
-        if debugMode == true { print("unlockPurchasedFunctionalityForProductIdentifier(productIdentifier:String)") }
+        
         NSUserDefaults.standardUserDefaults().setBool(true, forKey: productIdentifier)
         NSUserDefaults.standardUserDefaults().synchronize()
         
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         
-//        deluxeVersionPurchased = true
-//        gameViewController.updateUIDeluxeVersion()
+
+        
+        deluxeVersionPurchased = 1
+        
+        if debugMode == true {
+            print("IAPManager unlockPurchasedFunctionalityForProductIdentifier(productIdentifier:String) deluxeVersionPurchased? \(deluxeVersionPurchased)")
+        }
+        
+        gameViewController.updateUIDeluxeVersion()
     }
     
     
@@ -220,41 +229,51 @@ class IAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObser
     
     //MARK: SKProductsRequestDelegate
     func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
-        if debugMode == true { print("productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse)") }
+    
         self.products = response.products
-        print("productsRequest >> \(self.products) ")
+        
+            if debugMode == true { print("IAPManager productsRequest >> \(self.products) deluxeVersionPurchased? \(deluxeVersionPurchased)") }
+        
     }
     
     
     //MARK: SKPaymentTransactionObserver Delegate Protocol
     func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-        if debugMode == true { print("rpaymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction])") }
+        if debugMode == true { print("IAPManager paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) deluxeVersionPurchased? \(deluxeVersionPurchased)") }
         for transaction in transactions as [SKPaymentTransaction]{
             switch transaction.transactionState{
             case .Purchasing:
-                print("Purchasing")
+                print("IAPManager Purchasing deluxeVersionPurchased? \(deluxeVersionPurchased)")
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = true
             case .Deferred:
-                print("Deferrred")
+                print("IAPManager Deferrred deluxeVersionPurchased? \(deluxeVersionPurchased)")
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             case .Failed:
-                print("Failed")
+                print("IAPManager Failed deluxeVersionPurchased? \(deluxeVersionPurchased)")
                 print(transaction.error?.localizedDescription)
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                 SKPaymentQueue.defaultQueue().finishTransaction(transaction)
             case.Purchased:
-                print("Purchased")
+                print("IAPManager Purchased deluxeVersionPurchased? \(deluxeVersionPurchased)")
                 //
                 self.verifyReceipt(transaction)
                 
-//                deluxeVersionPurchased = true //////////////////////////
-//                gameViewController.updateUIDeluxeVersion()
+                if debugMode == true {
+                    print("IAPManager func paymentQueue case.Purchased: deluxeVersionPurchased? \(deluxeVersionPurchased)")
+                }
+                
+                deluxeVersionPurchased = 1 //////////////////////////
+                //gameViewController.updateUIDeluxeVersion()
                 
             case .Restored:
-                print("Restored")
+                print("IAPManager Restored deluxeVersionPurchased? \(deluxeVersionPurchased)")
                 
-//                deluxeVersionPurchased = true //////////////////////////
-//                gameViewController.updateUIDeluxeVersion()
+                
+                if debugMode == true {
+                    print("IAPManager func paymentQueue case .Restored: deluxeVersionPurchased? \(deluxeVersionPurchased)")
+                }
+                deluxeVersionPurchased = 1 //////////////////////////
+                //gameViewController.updateUIDeluxeVersion()
                 
             }
         }
@@ -262,16 +281,18 @@ class IAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObser
     
     
     func restorePurchases(){
-        if debugMode == true { print("restorePurchases()") }
+     
         let request = SKReceiptRefreshRequest()
         request.delegate = self
         request.start()
+           if debugMode == true { print("IAPManager restorePurchases() deluxeVersionPurchased? \(deluxeVersionPurchased)") }
     }
     
     
     func requestDidFinish(request: SKRequest) {
-        if debugMode == true { print("requestDidFinish(request: SKRequest)") }
+        
         self.verifyReceipt(nil)
+        if debugMode == true { print("IAPManager requestDidFinish(request: SKRequest) deluxeVersionPurchased? \(deluxeVersionPurchased)") }
     }
     
 }

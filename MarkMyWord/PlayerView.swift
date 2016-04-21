@@ -252,7 +252,6 @@ class PlayerView: SKSpriteNode {
         else {
             playerGrid.makeTilesInGridInteractive(false)
         }
-        
     }
     
     

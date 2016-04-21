@@ -105,11 +105,17 @@
 		B8EBF9F41CC2A39B00CA476B /* iap_product_ids.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8EBF9F31CC2A39B00CA476B /* iap_product_ids.plist */; };
 		B8EBF9F61CC2A9BE00CA476B /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EBF9F51CC2A9BE00CA476B /* IAPManager.swift */; };
 		B8EBF9F81CC2CE1400CA476B /* StoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EBF9F71CC2CE1400CA476B /* StoreTableViewController.swift */; };
-		B8EBF9FA1CC2E16900CA476B /* markMyWord.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = B8EBF9F91CC2E16900CA476B /* markMyWord.xcdatamodel */; };
 		B8EBF9FC1CC3279900CA476B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EBF9FB1CC3279900CA476B /* DetailViewController.swift */; };
 		B8EBF9FE1CC327FD00CA476B /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EBF9FD1CC327FD00CA476B /* GameManager.swift */; };
 		B8EBFA001CC3283F00CA476B /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EBF9FF1CC3283F00CA476B /* MasterViewController.swift */; };
 		B8EBFA021CC3291D00CA476B /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EBFA011CC3291D00CA476B /* SettingsTableViewController.swift */; };
+		B8EBFA141CC595FC00CA476B /* Stats.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B8EBFA121CC595FC00CA476B /* Stats.xcdatamodeld */; };
+		B8EBFA171CC5992A00CA476B /* Stats+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EBFA151CC5992A00CA476B /* Stats+CoreDataProperties.swift */; };
+		B8EBFA181CC5992A00CA476B /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EBFA161CC5992A00CA476B /* Stats.swift */; };
+		B8EBFA571CC5AFF500CA476B /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EBFA561CC5AFF500CA476B /* CoreDataStack.swift */; };
+		B8EBFA5E1CC5B13700CA476B /* Item.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B8EBFA5C1CC5B13700CA476B /* Item.xcdatamodeld */; };
+		B8EBFA611CC5B1B400CA476B /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EBFA5F1CC5B1B400CA476B /* Item+CoreDataProperties.swift */; };
+		B8EBFA621CC5B1B400CA476B /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EBFA601CC5B1B400CA476B /* Item.swift */; };
 		B8F3F2181C33665F00A38BB7 /* WordSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F3F2161C33665F00A38BB7 /* WordSet.swift */; };
 		B8F3F2191C33665F00A38BB7 /* WordSetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F3F2171C33665F00A38BB7 /* WordSetError.swift */; };
 		B8FA8FA21AE9DC93007CF07C /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FA8FA11AE9DC93007CF07C /* GameData.swift */; };
@@ -235,11 +241,17 @@
 		B8EBF9F31CC2A39B00CA476B /* iap_product_ids.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = iap_product_ids.plist; sourceTree = "<group>"; };
 		B8EBF9F51CC2A9BE00CA476B /* IAPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
 		B8EBF9F71CC2CE1400CA476B /* StoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTableViewController.swift; sourceTree = "<group>"; };
-		B8EBF9F91CC2E16900CA476B /* markMyWord.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = markMyWord.xcdatamodel; sourceTree = "<group>"; };
 		B8EBF9FB1CC3279900CA476B /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B8EBF9FD1CC327FD00CA476B /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		B8EBF9FF1CC3283F00CA476B /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		B8EBFA011CC3291D00CA476B /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		B8EBFA131CC595FC00CA476B /* Stats.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Stats.xcdatamodel; sourceTree = "<group>"; };
+		B8EBFA151CC5992A00CA476B /* Stats+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Stats+CoreDataProperties.swift"; path = "../Stats+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B8EBFA161CC5992A00CA476B /* Stats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stats.swift; path = ../Stats.swift; sourceTree = "<group>"; };
+		B8EBFA561CC5AFF500CA476B /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = ../CoreDataStack.swift; sourceTree = "<group>"; };
+		B8EBFA5D1CC5B13700CA476B /* Item.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Item.xcdatamodel; sourceTree = "<group>"; };
+		B8EBFA5F1CC5B1B400CA476B /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Item+CoreDataProperties.swift"; path = "../Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B8EBFA601CC5B1B400CA476B /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Item.swift; path = ../Item.swift; sourceTree = "<group>"; };
 		B8F3F2161C33665F00A38BB7 /* WordSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordSet.swift; sourceTree = "<group>"; };
 		B8F3F2171C33665F00A38BB7 /* WordSetError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordSetError.swift; sourceTree = "<group>"; };
 		B8FA8FA11AE9DC93007CF07C /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
@@ -331,6 +343,7 @@
 		B88A58431BEAD050003E0957 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				B8EBF9F51CC2A9BE00CA476B /* IAPManager.swift */,
 				B8F3F2161C33665F00A38BB7 /* WordSet.swift */,
 				B8F3F2171C33665F00A38BB7 /* WordSetError.swift */,
 				B820241E1B65BFD0004E413A /* StreamReader.swift */,
@@ -499,9 +512,14 @@
 		B8CCE19E1AD8C13500882391 /* MarkMyWord */ = {
 			isa = PBXGroup;
 			children = (
-				B8EBF9F91CC2E16900CA476B /* markMyWord.xcdatamodel */,
+				B8EBFA5F1CC5B1B400CA476B /* Item+CoreDataProperties.swift */,
+				B8EBFA601CC5B1B400CA476B /* Item.swift */,
+				B8EBFA5C1CC5B13700CA476B /* Item.xcdatamodeld */,
+				B8EBFA151CC5992A00CA476B /* Stats+CoreDataProperties.swift */,
+				B8EBFA161CC5992A00CA476B /* Stats.swift */,
+				B8EBFA121CC595FC00CA476B /* Stats.xcdatamodeld */,
+				B8EBFA561CC5AFF500CA476B /* CoreDataStack.swift */,
 				B8EBF9F31CC2A39B00CA476B /* iap_product_ids.plist */,
-				B8EBF9F51CC2A9BE00CA476B /* IAPManager.swift */,
 				B8B5F2CB1C208538005B768C /* data.dat */,
 				B81CF13A1C12205E00F5261D /* GenericCoreDataClasses */,
 				B81CF1391C12203900F5261D /* DataModel */,
@@ -879,15 +897,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8EBF9FC1CC3279900CA476B /* DetailViewController.swift in Sources */,
+				B8EBFA181CC5992A00CA476B /* Stats.swift in Sources */,
 				B831B3611C65636B00D270F2 /* StringUtils.swift in Sources */,
 				B8B5E1EA1BB707FC00AD876E /* TrieElement.swift in Sources */,
+				B8EBFA621CC5B1B400CA476B /* Item.swift in Sources */,
+				B8EBFA5E1CC5B13700CA476B /* Item.xcdatamodeld in Sources */,
 				B8EBF9FE1CC327FD00CA476B /* GameManager.swift in Sources */,
 				B8B49DBB1AF1AF610086154C /* MMWResultsScene.swift in Sources */,
+				B8EBFA571CC5AFF500CA476B /* CoreDataStack.swift in Sources */,
 				B8EBFA001CC3283F00CA476B /* MasterViewController.swift in Sources */,
 				B8D130E71AFD635500865982 /* PlayerView.swift in Sources */,
 				B8CB742F1AF9260400AE5F40 /* Grid.swift in Sources */,
 				B8EBFA021CC3291D00CA476B /* SettingsTableViewController.swift in Sources */,
 				B8CCE1A61AD8C13500882391 /* MMWGameScene.swift in Sources */,
+				B8EBFA141CC595FC00CA476B /* Stats.xcdatamodeld in Sources */,
 				B8EBF9F61CC2A9BE00CA476B /* IAPManager.swift in Sources */,
 				B8AA6C081B2A481600DEAC41 /* MMWTileBuilder.swift in Sources */,
 				B800575C1C3C8D8900185769 /* EndGameUIView.swift in Sources */,
@@ -899,12 +922,12 @@
 				B8C0860C1C55A532008F8E40 /* EndGameSceneController.swift in Sources */,
 				B87A490B1C5819D000621F6C /* MMWEndGameScene.swift in Sources */,
 				B8C14EF11AF27E5100E640C0 /* LetterTileSprite.swift in Sources */,
+				B8EBFA611CC5B1B400CA476B /* Item+CoreDataProperties.swift in Sources */,
 				B8CCE1A81AD8C13500882391 /* MMWGameSceneViewController.swift in Sources */,
 				B8D789281B0C3A0300C3DC36 /* MMWGame.swift in Sources */,
 				B8FA8FA21AE9DC93007CF07C /* GameData.swift in Sources */,
 				B808A42E1B9A0C000070A1A6 /* Trie.swift in Sources */,
 				B8FA8FA91AE9DDB5007CF07C /* Config.swift in Sources */,
-				B8EBF9FA1CC2E16900CA476B /* markMyWord.xcdatamodel in Sources */,
 				B87A49091C57F24B00621F6C /* RulesViewController.swift in Sources */,
 				B8C0860F1C55A9A1008F8E40 /* EndGameScene.swift in Sources */,
 				B8A455171AF15A1400C0D83B /* GameViewController.swift in Sources */,
@@ -914,6 +937,7 @@
 				B8EBF9F81CC2CE1400CA476B /* StoreTableViewController.swift in Sources */,
 				B8CCE1A21AD8C13500882391 /* AppDelegate.swift in Sources */,
 				B8F3F2181C33665F00A38BB7 /* WordSet.swift in Sources */,
+				B8EBFA171CC5992A00CA476B /* Stats+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1151,6 +1175,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B8EBFA121CC595FC00CA476B /* Stats.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B8EBFA131CC595FC00CA476B /* Stats.xcdatamodel */,
+			);
+			currentVersion = B8EBFA131CC595FC00CA476B /* Stats.xcdatamodel */;
+			path = Stats.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		B8EBFA5C1CC5B13700CA476B /* Item.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B8EBFA5D1CC5B13700CA476B /* Item.xcdatamodel */,
+			);
+			currentVersion = B8EBFA5D1CC5B13700CA476B /* Item.xcdatamodel */;
+			name = Item.xcdatamodeld;
+			path = ../Item.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B8CCE1941AD8C13500882391 /* Project object */;
 }

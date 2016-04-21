@@ -591,7 +591,7 @@
                                                     <action selector="returnToGameButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="VKm-r8-xfz"/>
                                                 </connections>
                                             </button>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tsw-7H-Vfy" userLabel="startNewGameWithChangesButtonOutlet">
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tsw-7H-Vfy" userLabel="startNewGameWithChangesButtonOutlet">
                                                 <rect key="frame" x="347" y="556" width="305" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <inset key="contentEdgeInsets" minX="2" minY="2" maxX="0.0" maxY="0.0"/>
@@ -603,7 +603,7 @@
                                                     <action selector="startNewGameButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="G72-Ig-sue"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lRv-3s-0iv" userLabel="purchaseDeluxeVersionButtonOutlet">
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lRv-3s-0iv" userLabel="purchaseDeluxeVersionButtonOutlet">
                                                 <rect key="frame" x="336" y="556" width="334" height="30"/>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <accessibilityTraits key="traits" button="YES" updatesFrequently="YES"/>

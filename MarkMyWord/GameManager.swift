@@ -143,6 +143,4 @@ class GameManager {
         let formattedDate = formatter.stringFromDate(date)
         return formattedDate
     }
-    
-    
 }

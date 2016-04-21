@@ -29,6 +29,12 @@ extension SKNode {
     }
 }
 
+
+
+
+
+
+
 var mmwGameSceneViewController  = MMWGameSceneViewController()
 var gameViewController          = GameViewController()
 var storeTableViewController    = StoreTableViewController()
@@ -41,6 +47,7 @@ var selectedHumanAvatar  = 0
 var selectedMeyamaAvatar = 0
 
 class GameViewController : UIViewController, UITextFieldDelegate { // , UITableViewDataSource, UITableViewDelegate, IAPManagerDelegate   { // , GADBannerViewDelegate {
+
 
     var tempSecondsPerTurn : Int!
     
@@ -86,9 +93,9 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
     
     var backgroundImageArray = ["BG000.jpg", "BG001.jpg"]
     
-    var playerAvatarNames = ["Player 0", "Player 1", "Player 2", "Player 3", "Player 4", "Player 5", "Player 6"]
+    var playerAvatarNames = ["Player", "Player 1", "Player 2", "Player 3", "Player 4", "Player 5", "Player 6"]
     
-    var meyamaAvatarNames = ["Aquamarine", "Goldenrod", "Scarlet", "Violet", "AI 4", "AI 5", "AI 6"]
+    var meyamaAvatarNames = ["Aquamarine", "Goldie", "Scarlet", "Violet", "AI 4", "AI 5", "AI 6"]
     
     
     // get values saved mostly in mmwGameSceneViewController and update options settings in UI
@@ -272,45 +279,46 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
         }
         
         //////////////
-        
-        //updateUIDeluxeVersion()
+        //if deluxeVersionPurchased != 0 {
+            updateUIDeluxeVersion()
+        //}
+        //
         
         ////////////////
         
     }
     
     func updateUIDeluxeVersion() {
-        if debugMode == true {print("updateUIDeluxeVersion()")}
+        if debugMode == true {print("updateUIDeluxeVersion() \(deluxeVersionPurchased != 0)")}
         
-        deluxeVersionPurchased = true
+        //deluxeVersionPurchased = 1
         
-        if deluxeVersionPurchased == true {
+        if deluxeVersionPurchased != 0 {
             
-            startNewGameWithChangesButtonOutlet.hidden = false
-            startNewGameWithChangesButtonOutlet.enabled = true
+//            startNewGameWithChangesButtonOutlet.hidden = false
+//            startNewGameWithChangesButtonOutlet.enabled = true
             
-            purchaseDeluxeVersionButtonOutlet.hidden = true
-            purchaseDeluxeVersionButtonOutlet.enabled  = false
+//            purchaseDeluxeVersionButtonOutlet.hidden = true
+//            purchaseDeluxeVersionButtonOutlet.enabled  = false
 
+            //purchaseDeluxeVersionButtonOutlet.alpha = 0.5
             
-            purchaseDeluxeVersionButtonOutlet.alpha = 0.5
-            
-            SavingOptionsInfoTextOutlet.text = " 🏆 Mark My Word Deluxe Version 🏆 "
+            SavingOptionsInfoTextOutlet.text = "🏆 Mark My Word Deluxe Version 🏆"
             SavingOptionsInfoTextOutlet.font = SavingOptionsInfoTextOutlet.font.fontWithSize(22)
             
         }
         
-//        else {
-//            
+        else {
+             if debugMode == true {print("updateUIDeluxeVersion() X \(deluxeVersionPurchased != 0)")}
 //            startNewGameWithChangesButtonOutlet.hidden = true
 //            startNewGameWithChangesButtonOutlet.enabled = false
 //            
 //            purchaseDeluxeVersionButtonOutlet.hidden = false
 //            startNewGameWithChangesButtonOutlet.enabled = true
-//            
-//            SavingOptionsInfoTextOutlet.text = "Saving options is not available in the basic version of Mark My Word. Please purchase the Deluxe Version for access to additional game customization and options."
-//            SavingOptionsInfoTextOutlet.font = SavingOptionsInfoTextOutlet.font.fontWithSize(16)
-//        }
+            
+            SavingOptionsInfoTextOutlet.text = "Saving options is not available in the basic version of Mark My Word. Please purchase the Deluxe Version for access to additional game customization and options."
+            SavingOptionsInfoTextOutlet.font = SavingOptionsInfoTextOutlet.font.fontWithSize(16)
+        }
     }
 
     @IBOutlet var GameViewControllerUI: SKView!
@@ -860,14 +868,25 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
         mmwGameSceneViewController.playerArray[3].playerMeyamaNumber = tempPlayer4MeyamaNumber
         
         mmwOptionScreen.newGameScene()
-        
-        //updateUIDeluxeVersion()
-
     }
 
     @IBAction func startNewGameButton(sender: AnyObject) {
         // update game settings to those in UI
-        startNewGame()
+        if deluxeVersionPurchased == 0 {
+            if debugMode == true {
+                print("gameViewController func startNewGameButton () deluxeVersionPurchased == 0")
+            }
+            deluxeVersionAction()
+        }
+        else {
+            if debugMode == true {
+                print("gameViewController func startNewGameButton () deluxeVersionPurchased == ELSE ")
+            }
+            updateUIDeluxeVersion()
+            startNewGame()
+        }
+        
+        //startNewGame()
     }
     
     
@@ -879,24 +898,27 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
     }
     
     
-    @IBAction func purchaseDeluxeVersionAction(sender: AnyObject) {
-        print("purchaseDeluxeVersionAction")
-        gameStarting = false
-        
-        
-        
-        
-        //let store = StoreTableViewController()
-        
-        deluxeVersionAction()
-        
-        //self.presentViewController(store, animated: true, completion: nil)
-        
-//        view?.presentScene(mmwGameScene)
-//        if debugMode == true { print("presentMMWScene") }
+//    @IBAction func purchaseDeluxeVersionAction(sender: AnyObject) {
+//        print("@IBAction func purchaseDeluxeVersionAction(sender: AnyObject) purchaseDeluxeVersionAction")
+//        gameStarting = false
+//
 //        
-//        store.
-    }
+//        //let store = StoreTableViewController()
+//        if deluxeVersionPurchased == 0 {
+//            deluxeVersionAction()
+//        }
+//        else {
+//            updateUIDeluxeVersion()
+//        }
+//        
+//        
+//        //self.presentViewController(store, animated: true, completion: nil)
+//        
+////        view?.presentScene(mmwGameScene)
+////        if debugMode == true { print("presentMMWScene") }
+////        
+////        store.
+//    }
     
     
 
@@ -938,10 +960,21 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
         mainMenuScene.scaleMode = .AspectFill
 
         initializeTextFields()
+        
+
 
         skView.presentScene(mainMenuScene)
 
         gameViewController = self as GameViewController
+        
+        
+        
+        
+        
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        appDelegate.managedObjectModel
+
+        
         
         //IAPManager.sharedInstance.delegate = self
         
@@ -954,11 +987,12 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
     //MARK: Deluxe Version Functionality
     func deluxeVersionAction(){
         if NSUserDefaults.standardUserDefaults().boolForKey("com.hookstudios.markmywordiosdeluxe"){
-            print("Active")
+            print("deluxeVersionAction() Active")
+            
         } else {
             let alertController = UIAlertController(title: "Mark My Word Deluxe", message: "Add options and customization to the basic version of the game.", preferredStyle: .Alert)
             let learnAction = UIAlertAction(title: "Learn More", style: .Default) { (action) -> Void in
-                print("action learnAction")
+                print("deluxeVersionAction() action learnAction")
                 
                 //gameViewController.ViewStoreOutlet.hidden = false
                 
@@ -969,12 +1003,15 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
                 
             }
             let cancelAction = UIAlertAction(title: "Not right now", style: .Default, handler: nil)
+            
             alertController.addAction(cancelAction)
             alertController.addAction(learnAction)
+            
             self.presentViewController(alertController, animated: true, completion: nil)
+
         }
         
-        
+        updateUIDeluxeVersion()
     }
     
     

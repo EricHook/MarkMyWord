@@ -74,6 +74,8 @@ class MMWOptionScreen: SKScene {
             backgroundStripesAll.xScale = 1.333
             backgroundStripesAll.yScale = 1.333
         }
+        
+        //gameViewController.updateUIDeluxeVersion()
 
     }
     
@@ -109,6 +111,8 @@ class MMWOptionScreen: SKScene {
         mmwGameScene.playAreaWhite.hidden = true
         mmwGameScene.backgroundStripes.hidden = true
         mmwGameScene.gameGrid.hidden = true
+        
+        //gameViewController.updateUIDeluxeVersion()
         
         // NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentView", name: "showController", object: nil)
     }
@@ -159,7 +163,7 @@ class MMWOptionScreen: SKScene {
         
         mmwGameScene.foundValidWordOnTurn = true
         
-        let loadDelayTimeSecs = 17.0
+        let loadDelayTimeSecs = 15.0
         
         //gameViewController.ViewAllOptionsUI.hidden = true
         gameViewController.ViewOptionsUI.hidden = true
@@ -178,7 +182,7 @@ class MMWOptionScreen: SKScene {
         loadingIndicator.zPosition = 100
         self.addChild(loadingIndicator)
         loadingIndicator.runAction(SKAction.scaleXTo(0, duration: 0.0))
-        let scaleHoriz = SKAction.scaleXTo(2, duration: loadDelayTimeSecs + 0.5)
+        let scaleHoriz = SKAction.scaleXTo(2, duration: loadDelayTimeSecs + 0.2)
         let loadingAnim = SKAction.group([scaleHoriz])
         let loadingAnimSequence = SKAction.sequence([loadingAnim, SKAction.removeFromParent()])
         loadingIndicator.runAction(loadingAnimSequence)

@@ -1416,6 +1416,9 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         
         if debugMode == true { print("back to  mmwGameScene from optionsButton") }
         
+        if debugMode == true { print("mmwGameScenegameViewController func optionsButton()  --> gameViewController.updateUIDeluxeVersion()") }
+        gameViewController.updateUIDeluxeVersion()
+        
     }
     
     

@@ -98,6 +98,7 @@ class MMWGameSceneViewController : UIViewController {
     func setUpGame () {
         if debugMode == true { print("---   in setUpGame mmwGameSceneViewController") }
         loadWordSet()
+        AppDelegate.fetch()
         mmwGameScene.buildGameView()
         
         setUpPlayers() // add player to view, match player to grid, fill grid with starter tiles and colorize to player color

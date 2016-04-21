@@ -47,7 +47,7 @@ var debugMode = true
 var gameIsSuspended = false
 
 var gameStarting = true
-var deluxeVersionPurchased = false
+var deluxeVersionPurchased = 0
 
 var FontHUD = UIFont(name:"HelveticaNeue", size: 18.0)
 let FontHUDiPhoneSize = 12.0
