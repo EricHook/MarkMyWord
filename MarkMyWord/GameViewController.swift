@@ -277,49 +277,21 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
             player4SkillLevelOutlet.hidden = true
             player4SkillLevelLabelOutlet.hidden = true
         }
-        
-        //////////////
-        //if deluxeVersionPurchased != 0 {
-        
-        
-        
-        
-            updateUIDeluxeVersion()
-        
-        //}
-        //
-        
-        ////////////////
+
+        updateUIDeluxeVersion()
         
     }
     
     func updateUIDeluxeVersion() {
-        if debugMode == true {print("updateUIDeluxeVersion() \(deluxeVersionPurchased != 0)")}
-        
-        //deluxeVersionPurchased = 1
-        
-        if deluxeVersionPurchased != 0 {
-            
-//            startNewGameWithChangesButtonOutlet.hidden = false
-//            startNewGameWithChangesButtonOutlet.enabled = true
-            
-//            purchaseDeluxeVersionButtonOutlet.hidden = true
-//            purchaseDeluxeVersionButtonOutlet.enabled  = false
+        if debugMode == true {print("updateUIDeluxeVersion() deluxeVersionPurchased = \(deluxeVersionPurchased != 0)")}
 
-            //purchaseDeluxeVersionButtonOutlet.alpha = 0.5
-            
+        if deluxeVersionPurchased != 0 {
             SavingOptionsInfoTextOutlet.text = "🏆 Mark My Word Deluxe Version 🏆"
             SavingOptionsInfoTextOutlet.font = SavingOptionsInfoTextOutlet.font.fontWithSize(22)
-            
         }
         
         else {
-             if debugMode == true {print("updateUIDeluxeVersion() X \(deluxeVersionPurchased == 0)")}
-//            startNewGameWithChangesButtonOutlet.hidden = true
-//            startNewGameWithChangesButtonOutlet.enabled = false
-//            
-//            purchaseDeluxeVersionButtonOutlet.hidden = false
-//            startNewGameWithChangesButtonOutlet.enabled = true
+            if debugMode == true {print("updateUIDeluxeVersion() X == 0 : \(deluxeVersionPurchased == 0)")}
             
             SavingOptionsInfoTextOutlet.text = "Saving options is not available in the basic version of Mark My Word. Please purchase the Deluxe Version for access to additional game customization and options."
             SavingOptionsInfoTextOutlet.font = SavingOptionsInfoTextOutlet.font.fontWithSize(16)
@@ -1002,14 +974,15 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
         } else {
             let alertController = UIAlertController(title: "Mark My Word Deluxe", message: "Add options and customization to the basic version of the game.", preferredStyle: .Alert)
             let learnAction = UIAlertAction(title: "Learn More", style: .Default) { (action) -> Void in
-                print("deluxeVersionAction() action learnAction")
+                print("gameViewController deluxeVersionAction() action learnAction")
                 
                 //gameViewController.ViewStoreOutlet.hidden = false
                 
                 
                 let vc = self.storyboard?.instantiateViewControllerWithIdentifier("StoreTableView") as! StoreTableViewController
+                print("gameViewController deluxeVersionAction() action learnAction 2")
                 self.presentViewController(vc, animated: true, completion: nil)
-                
+                print("gameViewController deluxeVersionAction() action learnAction 3")
                 
             }
             let cancelAction = UIAlertAction(title: "Not right now", style: .Default, handler: nil)
@@ -1020,7 +993,7 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
             self.presentViewController(alertController, animated: true, completion: nil)
 
         }
-        
+        print("gameViewController deluxeVersionAction() action learnAction 4")
         updateUIDeluxeVersion()
     }
     

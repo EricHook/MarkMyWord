@@ -62,65 +62,267 @@ class IAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObser
     
     func verifyReceipt(transaction:SKPaymentTransaction?){
         if debugMode == true { print("IAPManager verifyReceipt(transaction:SKPaymentTransaction?) deluxeVersionPurchased? \(deluxeVersionPurchased)") }
+        
+        var json : NSDictionary?
+        
         let receiptURL = NSBundle.mainBundle().appStoreReceiptURL!
+        
         if let receipt = NSData(contentsOfURL: receiptURL){
             //Receipt exists
             let requestContents = ["receipt-data" : receipt.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0)), "password" : "326200e390c84cda8f7fb53750b72e05"]
             
             //Perform request
             do {
-                let requestData = try NSJSONSerialization.dataWithJSONObject(requestContents, options: NSJSONWritingOptions(rawValue: 0))
+                var requestData = try NSJSONSerialization.dataWithJSONObject(requestContents, options: NSJSONWritingOptions(rawValue: 0))
                 
                 ///////////////////////////////////////////////////
                 
                 //Build URL Request
                 
-//                // production URL
-//                let storeURL = NSURL(string: "https:/buy.itunes.apple.com/verifyReceipt")
+                // production URL
+                var storeURL = NSURL(string: "https://buy.itunes.apple.com/verifyReceipt")
                 
-                //sandbox URL
-                let storeURL = NSURL(string: "https:/sandbox.itunes.apple.com/verifyReceipt")
+//                //sandbox URL
+//                var storeURL = NSURL(string: "https://sandbox.itunes.apple.com/verifyReceipt")
                 
                 ///////////////////////////////////////////////////
                 
-                let request = NSMutableURLRequest(URL: storeURL!)
+                var request = NSMutableURLRequest(URL: storeURL!)
                 request.HTTPMethod = "Post"
                 request.HTTPBody = requestData
                 
-                let session = NSURLSession.sharedSession()
-                let task = session.dataTaskWithRequest(request, completionHandler: { (responseData:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
-                    //
-                    
+                var session = NSURLSession.sharedSession()
+
+                ////////////////
+
+                
+                var taskStore = session.dataTaskWithRequest(request, completionHandler: { (responseData:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
+
                     do {
-                        let json = try NSJSONSerialization.JSONObjectWithData(responseData!, options: .MutableLeaves) as! NSDictionary
-                        
+                        json = try NSJSONSerialization.JSONObjectWithData(responseData!, options: .MutableLeaves) as! NSDictionary
+                        print("IAPManager print(json)")
                         print(json)
+
+                        //////////////////////////////////////// ERROR getting to Apple store, use sandbox instead
+
+                        if (json?.objectForKey("status") as! NSNumber) != 0 {
+                            print("IAPManager json.objectForKey( status ) as! NSNumber) != 0")
+                            
+                            storeURL = NSURL(string: "https://sandbox.itunes.apple.com/verifyReceipt")
+                            request = NSMutableURLRequest(URL: storeURL!)
+                            request.HTTPMethod = "Post"
+                            request.HTTPBody = requestData
+                            requestData = try NSJSONSerialization.dataWithJSONObject(requestContents, options: NSJSONWritingOptions(rawValue: 0))
+                            
+                            
+                            var taskStoreSandbox = session.dataTaskWithRequest(request, completionHandler: { (responseData:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
+                                
+                                do {
+                                    json = try NSJSONSerialization.JSONObjectWithData(responseData!, options: .MutableLeaves) as! NSDictionary
+                                    print("IAPManager print(json)")
+                                    print(json)
+                                    
+                                    
+                                    
+                                    //////////////////////////////////////// ERROR getting to Apple store, use sandbox instead
+                                    
+                                    
+                                    if (json?.objectForKey("status") as! NSNumber) != 0 {
+                                        print("IAPManager json.objectForKey( status ) as! NSNumber) != 0 2")
+                                        
+                                        storeURL = NSURL(string: "https://sandbox.itunes.apple.com/verifyReceipt")
+                                        request = NSMutableURLRequest(URL: storeURL!)
+                                        request.HTTPMethod = "Post"
+                                        request.HTTPBody = requestData
+                                        requestData = try NSJSONSerialization.dataWithJSONObject(requestContents, options: NSJSONWritingOptions(rawValue: 0))
+                                        
+                                        
+                                        
+                                        
+                                        //                            var taskStoreSandbox = session.dataTaskWithRequest(request, completionHandler: { (responseData:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
+                                        //
+                                        //                                do {
+                                        //
+                                        //
+                                        //                                    json = try NSJSONSerialization.JSONObjectWithData(responseData!, options: .MutableLeaves) as! NSDictionary
+                                        //                                    print("IAPManager print(json)")
+                                        //                                    print(json)
+                                        //
+                                        //
+                                        //                                    // hack to purchase if appStore error
+                                        //                                    //deluxeVersionPurchased = 1
+                                        //
+                                        //                                })
+                                        //                            }
+                                        //                        }
+                                        
+                                        //                                } catch {
+                                        //                                    print(error)
+                                        //                                }
+  
+                                        
+                                    }
+                                    
+                                    
+                                    
+                                    
+                                    //                            let taskSandbox = session.dataTaskWithRequest(request, completionHandler: { (responseData:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
+                                    //                                do {
+                                    //                                    json = try NSJSONSerialization.JSONObjectWithData(responseData!, options: .MutableLeaves) as! NSDictionary
+                                    //                                    print("IAPManager print(json)")
+                                    //                                    print(json)
+                                    //
+                                    //
+                                    //                                } catch {
+                                    //                                    print("IAPManager catch error")
+                                    //                                    print(error)
+                                    //                                }
+                                    //                            })
+                                    
+                                    
+                                    
+                                    ////////////////////////////////
+                                    
+                                    
+                                    
+                                    
+                                    if (json?.objectForKey("status") as! NSNumber) == 0 {
+                                        //
+                                        
+                                        if let latest_receipt = json?["latest_receipt_info 2"]{
+                                            self.validatePurchaseArray(latest_receipt as! NSArray)
+                                        } else {
+                                            let receipt_dict = json?["receipt"] as! NSDictionary
+                                            if let purchases = receipt_dict["in_app"] as? NSArray{
+                                                self.validatePurchaseArray(purchases)
+                                            }
+                                        }
+                                        
+                                        
+                                        if transaction != nil {
+                                            SKPaymentQueue.defaultQueue().finishTransaction(transaction!)
+                                            
+                                            if debugMode == true {
+                                                print("IAPManager dispatch_sync( dispatch_get_main_queue  )  1  deluxeVersionPurchased? \(deluxeVersionPurchased)")
+                                            }
+                                            
+                                            deluxeVersionPurchased = 1
+                                            
+                                            if debugMode == true {print("IAPManager if transaction != nil verifyReceipt(transaction:SKPaymentTransaction?) deluxeVersionPurchased? \(deluxeVersionPurchased)") }
+                                            
+                                            
+                                        }
+                                        
+                                        dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+                                            self.delegate?.managerDidRestorePurchases()
+                                            
+                                            if debugMode == true {
+                                                print("IAPManager dispatch_sync( dispatch_get_main_queue  ) 2 deluxeVersionPurchased? \(deluxeVersionPurchased)")
+                                            }
+                                            
+                                            //deluxeVersionPurchased = 1
+                                            //gameViewController.updateUIDeluxeVersion()
+                                            
+                                            
+                                        })
+                                        
+                                    } else {
+                                        //Debug the receipt
+                                        try print(json?.objectForKey("IAPManager status") as? NSNumber)
+                                    }
+                                    
+                                    
+                                    
+                                } catch {
+                                    print("IAPManager catch error")
+                                    print(error)
+                                }
+                            })
+                            
+                            
+                            taskStoreSandbox.resume()
+                            
+//                            var taskStoreSandbox = session.dataTaskWithRequest(request, completionHandler: { (responseData:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
+//                            
+//                                do {
+//                                    
+//                                    
+//                                    json = try NSJSONSerialization.JSONObjectWithData(responseData!, options: .MutableLeaves) as! NSDictionary
+//                                    print("IAPManager print(json)")
+//                                    print(json)
+//                                    
+//                                    
+//                                    // hack to purchase if appStore error
+//                                    //deluxeVersionPurchased = 1
+//                                    
+//                                })
+//                            }
+//                        }
+
+//                                } catch {
+//                                    print(error)
+//                                }
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            }
+
                         
-                        if (json.objectForKey("status") as! NSNumber) == 0 {
+                            
+                            
+//                            let taskSandbox = session.dataTaskWithRequest(request, completionHandler: { (responseData:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
+//                                do {
+//                                    json = try NSJSONSerialization.JSONObjectWithData(responseData!, options: .MutableLeaves) as! NSDictionary
+//                                    print("IAPManager print(json)")
+//                                    print(json)
+//     
+//                            
+//                                } catch {
+//                                    print("IAPManager catch error")
+//                                    print(error)
+//                                }
+//                            })
+
+                       
+
+                        ////////////////////////////////
+                
+                        
+
+                        
+                        if (json?.objectForKey("status") as! NSNumber) == 0 {
                             //
                             
-                            if let latest_receipt = json["latest_receipt_info"]{
+                            if let latest_receipt = json?["latest_receipt_info"]{
                                 self.validatePurchaseArray(latest_receipt as! NSArray)
                             } else {
-                                let receipt_dict = json["receipt"] as! NSDictionary
+                                let receipt_dict = json?["receipt"] as! NSDictionary
                                 if let purchases = receipt_dict["in_app"] as? NSArray{
                                     self.validatePurchaseArray(purchases)
                                 }
                             }
 
+                            
                             if transaction != nil {
                                 SKPaymentQueue.defaultQueue().finishTransaction(transaction!)
 
                                 if debugMode == true {
                                     print("IAPManager dispatch_sync( dispatch_get_main_queue  )  1  deluxeVersionPurchased? \(deluxeVersionPurchased)")
                                 }
+                                
                                 deluxeVersionPurchased = 1
-                                //gameViewController.updateUIDeluxeVersion()
                                 
                                 if debugMode == true {print("IAPManager if transaction != nil verifyReceipt(transaction:SKPaymentTransaction?) deluxeVersionPurchased? \(deluxeVersionPurchased)") }
 
-                                
-                                
+     
                             }
                             
                             dispatch_sync(dispatch_get_main_queue(), { () -> Void in
@@ -138,24 +340,29 @@ class IAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObser
                             
                         } else {
                             //Debug the receipt
-                            print(json.objectForKey("IAPManager status") as! NSNumber)
+                            try print(json?.objectForKey("IAPManager status") as? NSNumber)
                         }
                         
                     } catch {
+                         print("IAPManager catch error")
                         print(error)
                     }
                 })
-                
-                task.resume()
+
+                taskStore.resume()
+                    
+           
                 
             } catch {
                 print(error)
             }
+                
+  
             
         } else {
             //Receipt does not exist
-            print("IAPManager verifyReceipt >> No Receipt deluxeVersionPurchased? \(deluxeVersionPurchased)")
             //deluxeVersionPurchased = 0
+            print("IAPManager verifyReceipt >> No Receipt deluxeVersionPurchased? \(deluxeVersionPurchased)")
         }
     }
     
@@ -189,19 +396,17 @@ class IAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObser
     
     func unlockPurchasedFunctionalityForProductIdentifier(productIdentifier:String){
         
-        NSUserDefaults.standardUserDefaults().setBool(true, forKey: productIdentifier)
-        NSUserDefaults.standardUserDefaults().synchronize()
-        
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-        
-
-        
         deluxeVersionPurchased = 1
         
         if debugMode == true {
             print("IAPManager unlockPurchasedFunctionalityForProductIdentifier(productIdentifier:String) deluxeVersionPurchased? \(deluxeVersionPurchased)")
         }
         
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: productIdentifier)
+        NSUserDefaults.standardUserDefaults().synchronize()
+        
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
         gameViewController.updateUIDeluxeVersion()
     }
     
@@ -229,11 +434,8 @@ class IAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObser
     
     //MARK: SKProductsRequestDelegate
     func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
-    
+        if debugMode == true { print("IAPManager productsRequest >> \(self.products) deluxeVersionPurchased? \(deluxeVersionPurchased)") }
         self.products = response.products
-        
-            if debugMode == true { print("IAPManager productsRequest >> \(self.products) deluxeVersionPurchased? \(deluxeVersionPurchased)") }
-        
     }
     
     
@@ -262,7 +464,7 @@ class IAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObser
                     print("IAPManager func paymentQueue case.Purchased: deluxeVersionPurchased? \(deluxeVersionPurchased)")
                 }
                 
-                deluxeVersionPurchased = 1 //////////////////////////
+                //deluxeVersionPurchased = 1 //////////////////////////
                 //gameViewController.updateUIDeluxeVersion()
                 
             case .Restored:
@@ -272,7 +474,7 @@ class IAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObser
                 if debugMode == true {
                     print("IAPManager func paymentQueue case .Restored: deluxeVersionPurchased? \(deluxeVersionPurchased)")
                 }
-                deluxeVersionPurchased = 1 //////////////////////////
+                //deluxeVersionPurchased = 1 //////////////////////////
                 //gameViewController.updateUIDeluxeVersion()
                 
             }
@@ -281,18 +483,18 @@ class IAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObser
     
     
     func restorePurchases(){
-     
+        if debugMode == true { print("IAPManager restorePurchases() deluxeVersionPurchased? \(deluxeVersionPurchased)") }
         let request = SKReceiptRefreshRequest()
         request.delegate = self
         request.start()
-           if debugMode == true { print("IAPManager restorePurchases() deluxeVersionPurchased? \(deluxeVersionPurchased)") }
+        
     }
     
     
     func requestDidFinish(request: SKRequest) {
-        
-        self.verifyReceipt(nil)
         if debugMode == true { print("IAPManager requestDidFinish(request: SKRequest) deluxeVersionPurchased? \(deluxeVersionPurchased)") }
+        self.verifyReceipt(nil)
+        
     }
     
 }

@@ -120,7 +120,7 @@ class Grid {
     
     
     func getGridSquare (locX: Float, locY: Float) -> (GridSquareX: Int, GridSquareY: Int, GridSquareUpperLeftCornerX: Double, GridSquareUpperLeftCornerY: Double) {
-        let locYmod = locY + Float((screenSize!).height) * 0.0455729167 // 35 (adj for flipped coordinates)
+        let locYmod = locY + Float((screenSize!).height) * 0.0455729167 // 35 (adj for flipped coordinates)  // * 0.0455729167
         var GridSquareX : Int = 0
         var GridSquareY : Int = 0
         var GridSquareUpperLeftCornerX : Double = 0.0

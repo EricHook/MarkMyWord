@@ -381,10 +381,10 @@ class LetterTileSprite : SKSpriteNode {
             }
                 
             else {
-                let gameGrid = (scene as! MMWGameScene).getSnapGrid(tileSnapTouch)
-                let tileSnapResults = gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y))
-                let tileSnapResultsXGrid = tileSnapResults.GridSquareX
-                let tileSnapResultsYGrid = tileSnapResults.GridSquareY
+//                let gameGrid = (scene as! MMWGameScene).getSnapGrid(tileSnapTouch)
+//                let tileSnapResults = gameGrid!.getGridSquare(Float(tileSnapTouch.x), locY: Float(tileSnapTouch.y))
+//                let tileSnapResultsXGrid = tileSnapResults.GridSquareX
+//                let tileSnapResultsYGrid = tileSnapResults.GridSquareY
                 
                 let validWordTestAtDropSpot = testForValidWordsAtDropSpot(tileSnapResultsXGrid, tileSnapResultsYGrid: tileSnapResultsYGrid, isAI: false, isAIScoringPass: false)
                 

@@ -33,10 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 //        let itemNames = ["Apples", "Milk", "Bread", "Cheese", "Sausages", "Butter", "Orange Juice", "Cereal", "Coffee", "Eggs", "Tomatoes", "Fish", "Fish"]
         
-        
-        
-        //let mmwTile = MMWTile()
-        
 //        for itemName in itemNames {
 //            let item:Item = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: CDHelper.shared.context) as! Item
 //            item.name = itemName
@@ -199,9 +195,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
         if debugMode == true { print("AppDelegate > applicationWillResignActive ...") }
+        
         if mmwGameSceneViewController.timerIsOn {
             mmwGameScene.stopTimer()
         }
+        
         mmwGameSceneViewController.appPaused = true
         gameIsSuspended = true
         
@@ -217,26 +215,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
         
-        
-        
-        
-        
-        
-        
-        
 ////        CDHelper.saveSharedContext()
 //        if mmwGameSceneViewController.timerIsOn {
 //            mmwGameScene.stopTimer()
 //        }
         
-        
-        
-        
-        
-        
-        
-        
-        
+  
         mmwGameSceneViewController.appPaused = true
         gameIsSuspended = true
 
@@ -260,12 +244,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         mmwGameSceneViewController.appPaused = false
         gameIsSuspended = false
-        
-        //if deluxeVersionPurchased != 0 {
-        
+ 
             gameViewController.updateUIDeluxeVersion()
-        
-        //}
+ 
     }
 
     
@@ -286,12 +267,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 
-        
-        //if deluxeVersionPurchased != 0 {
-        
             gameViewController.updateUIDeluxeVersion()
-        
-        //}
+
     }
 
     

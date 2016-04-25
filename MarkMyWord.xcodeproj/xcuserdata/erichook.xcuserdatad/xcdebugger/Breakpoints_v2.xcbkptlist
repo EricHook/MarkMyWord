@@ -175,7 +175,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "802"
             endingLineNumber = "802"
-            landmarkName = "player4SkillLevelAction(_:)"
+            landmarkName = "startNewGame()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -298,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/IAPManager.swift"
-            timestampString = "482884793.125103"
+            timestampString = "483240902.264413"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "370"
+            endingLineNumber = "370"
             landmarkName = "validatePurchaseArray(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -314,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/IAPManager.swift"
-            timestampString = "482884793.125103"
+            timestampString = "483240902.264413"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
+            startingLineNumber = "398"
+            endingLineNumber = "398"
             landmarkName = "unlockPurchasedFunctionalityForProductIdentifier(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -330,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/IAPManager.swift"
-            timestampString = "482909789.074024"
+            timestampString = "483240902.264413"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "231"
-            endingLineNumber = "231"
+            startingLineNumber = "436"
+            endingLineNumber = "436"
             landmarkName = "productsRequest(_:didReceiveResponse:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -378,11 +378,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/IAPManager.swift"
-            timestampString = "482906895.499689"
+            timestampString = "483240902.264413"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "328"
+            endingLineNumber = "328"
             landmarkName = "verifyReceipt(_:)"
             landmarkType = "5">
             <Locations>
@@ -442,11 +442,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/IAPManager.swift"
-            timestampString = "482632858.509765"
+            timestampString = "483240902.264413"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "314"
+            endingLineNumber = "314"
             landmarkName = "verifyReceipt(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -458,11 +458,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/AppDelegate.swift"
-            timestampString = "482952658.215292"
+            timestampString = "483240902.264413"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "fetch()"
             landmarkType = "5">
          </BreakpointContent>
@@ -495,8 +495,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "301"
             endingLineNumber = "301"
-            landmarkName = "updateUIDeluxeVersion()"
-            landmarkType = "5">
+            landmarkName = "GameViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -506,12 +506,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/GameViewController.swift"
-            timestampString = "482955524.592817"
+            timestampString = "483049634.529358"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1024"
-            endingLineNumber = "1024"
-            landmarkName = "deluxeVersionAction()"
+            startingLineNumber = "1025"
+            endingLineNumber = "1025"
+            landmarkName = "goToResults()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -543,7 +543,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "287"
             endingLineNumber = "287"
-            landmarkName = "updateGameSettings()"
+            landmarkName = "updateUIDeluxeVersion()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -554,11 +554,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkMyWord/AppDelegate.swift"
-            timestampString = "482963654.053115"
+            timestampString = "483240902.264413"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "272"
-            endingLineNumber = "272"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
             landmarkName = "applicationDidBecomeActive(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -576,6 +576,134 @@
             startingLineNumber = "1526"
             endingLineNumber = "1526"
             landmarkName = "explosion(_:color:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarkMyWord/IAPManager.swift"
+            timestampString = "483160448.479188"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "verifyReceipt(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarkMyWord/IAPManager.swift"
+            timestampString = "483160829.777359"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "verifyReceipt(_:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MarkMyWord.IAPManager.verifyReceipt (Swift.Optional&lt;__ObjC.SKPaymentTransaction&gt;) -&gt; ()"
+                  moduleName = "MarkMyWord"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erichook/Repos/MarkMyWord/MarkMyWord/IAPManager.swift"
+                  timestampString = "483158687.198557"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "262"
+                  endingLineNumber = "262"
+                  offsetFromSymbolStart = "1752">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[8] = Value Promoted from Box&gt; of MarkMyWord.IAPManager.(verifyReceipt (Swift.Optional&lt;__ObjC.SKPaymentTransaction&gt;) -&gt; ()).(closure #1)"
+                  moduleName = "MarkMyWord"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erichook/Repos/MarkMyWord/MarkMyWord/IAPManager.swift"
+                  timestampString = "483158687.198769"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarkMyWord/IAPManager.swift"
+            timestampString = "483240902.264413"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "301"
+            endingLineNumber = "301"
+            landmarkName = "verifyReceipt(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarkMyWord/IAPManager.swift"
+            timestampString = "483240902.264413"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "verifyReceipt(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarkMyWord/IAPManager.swift"
+            timestampString = "483227624.813849"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "verifyReceipt(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarkMyWord/IAPManager.swift"
+            timestampString = "483240884.022678"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "verifyReceipt(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
