@@ -968,7 +968,7 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
     
     //MARK: Deluxe Version Functionality
     func deluxeVersionAction(){
-        if NSUserDefaults.standardUserDefaults().boolForKey("com.hookstudios.markmywordiosdeluxe"){
+        if NSUserDefaults.standardUserDefaults().boolForKey("com.hookstudios.markmywordiosdeluxe2"){
             print("deluxeVersionAction() Active")
             
         } else {
