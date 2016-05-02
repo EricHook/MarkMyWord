@@ -182,10 +182,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         gameIsSuspended = false
         
         
-        if SKPaymentQueue.canMakePayments(){
-            self.canPurchase = true
-            IAPManager.sharedInstance.setupInAppPurchases()
-        }
+//        if SKPaymentQueue.canMakePayments(){
+//            self.canPurchase = true
+//            IAPManager.sharedInstance.setupInAppPurchases()
+//        }
 
         return true
     }
@@ -226,9 +226,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if debugMode == true { print("AppDelegate > application ...") }
         
-        if deluxeVersionPurchased != 0 {
-            gameViewController.updateUIDeluxeVersion()
-        }
+//        if deluxeVersionPurchased != 0 {
+//            gameViewController.updateUIDeluxeVersion()
+//        }
     }
 
     
@@ -245,7 +245,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         mmwGameSceneViewController.appPaused = false
         gameIsSuspended = false
  
-            gameViewController.updateUIDeluxeVersion()
+//        gameViewController.updateUIDeluxeVersion()
  
     }
 
@@ -267,7 +267,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 
-            gameViewController.updateUIDeluxeVersion()
+//            gameViewController.updateUIDeluxeVersion()
 
     }
 

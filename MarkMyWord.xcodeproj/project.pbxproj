@@ -80,6 +80,7 @@
 		B8B2CACC1ADADD9100C9DEE7 /* 5-LetterWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8B2CA871ADADD9000C9DEE7 /* 5-LetterWords.txt */; };
 		B8B49DBB1AF1AF610086154C /* MMWResultsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B49DBA1AF1AF610086154C /* MMWResultsScene.swift */; };
 		B8B5E1EA1BB707FC00AD876E /* TrieElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B5E1E91BB707FC00AD876E /* TrieElement.swift */; };
+		B8BFE58B1CD7FA68006FDCE9 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8BFE58A1CD7FA68006FDCE9 /* GoogleMobileAds.framework */; };
 		B8C0860C1C55A532008F8E40 /* EndGameSceneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C0860A1C55A532008F8E40 /* EndGameSceneController.swift */; };
 		B8C0860D1C55A532008F8E40 /* EndGameScene.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8C0860B1C55A532008F8E40 /* EndGameScene.xib */; };
 		B8C0860F1C55A9A1008F8E40 /* EndGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C0860E1C55A9A1008F8E40 /* EndGameScene.swift */; };
@@ -212,6 +213,7 @@
 		B8B49DBA1AF1AF610086154C /* MMWResultsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMWResultsScene.swift; sourceTree = "<group>"; };
 		B8B5E1E91BB707FC00AD876E /* TrieElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrieElement.swift; sourceTree = "<group>"; };
 		B8B5F2CB1C208538005B768C /* data.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = data.dat; sourceTree = "<group>"; };
+		B8BFE58A1CD7FA68006FDCE9 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = "MarkMyWord/GoogleMobileAdsSdkiOS-7.8.0/GoogleMobileAds.framework"; sourceTree = "<group>"; };
 		B8C0860A1C55A532008F8E40 /* EndGameSceneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndGameSceneController.swift; sourceTree = "<group>"; };
 		B8C0860B1C55A532008F8E40 /* EndGameScene.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EndGameScene.xib; sourceTree = "<group>"; };
 		B8C0860E1C55A9A1008F8E40 /* EndGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndGameScene.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8BFE58B1CD7FA68006FDCE9 /* GoogleMobileAds.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +501,7 @@
 		B8CCE1931AD8C13500882391 = {
 			isa = PBXGroup;
 			children = (
+				B8BFE58A1CD7FA68006FDCE9 /* GoogleMobileAds.framework */,
 				B8CCE19E1AD8C13500882391 /* MarkMyWord */,
 				B8CCE1B81AD8C13500882391 /* MarkMyWordTests */,
 				B8CCE19D1AD8C13500882391 /* Products */,
@@ -1081,6 +1085,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Hook Studios (2NN9JNUBV3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Hook Studios (2NN9JNUBV3)";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MarkMyWord",
+					"$(PROJECT_DIR)/MarkMyWord/GoogleMobileAdsSdkiOS-7.8.0",
+				);
 				INFOPLIST_FILE = MarkMyWord/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1102,6 +1111,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Hook Studios (2NN9JNUBV3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Hook Studios (2NN9JNUBV3)";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MarkMyWord",
+					"$(PROJECT_DIR)/MarkMyWord/GoogleMobileAdsSdkiOS-7.8.0",
+				);
 				INFOPLIST_FILE = MarkMyWord/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

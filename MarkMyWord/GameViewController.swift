@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import SpriteKit
 import StoreKit
+import GoogleMobileAds
 
 extension SKNode {
     class func unarchiveFromFile(file : String) -> SKNode? {
@@ -37,7 +38,9 @@ extension SKNode {
 
 var mmwGameSceneViewController  = MMWGameSceneViewController()
 var gameViewController          = GameViewController()
-var storeTableViewController    = StoreTableViewController()
+
+//var storeTableViewController    = StoreTableViewController()
+
 var mmwOptionScreen             = MMWOptionScreen(size: screenSize!)
 var mmwGameScene                = MMWGameScene(size: screenSize!)
 
@@ -46,7 +49,7 @@ var meyamaAvatarPrefixString = "meyama00"
 var selectedHumanAvatar  = 0
 var selectedMeyamaAvatar = 0
 
-class GameViewController : UIViewController, UITextFieldDelegate { // , UITableViewDataSource, UITableViewDelegate, IAPManagerDelegate   { // , GADBannerViewDelegate {
+class GameViewController : UIViewController, UITextFieldDelegate,GADBannerViewDelegate { // { // , UITableViewDataSource, UITableViewDelegate, IAPManagerDelegate   { // , GADBannerViewDelegate {
 
 
     var tempSecondsPerTurn : Int!
@@ -278,25 +281,25 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
             player4SkillLevelLabelOutlet.hidden = true
         }
 
-        updateUIDeluxeVersion()
+        //updateUIDeluxeVersion()
         
     }
     
-    func updateUIDeluxeVersion() {
-        if debugMode == true {print("updateUIDeluxeVersion() deluxeVersionPurchased = \(deluxeVersionPurchased != 0)")}
-
-        if deluxeVersionPurchased != 0 {
-            SavingOptionsInfoTextOutlet.text = "🏆 Mark My Word Deluxe Version 🏆"
-            SavingOptionsInfoTextOutlet.font = SavingOptionsInfoTextOutlet.font.fontWithSize(22)
-        }
-        
-        else {
-            if debugMode == true {print("updateUIDeluxeVersion() X == 0 : \(deluxeVersionPurchased == 0)")}
-            
-            SavingOptionsInfoTextOutlet.text = "Saving options is not available in the basic version of Mark My Word. Please purchase the Deluxe Version for access to additional game customization and options."
-            SavingOptionsInfoTextOutlet.font = SavingOptionsInfoTextOutlet.font.fontWithSize(16)
-        }
-    }
+//    func updateUIDeluxeVersion() {
+//        if debugMode == true {print("updateUIDeluxeVersion() deluxeVersionPurchased = \(deluxeVersionPurchased != 0)")}
+//
+//        if deluxeVersionPurchased != 0 {
+//            SavingOptionsInfoTextOutlet.text = "🏆 Mark My Word Deluxe Version 🏆"
+//            SavingOptionsInfoTextOutlet.font = SavingOptionsInfoTextOutlet.font.fontWithSize(22)
+//        }
+//        
+//        else {
+//            if debugMode == true {print("updateUIDeluxeVersion() X == 0 : \(deluxeVersionPurchased == 0)")}
+//            
+//            SavingOptionsInfoTextOutlet.text = "Saving options is not available in the basic version of Mark My Word. Please purchase the Deluxe Version for access to additional game customization and options."
+//            SavingOptionsInfoTextOutlet.font = SavingOptionsInfoTextOutlet.font.fontWithSize(16)
+//        }
+//    }
 
     @IBOutlet var GameViewControllerUI: SKView!
 
@@ -854,21 +857,21 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
         // update game settings to those in UI
 
         
-        if deluxeVersionPurchased == 0 {
-            if debugMode == true {
-                print("gameViewController func startNewGameButton () deluxeVersionPurchased == 0")
-            }
-            deluxeVersionAction()
-        }
-        else {
-            if debugMode == true {
-                print("gameViewController func startNewGameButton () deluxeVersionPurchased == ELSE ")
-            }
-            //updateUIDeluxeVersion()
-            startNewGame()
-        }
+//        if deluxeVersionPurchased == 0 {
+//            if debugMode == true {
+//                print("gameViewController func startNewGameButton () deluxeVersionPurchased == 0")
+//            }
+//            deluxeVersionAction()
+//        }
+//        else {
+//            if debugMode == true {
+//                print("gameViewController func startNewGameButton () deluxeVersionPurchased == ELSE ")
+//            }
+//            //updateUIDeluxeVersion()
+//            startNewGame()
+//        }
         
-        //startNewGame()
+        startNewGame()
     }
     
     
@@ -877,6 +880,7 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
     @IBAction func returnToGameButton(sender: AnyObject) {
         // returns to game without any settings changes
         mmwOptionScreen.returnToGameScene()
+        gameViewController.bannerView.hidden = false
     }
     
     
@@ -903,9 +907,37 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
 //    }
     
     
+    
 
     
+    @IBOutlet weak var adMob300x250LoadingViewOutlet: GADBannerView!
+    
+    @IBOutlet weak var bannerView: GADBannerView!
+    
+    func adViewDidReceiveAd(bannerView: GADBannerView!) {
+        print("recd ad")
+        //bannerView.hidden = false
+        
+        self.bannerView.delegate = nil  // Remember to set the delegate before making the request for an ad:
+        
+        bannerView.rootViewController = nil
+        
+        
+        
+        self.adMob300x250LoadingViewOutlet.delegate = self  // Remember to set the delegate before making the request for an ad:
+        
+        adMob300x250LoadingViewOutlet.rootViewController = self
+        
+    }
+
+
+    
+    
+    
     let button   = UIButton(type: UIButtonType.System) as UIButton
+    
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -930,6 +962,73 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
                 mmwGame.setDeviceType(MMWGame.DeviceType.iPad)
                 if debugMode == true { print("Screen width:\(screenSize!.width) , device type: \(mmwGame.deviceType) ") }
         }
+        
+        
+        
+        
+        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
+        //bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        //bannerView.adUnitID = "ca-app-pub-6428967577130104/8931242080"  // new bannerView id
+        bannerView.adUnitID = "ca-app-pub-6428967577130104/9786515687"
+        
+        self.bannerView.delegate = self  // Remember to set the delegate before making the request for an ad:
+        
+        bannerView.rootViewController = self
+        
+        bannerView.loadRequest(GADRequest())
+        
+        
+        
+        
+        
+//        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
+//        //bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+//        bannerView.adUnitID = "ca-app-pub-6428967577130104/9786515687"
+//        bannerView.rootViewController = self
+//        bannerView.loadRequest(GADRequest())
+//        //        bannerView.delegate = nil
+//        //        //bannerView.removeFromSuperview()
+        
+        
+        
+        
+        //        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
+        //        //bannerView2.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        //        bannerView2.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        //        bannerView2.rootViewController = self
+        //        bannerView2.loadRequest(GADRequest())
+        //
+        //        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
+        //        //bannerViewLowerLeft.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        //        bannerViewLowerLeft.adUnitID = "ca-app-pub-6428967577130104/2263248882"
+        //        bannerViewLowerLeft.rootViewController = self
+        //        bannerViewLowerLeft.loadRequest(GADRequest())
+        //
+        //        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
+        //        //bannerViewUpperRight.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        //        bannerViewUpperRight.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        //        bannerViewUpperRight.rootViewController = self
+        //        bannerViewUpperRight.loadRequest(GADRequest())
+        //
+        //        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
+        //        //bannerViewLowerRight.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        //        bannerViewLowerRight.adUnitID = "ca-app-pub-6428967577130104/3739982084"
+        //        bannerViewLowerRight.rootViewController = self
+        //        bannerViewLowerRight.loadRequest(GADRequest())
+        
+        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
+        //adMob300x250LoadingViewOutlet.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        adMob300x250LoadingViewOutlet.adUnitID = "ca-app-pub-6428967577130104/8755277689"
+        adMob300x250LoadingViewOutlet.rootViewController = self
+        adMob300x250LoadingViewOutlet.loadRequest(GADRequest())
+        //        adMob300x250LoadingViewOutlet.delegate = nil
+        //        //adMob300x250LoadingViewOutlet.removeFromSuperview()
+        
+        
+        
+        
+        
+        
         
         let skView = self.view as! SKView
         skView.showsFPS = false
@@ -966,36 +1065,36 @@ class GameViewController : UIViewController, UITextFieldDelegate { // , UITableV
 
     }
     
-    //MARK: Deluxe Version Functionality
-    func deluxeVersionAction(){
-        if NSUserDefaults.standardUserDefaults().boolForKey("com.hookstudios.markmywordiosdeluxe2"){
-            print("deluxeVersionAction() Active")
-            
-        } else {
-            let alertController = UIAlertController(title: "Mark My Word Deluxe", message: "Add options and customization to the basic version of the game.", preferredStyle: .Alert)
-            let learnAction = UIAlertAction(title: "Learn More", style: .Default) { (action) -> Void in
-                print("gameViewController deluxeVersionAction() action learnAction")
-                
-                //gameViewController.ViewStoreOutlet.hidden = false
-                
-                
-                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("StoreTableView") as! StoreTableViewController
-                print("gameViewController deluxeVersionAction() action learnAction 2")
-                self.presentViewController(vc, animated: true, completion: nil)
-                print("gameViewController deluxeVersionAction() action learnAction 3")
-                
-            }
-            let cancelAction = UIAlertAction(title: "Not right now", style: .Default, handler: nil)
-            
-            alertController.addAction(cancelAction)
-            alertController.addAction(learnAction)
-            
-            self.presentViewController(alertController, animated: true, completion: nil)
-
-        }
-        print("gameViewController deluxeVersionAction() action learnAction 4")
-        updateUIDeluxeVersion()
-    }
+//    //MARK: Deluxe Version Functionality
+//    func deluxeVersionAction(){
+//        if NSUserDefaults.standardUserDefaults().boolForKey("com.hookstudios.markmywordiosdeluxe2"){
+//            print("deluxeVersionAction() Active")
+//            
+//        } else {
+//            let alertController = UIAlertController(title: "Mark My Word Deluxe", message: "Add options and customization to the basic version of the game.", preferredStyle: .Alert)
+//            let learnAction = UIAlertAction(title: "Learn More", style: .Default) { (action) -> Void in
+//                print("gameViewController deluxeVersionAction() action learnAction")
+//                
+//                //gameViewController.ViewStoreOutlet.hidden = false
+//                
+//                
+//                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("StoreTableView") as! StoreTableViewController
+//                print("gameViewController deluxeVersionAction() action learnAction 2")
+//                self.presentViewController(vc, animated: true, completion: nil)
+//                print("gameViewController deluxeVersionAction() action learnAction 3")
+//                
+//            }
+//            let cancelAction = UIAlertAction(title: "Not right now", style: .Default, handler: nil)
+//            
+//            alertController.addAction(cancelAction)
+//            alertController.addAction(learnAction)
+//            
+//            self.presentViewController(alertController, animated: true, completion: nil)
+//
+//        }
+//        print("gameViewController deluxeVersionAction() action learnAction 4")
+//        updateUIDeluxeVersion()
+//    }
     
     
 //    func buttonAction()

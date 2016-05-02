@@ -460,6 +460,8 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         optionsButton.userInteractionEnabled = true
         optionsButton.alpha = 0.5
         
+        gameViewController.bannerView.hidden = false
+        
         stopTimer()
     }
     
@@ -1417,13 +1419,15 @@ class MMWGameScene : SKScene { // , NSObject, NSCoding { // , SKPhysicsContactDe
         
         gameGrid.hidden = true
         playAreaWhite.hidden = true
+        gameViewController.bannerView.hidden = true
+
         
         view?.presentScene(mmwOptionScreen)
         
         if debugMode == true { print("back to  mmwGameScene from optionsButton") }
         
-        if debugMode == true { print("mmwGameScenegameViewController func optionsButton()  --> gameViewController.updateUIDeluxeVersion()") }
-        gameViewController.updateUIDeluxeVersion()
+//        if debugMode == true { print("mmwGameScenegameViewController func optionsButton()  --> gameViewController.updateUIDeluxeVersion()") }
+//        gameViewController.updateUIDeluxeVersion()
         
     }
     
